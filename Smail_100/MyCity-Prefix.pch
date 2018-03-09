@@ -1,0 +1,73 @@
+//
+//  MyCity-Prefix.pch
+//  MyCityProject
+//
+//  Created by Faker on 17/5/3.
+//  Copyright © 2017年 Faker. All rights reserved.
+//
+
+#ifndef MyCity_Prefix_h
+#define MyCity_Prefix_h
+#import "KX_MacroDefinition.h"
+#import "UIView+LayerExtension.h"
+
+#import "UIViewExt.h"
+#import "WRNavigationBar.h"
+#import "UIColor+Hex.h"
+#import "NSString+Extension.h"
+#import "KX_BaseViewController.h"
+#import "Toast+UIView.h"
+#import "KYActionSheetDown.h"
+#import "KX_BaseTableViewController.h"
+#import "UIButton+KYTouch.h"
+#import "UIButton+EdgeInsets.h"
+#import "GetThefont.h"
+#import "KX_FKPopMeumView.h"
+#import "WHC_ModelSqlite.h"
+#import "SDAutoLayout.h"
+
+#import "AFNetworking.h"
+
+#import "MJRefresh.h"
+#import "UIView+KX_ToastView.h"
+#import "NSString+Extension.h"
+#import "MJExtension.h"//字典转模型
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+Add.h"
+#import "SuccessView.h"
+#import "UIViewController+HUD.h"
+
+#import "UIImageView+WebCache.h" //下载缓存图片
+#import "IQKeyboardManager.h"
+#import "BaseHttpRequest.h"
+#import "KX_LoginHintView.h"
+#import "CityViewController.h"
+
+#import "UITableView+KYRefresh.h"
+#import "KX_FKDataPickView.h"
+#import "KYDateView.h"
+#import "AppDelegate.h"
+#import "KX_UserInfo.h"
+
+#import "KYDatePickView.h"
+#import "Common.h"
+#import "UIWebView+ContenHight.h"
+
+#import "YYModel.h"
+//#import "UIScrollView+KYPagingDetail.h"
+#import "GlobalQueueOperation.h"
+
+#import "PYSearchViewController.h"
+#import "WJSegmentMenuVc.h"
+
+//#import<BaiduMapAPI_Map/BMKMapView.h>
+//
+//#import<BaiduMapAPI_Location/BMKLocationService.h>
+//
+//#import<BaiduMapAPI_Search/BMKGeocodeSearch.h>
+//
+//#import<BaiduMapAPI_Map/BMKMapComponent.h>
+//
+//#import<BaiduMapAPI_Search/BMKPoiSearchType.h>
+
+#endif /* MyCity_Prefix_h */

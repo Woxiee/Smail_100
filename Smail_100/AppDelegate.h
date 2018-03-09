@@ -1,9 +1,9 @@
 //
 //  AppDelegate.h
-//  Smail_100
+//  Smile_100
 //
-//  Created by ap on 2018/3/9.
-//  Copyright © 2018年 Smail_100. All rights reserved.
+//  Created by Faker on 2018/2/3.
+//  Copyright © 2018年 com.Smile100.wxApp. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginFindAndRegirsVC">
+            <connections>
+                <outlet property="loginBtn" destination="6dE-Ga-7nM" id="W6c-0R-Ui1"/>
+                <outlet property="titleLB" destination="Ji1-e8-cZt" id="qjJ-3D-sWU"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chenggong@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZAe-nV-5XD">
+                    <rect key="frame" x="152.5" y="50" width="70" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="Rio-BD-82l"/>
+                        <constraint firstAttribute="width" constant="70" id="yN3-ny-T99"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="恭喜您,找回密码成功!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ji1-e8-cZt">
+                    <rect key="frame" x="25" y="140" width="325" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="noK-5U-7XD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dE-Ga-7nM">
+                    <rect key="frame" x="25" y="228" width="325" height="44"/>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.41176470590000003" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="Uix-gc-ex0"/>
+                        <constraint firstAttribute="height" constant="44" id="p62-S0-uvu"/>
+                    </constraints>
+                    <state key="normal" title="立即登录">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didClickLoginClicj:" destination="-1" eventType="touchUpInside" id="Mld-5j-Xvv"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="6dE-Ga-7nM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="CWS-Xz-yU3"/>
+                <constraint firstAttribute="trailing" secondItem="6dE-Ga-7nM" secondAttribute="trailing" constant="25" id="GsG-2y-7HB"/>
+                <constraint firstItem="6dE-Ga-7nM" firstAttribute="top" secondItem="Ji1-e8-cZt" secondAttribute="bottom" constant="67" id="HgC-mH-Zkn"/>
+                <constraint firstItem="ZAe-nV-5XD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TKM-Jp-LcE"/>
+                <constraint firstItem="Ji1-e8-cZt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="VCt-HK-TVR"/>
+                <constraint firstItem="Ji1-e8-cZt" firstAttribute="top" secondItem="ZAe-nV-5XD" secondAttribute="bottom" constant="20" id="aIm-na-KDr"/>
+                <constraint firstAttribute="trailing" secondItem="Ji1-e8-cZt" secondAttribute="trailing" constant="25" id="cq1-yq-1kK"/>
+                <constraint firstItem="ZAe-nV-5XD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="fbM-ao-Mx2"/>
+            </constraints>
+            <point key="canvasLocation" x="34.5" y="59.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chenggong@3x.png" width="16" height="16"/>
+    </resources>
+</document>

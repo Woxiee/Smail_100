@@ -1,14 +1,16 @@
 //
 //  AppDelegate.m
-//  Smail_100
+//  Smile_100
 //
-//  Created by ap on 2018/3/9.
-//  Copyright © 2018年 Smail_100. All rights reserved.
+//  Created by Faker on 2018/2/3.
+//  Copyright © 2018年 com.Smile100.wxApp. All rights reserved.
 //
 
 #import "AppDelegate.h"
-
+#import "KX_BaseTabbarController.h"
+#import "KX_BaseNavController.h"
 @interface AppDelegate ()
+@property (nonatomic, strong) KX_BaseTabbarController *tabbarVC;
 
 @end
 
@@ -16,8 +18,47 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _window.backgroundColor = BACKGROUND_COLOR;
+    [[KX_UserInfo sharedKX_UserInfo] loadUserInfoFromSanbox];
+    KX_BaseTabbarController *tabbarVC = [[KX_BaseTabbarController alloc] init];
+    self.window.rootViewController = tabbarVC;
+    self.tabbarVC = tabbarVC;
+    [self setConfiguration];
+    [_window makeKeyAndVisible];
     return YES;
+}
+
+/// 配置基础设置
+- (void)setConfiguration
+{
+   
+    //iqkeyboard
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.enable = YES;
+    manager.shouldResignOnTouchOutside = YES;//这个是点击空白区域键盘收缩的开关
+    manager.enableAutoToolbar = YES;//这个是它自带键盘工具条开关
+    
+    
+//    UIColor * colors = [UIColor whiteColor];
+//    NSDictionary * dict= [NSDictionary dictionaryWithObjectsAndKeys:colors,NSForegroundColorAttributeName,nil];
+//    [UINavigationBar appearance].titleTextAttributes  = dict;
+//    [UINavigationBar appearance].tintColor = colors;
+//
+//    [[UINavigationBar appearance]  setBackgroundImage:[UIImage
+//                                                       imageNamed:@"Navigation_BackgroundImage"] forBarMetrics:UIBarMetricsDefault];
+//    [UINavigationBar appearance].barStyle = UIBarStyleBlackOpaque;//设置不要透明 图片没有不要透明纸
+//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
+    // 设置导航栏默认的背景颜色
+    [WRNavigationBar wr_setDefaultNavBarBarTintColor:KMAINCOLOR];
+    [WRNavigationBar wr_setDefaultNavBarTitleColor:[UIColor whiteColor]];
+    // 设置导航栏所有按钮的默认颜色
+    [WRNavigationBar wr_setDefaultNavBarTintColor:[UIColor whiteColor]];
+    // 统一设置状态栏样式
+    [WRNavigationBar wr_setDefaultStatusBarStyle:UIStatusBarStyleLightContent];
+    // 如果需要设置导航栏底部分割线隐藏，可以在这里统一设置
+    [WRNavigationBar wr_setDefaultNavBarShadowImageHidden:YES];
 }
 
 

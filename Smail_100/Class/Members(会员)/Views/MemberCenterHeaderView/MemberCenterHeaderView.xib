@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1py-vz-0Ai" customClass="MemberCenterHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dvh-fh-JeH">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="6@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="ptz-eE-b6r">
+                    <rect key="frame" x="120" y="19" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="MIA-0y-xkw"/>
+                        <constraint firstAttribute="height" constant="80" id="NgA-VZ-QBU"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="骑士" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1MA-Cj-O1h">
+                    <rect key="frame" x="120" y="82" width="80" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="GU4-8U-t4h"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1876543291" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Bn-Va-c8H">
+                    <rect key="frame" x="119" y="114" width="81.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rihgtIcon@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="E1M-5V-Y8J">
+                    <rect key="frame" x="298" y="67" width="10" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gerenzhongxin2@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yht-Xd-0hX">
+                    <rect key="frame" x="206" y="113" width="80" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="hLm-a4-TBc"/>
+                        <constraint firstAttribute="width" constant="80" id="sUY-b4-bdu"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="代理合伙人" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohq-5f-bmk">
+                    <rect key="frame" x="206" y="113" width="80" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ohq-5f-bmk" firstAttribute="leading" secondItem="Yht-Xd-0hX" secondAttribute="leading" id="4HV-7I-9xw"/>
+                <constraint firstItem="Yht-Xd-0hX" firstAttribute="leading" secondItem="9Bn-Va-c8H" secondAttribute="trailing" constant="5" id="5y4-vn-t8K"/>
+                <constraint firstItem="1MA-Cj-O1h" firstAttribute="top" secondItem="ptz-eE-b6r" secondAttribute="bottom" constant="-17" id="8EV-xB-tMJ"/>
+                <constraint firstItem="9Bn-Va-c8H" firstAttribute="top" secondItem="ptz-eE-b6r" secondAttribute="bottom" constant="15" id="Eau-Mc-epU"/>
+                <constraint firstItem="1MA-Cj-O1h" firstAttribute="centerX" secondItem="1py-vz-0Ai" secondAttribute="centerX" id="Eib-LG-InD"/>
+                <constraint firstAttribute="bottom" secondItem="Dvh-fh-JeH" secondAttribute="bottom" id="GhB-6O-CVV"/>
+                <constraint firstItem="ptz-eE-b6r" firstAttribute="centerX" secondItem="1py-vz-0Ai" secondAttribute="centerX" id="GnY-iQ-nYf"/>
+                <constraint firstItem="ohq-5f-bmk" firstAttribute="bottom" secondItem="Yht-Xd-0hX" secondAttribute="bottom" id="Gyi-UJ-3bH"/>
+                <constraint firstItem="ohq-5f-bmk" firstAttribute="top" secondItem="Yht-Xd-0hX" secondAttribute="top" id="I3P-qu-pY3"/>
+                <constraint firstItem="Dvh-fh-JeH" firstAttribute="leading" secondItem="1py-vz-0Ai" secondAttribute="leading" id="OCt-Bp-8t1"/>
+                <constraint firstItem="1MA-Cj-O1h" firstAttribute="width" secondItem="ptz-eE-b6r" secondAttribute="width" id="Pvr-AB-dBR"/>
+                <constraint firstAttribute="trailing" secondItem="Dvh-fh-JeH" secondAttribute="trailing" id="QW5-z0-Rwv"/>
+                <constraint firstItem="9Bn-Va-c8H" firstAttribute="centerX" secondItem="1py-vz-0Ai" secondAttribute="centerX" id="QWX-a7-pWq"/>
+                <constraint firstItem="Yht-Xd-0hX" firstAttribute="top" secondItem="9Bn-Va-c8H" secondAttribute="top" constant="-1" id="T1p-vO-y3s"/>
+                <constraint firstItem="ohq-5f-bmk" firstAttribute="trailing" secondItem="Yht-Xd-0hX" secondAttribute="trailing" id="YIt-ak-Zyi"/>
+                <constraint firstItem="Dvh-fh-JeH" firstAttribute="top" secondItem="1py-vz-0Ai" secondAttribute="top" id="Z4c-dR-8Ih"/>
+                <constraint firstItem="ptz-eE-b6r" firstAttribute="top" secondItem="1py-vz-0Ai" secondAttribute="top" constant="19" id="kPH-8w-EBf"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="compangLB" destination="ohq-5f-bmk" id="Qk6-sU-7uv"/>
+                <outlet property="headImage" destination="ptz-eE-b6r" id="qSM-h0-67Z"/>
+                <outlet property="infoImageView" destination="Yht-Xd-0hX" id="54u-me-e7Z"/>
+                <outlet property="memberCenterBg" destination="Dvh-fh-JeH" id="5l2-rM-r11"/>
+                <outlet property="nickNeme" destination="1MA-Cj-O1h" id="gmK-wv-Uod"/>
+                <outlet property="phoneLabel" destination="9Bn-Va-c8H" id="G35-20-80O"/>
+                <outlet property="rightIconView" destination="E1M-5V-Y8J" id="uyd-iF-phd"/>
+            </connections>
+            <point key="canvasLocation" x="-229" y="-129"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="6@3x.png" width="16" height="16"/>
+        <image name="gerenzhongxin2@3x.png" width="16" height="16"/>
+        <image name="rihgtIcon@3x.png" width="16" height="16"/>
+    </resources>
+</document>

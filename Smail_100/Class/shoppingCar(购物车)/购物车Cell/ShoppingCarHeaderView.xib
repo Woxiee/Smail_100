@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageViewDefault.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="COf-gg-tfl">
+                    <rect key="frame" x="10" y="5" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="I3i-Y0-xGX"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="深圳市南山社区便利店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdf-Cr-k4c">
+                    <rect key="frame" x="40" y="5" width="147" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="147" id="yeN-na-Pg7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check_out" translatesAutoresizingMaskIntoConstraints="NO" id="rwl-op-mBu">
+                    <rect key="frame" x="200" y="8" width="8" height="12"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="8" id="cjK-i5-JSb"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="qdf-Cr-k4c" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="An5-l1-DSI"/>
+                <constraint firstAttribute="bottom" secondItem="COf-gg-tfl" secondAttribute="bottom" constant="5" id="KDi-wz-u34"/>
+                <constraint firstItem="COf-gg-tfl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="dd0-dW-e9I"/>
+                <constraint firstItem="rwl-op-mBu" firstAttribute="leading" secondItem="qdf-Cr-k4c" secondAttribute="trailing" constant="13" id="nzD-w2-aeX"/>
+                <constraint firstItem="COf-gg-tfl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="oMF-Z2-3xw"/>
+                <constraint firstItem="rwl-op-mBu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="rwv-aP-wjX"/>
+                <constraint firstAttribute="bottom" secondItem="qdf-Cr-k4c" secondAttribute="bottom" constant="4" id="vHh-ps-QAh"/>
+                <constraint firstItem="qdf-Cr-k4c" firstAttribute="leading" secondItem="COf-gg-tfl" secondAttribute="trailing" constant="10" id="xSN-HR-vPP"/>
+                <constraint firstAttribute="bottom" secondItem="rwl-op-mBu" secondAttribute="bottom" constant="10" id="z2D-PI-4dc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-19" y="-39"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="check_out" width="6" height="10"/>
+        <image name="imageViewDefault.jpg" width="192" height="192"/>
+    </resources>
+</document>

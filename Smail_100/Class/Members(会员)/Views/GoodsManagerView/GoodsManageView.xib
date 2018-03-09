@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GoodsManageView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Yq-0L-TSN">
+                    <rect key="frame" x="314" y="0.0" width="51" height="45"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title=" 删除" image="shangjiazhongxin8@3x.png">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="didClickChangeBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="Mqx-4f-A2d"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vx-m3-onK">
+                    <rect key="frame" x="192" y="0.0" width="51" height="45"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title=" 上架" image="shangjiazhongxin6@3x.png">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="didClickChangeBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="cDL-p9-OzH"/>
+                    </connections>
+                </button>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SfW-u0-wKs">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="tGU-ni-qfd"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Qu-85-NHf">
+                    <rect key="frame" x="253" y="0.0" width="51" height="43"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title=" 编辑" image="shangjiazhongxin7@3x.png">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="didClickChangeBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="vdL-aM-T7b"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="7vx-m3-onK" secondAttribute="bottom" id="1lH-xw-0GH"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="5Yq-0L-TSN" secondAttribute="bottom" id="9B6-Bq-evb"/>
+                <constraint firstItem="5Yq-0L-TSN" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="9lB-2G-XDG"/>
+                <constraint firstItem="5Yq-0L-TSN" firstAttribute="leading" secondItem="9Qu-85-NHf" secondAttribute="trailing" constant="10" id="CrD-Hh-JRX"/>
+                <constraint firstItem="9Qu-85-NHf" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="QLF-9c-3G3"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="9Qu-85-NHf" secondAttribute="bottom" constant="2" id="Uvf-Mn-Hai"/>
+                <constraint firstItem="SfW-u0-wKs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fR0-ce-OsC"/>
+                <constraint firstItem="9Qu-85-NHf" firstAttribute="leading" secondItem="7vx-m3-onK" secondAttribute="trailing" constant="10" id="mNT-ZT-19I"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5Yq-0L-TSN" secondAttribute="trailing" constant="10" id="net-7T-AmZ"/>
+                <constraint firstItem="SfW-u0-wKs" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="obs-Dx-LIK"/>
+                <constraint firstAttribute="trailing" secondItem="SfW-u0-wKs" secondAttribute="trailing" id="tXa-e9-cv5"/>
+                <constraint firstItem="7vx-m3-onK" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="wK8-zU-30O"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="lineView" destination="SfW-u0-wKs" id="d80-io-JYt"/>
+            </connections>
+            <point key="canvasLocation" x="-1" y="-262"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="shangjiazhongxin6@3x.png" width="16" height="16"/>
+        <image name="shangjiazhongxin7@3x.png" width="16" height="16"/>
+        <image name="shangjiazhongxin8@3x.png" width="16" height="16"/>
+    </resources>
+</document>

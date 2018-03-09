@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="GoodsCategoryCollectionHeader">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="16@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="f63-Id-G55">
+                    <rect key="frame" x="0.0" y="10" width="5" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="5" id="4VR-mE-6oG"/>
+                        <constraint firstAttribute="height" constant="21" id="ddv-8M-Fcl"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cwc-dx-GYA">
+                    <rect key="frame" x="13" y="10" width="93" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="93" id="K6p-9L-VUA"/>
+                        <constraint firstAttribute="height" constant="21" id="WC6-cB-Jns"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="32@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="C68-MD-zQW">
+                    <rect key="frame" x="298" y="12" width="10" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="10" id="Tyq-jE-hEB"/>
+                        <constraint firstAttribute="height" constant="16" id="cfM-jo-DiK"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frt-SM-Bsp">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                    <connections>
+                        <action selector="didClickHeadBtn:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="3Q2-JN-CGX"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Cwc-dx-GYA" firstAttribute="leading" secondItem="f63-Id-G55" secondAttribute="trailing" priority="1" constant="8" id="0dd-tc-6x6"/>
+                <constraint firstItem="f63-Id-G55" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="53x-fK-qt3"/>
+                <constraint firstItem="frt-SM-Bsp" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="550-dd-B8o"/>
+                <constraint firstItem="C68-MD-zQW" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="BRR-oa-GNl"/>
+                <constraint firstItem="Cwc-dx-GYA" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="Ue5-BH-GbF"/>
+                <constraint firstAttribute="trailing" secondItem="C68-MD-zQW" secondAttribute="trailing" constant="12" id="aGC-nf-iZb"/>
+                <constraint firstItem="frt-SM-Bsp" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="cNQ-fN-o9Y"/>
+                <constraint firstAttribute="trailing" secondItem="frt-SM-Bsp" secondAttribute="trailing" id="dak-Xy-UNy"/>
+                <constraint firstItem="f63-Id-G55" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="l4s-uk-Yy4"/>
+                <constraint firstAttribute="bottom" secondItem="frt-SM-Bsp" secondAttribute="bottom" id="urY-Xs-cX0"/>
+            </constraints>
+            <connections>
+                <outlet property="headViewBtn" destination="frt-SM-Bsp" id="ODO-Eg-ky7"/>
+                <outlet property="markImageView" destination="C68-MD-zQW" id="xEr-Mh-y7A"/>
+                <outlet property="titleLB" destination="Cwc-dx-GYA" id="VtM-eK-Ib6"/>
+            </connections>
+            <point key="canvasLocation" x="-138" y="-21"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="16@3x.png" width="16" height="16"/>
+        <image name="32@3x.png" width="16" height="16"/>
+    </resources>
+</document>
