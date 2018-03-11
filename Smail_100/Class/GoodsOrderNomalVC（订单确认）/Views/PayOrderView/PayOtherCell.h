@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "PayDetailModel.h"
+#import "GoodsOrderModel.h"
 
 @interface PayOtherCell : UITableViewCell
 
 @property (nonatomic, strong) PayDetailModel *model;
+@property (nonatomic, strong)  Userinfo *userInfo;
+
+
 @property (weak, nonatomic) IBOutlet UITextField *numberTextFied;
+
 
 @end

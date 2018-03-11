@@ -7,6 +7,7 @@
 //注:  code == 0 =ok    code = 999 =err
 
 #import <Foundation/Foundation.h>
+#import "GoodsOrderModel.h"
 
 #import "OrderGoodsModel.h"
 
@@ -102,7 +103,7 @@
  **/
 //+ (OrderGoodsModel*)changeOrderGoodsModeValueWithGoodsModel:(GoodsModel *)model;
 //
-//+ (OrderGoodsModel*)changeGoodsModelInListToOrderGoodsModel:(GoodsModelInList*)model;
++ (OrderGoodsModel*)changeProductsModelInListToOrderGoodsModel:(Products*)model;
 
 + (OrderGoodsModel*)changeMarkModeValueWithGoodsModel:(MarketRuleList *)model;
 

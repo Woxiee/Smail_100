@@ -654,7 +654,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return [_sameArray[section] count];
+    return [(NSMutableArray *)_sameArray[section] count];
 }
 
 

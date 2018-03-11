@@ -21,6 +21,13 @@
 @property (nonatomic , copy) NSString              * seller_id;
 @property (nonatomic , copy) NSString              * commend_id;
 @property (nonatomic , copy) NSString              * seller_name;
+@property (nonatomic , copy) NSString              * store_nums;
+
+
+
+@property (nonatomic,strong)NSString *itemCount;
+@property(nonatomic,strong) NSString *selectStatue; //1=select 0=deselect
+
 
 @end
 
@@ -108,8 +115,10 @@
 @property (nonatomic , copy) NSString              * param5;///param5	数量的限定，1表示无限的，0表示限定
 
 @property (nonatomic , copy) NSString              * subProductId;
-@property (nonatomic , copy) NSString              * totalMoney;
-@property (nonatomic , copy) NSString              * allPoint;
+@property (nonatomic , copy) NSString              * price;
+@property (nonatomic , copy) NSString              * point;
+@property (nonatomic , copy) NSString              * jfValue;
+@property (nonatomic ,  copy) NSString              *payIndexStr;
 
 
 @property (nonatomic , copy) NSString              * paymentTypeAll;
@@ -129,6 +138,12 @@
 @property (nonatomic , strong) Userinfo              * userinfo;
 @property (nonatomic , strong) Pay_method              * pay_method;
 @property (nonatomic , strong) Address              * address;
+
+
+@property (nonatomic , copy) NSString              * express_type;
+@property (nonatomic , copy) NSString              * noteStr;
+
+
 
 
 @end

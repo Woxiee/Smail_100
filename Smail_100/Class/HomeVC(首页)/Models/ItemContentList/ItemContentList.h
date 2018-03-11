@@ -35,6 +35,8 @@
 @property (nonatomic , copy) NSString              * store_nums;
 @property (nonatomic , copy) NSString              * name;
 @property (nonatomic , copy) NSString              * sale_num;
+@property (nonatomic , copy) NSString              * content_link;
+@property (nonatomic , copy) NSString              * coll_id;
 
 @property (nonatomic , copy) NSString              * cartNum;
 @property (nonatomic , copy) NSString              * comment;

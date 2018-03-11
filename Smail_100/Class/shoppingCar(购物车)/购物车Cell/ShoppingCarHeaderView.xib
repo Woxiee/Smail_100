@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageViewDefault.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="COf-gg-tfl">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhuce2@3x.png " translatesAutoresizingMaskIntoConstraints="NO" id="COf-gg-tfl">
                     <rect key="frame" x="10" y="5" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="I3i-Y0-xGX"/>
@@ -55,6 +55,6 @@
     </objects>
     <resources>
         <image name="check_out" width="6" height="10"/>
-        <image name="imageViewDefault.jpg" width="192" height="192"/>
+        <image name="zhuce2@3x.png " width="16" height="16"/>
     </resources>
 </document>

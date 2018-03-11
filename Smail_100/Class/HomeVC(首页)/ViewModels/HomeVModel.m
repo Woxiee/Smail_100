@@ -108,6 +108,8 @@
 }
 
 
+
+
 /// 商品数据
 + (void)getHomGoodsParam:(id)pararm successBlock:(void(^)(NSArray <ItemContentList *>*dataArray,BOOL isSuccess))sBlcok;
 {
@@ -137,64 +139,8 @@
 }
 
 
-/// 首页保险和金融图片和链接数据获取
-/// 保险数据
-+ (void)getHomeInsuranceParam:(id)pararm successBlock:(void(^)(NSArray <ColumnModel *>*dataArray1,NSArray <ColumnModel *>*dataArray2,BOOL isSuccess))sBlcok
-{
-    [BaseHttpRequest postWithUrl:@"/o/o_111" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
-        NSInteger state = [[result valueForKey:@"data"][@"state"]integerValue];
-        if (state == 0) {
-            NSArray *dataList1 = [result valueForKey:@"data"][@"obj"][@"obj"][@"dataList"];
-            NSArray *dataList2 = [result valueForKey:@"data"][@"obj"][@"obj"][@"dataList1"];
-            
-            NSArray *listArray1  = [[NSArray alloc] init];
-            NSArray *listArray2  = [[NSArray alloc] init];
-            
-            if ([dataList1 isKindOfClass:[NSArray class]] && [dataList2 isKindOfClass:[NSArray class]]) {
-                if (state == 0) {
-                    listArray1 = [ColumnModel mj_objectArrayWithKeyValuesArray:dataList1];
-                    listArray2 = [ColumnModel mj_objectArrayWithKeyValuesArray:dataList2];
-                    
-                }
-                sBlcok(listArray1,listArray2, YES);
-            }else{
-                sBlcok(listArray1,listArray2,NO);
-            }
-
-        }else{
-            sBlcok(nil,nil,NO);
-
-        }
-        
-    }];
-
-}
 
 
-/// 金融
-+ (void)getHomeFinancialParam:(id)pararm successBlock:(void(^)(NSArray <ColumnModel *>*dataArray,BOOL isSuccess))sBlcok
-{
 
-    [BaseHttpRequest postWithUrl:@"/o/o_110" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
-        NSInteger state = [[result valueForKey:@"data"][@"state"]integerValue];
-        if (state == 0) {
-            NSArray *dataList = [result valueForKey:@"data"][@"obj"];
-            NSMutableArray *listArray  = [[NSMutableArray alloc] init];
-            if ([dataList isKindOfClass:[NSArray class]]) {
-                if (state == 0) {
-                    listArray = [ColumnModel mj_objectArrayWithKeyValuesArray:dataList];
-                }
-                sBlcok(listArray, YES);
-                
-            }else{
-                sBlcok(listArray, NO);
-            }
 
-        }else{
-            sBlcok(nil , NO);
-
-        }
-        
-    }];
-}
 @end

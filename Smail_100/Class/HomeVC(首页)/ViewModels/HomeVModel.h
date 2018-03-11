@@ -30,4 +30,6 @@
 ///// 首页标题栏数据
 + (void)getHomeIndexList:(void(^)(NSArray *dataArray,BOOL isSuccess))completeBlock;
 
+
+
 @end

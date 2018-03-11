@@ -14,6 +14,7 @@
 #import "SuccessView.h"
 #import "shoppingCarVM.h"
 #import "GoodsDetailVC.h"
+#import "GoodsOrderModel.h"
 
 // jp
 #import "shoppingCarVM.h"
@@ -104,17 +105,18 @@
         if (shopCarGoods.count>0) {
             [dataSocure removeAllObjects];
             //保存本地数据
+            [dataSocure addObjectsFromArray:shopCarGoods];
             [b_self allMoneyAfterSelect];
             [shopCarGoodsList reloadData];
             backView.hidden = NO;
             
             //清空backView 的数据
-            [carVM.limitDatasArr removeAllObjects];
-            [limitCollectionView reloadData];
+//            [carVM.limitDatasArr removeAllObjects];
+//            [limitCollectionView reloadData];
             return ;
         }
-            backView.hidden = YES;
-            [b_self setLimitView];
+//            backView.hidden = YES;
+//            [b_self setLimitView];
     }];
 }
 
@@ -309,11 +311,13 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return  dataSocure.count==0?0:1;
+    OrderGoodsModel * model  = dataSocure[section];
+
+    return  model.products.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    OrderGoodsModel * model  = dataSocure[indexPath.section];
+//    OrderGoodsModel * model  = dataSocure[indexPath.section];
  
     return 120;
 }
@@ -326,10 +330,14 @@
     }
     cell.delegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     OrderGoodsModel * cellModel  = dataSocure[indexPath.section];
+    Products *product = cellModel.products[indexPath.row];
+    
+    OrderGoodsModel * goodsModel = [shoppingCarVM changeProductsModelInListToOrderGoodsModel:product];
    // chooseShopID = cellModel.shopID;
-    cell.rightButtons = [self createRightButtons:cellModel];
-    cell.goodsModel = cellModel;
+    cell.rightButtons = [self createRightButtons:goodsModel];
+    cell.goodsModel = goodsModel;
 
     //单个购物车商品加
     cell.addBlock = ^(OrderGoodsModel * goodsModel){
@@ -361,8 +369,26 @@
     if ([dataSocure count] <= 0) {
         return CGFLOAT_MIN;
     }else{
-        return 10;
+        return 45;
     }
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    WS(b_self)
+    OrderGoodsModel * cellModel  = dataSocure[section];
+//    Products *product = cellModel.products[indexPath.row];
+    
+//    OrderGoodsModel * goodsModel = [shoppingCarVM changeProductsModelInListToOrderGoodsModel:product];
+
+    ShoppingCarHeaderView *header = [[ShoppingCarHeaderView alloc]initWithHeaderHadGoodsSelect:^{
+        [b_self clickSelectAllGoods];
+    } delectAll:^{
+        [b_self clickDelectAllGoods];
+    }];
+    header.model = cellModel;
+    allSelectbtn = header.allSelectbtn;
+    return header;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -370,7 +396,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     //跳转详情界面
     OrderGoodsModel * cellModel  = dataSocure[indexPath.section];
-
     GoodsDetailVC *goodVC = [GoodsDetailVC new];
     goodVC.productID = cellModel.productId;
     goodVC.hidesBottomBarWhenPushed = YES;

@@ -12,6 +12,7 @@
 
 @property(nonatomic,copy)void (^selectBlock)();
 @property(nonatomic,copy)void (^delectBlock)();
+@property (nonatomic, strong) UILabel *titleLb;
 
 @end
 
@@ -21,7 +22,6 @@
 -(id)initWithHeaderHadGoodsSelect:(void(^)())selectBlock delectAll:(void(^)())delectAllBlock
 {
     if (self = [super init]) {
-      
         _selectBlock = selectBlock;
         _delectBlock = delectAllBlock;
         self.frame = CGRectMake(0, 0, kScreenWidth, 44);
@@ -29,19 +29,19 @@
         
         CGFloat btnW = 33;
         UIButton *allBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, btnW, self.height)];
-        [allBtn setImage:[UIImage imageNamed:@"limitbuyBack.png"] forState:UIControlStateNormal];
-        [allBtn setImage:[UIImage imageNamed:@"xuanzhe2.png"] forState:UIControlStateSelected];
+        [allBtn setImage:[UIImage imageNamed:@"23@3x.png"] forState:UIControlStateNormal];
+        [allBtn setImage:[UIImage imageNamed:@"zhuce2@3x.png"] forState:UIControlStateSelected];
         [allBtn addTarget:self action:@selector(clickSelectAllGoods) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:allBtn];
         allBtn.contentMode = UIViewContentModeCenter;
        
         _allSelectbtn = allBtn;
         UILabel *lb = [[UILabel alloc]initWithFrame:CGRectMake(allBtn.right + 5,0, 40, self.height)];
-        lb.text = @"全选";
+//        lb.text = @"全选";
         lb.textColor = RGB(153, 153, 153);
         lb.font = KY_FONT(12);
         [self addSubview:lb];
-        
+        self.titleLb = lb;
         
         CGFloat delectBtnW = 20;
         UIButton *delectBtn = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth - 12 - delectBtnW, (self.height - delectBtnW)/2, delectBtnW-1, delectBtnW)];
@@ -112,6 +112,13 @@
     return self;
 }
 
+
+- (void)setModel:(OrderGoodsModel *)model
+{
+    _model = model;
+    self.titleLb.text = _model.seller_name;
+    
+}
 
 #pragma mark - Action
 

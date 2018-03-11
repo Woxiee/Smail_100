@@ -62,7 +62,6 @@
     _lineView2.backgroundColor = LINECOLOR;
     _lineView3.backgroundColor = LINECOLOR;
 
-
     UILabel *titleLB  = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH, 44) title:@"配送方式" textColor:[UIColor blackColor] font:Font15];
     titleLB.textAlignment = NSTextAlignmentLeft;
     titleLB.textColor = TITLETEXTLOWCOLOR;
@@ -76,6 +75,7 @@
     shouYeBtn.frame = CGRectMake(8, CGRectGetMaxY(lineView.frame),SCREEN_WIDTH/4 , 40);
     [shouYeBtn addTarget:self action:@selector(didClickEmailAction:) forControlEvents:UIControlEventTouchUpInside];
     shouYeBtn.tag = 100;
+    shouYeBtn.selected = YES;
     [shouYeBtn setImage:[UIImage imageNamed:@"zhuce2@3x.png"] forState:UIControlStateNormal];
     [shouYeBtn setImage:[UIImage imageNamed:@"23@3x.png"] forState:UIControlStateSelected];
     [shouYeBtn setTitle:@"快递邮寄" forState:UIControlStateNormal];
@@ -83,6 +83,7 @@
     [shouYeBtn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
     shouYeBtn.titleLabel.font =  Font15;
     [_eamliView addSubview:shouYeBtn];
+    
     _shouYeBtn = shouYeBtn;
     
     UIButton *meBtn = [UIButton buttonWithType:UIButtonTypeCustom];

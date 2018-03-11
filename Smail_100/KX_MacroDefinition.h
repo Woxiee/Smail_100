@@ -50,6 +50,7 @@
 #define kType @"1"
 
 #define NOTICEMESSAGE @"亲～您的网络走丢了,请稍后再试!"
+#define NOTICEMEPAYMSG @"payTypeSuccess!"
 
 /// 这个是获取系统版本号
 //#define KX_APPVERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]

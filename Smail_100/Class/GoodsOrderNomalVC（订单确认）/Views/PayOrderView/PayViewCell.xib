@@ -39,12 +39,23 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8u-cc-d3S">
+                        <rect key="frame" x="12" y="42.5" width="308" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="b5C-Qj-GXB"/>
+                            <constraint firstAttribute="height" constant="1" id="vrY-k8-lXz"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="xdA-8J-sEE" firstAttribute="leading" secondItem="6Mq-3n-oY3" secondAttribute="trailing" constant="10" id="1Ae-mI-IEf"/>
+                    <constraint firstAttribute="bottom" secondItem="l8u-cc-d3S" secondAttribute="bottom" id="BHJ-dz-gWi"/>
                     <constraint firstItem="xdA-8J-sEE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Dz3-SF-WUT"/>
                     <constraint firstAttribute="bottom" secondItem="xdA-8J-sEE" secondAttribute="bottom" constant="10" id="K3K-oN-vHR"/>
                     <constraint firstItem="6Mq-3n-oY3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="L4g-8D-kWU"/>
+                    <constraint firstItem="l8u-cc-d3S" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="Neg-7H-QMl"/>
+                    <constraint firstAttribute="trailing" secondItem="l8u-cc-d3S" secondAttribute="trailing" id="PUd-Rx-G9l"/>
                     <constraint firstItem="wZ2-Yb-CsO" firstAttribute="leading" secondItem="xdA-8J-sEE" secondAttribute="trailing" constant="12" id="aE8-gq-vPt"/>
                     <constraint firstItem="wZ2-Yb-CsO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="oDT-DE-nLa"/>
                     <constraint firstItem="6Mq-3n-oY3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="quZ-bX-boJ"/>
@@ -54,6 +65,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="iconImageView" destination="xdA-8J-sEE" id="Jy5-uy-jwz"/>
+                <outlet property="lineView" destination="l8u-cc-d3S" id="74j-sB-Ts9"/>
                 <outlet property="markImgaeView" destination="6Mq-3n-oY3" id="YAQ-83-WX7"/>
                 <outlet property="titleLB" destination="wZ2-Yb-CsO" id="Aaj-AO-E9o"/>
             </connections>

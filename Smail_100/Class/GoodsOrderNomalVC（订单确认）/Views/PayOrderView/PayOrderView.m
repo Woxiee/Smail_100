@@ -18,11 +18,14 @@
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) UIView *bottomView;
 @property (nonatomic, strong) NSString *number;
+@property (nonatomic, strong)  UILabel *jfLb;
+
 
 @end
 
 
 @implementation PayOrderView
+
 static NSString * const payViewCellID = @"PayViewCellID";
 
 static NSString * const OthercellID = @"OthercellID";
@@ -43,7 +46,7 @@ static NSString * const OthercellID = @"OthercellID";
 {
     UIView *darkView                = [[UIView alloc] init];
     darkView.userInteractionEnabled = YES;
-    darkView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    darkView.frame = CGRectMake(0, 0, self.frame.size.width, SCREEN_HEIGHT);
     darkView.backgroundColor        = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     [self addSubview:darkView];
     self.darkView = darkView;
@@ -51,65 +54,69 @@ static NSString * const OthercellID = @"OthercellID";
     UITapGestureRecognizer  *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenSheetView)];
     [self.darkView addGestureRecognizer:tapGestureRecognizer];
     
-    CGFloat hegiht = 40 +90;
+    CGFloat hegiht = 40 +90+20;
     
     UIView *bottomView = [[UIView alloc] init];
-    if (self.payType == PayTypeNoaml) {
-        bottomView.frame = CGRectMake(0, self.frame.size.height  -(_dataArr.count+1) *44 -hegiht , self.frame.size.width,(_dataArr.count+1) *44 + hegiht);
-        
-    }else{
-        bottomView.frame = CGRectMake(0, self.frame.size.height  -(_dataArr.count+1) *44 - hegiht, self.frame.size.width,(_dataArr.count+1) *44 +hegiht);
-        
-    }
-    
+//    if (self.payType == PayTypeNoaml) {
+//        bottomView.frame = CGRectMake(0, SCREEN_HEIGHT  -(_dataArr.count+1) *44 -hegiht, self.frame.size.width,(_dataArr.count+1) *44 + hegiht);
+//    }else{
+//        bottomView.frame = CGRectMake(0, SCREEN_HEIGHT  -(_dataArr.count+1) *44 - hegiht, self.frame.size.width,(_dataArr.count+1) *44 +hegiht);
+//    }
+    bottomView.frame = CGRectMake(0, SCREEN_HEIGHT  -(_dataArr.count+1) *44 -hegiht, self.frame.size.width,(_dataArr.count+1) *44 +hegiht);
+
     bottomView.backgroundColor  = [UIColor whiteColor];
     [self addSubview:bottomView];
     self.bottomView = bottomView;
     
-    UILabel *titleLb = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, self.frame.size.width - 50 - 12, 40)];
+ 
+
+    
+    UILabel *titleLb = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, self.frame.size.width - 50 - 12, 50)];
     titleLb.text = @"请选择支付方式";
     titleLb.textAlignment = NSTextAlignmentLeft;
     titleLb.font = [UIFont systemFontOfSize:15];
     [bottomView addSubview:titleLb];
-    
+
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(titleLb.frame),  self.frame.size.width, 0.5)];
-    lineView.backgroundColor  = [UIColor blueColor];
+    lineView.backgroundColor  = LINECOLOR;
     [bottomView addSubview:lineView];
 
     UIButton *dissBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    dissBtn.frame = CGRectMake(self.frame.size.width - 50 ,20 , 25, 25);
-    [dissBtn setImage:[UIImage imageNamed:@"33@3x.png"] forState:UIControlStateNormal];
+    dissBtn.frame = CGRectMake(self.frame.size.width - 50 ,8 , 35, 35);
+    [dissBtn setImage:[UIImage imageNamed:@"hehuorenshengji7@3x"] forState:UIControlStateNormal];
     [dissBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [dissBtn addTarget:self action:@selector(hiddenSheetView) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:dissBtn];
-    
+
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView.frame)+1, self.frame.size.width,_dataArr?_dataArr.count*44 : _dataArray.count*44) style:UITableViewStylePlain];
     tableView.dataSource = self;
     tableView.delegate = self;
     tableView.rowHeight = 44;
     tableView.scrollEnabled = NO;
+    tableView.backgroundColor = [UIColor redColor];
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [bottomView addSubview:tableView];
     self.tableView = tableView;
     [self.tableView registerNib:[UINib nibWithNibName:@"PayOtherCell" bundle:nil] forCellReuseIdentifier:OthercellID];
-    
+
     [self.tableView registerNib:[UINib nibWithNibName:@"PayViewCell" bundle:nil] forCellReuseIdentifier:payViewCellID];
-    
-    
-    UILabel *jfLb = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(tableView.frame)+10, self.frame.size.width, 44)];
-    jfLb.text = @"￥33";
+
+
+    UILabel *jfLb = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(tableView.frame)+0, self.frame.size.width, 44)];
+//    jfLb.text = @"￥33";
     jfLb.textAlignment = NSTextAlignmentCenter;
     jfLb.font = [UIFont systemFontOfSize:15];
     [bottomView addSubview:jfLb];
-    
-    
+    self.jfLb = jfLb;
+  
     UIButton *sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    sureBtn.frame = CGRectMake(20, CGRectGetMaxY(jfLb.frame),self.frame.size.width - 40 , 50);
+    sureBtn.frame = CGRectMake(20, bottomView.mj_h - 100,self.frame.size.width - 40 , 50);
     [sureBtn setTitle:@"确认支付" forState:UIControlStateNormal];
     sureBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    sureBtn.backgroundColor = [UIColor redColor];
+    sureBtn.backgroundColor = KMAINCOLOR;
+    [sureBtn layerForViewWith:8 AndLineWidth:0];
+    [sureBtn addTarget:self action:@selector(didClickCompletAction) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:sureBtn];
-   
-    
 }
 
 
@@ -131,13 +138,13 @@ static NSString * const OthercellID = @"OthercellID";
     //获取键盘高度，在不同设备上，以及中英文下是不同的
     CGFloat kbHeight = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
     //计算出键盘顶端到inputTextView panel底端的距离(加上自定义的缓冲距离INTERVAL_KEYBOARD)
-//    CGFloat offset = (_bottomView.frame.origin.y+_bottomView.frame.size.height+ _bottomView.height) - (self.frame.size.height - kbHeight);
+//    CGFloat offset = (_bottomView.frame.origin.y+_bottomView.frame.size.height+ _bottomView.height) - (SCREEN_HEIGHT - kbHeight);
     // 取得键盘的动画时间，这样可以在视图上移的时候更连贯
     double duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     //将视图上移计算好的偏移
 //    if(offset > 0) {
         [UIView animateWithDuration:duration animations:^{
-            self.frame = CGRectMake(0.0f, -kbHeight, self.frame.size.width, self.frame.size.height);
+            self.frame = CGRectMake(0.0f, -kbHeight, self.frame.size.width, SCREEN_HEIGHT);
         }];
 //    }
 }
@@ -149,7 +156,7 @@ static NSString * const OthercellID = @"OthercellID";
     
     //视图下沉恢复原状
     [UIView animateWithDuration:duration animations:^{
-        self.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+        self.frame = CGRectMake(0, 0, self.frame.size.width, SCREEN_HEIGHT);
     }];
 }
 
@@ -180,6 +187,26 @@ static NSString * const OthercellID = @"OthercellID";
     }];
 }
 
+
+///
+- (void)didClickCompletAction
+{
+    if ([_orderModel.jfValue integerValue] > [_orderModel.userinfo.point integerValue]) {
+        [self makeToast:@"输入积分不能大于可用积分"];
+        return;
+    }
+    
+    if (KX_NULLString(_orderModel.payIndexStr)) {
+        [self makeToast:@"还未选择支付方式哦"];
+        return;
+    }
+    
+    if (_didChangeJFValueBlock) {
+        _didChangeJFValueBlock(_orderModel);
+    }
+    
+    [self hiddenSheetView];
+}
 
 #pragma mark - UITaleViewDelegate and UITableViewDatasource
 
@@ -224,6 +251,13 @@ static NSString * const OthercellID = @"OthercellID";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self endEditing:YES];
+    PayDetailModel *model = self.dataArr[indexPath.row];
+    for (PayDetailModel *payDetailModel in self.dataArr) {
+        payDetailModel.isSelect = NO;
+    }
+    model.isSelect = YES;
+    _orderModel.payIndexStr = [NSString stringWithFormat:@"%ld",indexPath.row];
+    [self.tableView reloadData];
  
 }
 
@@ -246,23 +280,29 @@ static NSString * const OthercellID = @"OthercellID";
     return _dataArray;
 }
 
+- (void)setOrderModel:(GoodsOrderModel *)orderModel
+{
+    _orderModel = orderModel;
+    self.jfLb.text = [NSString stringWithFormat:@"%@%@",_orderModel.price,_orderModel.point];
+    
+}
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-//    LOG(@"textField.TEXT = %@   string = %@",textField.text,string);
-//    BOOL basic = [NSString cheakInputStrIsNumber:string];
-//    if(!basic)
-//    {
-//        //输入了非法字符
-//        return NO;
-//    }
-//
-//    basic = [textField.text integerValue] >99999999? 1:0;
-//    if (basic) {
-//        textField.text =@"99999999";
-//        return YES;
-//    }
+    LOG(@"textField.TEXT = %@   string = %@",textField.text,string);
+    BOOL basic = [NSString cheakInputStrIsNumber:string];
+    if(!basic)
+    {
+        //输入了非法字符
+        return NO;
+    }
+
+    basic = [textField.text integerValue] >99999999? 1:0;
+    if (basic) {
+        textField.text =@"99999999";
+        return YES;
+    }
     
     return YES;
 }
@@ -271,6 +311,7 @@ static NSString * const OthercellID = @"OthercellID";
 -  (void)textFieldDidEndEditing:(UITextField *)textField
 {
     _number = textField.text;
+    _orderModel.jfValue = textField.text;
    
 }
 

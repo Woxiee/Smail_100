@@ -224,7 +224,7 @@ static NSString *const defaultAdressCellID = @"DefaultAdressCellID";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (KX_NULLString(_isValue)) {
         GoodsOrderAddressModel *model = self.resorceArray[indexPath.section];
-        _model.addressID = model.id;
+        _model.addressID = model.addr_id;
         if (_didClickAddressCellBlock) {
             _didClickAddressCellBlock(model);
         }

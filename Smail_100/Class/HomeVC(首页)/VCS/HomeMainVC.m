@@ -123,6 +123,12 @@
     }];
 }
 
+///获取支付宝相关资料
+- (void)getAppPayInfo
+{
+    
+}
+
 - (void)didClickRightNaviBtn
 {
     

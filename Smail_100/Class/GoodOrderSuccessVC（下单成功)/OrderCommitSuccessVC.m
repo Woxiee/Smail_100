@@ -73,7 +73,11 @@
         [_leftBtn setTitle:@"继续购买" forState:UIControlStateNormal];
     }
     
-    
+    _titleLb.text = @"恭喜您，购买成功!";
+    _titleLb1.text = @"";
+    [_rifghtBtn setTitle:@"查看我的订单" forState:UIControlStateNormal];
+    [_leftBtn setTitle:@"继续购买" forState:UIControlStateNormal];
+
 }
 
 
@@ -103,60 +107,25 @@
 //        }
 //
 //    }else{
-//        for (UIViewController *ctrl in ctrlArray) {
-//            if ([ctrl isKindOfClass:[GoodsDetailVC class]]) {
-//                [self.navigationController popToViewController:ctrl animated:YES];
-//                break;
-//            }
-//            else{
-//                [self.navigationController popToViewController:self.navigationController.viewControllers[2] animated:YES];
-//            }
-//        }
+    
 //    }
 
 }
 
 -(void)clickLeftBtn{
     
-//    NSArray *ctrlArray = self.navigationController.viewControllers;
-//    //跳转控制
-//    if (_successType == CommitSuccessAutiocnType) {
-//        for (UIViewController *ctrl in ctrlArray) {
-//            if ([ctrl isKindOfClass:[GoodsAuctionDetailVC class]]) {
-//                [self.navigationController popToViewController:ctrl animated:YES];
-//                break;
-//            }
-//        }
-//    }
-//    else if (_successType == CommitSuccessSupplyType){
-//        NSArray *ctrlArray = self.navigationController.viewControllers;
-//        for (UIViewController *ctrl in ctrlArray) {
-//            if ([ctrl isKindOfClass:[GoodsSolinDetailVCS class]]) {
-//                [self.navigationController popToViewController:ctrl animated:YES];
-//                break;
-//            }
-//        }
-//    }
-//    ///
-//    else if (_successType == CommitSuccessSupplyType){
-//
-//        for (UIViewController *ctrl in ctrlArray) {
-//            if ([ctrl isKindOfClass:[GoodsSolinDetailVCS class]]) {
-//                [self.navigationController popToViewController:ctrl animated:YES];
-//                break;
-//            }
-//        }
-//
-//    }else{
-//        for (UIViewController *ctrl in ctrlArray) {
-//            if ([ctrl isKindOfClass:[GoodsDetailVC class]]) {
-//                [self.navigationController popToViewController:ctrl animated:YES];
-//                break;
-//            }else{
-//                [self.navigationController popToViewController:self.navigationController.viewControllers[2] animated:YES];
-//            }
-//        }
-//    }
+    NSArray *ctrlArray = self.navigationController.viewControllers;
+
+    for (UIViewController *ctrl in ctrlArray) {
+        if ([ctrl isKindOfClass:[GoodsDetailVC class]]) {
+            [self.navigationController popToViewController:ctrl animated:YES];
+            break;
+        }
+        else{
+            [self.navigationController popToViewController:self.navigationController.viewControllers[2] animated:YES];
+        }
+    }
+    
 }
 
 -(void)clickRightBtn{
@@ -165,21 +134,21 @@
 //      vc.type  = LookSupplyTypeForSelect;
 //      [self.navigationController pushViewController:vc animated:YES];
 //  }else{
-      if (_model) {
+//      if (_model) {
           AllOrderManageVC *VC = [[AllOrderManageVC alloc ] init];
-          VC.orderTitleType = [_model.productInfo.productType integerValue] - 1;
-          if ([_model.productInfo.productType isEqualToString:@"9"]) {
-              VC.orderTitleType = BuyOrderTitleType;
-          }
-          else if ([_model.productInfo.productType isEqualToString:@"10"])
-          {
-              VC.orderTitleType = AuctionOrderTitleType;
-              
-          }
+//          VC.orderTitleType = [_model.productInfo.productType integerValue] - 1;
+//          if ([_model.productInfo.productType isEqualToString:@"9"]) {
+//              VC.orderTitleType = BuyOrderTitleType;
+//          }
+//          else if ([_model.productInfo.productType isEqualToString:@"10"])
+//          {
+//              VC.orderTitleType = AuctionOrderTitleType;
+//
+//          }
           [self.navigationController pushViewController:VC animated:YES];
           
 //      }
-  }
+//  }
     
 
 }

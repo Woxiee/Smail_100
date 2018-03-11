@@ -95,7 +95,9 @@
     }
     else
     {
-        return [self.dataArray[section] count];
+       
+        return  [(NSMutableArray*)[self.dataArray objectAtIndex:section] count];
+//        return [self.dataArray[section] count];
     }
     
 }

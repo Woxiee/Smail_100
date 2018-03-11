@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="359" height="124"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6HK-po-YVh" id="xUd-ig-B8a">
-                <rect key="frame" x="0.0" y="0.0" width="359" height="124"/>
+                <rect key="frame" x="0.0" y="0.0" width="359" height="123.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jb3-yO-Izc">
@@ -25,7 +25,7 @@
                             <constraint firstAttribute="width" constant="33" id="yfI-HY-AuE"/>
                         </constraints>
                         <state key="normal" image="limitbuyBack.png"/>
-                        <state key="selected" image="xuanzhe2.png"/>
+                        <state key="selected" image="zhuce2@3x.png"/>
                         <connections>
                             <action selector="checkBtn:" destination="6HK-po-YVh" eventType="touchUpInside" id="j94-aC-kqd"/>
                         </connections>
@@ -140,6 +140,6 @@
         <image name="goodsAdd.png" width="79" height="21"/>
         <image name="imageViewDefault.jpg" width="192" height="192"/>
         <image name="limitbuyBack.png" width="19" height="19"/>
-        <image name="xuanzhe2.png" width="20" height="20"/>
+        <image name="zhuce2@3x.png" width="16" height="16"/>
     </resources>
 </document>

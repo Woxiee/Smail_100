@@ -10,10 +10,15 @@
 
 //#import "GoodsModelInList.h"
 @class MarketRuleList;
-
+@class Products;
 @interface OrderGoodsModel : NSObject
+@property (nonatomic , copy) NSArray<Products *>              * products;
 
 @property(nonatomic,strong) NSString * productId;
+
+@property(nonatomic,strong) NSString * seller_id;
+
+@property(nonatomic,strong) NSString * point;
 
 @property(nonatomic,strong) NSString * productName;
 
@@ -22,6 +27,9 @@
 @property (nonatomic,strong)NSString *itemCount;
 
 @property (nonatomic,strong)NSString *productLogo;
+@property (nonatomic,strong)NSString *seller_name;
+
+@property (nonatomic,strong) NSString *store_nums;
 
 @property (nonatomic,strong)NSString *id;
 
@@ -41,9 +49,14 @@
 
 @property (nonatomic , strong) NSArray<MarketRuleList *>              * marketRuleList;
 
+
 @property (nonatomic, strong) NSString *packQty;
 
 @property(nonatomic,strong)NSString *isGive;//是否正品的如餐
+
+
+
+
 
 @end
  

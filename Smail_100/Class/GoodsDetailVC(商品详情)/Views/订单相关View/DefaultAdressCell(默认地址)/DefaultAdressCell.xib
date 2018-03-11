@@ -53,16 +53,27 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Igw-fh-3fN">
+                        <rect key="frame" x="0.0" y="90.5" width="320" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="TaB-uR-aTj"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="rKP-zG-4Ps"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="QcY-Bb-ZFX" firstAttribute="leading" secondItem="d1Y-es-x7f" secondAttribute="trailing" constant="100" id="5WP-ig-SZv"/>
+                    <constraint firstItem="Igw-fh-3fN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="6ch-hB-a4U"/>
                     <constraint firstItem="d1Y-es-x7f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="8UD-rH-sfl"/>
                     <constraint firstItem="lqN-Ud-lNh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Aae-8v-MQb"/>
                     <constraint firstItem="lqN-Ud-lNh" firstAttribute="leading" secondItem="XUl-Pa-aCO" secondAttribute="trailing" constant="10" id="BeI-aJ-5Nx"/>
+                    <constraint firstAttribute="trailing" secondItem="Igw-fh-3fN" secondAttribute="trailing" id="MAR-hS-lSO"/>
                     <constraint firstItem="XUl-Pa-aCO" firstAttribute="top" secondItem="d1Y-es-x7f" secondAttribute="bottom" constant="10" id="NrC-zw-OMr"/>
                     <constraint firstItem="QcY-Bb-ZFX" firstAttribute="top" secondItem="d1Y-es-x7f" secondAttribute="top" id="Ps3-5i-loz"/>
                     <constraint firstItem="2L3-rf-R5V" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Qg1-Sn-yCz"/>
+                    <constraint firstAttribute="bottom" secondItem="Igw-fh-3fN" secondAttribute="bottom" id="WtM-Gr-KLq"/>
                     <constraint firstAttribute="trailing" secondItem="lqN-Ud-lNh" secondAttribute="trailing" constant="12" id="Xd0-KV-qEw"/>
                     <constraint firstItem="XUl-Pa-aCO" firstAttribute="leading" secondItem="d1Y-es-x7f" secondAttribute="leading" id="ZER-Lm-o58"/>
                     <constraint firstItem="2L3-rf-R5V" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="oOj-RL-HEo"/>
@@ -71,6 +82,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="adressDetail" destination="XUl-Pa-aCO" id="sAV-zG-XsF"/>
+                <outlet property="lineView" destination="Igw-fh-3fN" id="Ycz-w3-g6H"/>
                 <outlet property="markView" destination="lqN-Ud-lNh" id="cc0-s1-mWm"/>
                 <outlet property="notDefaultName" destination="d1Y-es-x7f" id="Rxn-6v-ehs"/>
                 <outlet property="phoneNum" destination="QcY-Bb-ZFX" id="oeC-h6-m3y"/>

@@ -37,6 +37,30 @@
 
 }
 
+
+/// 生成订单
++ (void)getSubmitOrderInfoParam:(id)pararm successBlock:(void(^)(NSString *orderID, BOOL isSuccess))sBlcok;
+{
+    [BaseHttpRequest postWithUrl:@"/order/generate_order" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
+        LOG(@"订单确认 == %@",result);
+        NSString *data = [result valueForKey:@"data"];
+        NSMutableArray *listArray  = [[NSMutableArray alloc] init];
+        
+        if ([data isKindOfClass:[NSString class]]) {
+            if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+              
+                sBlcok(data, YES);
+            }else{
+                sBlcok(@"",NO);
+            }
+        }else{
+            sBlcok(@"",NO);
+
+        }
+    }];
+
+}
+
 ///集采订单确认
 + (void)getGoodsCollectOrderParam:(id)pararm successBlock:(void(^)(NSArray <GoodsOrderModel *>*dataArray,BOOL isSuccess))sBlcok
 {
@@ -64,6 +88,27 @@
 }
 
 
+
+///获取支付密文
++ (void)getPayInfoKryParam:(id)pararm successBlock:(void(^)(PayModels *model,BOOL isSuccess))sBlcok
+{
+    [BaseHttpRequest postWithUrl:@"/pay/check_balance" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
+        
+        if ([result isKindOfClass:[NSDictionary class]]) {
+            if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+                PayModels *model = [PayModels yy_modelWithJSON:result[@"data"]];
+                sBlcok(model,YES);
+            }else{
+                sBlcok(nil,NO);
+
+            }
+
+        }else{
+            sBlcok(nil,NO);
+        }
+        
+    }];
+}
 
 ///检测吊运订单确认
 + (void)getGoodsCheakOrderParam:(id)pararm successBlock:(void(^)(NSArray <GoodsOrderModel *>*dataArray,BOOL isSuccess))sBlcok
@@ -190,7 +235,7 @@
 ///提交订单 订单下单页（限定：新机、配构件、二手设备、整机流转的出租、标准节共享的出租）提交
 + (void)getGoodsOrdeSubmitParam:(id)pararm successBlock:(void(^)(BOOL isSuccess))sBlcok
 {
-    [BaseHttpRequest postWithUrl:@"/o/o_064" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
+    [BaseHttpRequest postWithUrl:@"/order/generate_order" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
         LOG(@"提交订单== %@",result);
         NSInteger state = [[result valueForKey:@"state"] integerValue];
         if (state == 0) {

@@ -10,9 +10,20 @@
 #import "GoodsOrderModel.h"
 #import "GoodsOrderAddressModel.h"
 #import "InvoiceModel.h"
+#import "PayModels.h"
+
+
 @interface GoodsOrderVModel : NSObject
 ///订单确认
 + (void)getGoodsOrderParam:(id)pararm successBlock:(void(^)(NSArray <GoodsOrderModel *>*dataArray,BOOL isSuccess))sBlcok;
+
+///获取支付密文
++ (void)getPayInfoKryParam:(id)pararm successBlock:(void(^)(PayModels *model,BOOL isSuccess))sBlcok;
+
+
+/// 生成订单
++ (void)getSubmitOrderInfoParam:(id)pararm successBlock:(void(^)(NSString *orderID, BOOL isSuccess))sBlcok;
+
 
 ///集采订单确认
 + (void)getGoodsCollectOrderParam:(id)pararm successBlock:(void(^)(NSArray <GoodsOrderModel *>*dataArray,BOOL isSuccess))sBlcok;
@@ -41,6 +52,9 @@
 
 ///拍卖保证金订单确认
 +(void)getGoodsAuctionOrderParam:(id)pararm successBlock:(void(^)(NSArray <GoodsOrderModel *>*dataArray,BOOL isSuccess))sBlcok;
+
 ///提交拍卖保证金订单
 + (void)getGoodsAuctionOrdeSubmitParam:(id)pararm successBlock:(void(^)(BOOL isSuccess))sBlcok;
+
+
 @end

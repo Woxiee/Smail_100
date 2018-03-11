@@ -68,6 +68,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 //    _sameGoodsCollectView.backgroundColor = BACKGROUND_COLOR;
 //    
 //    [self.view addSubview:_sameGoodsCollectView];
+    
     [self.view addSubview:self.webView];
     
 }
@@ -80,69 +81,22 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 {
     WEAKSELF;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setObject:[KX_UserInfo sharedKX_UserInfo].ID forKey:@"mid"];
-    if ([self.typeStr isEqualToString:@"6"]) {
-        [param setObject:_productID forKey:@"serviceId"];
-        [GoodsVModel getGoodsLiftDetailParam:param successBlock:^(NSArray *dataArray, BOOL isSuccess) {
-            if (isSuccess) {
-                if (weakSelf.resorceArray.count >0) {
-                    [weakSelf.resorceArray removeAllObjects];
-                }
-                GoodSDetailModel *model = dataArray[0];
-                [ weakSelf.webView loadHTMLString:model.serviceResultMap.detailDesc baseURL:[NSURL URLWithString:HEAD__URL]];
+    [param setObject:_productID forKey:@"goods_id"];
+    [GoodsVModel getGoodsDetailParam:param successBlock:^(NSArray<ItemInfoList *> *dataArray, BOOL isSuccess) {
+        if (isSuccess) {
 
-                
-            }else{
-                [self.view toastShow:@"请求错误~"];
-            }
+            ItemInfoList *infoModel = dataArray[1];
+            NSURL *url = [NSURL URLWithString:infoModel.itemContent.content_link];
+         NSURLRequest* request = [NSURLRequest requestWithURL:url];
+            [weakSelf.webView loadRequest:request];//加载
+
             
-        }];
-
-    }
-    else if ([_typeStr isEqualToString:@"9"]){
-            [param setObject:_productID forKey:@"hotId"];
-        [GoodsVModel getGoodscollectDetailParam:param successBlock:^(NSArray<GoodSDetailModel *> *dataArray, BOOL isSuccess) {
-            if (isSuccess) {
-                if (weakSelf.resorceArray.count >0) {
-                    [weakSelf.resorceArray removeAllObjects];
-                }
-                GoodSDetailModel *model = dataArray[0];
-                [ weakSelf.webView loadHTMLString:model.mainResult.detailDesc baseURL:[NSURL URLWithString:HEAD__URL]];
-                //            [weakSelf.resorceArray addObjectsFromArray:dataArray];
-                //            [weakSelf.sameArray addObject:dataArray];
-                //            [weakSelf.sameGoodsCollectView reloadData];
-                //            [weakSelf getGoodsDetailSameRequest];
-                
-            }else{
-                [self.view toastShow:@"请求错误~"];
-                
-            }
-
-        }];
-
-    }
-    else{
-        [param setObject:_productID forKey:@"mainId"];
-        [GoodsVModel getGoodsDetailParam:param successBlock:^(NSArray<GoodSDetailModel *> *dataArray, BOOL isSuccess) {
-            if (isSuccess) {
-                if (weakSelf.resorceArray.count >0) {
-                    [weakSelf.resorceArray removeAllObjects];
-                }
-                GoodSDetailModel *model = dataArray[0];
-                [ weakSelf.webView loadHTMLString:model.mainResult.detailDesc baseURL:[NSURL URLWithString:HEAD__URL]];
-                //            [weakSelf.resorceArray addObjectsFromArray:dataArray];
-                //            [weakSelf.sameArray addObject:dataArray];
-                //            [weakSelf.sameGoodsCollectView reloadData];
-                //            [weakSelf getGoodsDetailSameRequest];
-                
-            }else{
-                [self.view toastShow:@"请求错误~"];
-
-            }
             
-        }];
-
-    }
+        }else{
+            
+        }
+        
+    }];
     
 }
 ///  类似产品
@@ -293,10 +247,9 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     if(!_webView){
         _webView = [[UIWebView alloc] init];
    
-        _webView.frame =    CGRectMake(0, 0, SCREEN_WIDTH,  SCREEN_HEIGHT-50 - 64);
+        _webView.frame =    CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT - 64);
         
         _webView.delegate = self;
-        [_webView setScalesPageToFit:YES];
         _webView.scrollView.scrollEnabled = YES;
     }
     return _webView;

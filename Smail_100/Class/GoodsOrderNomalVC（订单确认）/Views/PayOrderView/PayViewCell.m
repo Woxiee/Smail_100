@@ -13,13 +13,27 @@
     __weak IBOutlet UIImageView *markImgaeView;
     __weak IBOutlet UIImageView *iconImageView;
     __weak IBOutlet UILabel *titleLB;
+    
+    __weak IBOutlet UIView *lineView;
+    
 }
 
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    lineView.backgroundColor = LINECOLOR;
+}
 
 - (void)setModel:(PayDetailModel *)model
 {
     _model = model;
     titleLB.text = _model.title;
+    if (!_model.isSelect) {
+        markImgaeView.image = [UIImage imageNamed:@"zhuce2@3x.png"];
+    }else{
+        markImgaeView.image = [UIImage imageNamed:@"23@3x.png"];
+    }
+    iconImageView.image = [UIImage imageNamed:_model.icon];
 }
 
 @end

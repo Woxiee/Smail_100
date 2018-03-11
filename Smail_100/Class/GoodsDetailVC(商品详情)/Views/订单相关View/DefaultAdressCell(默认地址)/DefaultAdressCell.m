@@ -16,6 +16,7 @@
     __weak IBOutlet UILabel *notDefaultName;
 
     __weak IBOutlet NSLayoutConstraint *addressContenWidth;
+    __weak IBOutlet UIView *lineView;
 }
 
 - (void)awakeFromNib {
@@ -28,6 +29,7 @@
     
     phoneNum.textColor = TITLETEXTLOWCOLOR;
     phoneNum.font = PLACEHOLDERFONT;
+    lineView.backgroundColor = LINECOLOR;
 }
 
 

@@ -9,6 +9,7 @@
 
 
 #import "shoppingCarVM.h"
+#import "GoodsOrderModel.h"
 
 @implementation shoppingCarVM
 
@@ -98,24 +99,31 @@
  */
 -(void)getShopCarGoodsHandleback:(void(^)(NSArray *shopCarGoods ,NSInteger code))shopaCarGoodsBlock{
     
-//    NSDictionary *dic  =@{@"type":kType,@"mid":[[LoginData loginData] getMid]};
-//    [BaseHttpRequest postWithUrl:@"/cart/c_003" andParameters:dic  andRequesultBlock:^(id result, NSError *error) {
-//        LOG(@"%@",result);
-//        if (error) {
-//            [self showErrMsg :LocalMyString(NOTICEMESSAGE)];
-//        }else{
-//            NSInteger state = [result[@"data"][@"state"] integerValue];
-//            NSString *msg = result[@"data"][@"msg"];
-//            if ([result[@"data"][@"list"] isKindOfClass:[NSArray class]]) {
-//                NSArray *arr = [OrderGoodsModel mj_objectArrayWithKeyValuesArray:result[@"data"][@"list"]];
-//                shopaCarGoodsBlock(arr,state);
-//                return ;
-//            }
-//            shopaCarGoodsBlock([NSArray array],state);
-//            if (state == 0) return ;
-//            [self showErrMsg:msg];
-//        }
-//    }];
+    NSDictionary *dic  =@{@"method":@"get",@"user_id":[KX_UserInfo sharedKX_UserInfo].user_id};
+    [BaseHttpRequest postWithUrl:@"/ucenter/cart" andParameters:dic  andRequesultBlock:^(id result, NSError *error) {
+        LOG(@"%@",result);
+        if (error) {
+            [self showErrMsg :LocalMyString(NOTICEMESSAGE)];
+        }else{
+
+            NSInteger state = [result[@"code"] integerValue];
+            NSString *msg = result[@"msg"];
+            if ([result[@"data"] isKindOfClass:[NSArray class]]) {
+                NSArray *arr = [NSArray yy_modelArrayWithClass:[OrderGoodsModel class] json:result[@"data"]];
+//                [OrderGoodsModel mj_objectArrayWithKeyValuesArray:];
+                for (OrderGoodsModel *model in arr ) {
+                    model.products = [NSArray yy_modelArrayWithClass:[Products class] json:model.products];
+                    
+                    
+                }
+                shopaCarGoodsBlock(arr,state);
+                return ;
+            }
+            shopaCarGoodsBlock([NSArray array],state);
+            if (state == 0) return ;
+            [self showErrMsg:msg];
+        }
+    }];
     
 }
 
@@ -273,16 +281,40 @@
 //
 //+ (OrderGoodsModel*)changeGoodsModelInListToOrderGoodsModel:(GoodsModelInList*)model
 //{
-//    OrderGoodsModel *item = [OrderGoodsModel new];
-//    item.id = model.cartItemId;
-//    item.productId = model.productId;
-//    item.productName = model.productName;
-//    item.itemCount = [NSString stringWithFormat:@"%@",model.cartNum];
-//    item.productPrice = model.productScPrice;
-//    item.property = model.property;
-//    item.productLogo = model.productLogo;
-//    return item;
 //}
+
++ (OrderGoodsModel*)changeProductsModelInListToOrderGoodsModel:(Products*)model;
+{
+    
+//    @property (nonatomic , copy) NSString              * name;
+//    @property (nonatomic , copy) NSString              * usepoint_per;
+//    @property (nonatomic , copy) NSString              * img;
+//    @property (nonatomic , copy) NSString              * cid;
+//    @property (nonatomic , copy) NSString              * price;
+//    @property (nonatomic , copy) NSString              * sid;
+//    @property (nonatomic , copy) NSString              * point;
+//    @property (nonatomic , copy) NSString              * goods_id;
+//    @property (nonatomic , copy) NSString              * goods_nums;
+//    @property (nonatomic , copy) NSString              * spec;
+//    @property (nonatomic , copy) NSString              * seller_id;
+//    @property (nonatomic , copy) NSString              * commend_id;
+//    @property (nonatomic , copy) NSString              * seller_name;
+    OrderGoodsModel *item = [OrderGoodsModel new];
+    item.id = model.goods_id;
+    item.productId = model.goods_id;
+    item.productName = model.name;
+    item.itemCount = [NSString stringWithFormat:@"%@",model.goods_nums];
+    item.productPrice = model.price;
+    item.point = model.point;
+    item.seller_id = model.seller_id;
+    item.store_nums = model.store_nums;
+
+    item.property = model.spec;
+    item.productLogo = model.img;
+    
+    return item;
+
+}
 
 
 //+ (OrderGoodsModel*)changeMarkModeValueWithGoodsModel:(MarketRuleList *)model

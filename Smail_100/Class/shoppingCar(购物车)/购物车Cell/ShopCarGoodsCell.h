@@ -8,10 +8,14 @@
 
 #import "MGSwipeTableCell.h"
 #import "OrderGoodsModel.h"
+#import "GoodsOrderModel.h"
 
 @interface ShopCarGoodsCell : MGSwipeTableCell
 
 @property(nonatomic,strong) OrderGoodsModel * goodsModel;
+
+@property(nonatomic,strong) Products * products;
+
 
 //数量加
 @property(nonatomic,copy)void(^addBlock)(OrderGoodsModel * goodsModel);
@@ -24,4 +28,6 @@
 
 // 手动改变购物车数量
 @property (nonatomic, copy) void(^changeNumberBlock)(OrderGoodsModel * goodsModel);
+
+
 @end
