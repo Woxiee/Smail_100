@@ -7,6 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GoodSDetailModel.h"
+
+
+
+
 @interface Pay_method :NSObject
 @property (nonatomic , copy) NSString              * alipay;
 @property (nonatomic , copy) NSString              * coins_air_money;
@@ -40,6 +45,7 @@
 
 @property (nonatomic , copy) NSString              * cartNum;
 @property (nonatomic , copy) NSString              * comment;
+@property (nonatomic , copy) NSString              * goodsSizeID;
 
 
 @end
@@ -49,6 +55,7 @@
 @property (nonatomic , copy) NSString              * module;
 @property (nonatomic , copy) NSString              * itemType;
 @property (nonatomic , strong) ItemContentList             * itemContent;
+@property (nonatomic , strong) NSArray<SKU *>    * spec;
 
 @end
 

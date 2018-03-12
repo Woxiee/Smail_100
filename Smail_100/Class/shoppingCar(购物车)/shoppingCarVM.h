@@ -31,6 +31,13 @@
 -(NSString *)calculationCarAllPrice:(NSArray <OrderGoodsModel*>*)goodsModels;
 
 
+/**
+ 计算总积分
+ 
+ @param goodsModels 商品
+ */
+-(NSString *)calculationCarAllPoint:(NSArray <OrderGoodsModel*>*)goodsModels;
+
 
 /**
  计算 item的个数
@@ -62,7 +69,7 @@
  @param count 修改后的数量
  @param shopaCarGoodsBlock 成功／失败回调
  */
--(void)changeShopCarGoodsCount:(NSString *)count goods:(OrderGoodsModel*)goodsModel handleback:(void(^) (NSInteger code))shopaCarGoodsBlock;
+-(void)changeShopCarGoodsCount:(NSString *)count goods:(OrderGoodsModel*)goodsModel  Params:(id)param  handleback:(void(^) (NSInteger code))shopaCarGoodsBlock;
 
 
 /**
@@ -80,7 +87,7 @@
  @param goodsModel 产品
  @param shopaCarGoodsBlock 成功／失败回调
  */
--(void)delectaShopCarGoods:(OrderGoodsModel*)goodsModel handleback:(void(^) (NSInteger code))shopaCarGoodsBlock;
+-(void)delectaShopCarGoods:(OrderGoodsModel*)goodsModel Params:(id)param handleback:(void(^) (NSInteger code))shopaCarGoodsBlock;
 
 
 /**

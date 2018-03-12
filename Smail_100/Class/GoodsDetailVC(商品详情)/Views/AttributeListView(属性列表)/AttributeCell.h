@@ -12,7 +12,7 @@
 #import "GoodSDetailModel.h"
 @class Values;
 @interface AttributeCell : UITableViewCell
-@property (nonatomic, strong) ExtAttrbuteShow *model;
+//@property (nonatomic, strong) ExtAttrbuteShow *model;
 @property (nonatomic, strong) NSDictionary      *dataDic;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;

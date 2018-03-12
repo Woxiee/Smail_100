@@ -24,18 +24,18 @@
 }
 
 
--(void)setModel:(ExtAttrbuteShow *)model
-{
-    _model = model;
-    _titleLabel.text = _model.name;
-    _detailLabel.text = _model.values;
-    if ([_model.name isEqualToString:@"适配机型"]) {
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    else{
-        self.accessoryType =  UITableViewCellAccessoryNone;
-    }
-}
+//-(void)setModel:(ExtAttrbuteShow *)model
+//{
+//    _model = model;
+//    _titleLabel.text = _model.name;
+//    _detailLabel.text = _model.values;
+//    if ([_model.name isEqualToString:@"适配机型"]) {
+//        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//    }
+//    else{
+//        self.accessoryType =  UITableViewCellAccessoryNone;
+//    }
+//}
 
 
 -(void)setDataDic:(NSDictionary *)dataDic

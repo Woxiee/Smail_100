@@ -54,6 +54,7 @@
 @property (nonatomic, strong) NSMutableArray *sameArray;
 @property (nonatomic, strong) LoadingTableFootView *footView;
 @property (nonatomic, strong) NSMutableArray *sameTitleArr;
+@property (nonatomic, strong) ItemInfoList *itemIfoModel;
 
 
 
@@ -92,7 +93,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     [self setConfiguration];
     [self setLeftItems];
     [self initBottomView];
-
+    [self getGoodsValueRequest];
     [self.tableView headerWithRefreshingBlock:^{
         [weakSelf getGoodsDetailInfoRequest];
     }];
@@ -162,13 +163,13 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 {
     GoodGuigeView *view = [[GoodGuigeView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withChooseType:type];
     WEAKSELF;
-    GoodSDetailModel *goodsModel = nil;
+//    GoodSDetailModel *goodsModel = nil;
+//    if (self.resorceArray.count >0) {
+//        goodsModel = self.resorceArray[0];
+//    }
+//    view.oldAttrvalueStr = goodsModel.propertys;
     if (self.resorceArray.count >0) {
-        goodsModel = self.resorceArray[0];
-    }
-    view.oldAttrvalueStr = goodsModel.propertys;
-    if (self.resorceArray.count >0) {
-        view.model = self.resorceArray[0];
+        view.itemInfoList = _itemIfoModel;
     }
     view.submitBlock = ^(GoodSDetailModel *model,NSInteger index){
         if (index== 1) {
@@ -241,6 +242,9 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
                 [weakSelf addGoodsInCar:model.itemContent];
             }
             else if (index == 4){
+                
+                
+                
                 GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
                 model.itemContent.goods_id = weakSelf.productID;
                 VC.itemsModel = model.itemContent;
@@ -278,6 +282,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
             [weakSelf.titleArray addObject:@"查看商品规格"];
             NSMutableArray *imggeList = [[NSMutableArray alloc] init];
             ItemInfoList *infoModel = dataArray[0];
+            weakSelf.itemIfoModel = infoModel;
             for (ItemContentList *items in infoModel.itemContentList) {
                 [imggeList addObject:items.imageUrl];
             }
@@ -386,6 +391,23 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
             
         }
 
+    }];
+}
+
+
+
+- (void)getGoodsValueRequest
+{
+    WEAKSELF;
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:_productID forKey:@"goods_id"];
+    [GoodsVModel getGoodDetailConfigParm:param successBlock:^(NSArray *dataArray, BOOL isSuccess) {
+        if (isSuccess) {
+            weakSelf.itemIfoModel.spec = dataArray;
+        }
+        else{
+            [weakSelf.view toastShow:NOTICEMESSAGE];
+        }
     }];
 }
 
@@ -643,7 +665,9 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GoodSDetailModel *model = self.resorceArray[0];
     NSString *title = _titleArray[indexPath.section];
-  
+    if (![title isEqualToString:@"商品详情"]) {
+        [self showGuigeView:GoodGuigeChooseGoodsType];
+    }
    
 }
 

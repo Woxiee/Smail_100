@@ -68,7 +68,11 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
     UIView *toast = [self viewForMessage:message title:nil image:nil];
     [self showToast:toast duration:interval position:position];
 }
-
+- (void)makeToast:(NSString *)message position:(id)position
+{
+    UIView *toast = [self viewForMessage:message title:nil image:nil];
+    [self showToast:toast duration:0.25 position:position];
+}
 - (void)makeToast:(NSString *)message duration:(CGFloat)interval position:(id)position title:(NSString *)title {
     UIView *toast = [self viewForMessage:message title:title image:nil];
     [self showToast:toast duration:interval position:position];
@@ -319,6 +323,8 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
     if(imageView != nil) {
         [wrapperView addSubview:imageView];
     }
+    
+    messageLabel.textAlignment = NSTextAlignmentCenter;
     
     return wrapperView;
 }

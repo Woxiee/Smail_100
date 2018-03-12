@@ -356,8 +356,6 @@
 		E10B0EB220528AF5008BA706 /* homeSousuo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10B0E6520528AF5008BA706 /* homeSousuo@2x.png */; };
 		E10B0EB320528AF5008BA706 /* KYSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0E6720528AF5008BA706 /* KYSearchBar.m */; };
 		E10B0EB420528AF5008BA706 /* sousuo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10B0E6820528AF5008BA706 /* sousuo@2x.png */; };
-		E10B0EB520528AF5008BA706 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0E6B20528AF5008BA706 /* Toast+UIView.m */; };
-		E10B0EB620528AF5008BA706 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0E6D20528AF5008BA706 /* Toast+UIView.m */; };
 		E10B0EB720528AF5008BA706 /* UIBarButtonItem+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0E7020528AF5008BA706 /* UIBarButtonItem+Utils.m */; };
 		E10B0EB820528AF5008BA706 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0E7320528AF5008BA706 /* UIColor+Hex.m */; };
 		E10B0EB920528AF5008BA706 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0E7520528AF5008BA706 /* UIColor+Hex.m */; };
@@ -771,6 +769,9 @@
 		E11531382052993E00B5852F /* PayOtherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11531312052993E00B5852F /* PayOtherCell.xib */; };
 		E11531392052993E00B5852F /* PayViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E11531332052993E00B5852F /* PayViewCell.m */; };
 		E115313A2052993E00B5852F /* PayViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11531342052993E00B5852F /* PayViewCell.xib */; };
+		E16596E420564EAF008ADC6B /* ChangeGoodsCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = E16596E220564EAF008ADC6B /* ChangeGoodsCountView.m */; };
+		E16596E520564EB0008ADC6B /* goodsAd.png in Resources */ = {isa = PBXBuildFile; fileRef = E16596E320564EAF008ADC6B /* goodsAd.png */; };
+		E16596E920564FE4008ADC6B /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E16596E820564FE4008ADC6B /* Toast+UIView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1396,10 +1397,6 @@
 		E10B0E6620528AF5008BA706 /* KYSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYSearchBar.h; sourceTree = "<group>"; };
 		E10B0E6720528AF5008BA706 /* KYSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYSearchBar.m; sourceTree = "<group>"; };
 		E10B0E6820528AF5008BA706 /* sousuo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sousuo@2x.png"; sourceTree = "<group>"; };
-		E10B0E6A20528AF5008BA706 /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
-		E10B0E6B20528AF5008BA706 /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
-		E10B0E6C20528AF5008BA706 /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
-		E10B0E6D20528AF5008BA706 /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
 		E10B0E6F20528AF5008BA706 /* UIBarButtonItem+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Utils.h"; sourceTree = "<group>"; };
 		E10B0E7020528AF5008BA706 /* UIBarButtonItem+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Utils.m"; sourceTree = "<group>"; };
 		E10B0E7220528AF5008BA706 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
@@ -2048,6 +2045,11 @@
 		E11531322052993E00B5852F /* PayViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewCell.h; sourceTree = "<group>"; };
 		E11531332052993E00B5852F /* PayViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewCell.m; sourceTree = "<group>"; };
 		E11531342052993E00B5852F /* PayViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewCell.xib; sourceTree = "<group>"; };
+		E16596E120564EAF008ADC6B /* ChangeGoodsCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGoodsCountView.h; sourceTree = "<group>"; };
+		E16596E220564EAF008ADC6B /* ChangeGoodsCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGoodsCountView.m; sourceTree = "<group>"; };
+		E16596E320564EAF008ADC6B /* goodsAd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goodsAd.png; sourceTree = "<group>"; };
+		E16596E720564FE4008ADC6B /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
+		E16596E820564FE4008ADC6B /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
 		E60962CF3B597F7C431212A7 /* libPods-Smail_100Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Smail_100Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6B1D3A6DB1A20BAB619951F /* libPods-Smail_100UITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Smail_100UITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -3942,9 +3944,6 @@
 				E10B0E6020528AF5008BA706 /* NSDate+Utils.m */,
 				E10B0E6120528AF5008BA706 /* NSString+Extension */,
 				E10B0E6420528AF5008BA706 /* searchBar */,
-				E10B0E6920528AF5008BA706 /* Toast+UIView */,
-				E10B0E6C20528AF5008BA706 /* Toast+UIView.h */,
-				E10B0E6D20528AF5008BA706 /* Toast+UIView.m */,
 				E10B0E6E20528AF5008BA706 /* UIBarButtonItem */,
 				E10B0E7120528AF5008BA706 /* UIColor+Hex */,
 				E10B0E7420528AF5008BA706 /* UIColor+Hex.h */,
@@ -4145,15 +4144,6 @@
 				E10B0E6820528AF5008BA706 /* sousuo@2x.png */,
 			);
 			path = searchBar;
-			sourceTree = "<group>";
-		};
-		E10B0E6920528AF5008BA706 /* Toast+UIView */ = {
-			isa = PBXGroup;
-			children = (
-				E10B0E6A20528AF5008BA706 /* Toast+UIView.h */,
-				E10B0E6B20528AF5008BA706 /* Toast+UIView.m */,
-			);
-			path = "Toast+UIView";
 			sourceTree = "<group>";
 		};
 		E10B0E6E20528AF5008BA706 /* UIBarButtonItem */ = {
@@ -4891,6 +4881,8 @@
 		E10B0FEE20528B02008BA706 /* KX_Vender */ = {
 			isa = PBXGroup;
 			children = (
+				E16596E620564FE4008ADC6B /* 弹框 */,
+				E16596E020564EAF008ADC6B /* ShoppingCarChangeMun */,
 				E11530B22052969100B5852F /* AppPaySdK */,
 				E10B0FEF20528B02008BA706 /* AFNetworking */,
 				E10B100C20528B03008BA706 /* MBProgressHUD */,
@@ -5702,6 +5694,25 @@
 			path = Views/PayOrderView;
 			sourceTree = "<group>";
 		};
+		E16596E020564EAF008ADC6B /* ShoppingCarChangeMun */ = {
+			isa = PBXGroup;
+			children = (
+				E16596E120564EAF008ADC6B /* ChangeGoodsCountView.h */,
+				E16596E220564EAF008ADC6B /* ChangeGoodsCountView.m */,
+				E16596E320564EAF008ADC6B /* goodsAd.png */,
+			);
+			path = ShoppingCarChangeMun;
+			sourceTree = "<group>";
+		};
+		E16596E620564FE4008ADC6B /* 弹框 */ = {
+			isa = PBXGroup;
+			children = (
+				E16596E720564FE4008ADC6B /* Toast+UIView.h */,
+				E16596E820564FE4008ADC6B /* Toast+UIView.m */,
+			);
+			path = "弹框";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -6031,6 +6042,7 @@
 				E10B0DBE20528AE8008BA706 /* MemberMoneyCell.xib in Resources */,
 				E10B11E620528B06008BA706 /* chuangkeweidian2@3x.png in Resources */,
 				E10B121120528B06008BA706 /* shangjiazhongxin22@3x.png in Resources */,
+				E16596E520564EB0008ADC6B /* goodsAd.png in Resources */,
 				E10B11FC20528B06008BA706 /* shangchengdingdan2@3x.png in Resources */,
 				E10B0DE720528AE8008BA706 /* StoreMangerVHeadView.xib in Resources */,
 				E10B0D2B20528AE8008BA706 /* GoodsOrderNomalVC.xib in Resources */,
@@ -6504,8 +6516,8 @@
 				E10B0FCD20528AFA008BA706 /* FlipTableView.m in Sources */,
 				E10B0E1320528AF0008BA706 /* BaseHttpResponse.m in Sources */,
 				E10B0D0620528AE8008BA706 /* GoodsDetailHeadView.m in Sources */,
+				E16596E920564FE4008ADC6B /* Toast+UIView.m in Sources */,
 				E10B10A620528B03008BA706 /* NSBundle+PYSearchExtension.m in Sources */,
-				E10B0EB620528AF5008BA706 /* Toast+UIView.m in Sources */,
 				E10B0CFB20528AE8008BA706 /* GoodsBrightCell.m in Sources */,
 				E10B0EAF20528AF5008BA706 /* NSData+Encrypt.m in Sources */,
 				E10B109520528B03008BA706 /* MJRefreshHeader.m in Sources */,
@@ -6583,13 +6595,13 @@
 				E10B0CFA20528AE8008BA706 /* GoodsCommonChooseView.m in Sources */,
 				E10B0D9120528AE8008BA706 /* CompanyInfoVC.m in Sources */,
 				E10B0D3E20528AE8008BA706 /* GoodGuigeCell.m in Sources */,
-				E10B0EB520528AF5008BA706 /* Toast+UIView.m in Sources */,
 				E10B0D0720528AE8008BA706 /* GoodGuigeView.m in Sources */,
 				E10B0DEB20528AE8008BA706 /* LineOffGoodsCell.m in Sources */,
 				E10B10A120528B03008BA706 /* NSBundle+MJRefresh.m in Sources */,
 				E10B0DD620528AE8008BA706 /* OrderAutionCell.m in Sources */,
 				E10B0D1720528AE8008BA706 /* GoodsCombinedCell.m in Sources */,
 				E10B0DCD20528AE8008BA706 /* MySelectTeamView.m in Sources */,
+				E16596E420564EAF008ADC6B /* ChangeGoodsCountView.m in Sources */,
 				E10B0DBA20528AE8008BA706 /* MemberCenterHeaderView.m in Sources */,
 				E10B0D7120528AE8008BA706 /* ManagementModel.m in Sources */,
 				E10B0DE420528AE8008BA706 /* OrderMoneyCell.m in Sources */,

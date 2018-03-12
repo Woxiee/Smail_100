@@ -14,6 +14,8 @@
 @interface OrderGoodsModel : NSObject
 @property (nonatomic , copy) NSArray<Products *>              * products;
 
+@property (nonatomic , copy) NSArray<OrderGoodsModel *>              * goodModel;
+
 @property(nonatomic,strong) NSString * productId;
 
 @property(nonatomic,strong) NSString * seller_id;
@@ -32,6 +34,7 @@
 @property (nonatomic,strong) NSString *store_nums;
 
 @property (nonatomic,strong)NSString *id;
+@property (nonatomic,strong)NSString *cid;
 
 @property (nonatomic,strong)NSString *property;
 

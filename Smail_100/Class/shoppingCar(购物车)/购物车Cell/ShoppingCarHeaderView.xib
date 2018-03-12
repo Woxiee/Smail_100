@@ -36,11 +36,21 @@
                         <constraint firstAttribute="width" constant="8" id="cjK-i5-JSb"/>
                     </constraints>
                 </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BjB-m9-VIS">
+                    <rect key="frame" x="0.0" y="29" width="320" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="MTM-iU-wmm"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="BjB-m9-VIS" secondAttribute="bottom" id="1Mf-qz-rav"/>
+                <constraint firstAttribute="trailing" secondItem="BjB-m9-VIS" secondAttribute="trailing" id="6NS-bE-OCh"/>
                 <constraint firstItem="qdf-Cr-k4c" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="An5-l1-DSI"/>
                 <constraint firstAttribute="bottom" secondItem="COf-gg-tfl" secondAttribute="bottom" constant="5" id="KDi-wz-u34"/>
+                <constraint firstItem="BjB-m9-VIS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Qgg-Hq-ccY"/>
                 <constraint firstItem="COf-gg-tfl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="dd0-dW-e9I"/>
                 <constraint firstItem="rwl-op-mBu" firstAttribute="leading" secondItem="qdf-Cr-k4c" secondAttribute="trailing" constant="13" id="nzD-w2-aeX"/>
                 <constraint firstItem="COf-gg-tfl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="oMF-Z2-3xw"/>

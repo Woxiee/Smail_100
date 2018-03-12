@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GoodSDetailModel.h"
+#import "ItemContentList.h"
 
 typedef NS_ENUM(NSInteger, GoodGuigeChooseType) {
      GoodGuigeAddCartOrBuyType, ///添加购物车或者购买
@@ -20,9 +21,14 @@ typedef void(^DidClikSubmitBtnBlock)(GoodSDetailModel *model, NSInteger index);
 
 
 @property (nonatomic, strong) GoodSDetailModel *model;
+@property (nonatomic, strong) ItemInfoList *itemInfoList;
+
+
 @property (nonatomic, copy) DidClikSubmitBtnBlock submitBlock;
 @property (nonatomic, strong) NSString *oldAttrvalueStr; /// 记录上一次选择的规格
 @property (nonatomic, assign)  GoodGuigeChooseType goodGuigeChooseType;
+
+
 
 /// 初始化
 - (instancetype)initWithFrame:(CGRect)frame withChooseType:(GoodGuigeChooseType )chossType;

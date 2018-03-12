@@ -9,12 +9,16 @@
 #import <Foundation/Foundation.h>
 
 
-@class Values;
-@interface ExtAttrbuteShow :NSObject
-@property (nonatomic , copy) NSString              * name;
-@property (nonatomic , copy) NSString              * values;
-
+@interface Value :NSObject
+//@property (nonatomic , copy) NSString              * spec_name;
+//@property (nonatomic , copy) NSString              * spec_value;
+@property (nonatomic , copy) NSString              * id;
+@property (nonatomic, assign) BOOL isSelect;
+@property (nonatomic , copy) NSString              * attrValueMainID; /// 主属性ID
+@property (nonatomic , copy) NSString              * attrValueMainName; /// 主属性标题
 @end
+
+
 @interface Dizhi :NSObject
 @property (nonatomic , copy) NSString              * prov;
 @property (nonatomic , copy) NSString              * city;
@@ -27,14 +31,23 @@
 
 @property (nonatomic , copy) NSString              * attrValueId;
 @property (nonatomic , copy) NSString              * attrValueName;
+
+@property (nonatomic , copy) NSString              * spec_name;
+@property (nonatomic , copy) NSString              * spec_value;
+@property (nonatomic , copy) NSString              * id;
+
+
 @property (nonatomic, assign) BOOL isSelect;
 
 @end
 
 @interface SKU :NSObject
-@property (nonatomic , strong) NSArray<AttrValue *>              * attrValue;
-@property (nonatomic , copy) NSString              * attrId;
-@property (nonatomic , copy) NSString              * attrName;
+//@property (nonatomic , strong) NSArray<AttrValue *>              * attrValue;
+//@property (nonatomic , copy) NSString              * attrId;
+//@property (nonatomic , copy) NSString              * attrName;
+@property (nonatomic , copy) NSString              * name;
+@property (nonatomic , strong) NSArray<Value *>              * value;
+
 
 @end
 
@@ -64,7 +77,7 @@
 
 @interface Extetalon :NSObject
 @property (nonatomic , copy) NSString              * name;
-@property (nonatomic , strong) NSArray<Values *>              * values;
+//@property (nonatomic , strong) NSArray<Value *>              * values;
 
 @end
 
@@ -180,7 +193,7 @@
 @property (nonatomic , copy) NSString              * needBuyType;
 
 
-@property (nonatomic , strong) NSArray<ExtAttrbuteShow *>              * extAttrbuteShow;
+//@property (nonatomic , strong) NSArray<Value *>              * extAttrbuteShow;
 @property (nonatomic , strong) NSArray<SKU *>              * sKU;
 @property (nonatomic , strong) NSArray<ExtAttrbute *>              * extAttrbute;
 @property (nonatomic , strong) BusinessResult              * businessResult;

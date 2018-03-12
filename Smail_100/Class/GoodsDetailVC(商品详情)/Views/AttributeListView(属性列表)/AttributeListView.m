@@ -131,7 +131,7 @@ static NSString * const cellID = @"cellID";
     if (_dizhiArr.count > 0) {
         cell.dizhi = _dizhiArr[indexPath.row];
     }else{
-        cell.model = self.dataArray[indexPath.row];
+//        cell.model = self.dataArray[indexPath.row];
 
     }
     return cell;
@@ -148,14 +148,14 @@ static NSString * const cellID = @"cellID";
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    ExtAttrbuteShow  *extAttrbute  = self.dataArray[indexPath.row];
-    if ([extAttrbute.name isEqualToString:@"适配机型"]) {
-        if (_didClickCellBlock) {
-            _didClickCellBlock(extAttrbute.values);
-            [self hiddenSheetView];
-        }
-        
-    }
+//    ExtAttrbuteShow  *extAttrbute  = self.dataArray[indexPath.row];
+//    if ([extAttrbute.name isEqualToString:@"适配机型"]) {
+//        if (_didClickCellBlock) {
+//            _didClickCellBlock(extAttrbute.values);
+//            [self hiddenSheetView];
+//        }
+//        
+//    }
         
 
     
@@ -165,10 +165,10 @@ static NSString * const cellID = @"cellID";
 #pragma mark - get &set
 -(void)setModel:(GoodSDetailModel *)model
 {
-    _model = model;
-    self.dataArray = _model.extAttrbuteShow;
-    [self setup];
-    [self.tableView reloadData];
+//    _model = model;
+//    self.dataArray = _model.extAttrbuteShow;
+//    [self setup];
+//    [self.tableView reloadData];
     
 }
 

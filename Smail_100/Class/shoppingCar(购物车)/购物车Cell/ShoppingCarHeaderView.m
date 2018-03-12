@@ -14,6 +14,8 @@
 @property(nonatomic,copy)void (^delectBlock)();
 @property (nonatomic, strong) UILabel *titleLb;
 
+
+
 @end
 
 @implementation ShoppingCarHeaderView
@@ -29,17 +31,17 @@
         
         CGFloat btnW = 33;
         UIButton *allBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, btnW, self.height)];
-        [allBtn setImage:[UIImage imageNamed:@"23@3x.png"] forState:UIControlStateNormal];
-        [allBtn setImage:[UIImage imageNamed:@"zhuce2@3x.png"] forState:UIControlStateSelected];
+        [allBtn setImage:[UIImage imageNamed:@"zhuce2@3x.png"] forState:UIControlStateNormal];
+        [allBtn setImage:[UIImage imageNamed:@"23@3x.png"] forState:UIControlStateSelected];
         [allBtn addTarget:self action:@selector(clickSelectAllGoods) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:allBtn];
         allBtn.contentMode = UIViewContentModeCenter;
        
         _allSelectbtn = allBtn;
-        UILabel *lb = [[UILabel alloc]initWithFrame:CGRectMake(allBtn.right + 5,0, 40, self.height)];
+        UILabel *lb = [[UILabel alloc]initWithFrame:CGRectMake(allBtn.right + 5,0, SCREEN_WIDTH, self.height)];
 //        lb.text = @"全选";
-        lb.textColor = RGB(153, 153, 153);
-        lb.font = KY_FONT(12);
+        lb.textColor = TITLETEXTLOWCOLOR;
+        lb.font = KY_FONT(15);
         [self addSubview:lb];
         self.titleLb = lb;
         
@@ -48,6 +50,11 @@
         [delectBtn setBackgroundImage:[UIImage imageNamed:@"shanchu.png"] forState:UIControlStateNormal];
         [delectBtn addTarget:self action:@selector(clickDelectAllGoods) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:delectBtn];
+        
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height-1, SCREEN_WIDTH , 1)];
+        lineView.backgroundColor = LINECOLOR;
+        [self addSubview:lineView];
+        
         
     }
     return self;
@@ -117,6 +124,8 @@
 {
     _model = model;
     self.titleLb.text = _model.seller_name;
+    _allSelectbtn.selected = [_model.selectStatue integerValue];
+    
     
 }
 

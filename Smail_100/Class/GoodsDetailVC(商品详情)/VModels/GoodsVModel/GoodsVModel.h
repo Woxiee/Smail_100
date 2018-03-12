@@ -21,6 +21,9 @@
 + (void)getGoodsDetailPriceParam:(id)pararm successBlock:(void(^)(NSArray *dataArray,BOOL isSuccess))sBlcok;
 
 
+/// 获取商品规格
++ (void)getGoodDetailConfigParm:(id)pararm successBlock:(void(^)(NSArray *dataArray,BOOL isSuccess))sBlcok;
+
 /// 商品求租详情
 + (void)getGoodsSolicitDetailParam:(id)pararm successBlock:(void(^)(NSArray *dataArray,BOOL isSuccess))sBlcok;
 

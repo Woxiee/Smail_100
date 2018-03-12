@@ -9,6 +9,7 @@
 #import "GoodsVModel.h"
 #import "GoodsListModel.h"
 #import "MemberModel.h"
+#import "GoodSDetailModel.h"
 
 @implementation GoodsVModel
 + (void)getGoodsDetailParam:(id)pararm successBlock:(void(^)(NSArray <ItemInfoList *>*dataArray,BOOL isSuccess))sBlcok
@@ -75,6 +76,54 @@
 
 
 
+/// 获取商品规格
++ (void)getGoodDetailConfigParm:(id)pararm successBlock:(void(^)(NSArray *dataArray,BOOL isSuccess))sBlcok
+{
+    [BaseHttpRequest postWithUrl:@"/goods/goods_config" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
+        LOG(@"商品规格 == %@",result);
+        NSMutableArray *listArray  = [[NSMutableArray alloc] init];
+        if ([result isKindOfClass:[NSDictionary class]]) {
+            if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+                NSArray  *listArrs = [NSArray yy_modelArrayWithClass:[SKU class] json:result[@"spec"]];
+                for (SKU *model in listArrs ) {
+                    model.value = [NSArray yy_modelArrayWithClass:[Value class] json:model.value];
+                    [listArray addObject:model];
+                }
+                
+                //
+                /*
+                 NSArray *skuArray = [result valueForKey:@"data"][@"obj"][@"SKU"];
+                 /// 商品默认选择第一个 规格属性
+                 NSMutableArray *contenArray = [[NSMutableArray alloc] init];
+                 for (SKU *property in model.sKU) {
+                 LOG(@"%@", property.attrValue);
+                 contenArray = [AttrValue mj_objectArrayWithKeyValuesArray:property.attrValue];
+                 for (int i = 0; i<contenArray.count; i++) {
+                 AttrValue *attrModel = contenArray[i];
+                 attrModel.attrValueMainID = property.attrId;
+                 attrModel.attrValueMainName = property.attrName;
+                 if (i == 0) {
+                 attrModel.isSelect = YES;
+                 if (KX_NULLString(model.goodsSizeID)) {
+                 model.goodsSizeID = [NSString stringWithFormat:@"%@:%@",attrModel.attrValueMainID,attrModel.attrValueId];
+                 }else{
+                 model.goodsSizeID =  [NSString stringWithFormat:@"%@,%@:%@",model.goodsSizeID,attrModel.attrValueMainID,attrModel.attrValueId];
+                 }
+                 }
+                 }
+                 }
+                 
+                 */
+                //                [listArray addObject:model];
+                sBlcok(listArray,YES);
+            }else{
+                sBlcok(nil,NO);
+            }
+        }else{
+            sBlcok(nil,NO);
+        }
+    }];
+}
 
 /// 商品详情价格
 + (void)getGoodsDetailPriceParam:(id)pararm successBlock:(void(^)(NSArray *dataArray,BOOL isSuccess))sBlcok
@@ -104,268 +153,6 @@
 }
 
 
-
-/// 商品求租详情
-+ (void)getGoodsSolicitDetailParam:(id)pararm successBlock:(void(^)(NSArray *dataArray,BOOL isSuccess))sBlcok
-{
-    [BaseHttpRequest postWithUrl:@"/o/o_055" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
-        LOG(@"商品详情 == %@",result);
-        NSInteger state = [[result valueForKey:@"state"] integerValue];
-        //        NSString *msg = [result valueForKey:@"msg"];
-        NSDictionary *dataDic = [result valueForKey:@"data"][@"obj"];
-        NSMutableArray *listArray  = [[NSMutableArray alloc] init];
-        
-        if ([dataDic isKindOfClass:[NSDictionary class]]) {
-            if (state == 0) {
-                GoodSDetailModel *model = [GoodSDetailModel mj_objectWithKeyValues:dataDic];
-                NSString *alertStr = @"";
-                if ([model.isOwnweahip isEqualToString:@"1"]) {
-                    alertStr = @"需要产权证";
-                }
-                if ([model.isOwnweahip isEqualToString:@"1"]) {
-                    alertStr = @"需要合格证";
-                }
-                if ([model.isOwnweahip isEqualToString:@"1"] &&  [model.isOwnweahip isEqualToString:@"1"]) {
-                    alertStr = @"需要产权证      需要合格证";
-                }
-                
-                NSArray *eattrbuteTitltArray;
-                NSArray *eattrbuteDetailArray;
-                NSString *spModel = [model.needBuyType isEqualToString:@"3"]? @"机型":@"适配机型";
-                model.certificatesStr = alertStr;
-                if (KX_NULLString(model.certificatesStr)) {
-                    eattrbuteTitltArray = @[@"求租要求",@"商品类别",model.needBuyType ,spModel,@"期望交货时间",@"交货地址",@"备注"];
-                    eattrbuteDetailArray = @[@"",model.param3?model.param3:@"",model.kzNumberName?model.kzNumberName:@"",model.hopeSendTime?model.hopeSendTime:@"",[NSString stringWithFormat:@"%@%@%@%@",model.deliveryProv,model.deliveryCity ,model.deliveryArea,model.param5],model.remaek?model.remaek:@""];
-                }
-                
-                else{
-                    eattrbuteTitltArray = @[@"证件要求",model.certificatesStr, @"求租要求",@"商品类别",spModel,@"期望交货时间",@"交货地址",@"备注"];
-                    eattrbuteDetailArray = @[@"",@"",@"",model.param3?model.param3:@"",model.kzNumberName?model.kzNumberName:@"",model.hopeSendTime?model.hopeSendTime:@"",[NSString stringWithFormat:@"%@%@%@%@",model.deliveryProv,model.deliveryCity ,model.deliveryArea,model.param5],model.remaek?model.remaek:@""];
-                }
-
-                if (KX_NULLString(model.kzNumberName)) {
-                    eattrbuteTitltArray = @[@"求租要求",@"商品类别",@"期望交货时间",@"交货地址",@"备注"];
-                    eattrbuteDetailArray = @[model.certificatesStr,model.certificatesStr,model.param3?model.param3:@"",model.hopeSendTime?model.hopeSendTime:@"",[NSString stringWithFormat:@"%@%@%@%@",model.deliveryProv,model.deliveryCity ,model.deliveryArea,model.param5],model.remaek?model.remaek:@""];
-                }
-          
-                NSMutableArray *extAttArr = [[NSMutableArray alloc] initWithCapacity:10];
-                for (int i = 0; i<eattrbuteTitltArray.count; i++) {
-                    ExtAttrbuteShow *attrbuteModel = [[ExtAttrbuteShow alloc] init];
-                    attrbuteModel.name = eattrbuteTitltArray[i];
-                    attrbuteModel.values = eattrbuteDetailArray[i];
-                    [extAttArr addObject:attrbuteModel];
-                }
-                model.extAttrbuteShow =  extAttArr;
-                [listArray addObject:model];
-                sBlcok(listArray,YES);
-            }else{
-                sBlcok(nil,NO);
-            }
-        }else{
-            sBlcok(nil,NO);
-        }
-    }];
-
-}
-
-/// 商品检测吊运
-+ (void)getGoodsLiftDetailParam:(id)pararm successBlock:(void(^)(NSArray *dataArray,BOOL isSuccess))sBlcok
-{
-    [BaseHttpRequest postWithUrl:@"/o/o_056" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
-        LOG(@"商品详情 == %@",result);
-        NSInteger state = [[result valueForKey:@"state"] integerValue];
-        //        NSString *msg = [result valueForKey:@"msg"];
-        NSDictionary *dataDic = [result valueForKey:@"data"][@"obj"];
-        NSMutableArray *listArray  = [[NSMutableArray alloc] init];
-        
-        if ([dataDic isKindOfClass:[NSDictionary class]]) {
-            if (state == 0) {
-                GoodSDetailModel *model = [GoodSDetailModel mj_objectWithKeyValues:dataDic];
-                NSArray *skuArray = [result valueForKey:@"data"][@"obj"][@"SKU"];
-                
-                NSDictionary *businessResultArr = [result valueForKey:@"data"][@"obj"][@"BusinessResult"];
-                NSDictionary *serviceResultMap = [result valueForKey:@"data"][@"obj"][@"serviceResultMap"];
-
-                model.extAttrbuteShow =  [ExtAttrbuteShow mj_objectArrayWithKeyValuesArray:model.extAttrbuteShow];
-                model.sKU =  [SKU mj_objectArrayWithKeyValuesArray:skuArray];
-                model.extAttrbute =  [ExtAttrbute mj_objectArrayWithKeyValuesArray:model.extAttrbute];
-                model.extetalon =  [Extetalon mj_objectArrayWithKeyValuesArray:model.extetalon];
-                model.businessResult = [BusinessResult mj_objectWithKeyValues:businessResultArr];
-                model.serviceResultMap = [ServiceResultMap mj_objectWithKeyValues:serviceResultMap];
-                model.serviceResultMap.dizhi = [Dizhi mj_objectArrayWithKeyValuesArray:model.serviceResultMap.dizhi];
-
-                /// 商品默认选择第一个 规格属性
-                NSMutableArray *contenArray = [[NSMutableArray alloc] init];
-                for (SKU *property in model.sKU) {
-                    LOG(@"%@", property.attrValue);
-                    contenArray = [AttrValue mj_objectArrayWithKeyValuesArray:property.attrValue];
-                    for (int i = 0; i<contenArray.count; i++) {
-                        AttrValue *attrModel = contenArray[i];
-                        attrModel.attrValueMainID = property.attrId;
-                        attrModel.attrValueMainName = property.attrName;
-                        if (i == 0) {
-                            attrModel.isSelect = YES;
-                            if (KX_NULLString(model.goodsSizeID)) {
-                                model.goodsSizeID = [NSString stringWithFormat:@"%@:%@",attrModel.attrValueMainID,attrModel.attrValueId];
-                            }else{
-                                model.goodsSizeID =  [NSString stringWithFormat:@"%@,%@:%@",model.goodsSizeID,attrModel.attrValueMainID,attrModel.attrValueId];
-                            }
-                        }
-                    }
-                }
-                
-                [listArray addObject:model];
-                sBlcok(listArray,YES);
-            }else{
-                sBlcok(nil,NO);
-            }
-        }else{
-            sBlcok(nil,NO);
-        }
-    }];
-
-    
-}
-
-
-/// 商品拍卖
-+ (void)getGoodsAuctionDetailParam:(id)pararm successBlock:(void(^)(NSArray *dataArray,BOOL isSuccess))sBlcok
-{
-
-    [BaseHttpRequest postWithUrl:@"/o/o_057" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
-        LOG(@"商品详情 == %@",result);
-        NSInteger state = [[result valueForKey:@"state"] integerValue];
-        //        NSString *msg = [result valueForKey:@"msg"];
-        NSDictionary *dataDic = [result valueForKey:@"data"][@"obj"];
-        NSMutableArray *listArray  = [[NSMutableArray alloc] init];
-        
-        if ([dataDic isKindOfClass:[NSDictionary class]]) {
-            if (state == 0) {
-                GoodSDetailModel *model = [GoodSDetailModel mj_objectWithKeyValues:dataDic];
-                NSArray *skuArray = [result valueForKey:@"data"][@"obj"][@"SKU"];
-                
-                NSDictionary *businessResultArr = [result valueForKey:@"data"][@"obj"][@"BusinessResult"];
-                model.extAttrbuteShow =  [ExtAttrbuteShow mj_objectArrayWithKeyValuesArray:model.extAttrbuteShow];
-                model.sKU =  [SKU mj_objectArrayWithKeyValuesArray:skuArray];
-                model.extAttrbute =  [ExtAttrbute mj_objectArrayWithKeyValuesArray:model.extAttrbute];
-                model.extetalon =  [Extetalon mj_objectArrayWithKeyValuesArray:model.extetalon];
-                model.businessResult = [BusinessResult mj_objectWithKeyValues:businessResultArr];
-                model.serviceResultMap = [ServiceResultMap mj_objectWithKeyValues:model.serviceResultMap];
-                model.goodSCount = 1;
-//                model.invoiceTitle = @"不开发票";
-//                model.invoiceID = @"0";
-
-                [listArray addObject:model];
-                sBlcok(listArray,YES);
-            }else{
-                sBlcok(nil,NO);
-            }
-        }else{
-            sBlcok(nil,NO);
-        }
-    }];
-
-}
-
-/// 商品采集
-+ (void)getGoodscollectDetailParam:(id)pararm successBlock:(void(^)(NSArray *dataArray,BOOL isSuccess))sBlcok
-{
-    [BaseHttpRequest postWithUrl:@"/o/o_058" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
-        LOG(@"商品详情 == %@",result);
-        NSInteger state = [[result valueForKey:@"state"] integerValue];
-        //        NSString *msg = [result valueForKey:@"msg"];
-        NSDictionary *dataDic = [result valueForKey:@"data"][@"obj"];
-        NSMutableArray *listArray  = [[NSMutableArray alloc] init];
-        
-        if ([dataDic isKindOfClass:[NSDictionary class]]) {
-            if (state == 0) {
-                GoodSDetailModel *model = [GoodSDetailModel mj_objectWithKeyValues:dataDic];
-                NSArray *skuArray = [result valueForKey:@"data"][@"obj"][@"SKU"];
-                
-                NSDictionary *businessResultArr = [result valueForKey:@"data"][@"obj"][@"BusinessResult"];
-                NSDictionary *groupBuyResult = [result valueForKey:@"data"][@"obj"][@"GroupBuyResult"];
-
-                model.extAttrbuteShow =  [ExtAttrbuteShow mj_objectArrayWithKeyValuesArray:model.extAttrbuteShow];
-                model.sKU =  [SKU mj_objectArrayWithKeyValuesArray:skuArray];
-                model.extAttrbute =  [ExtAttrbute mj_objectArrayWithKeyValuesArray:model.extAttrbute];
-                model.extetalon =  [Extetalon mj_objectArrayWithKeyValuesArray:model.extetalon];
-                model.businessResult = [BusinessResult mj_objectWithKeyValues:businessResultArr];
-                model.serviceResultMap = [ServiceResultMap mj_objectWithKeyValues:model.serviceResultMap];
-                model.groupBuyResult = [GroupBuyResult mj_objectWithKeyValues:groupBuyResult];
-                model.groupBuyResult.groupBuyPriceList = [GroupBuyPriceList mj_objectArrayWithKeyValuesArray: model.groupBuyResult.groupBuyPriceList];
-                model.mainResult = [MainResult mj_objectWithKeyValues:model.mainResult];
-                model.goodSCount = 1;
-                NSMutableArray *payArray = [[NSMutableArray alloc] init];
-                
-                model.invoiceTitle = @"不开发票";
-                model.invoiceID = @"0";
-                model.noteConten = @"";
-                model.leaseStartTime = @"";
-                model.leaseEndTime = @"";
-                
-                NSArray *patmentTypeArr = [model.mainResult.paymentTypeAll componentsSeparatedByString:@","];
-                for (NSString *str in patmentTypeArr) {
-                    if ([str isEqualToString:@"1"]) {
-                        [payArray addObject:@"直接付款"];
-                    }
-                    
-                    if ([str isEqualToString:@"2"]) {
-                        [payArray addObject:@"分期付款"];
-                    }
-                    
-                    if ([str isEqualToString:@"3"]) {
-                        [payArray addObject:@"先用后付"];
-                    }
-                    
-                    if ([str isEqualToString:@"4"]) {
-                        [payArray addObject:@"融资租赁"];
-                    }
-                    
-                }
-                
-                if (patmentTypeArr.count >0) {
-                    /// 订单所用 默认第一个
-                    model.payTypeID = patmentTypeArr[0];
-                }
-                //
-                if (payArray.count >0) {
-                    model.payTypeTitle = payArray[0];
-                }
-
-                [payArray addObject:@"确定"];
-                
-                model.payArr = (NSArray *)payArray;
-
-//                /// 商品默认选择第一个 规格属性
-//                NSMutableArray *contenArray = [[NSMutableArray alloc] init];
-//                for (SKU *property in model.sKU) {
-//                    LOG(@"%@", property.attrValue);
-//                    contenArray = [AttrValue mj_objectArrayWithKeyValuesArray:property.attrValue];
-//                    for (int i = 0; i<contenArray.count; i++) {
-//                        AttrValue *attrModel = contenArray[i];
-//                        attrModel.attrValueMainID = property.attrId;
-//                        attrModel.attrValueMainName = property.attrName;
-//                        if (i == 0) {
-//                            attrModel.isSelect = YES;
-//                            if (KX_NULLString(model.goodsSizeID)) {
-//                                model.goodsSizeID = [NSString stringWithFormat:@"%@:%@",attrModel.attrValueMainID,attrModel.attrValueId];
-//                            }else{
-//                                model.goodsSizeID =  [NSString stringWithFormat:@"%@,%@:%@",model.goodsSizeID,attrModel.attrValueMainID,attrModel.attrValueId];
-//                            }
-//                        }
-//                    }
-//                }
-                
-                [listArray addObject:model];
-                sBlcok(listArray,YES);
-            }else{
-                sBlcok(nil,NO);
-            }
-        }else{
-            sBlcok(nil,NO);
-        }
-    }];
-}
 
 
 /// 相似产品

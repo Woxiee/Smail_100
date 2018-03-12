@@ -474,6 +474,7 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
 #pragma mark = get & set
 -(void)setModel:(GoodSDetailModel *)model
 {
+    /*
     _model = model;
     NSArray *goodsSizeIDArray = nil;
  
@@ -528,6 +529,66 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
 
     
      [self setup];
+     */
+}
+
+
+-(void)setItemInfoList:(ItemInfoList *)itemInfoList
+{
+    _itemInfoList = itemInfoList;
+    NSArray *goodsSizeIDArray = nil;
+    
+    if (!KX_NULLString(_itemInfoList.itemContent.goodsSizeID)) {
+        /// 将之前拼接的id 还原
+        goodsSizeIDArray  = [_itemInfoList.itemContent.goodsSizeID componentsSeparatedByString:NSLocalizedString(@",", nil)];
+    }
+    NSArray *contenArray = [[NSArray alloc] init];
+    for (SKU *property in _itemInfoList.spec) {
+        LOG(@"%@", property.name);
+        [_titleArray addObject:property.name];
+        contenArray = property.value;
+        for ( Value *attrModel  in  contenArray) {
+            if (contenArray.count == 1) {
+                attrModel.isSelect = YES;
+            }
+//            attrModel.attrValueMainID = property.id;
+            attrModel.attrValueMainName = property.name;
+            ///没有记录规格的话 默认选择 第一个规格属性
+            for (NSString *attrValueStr in  goodsSizeIDArray) {
+                NSString *attvaluAndMainID = [NSString stringWithFormat:@"%@:%@",attrModel.attrValueMainID,attrModel.id];
+                if ([attvaluAndMainID isEqualToString:attrValueStr]) {
+                    attrModel.isSelect = YES;
+                }
+            }
+        }
+        
+        if (goodsSizeIDArray == nil) {
+            Value *attrModel = contenArray[0];
+            attrModel.isSelect = YES;
+            
+        }
+        [self.dataArray addObject:contenArray];
+    }
+    
+    /// 默认购买数量为1
+    if (  _model.goodSCount == 0   ) {
+        _model.goodSCount = 1;
+    }
+    
+    for (NSArray *contenArray  in _dataArray) {
+        for ( AttrValue *attrModel in contenArray) {
+            if (attrModel.isSelect) {
+                if (KX_NULLString(_model.propertys)) {
+                    _model.propertys = [NSString stringWithFormat:@"%@:%@",attrModel.attrValueMainName,attrModel.attrValueName];
+                }else{
+                    _model.propertys =  [NSString stringWithFormat:@"%@ %@:%@",_model.propertys,attrModel.attrValueMainName,attrModel.attrValueName];
+                }
+            }
+        }
+    }
+    
+    
+    [self setup];
 }
 
 

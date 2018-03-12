@@ -32,14 +32,52 @@
  */
 -(NSString *)calculationCarAllPrice:(NSArray <OrderGoodsModel*>*)goodsModels{
     CGFloat allPrice = 0;
+
     for (OrderGoodsModel*model in goodsModels  ) {
-        if (model.selectStatue.integerValue == 1) {
-            allPrice += model.productPrice.floatValue *model.itemCount.floatValue;
+        if (model.products.count >0) {
+            for (OrderGoodsModel*item in model.goodModel) {
+                if (item.selectStatue.integerValue == 1) {
+                    allPrice += item.productPrice.intValue *item.itemCount.intValue;
+                }
+            }
+            
+        }else{
+            if (model.selectStatue.integerValue == 1) {
+                allPrice += model.productPrice.intValue *model.itemCount.intValue;
+
+            }
         }
+       
     }
+    
     return [NSString stringWithFormat:@"¥%.2f",allPrice];
     
 }
+
+-(NSString *)calculationCarAllPoint:(NSArray <OrderGoodsModel*>*)goodsModels{
+    
+    int allPoint = 0;
+
+    for (OrderGoodsModel*model in goodsModels  ) {
+        if (model.products.count >0) {
+            for (OrderGoodsModel*item in model.goodModel) {
+                if (item.selectStatue.integerValue == 1) {
+                    allPoint += item.point.integerValue *item.itemCount.intValue;
+                }
+            }
+            
+        }else{
+            if (model.selectStatue.integerValue == 1) {
+                allPoint += model.point.integerValue *model.itemCount.intValue;
+            }
+        }
+        
+    }
+    
+    return [NSString stringWithFormat:@"%d",allPoint];
+}
+
+
 /*
  计算 item的个数
  
@@ -49,11 +87,22 @@
 -(NSString *)calcilationShopCarAllCount:(NSArray <OrderGoodsModel*>*)goodsModels{
     
     int allCount = 0;
-    for (OrderGoodsModel*model in goodsModels  ) {
-        if (model.selectStatue.integerValue == 1) {
-            allCount += model.itemCount.integerValue;
+    for (OrderGoodsModel*model in goodsModels ) {
+        if (model.products.count >0) {
+            for (OrderGoodsModel*item in model.goodModel) {
+                if (item.selectStatue.integerValue == 1) {
+                    allCount += item.itemCount.integerValue;
+                }
+            }
+            
+        }else{
+            if (model.selectStatue.integerValue == 1) {
+                allCount += model.itemCount.integerValue;
+            }
         }
+        
     }
+  
     return [NSString stringWithFormat:@"%d",allCount];
     
     
@@ -76,7 +125,6 @@
     [dic setObject:goodsModel.cartNum forKey:@"nums"];
     [dic setObject:goodsModel.comment?goodsModel.comment:@"" forKey:@"comment"];
     [dic setObject:@"add" forKey:@"method"];
-
     [BaseHttpRequest postWithUrl:@"/ucenter/cart" andParameters:dic andRequesultBlock:^(id result, NSError *error) {
         if (error) {
             [self showErrMsg:LocalMyString(NOTICEMESSAGE)];
@@ -113,9 +161,10 @@
 //                [OrderGoodsModel mj_objectArrayWithKeyValuesArray:];
                 for (OrderGoodsModel *model in arr ) {
                     model.products = [NSArray yy_modelArrayWithClass:[Products class] json:model.products];
-                    
-                    
+                
                 }
+                
+          
                 shopaCarGoodsBlock(arr,state);
                 return ;
             }
@@ -130,23 +179,22 @@
 /**
  4.4修改购物车
  */
--(void)changeShopCarGoodsCount:(NSString *)count goods:(OrderGoodsModel*)goodsModel handleback:(void(^) (NSInteger code))shopaCarGoodsBlock{
+-(void)changeShopCarGoodsCount:(NSString *)count goods:(OrderGoodsModel*)goodsModel Params:(id)param handleback:(void(^) (NSInteger code))shopaCarGoodsBlock{
     
     if (count == nil) {
         [self showErrMsg:@"系统异常"];
     }
-    NSDictionary *dic = @{@"type":kType,@"itemCount":count,@"id":goodsModel.id};
     
-    [BaseHttpRequest postWithUrl:@"/cart/c_004" andParameters:dic  andRequesultBlock:^(id result, NSError *error) {
+    [BaseHttpRequest postWithUrl:@"/ucenter/cart" andParameters:param  andRequesultBlock:^(id result, NSError *error) {
         
         if (error) {
             [self showErrMsg:LocalMyString(NOTICEMESSAGE)];
         }else{
-            NSInteger state = [result[@"data"][@"state"] integerValue];
-            NSString *msg = result[@"data"][@"msg"];
+            NSInteger state = [result[@"code"] integerValue];
+            NSString *msg = result[@"msg"];
             shopaCarGoodsBlock(state);
-            if (state == 0) return ;
             [self showErrMsg:msg];
+            if (state == 0) return ;
         }
     }];
 }
@@ -183,25 +231,24 @@
  @param goodsModel 产品
  @param shopaCarGoodsBlock 成功／失败回调
  */
--(void)delectaShopCarGoods:(OrderGoodsModel*)goodsModel handleback:(void(^) (NSInteger code))shopaCarGoodsBlock{
+-(void)delectaShopCarGoods:(OrderGoodsModel*)goodsModel Params:(id)param handleback:(void(^) (NSInteger code))shopaCarGoodsBlock{
     if (goodsModel.id == nil) return;
     
-//    NSDictionary *dic  =@{@"type":kType,@"mid":[[LoginData loginData] getMid],@"id":goodsModel.id};
-//    [BaseHttpRequest postWithUrl:@"/cart/c_002" andParameters:dic  andRequesultBlock:^(id result, NSError *error) {
-//        
-//        if (error) {
-//            [self showErrMsg:LocalMyString(NOTICEMESSAGE)];
-//        }else{
-//            NSInteger state = [result[@"data"][@"state"] integerValue];
-//            NSString *msg = result[@"data"][@"msg"];
-//            shopaCarGoodsBlock(state);
-//            if (state == 0) return ;
-//            [self showErrMsg:msg];
-//            
-//            
-//        }
-//    }];
-//    
+    [BaseHttpRequest postWithUrl:@"/ucenter/cart" andParameters:param  andRequesultBlock:^(id result, NSError *error) {
+        
+        if (error) {
+            [self showErrMsg:LocalMyString(NOTICEMESSAGE)];
+        }else{
+            NSInteger state = [result[@"state"] integerValue];
+            NSString *msg = result[@"msg"];
+            shopaCarGoodsBlock(state);
+            [self showErrMsg:msg];
+            if (state == 0) return ;
+            
+            
+        }
+    }];
+//
 }
 
 
@@ -311,7 +358,8 @@
 
     item.property = model.spec;
     item.productLogo = model.img;
-    
+    item.selectStatue = model.selectStatue?model.selectStatue:@"0";
+    item.cid = model.cid;
     return item;
 
 }

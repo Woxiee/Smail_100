@@ -48,33 +48,33 @@
 - (void)setup
 {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
+    GoodContenVC  *VC1 = [[GoodContenVC alloc] init];
+    VC1.title = @"商品";
+    VC1.typeStr = self.typeStr;
+    VC1.productID = self.productID;
+    VC1.superVC = self;
+    [array addObject:@"商品"];
+    [_subViewControllers addObject:VC1];
+    
+    GoodDetailImageVC *webViewVC = [GoodDetailImageVC new];
+    webViewVC.title = @"详情";
+    
+    webViewVC.typeStr = self.typeStr;
+    webViewVC.productID = self.productID;
+    [array addObject:@"详情"];
+    [_subViewControllers addObject:webViewVC];
 
     
-            GoodContenVC  *VC1 = [[GoodContenVC alloc] init];
-            VC1.title = @"商品";
-            VC1.typeStr = self.typeStr;
-            VC1.productID = self.productID;
-            VC1.superVC = self;
-            [array addObject:@"商品"];
-            [_subViewControllers addObject:VC1];
-    
-        
-        GoodDetailImageVC *webViewVC = [GoodDetailImageVC new];
-        webViewVC.title = @"详情";
-        
-        webViewVC.typeStr = self.typeStr;
-        webViewVC.productID = self.productID;
-        [array addObject:@"详情"];
-        [_subViewControllers addObject:webViewVC];
+    GoodDetailImageVC *webViewVC1 = [GoodDetailImageVC new];
+    webViewVC1.title = @"须知";
+    webViewVC1.typeStr = self.typeStr;
+    webViewVC1.productID = self.productID;
+    [array addObject:@"须知"];
+    [_subViewControllers addObject:webViewVC1];
+//    GoodsDetailCommenAllVC *VC2 = [GoodsDetailCommenAllVC new];
+//    VC2.title = @"评价";
 
-    
-    GoodsDetailCommenAllVC *VC2 = [GoodsDetailCommenAllVC new];
-    VC2.title = @"评价";
-   
-    VC2.productID = self.productID;
-    VC2.typeStr = self.typeStr;
 //    [array addObject:@"评价"];
-    [_subViewControllers addObject:VC2];
     self.navigationTabBar = [[DLNavigationTabBar alloc] initWithTitles:array];
     __weak typeof(self) weakSelf = self;
     [self.navigationTabBar setDidClickAtIndex:^(NSInteger index){

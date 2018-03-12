@@ -15,13 +15,14 @@
 #import "shoppingCarVM.h"
 #import "GoodsDetailVC.h"
 #import "GoodsOrderModel.h"
+#import "ChangeGoodsCountView.h"
+
 
 // jp
 #import "shoppingCarVM.h"
 @interface ShoppingCarVC ()<UITableViewDataSource,UITableViewDelegate,MGSwipeTableCellDelegate,UITextFieldDelegate>
 
 {
-    
     __weak IBOutlet UILabel *minCountLb;
     __weak IBOutlet UILabel *totalMoneyLable;
     __weak IBOutlet UIButton *toPayBtn;
@@ -30,19 +31,21 @@
     
     __weak IBOutlet UICollectionView *limitCollectionView;
     
-    NSMutableArray * dataSocure;//购物车的所有商品
+    NSMutableArray * _dataSocure;//购物车的所有商品
     NSString * chooseGoodsID;
     NSString * chooseShopID;
     int lastCount;
     BOOL isBlackCar;
     
     shoppingCarVM *carVM;
-    UIButton *allSelectbtn;
     ShoppingCarHeaderView *limitHeader;
     
 }
 
-
+@property (nonatomic, strong)   NSMutableArray * dataSocure;//购物车的所有商品
+;
+@property (weak, nonatomic) IBOutlet UIButton *allSelectbtn;
+@property (weak, nonatomic) IBOutlet UILabel *jifeLB;
 
 @end
 
@@ -65,28 +68,30 @@
 
 
 -(void)laodComment{
-    dataSocure = [NSMutableArray array];
+    _dataSocure = [NSMutableArray array];
     carVM = [shoppingCarVM new];
     //删除购物车数据
     
     shopCarGoodsList.delegate = self;
     shopCarGoodsList.dataSource = self;
-//    [self viewDidLayoutSubviews:shopCarGoodsList];
-//    [self setExtraCellLineHidden:shopCarGoodsList];
-    [self setTabHeader];
+    shopCarGoodsList.tableFooterView = [UIView new];
 
+    [self setTabHeader];
+    
+    toPayBtn.backgroundColor = KMAINCOLOR;
+    _jifeLB.textColor = TITLETEXTLOWCOLOR;
 }
 
 
 -(void)setTabHeader{
     WS(b_self);
-    ShoppingCarHeaderView *header = [[ShoppingCarHeaderView alloc]initWithHeaderHadGoodsSelect:^{
-        [b_self clickSelectAllGoods];
-    } delectAll:^{
-         [b_self clickDelectAllGoods];
-    }];
-    allSelectbtn = header.allSelectbtn;
-    shopCarGoodsList.tableHeaderView  = header;
+//    ShoppingCarHeaderView *header = [[ShoppingCarHeaderView alloc]initWithHeaderHadGoodsSelect:^{
+//        [b_self clickSelectAllGoods];
+//    } delectAll:^{
+//         [b_self clickDelectAllGoods];
+//    }];
+//    _allSelectbtn = header._allSelectbtn;
+//    shopCarGoodsList.tableHeaderView  = header;
 }
 
 ///设置推荐相关的信息UI
@@ -103,9 +108,19 @@
     [carVM getShopCarGoodsHandleback:^(NSArray *shopCarGoods, NSInteger code) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if (shopCarGoods.count>0) {
-            [dataSocure removeAllObjects];
+            [_dataSocure removeAllObjects];
             //保存本地数据
-            [dataSocure addObjectsFromArray:shopCarGoods];
+            NSMutableArray *goodList = [[NSMutableArray alloc] init];
+            for (OrderGoodsModel *model in shopCarGoods ) {
+                for (Products *product in  model.products ) {
+                [goodList addObject:[shoppingCarVM changeProductsModelInListToOrderGoodsModel:product]];
+                }
+                model.goodModel = (NSArray*)goodList;
+            }
+            
+            [_dataSocure addObjectsFromArray:shopCarGoods];
+            
+            
             [b_self allMoneyAfterSelect];
             [shopCarGoodsList reloadData];
             backView.hidden = NO;
@@ -135,17 +150,24 @@
     
 }
 
--(void)clickSelectAllGoods{
-   
+
+
+-(void)clickSelectAllGoods:(NSIndexPath *)indexPath{
     //OrderGoodsModel  KVC
-    allSelectbtn.selected = !allSelectbtn.selected;
-    [dataSocure setValue:allSelectbtn.selected?@"1":@"0" forKey:@"selectStatue"];
-    for (OrderGoodsModel *model in dataSocure) {
-        [self changeLocationShopCarState:model];
+    for (OrderGoodsModel *model in _dataSocure) {
+        if ([model.selectStatue isEqualToString:@"0"] || KX_NULLString(model.selectStatue )) {
+            model.selectStatue = @"1";
+        }else{
+            model.selectStatue = @"0";
+        }
+
+        [self changeLocationShopCarState:model indexPath:indexPath];
     }
     [self allMoneyAfterSelect];
     [shopCarGoodsList reloadData];
 }
+
+
 
 /// 设置下面红点
 - (void)showShoppingCarGoodsNum{
@@ -165,7 +187,7 @@
 -(void)clickDelectAllGoods{
     
    WS(b_self)
-    NSArray *arr = [dataSocure valueForKey:@"selectStatue"];
+    NSArray *arr = [_dataSocure valueForKey:@"selectStatue"];
     NSNumber *sum = [arr valueForKeyPath:@"@sum.floatValue"];
     if (sum.integerValue == 0) {
         [self.view makeToast:@"至少选择一件商品~"];
@@ -183,8 +205,7 @@
 
 ///删除选中的产品
 -(void)delectAllGoods{
-    
-    for (OrderGoodsModel *model in dataSocure) {
+    for (OrderGoodsModel *model in _dataSocure) {
         if (model.selectStatue.integerValue ==1) {
             [self deleteAGoods:model];
         }
@@ -195,7 +216,9 @@
 -(void)deleteAGoods:(OrderGoodsModel*)goods
 {
     WS(b_self)
-    [carVM delectaShopCarGoods:goods handleback:^(NSInteger code) {
+    NSDictionary *param = @{@"cart_id":goods.cid,@"goods_id":goods.id,@"method":@"delete",@"user_id":[KX_UserInfo sharedKX_UserInfo].user_id};
+
+    [carVM delectaShopCarGoods:goods Params:param  handleback:^(NSInteger code) {
         if (code == 0) {
         [b_self loadShopCarData];
         }
@@ -204,16 +227,24 @@
 
 ///计算勾选后的总金额 和iitem的数量
 - (void)allMoneyAfterSelect{
-    totalMoneyLable.text = [carVM calculationCarAllPrice:dataSocure];
-    NSString *count = [carVM calcilationShopCarAllCount:dataSocure];
-    minCountLb.text = [NSString stringWithFormat:@"%@件商品",count];
-    [toPayBtn setTitle:[NSString stringWithFormat:@"去结算(%@)",count] forState:UIControlStateNormal];
-    allSelectbtn.selected = YES;
-    //全选状态的处理
-    if ([[dataSocure valueForKey:@"selectStatue"] containsObject:@"0"]) {
-        allSelectbtn.selected = NO;
+  
+    totalMoneyLable.text = [carVM calculationCarAllPrice:_dataSocure];
+    NSString *allPoint = [carVM calculationCarAllPoint:_dataSocure];
+    if ([allPoint intValue] > 0) {
+        NSString *str1 = [NSString stringWithFormat:@"%@",allPoint];
+        NSString *str =[NSString stringWithFormat:@"+%@积分",str1];
+        NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(1, str1.length) withColor:BACKGROUND_COLORHL withFont:Font15];
+        _jifeLB.attributedText = attributedStr;
+    }else{
+        _jifeLB.text = @"";
     }
+    NSString *count = [carVM calcilationShopCarAllCount:_dataSocure];
+//    minCountLb.text = [NSString stringWithFormat:@"%@件商品",count];
+    [toPayBtn setTitle:[NSString stringWithFormat:@"结算(%@)",count] forState:UIControlStateNormal];
+
 }
+
+
 ///选中／取消选中 某一个产品
 -(void)selectAGoods:(OrderGoodsModel *)goods select:(BOOL)select{
     goods.selectStatue = select?@"1":@"0";
@@ -229,7 +260,9 @@
         [self.view makeToast:@"数量最少是1"];
         return;
     }
-    [carVM changeShopCarGoodsCount:count goods:goods handleback:^(NSInteger code) {
+    NSDictionary *param = @{@"cart_id":goods.cid,@"nums":count,@"goods_id":goods.id,@"method":@"edit",@"user_id":[KX_UserInfo sharedKX_UserInfo].user_id};
+
+    [carVM changeShopCarGoodsCount:count goods:goods Params:param  handleback:^(NSInteger code) {
         if (code == 0) {
             //修改本地
             goods.itemCount = count;
@@ -248,18 +281,19 @@
         return;
     }
     WS(b_self)
-//   ChangeGoodsCountView *changeView = [ChangeGoodsCountView changeCountViewWith:count getChangeValue:^(NSString *changeValue) {
-//        [carVM changeShopCarGoodsCount:changeValue goods:goods handleback:^(NSInteger code) {
-//            if (code == 0) {
-//                //修改本地
-//                goods.itemCount = count;
-//                [ShoppingCarDataSocure updateGoodsCount:goods];
-//                [b_self loadShopCarData];
-//            }
-//
-//        }];
-//    }];
-//    [changeView show];
+   ChangeGoodsCountView *changeView = [ChangeGoodsCountView changeCountViewWith:count getChangeValue:^(NSString *changeValue) {
+       NSDictionary *param = @{@"cart_id":goods.cid,@"nums":changeValue,@"goods_id":goods.id,@"method":@"edit",@"user_id":[KX_UserInfo sharedKX_UserInfo].user_id};
+        [carVM changeShopCarGoodsCount:changeValue goods:goods  Params:param  handleback:^(NSInteger code) {
+            if (code == 0) {
+                //修改本地
+                goods.itemCount = count;
+//                [ShoppingCar_dataSocure updateGoodsCount:goods];
+                [b_self loadShopCarData];
+            }
+
+        }];
+    }];
+    [changeView show];
 }
 
 -(NSArray *) createRightButtons:(OrderGoodsModel *)goods
@@ -291,14 +325,43 @@
     return result;
 }
 
+///全选
+- (IBAction)didClickAllBtnAction:(UIButton *)sender {
+    sender.selected =! sender.selected;
+//    if (sender.selected) {
+        for (OrderGoodsModel * model in _dataSocure) {
+            for (OrderGoodsModel *goodsModel in model.goodModel) {
+                if ([goodsModel.selectStatue isEqualToString:@"0"] || KX_NULLString(goodsModel.selectStatue )) {
+                    goodsModel.selectStatue = @"1";
+                }else{
+                    goodsModel.selectStatue = @"0";
+                }
+                model.selectStatue = goodsModel.selectStatue ;
+            }
+
+        }
+//    }
+    [self refreshData];
+}
+
+
 
 ///结算
 - (IBAction)toMakeOrder:(UIButton *)sender {
     
     GoodsOrderNomalVC * makeSure = [GoodsOrderNomalVC new];
-    NSString *ruleStr = @"";
+    makeSure.orderType =  ShoppinCarType;
+    makeSure.goodsListArray  = [NSMutableArray array];
 
- 
+    for (OrderGoodsModel*model in _dataSocure) {
+        if (model.selectStatue.integerValue ==1) {
+            [makeSure.goodsListArray addObject:model];
+        }
+    }
+    if (makeSure.goodsListArray.count==0) {
+        [self.view makeToast:@"至少选择一件商品~"];
+        return;
+    }
     [makeSure setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:makeSure animated:YES];
 }
@@ -307,17 +370,17 @@
 
 #pragma mark - UITableViewDataSource&&UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return dataSocure.count;
+    return _dataSocure.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    OrderGoodsModel * model  = dataSocure[section];
+    OrderGoodsModel * model  = _dataSocure[section];
 
-    return  model.products.count;
+    return  model.goodModel.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    OrderGoodsModel * model  = dataSocure[indexPath.section];
+//    OrderGoodsModel * model  = _dataSocure[indexPath.section];
  
     return 120;
 }
@@ -331,11 +394,9 @@
     cell.delegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    OrderGoodsModel * cellModel  = dataSocure[indexPath.section];
-    Products *product = cellModel.products[indexPath.row];
-    
-    OrderGoodsModel * goodsModel = [shoppingCarVM changeProductsModelInListToOrderGoodsModel:product];
-   // chooseShopID = cellModel.shopID;
+    OrderGoodsModel * cellModel  = _dataSocure[indexPath.section];
+   OrderGoodsModel * goodsModel = cellModel.goodModel[indexPath.row];
+
     cell.rightButtons = [self createRightButtons:goodsModel];
     cell.goodsModel = goodsModel;
 
@@ -351,7 +412,7 @@
     
     ///勾选
     cell.selectBlock = ^(OrderGoodsModel * goodsModel){
-        [b_self changeLocationShopCarState:goodsModel];
+        [b_self changeLocationShopCarState:goodsModel indexPath:indexPath];
         [b_self refreshData];
     };
     
@@ -366,7 +427,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    if ([dataSocure count] <= 0) {
+    if ([_dataSocure count] <= 0) {
         return CGFLOAT_MIN;
     }else{
         return 45;
@@ -376,18 +437,16 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     WS(b_self)
-    OrderGoodsModel * cellModel  = dataSocure[section];
+    OrderGoodsModel * cellModel  = _dataSocure[section];
 //    Products *product = cellModel.products[indexPath.row];
-    
-//    OrderGoodsModel * goodsModel = [shoppingCarVM changeProductsModelInListToOrderGoodsModel:product];
-
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
     ShoppingCarHeaderView *header = [[ShoppingCarHeaderView alloc]initWithHeaderHadGoodsSelect:^{
-        [b_self clickSelectAllGoods];
+        [b_self clickSelectAllGoods:indexPath];
     } delectAll:^{
         [b_self clickDelectAllGoods];
     }];
+//    header.backgroundColor = BACKGROUND_COLOR;
     header.model = cellModel;
-    allSelectbtn = header.allSelectbtn;
     return header;
 }
 
@@ -395,7 +454,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     //跳转详情界面
-    OrderGoodsModel * cellModel  = dataSocure[indexPath.section];
+    OrderGoodsModel * cellModel  = _dataSocure[indexPath.section];
     GoodsDetailVC *goodVC = [GoodsDetailVC new];
     goodVC.productID = cellModel.productId;
     goodVC.hidesBottomBarWhenPushed = YES;
@@ -409,10 +468,29 @@
     [shopCarGoodsList reloadData];
     
 }
+
+
 //更新本地的购物车数据
--(void)changeLocationShopCarState:(OrderGoodsModel *)goodsModel
+-(void)changeLocationShopCarState:(OrderGoodsModel *)goodsModels indexPath:(NSIndexPath *)indexPath
 {
     //本地处理
+    OrderGoodsModel * model  = _dataSocure[indexPath.section];
+    OrderGoodsModel * chaildModel = model.goodModel[indexPath.row];
+    if (goodsModels.products.count >0) {
+        for (  OrderGoodsModel *goodsModel in goodsModels.goodModel) {
+            goodsModel.selectStatue =  model.selectStatue;
+            chaildModel = goodsModel;
+        }
+    }else{
+        if ([goodsModels.selectStatue isEqualToString:@"0"] || KX_NULLString(goodsModels.selectStatue )) {
+            goodsModels.selectStatue = @"1";
+        }else{
+            goodsModels.selectStatue = @"0";
+        }
+        chaildModel = goodsModels;
+
+    }
+
 }
 
 @end

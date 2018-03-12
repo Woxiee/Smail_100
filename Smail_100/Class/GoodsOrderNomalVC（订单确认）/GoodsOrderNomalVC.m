@@ -207,15 +207,19 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 {
     WEAKSELF;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setObject:_itemsModel.goods_id forKey:@"goods_id"];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [param setObject:@"" forKey:@"address_id"];
     if (_orderType == ShoppinCarType) {
         [param setObject:@"product" forKey:@"type"];
+        
+        
     }else{
         [param setObject:@"goods" forKey:@"type"];
+        [param setObject:_itemsModel.goods_id forKey:@"goods_id"];
+        [param setObject:_itemsModel.cartNum?_itemsModel.cartNum:@"1" forKey:@"goods_num"];
+
+
     }
-    [param setObject:_itemsModel.cartNum?_itemsModel.cartNum:@"1" forKey:@"goods_num"];
     [GoodsOrderVModel getGoodsOrderParam:param successBlock:^(NSArray<GoodsOrderModel *> *dataArray, BOOL isSuccess) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (isSuccess) {

@@ -86,7 +86,7 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    self.width =  self.frame.size.width / (self.buttonArray.count * 2);
+    self.width =  self.frame.size.width / (self.buttonArray.count * 1.5);
     CGFloat buttonWidth = self.frame.size.width / self.buttonArray.count - 40;
     for (int buttonIndex = 0; buttonIndex < self.buttonArray.count; buttonIndex ++) {
         self.buttonArray[buttonIndex].frame = CGRectMake(buttonIndex * buttonWidth +(self.frame.size.width - self.buttonArray.count*buttonWidth)/2 , 0, buttonWidth, 44);
