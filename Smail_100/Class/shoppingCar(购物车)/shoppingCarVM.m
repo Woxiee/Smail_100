@@ -123,6 +123,7 @@
     [dic setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [dic setObject:goodsModel.goods_id forKey:@"goods_id"];
     [dic setObject:goodsModel.cartNum forKey:@"nums"];
+    [dic setObject:goodsModel.spec forKey:@"spec"];
     [dic setObject:goodsModel.comment?goodsModel.comment:@"" forKey:@"comment"];
     [dic setObject:@"add" forKey:@"method"];
     [BaseHttpRequest postWithUrl:@"/ucenter/cart" andParameters:dic andRequesultBlock:^(id result, NSError *error) {

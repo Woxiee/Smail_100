@@ -36,11 +36,11 @@
     }
 }
 
-- (void)setAttrModel:(AttrValue *)attrModel
+- (void)setAttrModel:(Value  *)attrModel
 {
     _attrModel = attrModel;
     
-    _titleLabel.text = _attrModel.attrValueName;
+    _titleLabel.text = _attrModel.spec_name;
     if (_attrModel.isSelect ) {
         
         self.titleLabel.textColor = BACKGROUND_COLORHL;

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "GoodSDetailModel.h"
+#import "ItemContentList.h"
+
 typedef NS_ENUM(NSInteger,BuyType){
     NomalBuyType,
     NomalCollectType,  ///集采
@@ -20,6 +22,8 @@ typedef void(^DidSelectBottomViewIndexBlock)(NSInteger index);
 @property (nonatomic, assign) BuyType buyType;
 
 @property (nonatomic, strong) GoodSDetailModel *model;
+
+@property (nonatomic, strong) ItemContentList *contenModel;
 
 //底部状态栏
 - (void)showBottonWithLogTyoe:(BuyType)buyType withRzLogModel:(GoodSDetailModel *)model;

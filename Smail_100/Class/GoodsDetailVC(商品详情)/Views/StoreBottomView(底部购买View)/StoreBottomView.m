@@ -95,9 +95,13 @@
     [meBtn addTarget:self action:@selector(didClickBottomViewAction:) forControlEvents:UIControlEventTouchUpInside];
     meBtn.tag = 101;
     [meBtn setImage:[UIImage imageNamed:@"shouye11@3x.png"] forState:UIControlStateNormal];
+    [meBtn setImage:[UIImage imageNamed:@"shouye12@3x.png"] forState:UIControlStateSelected];
+
     [meBtn setTitle:@"收藏" forState:UIControlStateNormal];
 
     [meBtn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
+    [meBtn setTitleColor:KMAINCOLOR forState:UIControlStateSelected];
+
     meBtn.titleLabel.font =  Font12;
     meBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [meBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:0];
@@ -206,6 +210,20 @@
 //    }
 //
 //}
+
+- (void)setContenModel:(ItemContentList *)contenModel
+{
+    _contenModel = contenModel;
+    if (KX_NULLString(_contenModel.coll_id)) {
+        [meBtn setImage:[UIImage imageNamed:@"shouye11@3x.png"] forState:UIControlStateNormal];
+        meBtn.selected = NO;
+    }else{
+        meBtn.selected = YES;
+        [meBtn setImage:[UIImage imageNamed:@"shouye12@3x.png"] forState:UIControlStateNormal];
+
+    }
+}
+
 
 //底部状态栏
 - (void)showBottonWithLogTyoe:(BuyType)buyType withRzLogModel:(GoodSDetailModel *)model

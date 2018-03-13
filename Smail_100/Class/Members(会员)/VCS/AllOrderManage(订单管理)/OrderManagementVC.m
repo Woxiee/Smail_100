@@ -52,64 +52,11 @@
 /// 配置基础设置
 - (void)setConfiguration
 {
-//    AllOrderType,                   /// 所有
-//    WaitOrderType,                  ///待审核
-//    WaitSendOrderType,              ///待发货
-//    DidSendOrderType,               /// 已发货
-//    ComplteOrderType,               ///  已完成
-//    DownOrderType,                  ///  已关闭
-    _page = 0;
+
+    _page = 1;
     _quickSearch = @"";
     self.view.backgroundColor = BACKGROUND_COLOR;
-    if (_orderType == AllOrderType) {
-        _orderStatus = @"";
-    }
-    else if (_orderType == WaitOrderType || _orderType == JoinOrderType)
-    {
-        _orderStatus = @"1";
-
-    }
-    else if (_orderType == SigningOrderType || _orderType == ComplteAuctionType)
-    {
-        _orderStatus = @"2";
-        
-    }
-    
-    else if (_orderType == WaitSendOrderType ||  _orderType == WaitServiceOrderType)
-    {
-        _orderStatus = @"3";
-
-    }
-    
-    else if (_orderType == DidSendOrderType || _orderType == HasServiceOrderType)
-    {
-        _orderStatus = @"4";
-
-    }
-    
-    else if (_orderType == DidClosedOrderType || _orderType == RentingOrderType || _orderType ==HasSureOrderType)
-    {
-        _orderStatus = @"5";
-    }
-        
-    else if (_orderType == ComplteOrderType)
-    {
-        _orderStatus = @"6";
-    }
-    
-    else if (_orderType == DownOrderType)
-    {
-        _orderStatus = @"0";
-    }
-    
-    
-    else{
-        _orderStatus = @"0";
-    }
-    
-//    if (self.orderType == AllOrderType || self.orderType == JoinOrderType) {
-//        [self requestListNetWork];
-//    }
+ 
 }
 
 /// 初始化视图
@@ -126,25 +73,11 @@
 {
     WEAKSELF;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_page] forKey:@"pageIndex"];
-    [param setObject:@"10" forKey:@"pageSize"];
-    [param setObject:_orderTypeTitle forKey:@"orderType"];
-    [param setObject:_quickSearch forKey:@"quickSearch"];
-    
-    if (_supplListRoleType == sellingSupplListRoleType) {
-        [param setObject:[KX_UserInfo sharedKX_UserInfo].bid forKey:@"bid"];
-      
-    }else{
-        [param setObject:[KX_UserInfo sharedKX_UserInfo].ID forKey:@"mid"];
-    }
-    
-//    if (_orderType == JoinOrderType) {
-//        [param setObject:@"6" forKey:@"orderStatus"];
-//    }else{
-//    }
-    [param setObject:_orderStatus forKey:@"orderStatus"];
-
-    
+    [param setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_page] forKey:@"pageno"];
+    [param setObject:@"20" forKey:@"page_size"];
+    [param setObject:_orderTypeTitle forKey:@"pay_flag"];
+//    [param setObject:_quickSearch forKey:@"quickSearch"];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     [OrderVModel getOrderListParam:param successBlock:^(NSArray<OrderModel *> *dataArray, BOOL isSuccess){
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -186,10 +119,11 @@
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return self.resorceArray.count;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    
     return self.resorceArray.count;
 }
 
@@ -197,96 +131,7 @@
 {
     WEAKSELF;
     static NSString* cellID = @"ManagementCellID";
-//    if (_isCollect ) {
-//        if(_orderType == JoinOrderType)
-//        {
-//            OrderCollectCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-//            if (!cell ) {
-//                cell = [[OrderCollectCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-//            }
-//
-//            cell.model = self.resorceArray[indexPath.section];
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            cell.DidClickOrderCellBlock  = ^(NSString *title){
-//                LOG(@"title = %@",title);
-//                [weakSelf operationOrderWithTitle:title OrderModel:self.resorceArray[indexPath.section]];
-//            };
-//            return cell;
-//        }else{
-//            OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-//            if (!cell ) {
-//                cell = [[OrderCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-//            }
-//            cell.cellType = BuyOrderCellType;
-//
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            cell.model = self.resorceArray[indexPath.section];
-//            cell.DidClickOrderCellBlock  = ^(NSString *title){
-//                LOG(@"title = %@",title);
-//                [weakSelf operationOrderWithTitle:title OrderModel:self.resorceArray[indexPath.section]];
-//            };
-//            return cell;
-//        }
-//
-//    }
-//    else if (_isAuction)
-//    {
-//        if (_orderType == ComplteOrderType) {
-//
-//            OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-//            if (!cell ) {
-//                cell = [[OrderCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-//            }
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//
-//            cell.model = self.resorceArray[indexPath.section];
-//            cell.DidClickOrderCellBlock  = ^(NSString *title){
-//                LOG(@"title = %@",title);
-//                [weakSelf operationOrderWithTitle:title OrderModel:self.resorceArray[indexPath.section]];
-//            };
-//            return cell;
-//
-//
-//        }else{
-//            OrderAutionCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-//            if (!cell ) {
-//                cell = [[OrderAutionCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-//            }
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            if(_orderType == ComplteAuctionType)
-//            {
-//                cell.cellType = AutionCellOfferType;
-//            }else{
-//                cell.cellType = AutionCelljoinType;
-//            }
-//
-//            cell.model = self.resorceArray[indexPath.section];
-//            cell.DidClickOrderCellBlock  = ^(NSString *title){
-//                LOG(@"title = %@",title);
-//                [weakSelf operationOrderWithTitle:title OrderModel:self.resorceArray[indexPath.section]];
-//            };
-//            return cell;
-//
-//        }
-//
-//    }
-//    else{
-//        OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-//        if (!cell ) {
-//            cell = [[OrderCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-//        }
-//        if (_isDetection) {
-//            cell.cellType = CheckOrderCellType;
-//        }
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.model = self.resorceArray[indexPath.section];
-//        cell.DidClickOrderCellBlock  = ^(NSString *title){
-//            LOG(@"title = %@",title);
-//            [weakSelf operationOrderWithTitle:title OrderModel:self.resorceArray[indexPath.section]];
-//        };
-//        return cell;
-//
-//    }
+
     OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell ) {
         cell = [[OrderCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
@@ -309,32 +154,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OrderModel  *model = self.resorceArray[indexPath.section];
-    if (_isCollect ) {
-        if (_orderType == JoinOrderType) {
-             return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[OrderCollectCell class] contentViewWidth:SCREEN_WIDTH];
-        }
-   
-        LOG(@"%f",[self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[OrderCell class] contentViewWidth:SCREEN_WIDTH]);
-        return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[OrderCell class] contentViewWidth:SCREEN_WIDTH];
+    return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[OrderCell class] contentViewWidth:SCREEN_WIDTH];
 
-    }
-    else if (_isAuction ) {
-       
-        if (_orderType == ComplteAuctionType) {
-            return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[OrderAutionCell class] contentViewWidth:SCREEN_WIDTH] -21;
-        }
-
-        else if (_orderType == JoinOrderType)
-        {
-            return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[OrderAutionCell class] contentViewWidth:SCREEN_WIDTH];
-
-        }
-        return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[OrderCell class] contentViewWidth:SCREEN_WIDTH];
-
-    }
-    else{
-        return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[OrderCell class] contentViewWidth:SCREEN_WIDTH];
-    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -346,42 +167,9 @@
 {
     OrderModel  *model = self.resorceArray[indexPath.section];
     OrderDetailVC *VC = [[OrderDetailVC alloc] init];
-    VC.isLease = _isLease;
-    VC.isCollect = _isCollect;
-    VC.isAuction = _isAuction;
-    VC.isDetection = _isDetection;
-
     VC.model = model;
-    if (_isCollect ) {
-        VC.orderID = model.orderId;
-        if (_orderType == JoinOrderType) {
-            
-        }
-        else{
-            [self.navigationController pushViewController:VC animated:YES];
-        }
+    [self.navigationController pushViewController:VC animated:YES];
 
-    }
-    else if (_isAuction ) {
-        VC.orderID = model.orderId;
-        if (_orderType == ComplteAuctionType || _orderType == JoinOrderType) {
-//             GoodsAuctionDetailVC *VC = [[GoodsAuctionDetailVC alloc] init];
-//            VC.productID = model.auctionId;
-//            VC.typeStr =@"10";
-//            [self.navigationController pushViewController: VC animated:YES];
-            
-        }else{
-            [self.navigationController pushViewController:VC animated:YES];
-
-        }
-
-    }
-    else{
-        VC.orderID = model.orderId;
-        [self.navigationController pushViewController:VC animated:YES];
-
-    }
-    
     
 
 }

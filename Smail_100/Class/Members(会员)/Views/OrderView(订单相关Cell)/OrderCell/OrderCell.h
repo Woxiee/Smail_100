@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "OrderModel.h"
+#import "GoodsOrderModel.h"
+
 typedef NS_ENUM(NSInteger, OrderCellType){
     AllOrderCellType,                   /// 所有
     WaitOrderCellType,                  ///待审核
@@ -21,7 +23,7 @@ typedef NS_ENUM(NSInteger, OrderCellType){
 };
 @interface OrderCell : UITableViewCell
 @property (nonatomic, strong) OrderModel *model;
-
+@property (nonatomic, strong) Seller *seller;
 
 @property (nonatomic, assign) OrderCellType cellType;
 @property (nonatomic, copy) void(^DidClickOrderCellBlock)(NSString *title);

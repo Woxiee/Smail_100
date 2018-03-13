@@ -126,22 +126,15 @@
 }
 
 /// 商品详情价格
-+ (void)getGoodsDetailPriceParam:(id)pararm successBlock:(void(^)(NSArray *dataArray,BOOL isSuccess))sBlcok
++ (void)getGoodsDetailPriceParam:(id)pararm successBlock:(void(^)(NSDictionary *relust,BOOL isSuccess))sBlcok
 {
   
-    [BaseHttpRequest postWithUrl:@"/o/o_059" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
+    [BaseHttpRequest postWithUrl:@"/goods/calculate" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
         LOG(@"商品详情价格 == %@",result);
-        NSInteger state = [[result valueForKey:@"state"] integerValue];
-        //        NSString *msg = [result valueForKey:@"msg"];
-        NSDictionary *dataDic = [result valueForKey:@"data"][@"obj"];
-        NSMutableArray *listArray  = [[NSMutableArray alloc] init];
-        
+        NSDictionary *dataDic = [result valueForKey:@"data"];
         if ([dataDic isKindOfClass:[NSDictionary class]]) {
-            if (state == 0) {
-                GoodSDetailModel *model = [GoodSDetailModel mj_objectWithKeyValues:dataDic];
-                
-                [listArray addObject:model];
-                sBlcok(listArray,YES);
+            if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+                sBlcok(dataDic,YES);
             }else{
                 sBlcok(nil,NO);
             }
@@ -230,12 +223,11 @@
 ///收藏、 取消收藏
 + (void)getGoodCollectParam:(id)pararm successBlock:(void(^)(BOOL isSuccess,NSString *msg))sBlcok
 {
-    [BaseHttpRequest postWithUrl:@"/o/o_109" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
+    [BaseHttpRequest postWithUrl:@"/ucenter/collection" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
         LOG(@"收藏、 取消收藏 == %@",result);
-        NSInteger state = [[result valueForKey:@"data"][@"state"] integerValue];
-        NSString *msg = [result valueForKey:@"data"][@"msg"] ;
-//        NSDictionary *dic = [result valueForKey:@"data"];
-        if (state == 0) {
+        NSString *msg = [result valueForKey:@"msg"] ;
+        NSDictionary *dic = [result valueForKey:@"data"];
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
 //            if ([dic[@"obj"][@"isPremium"] isEqualToString:@"0"]) {
                 sBlcok(YES,msg);
 //            }

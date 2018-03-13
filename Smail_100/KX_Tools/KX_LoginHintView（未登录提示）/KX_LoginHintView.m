@@ -27,7 +27,7 @@
 {
     //TODO JP
     
-    return [[self alloc] initWithImage:@"6@3x.png" andMsg:@"没有更多数据" andBtnTitle:@"" andFrame:CGRectMake(0, 40, SCREEN_WIDTH,  SCREEN_HEIGHT - 140)];
+    return [[self alloc] initWithImage:@"shangchengdingdan2@3x.png" andMsg:@"没有更多数据" andBtnTitle:@"" andFrame:CGRectMake(0, 40, SCREEN_WIDTH,  SCREEN_HEIGHT - 140)];
 
 }
 

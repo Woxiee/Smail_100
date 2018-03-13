@@ -47,6 +47,7 @@
 @property (nonatomic , copy) NSString              * comment;
 @property (nonatomic , copy) NSString              * goodsSizeID;
 
+@property (nonatomic , copy) NSString              * spec;
 
 @end
 
@@ -56,6 +57,10 @@
 @property (nonatomic , copy) NSString              * itemType;
 @property (nonatomic , strong) ItemContentList             * itemContent;
 @property (nonatomic , strong) NSArray<SKU *>    * spec;
+@property(nonatomic,copy) NSString  *propertys;      ///商品属性
+@property (nonatomic , copy) NSString            * goodsSizeID;  /// 商品规格ID
+@property (nonatomic, assign) NSInteger goodSCount; /// 购买数量
+
 
 @end
 

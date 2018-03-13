@@ -9,21 +9,29 @@
 #import "GoodGuigeView.h"
 #import "GoodGuigeCell.h"
 #import "GoodGuigeSectionHeadView.h"
+#import "DWQSelectAttributes.h"
+#import "DWQSelectView.h"
+
 @interface GoodGuigeView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate>
 @property (nonatomic, weak) UIView *darkView;
 @property (nonatomic, strong) UIView *bottomView;
 @property (nonatomic, weak) UICollectionView *collectionView;
 @property (nonatomic, strong)  UILabel *pricekLabel;
 @property (nonatomic, strong) UILabel *kuCunLabel;
-@property (nonatomic, strong) NSMutableArray *dataArray;  /// 选择数据源
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong)  UILabel *guiGeLabel;/// 选择规格属性
 
 
 @property (nonatomic, strong) NSMutableArray *titleArray;  ///标题
+@property (nonatomic, strong) NSMutableArray *dataArray;  /// 选择数据源
+
+@property (nonatomic, strong) NSMutableArray *items;  ///数据量
+
 
 @property (nonatomic, strong)  UITextField *numberTextField;/// 数量TextField
 @property (nonatomic, assign)  float pading;  /// 间隔距离
+
+
 @end
 
 
@@ -61,13 +69,14 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
 
     UIView *bottomView = [[UIView alloc] init];
     int j = 0;
-//    for (int i = 0; i<self.dataArray.count * self.titleArray.count; i++) {
-//        if (i%4 == 0 ) {
-//            j++;
-//        }
-//    }
+    for (int i = 0; i<self.items.count; i++) {
+        if (i%4 == 0 ) {
+            j++;
+        }
+    }
 
-    bottomView.frame = CGRectMake(0, SCREEN_HEIGHT  - 200, SCREEN_WIDTH,200);
+    _pading = _titleArray.count *20;
+    bottomView.frame = CGRectMake(0, SCREEN_HEIGHT  - 200 - _pading - 30*j, SCREEN_WIDTH,200 +  _pading + 30*j);
     bottomView.backgroundColor  = [UIColor whiteColor];
     [self addSubview:bottomView];
     self.bottomView = bottomView;
@@ -77,7 +86,7 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
     [iconImageView  layerForViewWith:0 AndLineWidth:1];
     [self addSubview:iconImageView];
     self.iconImageView = iconImageView;
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:_model.subResult.imgSrc_one] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:_itemInfoList.itemContent.imageUrl] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
     ///
     UILabel *pricekLabel = [[UILabel alloc]  initWithFrame:CGRectMake(CGRectGetMaxX(iconImageView.frame) +12,12 ,200, 15)];
     pricekLabel.font = Font15;
@@ -85,7 +94,7 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
     pricekLabel.textAlignment = NSTextAlignmentLeft;
     [bottomView addSubview:pricekLabel];
     self.pricekLabel = pricekLabel;
-    self.pricekLabel.text = [NSString stringWithFormat:@"￥%@",_model.showPirce];
+    self.pricekLabel.text = [NSString stringWithFormat:@"￥%@",_itemInfoList.itemContent.price];
     /// 库存
     UILabel *kuCunLabel = [[UILabel alloc]  initWithFrame:CGRectMake(CGRectGetMaxX(iconImageView.frame) +12,CGRectGetMaxY(pricekLabel.frame) +7 , 200, 15)];
 //    kuCunLabel.text = _model.productQty;
@@ -94,10 +103,10 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
     kuCunLabel.textAlignment = NSTextAlignmentLeft;
     [bottomView addSubview:kuCunLabel];
     self.kuCunLabel = kuCunLabel;
-    if ([_model.param5 isEqualToString:@"1"]) {
+    if ([_itemInfoList.itemContent.store_nums isEqualToString:@"1"]) {
          self.kuCunLabel.text   = @"库存充足";
     }else{
-        self.kuCunLabel.text = [NSString stringWithFormat:@"库存：%@件",_model.cargoNumber];
+        self.kuCunLabel.text = [NSString stringWithFormat:@"库存：%@件",_itemInfoList.itemContent.store_nums];
     }
     /// 规格
     UILabel *guiGeLabel = [[UILabel alloc]  initWithFrame:CGRectMake(CGRectGetMaxX(iconImageView.frame) + 12 ,CGRectGetMaxY(kuCunLabel.frame) + 7, SCREEN_WIDTH - CGRectGetMaxX(iconImageView.frame)-24 , 15)];
@@ -132,10 +141,10 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
     UICollectionViewFlowLayout  *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.minimumInteritemSpacing = 10;
     flowLayout.minimumLineSpacing = 10;
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView1.frame) +12, SCREEN_WIDTH, _pading + _pading*j) collectionViewLayout:flowLayout];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView1.frame) +12, SCREEN_WIDTH, _pading + 30*j) collectionViewLayout:flowLayout];
     collectionView.delegate = self;
     collectionView.dataSource = self;
-    collectionView.scrollEnabled = NO;
+//    collectionView.scrollEnabled = NO;
     collectionView.backgroundColor = [UIColor whiteColor];
     [bottomView addSubview:collectionView];
     self.collectionView = collectionView;
@@ -149,12 +158,12 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
     /// 购买数量
     UILabel *numberTitle = [[UILabel alloc]  initWithFrame:CGRectMake(10,CGRectGetMaxY(lineView.frame) +15 , 200, 15)];
    
-    if ([ _model.typeStr isEqualToString:@"3"] || [ _model.typeStr isEqualToString:@"4"]) {
-        numberTitle.text = @"租赁数量";
-
-    }else{
+//    if ([ _model.typeStr isEqualToString:@"3"] || [ _model.typeStr isEqualToString:@"4"]) {
+//        numberTitle.text = @"租赁数量";
+//
+//    }else{
         numberTitle.text = @"购买数量";
-    }
+//    }
 
     numberTitle.font = Font15;
     numberTitle.textColor = TITLETEXTLOWCOLOR;
@@ -175,7 +184,7 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
     
     UITextField *numberTextField = [[UITextField alloc] initWithFrame:CGRectMake(SCREEN_WIDTH -100,CGRectGetMaxY(lineView.frame) +12 , 60, 30)];
     numberTextField.delegate  =self;
-    numberTextField.text = [NSString stringWithFormat:@"%ld",(long)_model.goodSCount];
+    numberTextField.text = [NSString stringWithFormat:@"%ld",_itemInfoList.goodSCount];
     [bottomView addSubview:numberTextField];
     numberTextField.textAlignment = NSTextAlignmentCenter;
 //    numberTextField.userInteractionEnabled =  NO;//jp 暂时不用
@@ -210,6 +219,9 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
 {
 //    _count =1;
     _titleArray = [[NSMutableArray alloc] init];
+    _items = [[NSMutableArray alloc] init];
+
+    
     _pading = 0;
 }
 
@@ -251,21 +263,21 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
 //        }
 //    }
 
-     _model.goodsSizeID = @"";
-    _model.propertys  = @"";
+     _itemInfoList.goodsSizeID = @"";
+    _itemInfoList.propertys  = @"";
     for (NSArray *contenArray  in _dataArray) {
-        for ( AttrValue *attrModel in contenArray) {
+        for ( Value *attrModel in contenArray) {
             if (attrModel.isSelect) {
-                if (KX_NULLString(_model.propertys)) {
-                    _model.propertys = [NSString stringWithFormat:@"%@:%@",attrModel.attrValueMainName,attrModel.attrValueName];
+                if (KX_NULLString(_itemInfoList.propertys)) {
+                    _itemInfoList.propertys = [NSString stringWithFormat:@"%@:%@",attrModel.attrValueMainName,attrModel.spec_name];
                 }else{
-                    _model.propertys =  [NSString stringWithFormat:@"%@ %@:%@",_model.propertys,attrModel.attrValueMainName,attrModel.attrValueName];
+                    _itemInfoList.propertys =  [NSString stringWithFormat:@"%@ %@:%@",_itemInfoList.propertys,attrModel.attrValueMainName,attrModel.spec_name];
                 }
                 
-                if (KX_NULLString(_model.goodsSizeID)) {
-                    _model.goodsSizeID = [NSString stringWithFormat:@"%@:%@",attrModel.attrValueMainID,attrModel.attrValueId];
+                if (KX_NULLString(_itemInfoList.goodsSizeID)) {
+                    _itemInfoList.goodsSizeID = [NSString stringWithFormat:@"%@:%@",attrModel.attrValueMainID,attrModel.id];
                 }else{
-                    _model.goodsSizeID =  [NSString stringWithFormat:@"%@,%@:%@",_model.goodsSizeID,attrModel.attrValueMainID,attrModel.attrValueId];
+                    _itemInfoList.goodsSizeID =  [NSString stringWithFormat:@"%@,%@:%@",_itemInfoList.goodsSizeID,attrModel.attrValueMainID,attrModel.id];
                 }
                 
             }
@@ -275,11 +287,11 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
 
     if (self.goodGuigeChooseType == GoodGuigeAddCartOrBuyType ) {
         if (self.submitBlock) {
-            self.submitBlock(_model,1);
+            self.submitBlock(_itemInfoList,1);
         }
     }else{
         if (self.submitBlock) {
-            self.submitBlock(_model,2);
+            self.submitBlock(_itemInfoList,2);
         }
     }
    
@@ -291,37 +303,36 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
 - (void)didClickChangeAction:(UIButton *)btn
 {
        if (btn.tag == 100) {
-           _model.goodSCount --;
-           if (_model.goodSCount ==1 ||_model.goodSCount<1) {
-               _model.goodSCount =1;
+           _itemInfoList.goodSCount --;
+           if (_itemInfoList.goodSCount ==1 ||_itemInfoList.goodSCount<1) {
+               _itemInfoList.goodSCount =1;
            }
   
-           _numberTextField.text = [NSString stringWithFormat:@"%ld",(long)_model.goodSCount];
+           _numberTextField.text = [NSString stringWithFormat:@"%ld",(long)_itemInfoList.goodSCount];
 
     }
    
     else if (btn.tag == 101){
-         _model.goodSCount ++;
-        if ([_model.param5 isEqualToString:@"1"]) {
-            _numberTextField.text = [NSString stringWithFormat:@"%ld",(long)_model.goodSCount];
+         _itemInfoList.goodSCount ++;
+            _numberTextField.text = [NSString stringWithFormat:@"%ld",(long)_itemInfoList.goodSCount];
 
-        }else{
-            if (_model.goodSCount > [_model.cargoNumber integerValue]) {
-                if ([_model.cargoNumber integerValue] == 0) {
-                    [self makeToast:@"库存不足"];
-                    
-                }else{
-                    [self makeToast:[NSString stringWithFormat:@"库存不足，最多购买‘%@’件",_model.cargoNumber]];
-                }
-                
-                _numberTextField.text = [NSString stringWithFormat:@"%@",_model.cargoNumber];
-                _model.goodSCount = [_model.cargoNumber integerValue];
-            }
-            
-            _numberTextField.text = [NSString stringWithFormat:@"%ld",(long)_model.goodSCount];
+//        }else{
+//            if (_itemInfoList.goodSCount > [_itemInfoList.cargoNumber integerValue]) {
+//                if ([_itemInfoList.cargoNumber integerValue] == 0) {
+//                    [self makeToast:@"库存不足"];
+//
+//                }else{
+//                    [self makeToast:[NSString stringWithFormat:@"库存不足，最多购买‘%@’件",_itemInfoList.cargoNumber]];
+//                }
+//
+//                _numberTextField.text = [NSString stringWithFormat:@"%@",_itemInfoList.cargoNumber];
+//                _itemInfoList.goodSCount = [_itemInfoList.cargoNumber integerValue];
+//            }
+//
+//            _numberTextField.text = [NSString stringWithFormat:@"%ld",(long)_itemInfoList.goodSCount];
 
 
-        }
+//        }
         
         
     }
@@ -334,7 +345,7 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
 
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return  _model.sKU.count;
+    return  _itemInfoList.spec.count;
 
 }
 
@@ -356,9 +367,8 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
   
-     AttrValue *model = _dataArray[indexPath.section][indexPath.row];
-    CGSize itemsW =  [NSString heightForString:model.attrValueName fontSize:Font12 WithSize:CGSizeMake(SCREEN_WIDTH, 30)];
-   
+    Value *model = _dataArray[indexPath.section][indexPath.row];
+    CGSize itemsW =  [NSString heightForString:model.spec_name fontSize:Font12 WithSize:CGSizeMake(SCREEN_WIDTH, 30)];
     return CGSizeMake(itemsW.width +20, 30);
  
 }
@@ -373,36 +383,35 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-  
     [self changeModelValueWithIndexPatch:indexPath];
-     AttrValue *attrModel = _dataArray[indexPath.section][indexPath.row];
-    LOG(@"attrModel = %@",attrModel.attrValueId);
+    Value *attrModel = _dataArray[indexPath.section][indexPath.row];
+    LOG(@"attrModel = %@",attrModel.id);
     attrModel.isSelect = YES;
     [self.collectionView reloadData];
     
-    _model.goodsSizeID = @"";
-    _model.propertys  = @"";
+    _itemInfoList.goodsSizeID = @"";
+    _itemInfoList.propertys  = @"";
     for (NSArray *contenArray  in _dataArray) {
-        for ( AttrValue *attrModel in contenArray) {
+        for ( Value *attrModel in contenArray) {
             if (attrModel.isSelect) {
-                if (KX_NULLString(_model.propertys)) {
-                    _model.propertys = [NSString stringWithFormat:@"%@:%@",attrModel.attrValueMainName,attrModel.attrValueName];
+                if (KX_NULLString(_itemInfoList.propertys)) {
+                    _itemInfoList.propertys = [NSString stringWithFormat:@"%@:%@",attrModel.attrValueMainName,attrModel.spec_name];
                 }else{
-                    _model.propertys =  [NSString stringWithFormat:@"%@ %@:%@",_model.propertys,attrModel.attrValueMainName,attrModel.attrValueName];
+                    _itemInfoList.propertys =  [NSString stringWithFormat:@"%@ %@:%@",_itemInfoList.propertys,attrModel.attrValueMainName,attrModel.spec_name];
                 }
             }
         }
-        _guiGeLabel.text = [NSString stringWithFormat:@"已选择：%@",_model.propertys];
+        _guiGeLabel.text = [NSString stringWithFormat:@"已选择：%@",_itemInfoList.propertys];
     }
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    if ([_model.onSale isEqualToString:@"0"]) {
-//        [iToast alertWithTitle:@"该商品已下架~"];
-        return NO;
-    }
+//    if ([_itemInfoList.onSale isEqualToString:@"0"]) {
+////        [iToast alertWithTitle:@"该商品已下架~"];
+//        return NO;
+//    }
   
     return YES;
 }
@@ -453,18 +462,18 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
     LOG(@"textField.TEXT  = %@",textField.text);
     if ([textField.text isEqualToString:@""] || [textField.text isEqualToString:@"0"]) {
         _numberTextField.text = @"1";
-        _model.goodSCount =  1;
+        _itemInfoList.goodSCount =  1;
     }else{
-        if ([_model.param5 isEqualToString:@"1"]) {
-            _model.goodSCount =  [ _numberTextField.text integerValue];
+//        if ([_model.param5 isEqualToString:@"1"]) {
+            _itemInfoList.goodSCount =  [ _numberTextField.text integerValue];
             
-        }else{
-            if ([textField.text integerValue] > [_model.cargoNumber integerValue]) {
-                [self.window makeToast:[NSString stringWithFormat:@"库存不足，最多购买‘%@’件",_model.cargoNumber]];
-                _numberTextField.text = [NSString stringWithFormat:@"%@",_model.cargoNumber];
-            }
-            _model.goodSCount =  [ _numberTextField.text integerValue];
-        }
+//        }else{
+//            if ([textField.text integerValue] > [_model.cargoNumber integerValue]) {
+//                [self.window makeToast:[NSString stringWithFormat:@"库存不足，最多购买‘%@’件",_model.cargoNumber]];
+//                _numberTextField.text = [NSString stringWithFormat:@"%@",_model.cargoNumber];
+//            }
+//            _model.goodSCount =  [ _numberTextField.text integerValue];
+//        }
         
     }
 
@@ -553,6 +562,7 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
             }
 //            attrModel.attrValueMainID = property.id;
             attrModel.attrValueMainName = property.name;
+            [_items addObject:attrModel];
             ///没有记录规格的话 默认选择 第一个规格属性
             for (NSString *attrValueStr in  goodsSizeIDArray) {
                 NSString *attvaluAndMainID = [NSString stringWithFormat:@"%@:%@",attrModel.attrValueMainID,attrModel.id];
@@ -571,17 +581,17 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
     }
     
     /// 默认购买数量为1
-    if (  _model.goodSCount == 0   ) {
-        _model.goodSCount = 1;
+    if (  _itemInfoList.goodSCount == 0   ) {
+        _itemInfoList.goodSCount = 1;
     }
     
     for (NSArray *contenArray  in _dataArray) {
-        for ( AttrValue *attrModel in contenArray) {
+        for (Value *attrModel  in contenArray) {
             if (attrModel.isSelect) {
-                if (KX_NULLString(_model.propertys)) {
-                    _model.propertys = [NSString stringWithFormat:@"%@:%@",attrModel.attrValueMainName,attrModel.attrValueName];
+                if (KX_NULLString(_itemInfoList.propertys)) {
+                    _itemInfoList.propertys = [NSString stringWithFormat:@"%@:%@",attrModel.attrValueMainName,attrModel.spec_name];
                 }else{
-                    _model.propertys =  [NSString stringWithFormat:@"%@ %@:%@",_model.propertys,attrModel.attrValueMainName,attrModel.attrValueName];
+                    _itemInfoList.propertys =  [NSString stringWithFormat:@"%@ %@:%@",_itemInfoList.propertys,attrModel.attrValueMainName,attrModel.spec_name];
                 }
             }
         }
@@ -604,8 +614,8 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
 - (void)changeModelValueWithIndexPatch:(NSIndexPath *)indexPath
 {
 
-    LOG(@"_model.goodsSizeID = %@",_model.goodsSizeID);
-    LOG(@"_model.goodsSi = %@",_model.propertys);
+    LOG(@"_model.goodsSizeID = %@",_itemInfoList.goodsSizeID);
+    LOG(@"_model.goodsSi = %@",_itemInfoList.propertys);
     for (   AttrValue *attrModel  in  self.dataArray[indexPath.section]) {
         attrModel.isSelect = NO;
     }

@@ -772,6 +772,15 @@
 		E16596E420564EAF008ADC6B /* ChangeGoodsCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = E16596E220564EAF008ADC6B /* ChangeGoodsCountView.m */; };
 		E16596E520564EB0008ADC6B /* goodsAd.png in Resources */ = {isa = PBXBuildFile; fileRef = E16596E320564EAF008ADC6B /* goodsAd.png */; };
 		E16596E920564FE4008ADC6B /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E16596E820564FE4008ADC6B /* Toast+UIView.m */; };
+		E16596F5205773CE008ADC6B /* UIView+DWQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E16596EC205773CD008ADC6B /* UIView+DWQExtension.m */; };
+		E16596F6205773CE008ADC6B /* DWQ-LOGO.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = E16596EE205773CE008ADC6B /* DWQ-LOGO.jpeg */; };
+		E16596F7205773CE008ADC6B /* DWQSelectAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = E16596F0205773CE008ADC6B /* DWQSelectAttributes.m */; };
+		E16596F8205773CE008ADC6B /* DWQSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E16596F2205773CE008ADC6B /* DWQSelectView.m */; };
+		E16596F9205773CE008ADC6B /* 凯迪拉克.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E16596F3205773CE008ADC6B /* 凯迪拉克.jpg */; };
+		E16596FA205773CE008ADC6B /* 取消.png in Resources */ = {isa = PBXBuildFile; fileRef = E16596F4205773CE008ADC6B /* 取消.png */; };
+		E16596FC2057844F008ADC6B /* 35@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E16596FB2057844F008ADC6B /* 35@3x.png */; };
+		E16596FF2057A3C1008ADC6B /* ico_add.png in Resources */ = {isa = PBXBuildFile; fileRef = E16596FD2057A3C1008ADC6B /* ico_add.png */; };
+		E16597002057A3C1008ADC6B /* ico_minus.png in Resources */ = {isa = PBXBuildFile; fileRef = E16596FE2057A3C1008ADC6B /* ico_minus.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2050,6 +2059,18 @@
 		E16596E320564EAF008ADC6B /* goodsAd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goodsAd.png; sourceTree = "<group>"; };
 		E16596E720564FE4008ADC6B /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
 		E16596E820564FE4008ADC6B /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
+		E16596EB205773CD008ADC6B /* UIView+DWQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DWQExtension.h"; sourceTree = "<group>"; };
+		E16596EC205773CD008ADC6B /* UIView+DWQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DWQExtension.m"; sourceTree = "<group>"; };
+		E16596EE205773CE008ADC6B /* DWQ-LOGO.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "DWQ-LOGO.jpeg"; sourceTree = "<group>"; };
+		E16596EF205773CE008ADC6B /* DWQSelectAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWQSelectAttributes.h; sourceTree = "<group>"; };
+		E16596F0205773CE008ADC6B /* DWQSelectAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWQSelectAttributes.m; sourceTree = "<group>"; };
+		E16596F1205773CE008ADC6B /* DWQSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWQSelectView.h; sourceTree = "<group>"; };
+		E16596F2205773CE008ADC6B /* DWQSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWQSelectView.m; sourceTree = "<group>"; };
+		E16596F3205773CE008ADC6B /* 凯迪拉克.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "凯迪拉克.jpg"; sourceTree = "<group>"; };
+		E16596F4205773CE008ADC6B /* 取消.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "取消.png"; sourceTree = "<group>"; };
+		E16596FB2057844F008ADC6B /* 35@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "35@3x.png"; sourceTree = "<group>"; };
+		E16596FD2057A3C1008ADC6B /* ico_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_add.png; sourceTree = "<group>"; };
+		E16596FE2057A3C1008ADC6B /* ico_minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_minus.png; sourceTree = "<group>"; };
 		E60962CF3B597F7C431212A7 /* libPods-Smail_100Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Smail_100Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6B1D3A6DB1A20BAB619951F /* libPods-Smail_100UITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Smail_100UITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -2501,6 +2522,8 @@
 		E10B0A9B20528AE8008BA706 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E16596EA205773CD008ADC6B /* DWQExtension */,
+				E16596ED205773CE008ADC6B /* DWQSelectAttributesView */,
 				E10B0A9C20528AE8008BA706 /* AttributeListView(属性列表) */,
 				E10B0AA220528AE8008BA706 /* AuctionHeadView(拍卖View) */,
 				E10B0AAA20528AE8008BA706 /* EnterpriseInfoCell(认证详情) */,
@@ -5123,6 +5146,9 @@
 			isa = PBXGroup;
 			children = (
 				3E5D837920557660001B542E /* goodsAdd@2x.png */,
+				E16596FD2057A3C1008ADC6B /* ico_add.png */,
+				E16596FE2057A3C1008ADC6B /* ico_minus.png */,
+				E16596FB2057844F008ADC6B /* 35@3x.png */,
 				E10B10B320528B05008BA706 /* 10@3x.png */,
 				E10B10B420528B05008BA706 /* 23@3x.png */,
 				E10B10B520528B05008BA706 /* 28@3x.png */,
@@ -5713,6 +5739,29 @@
 			path = "弹框";
 			sourceTree = "<group>";
 		};
+		E16596EA205773CD008ADC6B /* DWQExtension */ = {
+			isa = PBXGroup;
+			children = (
+				E16596EB205773CD008ADC6B /* UIView+DWQExtension.h */,
+				E16596EC205773CD008ADC6B /* UIView+DWQExtension.m */,
+			);
+			path = DWQExtension;
+			sourceTree = "<group>";
+		};
+		E16596ED205773CE008ADC6B /* DWQSelectAttributesView */ = {
+			isa = PBXGroup;
+			children = (
+				E16596EE205773CE008ADC6B /* DWQ-LOGO.jpeg */,
+				E16596EF205773CE008ADC6B /* DWQSelectAttributes.h */,
+				E16596F0205773CE008ADC6B /* DWQSelectAttributes.m */,
+				E16596F1205773CE008ADC6B /* DWQSelectView.h */,
+				E16596F2205773CE008ADC6B /* DWQSelectView.m */,
+				E16596F3205773CE008ADC6B /* 凯迪拉克.jpg */,
+				E16596F4205773CE008ADC6B /* 取消.png */,
+			);
+			path = DWQSelectAttributesView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -5904,6 +5953,7 @@
 				E10B121020528B06008BA706 /* shangjiazhongxin21@3x.png in Resources */,
 				E10B123820528B06008BA706 /* zhanghuguanli15@3x.png in Resources */,
 				E10B129320528B06008BA706 /* shouye21@3x.png in Resources */,
+				E16597002057A3C1008ADC6B /* ico_minus.png in Resources */,
 				E10B120620528B06008BA706 /* shangjiazhongxin12@3x.png in Resources */,
 				E10B109F20528B03008BA706 /* MJRefresh.bundle in Resources */,
 				E10B0DAF20528AE8008BA706 /* GoodsManagerView.xib in Resources */,
@@ -5915,6 +5965,7 @@
 				E10B0D5820528AE8008BA706 /* TimeLimtKillCell.xib in Resources */,
 				E10B120520528B06008BA706 /* shangjiazhongxin11@3x.png in Resources */,
 				E10B125E20528B06008BA706 /* muban9@3x.png in Resources */,
+				E16596FC2057844F008ADC6B /* 35@3x.png in Resources */,
 				E10B120120528B06008BA706 /* shangchengdingdan7@3x.png in Resources */,
 				E10B123C20528B06008BA706 /* zhanghuguanli19@3x.png in Resources */,
 				E10B11F920528B06008BA706 /* hehuorenshengji8@3x.png in Resources */,
@@ -6049,6 +6100,7 @@
 				E10B128220528B06008BA706 /* jinrongbankuai4@3x.png in Resources */,
 				E10B0DFA20528AE8008BA706 /* ShoppingCarHeaderView.xib in Resources */,
 				E10B0CDF20528AE8008BA706 /* GoodsCategoryCollectionHeader.xib in Resources */,
+				E16596F9205773CE008ADC6B /* 凯迪拉克.jpg in Resources */,
 				E10B126120528B06008BA706 /* denglu3@3x.png in Resources */,
 				E10B126F20528B06008BA706 /* xianxiashangjia14@3x.png in Resources */,
 				E10B120920528B06008BA706 /* shangjiazhongxin15@3x.png in Resources */,
@@ -6103,12 +6155,14 @@
 				E10B0CED20528AE8008BA706 /* GoodDetailImageVC.xib in Resources */,
 				E10B126B20528B06008BA706 /* xianxiashangjia10@3x.png in Resources */,
 				E10B11CA20528B06008BA706 /* gerenzhongxin1@3x.png in Resources */,
+				E16596FF2057A3C1008ADC6B /* ico_add.png in Resources */,
 				E10B121420528B06008BA706 /* shangjiazhongxin3@3x.png in Resources */,
 				E10B11E720528B06008BA706 /* chuangkeweidian3@3x.png in Resources */,
 				E10B124B20528B06008BA706 /* qianbaozhuanzeng2@3x.png in Resources */,
 				E10B124F20528B06008BA706 /* muban12@3x.png in Resources */,
 				E10B125120528B06008BA706 /* muban14@3x.png in Resources */,
 				E10B0F9920528AFA008BA706 /* DTKDropdownMenuView.bundle in Resources */,
+				E16596F6205773CE008ADC6B /* DWQ-LOGO.jpeg in Resources */,
 				E10B11BC20528B06008BA706 /* 29@3x.png in Resources */,
 				E10B11BD20528B06008BA706 /* 32@3x.png in Resources */,
 				E10B121D20528B06008BA706 /* bangzhufankui@3x.png in Resources */,
@@ -6171,6 +6225,7 @@
 				E10B121A20528B06008BA706 /* shangjiazhongxin9@3x.png in Resources */,
 				E10B0FCF20528AFA008BA706 /* cancelBtn@2x.png in Resources */,
 				E10B126320528B06008BA706 /* denglu5@3x.png in Resources */,
+				E16596FA205773CE008ADC6B /* 取消.png in Resources */,
 				E10B123E20528B06008BA706 /* zhanghuguanli2@3x.png in Resources */,
 				E10B11D920528B06008BA706 /* dailipingtai7@3x.png in Resources */,
 				E10B0D9020528AE8008BA706 /* CommitSuccessVC.xib in Resources */,
@@ -6446,6 +6501,7 @@
 				E10B0D7D20528AE8008BA706 /* GoodsManagerVC.m in Sources */,
 				E10B0FC420528AFA008BA706 /* KX_Version.m in Sources */,
 				E10B0E9C20528AF5008BA706 /* JPResDataUtillity.m in Sources */,
+				E16596F7205773CE008ADC6B /* DWQSelectAttributes.m in Sources */,
 				E10B0FD120528AFA008BA706 /* CityViewController.m in Sources */,
 				E10B0E1820528AF0008BA706 /* KX_BaseCollectionViewController.m in Sources */,
 				E10B0D8D20528AE8008BA706 /* ChangeInfoVC.m in Sources */,
@@ -6453,6 +6509,7 @@
 				E10B0FC520528AFA008BA706 /* KYDateView.m in Sources */,
 				E10B0FA820528AFA008BA706 /* FKPageView.m in Sources */,
 				E10B0FA720528AFA008BA706 /* UIColor+ZXLazy.m in Sources */,
+				E16596F8205773CE008ADC6B /* DWQSelectView.m in Sources */,
 				E10B0FA020528AFA008BA706 /* KYActionSheetDown.m in Sources */,
 				E10B10A420528B03008BA706 /* UIView+MJExtension.m in Sources */,
 				E10B0D9320528AE8008BA706 /* MemberBaseInfoVC.m in Sources */,
@@ -6628,6 +6685,7 @@
 				E10B0D7620528AE8008BA706 /* AddressChanegAndEidteVC.m in Sources */,
 				E10B0DE620528AE8008BA706 /* StoreMangerVHeadView.m in Sources */,
 				E10B0E1520528AF0008BA706 /* GlobalExceptionProcess.m in Sources */,
+				E16596F5205773CE008ADC6B /* UIView+DWQExtension.m in Sources */,
 				E10B0CE520528AE8008BA706 /* GoodsSupplierModel.m in Sources */,
 				E10B0FE520528AFA008BA706 /* zySheetPickerView.m in Sources */,
 				E10B0FCB20528AFA008BA706 /* LZPickerModel.m in Sources */,

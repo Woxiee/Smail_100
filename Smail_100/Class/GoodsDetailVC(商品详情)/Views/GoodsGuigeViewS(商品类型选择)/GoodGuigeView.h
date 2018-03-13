@@ -20,7 +20,7 @@ typedef void(^DidClikSubmitBtnBlock)(GoodSDetailModel *model, NSInteger index);
 @interface GoodGuigeView : UIView
 
 
-@property (nonatomic, strong) GoodSDetailModel *model;
+//@property (nonatomic, strong) GoodSDetailModel *model;
 @property (nonatomic, strong) ItemInfoList *itemInfoList;
 
 

@@ -18,7 +18,7 @@
 + (void)getAddCartParam:(id)pararm successBlock:(void(^)(NSString *msg,BOOL isSuccess))sBlcok;
 
 /// 商品详情价格
-+ (void)getGoodsDetailPriceParam:(id)pararm successBlock:(void(^)(NSArray *dataArray,BOOL isSuccess))sBlcok;
++ (void)getGoodsDetailPriceParam:(id)pararm successBlock:(void(^)(NSDictionary *relust,BOOL isSuccess))sBlcok;
 
 
 /// 获取商品规格

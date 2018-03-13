@@ -32,7 +32,11 @@
 
 #import "shoppingCarVM.h"
 
-@interface GoodContenVC ()<UITableViewDelegate, UITableViewDataSource,SDCycleScrollViewDelegate,SDPhotoBrowserDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIWebViewDelegate>
+
+#import "DWQSelectAttributes.h"
+#import "DWQSelectView.h"
+
+@interface GoodContenVC ()<UITableViewDelegate, UITableViewDataSource,SDCycleScrollViewDelegate,SDPhotoBrowserDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIWebViewDelegate,SelectAttributesDelegate>
 @property (nonatomic, copy) NSMutableArray  *resorceArray;
 
 @property (nonatomic, strong) UIView        *contentView;
@@ -56,7 +60,16 @@
 @property (nonatomic, strong) NSMutableArray *sameTitleArr;
 @property (nonatomic, strong) ItemInfoList *itemIfoModel;
 
+@property (nonatomic, strong) NSMutableArray *allItems; /// 规格属性所有字段
 
+@property(nonatomic,strong)NSArray *standardList;
+@property(nonatomic,strong)NSArray *standardValueList;
+@property (nonatomic, strong) NSMutableArray *dataArray;  /// 选择数据源
+@property (nonatomic, strong) NSArray *selectItems;  /// 选择规格属性
+
+@property(nonatomic,strong)DWQSelectView *selectView;
+@property(nonatomic,strong)DWQSelectAttributes *selectAttributes;
+@property(nonatomic,strong)NSMutableArray *attributesArray;
 
 @property (nonatomic, assign) BOOL isLoading;
 @end
@@ -93,7 +106,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     [self setConfiguration];
     [self setLeftItems];
     [self initBottomView];
-    [self getGoodsValueRequest];
+
     [self.tableView headerWithRefreshingBlock:^{
         [weakSelf getGoodsDetailInfoRequest];
     }];
@@ -118,7 +131,9 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     _sameArray = [[NSMutableArray alloc] init];
     _titleArray = [[NSMutableArray alloc] init];
     _sameTitleArr = [[NSMutableArray alloc] init];
-
+    _dataArray = [[NSMutableArray alloc] init];
+    
+    _allItems = [[NSMutableArray alloc] init];
     _goodSCount = 1;
     _maxContentOffSet_Y = 80;
     [self.tableView registerNib:[UINib nibWithNibName:@"GoodsDetailInfoCell" bundle:nil] forCellReuseIdentifier:goodsDetailInfoCellID];
@@ -140,6 +155,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 /// 初始化视图
 - (void)setup
 {
+    
     [self.view addSubview:self.tableView];
 
 }
@@ -158,65 +174,12 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     [leftBtn sizeToFit];
 }
 
-///显示选择数量Veiw
-- (void)showGuigeView:(GoodGuigeChooseType)type
-{
-    GoodGuigeView *view = [[GoodGuigeView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withChooseType:type];
-    WEAKSELF;
-//    GoodSDetailModel *goodsModel = nil;
-//    if (self.resorceArray.count >0) {
-//        goodsModel = self.resorceArray[0];
-//    }
-//    view.oldAttrvalueStr = goodsModel.propertys;
-    if (self.resorceArray.count >0) {
-        view.itemInfoList = _itemIfoModel;
-    }
-    view.submitBlock = ^(GoodSDetailModel *model,NSInteger index){
-        if (index== 1) {
-            if (![KX_UserInfo sharedKX_UserInfo].loginStatus) {
-                [KX_UserInfo presentToLoginView:self.superVC];
-                return;
-            }
-//            GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
-//            if ([weakSelf.typeStr isEqualToString:@"4"] || [weakSelf.typeStr isEqualToString:@"3"]) {
-//                VC.orderType = LeaseOrderType;
-//            }
-//            VC.model = model;
-//            [weakSelf.superVC.navigationController pushViewController:VC animated:YES];
-
-        }else{
-            if (weakSelf.resorceArray.count>0) {
-                GoodSDetailModel *goodsModel = weakSelf.resorceArray[0];
-                goodsModel = model;
-                weakSelf.goodSCount = model.goodSCount;
-                for (int i = 0; i<weakSelf.titleArray.count; i++) {
-                    NSString *str = weakSelf.titleArray[i];
-                    if ([str containsString:@"选择数量"] || [str containsString:@"已选择"] ) {
-                        str = [NSString stringWithFormat:@"购买数量:%ld",(long)weakSelf.goodSCount];
-                        weakSelf.titleArray[i] = str;
-                        weakSelf.guiGeVlue = model.propertys;
-                        model.propertys = model.propertys;
-                        break;
-                    }
-                }
-               //                weakSelf.titleArray[3] = [NSString stringWithFormat:@"已选择 %@ 购买数量:%ld",model.propertys,(long)weakSelf.goodSCount];
-                [weakSelf getGoodsDetailPriceRequest];
-            }
-        }
-    };
-    [view show];
-    _goodGuigeView = view;
-    
-}
-
-
 
 - (void)initBottomView
 {
     if (_bottomView == nil ) {
         WEAKSELF
       
-//      _bottomView = [[ NSBundle mainBundle] loadNibNamed:@"StoreBottomView" owner:nil options:nil].firstObject;
         _bottomView = [[StoreBottomView alloc] init];
         _bottomView.frame = CGRectMake(0, CGRectGetMaxY(self.tableView.frame), SCREEN_WIDTH, 45);
 
@@ -228,12 +191,15 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
                 model = weakSelf.resorceArray[1];
             }
             if (index == 0) {
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                 weakSelf.tabBarController.selectedIndex = 0;
             }
             else if (index == 1){
-                
+                [weakSelf getCollectionRequestWithISCollect];
             }
             else if (index == 2){
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+
                 weakSelf.tabBarController.selectedIndex = 3;
 
             }
@@ -259,7 +225,127 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 
 }
 
+-(void)initSelectView{
 
+    WEAKSELF;
+    if (self.standardList.count == 0) {
+        NSMutableArray *titles = [NSMutableArray new];
+        NSMutableArray *itemList = [NSMutableArray new];
+        NSArray *contenArray = [[NSArray alloc] init];
+        for (SKU *property in _itemIfoModel.spec) {
+            NSMutableArray *items = [NSMutableArray new];
+            
+            LOG(@"%@", property.name);
+            [titles addObject:property.name];
+            contenArray = property.value;
+            for (Value *value in contenArray) {
+                [items addObject:value.spec_name];
+                
+                [_allItems addObject:value];
+            }
+            [itemList addObject:items];
+            [self.dataArray addObject:contenArray];
+        }
+        
+        self.standardList = titles;
+        self.standardValueList = itemList;
+    }
+    self.selectView = [[DWQSelectView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [self.selectView.headImage  sd_setImageWithURL:[NSURL URLWithString:_itemIfoModel.itemContent.imageUrl] placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW]];
+    
+    self.selectView.nameLB.text = _itemIfoModel.itemContent.name;
+    self.selectView.LB_price.text =[NSString stringWithFormat:@"￥%@",_itemIfoModel.itemContent.price];
+    self.selectView.LB_stock.text = @"";
+    self.selectView.LB_showSales.text = [NSString stringWithFormat:@"销量%@件",_itemIfoModel.itemContent.sale_num] ;
+    self.selectView.LB_detail.text = @"请选择规格属性";
+    self.selectView.didClickComTFpltBlock = ^(NSInteger index, NSInteger goodCout) {
+        weakSelf.goodSCount = goodCout;
+        NSString *sper_vlue = [weakSelf.selectItems componentsJoinedByString:@","];
+        weakSelf.itemIfoModel.itemContent.spec = sper_vlue;
+            LOG(@"购物车");
+        if (index ==0) {
+            [weakSelf addGoodsInCar:weakSelf.itemIfoModel.itemContent];
+        }else{
+            LOG(@"购买");
+            GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
+            weakSelf.itemIfoModel.itemContent.goods_id = weakSelf.productID;
+            VC.itemsModel = weakSelf.itemIfoModel.itemContent;
+            [weakSelf.superVC.navigationController pushViewController:VC animated:YES];
+            
+        }
+    };
+    
+    CGFloat maxY = 0;
+    CGFloat height = 0;
+    for (int i = 0; i < self.standardList.count; i ++)
+    {
+        self.selectAttributes = [[DWQSelectAttributes alloc] initWithTitle:self.standardList[i] titleArr:self.standardValueList[i] andFrame:CGRectMake(0, maxY, SCREEN_WIDTH, 40)];
+        maxY = CGRectGetMaxY(self.selectAttributes.frame);
+        height += self.selectAttributes.dwq_height;
+        self.selectAttributes.tag = 8000+i;
+        self.selectAttributes.delegate = self;
+        
+        [self.selectView.mainscrollview addSubview:self.selectAttributes];
+    }
+    self.selectView.mainscrollview.contentSize = CGSizeMake(0, height);
+    
+    
+    
+  
+}
+
+#pragma mark --弹出规格属性
+
+-(NSMutableArray *)attributesArray{
+    
+    if (_attributesArray == nil) {
+        
+        _attributesArray = [[NSMutableArray alloc] init];
+    }
+    return _attributesArray;
+}
+
+
+
+-(void)selectBtnTitle:(NSString *)title andBtn:(UIButton *)btn{
+    
+    [self.attributesArray removeAllObjects];
+    
+    for (int i=0; i < _standardList.count; i++)
+    {
+        DWQSelectAttributes *view = [self.selectView.mainscrollview  viewWithTag:8000+i];
+        
+        for (UIButton *obj in  view.btnView.subviews)
+        {
+            if(obj.selected){
+                for (NSArray *arr in self.standardValueList)
+                {
+                    for (NSString *details in arr) {
+                        if ([view.selectBtn.titleLabel.text isEqualToString:details]) {
+                            [_attributesArray addObject:[NSString stringWithFormat:@"%@",details]];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    NSLog(@"%@",_attributesArray);
+    NSMutableArray *selectItems = [NSMutableArray new];
+    for (NSString *str in _attributesArray) {
+        for (Value *value in _allItems) {
+            if ([str isEqualToString:value.spec_name]) {
+                [selectItems addObject:value.spec_value];
+            }
+        }
+    }
+    
+    _selectItems =  [selectItems mutableCopy];
+    NSString *comm = [_attributesArray componentsJoinedByString:@","];
+    self.selectView.LB_detail.text = [NSString stringWithFormat:@"选择了 %@",comm];
+    
+    [self getGoodsDetailPriceRequest];
+}
 
 
 #pragma mark - request
@@ -282,7 +368,8 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
             [weakSelf.titleArray addObject:@"查看商品规格"];
             NSMutableArray *imggeList = [[NSMutableArray alloc] init];
             ItemInfoList *infoModel = dataArray[0];
-            weakSelf.itemIfoModel = infoModel;
+            weakSelf.itemIfoModel = dataArray[1];
+            weakSelf.bottomView.contenModel = weakSelf.itemIfoModel.itemContent;
             for (ItemContentList *items in infoModel.itemContentList) {
                 [imggeList addObject:items.imageUrl];
             }
@@ -290,6 +377,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 
             [weakSelf.resorceArray addObjectsFromArray:dataArray];
             [weakSelf.tableView reloadData];
+            [weakSelf getGoodsValueRequest];
 
             
         }else{
@@ -306,21 +394,15 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 ///  加入购物车
 - (void)addGoodsInCar:(ItemContentList *)model{
     [MBProgressHUD showMessag:@"加入购物车中..." toView:self.view];
-    _goodSCount = 1;
+    if (_goodSCount >0) {
+        
+    }else{
+        _goodSCount = 1;
+    }
     model.cartNum =  [NSString stringWithFormat:@"%ld",(long)_goodSCount];
     model.goods_id = self.productID;
-//    if (model.goodsSizeDataList.count >0) {
-//        for (NSDictionary *dic in model.goodsSizeDataList) {
-//            if ([dic[@"id"] isEqualToString:model.goodsSizeID]) {
-//                model.productId = dic[@"subProductId"] ;
-//            }
-//        }
-//    }else{
-//        model.productId  = self.productID;
-//    }
 
     [[shoppingCarVM alloc] addShopCar:model handleback:^(NSInteger code) {
-        
 //        [iToast alertWithTitle:@"已添加购物车成功~"];
         [self.tableView reloadData];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -333,58 +415,21 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 {
     WEAKSELF;
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
-    GoodSDetailModel *model = weakSelf.resorceArray[0];
-    NSMutableArray *ruleArray  = [NSMutableArray array];
-
-     NSArray *listArr1  = [model.goodsSizeID componentsSeparatedByString:NSLocalizedString(@",", nil)];
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    for (NSString *str  in listArr1) {
-        NSArray *listArr2 = [str componentsSeparatedByString:NSLocalizedString(@":", nil)];
-        
-        [dic setObject:listArr2[1] forKey:listArr2[0]];
-        [ruleArray addObject:dic];
-    }
-    
-    NSString *jsonID =  [dic mj_JSONString];
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setObject:_productID forKey:@"mainId"];
-    [param setObject:jsonID forKey:@"jsonId"];
-
-    [GoodsVModel getGoodsDetailPriceParam:param successBlock:^(NSArray *dataArray, BOOL isSuccess) {
+    [param setObject:_productID forKey:@"goods_id"];
+    if (self.selectItems.count > 0) {
+        NSString *sper_vlue = [self.selectItems componentsJoinedByString:@","];
+        [param setObject:sper_vlue forKey:@"spec"];
+    }
+ 
+    [GoodsVModel getGoodsDetailPriceParam:param successBlock:^(NSDictionary *relust, BOOL isSuccess) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [weakSelf.tableView endRefreshTableView];
-            _sectionCount = 4; /// 默认为4   加入有评价 或者买赠  自增1
-        if (isSuccess) {
-            GoodSDetailModel *model = weakSelf.resorceArray[0];
-            GoodSDetailModel *model1 = dataArray[0];
-            model.cargoNumber = model1.cargoNumber;
-            model.onSale = model1.onSale;
-            model.subProductId = model1.subProductId;
-            model.showPirce = model1.showPirce;
-            model.param5 = model1.param5;
-            model.propertys = weakSelf.guiGeVlue;
-            model.goodSCount = weakSelf.goodSCount ;
-            model.typeStr = weakSelf.typeStr;
-            _headView.imageURLStringsGroup = model.subResult.imgSrc;
-            [_webView loadHTMLString:model.mainResult.detailDesc baseURL:[NSURL URLWithString:HEAD__URL]];
-            if (!KX_NULLString(_guiGeVlue)) {
-                for (int i = 0; i<weakSelf.titleArray.count; i++) {
-                    NSString *str = weakSelf.titleArray[i];
-                    if ([str containsString:@"选择数量"] || [str containsString:@"已选择"] ) {
-                        str = [NSString stringWithFormat:@"已选择 %@ 购买数量:%ld",model.propertys,(long)weakSelf.goodSCount];
-
-                        weakSelf.titleArray[i] = str;
-                        break;
-                    }
-                }
-            }
-            if ([weakSelf.typeStr isEqualToString:@"3"] || [weakSelf.typeStr isEqualToString:@"4"]) {
-                [_bottomView showBottonWithLogTyoe:NomalLinkType withRzLogModel:model];
-
-            }else{
-                [_bottomView showBottonWithLogTyoe:NomalBuyType withRzLogModel:model];
-
-            }
+        
+        if (isSuccess == YES) {
+            weakSelf.itemIfoModel.itemContent.price = relust[@"sell_price"];
+            weakSelf.itemIfoModel.itemContent.store_nums = relust[@"store_nums"];
+            weakSelf.selectView.LB_price.text =[NSString stringWithFormat:@"￥%@", weakSelf.itemIfoModel.itemContent.price ];
+            self.selectView.LB_stock.text = [NSString stringWithFormat:@"库存%@件", weakSelf.itemIfoModel.itemContent.store_nums];
              [self.tableView reloadData];
             
         }else{
@@ -403,7 +448,10 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     [param setObject:_productID forKey:@"goods_id"];
     [GoodsVModel getGoodDetailConfigParm:param successBlock:^(NSArray *dataArray, BOOL isSuccess) {
         if (isSuccess) {
+            
             weakSelf.itemIfoModel.spec = dataArray;
+            [weakSelf initSelectView];
+
         }
         else{
             [weakSelf.view toastShow:NOTICEMESSAGE];
@@ -442,25 +490,29 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 
 
 /// 收藏取消收藏操作
-- (void)getCollectionRequestWithISCollect:(NSString *)state
+- (void)getCollectionRequestWithISCollect
 {
     WEAKSELF;
     GoodSDetailModel *model;
+ 
     if (self.resorceArray.count >0 ) {
         model = weakSelf.resorceArray[0];
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
-        [param setObject:_typeStr forKey:@"productClass"];
-        [param setObject:[KX_UserInfo sharedKX_UserInfo].bid forKey:@"bid"];
-        [param setObject:model.mainId forKey:@"mainId"];
-        [param setObject:state forKey:@"collectFlag"];
-        [param setObject:[KX_UserInfo sharedKX_UserInfo].ID forKey:@"mid"];
+        [param setObject:_productID forKey:@"goods_id"];
+        [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+        if (KX_NULLString(_itemIfoModel.itemContent.coll_id)) {
+            [param setObject:@"add" forKey:@"method"];
+        }else{
+            [param setObject:@"delete" forKey:@"method"];
+        }
+        [param setObject:_itemIfoModel.itemContent.coll_id forKey:@"coll_id"];
 
-//        [GoodsVModel getGoodCollectParam:param successBlock:^(BOOL isSuccess, NSString *msg) {
-//            [weakSelf.view toastShow:msg];
-//            if (isSuccess) {
-//                [weakSelf getGoodsDetailInfoRequest];
-//            }
-//        }];
+        [GoodsVModel getGoodCollectParam:param successBlock:^(BOOL isSuccess, NSString *msg) {
+            [weakSelf.view toastShow:msg];
+            if (isSuccess) {
+                [weakSelf getGoodsDetailInfoRequest];
+            }
+        }];
     }
    
 }
@@ -666,7 +718,10 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     GoodSDetailModel *model = self.resorceArray[0];
     NSString *title = _titleArray[indexPath.section];
     if (![title isEqualToString:@"商品详情"]) {
-        [self showGuigeView:GoodGuigeChooseGoodsType];
+        
+//        [self showGuigeView:GoodGuigeAddCartOrBuyType];
+        [self.selectView show];
+
     }
    
 }

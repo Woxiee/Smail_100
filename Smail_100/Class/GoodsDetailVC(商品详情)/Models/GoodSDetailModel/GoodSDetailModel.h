@@ -10,8 +10,8 @@
 
 
 @interface Value :NSObject
-//@property (nonatomic , copy) NSString              * spec_name;
-//@property (nonatomic , copy) NSString              * spec_value;
+@property (nonatomic , copy) NSString              * spec_name;
+@property (nonatomic , copy) NSString              * spec_value;
 @property (nonatomic , copy) NSString              * id;
 @property (nonatomic, assign) BOOL isSelect;
 @property (nonatomic , copy) NSString              * attrValueMainID; /// 主属性ID
@@ -47,6 +47,7 @@
 //@property (nonatomic , copy) NSString              * attrName;
 @property (nonatomic , copy) NSString              * name;
 @property (nonatomic , strong) NSArray<Value *>              * value;
+@property (nonatomic, assign) BOOL isSelect;
 
 
 @end
@@ -210,11 +211,11 @@
 @property (nonatomic , copy) NSString              * subProductId;
 @property (nonatomic , copy) NSString              * showPirce;
 @property(nonatomic,copy) NSString  *propertys;      ///商品属性
-@property (nonatomic, assign) NSInteger goodSCount;
 @property (nonatomic , copy) NSString            * goodsSizeID;  /// 商品规格ID
 ///采集
 @property (nonatomic , strong) GroupBuyResult              * groupBuyResult;
 @property (nonatomic , strong) NSArray<NSString *>              * list3; /// 认证详情LIST
+@property (nonatomic, assign) NSInteger goodSCount;
 
 ///商品详情webview 高度
 @property (nonatomic , assign) float               webviewHeigh;

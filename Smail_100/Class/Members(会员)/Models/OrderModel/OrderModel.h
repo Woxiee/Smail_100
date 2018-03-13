@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class Seller;
 @interface OrderModel : NSObject
 @property (nonatomic , copy) NSString              * contractId;
 @property (nonatomic , copy) NSString              * orderStatusTitle;
@@ -17,7 +18,6 @@
 @property (nonatomic , copy) NSString              * buyCount;
 @property (nonatomic , copy) NSString              * isApplyClose;
 @property (nonatomic , copy) NSString              * payStatus;
-@property (nonatomic , copy) NSString              * price;
 @property (nonatomic , copy) NSString              * signStatus;
 @property (nonatomic , copy) NSString              * param2;
 @property (nonatomic , copy) NSString              * orderId;
@@ -73,5 +73,22 @@
 @property (nonatomic , copy) NSString              * amout;
 
 @property (nonatomic , assign) BOOL              bidKey;  /// 1  供应商订单   0购买订单
+
+
+
+@property (nonatomic , copy) NSString              * paystatus_name;
+@property (nonatomic , copy) NSString              * categoryId;
+@property (nonatomic , copy) NSString              * categoryName;
+@property (nonatomic , copy) NSString              * count;
+@property (nonatomic , copy) NSString              * order_flag;
+@property (nonatomic , copy) NSString              * pay_flag;
+@property (nonatomic , copy) NSString              * freight;
+@property (nonatomic , copy) NSString              * orderno;
+@property (nonatomic , copy) NSString              * price;
+@property (nonatomic , copy) NSString              * distribution_status;
+@property (nonatomic , copy) NSString              * point;
+@property (nonatomic , copy) NSString              * paystatus;
+@property (nonatomic , copy) NSArray<Seller *>              * seller;
+@property (nonatomic , copy) NSString              * orderstatus_name;
 
 @end

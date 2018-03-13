@@ -47,6 +47,8 @@
 /// 初始化视图
 - (void)setup
 {
+    
+    
     _titleLB = [UILabel new];
     _titleLB.textColor = DETAILTEXTCOLOR;
     _titleLB.font = PLACEHOLDERFONT;
@@ -227,17 +229,20 @@
 }
 
 
+- (void)setSeller:(Seller *)seller
+{
+    _seller = seller;
+
+}
+
 - (void)setModel:(OrderModel *)model
 {
     _model = model;
     
     _titleLB.text = _model.sellerCompName;
     _makeLB.text = _model.orderStatusTitle;
-    if ([_model.orderStatus isEqualToString:@"6"] || [_model.orderStatus isEqualToString:@"0"] ) {
-        _makeLB.textColor = DETAILTEXTCOLOR;
-    }else{
-        _makeLB.textColor = BACKGROUND_COLORHL;
-    }
+ 
+    _makeLB.textColor = BACKGROUND_COLORHL;
     
     _nameLB.text = _model.productName;
 

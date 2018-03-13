@@ -8,25 +8,24 @@
 
 #import "OrderVModel.h"
 #import "OrderDetailModel.h"
+#import "GoodsOrderModel.h"
+
 @implementation OrderVModel
 /// 订单类表接口
 + (void)getOrderListParam:(id)pararm successBlock:(void(^)(NSArray <OrderModel *>*dataArray,BOOL isSuccess))sBlcok
 {
-    [BaseHttpRequest postWithUrl:@"/o/o_082" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
+    [BaseHttpRequest postWithUrl:@"/order/order_list" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
         LOG(@"订单列表 == %@",result);
-        NSInteger state = [[result valueForKey:@"data"][@"state"]integerValue];
-        if (state == 0) {
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
             //        NSString *msg = [result valueForKey:@"msg"];
-            NSArray *dataArr = [result valueForKey:@"data"][@"obj"][@"obj"][@"orderList"];
-            NSString   *orderType= [result valueForKey:@"data"][@"obj"][@"orderType"];
-            NSString   *bidKey= [result valueForKey:@"data"][@"obj"][@"bidKey"];
+            NSArray *dataArr = [result valueForKey:@"data"];
+  
             NSMutableArray *listArray  = [[NSMutableArray alloc] init];
             if ([dataArr isKindOfClass:[NSArray class]]) {
-                if (state == 0) {
+                if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
                     listArray = [OrderModel mj_objectArrayWithKeyValuesArray:dataArr];
                     for (OrderModel *model in listArray) {
-                        model.orderType = orderType;
-                        model.bidKey = [bidKey intValue];
+                        model.seller = [Seller mj_objectArrayWithKeyValuesArray: model.seller ];
                     }
                     
                     sBlcok(listArray, YES);

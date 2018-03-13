@@ -10,10 +10,12 @@
 #import "GoodsScreenmodel.h"
 #import "GoodSDetailModel.h"
 @class AttrValue;
+@class Value;
 @interface GoodGuigeCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) Values *model;
-@property (nonatomic, strong) AttrValue *attrModel;
+//@property (nonatomic, strong) AttrValue *attrModel;
+@property (nonatomic, strong) Value *attrModel;
 
 
 @end
