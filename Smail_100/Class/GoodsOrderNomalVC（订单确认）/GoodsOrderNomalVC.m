@@ -243,7 +243,6 @@ static NSString * const DeductionCellID = @"DeductionCellID";
                 }
             }
 
-     
             [weakSelf.resorceArray addObject:@"商品详情"];
         
             
@@ -450,42 +449,33 @@ static NSString * const DeductionCellID = @"DeductionCellID";
         titleLB.textColor = TITLETEXTLOWCOLOR;
         titleLB.font = Font15;
         titleLB.textAlignment = NSTextAlignmentRight;
-        
-        NSString *str1 = @"共";
-        NSString *str2 = [NSString stringWithFormat:@"￥%ld",_orderModel.seller.count];
-        NSString *str3 = [NSString stringWithFormat:@"共%@件商品       小计:",str2];
-        NSString *str4 = [NSString stringWithFormat:@"%@%@",str3,_orderModel.price];
-        
-        NSString *str6 = [NSString stringWithFormat:@"+%@积分",_orderModel.point];
-        
+        NSString *allNumber = [NSString stringWithFormat:@"%@",_orderModel.count];
+        NSString *allPrice = [NSString stringWithFormat:@"￥%@",_orderModel.price];
+        NSString *allPoint = [NSString stringWithFormat:@"%@",_orderModel.point];
         if ([_orderModel.point integerValue] >0) {
-            NSString *str7 = [NSString stringWithFormat:@"%@%@",str4,str6];
-            NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:str7];
-            [attriString addAttribute:NSForegroundColorAttributeName
-                                value:KMAINCOLOR
-                                range:NSMakeRange(str1.length,str2.length)];
-            [attriString addAttribute:NSForegroundColorAttributeName
-                                value:KMAINCOLOR
-                                range:NSMakeRange(str3.length,str6.length)];
+            NSMutableAttributedString *hintString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"共%@件商品   合计:%@+%@积分",allNumber,allPrice,allPoint]];
+            //获取要调整颜色的文字位置,调整颜色
+            NSRange range1=[[hintString string]rangeOfString:allNumber];
+            [hintString addAttribute:NSForegroundColorAttributeName  value:KMAINCOLOR range:range1];
             
-            [attriString addAttribute:NSForegroundColorAttributeName
-                                value:KMAINCOLOR
-                                range:NSMakeRange(str4.length+1,_orderModel.point.length)];
-            titleLB.attributedText = attriString;
+            NSRange range2=[[hintString string]rangeOfString:allPrice];
+            [hintString addAttribute:NSForegroundColorAttributeName value:KMAINCOLOR range:range2];
             
+            NSRange range3 =[[hintString string]rangeOfString:allPoint];
+            [hintString addAttribute:NSForegroundColorAttributeName value:KMAINCOLOR range:range3];
+            titleLB.attributedText =hintString;
         }else{
-            NSString *str7 = [NSString stringWithFormat:@"%@%@",str4,str6];
-            NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:str7];
-            [attriString addAttribute:NSForegroundColorAttributeName
-                                value:KMAINCOLOR
-                                range:NSMakeRange(str1.length,str2.length)];
-            [attriString addAttribute:NSForegroundColorAttributeName
-                                value:KMAINCOLOR
-                                range:NSMakeRange(str3.length,str6.length)];
+            NSMutableAttributedString *hintString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"共%@件商品   合计:%@",allNumber,allPrice]];
+            //获取要调整颜色的文字位置,调整颜色
+            NSRange range1=[[hintString string]rangeOfString:allNumber];
+            [hintString addAttribute:NSForegroundColorAttributeName  value:KMAINCOLOR range:range1];
             
-            titleLB.attributedText = attriString;
+            NSRange range2=[[hintString string]rangeOfString:allPrice];
+            [hintString addAttribute:NSForegroundColorAttributeName value:KMAINCOLOR range:range2];
             
+            titleLB.attributedText =hintString;
         }
+
         
         [headView addSubview:titleLB];
         

@@ -8,6 +8,7 @@
 
 #import "AccountManagVC.h"
 #import "AddressManageVC.h"
+#import "BaseInforVC.h"
 
 @interface AccountManagVC ()
 
@@ -23,7 +24,7 @@
 //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.title = @"账户管理";
     self.tableView.tableFooterView = [UIView new];
-    NSArray *dataArray = @[@"基本资料",@"实名认证",@"英航卡管理",@"我的收获地址",@"账户安全设置"];
+    NSArray *dataArray = @[@"基本资料",@"实名认证",@"银行卡管理",@"我的收获地址",@"账户安全设置"];
     [self.resorceArray addObjectsFromArray:dataArray];
 
     [self.tableView reloadData];
@@ -71,5 +72,13 @@
         [self.navigationController pushViewController:VC animated:YES];
 
     }
+//    NSArray *dataArray = @[@"基本资料",@"实名认证",@"银行卡管理",@"我的收获地址",@"账户安全设置"];
+//
+    if ([titleStr isEqualToString:@"基本资料"]) {
+        BaseInforVC *VC = [[BaseInforVC alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
+        
+    }
+    
 }
 @end

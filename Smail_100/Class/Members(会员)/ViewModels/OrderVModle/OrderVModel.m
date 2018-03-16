@@ -65,61 +65,20 @@
 }
 
 ///订单详情
-+ (void)getOrderDetailParam:(id)pararm successBlock:(void(^)(NSArray <OrderDetailModel *>*dataArray,BOOL isSuccess))sBlcok
++ (void)getOrderDetailParam:(id)pararm successBlock:(void(^)(NSArray < GoodsOrderVModel *>*dataArray,BOOL isSuccess))sBlcok
 {
-    [BaseHttpRequest postWithUrl:@"/o/o_086" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
+    [BaseHttpRequest postWithUrl:@"/order/order_info" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
         LOG(@"订单详情 == %@",result);
-        NSInteger state = [[result valueForKey:@"data"][@"state"]integerValue];
-        NSInteger code = [[result valueForKey:@"code"]integerValue];
         NSMutableArray *listArray  = [[NSMutableArray alloc] init];
+        NSDictionary *dataDic = [result valueForKey:@"data"];
 
-        NSDictionary *dataDic = [result valueForKey:@"data"][@"obj"][@"obj"];
-//        NSArray *dataArr = [result valueForKey:@"data"][@"obj"][@"obj"][@"payRecordList"];
-
-        if (code == 000) {
-            if (state == 0) {
+            if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
                 if ([dataDic isKindOfClass:[NSDictionary class]]) {
-                    OrderDetailModel *model = [OrderDetailModel mj_objectWithKeyValues:dataDic];
-                    model.invoice = [Invoice mj_objectWithKeyValues:model.invoice];
-
-                    model.payRecordList = [PayRecordList mj_objectArrayWithKeyValuesArray: model.payRecordList];
-                    model.payDetailList = [PayDetailList mj_objectArrayWithKeyValuesArray:model.payDetailList];
-
-                    if ([model.invoiceType integerValue]  == 0) {
-                        model.invoiceValue = @"不开发票";
+                    GoodsOrderModel *model = [GoodsOrderModel yy_modelWithJSON:dataDic];
+                    model.seller = [NSArray yy_modelArrayWithClass:[Seller class] json:model.seller];
+                    for (Seller *seller in  model.seller) {
+                        seller.products = [NSArray yy_modelArrayWithClass:[Products class] json:seller.products];
                     }
-                    else if ([model.invoiceType integerValue]  == 1)
-                    {
-                        model.invoiceValue = @"增值税普通发票(纸质版)";
-                    }
-                    else if ([model.invoiceType integerValue]  == 2)
-                    {
-                        model.invoiceValue = @"增值税专用发票";
-                    }
-                    else if ([model.invoiceType integerValue]  == 3)
-                    {
-                        model.invoiceValue = @"增值税普通发票(电子版)";
-                    }
-                    
-                    if ([model.order.payMentType integerValue]  == 1) {
-                        model.payValue = @"直接付款";
-                    }
-
-                    else if ([model.order.payMentType integerValue]  == 2)
-                    {
-                        model.payValue = @"分期付款";
-                    }
-                    else if ([model.order.payMentType integerValue]  == 3)
-                    {
-                        model.payValue = @"先用后付";
-                    }
-                    
-                    else if ([model.order.payMentType integerValue]  == 4)
-                    {
-                        model.payValue = @"融资租赁";
-                    }
-
-                    
                     [listArray addObject:model];
                     sBlcok(listArray,YES);
                 }else{
@@ -129,9 +88,7 @@
             else{
                 sBlcok(nil ,NO);
             }
-        }else{
-            sBlcok(nil ,NO);
-        }
+        
     }];
 
 

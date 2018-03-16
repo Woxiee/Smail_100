@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "OrderModel.h"
 #import "OrderDetailModel.h"
+
+#import "GoodsOrderVModel.h"
+
 @interface OrderVModel : NSObject
 /// 订单类表接口
 + (void)getOrderListParam:(id)pararm successBlock:(void(^)(NSArray < OrderModel *>*dataArray,BOOL isSuccess))sBlcok;
@@ -17,7 +20,7 @@
 + (void)getOrderOperationUrl:(NSString *)url Param:(id)pararm successBlock:(void(^)(BOOL isSuccess,NSString *message))sBlcok;
 
 ///订单详情
-+ (void)getOrderDetailParam:(id)pararm successBlock:(void(^)(NSArray < OrderDetailModel *>*dataArray,BOOL isSuccess))sBlcok;
++ (void)getOrderDetailParam:(id)pararm successBlock:(void(^)(NSArray < GoodsOrderVModel *>*dataArray,BOOL isSuccess))sBlcok;
 
 /// 金融
 + (void)getFinanListUrl:(NSString *)url Param:(id)pararm successBlock:(void(^)(NSArray < OrderModel *>*dataArray,BOOL isSuccess))sBlcok;

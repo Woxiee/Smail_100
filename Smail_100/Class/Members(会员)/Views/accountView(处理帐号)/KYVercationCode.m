@@ -101,7 +101,7 @@
     
     UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(edge, 0, self.width - 2*edge, 1.0f)];
     [self addSubview:lineV];
-    lineV.backgroundColor = LINECOLOR
+    lineV.backgroundColor = LINECOLOR;
     
 
     self.height = 44;

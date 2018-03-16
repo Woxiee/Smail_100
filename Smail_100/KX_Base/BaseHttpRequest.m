@@ -139,7 +139,7 @@
     self.imageBlock = block;
     
     
-    NSString *returnName = @"return.png";
+    NSString *returnName = @"file";
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
@@ -148,10 +148,10 @@
     NSData *imageData = UIImageJPEGRepresentation(img, 0.3);
     url = [NSString stringWithFormat:@"%@/api%@",HEAD__URL,url];
     _interfaceURL = url;
-    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:[KX_UserInfo sharedKX_UserInfo].bid,@"bid", nil];
-    _params =  [self signParams:param];
+    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:[KX_UserInfo sharedKX_UserInfo].user_id,@"user_id", nil];
+    _params = param;
     
-    [manager POST:_interfaceURL parameters:_params constructingBodyWithBlock:^(id  _Nonnull formData) {
+    [manager POST:_interfaceURL parameters:param constructingBodyWithBlock:^(id  _Nonnull formData) {
         [formData appendPartWithFileData :imageData name:returnName fileName:returnName mimeType:@"multipart/form-data"];
         }
          progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -164,10 +164,10 @@
               [self debug:strdata];
 #endif
               NSDictionary *dic = [strdata mj_JSONObject];
-              NSInteger status = [dic[@"data"][@"state"] integerValue];
-              LOG(@"%@",dic[@"data"][@"obj"][@"imgSrc"]);
+        
+              NSInteger status = [dic[@"code"] integerValue];
               if (status == 0) {
-                  self.imageBlock(dic[@"data"][@"obj"][@"imgSrc"][0]);
+                  self.imageBlock(dic[@"data"]);
               }
               
               

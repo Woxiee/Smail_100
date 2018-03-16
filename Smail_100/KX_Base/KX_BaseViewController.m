@@ -128,12 +128,11 @@
 
 -(void)setRightNaviBtnTitle:(NSString*)str withTitleColor:(UIColor *)titleColor
 {
-    self.rightNaviBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.rightNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.rightNaviBtn setTitle:str forState:UIControlStateNormal];
     [self.rightNaviBtn setTitleColor:titleColor forState:UIControlStateNormal];
     self.rightNaviBtn.titleLabel.font=[UIFont systemFontOfSize:18];
     [self.rightNaviBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
-    self.rightNaviBtn.backgroundColor=[UIColor clearColor];
     [self.rightNaviBtn addTarget:self action:@selector(didClickRightNaviBtn) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem * rightButton = [[UIBarButtonItem alloc]initWithCustomView:self.rightNaviBtn];
     self.navigationItem.rightBarButtonItem=rightButton;

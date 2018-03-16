@@ -82,13 +82,11 @@
                 if (result[@"data"][@"code"] == 0) {
                     userinfo.paytime =  dataDic[@"paytime"];
                     userinfo.mall_id = dataDic[@"mall_id"];
-                    userinfo.money = dataDic[@"money"];
                     userinfo.status = dataDic[@"status"];
                     userinfo.openid = dataDic[@"openid"];
                     userinfo.ctime = dataDic[@"ctime"];
                     userinfo.openid = dataDic[@"openid"];
                     userinfo.nickname = dataDic[@"nickname"];
-                    userinfo.used_point = dataDic[@"used_point"];
                     userinfo.pid_trees = dataDic[@"pid_trees"];
                     userinfo.agent = dataDic[@"agent"];
                     userinfo.sex = dataDic[@"sex"];
@@ -97,7 +95,6 @@
                     userinfo.user_id = dataDic[@"user_id"];
                     userinfo.realname = dataDic[@"realname"];
                     userinfo.avatar_url = dataDic[@"avatar_url"];
-                    userinfo.point = dataDic[@"point"];
                     userinfo.agent_trees = dataDic[@"agent_trees"];
                     userinfo.wxname = dataDic[@"wxname"];
                     userinfo.department = dataDic[@"department"];
@@ -107,7 +104,11 @@
                     userinfo.password = dataDic[@"password"];
                     userinfo.phone_money = dataDic[@"phone_money"];
                     userinfo.username = dataDic[@"username"];
-
+                    
+                    userinfo.point = dataDic[@"point"];
+                    userinfo.used_point = dataDic[@"used_point"];
+                    userinfo.air_money   = dataDic[@"coins"][@"air_money"];
+                    userinfo.money   = dataDic[@"coins"][@"money"];
                     if ([dataDic[@"mType"] isEqualToString:@"1"]) {
                         /// 会员
                         userinfo.isMembers = YES;

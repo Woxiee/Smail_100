@@ -66,6 +66,7 @@
             <connections>
                 <outlet property="lineView" destination="HW4-vQ-vIN" id="XvY-hj-a5d"/>
                 <outlet property="lineView2" destination="BE8-qa-VRI" id="py8-fC-UOR"/>
+                <outlet property="markImgeView" destination="QSU-mu-2e7" id="qQA-jp-aGj"/>
                 <outlet property="titleLabel" destination="fhb-lG-CS8" id="Mge-EY-fGQ"/>
             </connections>
         </tableViewCell>

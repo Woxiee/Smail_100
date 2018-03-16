@@ -113,7 +113,10 @@
         [timer invalidate];
         timer = nil;
         // 执行block回调
-        self.timerStopBlock();
+        if (self.timerStopBlock) {
+            self.timerStopBlock();
+
+        }
     }
 }
 
@@ -130,7 +133,6 @@
     NSInteger minute = (ms - day * dd - hour * hh) / mi;// 分
     NSInteger second = (ms - day * dd - hour * hh - minute * mi) / ss;// 秒
 //    NSLog(@"%zd日:%zd时:%zd分:%zd秒",day,hour,minute,second);
-    
 //    self.dayLabel.text = [NSString stringWithFormat:@"%zd天",day];
     self.hourLabel.text = [NSString stringWithFormat:@"%zd",hour];
     self.minuesLabel.text = [NSString stringWithFormat:@"%zd",minute];

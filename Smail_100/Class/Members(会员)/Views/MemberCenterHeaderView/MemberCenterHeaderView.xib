@@ -70,7 +70,7 @@
                 <constraint firstItem="ohq-5f-bmk" firstAttribute="bottom" secondItem="Yht-Xd-0hX" secondAttribute="bottom" id="Gyi-UJ-3bH"/>
                 <constraint firstItem="ohq-5f-bmk" firstAttribute="top" secondItem="Yht-Xd-0hX" secondAttribute="top" id="I3P-qu-pY3"/>
                 <constraint firstItem="Dvh-fh-JeH" firstAttribute="leading" secondItem="1py-vz-0Ai" secondAttribute="leading" id="OCt-Bp-8t1"/>
-                <constraint firstItem="1MA-Cj-O1h" firstAttribute="width" secondItem="ptz-eE-b6r" secondAttribute="width" id="Pvr-AB-dBR"/>
+                <constraint firstItem="1MA-Cj-O1h" firstAttribute="width" relation="greaterThanOrEqual" secondItem="ptz-eE-b6r" secondAttribute="width" id="Pvr-AB-dBR"/>
                 <constraint firstAttribute="trailing" secondItem="Dvh-fh-JeH" secondAttribute="trailing" id="QW5-z0-Rwv"/>
                 <constraint firstItem="9Bn-Va-c8H" firstAttribute="centerX" secondItem="1py-vz-0Ai" secondAttribute="centerX" id="QWX-a7-pWq"/>
                 <constraint firstItem="Yht-Xd-0hX" firstAttribute="top" secondItem="9Bn-Va-c8H" secondAttribute="top" constant="-1" id="T1p-vO-y3s"/>
@@ -84,6 +84,7 @@
                 <outlet property="headImage" destination="ptz-eE-b6r" id="qSM-h0-67Z"/>
                 <outlet property="infoImageView" destination="Yht-Xd-0hX" id="54u-me-e7Z"/>
                 <outlet property="memberCenterBg" destination="Dvh-fh-JeH" id="5l2-rM-r11"/>
+                <outlet property="nameTopConstain" destination="8EV-xB-tMJ" id="1I6-eW-wbf"/>
                 <outlet property="nickNeme" destination="1MA-Cj-O1h" id="gmK-wv-Uod"/>
                 <outlet property="phoneLabel" destination="9Bn-Va-c8H" id="G35-20-80O"/>
                 <outlet property="rightIconView" destination="E1M-5V-Y8J" id="uyd-iF-phd"/>

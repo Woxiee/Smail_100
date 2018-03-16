@@ -120,6 +120,12 @@
         _priceLB.attributedText = attributedStr;
     }
     _number.text = [NSString stringWithFormat:@"*%@",_products.goods_nums];
+    
+    if (_model.isDetail) {
+        _shouYeBtn.userInteractionEnabled = NO;
+        _meBtn.userInteractionEnabled = NO;
+    }
+    
 }
 
 /// 增加 减少BTN

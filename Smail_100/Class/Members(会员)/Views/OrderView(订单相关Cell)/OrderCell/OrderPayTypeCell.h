@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OrderDetailModel.h"
+#import "GoodsOrderModel.h"
 @interface OrderPayTypeCell : UITableViewCell
-@property (nonatomic, strong) OrderDetailModel *model;
+@property (nonatomic, strong) GoodsOrderModel *model;
 @end

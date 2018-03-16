@@ -32,6 +32,11 @@
     integralLB.textColor = DETAILTEXTCOLOR1;
     chargeLB.textColor = DETAILTEXTCOLOR1;
     changeLB.textColor = DETAILTEXTCOLOR1;
+    
+    smailLB.text = [KX_UserInfo sharedKX_UserInfo].money;
+    integralLB.text = [KX_UserInfo sharedKX_UserInfo].point;
+    chargeLB.text = [KX_UserInfo sharedKX_UserInfo].air_money;
+    changeLB.text = [KX_UserInfo sharedKX_UserInfo].used_point;
 
 //    kyLB.textColor = TITLETEXTLOWCOLOR;
 //    sxLb.textColor = TITLETEXTLOWCOLOR;

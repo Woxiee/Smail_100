@@ -11,6 +11,8 @@
 @interface  TopScreenView ()
 @property (nonatomic, strong) NSMutableArray  *titleKeyArr; //// 记录ID
 @property (nonatomic, strong) NSMutableArray *titleArray;
+@property (nonatomic,strong) UIButton *selectedBtn1;
+@property (nonatomic,strong) UIButton *selectedBtn2;
 
 @end
 

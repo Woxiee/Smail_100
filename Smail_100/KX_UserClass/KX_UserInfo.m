@@ -168,7 +168,6 @@ singleton_implementation(KX_UserInfo)
     
 //    [defaults setObject:self.paytime forKey:@"paytime"];
     [defaults setObject:self.mall_id forKey:@"mall_id"];
-    [defaults setObject:self.money forKey:@"money"];
     [defaults setObject:self.status forKey:@"status"];
     if (!KX_NULLString(self.openid)&& ![self.openid isKindOfClass:[NSNull class]]) {
         [defaults setObject:self.openid?self.openid:@"" forKey:@"openid"];
@@ -177,7 +176,7 @@ singleton_implementation(KX_UserInfo)
         [defaults setObject:self.ctime?self.ctime:@"" forKey:@"ctime"];
     }
     [defaults setObject:self.nickname forKey:@"nickname"];
-    [defaults setObject:self.used_point forKey:@"used_point"];
+
     if (!KX_NULLString(self.pid_trees) && ![self.pid_trees isKindOfClass:[NSNull class]]) {
         [defaults setObject:self.pid_trees?self.pid_trees:@"" forKey:@"pid_trees"];
     }
@@ -200,6 +199,13 @@ singleton_implementation(KX_UserInfo)
     [defaults setObject:self.password forKey:@"password"];
     [defaults setObject:self.phone_money forKey:@"phone_money"];
     [defaults setObject:self.username forKey:@"username"];
+    
+    [defaults setObject:self.money forKey:@"money"];
+    [defaults setObject:self.used_point forKey:@"used_point"];
+    [defaults setObject:self.point forKey:@"point"];
+    [defaults setObject:self.air_money forKey:@"air_money"];
+
+
     [defaults synchronize];
 }
 
@@ -250,13 +256,11 @@ singleton_implementation(KX_UserInfo)
 
     self.paytime   = [defaults objectForKey:@"paytime"];
     self.mall_id   = [defaults objectForKey:@"mall_id"];
-    self.money   = [defaults objectForKey:@"money"];
     self.status   = [defaults objectForKey:@"status"];
     self.openid   = [defaults objectForKey:@"openid"];
     self.ctime   = [defaults objectForKey:@"ctime"];
     self.openid   = [defaults objectForKey:@"openid"];
     self.nickname   = [defaults objectForKey:@"nickname"];
-    self.used_point   = [defaults objectForKey:@"used_point"];
     self.pid_trees   = [defaults objectForKey:@"pid_trees"];
     self.agent   = [defaults objectForKey:@"agent"];
     self.sex   = [defaults objectForKey:@"sex"];
@@ -266,7 +270,6 @@ singleton_implementation(KX_UserInfo)
     self.user_id   = [defaults objectForKey:@"user_id"];
     self.realname   = [defaults objectForKey:@"realname"];
     self.avatar_url   = [defaults objectForKey:@"avatar_url"];
-    self.point   = [defaults objectForKey:@"point"];
     self.agent_trees   = [defaults objectForKey:@"agent_trees"];
     self.wxname   = [defaults objectForKey:@"wxname"];
     self.department   = [defaults objectForKey:@"department"];
@@ -276,6 +279,15 @@ singleton_implementation(KX_UserInfo)
     self.password   = [defaults objectForKey:@"password"];
     self.phone_money   = [defaults objectForKey:@"phone_money"];
     self.username   = [defaults objectForKey:@"username"];
+    
+
+    self.money   = [defaults objectForKey:@"money"];
+    self.used_point   = [defaults objectForKey:@"used_point"];
+    
+    self.air_money   = [defaults objectForKey:@"air_money"];
+
+    self.point   = [defaults objectForKey:@"point"];
+
 }
 
 /**

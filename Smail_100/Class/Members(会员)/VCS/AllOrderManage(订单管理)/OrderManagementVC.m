@@ -18,8 +18,14 @@
 #import "OrderAutionCell.h"
 #import "OrderDetailVC.h"
 #import "SendCommentsVC.h"
-//#import "ContractDetailVC.h"
-//#import "GoodsAuctionDetailVC.h"
+
+#import "OrderSectionFootView.h"
+
+#import "OrderSectionHeadView.h"
+
+#import "SaleAfterVC.h"
+
+
 @interface OrderManagementVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 
@@ -52,7 +58,6 @@
 /// 配置基础设置
 - (void)setConfiguration
 {
-
     _page = 1;
     _quickSearch = @"";
     self.view.backgroundColor = BACKGROUND_COLOR;
@@ -119,64 +124,92 @@
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.resorceArray.count;
+    OrderModel *model =  self.resorceArray[section];
+    return model.seller.count;
 }
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    
     return self.resorceArray.count;
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WEAKSELF;
     static NSString* cellID = @"ManagementCellID";
-
+    OrderModel *model =  self.resorceArray[indexPath.section];
     OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell ) {
         cell = [[OrderCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    cell.model = self.resorceArray[indexPath.section];
+    cell.seller = model.seller[indexPath.row];
+//    cell.model = self.resorceArray[indexPath.section];
     cell.DidClickOrderCellBlock  = ^(NSString *title){
         LOG(@"title = %@",title);
         [weakSelf operationOrderWithTitle:title OrderModel:self.resorceArray[indexPath.section]];
     };
     return cell;
-
-    
-
 }
 
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OrderModel  *model = self.resorceArray[indexPath.section];
-    return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[OrderCell class] contentViewWidth:SCREEN_WIDTH];
+//    OrderModel  *model = self.resorceArray[indexPath.section];
+//    return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[OrderCell class] contentViewWidth:SCREEN_WIDTH];
 
+    return 115;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 10;
-}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OrderModel  *model = self.resorceArray[indexPath.section];
-    OrderDetailVC *VC = [[OrderDetailVC alloc] init];
-    VC.model = model;
-    [self.navigationController pushViewController:VC animated:YES];
+//    _waitSendVC.orderTypeTitle = @"4";
+    if ([_orderTypeTitle isEqualToString:@"4"]) {
+        SaleAfterVC *VC = [[SaleAfterVC alloc] init];
+        VC.model = model;
+        [self.navigationController pushViewController:VC animated:YES];
+    }else{
+        OrderDetailVC *VC = [[OrderDetailVC alloc] init];
+        VC.model = model;
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+  
 
-    
+}
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 55;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 90;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
+    OrderModel  *model = self.resorceArray[section];
+    OrderSectionHeadView *headView =  [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([OrderSectionHeadView class]) owner:self options:nil].lastObject;
+    headView.model  = model;
+    return headView;
+}
+
+
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    OrderModel  *model = self.resorceArray[section];
+    OrderSectionFootView *footView =  [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([OrderSectionFootView class]) owner:self options:nil].lastObject;
+    footView.model = model;
+    return footView;
 }
 
 

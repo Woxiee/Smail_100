@@ -84,7 +84,7 @@
 
 -(void)setRightNaviBtnTitle:(NSString *)str
 {
-    self.rightNaviBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.rightNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.rightNaviBtn.frame=CGRectMake(0, 0, 44, 44);
     [self.rightNaviBtn setTitle:str forState:UIControlStateNormal];
     self.rightNaviBtn.titleLabel.font=[UIFont systemFontOfSize:16];
@@ -93,7 +93,10 @@
     [self.rightNaviBtn addTarget:self action:@selector(didClickRightNaviBtn) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem * rightButton = [[UIBarButtonItem alloc]initWithCustomView:self.rightNaviBtn];
     self.navigationItem.rightBarButtonItem=rightButton;
+    [self.rightNaviBtn sizeToFit];
+
 }
+
 -(void)setLeftNaviBtnImage:(UIImage*)img
 {
     self.leftNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];

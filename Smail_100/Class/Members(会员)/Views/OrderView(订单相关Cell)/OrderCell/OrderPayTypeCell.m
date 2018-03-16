@@ -35,16 +35,24 @@
     priceLB.textColor = BACKGROUND_COLORHL;
 }
 
--(void)setModel:(OrderDetailModel *)model
+//-(void)setModel:(OrderDetailModel *)model
+//{
+//    _model = model;
+//
+//    payLB.text = _model.payValue;
+//
+//    priceLB.text = [NSString stringWithFormat:@"￥%@",_model.order.sumAmout];
+//
+//
+//}
+
+- (void)setModel:(GoodsOrderModel *)model
 {
     _model = model;
-  
-    payLB.text = _model.payValue;
-
-    priceLB.text = [NSString stringWithFormat:@"￥%@",_model.order.sumAmout];
-
     
-}
+    titleLB1.text = [NSString stringWithFormat:@"订单号：%@",_model.orderno];
+    titleLb2.text = [NSString stringWithFormat:@"交易时间：%@",_model.ctime];
 
+}
 
 @end

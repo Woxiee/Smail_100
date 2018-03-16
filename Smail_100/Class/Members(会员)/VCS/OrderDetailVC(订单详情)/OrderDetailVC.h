@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OrderModel.h"
-@interface OrderDetailVC : KX_BaseTableViewController
+@interface OrderDetailVC : KX_BaseViewController
 @property (nonatomic, strong) OrderModel *model;
 @property (nonatomic, strong) NSString *orderID;
 @property (nonatomic, assign)  BOOL isLease;   /// 是否租赁

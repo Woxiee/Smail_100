@@ -74,12 +74,12 @@
     [self.view addSubview:segmentMenuVc];
     
     /* 自定义设置(可不设置为默认值) */
-    segmentMenuVc.backgroundColor = [UIColor whiteColor];
+    //    segmentMenuVc.backgroundColor = [UIColor colorWithRed:240/250.0 green:240/250.0 blue:240/250.0 alpha:1];
     segmentMenuVc.titleFont = PLACEHOLDERFONT;
     segmentMenuVc.unlSelectedColor = [UIColor darkGrayColor];
-    segmentMenuVc.selectedColor = BACKGROUND_COLORHL;
+    segmentMenuVc.selectedColor = KMAINCOLOR;
     segmentMenuVc.MenuVcSlideType = WJSegmentMenuVcSlideTypeSlide;
-    segmentMenuVc.SlideColor = [UIColor clearColor];
+    segmentMenuVc.SlideColor = KMAINCOLOR;
     segmentMenuVc.advanceLoadNextVc = NO;
 
     //    NewOrderTitleType,                  /// 新机

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="OrderSectionHeadView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1YE-JS-XSu">
+                    <rect key="frame" x="10" y="10" width="46" height="35"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="代付款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAF-C8-YOH">
+                    <rect key="frame" x="317" y="10" width="46" height="35"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adk-R0-fMf">
+                    <rect key="frame" x="0.0" y="44.5" width="375" height="0.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="9Le-bs-ZvM"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgP-Mq-GDj">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="10"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="1J7-J9-0yw"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="xgP-Mq-GDj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0c4-kh-p3O"/>
+                <constraint firstItem="adk-R0-fMf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2iV-ah-41k"/>
+                <constraint firstItem="xgP-Mq-GDj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="B0J-Nj-feS"/>
+                <constraint firstItem="mAF-C8-YOH" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="BQY-Do-Ex9"/>
+                <constraint firstItem="mAF-C8-YOH" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="F6c-Ly-T6x"/>
+                <constraint firstItem="1YE-JS-XSu" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="Jj0-Xh-522"/>
+                <constraint firstAttribute="trailing" secondItem="adk-R0-fMf" secondAttribute="trailing" id="Sf7-FX-lZ1"/>
+                <constraint firstItem="adk-R0-fMf" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="TiV-gv-VBj"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mAF-C8-YOH" secondAttribute="trailing" constant="12" id="aoe-l7-sNS"/>
+                <constraint firstItem="1YE-JS-XSu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="nAc-g7-ECh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xgP-Mq-GDj" secondAttribute="trailing" id="oRV-sI-SCz"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="1YE-JS-XSu" secondAttribute="bottom" id="rWv-de-qox"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="headLineView" destination="xgP-Mq-GDj" id="ZcR-yP-eEQ"/>
+                <outlet property="linevIEW" destination="adk-R0-fMf" id="BLM-9y-a9z"/>
+                <outlet property="orderNumberLB" destination="1YE-JS-XSu" id="B63-ZI-q4x"/>
+                <outlet property="payStateLB" destination="mAF-C8-YOH" id="tI1-1f-hI6"/>
+            </connections>
+            <point key="canvasLocation" x="22.5" y="62.5"/>
+        </view>
+    </objects>
+</document>

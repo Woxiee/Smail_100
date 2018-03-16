@@ -20,16 +20,20 @@
 #import "OrderServiewInfoCell.h"
 #import "OrderWeekInfoCell.h"
 #import "AttributeCell.h"
-//#import "OrderMoneyVC.h"
-//#import "ContractDetailVC.h"
+#import "GoodSOrderNomalCell.h"
+
 #import "SendCommentsVC.h"
+#import "MailTypeCell.h"
+#import "DeductionCell.h"
+#import "GoodsCommonCell.h"
 
-//#import "InvoiceDetailVC.h"
-//#import "InvoiceOtherDetailVC.h"
 
-@interface OrderDetailVC ()
+@interface OrderDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak)  OrderFootView *footView;
 @property (nonatomic, strong)  OrderDetailModel *detailModel;
+
+@property (nonatomic, strong) GoodsOrderModel *orderModel;
+@property (nonatomic, strong) UITableView *tableView;
 @end
 
 @implementation OrderDetailVC
@@ -44,12 +48,22 @@ static NSString *const orderServiewInfoCellID = @"orderServiewInfoCellID";
 static NSString *const OrderWeekInfoCellID = @"OrderWeekInfoCellID";
 static NSString * const cellID = @"cellID";
 
+static NSString * const MailTypeCellCellID = @"MailTypeCellCellID";
+static NSString * const DeductionCellID = @"DeductionCellID";
+static NSString *const goodSOrderNomalCellID = @"goodSOrderNomalCell";
+
+static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
+    [self setConfiguration];
     [self requestNetWork];
 }
+
+
+
 
 
 #pragma mark - 得到网络数据
@@ -60,47 +74,35 @@ static NSString * const cellID = @"cellID";
         _orderID = @"";
     }
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setObject:[KX_UserInfo sharedKX_UserInfo].ID forKey:@"mid"];
-    [param setObject:_orderID forKey:@"orderId"];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    [param setObject:_model.orderno forKey:@"orderno"];
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
-    [OrderVModel getOrderDetailParam:param successBlock:^(NSArray <OrderDetailModel *>*dataArray, BOOL isSuccess) {
+    [OrderVModel getOrderDetailParam:param successBlock:^(NSArray <GoodsOrderModel *>*dataArray, BOOL isSuccess) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (isSuccess) {
-            OrderDetailModel *model = dataArray[0];
-            weakSelf.detailModel = model;
-
-
-            [self.resorceArray addObject:@[@"地址"]];
-            [self.resorceArray addObject:@[@"商品数据"]];
-            [self.resorceArray addObject:@[@"买家留言"]];
-            [self.resorceArray addObject:@[@"商品小计"]];
-
-            if (_isDetection) {
-                [self.resorceArray addObject:@[@"服务周期"]];
+            if (weakSelf.resorceArray.count >0) {
+                [weakSelf.resorceArray removeAllObjects];
             }
-            [self.resorceArray addObject: @[@"发票信息"]]; ///5
-            [self.resorceArray addObject:@[@"付款信息"]];
-            
-            if (_isLease) {
-                if (_detailModel.order.deposit && ![ _detailModel.order.deposit isEqualToString:@"0.00"]) {
-                    [self.resorceArray addObject:@[@"押金"]]; ///5
-                }
+            if (dataArray.count > 0) {
+                GoodsOrderModel *model = dataArray[0];
+                weakSelf.orderModel = model;
             }
-            
-//            if ([model.order.payStatus integerValue] == 1 ) {
-                NSArray *payArr = @[@"已付款"];
-                [self.resorceArray addObject:payArr];
-//            }
+
+            weakSelf.orderModel.address.contact_username =  @"测试";
+            weakSelf.orderModel.address.detail =  @"detail";
+            weakSelf.orderModel.address.city =  @"city";
+            weakSelf.orderModel.address.addr_id =  @"addr_id";
+            weakSelf.orderModel.address.contact_mobile =  @"contact_mobile";
+            weakSelf.orderModel.address.province =  @"province";
+            weakSelf.orderModel.address.district =  @"district";
+
+            weakSelf.orderModel.isDetail = YES;
+            [weakSelf.resorceArray addObject:@"新增收货地址"];
+            [weakSelf.resorceArray addObject:@"商品详情"];
+            [weakSelf.resorceArray addObject:@"积分抵扣"];
+            [weakSelf.resorceArray addObject:@"订单信息"];
+
         
-       
-            if ([model.order.payMentType integerValue] == 2) {
-                NSArray *payArr = @[@"分期付款"];
-                [self.resorceArray addObject:payArr];
-            }
-            
-            [self.resorceArray addObject:@[@"订单信息"]];///8
-
-            
             [weakSelf.tableView reloadData];
 
         }else{
@@ -134,19 +136,23 @@ static NSString * const cellID = @"cellID";
 {
     self.title = @"订单详情";
     WEAKSELF;
-    self.tableView.tableFooterView = [UIView new];//默认设置为空
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = BACKGROUND_COLOR;
-    OrderFootView *footView = [[OrderFootView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 40) style:UITableViewStylePlain];
+    tableView.dataSource = self;
+    tableView.delegate = self;
+    tableView.rowHeight = 44.f;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.backgroundColor = BACKGROUND_COLOR;
+    [self.view addSubview:tableView];
+    self.tableView = tableView;
+    OrderFootView *footView = [[OrderFootView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 40 - 64, SCREEN_WIDTH, 40)];
     footView.backgroundColor = [UIColor whiteColor];
+    [self.view  addSubview:footView];
     self.footView = footView;
-    self.footView.model = _model;
+    
     self.footView.didClickOrderItemBlock = ^(NSString *title){
         [weakSelf operationOrderWithTitle:title OrderModel:_model];
     };
-    self.tableView.tableFooterView = footView;
-    
-    
     
     [self.tableView registerNib:[UINib nibWithNibName:@"DefaultAdressCell" bundle:nil] forCellReuseIdentifier:defaultAdressCellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"OrderGoodDetailCell" bundle:nil]
@@ -157,7 +163,6 @@ static NSString * const cellID = @"cellID";
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GoodSOrderCommonCell" bundle:nil] forCellReuseIdentifier:goodSOrderCommonCell];
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"OrderPayTypeCell" bundle:nil] forCellReuseIdentifier:orderPayTypeCellID];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"orderOtherInfo" bundle:nil] forCellReuseIdentifier:orderOtherInfoID];
     
@@ -167,6 +172,24 @@ static NSString * const cellID = @"cellID";
 
     [ self.tableView  registerNib:[UINib nibWithNibName:@"AttributeCell" bundle:nil] forCellReuseIdentifier:cellID];
 
+
+}
+
+/// 配置基础设置
+- (void)setConfiguration
+{
+    [self.tableView registerNib:[UINib nibWithNibName:@"DefaultAdressCell" bundle:nil] forCellReuseIdentifier:defaultAdressCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GoodSOrderCommonCell" bundle:nil] forCellReuseIdentifier:goodSOrderCommonCell];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GoodSOrderNomalCell" bundle:nil] forCellReuseIdentifier:goodSOrderNomalCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"KX_ApprovalContentCell" bundle:nil] forCellReuseIdentifier:ContenGeneralCellID];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"GoodsCombinedCell" bundle:nil] forCellReuseIdentifier:goodsCombinedCellID];
+    
+    [self.tableView registerClass:[MailTypeCell class] forCellReuseIdentifier:MailTypeCellCellID];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"DeductionCell" bundle:nil] forCellReuseIdentifier:DeductionCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"OrderPayTypeCell" bundle:nil] forCellReuseIdentifier:orderPayTypeCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GoodsCommonCell" bundle:nil] forCellReuseIdentifier:goodsCommonCellID];
 
 }
 
@@ -186,561 +209,128 @@ static NSString * const cellID = @"cellID";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSString *title =   self.resorceArray[indexPath.section][indexPath.row];
-    if ([title isEqualToString:@"地址"]) {
+    WEAKSELF;
+    NSString *str = self.resorceArray[indexPath.section];
+    if (indexPath.section == 0) {
         DefaultAdressCell *cell = [tableView dequeueReusableCellWithIdentifier:defaultAdressCellID forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.orderDetailModel = _detailModel;
+        cell.addressModel = _orderModel.address;
         cell.markView.hidden = YES;
         return cell;
+
     }
-    else if ([title isEqualToString:@"商品数据"]){
-        OrderGoodDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:orderGoodDetailCellID forIndexPath:indexPath];
+    else if (indexPath.section ==1){
+        GoodSOrderNomalCell *cell = [tableView dequeueReusableCellWithIdentifier:goodSOrderNomalCellID forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.model = _detailModel;
+        Seller *seller = _orderModel.seller[indexPath.row];
+        cell.products = seller.products[indexPath.row];
         return cell;
     }
-    else if ([title isEqualToString:@"买家留言"]){
-        KX_ApprovalContentCell *cell = [tableView dequeueReusableCellWithIdentifier:ContenGeneralCellID forIndexPath:indexPath];
+    
+    else if (indexPath.section == 2){
+        GoodsCommonCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsCommonCellID forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.titleLabel.text = @"买家留言: ";
+//        cell.titleLabel.text = str;
+        cell.orderModel = _orderModel;
         cell.titleLabel.textColor = TITLETEXTLOWCOLOR;
-        cell.contenTextView.tag = 200;
-        cell.contenTextView.userInteractionEnabled = NO;
-        cell.contenTextView.text = _detailModel.order.buyerRemarks;
-        cell.contenTextView.myPlaceholder = @"";
-        cell.contenTextView.textColor = DETAILTEXTCOLOR;
+        cell.markImgeView.hidden = YES;
         return cell;
     }
     
-    else if ([title isEqualToString:@"商品小计"]){
-        GoodsCombinedCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsCombinedCellID];
-        NSString *str1 = [NSString stringWithFormat:@"￥%@",_detailModel.order.sumAmout];
-        NSString *str =[NSString stringWithFormat:@"共%@件商品，小计：%@",_detailModel.order.buyCount,str1];
-        NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str.length- str1.length, str1.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:17 weight:UIFontWeightThin]];
-        cell.titleLB.attributedText = attributedStr;
-        return cell;
-    }
-    
-    else if ([title isEqualToString:@"服务周期"]){
-        OrderServiewInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:orderServiewInfoCellID];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.model = _detailModel;
-        return cell;
-    }
-    
-    else if ([title isEqualToString:@"发票信息"]){
-        GoodSOrderCommonCell *cell = [tableView dequeueReusableCellWithIdentifier:goodSOrderCommonCell forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.titleLB.text = self.resorceArray[indexPath.section][indexPath.row];
-        cell.titleLB.textColor = TITLETEXTLOWCOLOR;
-        cell.detailLB.text = _detailModel.invoiceValue;
-        return cell;
-    }
-    
-    else if ([title isEqualToString:@"付款信息"]){
-    
-        if (_isLease) {
-            OrderWeekInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:OrderWeekInfoCellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.model = _detailModel;
-            return cell;
-        }else{
-            OrderPayTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:orderPayTypeCellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.model = _detailModel;
-            return cell;
-        }
-       
-
-    }
-    else if ([title isEqualToString:@"押金"]){
-
-        AttributeCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.titleLabel.textColor = TITLETEXTLOWCOLOR;
-        cell.titleLabel.text = self.resorceArray[indexPath.section][indexPath.row];
-        cell.detailLabel.textAlignment = NSTextAlignmentRight;
-        cell.detailLabel.text =  [NSString stringWithFormat:@"￥%@",_detailModel.order.deposit];
-        return cell;
-
-    }
-    else if ([title isEqualToString:@"已付款"]){
-        GoodSOrderCommonCell *cell = [tableView dequeueReusableCellWithIdentifier:goodSOrderCommonCell forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.titleLB.textColor = TITLETEXTLOWCOLOR;
-        
-        cell.titleLB.text = self.resorceArray[indexPath.section][indexPath.row];
-        cell.detailLB.text = [NSString stringWithFormat:@"￥%@",_detailModel.order.orderPay];
-        return cell;
-    }
-    
-    else if ([title isEqualToString:@"分期付款"]){
-        GoodSOrderCommonCell *cell = [tableView dequeueReusableCellWithIdentifier:goodSOrderCommonCell forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.titleLB.textColor = TITLETEXTLOWCOLOR;
-        
-        cell.titleLB.text = self.resorceArray[indexPath.section][indexPath.row];
-        cell.detailLB.text = [NSString stringWithFormat:@"￥%@",_detailModel.order.orderPay];
-        return cell;
-    }
-    
-    else if ([title isEqualToString:@"订单信息"]){
-        orderOtherInfo *cell = [tableView dequeueReusableCellWithIdentifier:orderOtherInfoID forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.model = _detailModel;
-        return cell;
-    }
-    /*
-    if (_isDetection) {
-        /// 租赁类型
-        OrderDetailModel *model = self.resorceArray[0][0];
-        if (indexPath.section == 0) {
-            DefaultAdressCell *cell = [tableView dequeueReusableCellWithIdentifier:defaultAdressCellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.orderDetailModel = model;
-            cell.markView.hidden = YES;
-            return cell;
-        }
-        
-        else if (indexPath.section ==1){
-            OrderGoodDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:orderGoodDetailCellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.model = model;
-            return cell;
-        }
-        
-        else if (indexPath.section ==2){
-            KX_ApprovalContentCell *cell = [tableView dequeueReusableCellWithIdentifier:ContenGeneralCellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.titleLabel.text = @"买家留言: ";
-            cell.titleLabel.textColor = TITLETEXTLOWCOLOR;
-            cell.contenTextView.tag = 200;
-            cell.contenTextView.userInteractionEnabled = NO;
-            cell.contenTextView.text = model.order.buyerRemarks;
-            cell.contenTextView.myPlaceholder = @"";
-            cell.contenTextView.textColor = DETAILTEXTCOLOR;
-            return cell;
-        }
-        
-        else if (indexPath.section == 3){
-            GoodsCombinedCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsCombinedCellID];
-            NSString *str1 = [NSString stringWithFormat:@"￥%@",model.order.sumAmout];
-            NSString *str =[NSString stringWithFormat:@"共%@件商品，小计：%@",model.order.buyCount,str1];
-            NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str.length- str1.length, str1.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:17 weight:UIFontWeightThin]];
-            cell.titleLB.attributedText = attributedStr;
-            return cell;
-        }
-        else if (indexPath.section == 4){
-            OrderServiewInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:orderServiewInfoCellID];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.model = model;
-            return cell;
-        }
-        
-        else if (indexPath.section == 5){
-            GoodSOrderCommonCell *cell = [tableView dequeueReusableCellWithIdentifier:goodSOrderCommonCell forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.titleLB.text = self.resorceArray[indexPath.section][indexPath.row];
-            cell.titleLB.textColor = TITLETEXTLOWCOLOR;
-            cell.detailLB.text = model.invoiceValue;
-            return cell;
-        }
-        
-        else if (indexPath.section == 6){
-            OrderPayTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:orderPayTypeCellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.model = model;
-            return cell;
-        }
-
-        else if (indexPath.section == 7){
-            GoodSOrderCommonCell *cell = [tableView dequeueReusableCellWithIdentifier:goodSOrderCommonCell forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.titleLB.textColor = TITLETEXTLOWCOLOR;
-            
-            cell.titleLB.text = self.resorceArray[indexPath.section][indexPath.row];
-            cell.detailLB.text = [NSString stringWithFormat:@"￥%@",model.order.orderPay];
-            return cell;
-        }
-        
-        else if (indexPath.section == 8){
-            orderOtherInfo *cell = [tableView dequeueReusableCellWithIdentifier:orderOtherInfoID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.model = model;
-            return cell;
-        }
-
-    }
-    if (_isLease) {
-        /// 租赁类型
-        OrderDetailModel *model = self.resorceArray[0][0];
-        if (indexPath.section == 0) {
-            DefaultAdressCell *cell = [tableView dequeueReusableCellWithIdentifier:defaultAdressCellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.orderDetailModel = model;
-            cell.markView.hidden = YES;
-            return cell;
-        }
-        
-        else if (indexPath.section ==1){
-            OrderGoodDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:orderGoodDetailCellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.model = model;
-            return cell;
-        }
-        
-        else if (indexPath.section ==2){
-            KX_ApprovalContentCell *cell = [tableView dequeueReusableCellWithIdentifier:ContenGeneralCellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.titleLabel.text = @"买家留言: ";
-            cell.titleLabel.textColor = TITLETEXTLOWCOLOR;
-            cell.contenTextView.tag = 200;
-            cell.contenTextView.userInteractionEnabled = NO;
-            cell.contenTextView.text = model.order.buyerRemarks;
-            cell.contenTextView.myPlaceholder = @"";
-            cell.contenTextView.textColor = DETAILTEXTCOLOR;
-            return cell;
-        }
-        
-        else if (indexPath.section == 3){
-            GoodsCombinedCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsCombinedCellID];
-            NSString *str1 = [NSString stringWithFormat:@"￥%@",model.order.sumAmout];
-            NSString *str =[NSString stringWithFormat:@"共%@件商品，小计：%@",model.order.buyCount,str1];
-            NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str.length- str1.length, str1.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:17 weight:UIFontWeightThin]];
-            cell.titleLB.attributedText = attributedStr;
-            return cell;
-        }
-        
-        else if (indexPath.section == 4){
-            GoodSOrderCommonCell *cell = [tableView dequeueReusableCellWithIdentifier:goodSOrderCommonCell forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.titleLB.text = self.resorceArray[indexPath.section][indexPath.row];
-            cell.titleLB.textColor = TITLETEXTLOWCOLOR;
-            cell.detailLB.text = model.invoiceValue;
-            return cell;
-        }
-        
-        else if (indexPath.section == 5){
-            OrderWeekInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:OrderWeekInfoCellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.model = model;
-            return cell;
-        }
-        else if (indexPath.section == 6){
-            AttributeCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.titleLabel.textColor = TITLETEXTLOWCOLOR;
-            cell.titleLabel.text = self.resorceArray[indexPath.section][indexPath.row];
-            cell.detailLabel.textAlignment = NSTextAlignmentRight;
-            cell.detailLabel.text =  [NSString stringWithFormat:@"￥%@",model.order.deposit];
-            return cell;
-        }
-        
-        else if (indexPath.section == 7){
-            GoodSOrderCommonCell *cell = [tableView dequeueReusableCellWithIdentifier:goodSOrderCommonCell forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.titleLB.textColor = TITLETEXTLOWCOLOR;
-            
-            cell.titleLB.text = self.resorceArray[indexPath.section][indexPath.row];
-            cell.detailLB.text = [NSString stringWithFormat:@"￥%@",model.order.orderPay];
-            return cell;
-        }
-        
-        else if (indexPath.section == 8){
-            orderOtherInfo *cell = [tableView dequeueReusableCellWithIdentifier:orderOtherInfoID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.model = model;
-            return cell;
-        }
-
-    }
-    
-    /// 购买商品类型
     else{
-        OrderDetailModel *model = self.resorceArray[0][0];
-        if (indexPath.section == 0) {
-            DefaultAdressCell *cell = [tableView dequeueReusableCellWithIdentifier:defaultAdressCellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.orderDetailModel = model;
-            cell.markView.hidden = YES;
-            return cell;
-        }
-        
-        else if (indexPath.section ==1){
-            OrderGoodDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:orderGoodDetailCellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.model = model;
-            return cell;
-        }
-        
-        else if (indexPath.section ==2){
-            KX_ApprovalContentCell *cell = [tableView dequeueReusableCellWithIdentifier:ContenGeneralCellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.titleLabel.text = @"买家留言: ";
-            cell.titleLabel.textColor = TITLETEXTLOWCOLOR;
-            cell.contenTextView.tag = 200;
-            cell.contenTextView.userInteractionEnabled = NO;
-            cell.contenTextView.text = model.order.buyerRemarks;
-            cell.contenTextView.myPlaceholder = @"";
-            cell.contenTextView.textColor = DETAILTEXTCOLOR;
-            return cell;
-        }
-        
-        else if (indexPath.section == 3){
-            GoodsCombinedCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsCombinedCellID];
-            NSString *str1 = [NSString stringWithFormat:@"￥%@",model.order.sumAmout];
-            NSString *str =[NSString stringWithFormat:@"共%@件商品，小计：%@",model.order.buyCount,str1];
-            NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str.length- str1.length, str1.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:17 weight:UIFontWeightThin]];
-            cell.titleLB.attributedText = attributedStr;
-            return cell;
-        }
-        
-        else if (indexPath.section == 4){
-            GoodSOrderCommonCell *cell = [tableView dequeueReusableCellWithIdentifier:goodSOrderCommonCell forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.titleLB.text = self.resorceArray[indexPath.section][indexPath.row];
-            cell.titleLB.textColor = TITLETEXTLOWCOLOR;
-            cell.detailLB.text = model.invoiceValue;
-            return cell;
-        }
-        
-        else if (indexPath.section == 5){
-            OrderPayTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:orderPayTypeCellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.model = model;
-            return cell;
-        }
-        
-        else if (indexPath.section == 6){
-            GoodSOrderCommonCell *cell = [tableView dequeueReusableCellWithIdentifier:goodSOrderCommonCell forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.titleLB.textColor = TITLETEXTLOWCOLOR;
-            
-            cell.titleLB.text = self.resorceArray[indexPath.section][indexPath.row];
-            cell.detailLB.text = [NSString stringWithFormat:@"￥%@",model.order.orderPay];
-            return cell;
-        }
-        
-        else if (indexPath.section == 7){
-            orderOtherInfo *cell = [tableView dequeueReusableCellWithIdentifier:orderOtherInfoID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.model = model;
-            return cell;
-        }
+        OrderPayTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:orderPayTypeCellID forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.didChageJFNumberBlock = ^(NSString *buyNumber) {
+//        };
+//        cell.userInfo = _orderModel.userinfo;
+        cell.model = _orderModel;
 
+        return cell;
     }
-  */
+    
     return nil;
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *title =   self.resorceArray[indexPath.section][indexPath.row];
-    if ([title isEqualToString:@"地址"]) {
-         return 82;
-    }
-    else if ([title isEqualToString:@"商品数据"]){
-           return 82;
-    }
-    else if ([title isEqualToString:@"买家留言"]){
-        CGSize contentSize;
-        contentSize = [NSString heightForString:_detailModel.order.buyerRemarks fontSize:[UIFont systemFontOfSize:15.f] WithSize:CGSizeMake( SCREEN_WIDTH - 100, 500)];
-        
-        if (contentSize.height < 16) {
-            contentSize.height = 14;
-        }else{
-            contentSize.height = contentSize.height ;
-        }
-        return  contentSize.height +30;
-    }
+    NSString *str = self.resorceArray[indexPath.section];
     
-    else if ([title isEqualToString:@"商品小计"]){
-         return  44;
-    }
-    
-    else if ([title isEqualToString:@"服务周期"]){
-        return 176;
+    if ([str isEqualToString:@"新增收货地址"])
+    {
 
+        return 82;
+    }
+    else if ([str isEqualToString:@"商品详情"])
+    {
+        return 235;
+        
     }
     
-    else if ([title isEqualToString:@"发票信息"]){
-        return  44;
+    else if([str isEqualToString:@"积分抵扣"]){
+        return 40;
     }
-    
-    else if ([title isEqualToString:@"付款信息"]){
-        if (_isLease) {
-            return 122;
-        }
-         return 75;
-    }
-    else if ([title isEqualToString:@"押金"]){
-            return  44;
-    }
-    else if ([title isEqualToString:@"已付款"]){
-            return  44;
-    }
-    
-    else if ([title isEqualToString:@"分期付款"]){
-            return  44;
-    }
-    
-    else if ([title isEqualToString:@"订单信息"]){
-           return 90;
-    }
-//    if (_isLease ) {
-//        if (indexPath.section == 0) {
-//            return 82;
-//        }
-//        else if (indexPath.section == 1)
-//        {
-//            return 82;
-//        }
-//        
-//        else if (indexPath.section == 2)
-//        {
-//            OrderDetailModel *model = self.resorceArray[0][0];
-//            
-//            CGSize contentSize;
-//            contentSize = [NSString heightForString:model.order.buyerRemarks fontSize:[UIFont systemFontOfSize:15.f] WithSize:CGSizeMake( SCREEN_WIDTH - 100, 500)];
-//            
-//            if (contentSize.height < 16) {
-//                contentSize.height = 14;
-//            }else{
-//                contentSize.height = contentSize.height ;
-//            }
-//            return  contentSize.height +30;
-//            
-//        }
-//        else if (indexPath.section == 5)
-//        {
-//            return 90;
-//        }
-//        
-//        else if (indexPath.section == 8)
-//        {
-//            return 90;
-//        }
-//        return 44;
-//    }
-//    else if (_isDetection){
-//        if (indexPath.section == 0) {
-//            return 92;
-//        }
-//        else if (indexPath.section == 1)
-//        {
-//            return 82;
-//        }
-//        
-//        else if (indexPath.section == 2)
-//        {
-//            OrderDetailModel *model = self.resorceArray[0][0];
-//            
-//            CGSize contentSize;
-//            contentSize = [NSString heightForString:model.order.buyerRemarks fontSize:[UIFont systemFontOfSize:15.f] WithSize:CGSizeMake( SCREEN_WIDTH - 100, 500)];
-//            
-//            if (contentSize.height < 16) {
-//                contentSize.height = 14;
-//            }else{
-//                contentSize.height = contentSize.height ;
-//            }
-//            return  contentSize.height +30;
-//            
-//        }
-//        else if (indexPath.section == 4)
-//        {
-//            return 133;
-//        }
-//        else if (indexPath.section == 6)
-//        {
-//            return 70;
-//        }
-//        
-//        else if (indexPath.section == 8)
-//        {
-//            return 90;
-//        }
-//        return 44;
-//
-//    }
-//    
-//    else{
-//        if (indexPath.section == 0) {
-//            return 92;
-//        }
-//        else if (indexPath.section == 1)
-//        {
-//            return 82;
-//        }
-//        
-//        else if (indexPath.section == 2)
-//        {
-//            OrderDetailModel *model = self.resorceArray[0][0];
-//            
-//            CGSize contentSize;
-//            contentSize = [NSString heightForString:model.order.buyerRemarks fontSize:[UIFont systemFontOfSize:15.f] WithSize:CGSizeMake( SCREEN_WIDTH - 100, 500)];
-//            
-//            if (contentSize.height < 16) {
-//                contentSize.height = 14;
-//            }else{
-//                contentSize.height = contentSize.height ;
-//            }
-//            return  contentSize.height +30;
-//            
-//        }
-//        else if (indexPath.section == 5)
-//        {
-//            return 70;
-//        }
-//        
-//        else if (indexPath.section == 7)
-//        {
-//            return 90;
-//        }
-//        return 44;
-//    }
-    return 0;
+    return 55;
 }
+
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 5)];
+    lineView.backgroundColor = BACKGROUND_COLOR;
+    return lineView;
+}
+
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 2 || section == 3) {
+    if (section == 0) {
         return 0;
     }
-    else if (section == 0){
-        return 43;
-    }
-    else if (section == 1){
-        return 50;
-    }
-    return 10;
-
+    return 5;
 }
-- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    OrderDetailModel *model = _detailModel;
 
-    if (section == 0) {
-        UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 43)];
-        headView.backgroundColor = [UIColor clearColor];
-        UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, SCREEN_WIDTH - 12, 43)];
-        titleLB.textColor = BACKGROUND_COLORHL;
-        titleLB.font = Font15;
-        titleLB.text = model.order.orderStatusTitle;
-        [headView addSubview:titleLB];
-        return headView;
-    }
-    else if (section == 1) {
-        UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (section == 1) {
+        UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH -1, 50)];
         headView.backgroundColor = [UIColor whiteColor];
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
         lineView.backgroundColor = BACKGROUND_COLOR;
         [headView addSubview:lineView];
         
-        UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(12, 10, SCREEN_WIDTH - 12, 44)];
-        titleLB.textColor = DETAILTEXTCOLOR;
+        UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, SCREEN_WIDTH - 12, 44)];
+        titleLB.textColor = TITLETEXTLOWCOLOR;
         titleLB.font = Font15;
-        titleLB.text = model.order.sellerCompName;
+        titleLB.textAlignment = NSTextAlignmentRight;
+        
+        NSString *allNumber = [NSString stringWithFormat:@"%@",_orderModel.count];
+        NSString *allPrice = [NSString stringWithFormat:@"￥%@",_model.price];
+        NSString *allPoint = [NSString stringWithFormat:@"%@",_model.point];
+        if ([_model.point integerValue] >0) {
+            NSMutableAttributedString *hintString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"共%@件商品   合计:%@+%@积分",allNumber,allPrice,allPoint]];
+            //获取要调整颜色的文字位置,调整颜色
+            NSRange range1=[[hintString string]rangeOfString:allNumber];
+            [hintString addAttribute:NSForegroundColorAttributeName  value:KMAINCOLOR range:range1];
+            
+            NSRange range2=[[hintString string]rangeOfString:allPrice];
+            [hintString addAttribute:NSForegroundColorAttributeName value:KMAINCOLOR range:range2];
+            
+            NSRange range3 =[[hintString string]rangeOfString:allPoint];
+            [hintString addAttribute:NSForegroundColorAttributeName value:KMAINCOLOR range:range3];
+            titleLB.attributedText =hintString;
+        }else{
+            NSMutableAttributedString *hintString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"共%@件商品   合计:%@",allNumber,allPrice]];
+            //获取要调整颜色的文字位置,调整颜色
+            NSRange range1=[[hintString string]rangeOfString:allNumber];
+            [hintString addAttribute:NSForegroundColorAttributeName  value:KMAINCOLOR range:range1];
+            
+            NSRange range2=[[hintString string]rangeOfString:allPrice];
+            [hintString addAttribute:NSForegroundColorAttributeName value:KMAINCOLOR range:range2];
+            titleLB.attributedText =hintString;
+        }
+
         [headView addSubview:titleLB];
         
         UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 49, SCREEN_WIDTH, 1)];
@@ -749,75 +339,41 @@ static NSString * const cellID = @"cellID";
         
         return headView;
     }
+    else{
+        UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
+        headView.backgroundColor = BACKGROUND_COLOR;
+        return headView;
+        //        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1
+    }
     return nil;
-
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section == 1){
+        return 50;
+    }
+    return 0;
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    NSString *title = self.resorceArray[indexPath.section][indexPath.row];
-    if ([title isKindOfClass:[NSString class]]) {
-        if ([title isEqualToString:@"发票信息"]) {
-//            if (![model.invoiceValue isEqualToString:@"不开发票"]) {
-            
-//            }
-            
-            if ([_detailModel.invoiceType integerValue]  == 0) {
-            }
-            else if ([_detailModel.invoiceType integerValue]  == 1)
-            {
-//                InvoiceOtherDetailVC * VC = [[InvoiceOtherDetailVC alloc] init];
-//                VC.model = _detailModel;
-//                [self.navigationController pushViewController:VC animated:YES];
-
-            }
-            else if ([_detailModel.invoiceType integerValue]  == 2)
-            {
-//                InvoiceDetailVC * VC = [[InvoiceDetailVC alloc] init];
-//                VC.model = _detailModel;
-//                [self.navigationController pushViewController:VC animated:YES];
-
-            }
-            else if ([_detailModel.invoiceType integerValue]  == 3)
-            {
-//                InvoiceOtherDetailVC * VC = [[InvoiceOtherDetailVC alloc] init];
-//                VC.model = _detailModel;
-//                [self.navigationController pushViewController:VC animated:YES];
-            }
-            
-        
-        }
-        else if ([title isEqualToString:@"已付款"])
-        {
-//            OrderMoneyVC * VC = [[OrderMoneyVC alloc] init];
-//            VC.resorceArray = (NSMutableArray *)_detailModel.payRecordList;
-//            VC.model = _detailModel;
-//            [self.navigationController pushViewController:VC animated:YES];
-        }
-        
-        else if ([title isEqualToString:@"分期付款"])
-        {
-//            OrderMoneyVC * VC = [[OrderMoneyVC alloc] init];
-//            VC.orderMoneyType = InstallmenGoodsOrdertType;
-//
-//            VC.resorceArray = (NSMutableArray *)_detailModel.payDetailList;
-//            VC.model = _detailModel;
-//            [self.navigationController pushViewController:VC animated:YES];
-        }
-   
-    }
+ 
 }
+
+
 
 //uitableview处理section的不悬浮，禁止section停留的方法，主要是这段代码
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat sectionHeaderHeight = 50;
-    if(scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
-        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
-    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
-        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-    }
+//    CGFloat sectionHeaderHeight = 50;
+//    if(scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+//    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+//    }
 }
 
 

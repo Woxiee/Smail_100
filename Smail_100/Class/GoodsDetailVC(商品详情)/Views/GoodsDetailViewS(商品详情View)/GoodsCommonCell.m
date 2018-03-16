@@ -31,12 +31,12 @@
     _goodSCommentLabel.font = Font13;
    _goodSCommentLabel.textAlignment = NSTextAlignmentLeft;
     
+    
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setOrderModel:(GoodsOrderModel *)orderModel
+{
+    _orderModel = orderModel;
+    _titleLabel.text = [NSString stringWithFormat:@"积分抵扣: %@",_orderModel.point];
 }
-
 @end

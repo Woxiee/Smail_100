@@ -42,6 +42,18 @@
 @property (nonatomic , copy) NSString              * seller_name;
 @property (nonatomic , copy) NSString              * categoryName;
 
+
+@property (nonatomic , copy) NSString              * usepoint_per;
+@property (nonatomic , copy) NSString              * img;
+@property (nonatomic , copy) NSString              * cid;
+@property (nonatomic , copy) NSString              * orderno;
+@property (nonatomic , copy) NSString              * ctime;
+@property (nonatomic , copy) NSString              * sid;
+@property (nonatomic , copy) NSString              * goods_id;
+@property (nonatomic , copy) NSString              * goods_nums;
+@property (nonatomic , copy) NSString              * spec;
+@property (nonatomic , copy) NSString              * commend_id;
+@property (nonatomic , copy) NSString              * name;
 @end
 
 @interface Coins :NSObject
@@ -143,7 +155,11 @@
 @property (nonatomic , copy) NSString              * express_type;
 @property (nonatomic , copy) NSString              * noteStr;
 
+@property (nonatomic , copy) NSString              * count;
 
+@property (nonatomic , copy) NSString              * orderno;
+@property (nonatomic , copy) NSString              * ctime;
 
+@property (nonatomic , assign) BOOL              isDetail;
 
 @end

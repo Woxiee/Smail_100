@@ -13,6 +13,9 @@
     __weak IBOutlet UIImageView *rightIconView;
 
     __weak IBOutlet UIImageView *infoImageView;
+    
+    
+    __weak IBOutlet NSLayoutConstraint *nameTopConstain;
 }
 
 + (instancetype)membershipHeadView
@@ -31,6 +34,8 @@
 - (void)refreshInfo
 {
     if ([KX_UserInfo sharedKX_UserInfo].loginStatus) {
+        nameTopConstain.constant  = -17;
+
         _nickNeme.text = [KX_UserInfo sharedKX_UserInfo].nickname;
         _phoneLabel.text = [KX_UserInfo sharedKX_UserInfo].mobile;
         _nickNeme.hidden = NO;
@@ -41,13 +46,14 @@
         self.nickNeme.backgroundColor = [UIColor whiteColor];
         self.nickNeme.textColor = KMAINCOLOR;
         [self.nickNeme layerForViewWith:10 AndLineWidth:0];
-        if (KX_NULLString([KX_UserInfo sharedKX_UserInfo].headimage)) {
+        if (KX_NULLString([KX_UserInfo sharedKX_UserInfo].avatar_url)) {
             _headImage.image = [ UIImage imageNamed:@"6@3x.png"];
         }else{
             [_headImage sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:@"6@3x.png"]];
         }
         
     }else{
+        nameTopConstain.constant  = 10;
         _nickNeme.text = @"请登录";
         _compangLB.hidden = YES;
         _phoneLabel.hidden = YES;

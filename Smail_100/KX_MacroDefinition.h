@@ -133,7 +133,7 @@
 
 
 /// 其他色调
-#define LINECOLOR RGB(240, 240, 240);
+#define LINECOLOR RGB(240, 240, 240)
 
 #define TITLE_COLOR RGB(53, 53, 53)
 #define SUBTITLE_COLOR RGB(153, 153, 153)

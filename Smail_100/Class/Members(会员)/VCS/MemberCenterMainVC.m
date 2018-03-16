@@ -15,6 +15,8 @@
 #import "MyTeamDetailVC.h"
 #import "MerchantCenterVC.h"
 #import "AccountManagVC.h"
+#import "AcctoutWater.h"
+#import "AllSet.h"
 
 @interface MemberCenterMainVC ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) MemberCenterHeaderView * headerView;
@@ -32,13 +34,14 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     [self setup];
     [self setConfiguration];
     NSArray *dataArray = nil;
-//    if (![KX_UserInfo sharedKX_UserInfo].loginStatus) {
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickLogin)];
-        [_headerView addGestureRecognizer:tap];
-//    }
-    
-    dataArray = @[@[@"账户积分"],@[@"订单管理"],@[@"账户管理",@"我的推广",@"钱包转赠",@"笑脸兑换",@"账户流水",@"消息中心",@"官方客服",@"帮助反馈",@"系统设置"]];
-    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickLogin)];
+    [_headerView addGestureRecognizer:tap];
+    if (![KX_UserInfo sharedKX_UserInfo].loginStatus) {
+        dataArray = @[@[@"订单管理"],@[@"账户管理",@"我的推广",@"钱包转赠",@"笑脸兑换",@"账户流水",@"消息中心",@"官方客服",@"帮助反馈",@"系统设置"]];
+
+    }else{
+        dataArray = @[@[@"账户积分"],@[@"订单管理"],@[@"账户管理",@"我的推广",@"钱包转赠",@"笑脸兑换",@"账户流水",@"消息中心",@"官方客服",@"帮助反馈",@"系统设置"]];
+     }
     [self.resorceArray addObjectsFromArray:dataArray];
     [self.tableView reloadData];
 
@@ -106,7 +109,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.resorceArray[section] count];
+    return [(NSMutableArray* )self.resorceArray[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -191,6 +194,18 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
+    if ([titleStr isEqualToString:@"账户流水"]) {
+        AcctoutWater *vc = [[AcctoutWater alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([titleStr isEqualToString:@"系统设置"]) {
+        AllSet *vc = [[AllSet alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    
 }
 
 #pragma mark - private
