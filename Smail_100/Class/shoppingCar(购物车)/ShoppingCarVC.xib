@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShoppingCarVC">
             <connections>
                 <outlet property="allSelectbtn" destination="hEX-Cu-pkZ" id="RUa-9J-Xpc"/>
-                <outlet property="backView" destination="xTB-pN-ccx" id="PRg-8Q-SlT"/>
+                <outlet property="backView" destination="IAC-cN-Juk" id="bZ4-Kk-MF6"/>
                 <outlet property="jifeLB" destination="ql9-SV-LdW" id="Y5J-Mb-oqW"/>
                 <outlet property="shopCarGoodsList" destination="sQG-73-yHG" id="iYL-We-P1F"/>
                 <outlet property="toPayBtn" destination="rDj-iW-1cR" id="ydf-9l-q4x"/>

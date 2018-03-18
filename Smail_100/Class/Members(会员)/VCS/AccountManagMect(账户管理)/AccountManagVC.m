@@ -74,11 +74,15 @@
     }
 //    NSArray *dataArray = @[@"基本资料",@"实名认证",@"银行卡管理",@"我的收获地址",@"账户安全设置"];
 //
-    if ([titleStr isEqualToString:@"基本资料"]) {
+   else if ([titleStr isEqualToString:@"基本资料"]) {
         BaseInforVC *VC = [[BaseInforVC alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
         
     }
+   else{
+       [self.view toastShow:@"该功能暂未开放,请稍后!"];
+   }
+    
     
 }
 @end

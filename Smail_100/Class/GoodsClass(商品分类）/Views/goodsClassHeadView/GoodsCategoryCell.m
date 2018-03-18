@@ -24,7 +24,7 @@
 
 
 
--(void)setModel:(GoodsClassModel *)model
+-(void)setModel:(LeftCategory *)model
 {
     _model = model;
     listNameLb.text = model.name;

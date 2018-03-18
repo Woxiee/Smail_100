@@ -17,5 +17,12 @@ typedef void(^TableViewDidScrollBlock)(CGFloat tableViewOffsetY);
 
 @property (copy, nonatomic) TableViewDidScrollBlock tableViewDidScroll;
 @property (nonatomic, strong) UIViewController *superVC;
+@property (nonatomic, strong) NSString *category_id;
+@property (nonatomic, strong) NSString *xy;
+@property (nonatomic, strong) NSString *order;
+@property (nonatomic, strong) NSString *q;
+
+- (void)getDatListRequest;
+
 
 @end

@@ -12,6 +12,6 @@
 
 @interface GoodsCategoryCell : UITableViewCell
 
-@property (nonatomic,strong)GoodsClassModel *model;
+@property (nonatomic,strong)LeftCategory *model;
 
 @end

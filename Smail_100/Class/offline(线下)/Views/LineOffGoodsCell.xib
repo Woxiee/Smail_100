@@ -40,7 +40,16 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29人评价" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftt-LR-blB">
-                        <rect key="frame" x="215.5" y="33" width="92.5" height="16"/>
+                        <rect key="frame" x="215" y="33" width="92.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="五谷坊湘菜馆五谷坊湘菜馆五谷坊湘菜馆" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjE-HK-WGq">
+                        <rect key="frame" x="122" y="49" width="135.5" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="4eq-La-LVD"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -62,15 +71,6 @@
                             <constraint firstAttribute="width" constant="13" id="crb-Bt-DSb"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="五谷坊湘菜馆五谷坊湘菜馆五谷坊湘菜馆" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjE-HK-WGq">
-                        <rect key="frame" x="122.5" y="49" width="135.5" height="40"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="40" id="4eq-La-LVD"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xianxiashangjia3@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="FlX-EV-PaL">
                         <rect key="frame" x="106" y="87" width="13" height="16"/>
                         <constraints>
@@ -114,6 +114,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="commone" destination="ftt-LR-blB" id="MnI-Yh-DKk"/>
                 <outlet property="distanceLB" destination="jCc-dU-9Cf" id="vx0-vh-iwe"/>
                 <outlet property="scoreImageView" destination="iJc-Dl-QSn" id="910-u6-pS3"/>
                 <outlet property="storeLb" destination="zjE-HK-WGq" id="3by-7h-uKj"/>

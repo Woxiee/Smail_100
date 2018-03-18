@@ -12,6 +12,7 @@
 #import "ColumnModel.h"
 @interface HomeMainVC ()<PYSearchViewControllerDelegate>
 @property (nonatomic, strong)  UITextField *inPutTextField;
+@property (nonatomic, strong)  NSMutableArray *hotArray;
 
 @end
 
@@ -20,15 +21,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getHomeIndexRequest];
-//    [self setup];
+    [self getHoldKeyWorld];
 }
 
 
 - (void)setup
 {
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    
+   _hotArray= [[NSMutableArray alloc] init];
+
     /* 创建WJSegmentMenuVc */
     WJSegmentMenuVc *segmentMenuVc = [[WJSegmentMenuVc alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 45)];
     [self.view addSubview:segmentMenuVc];
@@ -123,6 +124,24 @@
     }];
 }
 
+/// 获取热门关键词
+- (void)getHoldKeyWorld
+{
+    WEAKSELF;
+    [HomeVModel getHotList:^(NSArray *dataArray, BOOL isSuccess) {
+        if (isSuccess) {
+//            [weakSelf.resorceArray addObjectsFromArray:dataArray];
+//            [weakSelf setup];
+            for (NSDictionary *dic in dataArray) {
+                [weakSelf.hotArray addObject:dic[@"keyword"]];
+            }
+        }
+        
+    }];
+    
+    
+}
+
 ///获取支付宝相关资料
 - (void)getAppPayInfo
 {
@@ -140,7 +159,7 @@
 {
  
     WEAKSELF;
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:@[@"新机",@"采购",@"集采"] searchBarPlaceholder:@"找商品、找商家、找品牌" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:_hotArray searchBarPlaceholder:@"找商品、找商家、找品牌" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
 //        weakSelf.keyWord = searchText;
 //        [weakSelf requestListNetWork];
         [weakSelf dismissViewControllerAnimated:YES completion:nil];

@@ -31,5 +31,8 @@
 + (void)getHomeIndexList:(void(^)(NSArray *dataArray,BOOL isSuccess))completeBlock;
 
 
+///获取热门关键搜索词
++ (void)getHotList:(void(^)(NSArray *dataArray,BOOL isSuccess))completeBlock;
+
 
 @end

@@ -11,8 +11,7 @@
 
 
 @interface ShopMoreGoodsCell : UICollectionViewCell
-
-@property(nonatomic,strong) Values * goodsModel;
+@property(nonatomic,strong) LeftCategory * goodsModel;
 @property(nonatomic,strong) void(^goodsAdd)(CGPoint btnPoint);
 
 @end

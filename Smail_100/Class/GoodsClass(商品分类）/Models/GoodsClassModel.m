@@ -8,6 +8,20 @@
 
 #import "GoodsClassModel.h"
 
+@implementation Banners
+
+@end
+
+@implementation LeftCategory
+
+@end
+
+@implementation RightCategory
+
+@end
+
+
+
 @implementation GoodsClassModel
 
 @end

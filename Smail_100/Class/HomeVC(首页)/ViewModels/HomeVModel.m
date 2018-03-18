@@ -139,7 +139,29 @@
 }
 
 
+///获取热门关键搜索词
++ (void)getHotList:(void(^)(NSArray *dataArray,BOOL isSuccess))completeBlock
+{
+    [BaseHttpRequest postWithUrl:@"/goods/tags_keyword" andParameters:nil andRequesultBlock:^(id result, NSError *error) {
+        if ([result isKindOfClass:[NSDictionary class]]) {
+            if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+                
+                NSArray  *imgList = result[@"data"];
+//                for (ItemInfoList *model in imgList ) {
+//                    model.itemContentList = [NSArray yy_modelArrayWithClass:[ItemContentList class] json:model.itemContentList];
+//                }
+                
+                completeBlock(imgList,YES);
+                
+            }
+            
+        }else{
+            completeBlock(nil,NO);
+        }
+        
+    }];
 
+}
 
 
 

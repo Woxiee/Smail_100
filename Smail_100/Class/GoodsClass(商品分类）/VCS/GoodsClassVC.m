@@ -12,14 +12,17 @@
 #import "GoodsCategoryCell.h"
 #import "GoodsCategoryCollectionHeader.h"
 #import "PYSearchViewController.h"
+#import "GoodsDetailVC.h"
+#import "HomeScrollCell.h"
 
 //#import "header"
-@interface GoodsClassVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate,PYSearchViewControllerDelegate>
+@interface GoodsClassVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate,PYSearchViewControllerDelegate,HomePageCycScrollViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *titleArr;
-@property (nonatomic, strong) GoodsClassModel *model;
+@property (nonatomic, strong) GoodsClassModel *classModel;
 @property (nonatomic, strong)  UITextField *inPutTextField;
+
 
 @end
 
@@ -29,6 +32,8 @@
 }
 static NSString *GOODCATEGORYCVHEADERID = @"GOODCATEGORYCVHEADERID";//头部
 #define ShopMoreGoodsCellIndefiner @"ShopMoreGoodsCell"
+static NSString * const imageCellIdentifier = @"HomeScrollCellID";
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,7 +44,7 @@ static NSString *GOODCATEGORYCVHEADERID = @"GOODCATEGORYCVHEADERID";//头部
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self getGoodsList:@"-1"];
+    [self getGoodsList:@"0"];
 
 }
 
@@ -83,16 +88,20 @@ static NSString *GOODCATEGORYCVHEADERID = @"GOODCATEGORYCVHEADERID";//头部
     self.tableView = tableView;
 
     UICollectionViewFlowLayout  *layout = [[UICollectionViewFlowLayout alloc] init];
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(tableView.frame) + 10, 0, SCREEN_WIDTH -CGRectGetMaxX(tableView.frame) - 10  , SCREEN_HEIGHT - 64 - 44) collectionViewLayout:layout];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(tableView.frame), 0, SCREEN_WIDTH -CGRectGetMaxX(tableView.frame)   , SCREEN_HEIGHT - 64) collectionViewLayout:layout];
     collectionView.delegate = self;
     collectionView.dataSource = self;
-    collectionView.backgroundColor = BACKGROUND_COLOR;
+  
+    collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:collectionView];
     self.collectionView = collectionView;
 //
     //注册需要的cell和header
     [ self.collectionView registerNib:[UINib nibWithNibName:@"GoodsCategoryCollectionHeader" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:GOODCATEGORYCVHEADERID];
     [ self.collectionView registerNib:[UINib nibWithNibName:@"ShopMoreGoodsCell" bundle:nil] forCellWithReuseIdentifier:ShopMoreGoodsCellIndefiner];
+    //轮播图
+    [self.collectionView registerNib:[UINib nibWithNibName:@"HomeScrollCell" bundle:nil] forCellWithReuseIdentifier:imageCellIdentifier];
+    
     UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 120)/2, 10, SCREEN_WIDTH - 120, 30)];
     
     inPutTextField.placeholder = @"找商品, 找商家,找品牌";
@@ -168,23 +177,37 @@ static NSString *GOODCATEGORYCVHEADERID = @"GOODCATEGORYCVHEADERID";//头部
 - (void)getGoodsList:(NSString *)ids
 {
     WEAKSELF;
-    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:@"",@"type_id",@"",@"filter_type", nil];
+    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:ids,@"pid", nil];
     [GoodsClassVModel getGoodsClassListParam:param successBlock:^(NSArray<GoodsClassModel *> *dataArray, BOOL isSuccess) {
         if (isSuccess) {
-            
             [weakSelf.titleArr removeAllObjects];
-            [weakSelf.titleArr addObjectsFromArray:dataArray];
-            [weakSelf.titleArr addObjectsFromArray:@[@"测试",@"测试三",@"测试1",@"车市22"]];
+            if (weakSelf.resorceArray.count >0) {
+                [weakSelf.resorceArray removeAllObjects];
+            }
 
-//            GoodsClassModel *model = dataArray[0];
-//            [weakSelf getLeveGoodsRequestIds:model.id];
-//            weakSelf.model = model;
+            GoodsClassModel *model = dataArray.firstObject;
+            
+            for (int i = 0; i<model.leftCategory.count; i++) {
+                LeftCategory *category = model.leftCategory[i];
+                if (i == 0) {
+                    category.select = YES;
+                    [weakSelf getLeveGoodsRequestIds:category.id];
+                }
+                [weakSelf.titleArr addObject:category];
+
+            }
+            
+            
+          
+
             [weakSelf.tableView reloadData];
+
         }
        
         
     }];
 }
+
 
 - (void)getLeveGoodsRequestIds:(NSString *)ids
 {
@@ -195,7 +218,10 @@ static NSString *GOODCATEGORYCVHEADERID = @"GOODCATEGORYCVHEADERID";//头部
             if (weakSelf.resorceArray.count >0) {
                 [weakSelf.resorceArray removeAllObjects];
             }
-            [weakSelf.resorceArray addObjectsFromArray:dataArray];
+            GoodsClassModel *model = dataArray.firstObject;
+            weakSelf.classModel = model;
+
+            [weakSelf.resorceArray addObjectsFromArray:model.rightCategory];
             [weakSelf.collectionView reloadData];
         }
         
@@ -227,15 +253,13 @@ static NSString *GOODCATEGORYCVHEADERID = @"GOODCATEGORYCVHEADERID";//头部
         cell = [[[NSBundle mainBundle] loadNibNamed:@"GoodsCategoryCell" owner:nil options:nil]lastObject];
     }
   
-//    GoodsClassModel * model = _titleArr[indexPath.row];
-//    if (model.select) {
-//        cell.backgroundColor = [UIColor clearColor];
-//
-//    }else{
+     LeftCategory * model = _titleArr[indexPath.row];
+    if (model.select) {
+        cell.backgroundColor = [UIColor clearColor];
+    }else{
     cell.backgroundColor = BACKGROUNDNOMAL_COLOR;
-//
-//    }
-//    cell.model = model;
+    }
+    cell.model = model;
     
     return cell;
 }
@@ -246,11 +270,10 @@ static NSString *GOODCATEGORYCVHEADERID = @"GOODCATEGORYCVHEADERID";//头部
         [KX_UserInfo presentToLoginView:self];
         return;
     }
-    for (GoodsClassModel * model in _titleArr) {
+    for (LeftCategory * model in _titleArr) {
         model.select = NO;
     }
-    GoodsClassModel * model = _titleArr[indexPath.row];
-    _model = model;
+    LeftCategory * model = _titleArr[indexPath.row];
     model.select = YES;
     [tableView reloadData];
     [self getLeveGoodsRequestIds:model.id];
@@ -262,26 +285,44 @@ static NSString *GOODCATEGORYCVHEADERID = @"GOODCATEGORYCVHEADERID";//头部
 #pragma mark - UICollectionViewDelegate && UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     
-    return self.resorceArray.count;
+    return 2;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-  NSMutableDictionary *dic =  self.resorceArray[section];
-    if ([dic[@"isSelect"] isEqualToString:@"0"]) {
-        return 0;
+//  NSMutableDictionary *dic =  self.resorceArray[section];
+//    if ([dic[@"isSelect"] isEqualToString:@"0"]) {
+//        return 0;
+//    }
+//    return [dic[@"values"] count];
+    
+    if (section == 0) {
+        return 1;
     }
-    return [dic[@"values"] count];
+    return self.resorceArray.count;
+
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (indexPath.section == 0) {
+        HomeScrollCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:imageCellIdentifier forIndexPath:indexPath];
+        NSMutableArray *listArr = [[NSMutableArray alloc] init];
+        for (  Banners * model in _classModel.banners) {
+            [listArr addObject:model.pict_url];
+        }
+        cell.modelArray = listArr;
+        //        cell.newsList = _newsList;
+        cell.backgroundColor = [UIColor clearColor];
+        cell.delegate = self;
+        return cell;
+    }
     ShopMoreGoodsCell * mycell = [collectionView dequeueReusableCellWithReuseIdentifier:ShopMoreGoodsCellIndefiner forIndexPath:indexPath];
     if (!mycell) {
         mycell = [ShopMoreGoodsCell new];
     }
-    NSDictionary *dic =  self.resorceArray[indexPath.section];
-   NSArray *dataArr =  [Values mj_objectArrayWithKeyValuesArray:dic[@"values"]];
-    mycell.goodsModel = dataArr[indexPath.row];
+   LeftCategory * model =  self.resorceArray[indexPath.row];
+//   NSArray *dataArr =  [Values mj_objectArrayWithKeyValuesArray:dic[@"values"]];
+    mycell.goodsModel = model;
     return mycell;
 }
 
@@ -300,12 +341,12 @@ static NSString *GOODCATEGORYCVHEADERID = @"GOODCATEGORYCVHEADERID";//头部
         headerView.model = model;
         headerView.indexPath = indexPath;
         headerView.didClickHeadViewBtnBlock = ^(NSInteger index){
-            if ([dic[@"isSelect"] isEqualToString:@"1"]) {
-                dic[@"isSelect"] = @"0";
-                
-            }else{
-                dic[@"isSelect"] = @"1";
-            }
+//            if ([dic[@"isSelect"] isEqualToString:@"1"]) {
+//                dic[@"isSelect"] = @"0";
+//                
+//            }else{
+//                dic[@"isSelect"] = @"1";
+//            }
             [weakSelf.collectionView reloadData];
         };
         return headerView;
@@ -317,17 +358,44 @@ static NSString *GOODCATEGORYCVHEADERID = @"GOODCATEGORYCVHEADERID";//头部
 //定义每个Item 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    CGFloat itemW = (self.collectionView.width)/3;
+    if (indexPath.section == 0 ) {
+        return CGSizeMake(self.collectionView.width,itemW+30);
+    }
     
-    CGFloat itemW = (SCREEN_WIDTH - self.tableView.width -24 - 10)/2;
-    
-    return CGSizeMake(itemW,44);
+    return CGSizeMake(itemW,itemW+30);
 }
 
 //定义每个UICollectionView 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0, 0, 0,12);
+    if (section ==1) {
+        return UIEdgeInsetsMake(10, 0, 0,0);
+
+    }
+    return UIEdgeInsetsMake(0, 0, 0,0);
 }
+
+//item 列间距(纵)
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section;
+{
+
+    return 0;
+}
+
+
+
+
+//每个item之间的间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout*)collectionViewLayout
+minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
+}
+
+
+
 
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -336,23 +404,17 @@ static NSString *GOODCATEGORYCVHEADERID = @"GOODCATEGORYCVHEADERID";//头部
         [KX_UserInfo presentToLoginView:self];
         return;
     }
-    NSDictionary *dic =  self.resorceArray[indexPath.section];
-    NSArray *dataArr =  [Values mj_objectArrayWithKeyValuesArray:dic[@"values"]];
-    Values *model = dataArr[indexPath.row];
-//    if ([_model.id isEqualToString:@"7"]) {
-////        InsuranceVC *vc = [[InsuranceVC alloc] initWithNibName:@"InsuranceVC" bundle:nil];
-////        
-////        [self.navigationController pushViewController:vc animated:YES];
-//        
-//    }
-//    else if ([_model.id isEqualToString:@"8"])
-//    {
-////        FinancialVC *vc = [[FinancialVC alloc] initWithNibName:@"FinancialVC" bundle:nil];
-////        [self.navigationController pushViewController:vc animated:YES];
-//        
-//    }else{
-      
-//    }
+
+    
+    LeftCategory * model =  self.resorceArray[indexPath.row];
+    /// 商品类型=1:新机。2:配构件。3:整机流转
+    GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    //    vc.productID = model.mainResult.mainId;
+    //    vc.typeStr = model.productType;
+    vc.productID = model.id;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController: vc animated:YES];
 
 
 

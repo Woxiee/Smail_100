@@ -14,7 +14,7 @@
 
 - (instancetype)initWithTitleArray:(NSArray *)titleArray;
 
-
+@property (nonatomic, strong) UINavigationItem *navigationItem;
 @property (nonatomic, strong) UIViewController *superVC;
 
 @end

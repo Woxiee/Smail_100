@@ -151,11 +151,8 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="32@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="bF4-d6-igG">
-                            <rect key="frame" x="347" y="15" width="16" height="16"/>
-                        </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="保密" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcK-Ds-P1u">
-                            <rect key="frame" x="306" y="0.0" width="31" height="45"/>
+                            <rect key="frame" x="314" y="0.0" width="31" height="45"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -176,12 +173,10 @@
                         <constraint firstAttribute="height" constant="45" id="Io6-mf-slh"/>
                         <constraint firstAttribute="bottom" secondItem="hcK-Ds-P1u" secondAttribute="bottom" id="Kfm-WL-E4G"/>
                         <constraint firstItem="aW9-n6-K2j" firstAttribute="leading" secondItem="WNm-51-0h0" secondAttribute="leading" constant="12" id="RhH-PI-vqy"/>
-                        <constraint firstItem="bF4-d6-igG" firstAttribute="leading" secondItem="hcK-Ds-P1u" secondAttribute="trailing" constant="10" id="VDv-Nz-IA4"/>
                         <constraint firstItem="hcK-Ds-P1u" firstAttribute="top" secondItem="WNm-51-0h0" secondAttribute="top" id="WSB-mt-iby"/>
+                        <constraint firstAttribute="trailing" secondItem="hcK-Ds-P1u" secondAttribute="trailing" constant="30" id="eLg-lc-s7E"/>
                         <constraint firstAttribute="bottom" secondItem="aW9-n6-K2j" secondAttribute="bottom" id="ego-NT-9V5"/>
-                        <constraint firstAttribute="trailing" secondItem="bF4-d6-igG" secondAttribute="trailing" constant="12" id="fEl-C6-PqX"/>
                         <constraint firstItem="48E-0c-xUG" firstAttribute="top" secondItem="WNm-51-0h0" secondAttribute="top" id="rKK-G4-38F"/>
-                        <constraint firstItem="bF4-d6-igG" firstAttribute="centerY" secondItem="WNm-51-0h0" secondAttribute="centerY" id="rKM-5Y-QT2"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fI4-uF-cUm">

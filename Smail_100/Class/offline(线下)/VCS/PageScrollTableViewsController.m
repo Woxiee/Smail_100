@@ -18,7 +18,7 @@
 #import "LineRecommendedView.h"
 
 
-@interface PageScrollTableViewsController ()<UIScrollViewDelegate,SDCycleScrollViewDelegate>
+@interface PageScrollTableViewsController ()<UIScrollViewDelegate,SDCycleScrollViewDelegate,PYSearchViewControllerDelegate,YBPopupMenuDelegate>
 
 @property (strong, nonatomic) NSArray * titleArray;
 
@@ -27,6 +27,10 @@
 @property (weak, nonatomic) UIView *  headerView;
 @property (weak, nonatomic) SDCycleScrollView  *cycleView;
 @property (weak, nonatomic)   LineRecommendedView *teamPersenView;
+
+@property (nonatomic, strong)  UITextField *inPutTextField;
+@property (nonatomic, strong)  NSMutableArray *hotArray;
+
 
 
 //偏移量
@@ -54,6 +58,7 @@
   [super viewDidLoad];
   
   [self setupAllViews];
+    [self setNavationView];
   
 }
 - (void)setupAllViews{
@@ -101,12 +106,56 @@
     
     
     MenuView * menuView = [[MenuView alloc]initWithTitleArray:self.titleArray andDidClickButtonBlock:^(int buttonIndex) {
+        
         [weakSelf didClickMenuButton:buttonIndex];
     }];
     [menuView layerForViewWith:0 AndLineWidth:0.5];
     menuView.frame = CGRectMake(0, CGRectGetMaxY(_headerView.frame), kScreenWidth, kMenuViewHeight);
     _menuView = menuView;
     [self.view addSubview:menuView];
+}
+
+- (void)setNavationView
+{
+    UIView *navationView = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 120)/2, 10, SCREEN_WIDTH - 120, 30)];
+    navationView.backgroundColor = [UIColor redColor];
+    
+    UIButton *selectBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
+    selectBtn.backgroundColor = [UIColor grayColor];
+    selectBtn.titleLabel.text = @"本地商家";
+    [selectBtn addTarget:self  action:@selector(clickToSelect:) forControlEvents:UIControlEventTouchUpInside];
+
+    [navationView addSubview:selectBtn];
+    
+    
+    
+//    UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 120)/2, 10, SCREEN_WIDTH - 120, 30)];
+//
+//    inPutTextField.placeholder = @"找商品, 找商家,找品牌";
+//    inPutTextField.textColor = [UIColor whiteColor];
+//    inPutTextField.font = Font13;
+//    inPutTextField.returnKeyType = UIReturnKeySearch;
+//    inPutTextField.backgroundColor =[UIColor whiteColor];
+//    inPutTextField.borderStyle = UITextBorderStyleNone;
+//    [inPutTextField layerForViewWith:15 AndLineWidth:0];
+//    _inPutTextField = inPutTextField;
+//    //搜索框里面的UI
+//    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+//    view.backgroundColor = [UIColor clearColor];
+//    inPutTextField.leftViewMode = UITextFieldViewModeAlways;
+//    inPutTextField.leftView = view;
+//    UIImageView * searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 8, 14, 14)];
+//    searchImage.backgroundColor = [UIColor clearColor];
+//    searchImage.image = [UIImage imageNamed:@"21@3x.png"];
+//    [view addSubview:searchImage];
+//
+//    UIButton *coverToSeach =  [[UIButton alloc]initWithFrame:CGRectMake(0, 0, inPutTextField.width, inPutTextField.height)];
+//    coverToSeach.backgroundColor = [UIColor clearColor];
+//    [coverToSeach addTarget:self  action:@selector(clickToSearch) forControlEvents:UIControlEventTouchUpInside];
+//    [inPutTextField addSubview:coverToSeach];
+    
+    self.navigationItem.titleView = navationView;
+
 }
 
 - (void)tableViewDidScroll:(CGFloat)tableViewOffsetY{
@@ -162,6 +211,19 @@
     
   }
   
+}
+
+- (void)clickToSelect:(UIButton *)sender{
+    [YBPopupMenu showRelyOnView:sender titles:@[@"商家",@"商品"] icons: nil menuWidth:120 delegate:self];
+
+    
+}
+
+
+- (void)clickToSearch
+{
+    
+    
 }
 
 

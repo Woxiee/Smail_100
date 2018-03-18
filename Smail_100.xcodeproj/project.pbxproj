@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		3E27F91D2053B21200A1DA2F /* PayModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27F91C2053B21200A1DA2F /* PayModels.m */; };
 		3E5D837A20557661001B542E /* goodsAdd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E5D837920557660001B542E /* goodsAdd@2x.png */; };
+		3E5FC2CB205E31990067CFA5 /* YBRectConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FC2C6205E31980067CFA5 /* YBRectConst.m */; };
+		3E5FC2CC205E31990067CFA5 /* YBPopupMenuPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FC2C7205E31980067CFA5 /* YBPopupMenuPath.m */; };
+		3E5FC2CD205E31990067CFA5 /* YBPopupMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FC2C9205E31980067CFA5 /* YBPopupMenu.m */; };
+		3E5FC2D1205EB4470067CFA5 /* OffLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FC2D0205EB4470067CFA5 /* OffLineModel.m */; };
+		3ECD1CC0205CC86A008D8686 /* QrCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD1CBE205CC86A008D8686 /* QrCodeVC.m */; };
+		3ECD1CC1205CC86A008D8686 /* QrCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ECD1CBF205CC86A008D8686 /* QrCodeVC.xib */; };
 		7361221E789C7F5110C27B63 /* libPods-Smail_100Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E60962CF3B597F7C431212A7 /* libPods-Smail_100Tests.a */; };
 		82F5EE41AA9646C1E825EDAF /* libPods-Smail_100UITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B1D3A6DB1A20BAB619951F /* libPods-Smail_100UITests.a */; };
 		8C0866987E6E96672AB3A8CE /* libPods-Smail_100.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A86AB9D82022D48C4DD265CC /* libPods-Smail_100.a */; };
@@ -829,6 +835,17 @@
 		3E27F91B2053B21200A1DA2F /* PayModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayModels.h; sourceTree = "<group>"; };
 		3E27F91C2053B21200A1DA2F /* PayModels.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayModels.m; sourceTree = "<group>"; };
 		3E5D837920557660001B542E /* goodsAdd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goodsAdd@2x.png"; sourceTree = "<group>"; };
+		3E5FC2C5205E31980067CFA5 /* YBPopupMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBPopupMenu.h; sourceTree = "<group>"; };
+		3E5FC2C6205E31980067CFA5 /* YBRectConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBRectConst.m; sourceTree = "<group>"; };
+		3E5FC2C7205E31980067CFA5 /* YBPopupMenuPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBPopupMenuPath.m; sourceTree = "<group>"; };
+		3E5FC2C8205E31980067CFA5 /* YBRectConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBRectConst.h; sourceTree = "<group>"; };
+		3E5FC2C9205E31980067CFA5 /* YBPopupMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBPopupMenu.m; sourceTree = "<group>"; };
+		3E5FC2CA205E31980067CFA5 /* YBPopupMenuPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBPopupMenuPath.h; sourceTree = "<group>"; };
+		3E5FC2CF205EB4470067CFA5 /* OffLineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OffLineModel.h; sourceTree = "<group>"; };
+		3E5FC2D0205EB4470067CFA5 /* OffLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OffLineModel.m; sourceTree = "<group>"; };
+		3ECD1CBD205CC86A008D8686 /* QrCodeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QrCodeVC.h; sourceTree = "<group>"; };
+		3ECD1CBE205CC86A008D8686 /* QrCodeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QrCodeVC.m; sourceTree = "<group>"; };
+		3ECD1CBF205CC86A008D8686 /* QrCodeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QrCodeVC.xib; sourceTree = "<group>"; };
 		4934D657891FA445D50032BA /* Pods-Smail_100Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smail_100Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smail_100Tests/Pods-Smail_100Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5339DC5FA894BA8623772C85 /* Pods-Smail_100.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smail_100.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smail_100/Pods-Smail_100.debug.xcconfig"; sourceTree = "<group>"; };
 		564A11ABF291BAB4A9567C14 /* Pods-Smail_100.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smail_100.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smail_100/Pods-Smail_100.release.xcconfig"; sourceTree = "<group>"; };
@@ -2199,6 +2216,28 @@
 				3E27F91C2053B21200A1DA2F /* PayModels.m */,
 			);
 			path = PayModels;
+			sourceTree = "<group>";
+		};
+		3E5FC2C4205E31980067CFA5 /* YBPopupMenu */ = {
+			isa = PBXGroup;
+			children = (
+				3E5FC2C5205E31980067CFA5 /* YBPopupMenu.h */,
+				3E5FC2C6205E31980067CFA5 /* YBRectConst.m */,
+				3E5FC2C7205E31980067CFA5 /* YBPopupMenuPath.m */,
+				3E5FC2C8205E31980067CFA5 /* YBRectConst.h */,
+				3E5FC2C9205E31980067CFA5 /* YBPopupMenu.m */,
+				3E5FC2CA205E31980067CFA5 /* YBPopupMenuPath.h */,
+			);
+			path = YBPopupMenu;
+			sourceTree = "<group>";
+		};
+		3E5FC2CE205EB4270067CFA5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3E5FC2CF205EB4470067CFA5 /* OffLineModel.h */,
+				3E5FC2D0205EB4470067CFA5 /* OffLineModel.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A2D5C5FE1A124C37E0F2F69D /* Pods */ = {
@@ -3894,6 +3933,7 @@
 		E10B0CA820528AE8008BA706 /* offline(线下) */ = {
 			isa = PBXGroup;
 			children = (
+				3E5FC2CE205EB4270067CFA5 /* Models */,
 				E10B0CA920528AE8008BA706 /* VCS */,
 				E10B0CB020528AE8008BA706 /* Views */,
 			);
@@ -4983,6 +5023,7 @@
 		E10B0FEE20528B02008BA706 /* KX_Vender */ = {
 			isa = PBXGroup;
 			children = (
+				3E5FC2C4205E31980067CFA5 /* YBPopupMenu */,
 				E16596E620564FE4008ADC6B /* 弹框 */,
 				E16596E020564EAF008ADC6B /* ShoppingCarChangeMun */,
 				E11530B22052969100B5852F /* AppPaySdK */,
@@ -5888,6 +5929,9 @@
 				E167EC46205B70B300A8F744 /* AllSet.h */,
 				E167EC47205B70B300A8F744 /* AllSet.m */,
 				E167EC48205B70B300A8F744 /* AllSet.xib */,
+				3ECD1CBD205CC86A008D8686 /* QrCodeVC.h */,
+				3ECD1CBE205CC86A008D8686 /* QrCodeVC.m */,
+				3ECD1CBF205CC86A008D8686 /* QrCodeVC.xib */,
 			);
 			path = "AllSet(系统设置)";
 			sourceTree = "<group>";
@@ -6372,6 +6416,7 @@
 				E10B0DC220528AE8008BA706 /* MeChantOrderInfoCell.xib in Resources */,
 				E10B0DA720528AE8008BA706 /* ContractWebViewCell.xib in Resources */,
 				E10B0D1620528AE8008BA706 /* KX_ApprovalContentCell.xib in Resources */,
+				3ECD1CC1205CC86A008D8686 /* QrCodeVC.xib in Resources */,
 				E10B122120528B06008BA706 /* wodetuandui4@3x.png in Resources */,
 				E10B11F220528B06008BA706 /* hehuorenshengji1@3x.png in Resources */,
 				E10B120720528B06008BA706 /* shangjiazhongxin13@3x.png in Resources */,
@@ -6586,6 +6631,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E10B0EBD20528AF5008BA706 /* UIViewController+HUD.m in Sources */,
+				3E5FC2CC205E31990067CFA5 /* YBPopupMenuPath.m in Sources */,
 				E10B0D2820528AE8008BA706 /* GoodsOrderVModel.m in Sources */,
 				E10B0D3120528AE8008BA706 /* ItemContentList.m in Sources */,
 				E10B0CD920528AE8008BA706 /* GoodsClassVModel.m in Sources */,
@@ -6659,6 +6705,7 @@
 				E11531352052993E00B5852F /* PayDetailModel.m in Sources */,
 				E10B0EC520528AF5008BA706 /* NSDictionary+JPLogDictionary.m in Sources */,
 				E167EC68205B9BEC00A8F744 /* KYBaseCell.m in Sources */,
+				3ECD1CC0205CC86A008D8686 /* QrCodeVC.m in Sources */,
 				E10B0DB820528AE8008BA706 /* KX_ApprovalMessgaCell.m in Sources */,
 				E10B0DB420528AE8008BA706 /* InvoiceEditorCell.m in Sources */,
 				E10B0D9B20528AE8008BA706 /* KYOlderPhoneVC.m in Sources */,
@@ -6688,6 +6735,7 @@
 				E10B0DC720528AE8008BA706 /* MerchantHeadView.m in Sources */,
 				E10B0FC520528AFA008BA706 /* KYDateView.m in Sources */,
 				E10B0FA820528AFA008BA706 /* FKPageView.m in Sources */,
+				3E5FC2CD205E31990067CFA5 /* YBPopupMenu.m in Sources */,
 				E10B0FA720528AFA008BA706 /* UIColor+ZXLazy.m in Sources */,
 				E16596F8205773CE008ADC6B /* DWQSelectView.m in Sources */,
 				E167EC5B205B9B6B00A8F744 /* ChangeSexVC.m in Sources */,
@@ -6714,6 +6762,7 @@
 				E167EC34205A55FD00A8F744 /* AcctoutWater.m in Sources */,
 				E10B0DE820528AE8008BA706 /* OfflineVC.m in Sources */,
 				E10B0DF720528AE8008BA706 /* ShopCarLimitCell.m in Sources */,
+				3E5FC2CB205E31990067CFA5 /* YBRectConst.m in Sources */,
 				E10B0CEC20528AE8008BA706 /* GoodDetailImageVC.m in Sources */,
 				E10B0FD420528AFA008BA706 /* CityTableViewCell.m in Sources */,
 				E10B0EA220528AF5008BA706 /* NSDictionary+Safe.m in Sources */,
@@ -6838,6 +6887,7 @@
 				E10B0CFA20528AE8008BA706 /* GoodsCommonChooseView.m in Sources */,
 				E10B0D9120528AE8008BA706 /* CompanyInfoVC.m in Sources */,
 				E10B0D3E20528AE8008BA706 /* GoodGuigeCell.m in Sources */,
+				3E5FC2D1205EB4470067CFA5 /* OffLineModel.m in Sources */,
 				E10B0D0720528AE8008BA706 /* GoodGuigeView.m in Sources */,
 				E10B0DEB20528AE8008BA706 /* LineOffGoodsCell.m in Sources */,
 				E10B10A120528B03008BA706 /* NSBundle+MJRefresh.m in Sources */,

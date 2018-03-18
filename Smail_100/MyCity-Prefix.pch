@@ -36,6 +36,7 @@
 #import "MBProgressHUD+Add.h"
 #import "SuccessView.h"
 #import "UIViewController+HUD.h"
+#import "YBPopupMenu.h"
 
 #import "UIImageView+WebCache.h" //下载缓存图片
 #import "IQKeyboardManager.h"

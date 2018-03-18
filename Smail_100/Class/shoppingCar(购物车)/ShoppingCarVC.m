@@ -119,7 +119,7 @@
             }
             
             [_dataSocure addObjectsFromArray:shopCarGoods];
-            
+
             
             [b_self allMoneyAfterSelect];
             [shopCarGoodsList reloadData];
@@ -128,9 +128,10 @@
             //清空backView 的数据
 //            [carVM.limitDatasArr removeAllObjects];
 //            [limitCollectionView reloadData];
-            return ;
+            return;
         }
-//            backView.hidden = YES;
+        [shopCarGoodsList stopFresh:_dataSocure.count pageIndex:0];
+        backView.hidden = YES;
 //            [b_self setLimitView];
     }];
 }
@@ -393,10 +394,8 @@
     }
     cell.delegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     OrderGoodsModel * cellModel  = _dataSocure[indexPath.section];
    OrderGoodsModel * goodsModel = cellModel.goodModel[indexPath.row];
-
     cell.rightButtons = [self createRightButtons:goodsModel];
     cell.goodsModel = goodsModel;
 

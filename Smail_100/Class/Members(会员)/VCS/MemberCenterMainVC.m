@@ -194,15 +194,19 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
-    if ([titleStr isEqualToString:@"账户流水"]) {
+   else if ([titleStr isEqualToString:@"账户流水"]) {
         AcctoutWater *vc = [[AcctoutWater alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
-    if ([titleStr isEqualToString:@"系统设置"]) {
+   else if ([titleStr isEqualToString:@"系统设置"]) {
         AllSet *vc = [[AllSet alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    else{
+        [self.view toastShow:@"该功能暂未开放,请稍后!"];
     }
     
     
@@ -239,10 +243,14 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         VC.hidesBottomBarWhenPushed = YES;
         [self.navigationController  pushViewController:VC animated:YES];
     }
-    else{
+     else if  (index == 1) {
         AllOrderManageVC *VC = [AllOrderManageVC new];
         VC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:VC animated:YES];
+    }
+    
+    else{
+        [self.view toastShow:@"该功能暂未开放,请稍后!"];
     }
     
 }

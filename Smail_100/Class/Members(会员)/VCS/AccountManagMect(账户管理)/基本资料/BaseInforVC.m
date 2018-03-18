@@ -15,6 +15,7 @@
 
 #import "LoginVC.h"
 #import "KX_ActionSheet.h"
+#import "QrCodeVC.h"
 
 
 static NSInteger infoCellTag = 100;
@@ -51,18 +52,17 @@ static NSInteger infoCellTag = 100;
     UIView * adressbackView;
 
     UIImage *selectImage;
-    
 
 }
 
+@property (nonatomic, strong) NSString *nickname;
+@property (nonatomic, strong) NSString *sex;
+@property (nonatomic, strong) NSString *wxname;
 
 
 @end
 
 @implementation BaseInforVC
-
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -108,7 +108,12 @@ static NSInteger infoCellTag = 100;
  
     [headerImage sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:@"6@3x.png"]];
     userNameLb.text =  [KX_UserInfo sharedKX_UserInfo].nickname;
-    sexLb.text = [KX_UserInfo sharedKX_UserInfo].sex;
+    if ([[KX_UserInfo sharedKX_UserInfo].sex isEqualToString:@"1"]) {
+        sexLb.text = @"男";
+    }else{
+        sexLb.text = @"女";
+    }
+    
     wxLb.text = [KX_UserInfo sharedKX_UserInfo].wxname;
     headerImage.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didClickImageAction)];
@@ -165,6 +170,8 @@ static NSInteger infoCellTag = 100;
     [sheetView show];
 }
 
+
+
 - (IBAction)saveAndUpLoad:(UIButton *)sender {//1:女性,2:男性,0:保密
 //    
     if ([Common stringWithOutSpace:userNameLb.text].length <= 0) {
@@ -189,7 +196,44 @@ static NSInteger infoCellTag = 100;
 }
 
 
-
+/// 上传用户资料
+- (void)updateUserInfoRequest
+{
+    WEAKSELF;
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].nickname forKey:@"nickname"];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].sex forKey:@"sex"];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].wxname forKey:@"wxname"];
+    [param setObject:@"edit" forKey:@"method"];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    [MBProgressHUD showMessag:@"加载中..." toView:self.view];
+    [BaseHttpRequest postWithUrl:@"/ucenter/wealth_history" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        LOG(@"订单列表 == %@",result);
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSString *msg = [result valueForKey:@"msg"];
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+//            NSArray *dataArr = [result valueForKey:@"data"];
+//            NSArray *listArray  = [[NSArray alloc] init];
+//            if ([dataArr isKindOfClass:[NSArray class]]) {
+                if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+//                    listArray = [AcctoutWaterModel mj_objectArrayWithKeyValuesArray:dataArr];
+//                    if (weakSelf.page == 0) {
+//                        [weakSelf.resorceArray removeAllObjects];
+//                    }
+//                    [weakSelf.resorceArray addObjectsFromArray:listArray];
+//                    [weakSelf.tableView reloadData];
+//                    [weakSelf setRefreshs];
+                }
+//            }
+        }else{
+            [weakSelf showHint:msg];
+            
+        }
+        
+        
+    }];
+}
 
 
 
@@ -198,7 +242,7 @@ static NSInteger infoCellTag = 100;
 - (IBAction)clickCell:(UIButton *)sender {
     NSInteger tag = sender.tag - infoCellTag;
     //0-6 头像  1昵称 2手机 3性别 4生日 5地区 6个性签名  9=推出登陆
-
+    WEAKSELF;
     switch (tag) {
 
         case 0:{
@@ -208,35 +252,50 @@ static NSInteger infoCellTag = 100;
             changeVC.warnStr = @"注意:与微笑100业务或商家品牌冲突的昵称，微笑100有权收回";
             __block typeof(userNameLb) b_userNameLb = userNameLb;
             changeVC.clickTrue = ^(NSString *content){
+
                 b_userNameLb.text = content;
-                
+                KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
+                userinfo.nickname = content;
+                [weakSelf requestListNetWork];
             };
             [self.navigationController pushViewController:changeVC animated:YES];
             
         
         }break;
         case 1:{
-             changeInfoVC *changeVC = [[changeInfoVC alloc]init];
-            changeVC.aTitle= @"昵称";
-            changeVC.inputText = userNameLb.text;
-            changeVC.warnStr = @"好的名字可以让你的朋友更容易记住你";
-            __block typeof(userNameLb) b_userNameLb = userNameLb;
-            changeVC.clickTrue = ^(NSString *content){
-                b_userNameLb.text = content;
-            };
-            [self.navigationController pushViewController:changeVC animated:YES];
+            KX_ActionSheet *sheetView  = [KX_ActionSheet  sheetWithTitle:@"选择性别" cancelButtonTitle:@"取消" clicked:^(KX_ActionSheet *actionSheet, NSInteger buttonIndex) {
+
+                KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
+                if (buttonIndex == 1) {
+                   sexLb.text = @"男";
+                    userinfo.sex = @"1";
+                }
+                else if(buttonIndex == 2)
+                {
+                    sexLb.text = @"女";
+                    userinfo.sex = @"2";
+                }
+                [weakSelf requestListNetWork];
+
+            } otherButtonTitleArray:@[@"男",@"女"]];
+            [sheetView show];
+            
         }break;
         case 2:{
+            
+            
         }break;
         case 3:{
-
-            ChangeSexVC *sexVC = [[ChangeSexVC alloc]init];
-            sexVC.sex = sexLb.text;
-            __block typeof(sexLb) b_sexLb = sexLb;
-            sexVC.selectDex = ^(NSString *sex){
-                b_sexLb.text = sex;
-            };
-            [self.navigationController pushViewController:sexVC animated:YES];
+            QrCodeVC * VC = [[QrCodeVC alloc]init];
+            VC.title = @"我的二维码";
+            [self.navigationController pushViewController:VC animated:YES];
+//            ChangeSexVC *sexVC = [[ChangeSexVC alloc]init];
+//            sexVC.sex = sexLb.text;
+//            __block typeof(sexLb) b_sexLb = sexLb;
+//            sexVC.selectDex = ^(NSString *sex){
+//                b_sexLb.text = sex;
+//            };
+//            [self.navigationController pushViewController:sexVC animated:YES];
         }break;
         case 4:{
         }break;

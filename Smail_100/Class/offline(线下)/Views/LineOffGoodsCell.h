@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OffLineModel.h"
 
 @interface LineOffGoodsCell : UITableViewCell
-
+@property (nonatomic, strong)  OffLineModel *model;
 @end
