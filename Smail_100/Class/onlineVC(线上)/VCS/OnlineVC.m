@@ -108,8 +108,9 @@ static NSString *newProductCell = @"newProductID";
     
     
     WEAKSELF;
-    /// 顶部视图
+    /// 顶部视图    [_titleArray addObject:@"全部分类"];
     TopScreenView *topSreenView = [[TopScreenView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 45)];
+    topSreenView.titleArray = @[@"全部分类",@"价格排序",@"销售优先",@"时间排序"];
     topSreenView.selectTopIndexBlock = ^(NSInteger index, NSString *key, NSString *title){
         
         if (_sheet) {

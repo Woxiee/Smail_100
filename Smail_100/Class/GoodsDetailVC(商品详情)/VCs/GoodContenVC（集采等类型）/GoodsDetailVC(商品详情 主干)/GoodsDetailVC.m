@@ -107,8 +107,8 @@
 {
     //    /// 自定义返回按钮
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
-    [backButton setImage:[UIImage imageNamed:@"18@3x.png"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"18@3x.png"] forState:UIControlStateHighlighted];
+    [backButton setImage:[UIImage imageNamed:@"bangzhufankui3@3x.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"bangzhufankui3@3x.png"] forState:UIControlStateHighlighted];
     backButton.titleLabel.font=[UIFont systemFontOfSize:18];
     [backButton.titleLabel setTextAlignment:NSTextAlignmentLeft];
     

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OfflineVC : KX_BaseViewController
+@interface OfflineVC : KX_BaseTableViewController
 
 @end

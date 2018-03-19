@@ -14,6 +14,7 @@ target 'Smail_100' do
 	pod 'SDCycleScrollView','~> 1.75'
 	pod 'Masonry'
 	pod 'WRNavigationBar','~>1.2.0’
+    pod 'AFNetworking', '~> 3.1.0'
   target 'Smail_100Tests' do
     inherit! :search_paths
     # Pods for testing

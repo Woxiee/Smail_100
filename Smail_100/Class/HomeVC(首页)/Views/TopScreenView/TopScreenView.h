@@ -22,6 +22,7 @@ typedef void(^SelectTopIndexBlock)(NSInteger index, NSString *key, NSString *tit
 
 @property (nonatomic, strong) GoodsScreenmodel *model;
 @property (nonatomic, strong) NSString *btnTitle;  /// 用于显示 选择栏目之后 重新赋值
+@property (nonatomic, strong) NSArray *titleArray;
 
 ///选择 顶部按钮索引
 @property (nonatomic, copy) SelectTopIndexBlock selectTopIndexBlock;

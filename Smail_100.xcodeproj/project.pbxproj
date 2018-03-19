@@ -21,7 +21,6 @@
 		E10B0290205289EC008BA706 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B028F205289EC008BA706 /* AppDelegate.m */; };
 		E10B0296205289EC008BA706 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E10B0294205289EC008BA706 /* Main.storyboard */; };
 		E10B0298205289EC008BA706 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E10B0297205289EC008BA706 /* Assets.xcassets */; };
-		E10B029B205289EC008BA706 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E10B0299205289EC008BA706 /* LaunchScreen.storyboard */; };
 		E10B029E205289EC008BA706 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B029D205289EC008BA706 /* main.m */; };
 		E10B02A8205289EC008BA706 /* Smail_100Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B02A7205289EC008BA706 /* Smail_100Tests.m */; };
 		E10B02B3205289EC008BA706 /* Smail_100UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B02B2205289EC008BA706 /* Smail_100UITests.m */; };
@@ -812,6 +811,15 @@
 		E167EC6A205B9BEC00A8F744 /* KYBaseCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E167EC63205B9BEC00A8F744 /* KYBaseCellItem.m */; };
 		E167EC6B205B9BEC00A8F744 /* KYViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E167EC65205B9BEC00A8F744 /* KYViewCell.m */; };
 		E167EC6C205B9BEC00A8F744 /* KYViewTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E167EC67205B9BEC00A8F744 /* KYViewTextCell.m */; };
+		E172EBA1205F8F740079CD3D /* OffLineDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E172EBA0205F8F740079CD3D /* OffLineDetailVC.m */; };
+		E172EBA4205F92A90079CD3D /* OfflineDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E172EBA3205F92A90079CD3D /* OfflineDetailCell.m */; };
+		E172EBA8205FA2380079CD3D /* OfflineInfoDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E172EBA6205FA2380079CD3D /* OfflineInfoDetailCell.m */; };
+		E172EBA9205FA2380079CD3D /* OfflineInfoDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E172EBA7205FA2380079CD3D /* OfflineInfoDetailCell.xib */; };
+		E172EBCE205FB5690079CD3D /* MeunLineOffVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E172EBCC205FB5690079CD3D /* MeunLineOffVC.m */; };
+		E172EBCF205FB5690079CD3D /* MeunLineOffVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E172EBCD205FB5690079CD3D /* MeunLineOffVC.xib */; };
+		E172EBD3205FC2280079CD3D /* RighMeumtCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E172EBD1205FC2280079CD3D /* RighMeumtCell.m */; };
+		E172EBD4205FC2280079CD3D /* RighMeumtCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E172EBD2205FC2280079CD3D /* RighMeumtCell.xib */; };
+		E172EBD6205FC6F00079CD3D /* moreOne@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E172EBD5205FC6F00079CD3D /* moreOne@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -858,7 +866,6 @@
 		E10B028F205289EC008BA706 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E10B0295205289EC008BA706 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E10B0297205289EC008BA706 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E10B029A205289EC008BA706 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E10B029C205289EC008BA706 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10B029D205289EC008BA706 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E10B02A3205289EC008BA706 /* Smail_100Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Smail_100Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2155,6 +2162,20 @@
 		E167EC65205B9BEC00A8F744 /* KYViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYViewCell.m; sourceTree = "<group>"; };
 		E167EC66205B9BEC00A8F744 /* KYViewTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYViewTextCell.h; sourceTree = "<group>"; };
 		E167EC67205B9BEC00A8F744 /* KYViewTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYViewTextCell.m; sourceTree = "<group>"; };
+		E172EB9F205F8F740079CD3D /* OffLineDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OffLineDetailVC.h; sourceTree = "<group>"; };
+		E172EBA0205F8F740079CD3D /* OffLineDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OffLineDetailVC.m; sourceTree = "<group>"; };
+		E172EBA2205F92A90079CD3D /* OfflineDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfflineDetailCell.h; sourceTree = "<group>"; };
+		E172EBA3205F92A90079CD3D /* OfflineDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfflineDetailCell.m; sourceTree = "<group>"; };
+		E172EBA5205FA2380079CD3D /* OfflineInfoDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfflineInfoDetailCell.h; sourceTree = "<group>"; };
+		E172EBA6205FA2380079CD3D /* OfflineInfoDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfflineInfoDetailCell.m; sourceTree = "<group>"; };
+		E172EBA7205FA2380079CD3D /* OfflineInfoDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfflineInfoDetailCell.xib; sourceTree = "<group>"; };
+		E172EBCB205FB5690079CD3D /* MeunLineOffVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeunLineOffVC.h; sourceTree = "<group>"; };
+		E172EBCC205FB5690079CD3D /* MeunLineOffVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeunLineOffVC.m; sourceTree = "<group>"; };
+		E172EBCD205FB5690079CD3D /* MeunLineOffVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeunLineOffVC.xib; sourceTree = "<group>"; };
+		E172EBD0205FC2280079CD3D /* RighMeumtCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RighMeumtCell.h; sourceTree = "<group>"; };
+		E172EBD1205FC2280079CD3D /* RighMeumtCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RighMeumtCell.m; sourceTree = "<group>"; };
+		E172EBD2205FC2280079CD3D /* RighMeumtCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RighMeumtCell.xib; sourceTree = "<group>"; };
+		E172EBD5205FC6F00079CD3D /* moreOne@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moreOne@2x.png"; sourceTree = "<group>"; };
 		E60962CF3B597F7C431212A7 /* libPods-Smail_100Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Smail_100Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6B1D3A6DB1A20BAB619951F /* libPods-Smail_100UITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Smail_100UITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -2313,7 +2334,6 @@
 				E10B12AB20528B11008BA706 /* MyCity-Prefix.pch */,
 				E10B12AC20528B17008BA706 /* KX_MacroDefinition.h */,
 				E10B0297205289EC008BA706 /* Assets.xcassets */,
-				E10B0299205289EC008BA706 /* LaunchScreen.storyboard */,
 				E10B029C205289EC008BA706 /* Info.plist */,
 				E10B029D205289EC008BA706 /* main.m */,
 			);
@@ -3949,6 +3969,11 @@
 				E10B0CAD20528AE8008BA706 /* PageScrollTableViewsController.m */,
 				E10B0CAE20528AE8008BA706 /* PageTableController.h */,
 				E10B0CAF20528AE8008BA706 /* PageTableController.m */,
+				E172EB9F205F8F740079CD3D /* OffLineDetailVC.h */,
+				E172EBA0205F8F740079CD3D /* OffLineDetailVC.m */,
+				E172EBCB205FB5690079CD3D /* MeunLineOffVC.h */,
+				E172EBCC205FB5690079CD3D /* MeunLineOffVC.m */,
+				E172EBCD205FB5690079CD3D /* MeunLineOffVC.xib */,
 			);
 			path = VCS;
 			sourceTree = "<group>";
@@ -3963,6 +3988,14 @@
 				E10B0CB520528AE8008BA706 /* LineRecommendedView.m */,
 				E10B0CB620528AE8008BA706 /* MenuView.h */,
 				E10B0CB720528AE8008BA706 /* MenuView.m */,
+				E172EBA2205F92A90079CD3D /* OfflineDetailCell.h */,
+				E172EBA3205F92A90079CD3D /* OfflineDetailCell.m */,
+				E172EBA5205FA2380079CD3D /* OfflineInfoDetailCell.h */,
+				E172EBA6205FA2380079CD3D /* OfflineInfoDetailCell.m */,
+				E172EBA7205FA2380079CD3D /* OfflineInfoDetailCell.xib */,
+				E172EBD0205FC2280079CD3D /* RighMeumtCell.h */,
+				E172EBD1205FC2280079CD3D /* RighMeumtCell.m */,
+				E172EBD2205FC2280079CD3D /* RighMeumtCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5265,6 +5298,7 @@
 		E10B10B220528B05008BA706 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E172EBD5205FC6F00079CD3D /* moreOne@2x.png */,
 				3E5D837920557660001B542E /* goodsAdd@2x.png */,
 				E16596FD2057A3C1008ADC6B /* ico_add.png */,
 				E16596FE2057A3C1008ADC6B /* ico_minus.png */,
@@ -6200,6 +6234,7 @@
 				E10B129220528B06008BA706 /* shouye20@3x.png in Resources */,
 				E10B0CDB20528AE8008BA706 /* ShopMoreGoodsCell.xib in Resources */,
 				E10B0D2720528AE8008BA706 /* OrdersPayTypeCell.xib in Resources */,
+				E172EBA9205FA2380079CD3D /* OfflineInfoDetailCell.xib in Resources */,
 				E10B0D0220528AE8008BA706 /* GoodsDetailInfoCell.xib in Resources */,
 				E10B0D4120528AE8008BA706 /* GoodGuigeSectionHeadView.xib in Resources */,
 				E10B0FAA20528AFA008BA706 /* JKImagePickerController.strings in Resources */,
@@ -6284,7 +6319,6 @@
 				E10B127D20528B06008BA706 /* xianxiashangjia8@3x.png in Resources */,
 				E10B123020528B06008BA706 /* xitongshezhi3@3x.png in Resources */,
 				E10B126420528B06008BA706 /* denglu@3x.png in Resources */,
-				E10B029B205289EC008BA706 /* LaunchScreen.storyboard in Resources */,
 				E10B0298205289EC008BA706 /* Assets.xcassets in Resources */,
 				E10B129120528B06008BA706 /* shouye1@3x.png in Resources */,
 				E10B127320528B06008BA706 /* xianxiashangjia18@3x.png in Resources */,
@@ -6343,6 +6377,7 @@
 				E10B0296205289EC008BA706 /* Main.storyboard in Resources */,
 				E10B0D4420528AE8008BA706 /* GoodScreenCollectCell.xib in Resources */,
 				E10B128420528B06008BA706 /* jinrongbankuai6@3x.png in Resources */,
+				E172EBCF205FB5690079CD3D /* MeunLineOffVC.xib in Resources */,
 				E10B0FD020528AFA008BA706 /* citydict.plist in Resources */,
 				E10B11D420528B06008BA706 /* dailipingtai2@3x.png in Resources */,
 				E10B125420528B06008BA706 /* muban17@3x.png in Resources */,
@@ -6369,6 +6404,7 @@
 				E10B129A20528B06008BA706 /* shouye28@3x.png in Resources */,
 				E10B123520528B06008BA706 /* zhanghuguanli12@3x.png in Resources */,
 				E10B0CED20528AE8008BA706 /* GoodDetailImageVC.xib in Resources */,
+				E172EBD4205FC2280079CD3D /* RighMeumtCell.xib in Resources */,
 				E10B126B20528B06008BA706 /* xianxiashangjia10@3x.png in Resources */,
 				E10B11CA20528B06008BA706 /* gerenzhongxin1@3x.png in Resources */,
 				E16596FF2057A3C1008ADC6B /* ico_add.png in Resources */,
@@ -6436,6 +6472,7 @@
 				E10B11FE20528B06008BA706 /* shangchengdingdan4@3x.png in Resources */,
 				E10B127C20528B06008BA706 /* xianxiashangjia7@3x.png in Resources */,
 				E10B126E20528B06008BA706 /* xianxiashangjia13@3x.png in Resources */,
+				E172EBD6205FC6F00079CD3D /* moreOne@2x.png in Resources */,
 				E10B123620528B06008BA706 /* zhanghuguanli13@3x.png in Resources */,
 				E10B11C820528B06008BA706 /* gerenzhongxin18@3x.png in Resources */,
 				E10B11DF20528B06008BA706 /* hehuorenpingtai5@3x.png in Resources */,
@@ -6683,6 +6720,7 @@
 				3E27F91D2053B21200A1DA2F /* PayModels.m in Sources */,
 				E10B0D2120528AE8008BA706 /* DeductionCell.m in Sources */,
 				E10B0CE320528AE8008BA706 /* GoodsOrderAddressModel.m in Sources */,
+				E172EBA1205F8F740079CD3D /* OffLineDetailVC.m in Sources */,
 				E10B0FA420528AFA008BA706 /* SZCalendarCell.m in Sources */,
 				E10B0D3B20528AE8008BA706 /* FinancialAndInsuranHeadView.m in Sources */,
 				E10B0EAD20528AF5008BA706 /* KYTextView.m in Sources */,
@@ -6793,6 +6831,7 @@
 				E10B0D9E20528AE8008BA706 /* DemandVModel.m in Sources */,
 				E10B0CDE20528AE8008BA706 /* GoodsCategoryCollectionHeader.m in Sources */,
 				E10B0D7F20528AE8008BA706 /* MeChantMainVC.m in Sources */,
+				E172EBA4205F92A90079CD3D /* OfflineDetailCell.m in Sources */,
 				E10B0FB120528AFA008BA706 /* JKAssetsViewCell.m in Sources */,
 				E11531132052969200B5852F /* openssl_wrapper.m in Sources */,
 				E10B0EA720528AF5008BA706 /* UIButton+EdgeInsets.m in Sources */,
@@ -6859,6 +6898,7 @@
 				E10B0D7320528AE8008BA706 /* NewManagementModel.m in Sources */,
 				E10B0FC920528AFA008BA706 /* LZCityPickerController.m in Sources */,
 				E10B0FC220528AFA008BA706 /* KX_ToastView.m in Sources */,
+				E172EBD3205FC2280079CD3D /* RighMeumtCell.m in Sources */,
 				E10B108720528B03008BA706 /* MJExtensionConst.m in Sources */,
 				E10B0FD620528AFA008BA706 /* CustomTopView.m in Sources */,
 				E10B0D5D20528AE8008BA706 /* LoginVModel.m in Sources */,
@@ -6881,6 +6921,7 @@
 				E10B0E9920528AF5008BA706 /* ZHDatePickerView.m in Sources */,
 				E10B0D3720528AE8008BA706 /* HomeVModel.m in Sources */,
 				E10B0DD220528AE8008BA706 /* FinanciaCell.m in Sources */,
+				E172EBA8205FA2380079CD3D /* OfflineInfoDetailCell.m in Sources */,
 				E10B0EAC20528AF5008BA706 /* KYProgramTimeView.m in Sources */,
 				E10B0FC120528AFA008BA706 /* KX_ShareView.m in Sources */,
 				E10B0EB020528AF5008BA706 /* NSDate+Utils.m in Sources */,
@@ -7050,6 +7091,7 @@
 				E10B0DC820528AE8008BA706 /* MyChantPirceCell.m in Sources */,
 				E10B0F9C20528AFA008BA706 /* JZLocationConverter.m in Sources */,
 				E10B0E1B20528AF0008BA706 /* KX_BaseTableViewController.m in Sources */,
+				E172EBCE205FB5690079CD3D /* MeunLineOffVC.m in Sources */,
 				E10B0CD720528AE8008BA706 /* GoodsClassModel.m in Sources */,
 				E10B0DBC20528AE8008BA706 /* MemberCenterOrderCell.m in Sources */,
 			);
@@ -7093,14 +7135,6 @@
 				E10B0295205289EC008BA706 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E10B0299205289EC008BA706 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E10B029A205289EC008BA706 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 		E10B0EFE20528AFA008BA706 /* JKImagePickerController.strings */ = {

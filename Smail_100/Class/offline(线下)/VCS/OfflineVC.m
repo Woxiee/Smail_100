@@ -9,30 +9,95 @@
 #import "OfflineVC.h"
 #import "PageTableController.h"
 #import "PageScrollTableViewsController.h"
-
+#import "SDCycleScrollView.h"
+#import "LineRecommendedView.h"
+#import "GoodsDetailVC.h"
+#import "LineOffGoodsCell.h"
+#import "OffLineModel.h"
+#import "GoodsClassModel.h"
 //view
 #import "MenuView.h"
-@interface OfflineVC ()<UIScrollViewDelegate,YBPopupMenuDelegate>
+#import "TopScreenView.h"
+#import "OffLineDetailVC.h"
 
-//偏移量
-@property (assign, nonatomic) CGFloat scrollViewY;
-@property (assign, nonatomic)  UIButton *selectBtn;
+@interface OfflineVC ()<SDCycleScrollViewDelegate,PYSearchViewControllerDelegate,YBPopupMenuDelegate>
+@property (weak, nonatomic) SDCycleScrollView  *cycleView;
 @property (nonatomic, strong)  UITextField *inPutTextField;
+@property (nonatomic, strong)  NSMutableArray *hotArray;
+@property (weak, nonatomic) UIView *  headerView;
+@property (weak, nonatomic)   LineRecommendedView *teamPersenView;
+@property(nonatomic,assign)NSUInteger page;
+//偏移量
+//@property (assign, nonatomic) CGFloat scrollViewY;
+@property (assign, nonatomic)  UIButton *selectBtn;
+
+@property (nonatomic, strong) NSString *category_id;
+@property (nonatomic, strong) NSString *xy;
+@property (nonatomic, strong) NSString *order;
+@property (nonatomic, strong) NSString *q;
+
+@property (nonatomic, strong) TopScreenView *topSreenView;
 
 @end
 
 @implementation OfflineVC
+static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    PageScrollTableViewsController * pageController = [[PageScrollTableViewsController alloc]initWithTitleArray:@[@"附近商家",@"销量优先",@"距离优先",@"评价优先"]];
-    pageController.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight - kNavigationHeight);
-    pageController.navigationItem = self.navigationItem;
-    [self.view addSubview:pageController.view];
-    [self addChildViewController:pageController];
-    pageController.superVC = self;
+//    PageScrollTableViewsController * pageController = [[PageScrollTableViewsController alloc]initWithTitleArray:@[@"附近商家",@"销量优先",@"距离优先",@"评价优先"]];
+//    pageController.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight - kNavigationHeight);
+//    pageController.navigationItem = self.navigationItem;
+//    [self.view addSubview:pageController.view];
+//    [self addChildViewController:pageController];
+//    pageController.superVC = self;
     [self setup];
     [self setNavationView];
+}
+
+
+- (void)requestListNetWork
+{
+    WEAKSELF;
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_page] forKey:@"pageno"];
+    [param setObject:@"20" forKey:@"page_size"];
+    [param setObject:@"" forKey:@"type"];
+    [param setObject:_category_id?_category_id:@"" forKey:@"category_id"];
+    [param setObject:_xy?_xy:@"" forKey:@"xy"];
+    [param setObject:_order?_order:@"" forKey:@"order"];
+    //    [param setObject:@"" forKey:@"sort"];
+    [param setObject:_q?_q:@"" forKey:@"q"];
+    //    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    [MBProgressHUD showMessag:@"加载中..." toView:self.view];
+    [BaseHttpRequest postWithUrl:@"/shop/shop_list" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        LOG(@"订单列表 == %@",result);
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSString *msg = [result valueForKey:@"msg"];
+        NSDictionary *dic = result[@"data"];
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+            NSArray *listArray  = [[NSArray alloc] init];
+            if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+                listArray = [OffLineModel mj_objectArrayWithKeyValuesArray:dic[@"list"]];
+                NSArray *bannerList = [Banners mj_objectArrayWithKeyValuesArray:dic[@"banners"]];
+                NSMutableArray *imgList = [[NSMutableArray alloc] init];
+                for (Banners *banner in bannerList) {
+                    [imgList addObject:banner.pict_url];
+                }
+                _cycleView.imageURLStringsGroup = imgList;
+                if (weakSelf.page == 0) {
+                    [weakSelf.resorceArray removeAllObjects];
+                }
+                [weakSelf.resorceArray addObjectsFromArray:listArray];
+                [weakSelf.tableView reloadData];
+                [weakSelf setRefreshs];
+            }
+        }else{
+            [weakSelf showHint:msg];
+            
+        }
+    }];
 }
 
 
@@ -79,6 +144,10 @@
     
     self.navigationItem.titleView = navationView;
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"LineOffGoodsCell" bundle:nil] forCellReuseIdentifier:llineOffGoodsCell];
+    [self requestListNetWork];
+
+    
 }
 
 
@@ -95,7 +164,22 @@
     UIBarButtonItem * rightButton = [[UIBarButtonItem alloc]initWithCustomView:self.leftNaviBtn];
     self.navigationItem.leftBarButtonItem = rightButton;
     [self.leftNaviBtn sizeToFit];
+    
     [self.leftNaviBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
+    UIView * headerView = [[UIView alloc]init];
+    headerView.frame = CGRectMake(0, 0, kScreenWidth, kHeaderViewHeight+10);
+    _headerView = headerView;
+//    [self.view addSubview:headerView];
+    self.tableView.tableHeaderView = _headerView;
+    
+    SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 125) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
+    [headerView addSubview:cycleView];
+    self.cycleView = cycleView;
+    
+    LineRecommendedView *teamPersenView = [[LineRecommendedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(cycleView.frame), SCREEN_WIDTH, 145)];
+    [headerView addSubview:teamPersenView];
+    self.teamPersenView = teamPersenView;
+    
 }
 
 
@@ -120,4 +204,113 @@
     
     
 }
+
+
+#pragma mark - UITableViewDelegate && UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.resorceArray.count;
+
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    OffLineModel *model = self.resorceArray[indexPath.row];
+    LineOffGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:llineOffGoodsCell];
+    if (cell == nil) {
+        cell = [[LineOffGoodsCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:llineOffGoodsCell];
+    }
+    cell.model = model;
+    return cell;
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+//                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+//    //    vc.productID = model.mainResult.mainId;
+//    //    vc.typeStr = model.productType;
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController: vc animated:YES];
+    
+    OffLineDetailVC *VC = [[OffLineDetailVC alloc] init];
+    OffLineModel *model = self.resorceArray[indexPath.row];
+    VC.model = model;
+    VC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:VC animated:YES];
+    
+}
+
+
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 112;
+}
+
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 45;
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+//    self.topSreenView.backgroundColor = [UIColor redColor];
+    return self.topSreenView;
+}
+
+
+-(void)loadNewDate
+{
+    self.page = 0;
+    [self requestListNetWork];
+}
+
+-(void)loadMoreData{
+    
+    self.page++;
+    [self requestListNetWork];
+}
+
+-(void)setRefreshs
+{
+    [self.tableView stopFresh:self.resorceArray.count pageIndex:self.page];
+    if (self.resorceArray.count == 0) {
+        [self.tableView addSubview:[KX_LoginHintView notDataView]];
+    }else{
+        [KX_LoginHintView removeFromSupView:self.tableView];
+    }
+    
+}
+
+- (TopScreenView *)topSreenView
+{
+    if (_topSreenView == nil) {
+       _topSreenView = [[TopScreenView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 45)];
+        _topSreenView.titleArray = @[@"附近商家",@"销量优先",@"距离优先",@"评价优先"];
+        [_topSreenView layerForViewWith:0 AndLineWidth:0.5];
+        _topSreenView.selectTopIndexBlock = ^(NSInteger index, NSString *key, NSString *title){
+            
+//            if (_sheet) {
+//                [_sheet hiddenSheetView];
+//                _sheet =nil;
+//            }
+//            [weakSelf showDownMuenTitleKey:key andIndex:index andTitle:title];
+            
+        };
+    }
+    return _topSreenView;
+}
+
 @end

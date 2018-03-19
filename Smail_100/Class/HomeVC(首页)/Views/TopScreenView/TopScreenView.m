@@ -10,7 +10,6 @@
 
 @interface  TopScreenView ()
 @property (nonatomic, strong) NSMutableArray  *titleKeyArr; //// 记录ID
-@property (nonatomic, strong) NSMutableArray *titleArray;
 @property (nonatomic,strong) UIButton *selectedBtn1;
 @property (nonatomic,strong) UIButton *selectedBtn2;
 
@@ -25,7 +24,7 @@
     if (self = [super initWithFrame:frame]) {
         /// 配置基础设置
         [self setConfiguration];
-        [self setup];
+//        [self setup];
     }
     return self;
 }
@@ -39,7 +38,7 @@
         /// 配置基础设置
         [self setConfiguration];
         /// 初始化视图
-        [self setup];
+//        [self setup];
     }
     return self;
 }
@@ -57,11 +56,7 @@
 - (void)setup
 {
 
-    [_titleArray addObject:@"全部分类"];
-    [_titleArray addObject:@"价格排序"];
-    [_titleArray addObject:@"销售优先"];
-    [_titleArray addObject:@"时间排序"];
-    
+//
     /// 初始化视图
 //
     for (int i = 0; i<_titleArray.count; i++) {
@@ -72,7 +67,7 @@
         btn.titleLabel.font = PLACEHOLDERFONT;
         [btn setTitle:_titleArray[i] forState:UIControlStateNormal];
         //设置button正常状态下的标题颜色
-        [btn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
+        [btn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
         [btn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateSelected];
         if (_topScreenType == TopScreenOtherType) {
             
@@ -129,6 +124,7 @@
 -(void)setModel:(GoodsScreenmodel *)model
 {
     _model = model;
+    /*
     /// TopScreenOtherType 采集显示数据
     if (_topScreenType == TopScreenOtherType) {
         
@@ -207,13 +203,14 @@
         }
         
     }
-    [_titleArray addObject:@"全部分类"];
-    [_titleArray addObject:@"价格排序"];
-    [_titleArray addObject:@"销售优先"];
-    [_titleArray addObject:@"时间排序"];
+//    [_titleArray addObject:@"全部分类"];
+//    [_titleArray addObject:@"价格排序"];
+//    [_titleArray addObject:@"销售优先"];
+//    [_titleArray addObject:@"时间排序"];
 
-    /// 初始化视图
-    [self setup];
+//    /// 初始化视图
+//    [self setup];
+     */
 }
 
 
@@ -233,5 +230,34 @@
     [btn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
     btn.selected = YES;
 
+}
+
+- (void)setTitleArray:(NSArray *)titleArray
+{
+    _titleArray = titleArray;
+    for (int i = 0; i<_titleArray.count; i++) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(SCREEN_WIDTH / _titleArray.count *i, 0, SCREEN_WIDTH / _titleArray.count, 45);
+        btn.tag = 100 + i;
+        btn.timeInterVal = 0;
+        btn.titleLabel.font = PLACEHOLDERFONT;
+        [btn setTitle:_titleArray[i] forState:UIControlStateNormal];
+        //设置button正常状态下的标题颜色
+        [btn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
+        [btn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateSelected];
+        if (_topScreenType == TopScreenOtherType) {
+            
+        }else{
+            [btn setImage:[UIImage imageNamed:@"29@3x.png"] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:@"28@3x.png"] forState:UIControlStateSelected];
+        }
+        [btn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
+        [btn addTarget:self action:@selector(clickIndex:) forControlEvents:UIControlEventTouchUpInside];
+        if (i== 0) {
+            btn.selected = YES;
+        }
+        [self addSubview:btn];
+    }
+    
 }
 @end
