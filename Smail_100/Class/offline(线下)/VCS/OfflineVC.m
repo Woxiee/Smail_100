@@ -7,8 +7,6 @@
 //
 
 #import "OfflineVC.h"
-#import "PageTableController.h"
-#import "PageScrollTableViewsController.h"
 #import "SDCycleScrollView.h"
 #import "LineRecommendedView.h"
 #import "GoodsDetailVC.h"

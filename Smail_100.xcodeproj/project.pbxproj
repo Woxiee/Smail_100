@@ -13,6 +13,9 @@
 		3E5FC2CC205E31990067CFA5 /* YBPopupMenuPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FC2C7205E31980067CFA5 /* YBPopupMenuPath.m */; };
 		3E5FC2CD205E31990067CFA5 /* YBPopupMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FC2C9205E31980067CFA5 /* YBPopupMenu.m */; };
 		3E5FC2D1205EB4470067CFA5 /* OffLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FC2D0205EB4470067CFA5 /* OffLineModel.m */; };
+		3EB8E012205FFB7E00E717B1 /* MeChantOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8E011205FFB7E00E717B1 /* MeChantOrderModel.m */; };
+		3EB8E0162060048A00E717B1 /* AddOrEidtGoodVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8E0142060048A00E717B1 /* AddOrEidtGoodVC.m */; };
+		3EB8E0172060048A00E717B1 /* AddOrEidtGoodVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8E0152060048A00E717B1 /* AddOrEidtGoodVC.xib */; };
 		3ECD1CC0205CC86A008D8686 /* QrCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD1CBE205CC86A008D8686 /* QrCodeVC.m */; };
 		3ECD1CC1205CC86A008D8686 /* QrCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ECD1CBF205CC86A008D8686 /* QrCodeVC.xib */; };
 		7361221E789C7F5110C27B63 /* libPods-Smail_100Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E60962CF3B597F7C431212A7 /* libPods-Smail_100Tests.a */; };
@@ -303,8 +306,6 @@
 		E10B0DE620528AE8008BA706 /* StoreMangerVHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0CA620528AE8008BA706 /* StoreMangerVHeadView.m */; };
 		E10B0DE720528AE8008BA706 /* StoreMangerVHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10B0CA720528AE8008BA706 /* StoreMangerVHeadView.xib */; };
 		E10B0DE820528AE8008BA706 /* OfflineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0CAB20528AE8008BA706 /* OfflineVC.m */; };
-		E10B0DE920528AE8008BA706 /* PageScrollTableViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0CAD20528AE8008BA706 /* PageScrollTableViewsController.m */; };
-		E10B0DEA20528AE8008BA706 /* PageTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0CAF20528AE8008BA706 /* PageTableController.m */; };
 		E10B0DEB20528AE8008BA706 /* LineOffGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0CB220528AE8008BA706 /* LineOffGoodsCell.m */; };
 		E10B0DEC20528AE8008BA706 /* LineOffGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10B0CB320528AE8008BA706 /* LineOffGoodsCell.xib */; };
 		E10B0DED20528AE8008BA706 /* LineRecommendedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0CB520528AE8008BA706 /* LineRecommendedView.m */; };
@@ -851,6 +852,11 @@
 		3E5FC2CA205E31980067CFA5 /* YBPopupMenuPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBPopupMenuPath.h; sourceTree = "<group>"; };
 		3E5FC2CF205EB4470067CFA5 /* OffLineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OffLineModel.h; sourceTree = "<group>"; };
 		3E5FC2D0205EB4470067CFA5 /* OffLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OffLineModel.m; sourceTree = "<group>"; };
+		3EB8E010205FFB7E00E717B1 /* MeChantOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeChantOrderModel.h; sourceTree = "<group>"; };
+		3EB8E011205FFB7E00E717B1 /* MeChantOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeChantOrderModel.m; sourceTree = "<group>"; };
+		3EB8E0132060048A00E717B1 /* AddOrEidtGoodVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddOrEidtGoodVC.h; sourceTree = "<group>"; };
+		3EB8E0142060048A00E717B1 /* AddOrEidtGoodVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddOrEidtGoodVC.m; sourceTree = "<group>"; };
+		3EB8E0152060048A00E717B1 /* AddOrEidtGoodVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddOrEidtGoodVC.xib; sourceTree = "<group>"; };
 		3ECD1CBD205CC86A008D8686 /* QrCodeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QrCodeVC.h; sourceTree = "<group>"; };
 		3ECD1CBE205CC86A008D8686 /* QrCodeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QrCodeVC.m; sourceTree = "<group>"; };
 		3ECD1CBF205CC86A008D8686 /* QrCodeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QrCodeVC.xib; sourceTree = "<group>"; };
@@ -1346,10 +1352,6 @@
 		E10B0CA720528AE8008BA706 /* StoreMangerVHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreMangerVHeadView.xib; sourceTree = "<group>"; };
 		E10B0CAA20528AE8008BA706 /* OfflineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineVC.h; sourceTree = "<group>"; };
 		E10B0CAB20528AE8008BA706 /* OfflineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineVC.m; sourceTree = "<group>"; };
-		E10B0CAC20528AE8008BA706 /* PageScrollTableViewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageScrollTableViewsController.h; sourceTree = "<group>"; };
-		E10B0CAD20528AE8008BA706 /* PageScrollTableViewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageScrollTableViewsController.m; sourceTree = "<group>"; };
-		E10B0CAE20528AE8008BA706 /* PageTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageTableController.h; sourceTree = "<group>"; };
-		E10B0CAF20528AE8008BA706 /* PageTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageTableController.m; sourceTree = "<group>"; };
 		E10B0CB120528AE8008BA706 /* LineOffGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineOffGoodsCell.h; sourceTree = "<group>"; };
 		E10B0CB220528AE8008BA706 /* LineOffGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineOffGoodsCell.m; sourceTree = "<group>"; };
 		E10B0CB320528AE8008BA706 /* LineOffGoodsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineOffGoodsCell.xib; sourceTree = "<group>"; };
@@ -2261,6 +2263,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		3EB8E00F205FFB6D00E717B1 /* MeChantOrderModel */ = {
+			isa = PBXGroup;
+			children = (
+				3EB8E010205FFB7E00E717B1 /* MeChantOrderModel.h */,
+				3EB8E011205FFB7E00E717B1 /* MeChantOrderModel.m */,
+			);
+			path = MeChantOrderModel;
+			sourceTree = "<group>";
+		};
 		A2D5C5FE1A124C37E0F2F69D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2368,10 +2379,10 @@
 				E10B0B1920528AE8008BA706 /* GoodsOrderNomalVC（订单确认） */,
 				E10B0B1D20528AE8008BA706 /* HomeVC(首页) */,
 				E10B0B8820528AE8008BA706 /* Login */,
-				E10B0B9B20528AE8008BA706 /* Members(会员) */,
 				E10B0CA820528AE8008BA706 /* offline(线下) */,
 				E10B0CB820528AE8008BA706 /* onlineVC(线上) */,
 				E10B0CBC20528AE8008BA706 /* shoppingCar(购物车) */,
+				E10B0B9B20528AE8008BA706 /* Members(会员) */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -3350,6 +3361,7 @@
 				E10B0BAE20528AE8008BA706 /* OrderModel */,
 				E10B0BB320528AE8008BA706 /* OrderMoneyModel */,
 				E10B0BB620528AE8008BA706 /* 需求管理 */,
+				3EB8E00F205FFB6D00E717B1 /* MeChantOrderModel */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3498,6 +3510,9 @@
 				E10B0BD120528AE8008BA706 /* GoodsManagersListVC.m */,
 				E10B0BD220528AE8008BA706 /* GoodsManagerVC.h */,
 				E10B0BD320528AE8008BA706 /* GoodsManagerVC.m */,
+				3EB8E0132060048A00E717B1 /* AddOrEidtGoodVC.h */,
+				3EB8E0142060048A00E717B1 /* AddOrEidtGoodVC.m */,
+				3EB8E0152060048A00E717B1 /* AddOrEidtGoodVC.xib */,
 			);
 			path = GoodsManagerVC;
 			sourceTree = "<group>";
@@ -3965,10 +3980,6 @@
 			children = (
 				E10B0CAA20528AE8008BA706 /* OfflineVC.h */,
 				E10B0CAB20528AE8008BA706 /* OfflineVC.m */,
-				E10B0CAC20528AE8008BA706 /* PageScrollTableViewsController.h */,
-				E10B0CAD20528AE8008BA706 /* PageScrollTableViewsController.m */,
-				E10B0CAE20528AE8008BA706 /* PageTableController.h */,
-				E10B0CAF20528AE8008BA706 /* PageTableController.m */,
 				E172EB9F205F8F740079CD3D /* OffLineDetailVC.h */,
 				E172EBA0205F8F740079CD3D /* OffLineDetailVC.m */,
 				E172EBCB205FB5690079CD3D /* MeunLineOffVC.h */,
@@ -6304,6 +6315,7 @@
 				E10B11F420528B06008BA706 /* hehuorenshengji3@3x.png in Resources */,
 				E10B0DCC20528AE8008BA706 /* MyRecommendCell.xib in Resources */,
 				E10B121E20528B06008BA706 /* wodetuandui1@3x.png in Resources */,
+				3EB8E0172060048A00E717B1 /* AddOrEidtGoodVC.xib in Resources */,
 				3E5D837A20557661001B542E /* goodsAdd@2x.png in Resources */,
 				E10B123720528B06008BA706 /* zhanghuguanli14@3x.png in Resources */,
 				E10B0DC420528AE8008BA706 /* MeOrderGoodsCell.xib in Resources */,
@@ -6814,6 +6826,7 @@
 				E10B0DA220528AE8008BA706 /* ContractDetailPayCell.m in Sources */,
 				E10B0E1720528AF0008BA706 /* KX_BaseCollectionViewCell.m in Sources */,
 				E10B0D9720528AE8008BA706 /* SettingVC.m in Sources */,
+				3EB8E012205FFB7E00E717B1 /* MeChantOrderModel.m in Sources */,
 				E10B0D8C20528AE8008BA706 /* CategoryVC.m in Sources */,
 				E10B0D4920528AE8008BA706 /* HomeFootView.m in Sources */,
 				E10B0D2320528AE8008BA706 /* MailTypeCell.m in Sources */,
@@ -6848,6 +6861,7 @@
 				E10B0D0620528AE8008BA706 /* GoodsDetailHeadView.m in Sources */,
 				E16596E920564FE4008ADC6B /* Toast+UIView.m in Sources */,
 				E10B10A620528B03008BA706 /* NSBundle+PYSearchExtension.m in Sources */,
+				3EB8E0162060048A00E717B1 /* AddOrEidtGoodVC.m in Sources */,
 				E10B0CFB20528AE8008BA706 /* GoodsBrightCell.m in Sources */,
 				E10B0EAF20528AF5008BA706 /* NSData+Encrypt.m in Sources */,
 				E10B109520528B03008BA706 /* MJRefreshHeader.m in Sources */,
@@ -6871,7 +6885,6 @@
 				E10B109C20528B03008BA706 /* MJRefreshGifHeader.m in Sources */,
 				E10B0D9F20528AE8008BA706 /* MemberInfoVModel.m in Sources */,
 				E10B0E1920528AF0008BA706 /* KX_BaseNavController.m in Sources */,
-				E10B0DEA20528AE8008BA706 /* PageTableController.m in Sources */,
 				E10B108420528B03008BA706 /* MBProgressHUD.m in Sources */,
 				E10B12AA20528B0A008BA706 /* UIViewController+HUD.m in Sources */,
 				E10B0D2C20528AE8008BA706 /* ColumnModel.m in Sources */,
@@ -7006,7 +7019,6 @@
 				E10B0D8120528AE8008BA706 /* MeChantOrderVC.m in Sources */,
 				E10B0F9F20528AFA008BA706 /* KX_ActionSheet.m in Sources */,
 				E10B107F20528B03008BA706 /* AFURLRequestSerialization.m in Sources */,
-				E10B0DE920528AE8008BA706 /* PageScrollTableViewsController.m in Sources */,
 				E10B0D4720528AE8008BA706 /* GoodsScreenOutCell.m in Sources */,
 				E10B0DA020528AE8008BA706 /* OrderVModel.m in Sources */,
 				E10B0D6220528AE8008BA706 /* LoginForgetVC.m in Sources */,

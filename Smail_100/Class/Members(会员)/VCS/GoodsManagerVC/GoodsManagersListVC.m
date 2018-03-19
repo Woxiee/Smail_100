@@ -9,6 +9,7 @@
 #import "GoodsManagersListVC.h"
 #import "GoodsManagerView.h"
 #import "GoodsManageView.h"
+#import "MeChantOrderModel.h"
 
 @interface GoodsManagersListVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
@@ -55,9 +56,71 @@
 #pragma mark - 得到网络数据
 -(void)requestListNetWork
 {
-    
+    WEAKSELF;
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_page] forKey:@"pageno"];
+    [param setObject:@"20" forKey:@"page_size"];
+    [param setObject:_orderTypeTitle forKey:@"status"];
+    //    [param setObject:_quickSearch forKey:@"quickSearch"];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    [MBProgressHUD showMessag:@"加载中..." toView:self.view];
+    [BaseHttpRequest postWithUrl:@"/shop/goods_list" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        LOG(@"商品订单 == %@",result);
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSString *msg = [result valueForKey:@"msg"];
+//        NSDictionary *dic = result[@"data"];
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+            NSArray *listArray  = [[NSArray alloc] init];
+            if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+                listArray = [MeChantOrderModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
+                if (weakSelf.page == 0) {
+                    [weakSelf.resorceArray removeAllObjects];
+                }
+                [weakSelf.resorceArray addObjectsFromArray:listArray];
+                [weakSelf.tableView reloadData];
+                [weakSelf stopRefresh];
+            }
+        }else{
+            [weakSelf showHint:msg];
+            
+        }
+    }];
+
 }
 
+
+- (void)editGoodList:(MeChantOrderModel *)model andUrl:(NSString *)url
+{
+    WEAKSELF;
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:model.goods_id forKey:@"goods_id"];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+
+    [MBProgressHUD showMessag:@"加载中..." toView:self.view];
+    [BaseHttpRequest postWithUrl:url andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        LOG(@"商品订单 == %@",result);
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSString *msg = [result valueForKey:@"msg"];
+        //        NSDictionary *dic = result[@"data"];
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+            NSArray *listArray  = [[NSArray alloc] init];
+            if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+                listArray = [MeChantOrderModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
+                if (weakSelf.page == 0) {
+                    [weakSelf.resorceArray removeAllObjects];
+                }
+                [weakSelf.resorceArray addObjectsFromArray:listArray];
+                [weakSelf.tableView reloadData];
+                [weakSelf stopRefresh];
+            }
+        }else{
+            [weakSelf showHint:msg];
+            
+        }
+    }];
+}
 
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -66,7 +129,7 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 10;
+    return self.resorceArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,6 +140,8 @@
     if (!cell ) {
         cell = [[GoodsManagerView alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
+    MeChantOrderModel *model = self.resorceArray[indexPath.section];
+    cell.model = model;
     return cell;
     
 }
@@ -113,10 +178,21 @@
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
+    WEAKSELF;
     GoodsManageView *footView = [[NSBundle mainBundle] loadNibNamed:@"GoodsManageView" owner:nil options:nil].lastObject;
+    MeChantOrderModel *model = self.resorceArray[section];
+
     footView.didClickChangBtnBlock = ^(NSInteger index) {
         /// 100上架 101 编辑  102 删除
-
+        if (index == 100) {
+            
+        }
+        if (index == 101) {
+            [weakSelf editGoodList:model andUrl:@"/shop/goods_delete"];
+        }
+        if (index == 102) {
+            
+        }
     };
     return footView;
 }

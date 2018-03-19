@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MeChantOrderModel.h"
 @interface GoodsManagerView : UITableViewCell
-
+@property (nonatomic, strong) MeChantOrderModel *model;
 @end

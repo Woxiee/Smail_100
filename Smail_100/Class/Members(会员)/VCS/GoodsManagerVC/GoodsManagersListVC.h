@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GoodsManagersListVC : KX_BaseViewController
-
+@property (nonatomic, strong) NSString *orderTypeTitle;
 @end

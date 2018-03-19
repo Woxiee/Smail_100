@@ -24,6 +24,8 @@
 - (void)setup
 {
     self.title = @"订单管理";
+    
+    [self setRightNaviBtnTitle:@"分类" withTitleColor:[UIColor whiteColor]];
     self.view.backgroundColor = [UIColor whiteColor];
     
     /* 创建WJSegmentMenuVc */
@@ -41,9 +43,11 @@
     /* 创建测试数据 */
     NSArray *titles = @[@"出售中(4)",@"仓库中（4）"];
     GoodsManagersListVC *vc1 = [[GoodsManagersListVC alloc] init];
-//    vc1.orderTye = MeChantAllOrderType;
+    vc1.orderTypeTitle = @"Enabled";
     
     GoodsManagersListVC *vc2 = [[GoodsManagersListVC alloc] init];
+    vc2.orderTypeTitle = @"Disabled";
+
 //    vc2.orderTye = MeChantwaitOrderType;
     
 //    MeChantOrderVC *vc3 = [[MeChantOrderVC alloc] init];

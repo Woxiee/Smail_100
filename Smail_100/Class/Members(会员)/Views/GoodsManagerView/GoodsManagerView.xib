@@ -34,7 +34,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已售：0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GaK-eR-1Fr">
                         <rect key="frame" x="100" y="66" width="55.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="0.6076580286026001" green="0.61174666881561279" blue="0.61581707000732422" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小炒肉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ING-Zq-UVy">
@@ -44,14 +44,15 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="库存：888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RB-xL-1En">
-                        <rect key="frame" x="240.5" y="67.5" width="69.5" height="17"/>
+                        <rect key="frame" x="185.5" y="67.5" width="69.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="4RB-xL-1En" secondAttribute="bottom" constant="5" id="1Ky-pP-1co"/>
+                    <constraint firstItem="4RB-xL-1En" firstAttribute="leading" secondItem="GaK-eR-1Fr" secondAttribute="trailing" constant="30" id="51s-4w-KHz"/>
                     <constraint firstItem="GaK-eR-1Fr" firstAttribute="leading" secondItem="VHf-qA-Eu8" secondAttribute="leading" id="BPh-Cg-Cfx"/>
                     <constraint firstAttribute="bottom" secondItem="UwG-jH-nes" secondAttribute="bottom" constant="5" id="Fqr-wm-4Q2"/>
                     <constraint firstAttribute="bottom" secondItem="GaK-eR-1Fr" secondAttribute="bottom" constant="5.5" id="IyG-Uv-Jko"/>
@@ -60,11 +61,17 @@
                     <constraint firstItem="VHf-qA-Eu8" firstAttribute="leading" secondItem="UwG-jH-nes" secondAttribute="trailing" constant="10" id="fFI-Xt-IyB"/>
                     <constraint firstItem="ING-Zq-UVy" firstAttribute="leading" secondItem="UwG-jH-nes" secondAttribute="trailing" constant="10" id="o5l-RZ-Gr8"/>
                     <constraint firstItem="UwG-jH-nes" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="prZ-Jo-vd9"/>
-                    <constraint firstAttribute="trailing" secondItem="4RB-xL-1En" secondAttribute="trailing" constant="10" id="scl-oX-HCN"/>
                     <constraint firstItem="VHf-qA-Eu8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wPR-Yg-330"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="kucLb" destination="4RB-xL-1En" id="VzP-T5-6LC"/>
+                <outlet property="logoImageView" destination="UwG-jH-nes" id="G6V-XH-ZFD"/>
+                <outlet property="nameLB" destination="ING-Zq-UVy" id="HZ2-7p-FsO"/>
+                <outlet property="priceLB" destination="VHf-qA-Eu8" id="c1L-b5-tw4"/>
+                <outlet property="saleLb" destination="GaK-eR-1Fr" id="LXZ-Wh-oYD"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

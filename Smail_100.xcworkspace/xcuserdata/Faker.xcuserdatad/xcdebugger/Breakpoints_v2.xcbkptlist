@@ -83,28 +83,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Smail_100/Class/offline(&#x7ebf;&#x4e0b;)/VCS/PageTableController.m"
-            timestampString = "543078753.449909"
+            filePath = "Smail_100/Class/Members(&#x4f1a;&#x5458;)/VCS/GoodsManagerVC/GoodsManagersListVC.m"
+            timestampString = "543163090.579193"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "-requestListNetWork"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Smail_100/Class/offline(&#x7ebf;&#x4e0b;)/VCS/PageTableController.m"
-            timestampString = "543078753.450652"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "-requestListNetWork"
             landmarkType = "7">
          </BreakpointContent>
