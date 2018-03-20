@@ -12,7 +12,7 @@
 
 @interface AddOrEidtGoodVC ()
 @property (weak, nonatomic) IBOutlet UIButton *pohoteBtn;
-@property (weak, nonatomic) IBOutlet UIButton *imageBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *stortImageView;
 @property (weak, nonatomic) IBOutlet KYTextView *markTextView;
 
 
@@ -92,6 +92,7 @@
     _markTextView.KYPlaceholderColor = DETAILTEXTCOLOR;
     if (_model) {
         self.title = @"编辑商品";
+        [_stortImageView sd_setImageWithURL:[NSURL URLWithString:_model.pict_url] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
 
         _markTextView.text = _model.title;
        _inputKuCunTF.text  = _model.stock;
@@ -126,7 +127,8 @@
                  [BaseHttpRequest requestUploadImage:image Url:@"shop/upload_image" Params:param  andFileContents:nil andBlock:^(NSString *imageName) {
 //                     KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
 //                     userinfo.avatar_url = imageName;
-//                     [headerImage sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:@"6@3x.png"]];
+                     _stortImageView.image = image;
+//                     [_stortImageView sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:@"6@3x.png"]];
                  }];
                  
              }];
@@ -137,9 +139,11 @@
             [self selectImageByCameraWithBlock:^(UIImage *image)
              {
                  [BaseHttpRequest requestUploadImage:image Url:@"shop/upload_image" Params:param  andFileContents:nil andBlock:^(NSString *imageName) {
-                     KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
-                     userinfo.avatar_url = imageName;
-//                     [headerImage sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:@"6@3x.png"]];
+//                     KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
+//                     userinfo.avatar_url = imageName;
+//                     [_stortImageView sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:@"6@3x.png"]];
+                     _stortImageView.image = image;
+
 //
                  }];
              }];
@@ -162,6 +166,28 @@
         _status = @"Disabled";
       }
     
+//    _markTextView.text = _model.title;
+//    _inputKuCunTF.text  = _model.stock;
+//    _status = _model.status;
+//    _inputKuCunTF.text  = _model.stock;
+//    _selectPriceTF.text = _model.price;
+    if (KX_NULLString(_markTextView.text)) {
+        [self.view toastShow:@"商品名称未填写"];
+        return;
+    }
+    if (KX_NULLString(_model.sub_category_id)) {
+        [self.view toastShow:@"商品品类未选择"];
+        return;
+    }
+    if (KX_NULLString(_selectPriceTF.text)) {
+        [self.view toastShow:@"商品价格未填写"];
+        return;
+    }
+    
+    if (KX_NULLString(_inputKuCunTF.text)) {
+        [self.view toastShow:@"商品库存未填写"];
+        return;
+    }
     [self getRequestData];
 }
 

@@ -10,7 +10,8 @@
 #import "SelectGoodsClassCell.h"
 #import "GoodSDetailModel.h"
 
-@interface SelectGoodSClassVC ()
+@interface SelectGoodSClassVC ()<UITableViewDelegate,UITableViewDataSource>
+@property(nonatomic,strong)UITableView *tableView;
 
 @end
 
@@ -59,7 +60,18 @@
 #pragma mark - private
 - (void)setup
 {
+    self.title  = @"选择分类";
     
+    [self.view addSubview:self.tableView];
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, CGRectGetMaxY(self.tableView.frame), SCREEN_WIDTH, 50);
+    [btn setTitle:@"发布商品" forState:UIControlStateNormal];
+    btn.backgroundColor = MainColor;
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(didClickBottomAction) forControlEvents:UIControlEventTouchUpInside];
+    btn.titleLabel.font = Font15;
+    [self.view addSubview:btn];
 }
 
 - (void)setConfiguration
@@ -103,5 +115,30 @@
     
 }
 
+#pragma mark - set懒加载
+/*懒加载*/
+-(UITableView *)tableView
+{
+    if (!_tableView) {
+        //初始化数据
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64 - 50 - 45) style:UITableViewStylePlain];
+        _tableView.tableFooterView = [UIView new];//默认设置为空
+        [_tableView setSeparatorInset:UIEdgeInsetsZero];//默认设置下划线左边移动 15.0f
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.backgroundColor = BACKGROUND_COLOR;
+    }
+    return _tableView;
+}
+
+
+/// 确认选择
+- (void)didClickBottomAction
+{
+    if (_didClickCompleBlock) {
+        _didClickCompleBlock(nil);
+    }
+    
+}
 
 @end

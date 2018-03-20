@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3E27F91D2053B21200A1DA2F /* PayModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27F91C2053B21200A1DA2F /* PayModels.m */; };
 		3E5D837A20557661001B542E /* goodsAdd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E5D837920557660001B542E /* goodsAdd@2x.png */; };
+		3E5F264D2061456A0057269A /* StoreMangerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F264B2061456A0057269A /* StoreMangerVC.m */; };
+		3E5F264E2061456A0057269A /* StoreMangerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5F264C2061456A0057269A /* StoreMangerVC.xib */; };
 		3E5FC2CB205E31990067CFA5 /* YBRectConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FC2C6205E31980067CFA5 /* YBRectConst.m */; };
 		3E5FC2CC205E31990067CFA5 /* YBPopupMenuPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FC2C7205E31980067CFA5 /* YBPopupMenuPath.m */; };
 		3E5FC2CD205E31990067CFA5 /* YBPopupMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FC2C9205E31980067CFA5 /* YBPopupMenu.m */; };
@@ -204,7 +206,6 @@
 		E10B0D8020528AE8008BA706 /* MeChantOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0BDA20528AE8008BA706 /* MeChantOrderDetailVC.m */; };
 		E10B0D8120528AE8008BA706 /* MeChantOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0BDC20528AE8008BA706 /* MeChantOrderVC.m */; };
 		E10B0D8220528AE8008BA706 /* MerchantCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0BDE20528AE8008BA706 /* MerchantCenterVC.m */; };
-		E10B0D8320528AE8008BA706 /* StoreMangerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0BE120528AE8008BA706 /* StoreMangerVC.m */; };
 		E10B0D8420528AE8008BA706 /* MyTeamDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0BE420528AE8008BA706 /* MyTeamDetailVC.m */; };
 		E10B0D8520528AE8008BA706 /* MyTeamListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0BE620528AE8008BA706 /* MyTeamListVC.m */; };
 		E10B0D8620528AE8008BA706 /* MyteamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0BE820528AE8008BA706 /* MyteamVC.m */; };
@@ -847,6 +848,9 @@
 		3E27F91B2053B21200A1DA2F /* PayModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayModels.h; sourceTree = "<group>"; };
 		3E27F91C2053B21200A1DA2F /* PayModels.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayModels.m; sourceTree = "<group>"; };
 		3E5D837920557660001B542E /* goodsAdd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goodsAdd@2x.png"; sourceTree = "<group>"; };
+		3E5F264A2061456A0057269A /* StoreMangerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreMangerVC.h; sourceTree = "<group>"; };
+		3E5F264B2061456A0057269A /* StoreMangerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreMangerVC.m; sourceTree = "<group>"; };
+		3E5F264C2061456A0057269A /* StoreMangerVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreMangerVC.xib; sourceTree = "<group>"; };
 		3E5FC2C5205E31980067CFA5 /* YBPopupMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBPopupMenu.h; sourceTree = "<group>"; };
 		3E5FC2C6205E31980067CFA5 /* YBRectConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBRectConst.m; sourceTree = "<group>"; };
 		3E5FC2C7205E31980067CFA5 /* YBPopupMenuPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBPopupMenuPath.m; sourceTree = "<group>"; };
@@ -1185,8 +1189,6 @@
 		E10B0BDC20528AE8008BA706 /* MeChantOrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeChantOrderVC.m; sourceTree = "<group>"; };
 		E10B0BDD20528AE8008BA706 /* MerchantCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantCenterVC.h; sourceTree = "<group>"; };
 		E10B0BDE20528AE8008BA706 /* MerchantCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantCenterVC.m; sourceTree = "<group>"; };
-		E10B0BE020528AE8008BA706 /* StoreMangerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreMangerVC.h; sourceTree = "<group>"; };
-		E10B0BE120528AE8008BA706 /* StoreMangerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMangerVC.m; sourceTree = "<group>"; };
 		E10B0BE320528AE8008BA706 /* MyTeamDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTeamDetailVC.h; sourceTree = "<group>"; };
 		E10B0BE420528AE8008BA706 /* MyTeamDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTeamDetailVC.m; sourceTree = "<group>"; };
 		E10B0BE520528AE8008BA706 /* MyTeamListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTeamListVC.h; sourceTree = "<group>"; };
@@ -3546,8 +3548,9 @@
 		E10B0BDF20528AE8008BA706 /* StoreManger(门店管理) */ = {
 			isa = PBXGroup;
 			children = (
-				E10B0BE020528AE8008BA706 /* StoreMangerVC.h */,
-				E10B0BE120528AE8008BA706 /* StoreMangerVC.m */,
+				3E5F264A2061456A0057269A /* StoreMangerVC.h */,
+				3E5F264B2061456A0057269A /* StoreMangerVC.m */,
+				3E5F264C2061456A0057269A /* StoreMangerVC.xib */,
 			);
 			path = "StoreManger(门店管理)";
 			sourceTree = "<group>";
@@ -6200,6 +6203,7 @@
 				E10B11F820528B06008BA706 /* hehuorenshengji7@3x.png in Resources */,
 				E10B0DCF20528AE8008BA706 /* MyTeamListCell.xib in Resources */,
 				E10B122520528B06008BA706 /* wodetuiguang3@3x.png in Resources */,
+				3E5F264E2061456A0057269A /* StoreMangerVC.xib in Resources */,
 				E10B11E920528B06008BA706 /* chuangkeweidian5@3x.png in Resources */,
 				E10B123D20528B06008BA706 /* zhanghuguanli1@3x.png in Resources */,
 				E10B0CFE20528AE8008BA706 /* GoodsCollectionCell.xib in Resources */,
@@ -6816,6 +6820,7 @@
 				E10B0FB620528AFA008BA706 /* JKUtil.m in Sources */,
 				E10B0D6D20528AE8008BA706 /* MemberModel.m in Sources */,
 				E10B0D7220528AE8008BA706 /* MangementDetailModel.m in Sources */,
+				3E5F264D2061456A0057269A /* StoreMangerVC.m in Sources */,
 				E11531362052993E00B5852F /* PayOrderView.m in Sources */,
 				E10B10B020528B03008BA706 /* SDPhotoBrowser.m in Sources */,
 				E10B0CF620528AE8008BA706 /* AuctionHeadView.m in Sources */,
@@ -6864,7 +6869,6 @@
 				E11531132052969200B5852F /* openssl_wrapper.m in Sources */,
 				E10B0EA720528AF5008BA706 /* UIButton+EdgeInsets.m in Sources */,
 				E10B0DBF20528AE8008BA706 /* MenberInforCell.m in Sources */,
-				E10B0D8320528AE8008BA706 /* StoreMangerVC.m in Sources */,
 				E10B0D9A20528AE8008BA706 /* KYFillVerficationCodeVC.m in Sources */,
 				E10B0DF220528AE8008BA706 /* ShoppingCarVC.m in Sources */,
 				E10B0FDE20528AFA008BA706 /* XXPageTabItemLable.m in Sources */,

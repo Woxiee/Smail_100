@@ -83,14 +83,62 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Smail_100/Class/Members(&#x4f1a;&#x5458;)/VCS/GoodsManagerVC/GoodsManagersListVC.m"
-            timestampString = "543163090.579193"
+            filePath = "Smail_100/Class/Members(&#x4f1a;&#x5458;)/VCS/GoodsManagerVC/AddOrEidtGoodVC.m"
+            timestampString = "543247739.759843"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "-requestListNetWork"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "-getRequestData"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Smail_100/KX_Base/BaseHttpRequest.m"
+            timestampString = "543243872.938397"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "-uploadWithImage:Url:andBlock:Params:andFileContents:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BaseHttpRequest uploadWithImage:Url:andBlock:Params:andFileContents:]"
+                  moduleName = "Smail_100"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Faker/Documents/github/Smail_100/Smail_100/KX_Base/BaseHttpRequest.m"
+                  timestampString = "543247740.3589621"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "558">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__71-[BaseHttpRequest uploadWithImage:Url:andBlock:Params:andFileContents:]_block_invoke"
+                  moduleName = "Smail_100"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Faker/Documents/github/Smail_100/Smail_100/KX_Base/BaseHttpRequest.m"
+                  timestampString = "543247740.366015"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

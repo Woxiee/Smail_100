@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SelectGoodSClassVC : KX_BaseTableViewController
-
+@interface SelectGoodSClassVC : KX_BaseViewController
+@property (nonatomic,copy) void(^didClickCompleBlock)(NSArray *listArr);
 @end
