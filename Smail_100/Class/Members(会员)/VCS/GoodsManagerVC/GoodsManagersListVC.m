@@ -10,6 +10,7 @@
 #import "GoodsManagerView.h"
 #import "GoodsManageView.h"
 #import "MeChantOrderModel.h"
+#import "AddOrEidtGoodVC.h"
 
 @interface GoodsManagersListVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
@@ -183,15 +184,22 @@
     MeChantOrderModel *model = self.resorceArray[section];
 
     footView.didClickChangBtnBlock = ^(NSInteger index) {
-        /// 100上架 101 编辑  102 删除
-        if (index == 100) {
-            
+        /// 0上架 1 编辑  2 删除
+        if (index == 0) {
+//            AddOrEidtGoodVC *VC =  [[AddOrEidtGoodVC alloc] init];
+//            VC.model  = model;
+//            [weakSelf.navigationController pushViewController:VC animated:YES];
         }
-        if (index == 101) {
+        if (index == 1) {
+            AddOrEidtGoodVC *VC =  [[AddOrEidtGoodVC alloc] init];
+            VC.model  = model;
+            [weakSelf.navigationController pushViewController:VC animated:YES];
+//            [weakSelf editGoodList:model andUrl:@"/shop/goods_delete"];
+
+        }
+        if (index == 2) {
             [weakSelf editGoodList:model andUrl:@"/shop/goods_delete"];
-        }
-        if (index == 102) {
-            
+
         }
     };
     return footView;
@@ -254,7 +262,8 @@
 
 - (void)didClickBottomAction
 {
-    
+    AddOrEidtGoodVC *VC =  [[AddOrEidtGoodVC alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 

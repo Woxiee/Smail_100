@@ -39,11 +39,10 @@ static NSString *newProductCell = @"newProductID";
     [super viewDidLoad];
     [self setup];
     [self setConfiguration];
-
     [self getHomeGoodsRequest];
     WEAKSELF
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-    [self getHomeGoodsRequest];
+    [weakSelf getHomeGoodsRequest];
     }];
 }
 

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MeChantOrderModel.h"
+@interface AddOrEidtGoodVC : KX_BaseViewController
+@property (nonatomic, assign)  BOOL isEnabled;
+@property (nonatomic, assign)  BOOL isAdd;
 
-@interface AddOrEidtGoodVC : UIViewController
-
+@property (nonatomic, strong) MeChantOrderModel *model;
 @end

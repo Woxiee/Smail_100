@@ -775,6 +775,9 @@
 		E11531382052993E00B5852F /* PayOtherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11531312052993E00B5852F /* PayOtherCell.xib */; };
 		E11531392052993E00B5852F /* PayViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E11531332052993E00B5852F /* PayViewCell.m */; };
 		E115313A2052993E00B5852F /* PayViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11531342052993E00B5852F /* PayViewCell.xib */; };
+		E11556E82061151500B344B3 /* SelectGoodSClassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11556E72061151500B344B3 /* SelectGoodSClassVC.m */; };
+		E11556EC2061165A00B344B3 /* SelectGoodsClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E11556EA2061165A00B344B3 /* SelectGoodsClassCell.m */; };
+		E11556ED2061165A00B344B3 /* SelectGoodsClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11556EB2061165A00B344B3 /* SelectGoodsClassCell.xib */; };
 		E16596E420564EAF008ADC6B /* ChangeGoodsCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = E16596E220564EAF008ADC6B /* ChangeGoodsCountView.m */; };
 		E16596E520564EB0008ADC6B /* goodsAd.png in Resources */ = {isa = PBXBuildFile; fileRef = E16596E320564EAF008ADC6B /* goodsAd.png */; };
 		E16596E920564FE4008ADC6B /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E16596E820564FE4008ADC6B /* Toast+UIView.m */; };
@@ -2105,6 +2108,11 @@
 		E11531322052993E00B5852F /* PayViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewCell.h; sourceTree = "<group>"; };
 		E11531332052993E00B5852F /* PayViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewCell.m; sourceTree = "<group>"; };
 		E11531342052993E00B5852F /* PayViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewCell.xib; sourceTree = "<group>"; };
+		E11556E62061151500B344B3 /* SelectGoodSClassVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectGoodSClassVC.h; sourceTree = "<group>"; };
+		E11556E72061151500B344B3 /* SelectGoodSClassVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectGoodSClassVC.m; sourceTree = "<group>"; };
+		E11556E92061165A00B344B3 /* SelectGoodsClassCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectGoodsClassCell.h; sourceTree = "<group>"; };
+		E11556EA2061165A00B344B3 /* SelectGoodsClassCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectGoodsClassCell.m; sourceTree = "<group>"; };
+		E11556EB2061165A00B344B3 /* SelectGoodsClassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectGoodsClassCell.xib; sourceTree = "<group>"; };
 		E16596E120564EAF008ADC6B /* ChangeGoodsCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGoodsCountView.h; sourceTree = "<group>"; };
 		E16596E220564EAF008ADC6B /* ChangeGoodsCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGoodsCountView.m; sourceTree = "<group>"; };
 		E16596E320564EAF008ADC6B /* goodsAd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goodsAd.png; sourceTree = "<group>"; };
@@ -3513,6 +3521,8 @@
 				3EB8E0132060048A00E717B1 /* AddOrEidtGoodVC.h */,
 				3EB8E0142060048A00E717B1 /* AddOrEidtGoodVC.m */,
 				3EB8E0152060048A00E717B1 /* AddOrEidtGoodVC.xib */,
+				E11556E62061151500B344B3 /* SelectGoodSClassVC.h */,
+				E11556E72061151500B344B3 /* SelectGoodSClassVC.m */,
 			);
 			path = GoodsManagerVC;
 			sourceTree = "<group>";
@@ -3961,6 +3971,9 @@
 				E10B0CA520528AE8008BA706 /* StoreMangerVHeadView.h */,
 				E10B0CA620528AE8008BA706 /* StoreMangerVHeadView.m */,
 				E10B0CA720528AE8008BA706 /* StoreMangerVHeadView.xib */,
+				E11556E92061165A00B344B3 /* SelectGoodsClassCell.h */,
+				E11556EA2061165A00B344B3 /* SelectGoodsClassCell.m */,
+				E11556EB2061165A00B344B3 /* SelectGoodsClassCell.xib */,
 			);
 			path = "StoreMangerView(门店管理)";
 			sourceTree = "<group>";
@@ -6413,6 +6426,7 @@
 				E10B0FC820528AFA008BA706 /* Address.plist in Resources */,
 				E10B127A20528B06008BA706 /* xianxiashangjia5@3x.png in Resources */,
 				E10B128E20528B06008BA706 /* shouye17@3x.png in Resources */,
+				E11556ED2061165A00B344B3 /* SelectGoodsClassCell.xib in Resources */,
 				E10B129A20528B06008BA706 /* shouye28@3x.png in Resources */,
 				E10B123520528B06008BA706 /* zhanghuguanli12@3x.png in Resources */,
 				E10B0CED20528AE8008BA706 /* GoodDetailImageVC.xib in Resources */,
@@ -6787,6 +6801,7 @@
 				E10B0FA820528AFA008BA706 /* FKPageView.m in Sources */,
 				3E5FC2CD205E31990067CFA5 /* YBPopupMenu.m in Sources */,
 				E10B0FA720528AFA008BA706 /* UIColor+ZXLazy.m in Sources */,
+				E11556EC2061165A00B344B3 /* SelectGoodsClassCell.m in Sources */,
 				E16596F8205773CE008ADC6B /* DWQSelectView.m in Sources */,
 				E167EC5B205B9B6B00A8F744 /* ChangeSexVC.m in Sources */,
 				E10B0FA020528AFA008BA706 /* KYActionSheetDown.m in Sources */,
@@ -6925,6 +6940,7 @@
 				E10B0D8B20528AE8008BA706 /* AddSuggestionVC.m in Sources */,
 				E10B0FA520528AFA008BA706 /* SZCalendarPicker.m in Sources */,
 				E10B0D7E20528AE8008BA706 /* MemberCenterMainVC.m in Sources */,
+				E11556E82061151500B344B3 /* SelectGoodSClassVC.m in Sources */,
 				E10B109A20528B03008BA706 /* MJRefreshBackNormalFooter.m in Sources */,
 				E10B0FE320528AFA008BA706 /* ZYShareSheetView.m in Sources */,
 				E10B0FBF20528AFA008BA706 /* RatingBar.m in Sources */,

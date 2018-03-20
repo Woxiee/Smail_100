@@ -140,10 +140,12 @@ static NSInteger infoCellTag = 100;
 {
     WEAKSELF;
     KX_ActionSheet *sheetView  = [KX_ActionSheet  sheetWithTitle:@"选择图片" cancelButtonTitle:@"图片" clicked:^(KX_ActionSheet *actionSheet, NSInteger buttonIndex) {
+        NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:[KX_UserInfo sharedKX_UserInfo].user_id,@"user_id", nil];
+
         if (buttonIndex == 1) {
             [self selectImageByPhotoWithBlock:^(UIImage *image)
              {
-                 [BaseHttpRequest requestUploadImage:image Url:@"/ucenter/avatar" andFileContents:nil andBlock:^(NSString *imageName) {
+                 [BaseHttpRequest requestUploadImage:image Url:@"/ucenter/avatar" Params:param  andFileContents:nil andBlock:^(NSString *imageName) {
                      KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
                      userinfo.avatar_url = imageName;
                      [headerImage sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:@"6@3x.png"]];
@@ -156,7 +158,7 @@ static NSInteger infoCellTag = 100;
         {
             [self selectImageByCameraWithBlock:^(UIImage *image)
              {
-                 [BaseHttpRequest requestUploadImage:image Url:@"/ucenter/avatar" andFileContents:nil andBlock:^(NSString *imageName) {
+                 [BaseHttpRequest requestUploadImage:image Url:@"/ucenter/avatar" Params:param  andFileContents:nil andBlock:^(NSString *imageName) {
                      KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
                      userinfo.avatar_url = imageName;
                      [headerImage sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:@"6@3x.png"]];

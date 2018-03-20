@@ -116,25 +116,25 @@
  *
  *  @param block    成功回调
  */
-+ (instancetype) requestUploadImage:(UIImage *)img Url:(NSString *)url andFileContents:(NSString *)contents andBlock:(ImageUrlBlock)block
++ (instancetype) requestUploadImage:(UIImage *)img Url:(NSString *)url  Params:(id)paramter  andFileContents:(NSString *)contents andBlock:(ImageUrlBlock)block
 {
-    return [[self alloc] uploadImage:img Url:url andBlock:block andFileContents:contents];
+    return [[self alloc] uploadImage:img Url:url andBlock:block Params:paramter  andFileContents:contents];
 
 }
 
 #pragma mark - 上传图片
 //图片上传
-- (instancetype)uploadImage:(UIImage *)img Url:(NSString *)url andBlock:(ImageUrlBlock)block andFileContents:(NSString *)contents
+- (instancetype)uploadImage:(UIImage *)img Url:(NSString *)url andBlock:(ImageUrlBlock)block Params:(id)paramter  andFileContents:(NSString *)contents
 {
     if (self == [super init]) {
         
         //[self sendGainFileServerURLRequestWith:img andPath:path andBlock:block];
-        [self uploadWithImage:img Url:url andBlock:block andFileContents:contents];
+        [self uploadWithImage:img Url:url andBlock:block Params:paramter andFileContents:contents];
     }
     return self;
 }
 
-- (void) uploadWithImage:(UIImage *)img  Url:(NSString *)url andBlock:(ImageUrlBlock)block andFileContents:(NSString *)contents
+- (void) uploadWithImage:(UIImage *)img  Url:(NSString *)url  andBlock:(ImageUrlBlock)block Params:(id)paramter andFileContents:(NSString *)contents
 {
     self.imageBlock = block;
     
@@ -148,10 +148,9 @@
     NSData *imageData = UIImageJPEGRepresentation(img, 0.3);
     url = [NSString stringWithFormat:@"%@/api%@",HEAD__URL,url];
     _interfaceURL = url;
-    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:[KX_UserInfo sharedKX_UserInfo].user_id,@"user_id", nil];
-    _params = param;
+    _params = paramter;
     
-    [manager POST:_interfaceURL parameters:param constructingBodyWithBlock:^(id  _Nonnull formData) {
+    [manager POST:_interfaceURL parameters:paramter constructingBodyWithBlock:^(id  _Nonnull formData) {
         [formData appendPartWithFileData :imageData name:returnName fileName:returnName mimeType:@"multipart/form-data"];
         }
          progress:^(NSProgress * _Nonnull uploadProgress) {

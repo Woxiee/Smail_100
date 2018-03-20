@@ -371,7 +371,6 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ItemInfoList *model =   self.resorceArray[indexPath.section];
-   
     if ([model.itemType isEqualToString:@"topBanner"]) {
         return CGSizeMake(SCREEN_WIDTH, 220 *hScale);
     }

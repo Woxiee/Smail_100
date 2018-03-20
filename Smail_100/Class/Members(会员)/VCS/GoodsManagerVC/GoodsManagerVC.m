@@ -23,7 +23,7 @@
 
 - (void)setup
 {
-    self.title = @"订单管理";
+    self.title = @"商品管理";
     
     [self setRightNaviBtnTitle:@"分类" withTitleColor:[UIColor whiteColor]];
     self.view.backgroundColor = [UIColor whiteColor];

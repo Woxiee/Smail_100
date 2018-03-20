@@ -7,8 +7,25 @@
 //
 
 #import "AddOrEidtGoodVC.h"
+#import "KYTextView.h"
+#import "SelectGoodSClassVC.h"
 
 @interface AddOrEidtGoodVC ()
+@property (weak, nonatomic) IBOutlet UIButton *pohoteBtn;
+@property (weak, nonatomic) IBOutlet UIButton *imageBtn;
+@property (weak, nonatomic) IBOutlet KYTextView *markTextView;
+
+
+@property (weak, nonatomic) IBOutlet UITextField *selectTF;
+
+@property (weak, nonatomic) IBOutlet UIView *selectClassGoodView;
+
+@property (weak, nonatomic) IBOutlet UITextField *selectPriceTF;
+
+
+@property (weak, nonatomic) IBOutlet UITextField *inputKuCunTF;
+
+@property (strong, nonatomic)  NSString *status;
 
 @end
 
@@ -16,22 +33,155 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self setup];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - request
+- (void)getRequestData
+{
+    WEAKSELF;
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:_markTextView.text forKey:@"title"];
+    [param setObject:_inputKuCunTF.text forKey:@"stock"];
+    [param setObject:_status forKey:@"status"];
+    [param setObject:_selectPriceTF.text forKey:@"price"];
+    [param setObject:_model.sub_category_id?_model.sub_category_id:@"14" forKey:@"sub_category_id"];
+    [param setObject:_model.goods_id?_model.goods_id:@"0" forKey:@"goods_id"];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    [MBProgressHUD showMessag:@"加载中..." toView:self.view];
+    [BaseHttpRequest postWithUrl:@"/shop/edit_goods" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        LOG(@"订单列表 == %@",result);
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSString *msg = [result valueForKey:@"msg"];
+        
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+            NSArray *dataArr = [result valueForKey:@"data"];
+            NSArray *listArray  = [[NSArray alloc] init];
+            if ([dataArr isKindOfClass:[NSArray class]]) {
+                if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+//                    listArray = [AcctoutWaterModel mj_objectArrayWithKeyValuesArray:dataArr];
+//                    if (weakSelf.page == 0) {
+//                        [weakSelf.resorceArray removeAllObjects];
+//                    }
+//                    [weakSelf.resorceArray addObjectsFromArray:listArray];
+//                    [weakSelf.tableView reloadData];
+//                    [weakSelf setRefreshs];
+                }
+            }
+        }else{
+            [weakSelf showHint:msg];
+            
+        }
+        
+        
+    }];
+
+    
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - private
+- (void)setup
+{
+    UITapGestureRecognizer *tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickSelectGoodAction)];
+    [_selectClassGoodView addGestureRecognizer:tapGest];
+    
+    _markTextView.KYPlaceholder  = @"请输入商品标题（限30字）";
+    _markTextView.KYPlaceholderColor = DETAILTEXTCOLOR;
+    if (_model) {
+        self.title = @"编辑商品";
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+        _markTextView.text = _model.title;
+       _inputKuCunTF.text  = _model.stock;
+        _status = _model.status;
+        _inputKuCunTF.text  = _model.stock;
+        _selectPriceTF.text = _model.price;
+        
+    }
+    else{
+        self.title = @"发布商品";
+
+        _model = [MeChantOrderModel new];
+        
+    }
 }
-*/
+
+- (void)setConfiguration
+{
+    
+}
+
+
+
+- (IBAction)didClickphotoAction:(UIButton *)sender {
+    WEAKSELF;
+    KX_ActionSheet *sheetView  = [KX_ActionSheet  sheetWithTitle:@"选择图片" cancelButtonTitle:@"图片" clicked:^(KX_ActionSheet *actionSheet, NSInteger buttonIndex) {
+        NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[KX_UserInfo sharedKX_UserInfo].user_id,@"user_id", nil];
+        [param setObject:_model.goods_id?_model.goods_id:@"0" forKey:@"goods_id"];
+        if (buttonIndex == 1) {
+            [self selectImageByPhotoWithBlock:^(UIImage *image)
+             {
+                 [BaseHttpRequest requestUploadImage:image Url:@"shop/upload_image" Params:param  andFileContents:nil andBlock:^(NSString *imageName) {
+//                     KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
+//                     userinfo.avatar_url = imageName;
+//                     [headerImage sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:@"6@3x.png"]];
+                 }];
+                 
+             }];
+            
+        }
+        else if(buttonIndex == 2)
+        {
+            [self selectImageByCameraWithBlock:^(UIImage *image)
+             {
+                 [BaseHttpRequest requestUploadImage:image Url:@"shop/upload_image" Params:param  andFileContents:nil andBlock:^(NSString *imageName) {
+                     KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
+                     userinfo.avatar_url = imageName;
+//                     [headerImage sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:@"6@3x.png"]];
+//
+                 }];
+             }];
+            
+        }
+        
+    } otherButtonTitleArray:@[@"相册",@"照相"]];
+    [sheetView show];
+
+}
+
+
+/// 100 放入仓库 101 立即发布
+- (IBAction)didClickBottomAction:(id)sender {
+    UIButton *btn = (UIButton *)sender;
+    if (btn.tag == 100) {
+        _status = @"Enabled";
+    }
+    else{
+        _status = @"Disabled";
+      }
+    
+    [self getRequestData];
+}
+
+/// 
+- (void)didClickSelectGoodAction
+{
+    SelectGoodSClassVC *VC = [[SelectGoodSClassVC alloc] init];
+    
+    
+    [self.navigationController pushViewController:VC animated:YES];
+}
+
+
+#pragma mark - publice
+
+
+#pragma mark - set & get
+
+
+
+#pragma mark - delegate
 
 @end
