@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddGoodsMuenVC">
+            <connections>
+                <outlet property="inputTF" destination="zBh-5K-QTE" id="y8P-Qv-co4"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pft-hu-gyt">
+                    <rect key="frame" x="0.0" y="40" width="375" height="50"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入要添加的分类名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zBh-5K-QTE">
+                            <rect key="frame" x="15" y="0.0" width="345" height="50"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="zBh-5K-QTE" secondAttribute="bottom" id="1jy-C2-f0I"/>
+                        <constraint firstItem="zBh-5K-QTE" firstAttribute="top" secondItem="Pft-hu-gyt" secondAttribute="top" id="MuK-PD-G3w"/>
+                        <constraint firstAttribute="trailing" secondItem="zBh-5K-QTE" secondAttribute="trailing" constant="15" id="VZR-lg-7oW"/>
+                        <constraint firstAttribute="height" constant="50" id="f24-XZ-9QT"/>
+                        <constraint firstItem="zBh-5K-QTE" firstAttribute="leading" secondItem="Pft-hu-gyt" secondAttribute="leading" constant="15" id="wRX-2F-0X7"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOw-aB-wfT">
+                    <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                    <color key="backgroundColor" red="0.82220143079999997" green="0.17686191200000001" blue="0.14883869890000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="sRF-Tj-ePe"/>
+                    </constraints>
+                    <state key="normal" title="确认添加"/>
+                    <connections>
+                        <action selector="didClickSureAction:" destination="-1" eventType="touchUpInside" id="MJO-ec-dYO"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.96077519655227661" green="0.96077817678451538" blue="0.96078461408615112" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="YOw-aB-wfT" secondAttribute="trailing" id="7Ky-N9-PUB"/>
+                <constraint firstItem="YOw-aB-wfT" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Hid-cD-V3Z"/>
+                <constraint firstItem="Pft-hu-gyt" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="NdV-dU-DFI"/>
+                <constraint firstItem="Pft-hu-gyt" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="dTK-J0-Ajp"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="YOw-aB-wfT" secondAttribute="bottom" id="si7-7t-tTX"/>
+                <constraint firstItem="Pft-hu-gyt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="zrF-8H-9se"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="33.5" y="53.5"/>
+        </view>
+    </objects>
+</document>

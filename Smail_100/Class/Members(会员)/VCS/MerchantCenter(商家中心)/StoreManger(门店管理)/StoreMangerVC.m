@@ -19,6 +19,10 @@
 @property (weak, nonatomic) IBOutlet UIView *storeAddressView;
 
 @property (weak, nonatomic) IBOutlet UITextField *storeAddressTF;
+@property (weak, nonatomic) IBOutlet UITextField *industryTF;
+@property (weak, nonatomic) IBOutlet UITextField *benefitT;
+@property (weak, nonatomic) IBOutlet UITextField *jfblTF;
+@property (weak, nonatomic) IBOutlet UITextField *recommendedTF;
 
 @end
 

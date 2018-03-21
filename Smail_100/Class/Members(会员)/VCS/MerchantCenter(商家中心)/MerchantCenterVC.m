@@ -11,6 +11,7 @@
 #import "MeChantMainVC.h"
 #import "StoreMangerVC.h"
 #import "GoodsManagerVC.h"
+#import "GoodManageVC.h"
 
 @interface MerchantCenterVC ()
 
@@ -123,7 +124,7 @@
             break;
         case 101:
         {
-            GoodsManagerVC *vc = [[GoodsManagerVC alloc] init];
+            GoodManageVC *vc = [[GoodManageVC alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

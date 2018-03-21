@@ -779,6 +779,14 @@
 		E11556E82061151500B344B3 /* SelectGoodSClassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11556E72061151500B344B3 /* SelectGoodSClassVC.m */; };
 		E11556EC2061165A00B344B3 /* SelectGoodsClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E11556EA2061165A00B344B3 /* SelectGoodsClassCell.m */; };
 		E11556ED2061165A00B344B3 /* SelectGoodsClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11556EB2061165A00B344B3 /* SelectGoodsClassCell.xib */; };
+		E11556F22061FF7F00B344B3 /* ChangeThePhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11556F02061FF7F00B344B3 /* ChangeThePhoneVC.m */; };
+		E11556F32061FF7F00B344B3 /* ChangeThePhoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11556F12061FF7F00B344B3 /* ChangeThePhoneVC.xib */; };
+		E11556F720622B9C00B344B3 /* ChildModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E11556F620622B9C00B344B3 /* ChildModel.m */; };
+		E11556FB20623A7F00B344B3 /* GoodManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11556F920623A7F00B344B3 /* GoodManageVC.m */; };
+		E11557002062417600B344B3 /* AddGoodsMuenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11556FE2062417600B344B3 /* AddGoodsMuenVC.m */; };
+		E11557012062417600B344B3 /* AddGoodsMuenVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11556FF2062417600B344B3 /* AddGoodsMuenVC.xib */; };
+		E11557062062556700B344B3 /* AgentPlatformVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11557042062556700B344B3 /* AgentPlatformVC.m */; };
+		E11557072062556700B344B3 /* AgentPlatformVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11557052062556700B344B3 /* AgentPlatformVC.xib */; };
 		E16596E420564EAF008ADC6B /* ChangeGoodsCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = E16596E220564EAF008ADC6B /* ChangeGoodsCountView.m */; };
 		E16596E520564EB0008ADC6B /* goodsAd.png in Resources */ = {isa = PBXBuildFile; fileRef = E16596E320564EAF008ADC6B /* goodsAd.png */; };
 		E16596E920564FE4008ADC6B /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E16596E820564FE4008ADC6B /* Toast+UIView.m */; };
@@ -2115,6 +2123,19 @@
 		E11556E92061165A00B344B3 /* SelectGoodsClassCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectGoodsClassCell.h; sourceTree = "<group>"; };
 		E11556EA2061165A00B344B3 /* SelectGoodsClassCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectGoodsClassCell.m; sourceTree = "<group>"; };
 		E11556EB2061165A00B344B3 /* SelectGoodsClassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectGoodsClassCell.xib; sourceTree = "<group>"; };
+		E11556EF2061FF7F00B344B3 /* ChangeThePhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeThePhoneVC.h; sourceTree = "<group>"; };
+		E11556F02061FF7F00B344B3 /* ChangeThePhoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeThePhoneVC.m; sourceTree = "<group>"; };
+		E11556F12061FF7F00B344B3 /* ChangeThePhoneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeThePhoneVC.xib; sourceTree = "<group>"; };
+		E11556F520622B9C00B344B3 /* ChildModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChildModel.h; sourceTree = "<group>"; };
+		E11556F620622B9C00B344B3 /* ChildModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChildModel.m; sourceTree = "<group>"; };
+		E11556F820623A7F00B344B3 /* GoodManageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodManageVC.h; sourceTree = "<group>"; };
+		E11556F920623A7F00B344B3 /* GoodManageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodManageVC.m; sourceTree = "<group>"; };
+		E11556FD2062417600B344B3 /* AddGoodsMuenVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddGoodsMuenVC.h; sourceTree = "<group>"; };
+		E11556FE2062417600B344B3 /* AddGoodsMuenVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddGoodsMuenVC.m; sourceTree = "<group>"; };
+		E11556FF2062417600B344B3 /* AddGoodsMuenVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddGoodsMuenVC.xib; sourceTree = "<group>"; };
+		E11557032062556700B344B3 /* AgentPlatformVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentPlatformVC.h; sourceTree = "<group>"; };
+		E11557042062556700B344B3 /* AgentPlatformVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgentPlatformVC.m; sourceTree = "<group>"; };
+		E11557052062556700B344B3 /* AgentPlatformVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AgentPlatformVC.xib; sourceTree = "<group>"; };
 		E16596E120564EAF008ADC6B /* ChangeGoodsCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGoodsCountView.h; sourceTree = "<group>"; };
 		E16596E220564EAF008ADC6B /* ChangeGoodsCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGoodsCountView.m; sourceTree = "<group>"; };
 		E16596E320564EAF008ADC6B /* goodsAd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goodsAd.png; sourceTree = "<group>"; };
@@ -3362,6 +3383,7 @@
 		E10B0B9C20528AE8008BA706 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E11556F420622B8600B344B3 /* ChildModel(商品分类) */,
 				E167EC38205A5C7D00A8F744 /* AcctoutWater（流水） */,
 				E10B0B9D20528AE8008BA706 /*  CouponsModel */,
 				E10B0BA020528AE8008BA706 /* AssetModel */,
@@ -3461,6 +3483,8 @@
 		E10B0BBF20528AE8008BA706 /* VCS */ = {
 			isa = PBXGroup;
 			children = (
+				E11557022062554B00B344B3 /*  AgentPlatformVC(代理平台) */,
+				E11556EE2061FF6300B344B3 /* ChangeThePhone(话费兑换) */,
 				E167EC45205B707F00A8F744 /* AllSet(系统设置) */,
 				E167EC2E205A54EF00A8F744 /* AcctoutWater(账户流水） */,
 				E167EC2A205A508C00A8F744 /* SaleAfter(售后) */,
@@ -3525,6 +3549,9 @@
 				3EB8E0152060048A00E717B1 /* AddOrEidtGoodVC.xib */,
 				E11556E62061151500B344B3 /* SelectGoodSClassVC.h */,
 				E11556E72061151500B344B3 /* SelectGoodSClassVC.m */,
+				E11556FD2062417600B344B3 /* AddGoodsMuenVC.h */,
+				E11556FE2062417600B344B3 /* AddGoodsMuenVC.m */,
+				E11556FF2062417600B344B3 /* AddGoodsMuenVC.xib */,
 			);
 			path = GoodsManagerVC;
 			sourceTree = "<group>";
@@ -3551,6 +3578,8 @@
 				3E5F264A2061456A0057269A /* StoreMangerVC.h */,
 				3E5F264B2061456A0057269A /* StoreMangerVC.m */,
 				3E5F264C2061456A0057269A /* StoreMangerVC.xib */,
+				E11556F820623A7F00B344B3 /* GoodManageVC.h */,
+				E11556F920623A7F00B344B3 /* GoodManageVC.m */,
 			);
 			path = "StoreManger(门店管理)";
 			sourceTree = "<group>";
@@ -5901,6 +5930,35 @@
 			path = Views/PayOrderView;
 			sourceTree = "<group>";
 		};
+		E11556EE2061FF6300B344B3 /* ChangeThePhone(话费兑换) */ = {
+			isa = PBXGroup;
+			children = (
+				E11556EF2061FF7F00B344B3 /* ChangeThePhoneVC.h */,
+				E11556F02061FF7F00B344B3 /* ChangeThePhoneVC.m */,
+				E11556F12061FF7F00B344B3 /* ChangeThePhoneVC.xib */,
+			);
+			path = "ChangeThePhone(话费兑换)";
+			sourceTree = "<group>";
+		};
+		E11556F420622B8600B344B3 /* ChildModel(商品分类) */ = {
+			isa = PBXGroup;
+			children = (
+				E11556F520622B9C00B344B3 /* ChildModel.h */,
+				E11556F620622B9C00B344B3 /* ChildModel.m */,
+			);
+			path = "ChildModel(商品分类)";
+			sourceTree = "<group>";
+		};
+		E11557022062554B00B344B3 /*  AgentPlatformVC(代理平台) */ = {
+			isa = PBXGroup;
+			children = (
+				E11557032062556700B344B3 /* AgentPlatformVC.h */,
+				E11557042062556700B344B3 /* AgentPlatformVC.m */,
+				E11557052062556700B344B3 /* AgentPlatformVC.xib */,
+			);
+			path = " AgentPlatformVC(代理平台)";
+			sourceTree = "<group>";
+		};
 		E16596E020564EAF008ADC6B /* ShoppingCarChangeMun */ = {
 			isa = PBXGroup;
 			children = (
@@ -6370,6 +6428,7 @@
 				E10B121B20528B06008BA706 /* bangzhufankui2@3x.png in Resources */,
 				E10B0DBE20528AE8008BA706 /* MemberMoneyCell.xib in Resources */,
 				E10B11E620528B06008BA706 /* chuangkeweidian2@3x.png in Resources */,
+				E11557072062556700B344B3 /* AgentPlatformVC.xib in Resources */,
 				E10B121120528B06008BA706 /* shangjiazhongxin22@3x.png in Resources */,
 				E16596E520564EB0008ADC6B /* goodsAd.png in Resources */,
 				E10B11FC20528B06008BA706 /* shangchengdingdan2@3x.png in Resources */,
@@ -6489,7 +6548,9 @@
 				E10B0D4E20528AE8008BA706 /* HomeScrollCell.xib in Resources */,
 				E10B128920528B06008BA706 /* shouye12@3x.png in Resources */,
 				E10B129020528B06008BA706 /* shouye19@3x.png in Resources */,
+				E11556F32061FF7F00B344B3 /* ChangeThePhoneVC.xib in Resources */,
 				E10B0D1C20528AE8008BA706 /* GoodSOrderCommonCell.xib in Resources */,
+				E11557012062417600B344B3 /* AddGoodsMuenVC.xib in Resources */,
 				E10B0D1E20528AE8008BA706 /* GoodSOrderNomalCell.xib in Resources */,
 				E10B120420528B06008BA706 /* shangjiazhongxin10@3x.png in Resources */,
 				E10B127B20528B06008BA706 /* xianxiashangjia6@3x.png in Resources */,
@@ -6717,6 +6778,7 @@
 				E10B0CDC20528AE8008BA706 /* GoodsCategoryCell.m in Sources */,
 				E10B0D4520528AE8008BA706 /* GoodsScreenCel.m in Sources */,
 				E10B0FD920528AFA008BA706 /* THPickerView.m in Sources */,
+				E11556FB20623A7F00B344B3 /* GoodManageVC.m in Sources */,
 				E10B108F20528B03008BA706 /* NSObject+MJProperty.m in Sources */,
 				E10B10A920528B03008BA706 /* PYSearchSuggestionViewController.m in Sources */,
 				E10B0DF520528AE8008BA706 /* ShopCarGoodsCell.m in Sources */,
@@ -6735,6 +6797,7 @@
 				E167EC6A205B9BEC00A8F744 /* KYBaseCellItem.m in Sources */,
 				E167EC57205B9B6B00A8F744 /* BaseInforVC.m in Sources */,
 				E10B10A020528B03008BA706 /* MJRefreshConst.m in Sources */,
+				E11557062062556700B344B3 /* AgentPlatformVC.m in Sources */,
 				E10B0E9D20528AF5008BA706 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				E16597032058BF42008ADC6B /* OrderSectionHeadView.m in Sources */,
 				E10B0D8620528AE8008BA706 /* MyteamVC.m in Sources */,
@@ -6930,6 +6993,7 @@
 				E10B0D7320528AE8008BA706 /* NewManagementModel.m in Sources */,
 				E10B0FC920528AFA008BA706 /* LZCityPickerController.m in Sources */,
 				E10B0FC220528AFA008BA706 /* KX_ToastView.m in Sources */,
+				E11557002062417600B344B3 /* AddGoodsMuenVC.m in Sources */,
 				E172EBD3205FC2280079CD3D /* RighMeumtCell.m in Sources */,
 				E10B108720528B03008BA706 /* MJExtensionConst.m in Sources */,
 				E10B0FD620528AFA008BA706 /* CustomTopView.m in Sources */,
@@ -6946,11 +7010,13 @@
 				E10B0D7E20528AE8008BA706 /* MemberCenterMainVC.m in Sources */,
 				E11556E82061151500B344B3 /* SelectGoodSClassVC.m in Sources */,
 				E10B109A20528B03008BA706 /* MJRefreshBackNormalFooter.m in Sources */,
+				E11556F22061FF7F00B344B3 /* ChangeThePhoneVC.m in Sources */,
 				E10B0FE320528AFA008BA706 /* ZYShareSheetView.m in Sources */,
 				E10B0FBF20528AFA008BA706 /* RatingBar.m in Sources */,
 				E10B0FEC20528AFF008BA706 /* KX_UserEntity.m in Sources */,
 				E10B0D9820528AE8008BA706 /* ChangeToNewMobile.m in Sources */,
 				E10B108A20528B03008BA706 /* MJPropertyKey.m in Sources */,
+				E11556F720622B9C00B344B3 /* ChildModel.m in Sources */,
 				E10B0E9920528AF5008BA706 /* ZHDatePickerView.m in Sources */,
 				E10B0D3720528AE8008BA706 /* HomeVModel.m in Sources */,
 				E10B0DD220528AE8008BA706 /* FinanciaCell.m in Sources */,

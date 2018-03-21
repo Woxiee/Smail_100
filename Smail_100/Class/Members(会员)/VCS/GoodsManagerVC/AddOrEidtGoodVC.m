@@ -9,9 +9,12 @@
 #import "AddOrEidtGoodVC.h"
 #import "KYTextView.h"
 #import "SelectGoodSClassVC.h"
+#import "ChildModel.h"
 
 @interface AddOrEidtGoodVC ()
 @property (weak, nonatomic) IBOutlet UIButton *pohoteBtn;
+@property (weak, nonatomic) IBOutlet UIButton *imagePickBtn;
+
 @property (weak, nonatomic) IBOutlet UIImageView *stortImageView;
 @property (weak, nonatomic) IBOutlet KYTextView *markTextView;
 
@@ -69,6 +72,9 @@
 //                    [weakSelf.resorceArray addObjectsFromArray:listArray];
 //                    [weakSelf.tableView reloadData];
 //                    [weakSelf setRefreshs];
+                    [weakSelf showHint:msg];
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+
                 }
             }
         }else{
@@ -118,40 +124,43 @@
 
 - (IBAction)didClickphotoAction:(UIButton *)sender {
     WEAKSELF;
-    KX_ActionSheet *sheetView  = [KX_ActionSheet  sheetWithTitle:@"选择图片" cancelButtonTitle:@"图片" clicked:^(KX_ActionSheet *actionSheet, NSInteger buttonIndex) {
-        NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[KX_UserInfo sharedKX_UserInfo].user_id,@"user_id", nil];
-        [param setObject:_model.goods_id?_model.goods_id:@"0" forKey:@"goods_id"];
-        if (buttonIndex == 1) {
-            [self selectImageByPhotoWithBlock:^(UIImage *image)
-             {
-                 [BaseHttpRequest requestUploadImage:image Url:@"shop/upload_image" Params:param  andFileContents:nil andBlock:^(NSString *imageName) {
-//                     KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
-//                     userinfo.avatar_url = imageName;
-                     _stortImageView.image = image;
-//                     [_stortImageView sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:@"6@3x.png"]];
-                 }];
-                 
-             }];
-            
-        }
-        else if(buttonIndex == 2)
-        {
-            [self selectImageByCameraWithBlock:^(UIImage *image)
-             {
-                 [BaseHttpRequest requestUploadImage:image Url:@"shop/upload_image" Params:param  andFileContents:nil andBlock:^(NSString *imageName) {
-//                     KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
-//                     userinfo.avatar_url = imageName;
-//                     [_stortImageView sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:@"6@3x.png"]];
-                     _stortImageView.image = image;
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[KX_UserInfo sharedKX_UserInfo].user_id,@"user_id", nil];
+//    [param setObject:_model.goods_id?_model.goods_id:@"0" forKey:@"goods_id"];
+    if (sender.tag == 100) {
+        [self selectImageByPhotoWithBlock:^(UIImage *image)
+         {
+             [BaseHttpRequest requestUploadImage:image Url:@"/shop/upload_image" Params:param  andFileContents:nil andBlock:^(NSString *imageName) {
+                 weakSelf.stortImageView.image = image;
 
-//
-                 }];
              }];
-            
-        }
-        
-    } otherButtonTitleArray:@[@"相册",@"照相"]];
-    [sheetView show];
+             
+         }];
+    }
+    
+    
+    if (sender.tag == 101) {
+        [self selectImageByCameraWithBlock:^(UIImage *image)
+         {
+             [BaseHttpRequest requestUploadImage:image Url:@"/shop/upload_image" Params:param  andFileContents:nil andBlock:^(NSString *imageName) {
+                 weakSelf.stortImageView.image = image;
+             }];
+         }];
+//    KX_ActionSheet *sheetView  = [KX_ActionSheet  sheetWithTitle:@"选择图片" cancelButtonTitle:@"图片" clicked:^(KX_ActionSheet *actionSheet, NSInteger buttonIndex) {
+//
+//        if (buttonIndex == 1) {
+//
+//
+//        }
+//        else if(buttonIndex == 2)
+//        {
+//
+//             }];
+//
+//        }
+//
+//    } otherButtonTitleArray:@[@"相册",@"照相"]];
+//    [sheetView show];
+    }
 
 }
 
@@ -160,17 +169,12 @@
 - (IBAction)didClickBottomAction:(id)sender {
     UIButton *btn = (UIButton *)sender;
     if (btn.tag == 100) {
-        _status = @"Enabled";
+        _status = @"Disabled";
     }
     else{
-        _status = @"Disabled";
+        _status = @"Enabled";
       }
-    
-//    _markTextView.text = _model.title;
-//    _inputKuCunTF.text  = _model.stock;
-//    _status = _model.status;
-//    _inputKuCunTF.text  = _model.stock;
-//    _selectPriceTF.text = _model.price;
+
     if (KX_NULLString(_markTextView.text)) {
         [self.view toastShow:@"商品名称未填写"];
         return;
@@ -194,9 +198,19 @@
 /// 
 - (void)didClickSelectGoodAction
 {
+    WEAKSELF;
+    NSMutableArray *selectArr = [[NSMutableArray alloc] init];
+    NSMutableArray *selectIDArr = [[NSMutableArray alloc] init];
+
     SelectGoodSClassVC *VC = [[SelectGoodSClassVC alloc] init];
-    
-    
+    VC.didClickCompleBlock = ^(NSArray *listArr) {
+        for (ChildModel *model in listArr) {
+            [selectArr addObject:model.name];
+            [selectIDArr addObject:model.id];
+        }
+        weakSelf.selectTF.text = [selectArr componentsJoinedByString:@","];
+        weakSelf.model.sub_category_id  = [selectIDArr componentsJoinedByString:@","];
+    };
     [self.navigationController pushViewController:VC animated:YES];
 }
 

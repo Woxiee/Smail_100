@@ -46,6 +46,7 @@
 @property (nonatomic , copy) NSString              * cartNum;
 @property (nonatomic , copy) NSString              * comment;
 @property (nonatomic , copy) NSString              * goodsSizeID;
+@property (nonatomic , copy) NSString              * id;
 
 @property (nonatomic , copy) NSString              * spec;
 

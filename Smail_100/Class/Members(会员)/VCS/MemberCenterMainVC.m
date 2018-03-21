@@ -17,6 +17,7 @@
 #import "AccountManagVC.h"
 #import "AcctoutWater.h"
 #import "AllSet.h"
+#import "ChangeThePhoneVC.h"
 
 @interface MemberCenterMainVC ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) MemberCenterHeaderView * headerView;
@@ -37,10 +38,10 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickLogin)];
     [_headerView addGestureRecognizer:tap];
     if (![KX_UserInfo sharedKX_UserInfo].loginStatus) {
-        dataArray = @[@[@"订单管理"],@[@"账户管理",@"我的推广",@"钱包转赠",@"笑脸兑换",@"账户流水",@"消息中心",@"官方客服",@"帮助反馈",@"系统设置"]];
+        dataArray = @[@[@"订单管理"],@[@"账户管理",@"我的推广",@"钱包转赠",@"笑脸兑换",@"账户流水",@"话费兑换",@"消息中心",@"官方客服",@"帮助反馈",@"系统设置"]];
 
     }else{
-        dataArray = @[@[@"账户积分"],@[@"订单管理"],@[@"账户管理",@"我的推广",@"钱包转赠",@"笑脸兑换",@"账户流水",@"消息中心",@"官方客服",@"帮助反馈",@"系统设置"]];
+        dataArray = @[@[@"账户积分"],@[@"订单管理"],@[@"账户管理",@"我的推广",@"钱包转赠",@"笑脸兑换",@"账户流水",@"话费兑换",@"消息中心",@"官方客服",@"帮助反馈",@"系统设置"]];
      }
     [self.resorceArray addObjectsFromArray:dataArray];
     [self.tableView reloadData];
@@ -138,7 +139,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         return cell;
     }else{
 
-        NSArray *imageList  = @[@"gerenzhongxin11@3x.png",@"gerenzhongxin12@3x.png",@"gerenzhongxin13@3x.png",@"gerenzhongxin14@3x.png",@"gerenzhongxin15@3x.png",@"gerenzhongxin16@3x.png",@"gerenzhongxin17@3x.png",@"gerenzhongxin18@3x.png",@"gerenzhongxin19@3x.png"];
+        NSArray *imageList  = @[@"gerenzhongxin11@3x.png",@"gerenzhongxin12@3x.png",@"gerenzhongxin13@3x.png",@"gerenzhongxin14@3x.png",@"gerenzhongxin15@3x.png",@"gerenzhongxin15@3x.png",@"gerenzhongxin16@3x.png",@"gerenzhongxin17@3x.png",@"gerenzhongxin18@3x.png",@"gerenzhongxin19@3x.png"];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"indefiiecell"];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"indefiiecell"];
@@ -199,6 +200,11 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
+   else if ([titleStr isEqualToString:@"话费兑换"]) {
+       ChangeThePhoneVC *vc = [[ChangeThePhoneVC alloc] init];
+       vc.hidesBottomBarWhenPushed = YES;
+       [self.navigationController pushViewController:vc animated:YES];
+   }
    else if ([titleStr isEqualToString:@"系统设置"]) {
         AllSet *vc = [[AllSet alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
@@ -243,12 +249,18 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         VC.hidesBottomBarWhenPushed = YES;
         [self.navigationController  pushViewController:VC animated:YES];
     }
-     else if  (index == 1) {
+     else if  (index == 0) {
         AllOrderManageVC *VC = [AllOrderManageVC new];
         VC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:VC animated:YES];
     }
     
+     else if  (index == 2) {
+//         AllOrderManageVC *VC = [AllOrderManageVC new];
+//         VC.hidesBottomBarWhenPushed = YES;
+//         [self.navigationController pushViewController:VC animated:YES];
+         self.tabBarController.selectedIndex = 3;
+     }
     else{
         [self.view toastShow:@"该功能暂未开放,请稍后!"];
     }

@@ -7,7 +7,6 @@
 //
 
 #import "SelectGoodsClassCell.h"
-
 @implementation SelectGoodsClassCell
 {
     
@@ -20,8 +19,22 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
 }
 
+
+
+- (void)setModel:(ChildModel *)model
+{
+    _model = model;
+    titleLB.text = _model.name;
+    if (_model.isSelect) {
+        markImagView.hidden = NO;
+        
+    }else{
+        markImagView.hidden =  YES;
+
+    }
+}
 
 @end

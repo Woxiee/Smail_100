@@ -10,4 +10,7 @@
 
 @interface SelectGoodSClassVC : KX_BaseViewController
 @property (nonatomic,copy) void(^didClickCompleBlock)(NSArray *listArr);
+
+
+@property (nonatomic,assign) BOOL isManage;   ///是否是管理分类
 @end

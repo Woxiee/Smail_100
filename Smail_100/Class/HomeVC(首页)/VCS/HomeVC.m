@@ -296,6 +296,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ItemInfoList *model =   self.resorceArray[indexPath.section];
 
+    WEAKSELF;
     if ([model.itemType isEqualToString:@"topBanner"]){
      HomeScrollCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:imageCellIdentifier forIndexPath:indexPath];
      NSMutableArray *listArr = [[NSMutableArray alloc] init];
@@ -322,6 +323,18 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         if (!cell) {
             cell = [TimeLimtCollectCell new];
         }
+   
+     cell.didClickItemBlock = ^(ItemContentList *model) {
+         GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+                                                      navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+         //    vc.productID = model.mainResult.mainId;
+         //    vc.typeStr = model.productType;
+         vc.productID = model.id;
+         vc.hidesBottomBarWhenPushed = YES;
+         [weakSelf.navigationController pushViewController: vc animated:YES];
+         
+         
+     };
         cell.model = model;
         return cell;
         
@@ -340,7 +353,6 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
      return cell;
      
  }
-    
        else if ([model.itemType isEqualToString:@"themeBanner"]) {
         HomeScrollCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:imageCellIdentifier forIndexPath:indexPath];
         NSMutableArray *listArr = [[NSMutableArray alloc] init];

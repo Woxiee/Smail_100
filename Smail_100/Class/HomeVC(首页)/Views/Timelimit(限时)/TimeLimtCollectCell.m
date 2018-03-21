@@ -53,6 +53,13 @@ static NSString *ID = @"ZYShareSheetCell";
     return cell;
 }
 
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ItemContentList *model =  self.model.itemContentList[indexPath.item];
+    if (_didClickItemBlock) {
+        _didClickItemBlock(model);
+    }
+}
 
 #pragma mark - getter
 

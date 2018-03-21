@@ -25,7 +25,7 @@
 
 - (void)awakeFromNib{
     [super awakeFromNib];
-    self.headImage.layer.cornerRadius  = 45;
+    self.headImage.layer.cornerRadius  = 40;
     self.headImage.clipsToBounds = YES;
     _memberCenterBg.backgroundColor = KMAINCOLOR;
   

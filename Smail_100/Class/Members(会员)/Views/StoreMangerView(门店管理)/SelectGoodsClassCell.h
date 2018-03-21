@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChildModel.h"
 
 @interface SelectGoodsClassCell : UITableViewCell
-
+@property (nonatomic, strong) ChildModel *model;
 @end

@@ -10,5 +10,6 @@
 #import "ItemContentList.h"
 
 @interface TimeLimtCollectCell : UICollectionViewCell
+@property (nonatomic, copy) void(^didClickItemBlock)( ItemContentList *model);
 @property (nonatomic, strong)  ItemInfoList *model ;
 @end

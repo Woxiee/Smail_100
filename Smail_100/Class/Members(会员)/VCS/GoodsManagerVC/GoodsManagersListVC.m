@@ -106,15 +106,19 @@
         NSString *msg = [result valueForKey:@"msg"];
         //        NSDictionary *dic = result[@"data"];
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+            
             NSArray *listArray  = [[NSArray alloc] init];
             if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
-                listArray = [MeChantOrderModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
-                if (weakSelf.page == 0) {
-                    [weakSelf.resorceArray removeAllObjects];
-                }
-                [weakSelf.resorceArray addObjectsFromArray:listArray];
-                [weakSelf.tableView reloadData];
-                [weakSelf stopRefresh];
+//                listArray = [MeChantOrderModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
+//                if (weakSelf.page == 0) {
+//                    [weakSelf.resorceArray removeAllObjects];
+//                }
+//                [weakSelf.resorceArray addObjectsFromArray:listArray];
+//                [weakSelf.tableView reloadData];
+//                [weakSelf stopRefresh];
+                [weakSelf showHint:msg];
+                [weakSelf requestListNetWork];
+
             }
         }else{
             [weakSelf showHint:msg];
