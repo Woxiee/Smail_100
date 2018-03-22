@@ -134,10 +134,12 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 //        [self.resorceArray addObject:@"积分抵扣"];
         view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeOther];
         titleArr  = @[@"微信支付",@"支付宝支付",@"激励笑脸支付",@"空充笑脸支付",@"积分兑换"];
+        imageArr = @[@"wxzf@3x.png",@"zfb@3x.png",@"jlxl@3x.png",@"kcxl@3x.png",@"jfzf@3x.png"];
+
     }else{
         view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeNoaml];
         titleArr  = @[@"微信支付",@"支付宝支付",@"激励笑脸支付",@"空充笑脸支付"];
-        imageArr = @[@"微信支付",@"支付宝支付",@"激励笑脸支付",@"空充笑脸支付"];
+        imageArr = @[@"wxzf@3x.png",@"zfb@3x.png",@"jlxl@3x.png",@"kcxl@3x.png"];
     }
 //    view.didClickPayTypeBlock = ^(NSInteger index){
 //
@@ -150,7 +152,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     for (int i = 0; i<titleArr.count; i++) {
         PayDetailModel *model = [PayDetailModel new];
         model.mark = @"";
-        model.icon = @"chuangkeweidian6@3x.png";
+        model.icon = imageArr[i];
         model.isSelect = NO;
         model.title = titleArr[i];
         [dataArray addObject:model];

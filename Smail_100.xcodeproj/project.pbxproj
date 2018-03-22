@@ -787,6 +787,22 @@
 		E11557012062417600B344B3 /* AddGoodsMuenVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11556FF2062417600B344B3 /* AddGoodsMuenVC.xib */; };
 		E11557062062556700B344B3 /* AgentPlatformVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11557042062556700B344B3 /* AgentPlatformVC.m */; };
 		E11557072062556700B344B3 /* AgentPlatformVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11557052062556700B344B3 /* AgentPlatformVC.xib */; };
+		E115575720638A9800B344B3 /* bule_ju@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E115575520638A9800B344B3 /* bule_ju@3x.png */; };
+		E115575820638A9800B344B3 /* red_ju@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E115575620638A9800B344B3 /* red_ju@3x.png */; };
+		E115575A2063924300B344B3 /* daili_set@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E11557592063924300B344B3 /* daili_set@3x.png */; };
+		E11557602063930600B344B3 /* zfb@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E115575B2063930400B344B3 /* zfb@3x.png */; };
+		E11557612063930600B344B3 /* jfzf@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E115575C2063930400B344B3 /* jfzf@3x.png */; };
+		E11557622063930600B344B3 /* kcxl@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E115575D2063930400B344B3 /* kcxl@3x.png */; };
+		E11557632063930600B344B3 /* jlxl@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E115575E2063930500B344B3 /* jlxl@3x.png */; };
+		E11557642063930600B344B3 /* wxzf@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E115575F2063930500B344B3 /* wxzf@3x.png */; };
+		E115576E206398F500B344B3 /* gerenzhongxin115@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E115576D206398F500B344B3 /* gerenzhongxin115@3x.png */; };
+		E115577120639C6B00B344B3 /* AgentPlatfoemListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E115577020639C6B00B344B3 /* AgentPlatfoemListVC.m */; };
+		E115577620639DC500B344B3 /* AgentPlatfoemListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E115577420639DC500B344B3 /* AgentPlatfoemListCell.m */; };
+		E115577720639DC500B344B3 /* AgentPlatfoemListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E115577520639DC500B344B3 /* AgentPlatfoemListCell.xib */; };
+		E115577A20639E1900B344B3 /* AgentPlatfoemMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E115577920639E1900B344B3 /* AgentPlatfoemMainVC.m */; };
+		E115577E2063A5BE00B344B3 /* AgentPlatformModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E115577D2063A5BE00B344B3 /* AgentPlatformModel.m */; };
+		E11557832063AF6A00B344B3 /* OpenBusinssVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11557812063AF6A00B344B3 /* OpenBusinssVC.m */; };
+		E11557842063AF6A00B344B3 /* OpenBusinssVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11557822063AF6A00B344B3 /* OpenBusinssVC.xib */; };
 		E16596E420564EAF008ADC6B /* ChangeGoodsCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = E16596E220564EAF008ADC6B /* ChangeGoodsCountView.m */; };
 		E16596E520564EB0008ADC6B /* goodsAd.png in Resources */ = {isa = PBXBuildFile; fileRef = E16596E320564EAF008ADC6B /* goodsAd.png */; };
 		E16596E920564FE4008ADC6B /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E16596E820564FE4008ADC6B /* Toast+UIView.m */; };
@@ -2136,6 +2152,27 @@
 		E11557032062556700B344B3 /* AgentPlatformVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentPlatformVC.h; sourceTree = "<group>"; };
 		E11557042062556700B344B3 /* AgentPlatformVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgentPlatformVC.m; sourceTree = "<group>"; };
 		E11557052062556700B344B3 /* AgentPlatformVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AgentPlatformVC.xib; sourceTree = "<group>"; };
+		E115575520638A9800B344B3 /* bule_ju@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bule_ju@3x.png"; sourceTree = "<group>"; };
+		E115575620638A9800B344B3 /* red_ju@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red_ju@3x.png"; sourceTree = "<group>"; };
+		E11557592063924300B344B3 /* daili_set@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daili_set@3x.png"; sourceTree = "<group>"; };
+		E115575B2063930400B344B3 /* zfb@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zfb@3x.png"; sourceTree = "<group>"; };
+		E115575C2063930400B344B3 /* jfzf@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jfzf@3x.png"; sourceTree = "<group>"; };
+		E115575D2063930400B344B3 /* kcxl@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kcxl@3x.png"; sourceTree = "<group>"; };
+		E115575E2063930500B344B3 /* jlxl@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jlxl@3x.png"; sourceTree = "<group>"; };
+		E115575F2063930500B344B3 /* wxzf@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wxzf@3x.png"; sourceTree = "<group>"; };
+		E115576D206398F500B344B3 /* gerenzhongxin115@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gerenzhongxin115@3x.png"; sourceTree = "<group>"; };
+		E115576F20639C6B00B344B3 /* AgentPlatfoemListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentPlatfoemListVC.h; sourceTree = "<group>"; };
+		E115577020639C6B00B344B3 /* AgentPlatfoemListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgentPlatfoemListVC.m; sourceTree = "<group>"; };
+		E115577320639DC500B344B3 /* AgentPlatfoemListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentPlatfoemListCell.h; sourceTree = "<group>"; };
+		E115577420639DC500B344B3 /* AgentPlatfoemListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgentPlatfoemListCell.m; sourceTree = "<group>"; };
+		E115577520639DC500B344B3 /* AgentPlatfoemListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AgentPlatfoemListCell.xib; sourceTree = "<group>"; };
+		E115577820639E1900B344B3 /* AgentPlatfoemMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentPlatfoemMainVC.h; sourceTree = "<group>"; };
+		E115577920639E1900B344B3 /* AgentPlatfoemMainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgentPlatfoemMainVC.m; sourceTree = "<group>"; };
+		E115577C2063A5BE00B344B3 /* AgentPlatformModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentPlatformModel.h; sourceTree = "<group>"; };
+		E115577D2063A5BE00B344B3 /* AgentPlatformModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgentPlatformModel.m; sourceTree = "<group>"; };
+		E11557802063AF6A00B344B3 /* OpenBusinssVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenBusinssVC.h; sourceTree = "<group>"; };
+		E11557812063AF6A00B344B3 /* OpenBusinssVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenBusinssVC.m; sourceTree = "<group>"; };
+		E11557822063AF6A00B344B3 /* OpenBusinssVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenBusinssVC.xib; sourceTree = "<group>"; };
 		E16596E120564EAF008ADC6B /* ChangeGoodsCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGoodsCountView.h; sourceTree = "<group>"; };
 		E16596E220564EAF008ADC6B /* ChangeGoodsCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGoodsCountView.m; sourceTree = "<group>"; };
 		E16596E320564EAF008ADC6B /* goodsAd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goodsAd.png; sourceTree = "<group>"; };
@@ -3383,6 +3420,7 @@
 		E10B0B9C20528AE8008BA706 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E115577B2063A5AF00B344B3 /* AgentPlatformModel */,
 				E11556F420622B8600B344B3 /* ChildModel(商品分类) */,
 				E167EC38205A5C7D00A8F744 /* AcctoutWater（流水） */,
 				E10B0B9D20528AE8008BA706 /*  CouponsModel */,
@@ -3483,6 +3521,7 @@
 		E10B0BBF20528AE8008BA706 /* VCS */ = {
 			isa = PBXGroup;
 			children = (
+				E115577F2063AF4700B344B3 /* OpenBusinss(开通商家) */,
 				E11557022062554B00B344B3 /*  AgentPlatformVC(代理平台) */,
 				E11556EE2061FF6300B344B3 /* ChangeThePhone(话费兑换) */,
 				E167EC45205B707F00A8F744 /* AllSet(系统设置) */,
@@ -3715,6 +3754,7 @@
 		E10B0C2120528AE8008BA706 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E115577220639D9E00B344B3 /* gentPlatfoemListCell */,
 				E167EC3C205A5CB000A8F744 /* AcctoutWaterCell */,
 				E10B0C2220528AE8008BA706 /* accountView(处理帐号) */,
 				E10B0C2520528AE8008BA706 /* ContractDetailView(合同详情相关view) */,
@@ -5354,6 +5394,15 @@
 		E10B10B220528B05008BA706 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E115576D206398F500B344B3 /* gerenzhongxin115@3x.png */,
+				E115575C2063930400B344B3 /* jfzf@3x.png */,
+				E115575E2063930500B344B3 /* jlxl@3x.png */,
+				E115575D2063930400B344B3 /* kcxl@3x.png */,
+				E115575F2063930500B344B3 /* wxzf@3x.png */,
+				E115575B2063930400B344B3 /* zfb@3x.png */,
+				E11557592063924300B344B3 /* daili_set@3x.png */,
+				E115575520638A9800B344B3 /* bule_ju@3x.png */,
+				E115575620638A9800B344B3 /* red_ju@3x.png */,
 				E172EBD5205FC6F00079CD3D /* moreOne@2x.png */,
 				3E5D837920557660001B542E /* goodsAdd@2x.png */,
 				E16596FD2057A3C1008ADC6B /* ico_add.png */,
@@ -5955,8 +6004,41 @@
 				E11557032062556700B344B3 /* AgentPlatformVC.h */,
 				E11557042062556700B344B3 /* AgentPlatformVC.m */,
 				E11557052062556700B344B3 /* AgentPlatformVC.xib */,
+				E115576F20639C6B00B344B3 /* AgentPlatfoemListVC.h */,
+				E115577020639C6B00B344B3 /* AgentPlatfoemListVC.m */,
+				E115577820639E1900B344B3 /* AgentPlatfoemMainVC.h */,
+				E115577920639E1900B344B3 /* AgentPlatfoemMainVC.m */,
 			);
 			path = " AgentPlatformVC(代理平台)";
+			sourceTree = "<group>";
+		};
+		E115577220639D9E00B344B3 /* gentPlatfoemListCell */ = {
+			isa = PBXGroup;
+			children = (
+				E115577320639DC500B344B3 /* AgentPlatfoemListCell.h */,
+				E115577420639DC500B344B3 /* AgentPlatfoemListCell.m */,
+				E115577520639DC500B344B3 /* AgentPlatfoemListCell.xib */,
+			);
+			path = gentPlatfoemListCell;
+			sourceTree = "<group>";
+		};
+		E115577B2063A5AF00B344B3 /* AgentPlatformModel */ = {
+			isa = PBXGroup;
+			children = (
+				E115577C2063A5BE00B344B3 /* AgentPlatformModel.h */,
+				E115577D2063A5BE00B344B3 /* AgentPlatformModel.m */,
+			);
+			path = AgentPlatformModel;
+			sourceTree = "<group>";
+		};
+		E115577F2063AF4700B344B3 /* OpenBusinss(开通商家) */ = {
+			isa = PBXGroup;
+			children = (
+				E11557802063AF6A00B344B3 /* OpenBusinssVC.h */,
+				E11557812063AF6A00B344B3 /* OpenBusinssVC.m */,
+				E11557822063AF6A00B344B3 /* OpenBusinssVC.xib */,
+			);
+			path = "OpenBusinss(开通商家)";
 			sourceTree = "<group>";
 		};
 		E16596E020564EAF008ADC6B /* ShoppingCarChangeMun */ = {
@@ -6259,6 +6341,7 @@
 				E10B122B20528B06008BA706 /* xiaoxizhongxin6@3x.png in Resources */,
 				E10B129D20528B06008BA706 /* shouye30@3x.png in Resources */,
 				E10B11F820528B06008BA706 /* hehuorenshengji7@3x.png in Resources */,
+				E115575A2063924300B344B3 /* daili_set@3x.png in Resources */,
 				E10B0DCF20528AE8008BA706 /* MyTeamListCell.xib in Resources */,
 				E10B122520528B06008BA706 /* wodetuiguang3@3x.png in Resources */,
 				3E5F264E2061456A0057269A /* StoreMangerVC.xib in Resources */,
@@ -6334,6 +6417,7 @@
 				E10B126720528B06008BA706 /* zhuce@3x.png in Resources */,
 				E10B125520528B06008BA706 /* muban18@3x.png in Resources */,
 				E10B0DB120528AE8008BA706 /* GoodsManageView.xib in Resources */,
+				E115576E206398F500B344B3 /* gerenzhongxin115@3x.png in Resources */,
 				E10B128720528B06008BA706 /* shouye10@3x.png in Resources */,
 				E10B11DB20528B06008BA706 /* hehuorenpingtai1@3x.png in Resources */,
 				E10B11C520528B06008BA706 /* gerenzhongxin15@3x.png in Resources */,
@@ -6365,6 +6449,7 @@
 				E10B11D120528B06008BA706 /* gerenzhongxin7@3x.png in Resources */,
 				E10B122E20528B06008BA706 /* xitongshezhi1@3x.png in Resources */,
 				E10B0D8920528AE8008BA706 /* SendCommentsVC.xib in Resources */,
+				E11557642063930600B344B3 /* wxzf@3x.png in Resources */,
 				E10B125320528B06008BA706 /* muban16@3x.png in Resources */,
 				E10B11DE20528B06008BA706 /* hehuorenpingtai4@3x.png in Resources */,
 				E10B126C20528B06008BA706 /* xianxiashangjia11@3x.png in Resources */,
@@ -6375,6 +6460,7 @@
 				E10B12A520528B06008BA706 /* shouye9@3x.png in Resources */,
 				E167EC5A205B9B6B00A8F744 /* changeInfoVC.xib in Resources */,
 				E10B0DF620528AE8008BA706 /* ShopCarGoodsCell.xib in Resources */,
+				E115575720638A9800B344B3 /* bule_ju@3x.png in Resources */,
 				E10B122C20528B06008BA706 /* xiaoxizhongxin7@3x.png in Resources */,
 				E10B125A20528B06008BA706 /* muban5@3x.png in Resources */,
 				E10B123420528B06008BA706 /* zhanghuguanli11@3x.png in Resources */,
@@ -6400,11 +6486,13 @@
 				E10B11D620528B06008BA706 /* dailipingtai4@3x.png in Resources */,
 				E10B126620528B06008BA706 /* zhuce2@3x.png in Resources */,
 				E10B123B20528B06008BA706 /* zhanghuguanli18@3x.png in Resources */,
+				E11557602063930600B344B3 /* zfb@3x.png in Resources */,
 				E10B125720528B06008BA706 /* muban2@3x.png in Resources */,
 				E10B128820528B06008BA706 /* shouye11@3x.png in Resources */,
 				E10B11E520528B06008BA706 /* chuangkeweidian15@3x.png in Resources */,
 				E10B127D20528B06008BA706 /* xianxiashangjia8@3x.png in Resources */,
 				E10B123020528B06008BA706 /* xitongshezhi3@3x.png in Resources */,
+				E115575820638A9800B344B3 /* red_ju@3x.png in Resources */,
 				E10B126420528B06008BA706 /* denglu@3x.png in Resources */,
 				E10B0298205289EC008BA706 /* Assets.xcassets in Resources */,
 				E10B129120528B06008BA706 /* shouye1@3x.png in Resources */,
@@ -6418,6 +6506,7 @@
 				E10B11C620528B06008BA706 /* gerenzhongxin16@3x.png in Resources */,
 				E10B11E120528B06008BA706 /* chuangkeweidian11@3x.png in Resources */,
 				E10B11BB20528B06008BA706 /* 28@3x.png in Resources */,
+				E11557612063930600B344B3 /* jfzf@3x.png in Resources */,
 				E10B120D20528B06008BA706 /* shangjiazhongxin19@3x.png in Resources */,
 				E10B0DAC20528AE8008BA706 /* AddressListCell.xib in Resources */,
 				E10B127820528B06008BA706 /* xianxiashangjia3@3x.png in Resources */,
@@ -6454,6 +6543,7 @@
 				E10B0DD520528AE8008BA706 /* InsuranceCell.xib in Resources */,
 				E10B0DC620528AE8008BA706 /* MeOrderNumberCell.xib in Resources */,
 				E10B0DA920528AE8008BA706 /* CouponsCell.xib in Resources */,
+				E115577720639DC500B344B3 /* AgentPlatfoemListCell.xib in Resources */,
 				E10B123920528B06008BA706 /* zhanghuguanli16@3x.png in Resources */,
 				E10B11D820528B06008BA706 /* dailipingtai6@3x.png in Resources */,
 				E10B0DDC20528AE8008BA706 /* orderOtherInfo.xib in Resources */,
@@ -6469,11 +6559,13 @@
 				E10B0FD020528AFA008BA706 /* citydict.plist in Resources */,
 				E10B11D420528B06008BA706 /* dailipingtai2@3x.png in Resources */,
 				E10B125420528B06008BA706 /* muban17@3x.png in Resources */,
+				E11557632063930600B344B3 /* jlxl@3x.png in Resources */,
 				E10B11EA20528B06008BA706 /* chuangkeweidian6@3x.png in Resources */,
 				E10B123220528B06008BA706 /* xitongshezhi6@3x.png in Resources */,
 				E10B122020528B06008BA706 /* wodetuandui3@3x.png in Resources */,
 				E167EC58205B9B6B00A8F744 /* BaseInforVC.xib in Resources */,
 				E10B0DA320528AE8008BA706 /* ContractDetailPayCell.xib in Resources */,
+				E11557842063AF6A00B344B3 /* OpenBusinssVC.xib in Resources */,
 				E10B125620528B06008BA706 /* muban1@3x.png in Resources */,
 				E10B11B920528B06008BA706 /* 10@3x.png in Resources */,
 				E10B0D3D20528AE8008BA706 /* FinancialCellCell.xib in Resources */,
@@ -6507,6 +6599,7 @@
 				E16596F6205773CE008ADC6B /* DWQ-LOGO.jpeg in Resources */,
 				E10B11BC20528B06008BA706 /* 29@3x.png in Resources */,
 				E10B11BD20528B06008BA706 /* 32@3x.png in Resources */,
+				E11557622063930600B344B3 /* kcxl@3x.png in Resources */,
 				E10B121D20528B06008BA706 /* bangzhufankui@3x.png in Resources */,
 				E10B128C20528B06008BA706 /* shouye15@3x.png in Resources */,
 				E10B128620528B06008BA706 /* 21@3x.png in Resources */,
@@ -6846,6 +6939,7 @@
 				E10B0FD820528AFA008BA706 /* UIView+SEKExtension.m in Sources */,
 				E10B0CF320528AE8008BA706 /* AttributeListView.m in Sources */,
 				E10B029E205289EC008BA706 /* main.m in Sources */,
+				E115577E2063A5BE00B344B3 /* AgentPlatformModel.m in Sources */,
 				E10B0DAD20528AE8008BA706 /* FK_SheetCoupsView.m in Sources */,
 				E10B0FE120528AFA008BA706 /* ZYShareItemCell.m in Sources */,
 				E10B0CE720528AE8008BA706 /* GoodsSameWebCell.m in Sources */,
@@ -6963,6 +7057,7 @@
 				E10B0D6B20528AE8008BA706 /* ContracDetailModel.m in Sources */,
 				E10B109D20528B03008BA706 /* MJRefreshNormalHeader.m in Sources */,
 				E10B0D4020528AE8008BA706 /* GoodGuigeSectionHeadView.m in Sources */,
+				E115577120639C6B00B344B3 /* AgentPlatfoemListVC.m in Sources */,
 				E10B0DA420528AE8008BA706 /* ContractOrderInfoCell.m in Sources */,
 				E10B109C20528B03008BA706 /* MJRefreshGifHeader.m in Sources */,
 				E10B0D9F20528AE8008BA706 /* MemberInfoVModel.m in Sources */,
@@ -6999,6 +7094,7 @@
 				E10B0FD620528AFA008BA706 /* CustomTopView.m in Sources */,
 				E10B0D5D20528AE8008BA706 /* LoginVModel.m in Sources */,
 				E11531372052993E00B5852F /* PayOtherCell.m in Sources */,
+				E115577A20639E1900B344B3 /* AgentPlatfoemMainVC.m in Sources */,
 				E10B0EA020528AF5008BA706 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				E10B0D5620528AE8008BA706 /* TimeLimtCollectCell.m in Sources */,
 				E10B0D1520528AE8008BA706 /* KX_ApprovalContentCell.m in Sources */,
@@ -7067,6 +7163,7 @@
 				E10B0FE520528AFA008BA706 /* zySheetPickerView.m in Sources */,
 				E10B0FCB20528AFA008BA706 /* LZPickerModel.m in Sources */,
 				E10B0D6020528AE8008BA706 /* LoginFindVC.m in Sources */,
+				E11557832063AF6A00B344B3 /* OpenBusinssVC.m in Sources */,
 				E10B0E1420528AF0008BA706 /* Common.m in Sources */,
 				E10B0D1920528AE8008BA706 /* GoodsOrderAuctionCell.m in Sources */,
 				E10B0CE220528AE8008BA706 /* GoodsListModel.m in Sources */,
@@ -7130,6 +7227,7 @@
 				E10B0D0A20528AE8008BA706 /* GoodsSameFootView.m in Sources */,
 				E10B10A220528B03008BA706 /* UIScrollView+MJExtension.m in Sources */,
 				E10B0E1A20528AF0008BA706 /* KX_BaseTabbarController.m in Sources */,
+				E115577620639DC500B344B3 /* AgentPlatfoemListCell.m in Sources */,
 				E10B0EC120528AF5008BA706 /* UIWebView+ContenHight.m in Sources */,
 				E10B109720528B03008BA706 /* MJRefreshAutoNormalFooter.m in Sources */,
 				E10B0EB920528AF5008BA706 /* UIColor+Hex.m in Sources */,

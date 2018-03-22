@@ -18,6 +18,7 @@
 #import "AcctoutWater.h"
 #import "AllSet.h"
 #import "ChangeThePhoneVC.h"
+#import "AgentPlatformVC.h"
 
 @interface MemberCenterMainVC ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) MemberCenterHeaderView * headerView;
@@ -138,8 +139,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{
-
-        NSArray *imageList  = @[@"gerenzhongxin11@3x.png",@"gerenzhongxin12@3x.png",@"gerenzhongxin13@3x.png",@"gerenzhongxin14@3x.png",@"gerenzhongxin15@3x.png",@"gerenzhongxin15@3x.png",@"gerenzhongxin16@3x.png",@"gerenzhongxin17@3x.png",@"gerenzhongxin18@3x.png",@"gerenzhongxin19@3x.png"];
+        NSArray *imageList  = @[@"gerenzhongxin11@3x.png",@"gerenzhongxin12@3x.png",@"gerenzhongxin13@3x.png",@"gerenzhongxin14@3x.png",@"gerenzhongxin15@3x.png",@"gerenzhongxin115@3x.png",@"gerenzhongxin16@3x.png",@"gerenzhongxin17@3x.png",@"gerenzhongxin18@3x.png",@"gerenzhongxin19@3x.png"];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"indefiiecell"];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"indefiiecell"];
@@ -241,7 +241,9 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     }
     
     else if (index == 6) {
-        
+        AgentPlatformVC *VC = [[AgentPlatformVC alloc] init];
+        VC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController  pushViewController:VC animated:YES];
     }
     
     else if (index == 7) {
