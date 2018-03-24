@@ -23,34 +23,22 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l4i-aI-w1f">
-                    <rect key="frame" x="267" y="0.0" width="43" height="45"/>
+                    <rect key="frame" x="280" y="0.0" width="30" height="45"/>
                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
                     <state key="normal" title="更多">
                         <color key="titleColor" red="0.75052624637340082" green="1" blue="0.64188911119141645" alpha="1" colorSpace="calibratedRGB"/>
-                        <string key="image">shouye30@3x.png
-</string>
                     </state>
                     <connections>
                         <action selector="didClickMoreBtn:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="mxv-Hn-6OT"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="限时抢购" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dw8-xL-e6A">
-                    <rect key="frame" x="29" y="13" width="75" height="21"/>
+                    <rect key="frame" x="29" y="13" width="73" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="75" id="E4m-T5-sRK"/>
+                        <constraint firstAttribute="width" constant="73" id="E4m-T5-sRK"/>
                         <constraint firstAttribute="height" constant="21" id="OVn-40-c1s"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="离开团还剩" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLJ-Nl-mmG">
-                    <rect key="frame" x="104" y="13" width="57" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="57" id="agM-YV-hE4"/>
-                        <constraint firstAttribute="height" constant="21" id="je8-qI-aMN"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -62,9 +50,19 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmO-ZT-GOc" customClass="FLCountDownView">
-                    <rect key="frame" x="161" y="0.0" width="94" height="45"/>
+                    <rect key="frame" x="154" y="0.0" width="114" height="45"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="离开团还剩" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLJ-Nl-mmG">
+                    <rect key="frame" x="97" y="13" width="57" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="57" id="agM-YV-hE4"/>
+                        <constraint firstAttribute="height" constant="21" id="je8-qI-aMN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -82,7 +80,7 @@
                 <constraint firstItem="l4i-aI-w1f" firstAttribute="leading" secondItem="cmO-ZT-GOc" secondAttribute="trailing" constant="12" id="nYA-UW-FOF"/>
                 <constraint firstAttribute="trailing" secondItem="Blb-b5-Y0G" secondAttribute="trailing" constant="12" id="pIz-7i-PW7"/>
                 <constraint firstItem="Blb-b5-Y0G" firstAttribute="top" secondItem="l4i-aI-w1f" secondAttribute="bottom" id="vtQ-5I-33k"/>
-                <constraint firstItem="fLJ-Nl-mmG" firstAttribute="leading" secondItem="Dw8-xL-e6A" secondAttribute="trailing" id="w3L-25-sIc"/>
+                <constraint firstItem="fLJ-Nl-mmG" firstAttribute="leading" secondItem="Dw8-xL-e6A" secondAttribute="trailing" constant="-5" id="w3L-25-sIc"/>
                 <constraint firstItem="hqm-3P-H8s" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="zgB-cm-IH8"/>
             </constraints>
             <connections>
@@ -97,9 +95,5 @@
     </objects>
     <resources>
         <image name="shouye29@3x.png" width="16" height="16"/>
-        <image width="16" height="16">
-            <string key="name">shouye30@3x.png
-</string>
-        </image>
     </resources>
 </document>

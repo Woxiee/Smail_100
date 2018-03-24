@@ -13,7 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet FLCountDownView *timeView;
 @property (weak, nonatomic) IBOutlet UILabel *detailLB;
-@property (nonatomic, strong) ItemContentList *model;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 
 
@@ -38,17 +37,12 @@
 
 }
 
+
 -(void)setModel:(ItemContentList *)model
 {
     _model = model;
-//    [imgeView sd_setImageWithURL:[NSURL URLWithString:_model.imageUrl] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
-//    titleLB.text = _model.clickUrl;
-//    priceLb.text = _model.itemTitle;
-//    oldPriceLB.text = _model.itemSubTitle;
-    
-    _detailLB.text = @"离20点场还剩";
-    _timeView.timestamp = 3421123/1000;
-
+    _detailLB.text = _model.next_msg;
+    _timeView.timestamp = [_model.next_time integerValue]/1000;
 }
 
 
@@ -57,6 +51,7 @@
     if (self.didClickMoreBtnBlock) {
         self.didClickMoreBtnBlock();
     }
+    
 }
 
 

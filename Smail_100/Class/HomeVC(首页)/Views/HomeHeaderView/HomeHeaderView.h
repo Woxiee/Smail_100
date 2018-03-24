@@ -20,7 +20,7 @@
 @property (nonatomic, copy) void(^didClickMoreBtnBlock)();
 //@property (weak, nonatomic) IBOutlet FLCountDownView *timeView;
 //@property (weak, nonatomic) IBOutlet UILabel *detailLB;
-//@property (nonatomic, strong) ItemContentList *model;
+@property (nonatomic, strong) ItemContentList *model;
 
 
 

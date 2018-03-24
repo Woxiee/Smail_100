@@ -125,7 +125,7 @@
 - (IBAction)didClickphotoAction:(UIButton *)sender {
     WEAKSELF;
     NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[KX_UserInfo sharedKX_UserInfo].user_id,@"user_id", nil];
-//    [param setObject:_model.goods_id?_model.goods_id:@"0" forKey:@"goods_id"];
+    [param setObject:_model.goods_id?_model.goods_id:@"0" forKey:@"goods_id"];
     if (sender.tag == 100) {
         [self selectImageByPhotoWithBlock:^(UIImage *image)
          {
@@ -145,21 +145,6 @@
                  weakSelf.stortImageView.image = image;
              }];
          }];
-//    KX_ActionSheet *sheetView  = [KX_ActionSheet  sheetWithTitle:@"选择图片" cancelButtonTitle:@"图片" clicked:^(KX_ActionSheet *actionSheet, NSInteger buttonIndex) {
-//
-//        if (buttonIndex == 1) {
-//
-//
-//        }
-//        else if(buttonIndex == 2)
-//        {
-//
-//             }];
-//
-//        }
-//
-//    } otherButtonTitleArray:@[@"相册",@"照相"]];
-//    [sheetView show];
     }
 
 }

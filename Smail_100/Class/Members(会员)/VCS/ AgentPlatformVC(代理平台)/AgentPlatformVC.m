@@ -8,6 +8,7 @@
 
 #import "AgentPlatformVC.h"
 #import "AgentPlatfoemMainVC.h"
+#import "OpenBusinssVC.h"
 
 @interface AgentPlatformVC ()
 
@@ -187,13 +188,15 @@
             break;
         case 104:
         {
+            OpenBusinssVC *VC = [[OpenBusinssVC alloc] init];
             
+            [self.navigationController pushViewController:VC animated:YES];
         }
             break;
             
         case 105:
         {
-            
+          
         }
             break;
         case 106:

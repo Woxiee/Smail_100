@@ -42,8 +42,8 @@
 {
     _model = model;
     [imgeView sd_setImageWithURL:[NSURL URLWithString:_model.imageUrl] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
-    titleLB.text = [NSString stringWithFormat:@"￥%@",_model.clickUrl];
-    priceLb.text = [NSString stringWithFormat:@"￥%@",_model.itemTitle];
+    titleLB.text = [NSString stringWithFormat:@"￥%@",_model.itemTitle];
+    priceLb.text = [NSString stringWithFormat:@"￥%@",_model.earn_point];
     oldPriceLB.text = _model.itemSubTitle;
 }
 

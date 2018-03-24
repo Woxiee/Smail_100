@@ -48,7 +48,7 @@
         [self getAllAddressList];
 //    }
     /// 检查版本更新接口
-    [self cheakVersonNeedUpdateRequest];
+//    [self cheakVersonNeedUpdateRequest];
 }
 
 

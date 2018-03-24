@@ -84,12 +84,92 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Smail_100/Class/Members(&#x4f1a;&#x5458;)/VCS/GoodsManagerVC/SelectGoodSClassVC.m"
-            timestampString = "543319981.3683209"
+            timestampString = "543571506.858573"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
             endingLineNumber = "64"
             landmarkName = "-viewWillAppear:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Smail_100/Class/HomeVC(&#x9996;&#x9875;)/VCS/HomeVC.m"
+            timestampString = "543580018.270607"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "470"
+            endingLineNumber = "470"
+            landmarkName = "-collectionView:viewForSupplementaryElementOfKind:atIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Smail_100/Class/HomeVC(&#x9996;&#x9875;)/VCS/HomeVC.m"
+            timestampString = "543580018.270944"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "536"
+            endingLineNumber = "536"
+            landmarkName = "-didSelectCycleScrollViewItemAtIndex:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HomeVC didSelectCycleScrollViewItemAtIndex:]"
+                  moduleName = "Smail_100"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ap/Documents/GitHub/Smail_100/Smail_100/Class/HomeVC(%E9%A6%96%E9%A1%B5)/VCS/HomeVC.m"
+                  timestampString = "543580018.513635"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "536"
+                  endingLineNumber = "536"
+                  offsetFromSymbolStart = "63">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HomeVC didSelectCycleScrollViewItemAtIndex:]"
+                  moduleName = "Smail_100"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ap/Documents/GitHub/Smail_100/Smail_100/Class/HomeVC(%E9%A6%96%E9%A1%B5)/VCS/HomeVC.m"
+                  timestampString = "543580018.515633"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "536"
+                  endingLineNumber = "536"
+                  offsetFromSymbolStart = "76">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Smail_100/Class/HomeVC(&#x9996;&#x9875;)/VCS/HomeVC.m"
+            timestampString = "543580045.217225"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "538"
+            endingLineNumber = "538"
+            landmarkName = "-didSelectCycleScrollViewItemAtIndex:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -99,13 +99,11 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         [self.collectionView reloadData];
     }];
     
-    
 }
 
 - (void)getRecommendedRequest
 {
     WEAKSELF;
-
     [HomeVModel getHomeNewsParam:nil successBlock:^(ItemInfoList *listModel, BOOL isSuccess) {
         [weakSelf.resorceArray addObject:listModel];
         [weakSelf.collectionView reloadData];
@@ -267,27 +265,21 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         return model.itemContentList.count;
     }
     
-
     else if ([model.itemType isEqualToString:@"rushPurchaseContent"]){
         return 1;
     }
-
     
     else if ([model.itemType isEqualToString:@"action"]){
         return 1;
     }
     
-    
     if ([model.itemType isEqualToString:@"themeBanner"]) {
         return 1;
     }
-  
-
     
     else if ([model.itemType isEqualToString:@"recommended_ware"]){
         return model.itemContentList.count;
     }
-    
    
     return 0;
 }
@@ -295,7 +287,6 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ItemInfoList *model =   self.resorceArray[indexPath.section];
-
     WEAKSELF;
     if ([model.itemType isEqualToString:@"topBanner"]){
      HomeScrollCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:imageCellIdentifier forIndexPath:indexPath];
@@ -324,7 +315,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
             cell = [TimeLimtCollectCell new];
         }
    
-     cell.didClickItemBlock = ^(ItemContentList *model) {
+        cell.didClickItemBlock = ^(ItemContentList *model) {
          GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
                                                       navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
          //    vc.productID = model.mainResult.mainId;
@@ -332,7 +323,6 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
          vc.productID = model.id;
          vc.hidesBottomBarWhenPushed = YES;
          [weakSelf.navigationController pushViewController: vc animated:YES];
-         
          
      };
         cell.model = model;
@@ -353,14 +343,13 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
      return cell;
      
  }
-       else if ([model.itemType isEqualToString:@"themeBanner"]) {
+    else if ([model.itemType isEqualToString:@"themeBanner"]) {
         HomeScrollCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:imageCellIdentifier forIndexPath:indexPath];
         NSMutableArray *listArr = [[NSMutableArray alloc] init];
         for (ItemContentList *items in  model.itemContentList) {
             [listArr addObject:items.imageUrl];
         }
         cell.modelArray = listArr;
-//        cell.newsList = _newsList;
         cell.backgroundColor = [UIColor clearColor];
         cell.delegate = self;
         return cell;
@@ -374,7 +363,6 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         cell.model = model.itemContentList[indexPath.row];
         return cell;
     }
-   
     return nil;
 }
 
@@ -386,8 +374,6 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     if ([model.itemType isEqualToString:@"topBanner"]) {
         return CGSizeMake(SCREEN_WIDTH, 220 *hScale);
     }
-    
-    
     else if ([model.itemType isEqualToString:@"cateList"]){
         return CGSizeMake((SCREEN_WIDTH)/5 ,(SCREEN_WIDTH)/5 + 20);
     }
@@ -396,17 +382,13 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         return CGSizeMake(SCREEN_WIDTH, 160);
     }
     
-    
     else if ([model.itemType isEqualToString:@"action"]){
         return CGSizeMake(SCREEN_WIDTH , 200);
     }
     else if ([model.itemType isEqualToString:@"themeBanner"])
     {
         return CGSizeMake(SCREEN_WIDTH, 105 *hScale);
-
     }
- 
-    
     return CGSizeMake((SCREEN_WIDTH - 25)/2, 285);
 
 }
@@ -441,37 +423,33 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section;
 {
     ItemInfoList *model =   self.resorceArray[section];
-
     if ([model.itemType isEqualToString:@"recommended_ware"]){
         return 5;//商品cell
     }
     return 0;
 }
+
+
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     
-    ItemInfoList *model =   self.resorceArray[section];
-
+    ItemInfoList *model =  self.resorceArray[section];
    if ([model.itemType isEqualToString:@"rushPurchaseContent"]){
         return CGSizeMake(SCREEN_WIDTH , 44);
     }
-    
    else if ([model.itemType isEqualToString:@"themeBanner"]){
        return CGSizeMake(SCREEN_WIDTH , 50);
     }
-    
-    
     return CGSizeZero;
-
 }
+
+
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
     ItemInfoList *model =   self.resorceArray[section];
-
     if ([model.itemType isEqualToString:@"themeBanner"]){
         return CGSizeMake(SCREEN_WIDTH , 50);
     }
-
     return CGSizeZero;
 }
 
@@ -479,9 +457,14 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 
 - (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
         if (kind == UICollectionElementKindSectionHeader) {
+//            if (indexPath.section == 2) {
+//            }
+
             ItemInfoList *model =  self.resorceArray[indexPath.section];
             if ([model.itemType isEqualToString:@"rushPurchaseContent"]){
+                ItemInfoList *models = self.resorceArray[2];
                 HomeHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:homeStoreHeaderViewIdentifier forIndexPath:indexPath];
+                headerView.model = models.itemContentList[indexPath.row];
                 headerView.didClickMoreBtnBlock = ^(){
 
                 };
@@ -512,7 +495,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
            if ([model.itemType isEqualToString:@"themeBanner"]){
                 RecommendedView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"RecommendedViewID"
                                                                                         forIndexPath:indexPath];
-                headerView.titleLB.text =  @"-- 精品推荐 --";
+                headerView.titleLB.text =  @"-- 商品推荐 --";
                 headerView.detailLB.text = @"每日为您推荐最新火爆单品";
                 return headerView;
             }
@@ -549,7 +532,18 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 /** 点击图片回调 */
 - (void)didSelectCycleScrollViewItemAtIndex:(NSInteger)index
 {
-    
+//    ItemInfoList *model =   self.resorceArray[indexPath.section];
+    for (ItemInfoList *model  in self.resorceArray) {
+        if ([model.itemType isEqualToString:@"themeBanner"]) {
+            ItemContentList *contenModle =  model.itemContentList[index];
+            /// 商品类型=1:新机。2:配构件。3:整机流转
+            GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+                                                         navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+            vc.productID = contenModle.id;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController: vc animated:YES];
+        }
+    }
 
 }
 

@@ -849,6 +849,12 @@
 		E172EBD3205FC2280079CD3D /* RighMeumtCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E172EBD1205FC2280079CD3D /* RighMeumtCell.m */; };
 		E172EBD4205FC2280079CD3D /* RighMeumtCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E172EBD2205FC2280079CD3D /* RighMeumtCell.xib */; };
 		E172EBD6205FC6F00079CD3D /* moreOne@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E172EBD5205FC6F00079CD3D /* moreOne@2x.png */; };
+		E18CBA862065FEDD003DF53A /* doorImageView@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E18CBA842065FEDA003DF53A /* doorImageView@3x.png */; };
+		E18CBA872065FEDD003DF53A /* XyImageView@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E18CBA852065FEDB003DF53A /* XyImageView@3x.png */; };
+		E18CBA94206620A3003DF53A /* FYLCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = E18CBA89206620A3003DF53A /* FYLCity.plist */; };
+		E18CBA95206620A3003DF53A /* FYLCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E18CBA8B206620A3003DF53A /* FYLCityModel.m */; };
+		E18CBA96206620A3003DF53A /* FYLCityPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = E18CBA8D206620A3003DF53A /* FYLCityPickView.m */; };
+		E18CBA9B20662203003DF53A /* SelectBusinssVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E18CBA9A20662203003DF53A /* SelectBusinssVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2246,6 +2252,15 @@
 		E172EBD1205FC2280079CD3D /* RighMeumtCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RighMeumtCell.m; sourceTree = "<group>"; };
 		E172EBD2205FC2280079CD3D /* RighMeumtCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RighMeumtCell.xib; sourceTree = "<group>"; };
 		E172EBD5205FC6F00079CD3D /* moreOne@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moreOne@2x.png"; sourceTree = "<group>"; };
+		E18CBA842065FEDA003DF53A /* doorImageView@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "doorImageView@3x.png"; sourceTree = "<group>"; };
+		E18CBA852065FEDB003DF53A /* XyImageView@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "XyImageView@3x.png"; sourceTree = "<group>"; };
+		E18CBA89206620A3003DF53A /* FYLCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FYLCity.plist; sourceTree = "<group>"; };
+		E18CBA8A206620A3003DF53A /* FYLCityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYLCityModel.h; sourceTree = "<group>"; };
+		E18CBA8B206620A3003DF53A /* FYLCityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYLCityModel.m; sourceTree = "<group>"; };
+		E18CBA8C206620A3003DF53A /* FYLCityPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYLCityPickView.h; sourceTree = "<group>"; };
+		E18CBA8D206620A3003DF53A /* FYLCityPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYLCityPickView.m; sourceTree = "<group>"; };
+		E18CBA9920662203003DF53A /* SelectBusinssVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectBusinssVC.h; sourceTree = "<group>"; };
+		E18CBA9A20662203003DF53A /* SelectBusinssVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectBusinssVC.m; sourceTree = "<group>"; };
 		E60962CF3B597F7C431212A7 /* libPods-Smail_100Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Smail_100Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6B1D3A6DB1A20BAB619951F /* libPods-Smail_100UITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Smail_100UITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -5152,6 +5167,7 @@
 		E10B0FEE20528B02008BA706 /* KX_Vender */ = {
 			isa = PBXGroup;
 			children = (
+				E18CBA88206620A3003DF53A /* FYLCityPickView */,
 				3E5FC2C4205E31980067CFA5 /* YBPopupMenu */,
 				E16596E620564FE4008ADC6B /* 弹框 */,
 				E16596E020564EAF008ADC6B /* ShoppingCarChangeMun */,
@@ -5394,6 +5410,8 @@
 		E10B10B220528B05008BA706 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E18CBA842065FEDA003DF53A /* doorImageView@3x.png */,
+				E18CBA852065FEDB003DF53A /* XyImageView@3x.png */,
 				E115576D206398F500B344B3 /* gerenzhongxin115@3x.png */,
 				E115575C2063930400B344B3 /* jfzf@3x.png */,
 				E115575E2063930500B344B3 /* jlxl@3x.png */,
@@ -6037,6 +6055,8 @@
 				E11557802063AF6A00B344B3 /* OpenBusinssVC.h */,
 				E11557812063AF6A00B344B3 /* OpenBusinssVC.m */,
 				E11557822063AF6A00B344B3 /* OpenBusinssVC.xib */,
+				E18CBA9920662203003DF53A /* SelectBusinssVC.h */,
+				E18CBA9A20662203003DF53A /* SelectBusinssVC.m */,
 			);
 			path = "OpenBusinss(开通商家)";
 			sourceTree = "<group>";
@@ -6170,6 +6190,18 @@
 				E167EC67205B9BEC00A8F744 /* KYViewTextCell.m */,
 			);
 			path = KYBaseCell;
+			sourceTree = "<group>";
+		};
+		E18CBA88206620A3003DF53A /* FYLCityPickView */ = {
+			isa = PBXGroup;
+			children = (
+				E18CBA89206620A3003DF53A /* FYLCity.plist */,
+				E18CBA8A206620A3003DF53A /* FYLCityModel.h */,
+				E18CBA8B206620A3003DF53A /* FYLCityModel.m */,
+				E18CBA8C206620A3003DF53A /* FYLCityPickView.h */,
+				E18CBA8D206620A3003DF53A /* FYLCityPickView.m */,
+			);
+			path = FYLCityPickView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -6462,6 +6494,7 @@
 				E10B0DF620528AE8008BA706 /* ShopCarGoodsCell.xib in Resources */,
 				E115575720638A9800B344B3 /* bule_ju@3x.png in Resources */,
 				E10B122C20528B06008BA706 /* xiaoxizhongxin7@3x.png in Resources */,
+				E18CBA94206620A3003DF53A /* FYLCity.plist in Resources */,
 				E10B125A20528B06008BA706 /* muban5@3x.png in Resources */,
 				E10B123420528B06008BA706 /* zhanghuguanli11@3x.png in Resources */,
 				E10B128D20528B06008BA706 /* shouye16@3x.png in Resources */,
@@ -6472,6 +6505,7 @@
 				E10B124820528B06008BA706 /* gouwuche3@3x.png in Resources */,
 				E10B126020528B06008BA706 /* denglu2@3x.png in Resources */,
 				E10B124020528B06008BA706 /* zhanghuguanli4@3x.png in Resources */,
+				E18CBA872065FEDD003DF53A /* XyImageView@3x.png in Resources */,
 				E10B11DA20528B06008BA706 /* dailipingtai@3x.png in Resources */,
 				E10B11F420528B06008BA706 /* hehuorenshengji3@3x.png in Resources */,
 				E10B0DCC20528AE8008BA706 /* MyRecommendCell.xib in Resources */,
@@ -6601,6 +6635,7 @@
 				E10B11BD20528B06008BA706 /* 32@3x.png in Resources */,
 				E11557622063930600B344B3 /* kcxl@3x.png in Resources */,
 				E10B121D20528B06008BA706 /* bangzhufankui@3x.png in Resources */,
+				E18CBA862065FEDD003DF53A /* doorImageView@3x.png in Resources */,
 				E10B128C20528B06008BA706 /* shouye15@3x.png in Resources */,
 				E10B128620528B06008BA706 /* 21@3x.png in Resources */,
 				E10B128520528B06008BA706 /* jinrongbankuai7@3x.png in Resources */,
@@ -6950,6 +6985,7 @@
 				E10B0DEF20528AE8008BA706 /* OnlineVC.m in Sources */,
 				E10B10A320528B03008BA706 /* UIScrollView+MJRefresh.m in Sources */,
 				E10B0DC120528AE8008BA706 /* MeChantOrderInfoCell.m in Sources */,
+				E18CBA96206620A3003DF53A /* FYLCityPickView.m in Sources */,
 				E10B0D7D20528AE8008BA706 /* GoodsManagerVC.m in Sources */,
 				E10B0FC420528AFA008BA706 /* KX_Version.m in Sources */,
 				E10B0E9C20528AF5008BA706 /* JPResDataUtillity.m in Sources */,
@@ -6977,6 +7013,7 @@
 				E10B0FB620528AFA008BA706 /* JKUtil.m in Sources */,
 				E10B0D6D20528AE8008BA706 /* MemberModel.m in Sources */,
 				E10B0D7220528AE8008BA706 /* MangementDetailModel.m in Sources */,
+				E18CBA95206620A3003DF53A /* FYLCityModel.m in Sources */,
 				3E5F264D2061456A0057269A /* StoreMangerVC.m in Sources */,
 				E11531362052993E00B5852F /* PayOrderView.m in Sources */,
 				E10B10B020528B03008BA706 /* SDPhotoBrowser.m in Sources */,
@@ -6985,6 +7022,7 @@
 				E10B0DA120528AE8008BA706 /* KYVercationCode.m in Sources */,
 				E10B0E9B20528AF5008BA706 /* JPJsonUtillity.m in Sources */,
 				E10B0D3920528AE8008BA706 /* ColumnCell.m in Sources */,
+				E18CBA9B20662203003DF53A /* SelectBusinssVC.m in Sources */,
 				E10B0EA420528AF5008BA706 /* NSString+Safe.m in Sources */,
 				E167EC34205A55FD00A8F744 /* AcctoutWater.m in Sources */,
 				E10B0DE820528AE8008BA706 /* OfflineVC.m in Sources */,

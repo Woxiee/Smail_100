@@ -47,6 +47,8 @@
 @property (nonatomic , copy) NSString              * comment;
 @property (nonatomic , copy) NSString              * goodsSizeID;
 @property (nonatomic , copy) NSString              * id;
+@property (nonatomic , copy) NSString              * next_time;
+@property (nonatomic , copy) NSString              * next_msg;
 
 @property (nonatomic , copy) NSString              * spec;
 
