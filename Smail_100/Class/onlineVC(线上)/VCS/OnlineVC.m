@@ -17,12 +17,16 @@
 #import "GoodsDetailVC.h"
 #import "HomeVModel.h"
 #import "GoodsClassVC.h"
+#import "shoppingCarVM.h"
+#import "GoodsAuctionXYVC.h"
+#import "ClouldPhoneVC.h"
 
-@interface OnlineVC ()<PYSearchViewControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface OnlineVC ()<PYSearchViewControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,HomePageCycScrollViewDelegate>
 @property (nonatomic, weak) TopScreenView *topSreenView;
 @property (nonatomic, strong)  UITextField *inPutTextField;
 @property (nonatomic, weak) KYActionSheetDown *sheet;          /// 弹窗
 @property (weak, nonatomic) UICollectionView *collectionView;
+@property (nonatomic, strong)  NSMutableArray *hotArray;
 
 @end
 
@@ -30,10 +34,20 @@
 {
     NSInteger oldIndex[4] ;   /// 记录上一次选择tabelviewlist
 }
-static NSString * HomeScrollCellIDS = @"HomeScrollCellIDS";
-static NSString * columnCellID = @"ColumnCellID";
+static NSString * const imageCellIdentifier = @"HomeScrollCellID";
+static NSString * const columnCellID = @"ColumnCellID";
+static NSString *homeStoreHeaderViewIdentifier = @"HomeStoreHeaderView";
 static NSString *RecommendedViewIdentifier = @"RecommendedViewIdentifier";
+
+
 static NSString *newProductCell = @"newProductID";
+static NSString *homeFooterView = @"homeFooterViewID";
+
+static NSString *insuranceCellCell = @"InsuranceCellCellID";
+static NSString *financialCellCell = @"financialCellCellID";
+static NSString *timelimitCellID = @"timelimitCellID";
+
+static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,18 +75,60 @@ static NSString *newProductCell = @"newProductID";
 /// 获取首页商品
 - (void)getHomeGoodsRequest
 {
-    [HomeVModel getHomGoodsParam:nil successBlock:^(NSArray<ColumnModel *> *dataArray, BOOL isSuccess) {
-        if (self.resorceArray.count >0) {
-            [self.resorceArray removeAllObjects];
+//    [HomeVModel getHomGoodsParam:nil successBlock:^(NSArray<ColumnModel *> *dataArray, BOOL isSuccess) {
+//        if (self.resorceArray.count >0) {
+//            [self.resorceArray removeAllObjects];
+//        }
+//        [self.resorceArray addObjectsFromArray: dataArray];
+//        [self.collectionView reloadData];
+//        [self.collectionView.mj_header endRefreshing];
+//    }];
+    
+    WEAKSELF;
+    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+    [param setObject:@"0"  forKey:@"is_home"];
+    [param setObject:@"2"  forKey:@"pos"];
+    
+    [HomeVModel getHomGoodsParam:param successBlock:^(NSArray<ItemContentList *> *dataArray, BOOL isSuccess) {
+        if (weakSelf.resorceArray.count >0) {
+            [weakSelf.resorceArray removeAllObjects];
         }
-        [self.resorceArray addObjectsFromArray: dataArray];
+        [weakSelf.resorceArray addObjectsFromArray: dataArray];
+        [weakSelf getRecommendedRequest];
         [self.collectionView reloadData];
-        [self.collectionView.mj_header endRefreshing];
+    }];
+}
+
+
+- (void)getRecommendedRequest
+{
+    WEAKSELF;
+    [HomeVModel getHomeNewsParam:nil successBlock:^(ItemInfoList *listModel, BOOL isSuccess) {
+        [weakSelf.resorceArray addObject:listModel];
+        [weakSelf.collectionView reloadData];
+        [weakSelf.collectionView.mj_header endRefreshing];
     }];
 }
 
                                      
 
+/// 获取热门关键词
+- (void)getHoldKeyWorld
+{
+    WEAKSELF;
+    [HomeVModel getHotList:^(NSArray *dataArray, BOOL isSuccess) {
+        if (isSuccess) {
+            //            [weakSelf.resorceArray addObjectsFromArray:dataArray];
+            //            [weakSelf setup];
+            for (NSDictionary *dic in dataArray) {
+                [weakSelf.hotArray addObject:dic[@"keyword"]];
+            }
+        }
+        
+    }];
+    
+    
+}
 
 
 #pragma mark - private
@@ -105,28 +161,12 @@ static NSString *newProductCell = @"newProductID";
     [inPutTextField addSubview:coverToSeach];
     self.navigationItem.titleView = inPutTextField;
     
-    
-    WEAKSELF;
-    /// 顶部视图    [_titleArray addObject:@"全部分类"];
-    TopScreenView *topSreenView = [[TopScreenView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 45)];
-    topSreenView.titleArray = @[@"全部分类",@"价格排序",@"销售优先",@"时间排序"];
-    topSreenView.selectTopIndexBlock = ^(NSInteger index, NSString *key, NSString *title){
-        
-        if (_sheet) {
-            [_sheet hiddenSheetView];
-            _sheet =nil;
-        }
-        [weakSelf showDownMuenTitleKey:key andIndex:index andTitle:title];
-
-    };
-    [self.view addSubview:topSreenView];
-    _topSreenView = topSreenView;
-    
+ 
     UICollectionViewFlowLayout  *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 0.0;
     layout.minimumInteritemSpacing = 0.0;
     layout.sectionInset = UIEdgeInsetsZero;
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_topSreenView.frame), SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 44- 44) collectionViewLayout:layout];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 44) collectionViewLayout:layout];
     collectionView.delegate = self;
     collectionView.dataSource = self;
     collectionView.backgroundColor = BACKGROUNDNOMAL_COLOR;
@@ -146,37 +186,47 @@ static NSString *newProductCell = @"newProductID";
 - (void)setConfiguration
 {
     //轮播图
-    [self.collectionView registerNib:[UINib nibWithNibName:@"HomeScrollCell" bundle:nil] forCellWithReuseIdentifier:HomeScrollCellIDS];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"HomeScrollCell" bundle:nil] forCellWithReuseIdentifier:imageCellIdentifier];
     ///栏目
     [self.collectionView registerNib:[UINib nibWithNibName:@"ColumnCell" bundle:nil] forCellWithReuseIdentifier:columnCellID];
-  
-    [self.collectionView registerClass:[RecommendedView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:RecommendedViewIdentifier];
+    ///限时抢购
+    //    [self.collectionView registerNib:[UINib nibWithNibName:@"TimeLimtCollectCell" bundle:nil] forCellWithReuseIdentifier:timelimitCellID];
+//    [self.collectionView registerClass:[TimeLimtCollectCell class] forCellWithReuseIdentifier:timelimitCellID];
+    
+    ///限时秒杀
+    [self.collectionView registerNib:[UINib nibWithNibName:@"TimeLimtKillCell" bundle:nil] forCellWithReuseIdentifier:TimeLimtKillCellID];
+    
     ///商品
     [self.collectionView registerNib:[UINib nibWithNibName:@"NewProductCell" bundle:nil] forCellWithReuseIdentifier:newProductCell];
+    ///金融
+    [self.collectionView registerNib:[UINib nibWithNibName:@"FinancialCellCell" bundle:nil] forCellWithReuseIdentifier:financialCellCell];
+    ///保险
+    [self.collectionView registerNib:[UINib nibWithNibName:@"InsuranceCellCell" bundle:nil] forCellWithReuseIdentifier:insuranceCellCell];
+    //SectionheaderView
+    [self.collectionView registerNib:[UINib nibWithNibName:@"HomeHeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:homeStoreHeaderViewIdentifier];
+    
+    [self.collectionView registerClass:[RecommendedView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:RecommendedViewIdentifier];
+    
+    [self.collectionView registerClass:[RecommendedView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"RecommendedViewID"];
+    
+    //SectionFooterView
+    [self.collectionView registerNib:[UINib nibWithNibName:@"HomeFootView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:homeFooterView];
+    
+    
+    _hotArray= [[NSMutableArray alloc] init];
+
 }
 
 
-///显示商品下拉列表
-- (void)showDownMuenTitleKey:(NSString *)key andIndex:(NSInteger )index andTitle:(NSString *)title
-{
-     KYActionSheetDown *sheet = [KYActionSheetDown sheetWithFrame:CGRectMake(0, 64 + 47, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 47) clicked:^(NSInteger buttonIndex, NSInteger buttonTag) {
-         
-     } otherButtonTitleArray:@[@"测试数据1",@"测试数据2",@"测试数据3",@"测试数据4"]];
-    sheet.oldSelectIndex = index[oldIndex] ;
-    sheet.isCustom = YES;
-    sheet.titleStateType = TableViewCellTitleStateTypeCenter;
-    [sheet show];
-    self.sheet  = sheet;
-}
 
 
 - (void)clickToSearch
 {
 
     WEAKSELF;
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:@[@"新机",@"采购",@"集采"]searchBarPlaceholder:@"找商品、找商家、找品牌" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-//        weakSelf.keyWord = searchText;
-//        [weakSelf requestListNetWork];
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:_hotArray searchBarPlaceholder:@"找商品、找商家、找品牌" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        //        weakSelf.keyWord = searchText;
+        //        [weakSelf requestListNetWork];
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }];
     // 3. Set style for popular search and search history
@@ -188,6 +238,19 @@ static NSString *newProductCell = @"newProductID";
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
     [self presentViewController:nav animated:YES completion:nil];
 }
+
+///  加入购物车
+- (void)addGoodsInCar:(ItemContentList *)model{
+    [MBProgressHUD showMessag:@"加入购物车中..." toView:self.view];
+    model.cartNum = @"1";
+    [[shoppingCarVM alloc] addShopCar:model handleback:^(NSInteger code) {
+        //        [iToast alertWithTitle:@"已添加购物车成功~"];
+        [self.collectionView reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
+    
+}
+
 
 #pragma mark - UICollectionViewDelegate & UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -205,31 +268,30 @@ static NSString *newProductCell = @"newProductID";
     }
     
     else if ([model.itemType isEqualToString:@"cateList"]){
-//        return model.itemContentList.count;
-        return 5;
+        return model.itemContentList.count;
 
     }
     
-
-    
-    else if ([model.itemType isEqualToString:@"type_Title2"]){
+    else if ([model.itemType isEqualToString:@"recommended_ware"]){
         return model.itemContentList.count;
     }
-    
+//
     
     return 0;
 }
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+     WEAKSELF;
     ItemInfoList *model =   self.resorceArray[indexPath.section];
     if ([model.itemType isEqualToString:@"topBanner"]){
-        HomeScrollCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:HomeScrollCellIDS forIndexPath:indexPath];
+        HomeScrollCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:imageCellIdentifier forIndexPath:indexPath];
         NSMutableArray *listArr = [[NSMutableArray alloc] init];
         for (ItemContentList *items in  model.itemContentList) {
             [listArr addObject:items.imageUrl];
         }
         cell.modelArray = listArr;
+        cell.delegate = self;
         return cell;
         
     }
@@ -238,17 +300,21 @@ static NSString *newProductCell = @"newProductID";
         if (!cell) {
             cell = [ColumnCell new];
         }
-        cell.model = model.itemContentList[0];
+        cell.model = model.itemContentList[indexPath.row];
         return cell;
         
     }
    
-    else if ([model.itemType isEqualToString:@"type_Title2"]){
+    else if ([model.itemType isEqualToString:@"recommended_ware"]){
+        
         NewProductCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:newProductCell forIndexPath:indexPath];
         if (!cell) {
             cell = [NewProductCell new];
         }
-        cell.model = model.itemContentList[indexPath.row];;
+        cell.didClickCellBlock = ^(ItemContentList *model) {
+            [weakSelf addGoodsInCar:model];
+        };
+        cell.model = model.itemContentList[indexPath.row];
         return cell;
     }
     
@@ -270,8 +336,8 @@ static NSString *newProductCell = @"newProductID";
         return CGSizeMake((SCREEN_WIDTH)/5 ,(SCREEN_WIDTH)/5 + 20);
     }
     
-    return CGSizeMake((SCREEN_WIDTH - 30)/2, 285);
-    
+    return CGSizeMake((SCREEN_WIDTH - 25)/2, 285);
+
 }
 
 //定义每个UICollectionView 的 margin
@@ -290,7 +356,7 @@ static NSString *newProductCell = @"newProductID";
         return UIEdgeInsetsMake(0, 0, 0, 0);
     }
     
-    if ([model.itemType isEqualToString:@"type_Title2"]){
+    else if ([model.itemType isEqualToString:@"recommended_ware"]){
         return UIEdgeInsetsMake(5, 10, 0, 10);//商品cell
     }
     return UIEdgeInsetsMake(0, 0, 0, 0);
@@ -300,13 +366,10 @@ static NSString *newProductCell = @"newProductID";
 
 
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    
     ItemInfoList *model =   self.resorceArray[section];
-    
-    if ([model.itemType isEqualToString:@"type_Title2"]){
+    if ([model.itemType isEqualToString:@"themeBanner"]){
         return CGSizeMake(SCREEN_WIDTH , 50);
     }
-    
     return CGSizeZero;
     
 }
@@ -335,7 +398,7 @@ static NSString *newProductCell = @"newProductID";
 - (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     if (kind == UICollectionElementKindSectionHeader) {
         ItemInfoList *model =  self.resorceArray[indexPath.section];
-        if ([model.itemType isEqualToString:@"type_Title2"]){
+        if ([model.itemType isEqualToString:@"themeBanner"]){
             RecommendedView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:RecommendedViewIdentifier forIndexPath:indexPath];
             headerView.titleLB.text =  @"-- 精品推荐 --";
             headerView.detailLB.text = @"每日为您推荐最新火爆单品";
@@ -353,28 +416,86 @@ static NSString *newProductCell = @"newProductID";
 {
     
     ItemInfoList *model =  self.resorceArray[indexPath.section];
-    
- 
-    
-    if ([model.itemType isEqualToString:@"cateList"]){
+    ItemContentList *contenModle =  model.itemContentList[indexPath.row];
+
+    if ([contenModle.itemTitle isEqualToString:@"产品分类"]){
         if (indexPath.row == 4) {
             GoodsClassVC *VC = [[GoodsClassVC alloc] init];
             VC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:VC animated:YES];
             return;
         }
+
+    }
+    
+    if ([contenModle.itemTitle isEqualToString:@"我的云设备"]){
+        if (indexPath.row == 4) {
+            ClouldPhoneVC *VC = [[ClouldPhoneVC alloc] init];
+            VC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:VC animated:YES];
+            return;
+        }
         
     }
-    /// 商品类型=1:新机。2:配构件。3:整机流转
-    GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
-                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    //    vc.productID = model.mainResult.mainId;
-    //    vc.typeStr = model.productType;
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController: vc animated:YES];
-    //
+    
+    if ([contenModle.clickType isEqualToString:@"web"]) {
+        GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
+        VC.clickUrl = @"";
+        VC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+    else if ([contenModle.clickType isEqualToString:@"app_category"]){
+        
+        
+    }
+    else {
+        
+        GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+                                                     navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        //    vc.productID = model.mainResult.mainId;
+        //    vc.typeStr = model.productType;
+        vc.productID = contenModle.goods_id;
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController: vc animated:YES];
+    }
+    
+    
     
     
 }
+
+
+#pragma mark - HomePageCycScrollViewDelegate
+/** 点击图片回调 */
+- (void)didSelectCycleScrollViewItemAtIndex:(NSInteger)index
+{
+    //    ItemInfoList *model =   self.resorceArray[indexPath.section];
+    for (ItemInfoList *model  in self.resorceArray) {
+        if ([model.itemType isEqualToString:@"themeBanner"]) {
+            ItemContentList *contenModle =  model.itemContentList[index];
+            if ([contenModle.clickType isEqualToString:@"web"]) {
+                GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
+                VC.clickUrl = @"";
+                VC.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:VC animated:YES];
+                
+            }
+            else if ([contenModle.clickType isEqualToString:@"app_category"]){
+                
+            }
+            else {
+                /// 商品类型=1:新机。2:配构件。3:整机流转
+                GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+                                                             navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+                vc.productID = contenModle.id;
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController: vc animated:YES];
+            }
+            
+        }
+    }
+    
+}
+
 
 @end

@@ -855,6 +855,14 @@
 		E18CBA95206620A3003DF53A /* FYLCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E18CBA8B206620A3003DF53A /* FYLCityModel.m */; };
 		E18CBA96206620A3003DF53A /* FYLCityPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = E18CBA8D206620A3003DF53A /* FYLCityPickView.m */; };
 		E18CBA9B20662203003DF53A /* SelectBusinssVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E18CBA9A20662203003DF53A /* SelectBusinssVC.m */; };
+		E1EFC6A52068CAA300C78A8C /* GoodsAuctionXYVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC6A22068CAA200C78A8C /* GoodsAuctionXYVC.m */; };
+		E1EFC6A62068CAA300C78A8C /* GoodsAuctionXYVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC6A32068CAA200C78A8C /* GoodsAuctionXYVC.xib */; };
+		E1EFC6AA2068D8D700C78A8C /* GoodsScreeningVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC6A92068D8D700C78A8C /* GoodsScreeningVC.m */; };
+		E1EFC6AE2068EF2600C78A8C /* ClouldPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC6AD2068EF2600C78A8C /* ClouldPhoneVC.m */; };
+		E1EFC6B82068F3FC00C78A8C /* CloudPhoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC6B62068F3FC00C78A8C /* CloudPhoneCell.m */; };
+		E1EFC6B92068F3FC00C78A8C /* CloudPhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC6B72068F3FC00C78A8C /* CloudPhoneCell.xib */; };
+		E1EFC6BC2068FCEE00C78A8C /* home_add.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC6BA2068FCEE00C78A8C /* home_add.png */; };
+		E1EFC6BD2068FCEE00C78A8C /* home_share.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC6BB2068FCEE00C78A8C /* home_share.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2261,6 +2269,18 @@
 		E18CBA8D206620A3003DF53A /* FYLCityPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYLCityPickView.m; sourceTree = "<group>"; };
 		E18CBA9920662203003DF53A /* SelectBusinssVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectBusinssVC.h; sourceTree = "<group>"; };
 		E18CBA9A20662203003DF53A /* SelectBusinssVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectBusinssVC.m; sourceTree = "<group>"; };
+		E1EFC6A22068CAA200C78A8C /* GoodsAuctionXYVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsAuctionXYVC.m; sourceTree = "<group>"; };
+		E1EFC6A32068CAA200C78A8C /* GoodsAuctionXYVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsAuctionXYVC.xib; sourceTree = "<group>"; };
+		E1EFC6A42068CAA300C78A8C /* GoodsAuctionXYVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsAuctionXYVC.h; sourceTree = "<group>"; };
+		E1EFC6A82068D8D700C78A8C /* GoodsScreeningVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsScreeningVC.h; sourceTree = "<group>"; };
+		E1EFC6A92068D8D700C78A8C /* GoodsScreeningVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsScreeningVC.m; sourceTree = "<group>"; };
+		E1EFC6AC2068EF2600C78A8C /* ClouldPhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClouldPhoneVC.h; sourceTree = "<group>"; };
+		E1EFC6AD2068EF2600C78A8C /* ClouldPhoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClouldPhoneVC.m; sourceTree = "<group>"; };
+		E1EFC6B52068F3FC00C78A8C /* CloudPhoneCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CloudPhoneCell.h; sourceTree = "<group>"; };
+		E1EFC6B62068F3FC00C78A8C /* CloudPhoneCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CloudPhoneCell.m; sourceTree = "<group>"; };
+		E1EFC6B72068F3FC00C78A8C /* CloudPhoneCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CloudPhoneCell.xib; sourceTree = "<group>"; };
+		E1EFC6BA2068FCEE00C78A8C /* home_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_add.png; sourceTree = "<group>"; };
+		E1EFC6BB2068FCEE00C78A8C /* home_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_share.png; sourceTree = "<group>"; };
 		E60962CF3B597F7C431212A7 /* libPods-Smail_100Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Smail_100Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6B1D3A6DB1A20BAB619951F /* libPods-Smail_100UITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Smail_100UITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -2455,6 +2475,7 @@
 		E10B0A4820528AE8008BA706 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				E1EFC6A72068D8D700C78A8C /* GoodsScreeningVC(筛选类表) */,
 				E10B0A4920528AE8008BA706 /* BrowsingHistory（浏览记录） */,
 				E10B0A5320528AE8008BA706 /* GoodOrderSuccessVC（下单成功) */,
 				E10B0A5720528AE8008BA706 /* GoodsClass(商品分类） */,
@@ -3179,6 +3200,9 @@
 				E10B0B3320528AE8008BA706 /* HomeMainVC.m */,
 				E10B0B3420528AE8008BA706 /* HomeVC.h */,
 				E10B0B3520528AE8008BA706 /* HomeVC.m */,
+				E1EFC6A42068CAA300C78A8C /* GoodsAuctionXYVC.h */,
+				E1EFC6A22068CAA200C78A8C /* GoodsAuctionXYVC.m */,
+				E1EFC6A32068CAA200C78A8C /* GoodsAuctionXYVC.xib */,
 				E10B0B3620528AE8008BA706 /* SubmitSuccessVC */,
 			);
 			path = VCS;
@@ -4114,6 +4138,9 @@
 		E10B0CB820528AE8008BA706 /* onlineVC(线上) */ = {
 			isa = PBXGroup;
 			children = (
+				E1EFC6B12068F35A00C78A8C /* Model */,
+				E1EFC6B02068F35A00C78A8C /* VModels */,
+				E1EFC6AF2068F32F00C78A8C /* Views */,
 				E10B0CB920528AE8008BA706 /* VCS */,
 			);
 			path = "onlineVC(线上)";
@@ -4122,6 +4149,7 @@
 		E10B0CB920528AE8008BA706 /* VCS */ = {
 			isa = PBXGroup;
 			children = (
+				E1EFC6AB2068EF0500C78A8C /* ClouldPhone */,
 				E10B0CBA20528AE8008BA706 /* OnlineVC.h */,
 				E10B0CBB20528AE8008BA706 /* OnlineVC.m */,
 			);
@@ -5410,6 +5438,8 @@
 		E10B10B220528B05008BA706 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E1EFC6BA2068FCEE00C78A8C /* home_add.png */,
+				E1EFC6BB2068FCEE00C78A8C /* home_share.png */,
 				E18CBA842065FEDA003DF53A /* doorImageView@3x.png */,
 				E18CBA852065FEDB003DF53A /* XyImageView@3x.png */,
 				E115576D206398F500B344B3 /* gerenzhongxin115@3x.png */,
@@ -6204,6 +6234,48 @@
 			path = FYLCityPickView;
 			sourceTree = "<group>";
 		};
+		E1EFC6A72068D8D700C78A8C /* GoodsScreeningVC(筛选类表) */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC6A82068D8D700C78A8C /* GoodsScreeningVC.h */,
+				E1EFC6A92068D8D700C78A8C /* GoodsScreeningVC.m */,
+			);
+			path = "GoodsScreeningVC(筛选类表)";
+			sourceTree = "<group>";
+		};
+		E1EFC6AB2068EF0500C78A8C /* ClouldPhone */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC6AC2068EF2600C78A8C /* ClouldPhoneVC.h */,
+				E1EFC6AD2068EF2600C78A8C /* ClouldPhoneVC.m */,
+			);
+			path = ClouldPhone;
+			sourceTree = "<group>";
+		};
+		E1EFC6AF2068F32F00C78A8C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E1EFC6B52068F3FC00C78A8C /* CloudPhoneCell.h */,
+				E1EFC6B62068F3FC00C78A8C /* CloudPhoneCell.m */,
+				E1EFC6B72068F3FC00C78A8C /* CloudPhoneCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E1EFC6B02068F35A00C78A8C /* VModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VModels;
+			sourceTree = "<group>";
+		};
+		E1EFC6B12068F35A00C78A8C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -6476,6 +6548,7 @@
 				E10B0DE520528AE8008BA706 /* OrderMoneyCell.xib in Resources */,
 				E10B0D7920528AE8008BA706 /* AddressManageVC.xib in Resources */,
 				E10B12A320528B06008BA706 /* shouye7@3x.png in Resources */,
+				E1EFC6B92068F3FC00C78A8C /* CloudPhoneCell.xib in Resources */,
 				E10B125220528B06008BA706 /* muban15@3x.png in Resources */,
 				E10B124C20528B06008BA706 /* qianbaozhuanzeng3@3x.png in Resources */,
 				E10B11D120528B06008BA706 /* gerenzhongxin7@3x.png in Resources */,
@@ -6491,6 +6564,7 @@
 				E10B0DB320528AE8008BA706 /* InvoiceCustomCell.xib in Resources */,
 				E10B12A520528B06008BA706 /* shouye9@3x.png in Resources */,
 				E167EC5A205B9B6B00A8F744 /* changeInfoVC.xib in Resources */,
+				E1EFC6BD2068FCEE00C78A8C /* home_share.png in Resources */,
 				E10B0DF620528AE8008BA706 /* ShopCarGoodsCell.xib in Resources */,
 				E115575720638A9800B344B3 /* bule_ju@3x.png in Resources */,
 				E10B122C20528B06008BA706 /* xiaoxizhongxin7@3x.png in Resources */,
@@ -6623,6 +6697,7 @@
 				E10B126B20528B06008BA706 /* xianxiashangjia10@3x.png in Resources */,
 				E10B11CA20528B06008BA706 /* gerenzhongxin1@3x.png in Resources */,
 				E16596FF2057A3C1008ADC6B /* ico_add.png in Resources */,
+				E1EFC6A62068CAA300C78A8C /* GoodsAuctionXYVC.xib in Resources */,
 				E10B121420528B06008BA706 /* shangjiazhongxin3@3x.png in Resources */,
 				E10B11E720528B06008BA706 /* chuangkeweidian3@3x.png in Resources */,
 				E10B124B20528B06008BA706 /* qianbaozhuanzeng2@3x.png in Resources */,
@@ -6687,6 +6762,7 @@
 				E10B12A120528B06008BA706 /* shouye5@3x.png in Resources */,
 				E10B0D4A20528AE8008BA706 /* HomeFootView.xib in Resources */,
 				E10B0DF820528AE8008BA706 /* ShopCarLimitCell.xib in Resources */,
+				E1EFC6BC2068FCEE00C78A8C /* home_add.png in Resources */,
 				E10B0CF520528AE8008BA706 /* ActionOfficeCell.xib in Resources */,
 				E10B11FE20528B06008BA706 /* shangchengdingdan4@3x.png in Resources */,
 				E10B127C20528B06008BA706 /* xianxiashangjia7@3x.png in Resources */,
@@ -6954,6 +7030,7 @@
 				E10B0D7C20528AE8008BA706 /* GoodsManagersListVC.m in Sources */,
 				E10B0DB220528AE8008BA706 /* InvoiceCustomCell.m in Sources */,
 				E10B0D6E20528AE8008BA706 /* OrderDetailModel.m in Sources */,
+				E1EFC6AA2068D8D700C78A8C /* GoodsScreeningVC.m in Sources */,
 				E10B0FE420528AFA008BA706 /* ZYShareView.m in Sources */,
 				E10B0D4320528AE8008BA706 /* GoodScreenCollectCell.m in Sources */,
 				E10B0CD320528AE8008BA706 /* BrowsingHistoryVC.m in Sources */,
@@ -7000,6 +7077,7 @@
 				E10B0FA720528AFA008BA706 /* UIColor+ZXLazy.m in Sources */,
 				E11556EC2061165A00B344B3 /* SelectGoodsClassCell.m in Sources */,
 				E16596F8205773CE008ADC6B /* DWQSelectView.m in Sources */,
+				E1EFC6A52068CAA300C78A8C /* GoodsAuctionXYVC.m in Sources */,
 				E167EC5B205B9B6B00A8F744 /* ChangeSexVC.m in Sources */,
 				E10B0FA020528AFA008BA706 /* KYActionSheetDown.m in Sources */,
 				E10B10A420528B03008BA706 /* UIView+MJExtension.m in Sources */,
@@ -7272,7 +7350,9 @@
 				E10B0CF920528AE8008BA706 /* GoodsAutionView.m in Sources */,
 				E10B0F9B20528AFA008BA706 /* SuccessView.m in Sources */,
 				E10B0CD220528AE8008BA706 /* HistoryModel.m in Sources */,
+				E1EFC6AE2068EF2600C78A8C /* ClouldPhoneVC.m in Sources */,
 				E10B0CF120528AE8008BA706 /* AttributeCell.m in Sources */,
+				E1EFC6B82068F3FC00C78A8C /* CloudPhoneCell.m in Sources */,
 				E10B0D8020528AE8008BA706 /* MeChantOrderDetailVC.m in Sources */,
 				E10B0EBB20528AF5008BA706 /* UIColor+Utils.m in Sources */,
 				E10B0D6F20528AE8008BA706 /* OrderModel.m in Sources */,

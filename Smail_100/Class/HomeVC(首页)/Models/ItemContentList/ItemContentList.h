@@ -22,6 +22,9 @@
 @end
 
 @interface ItemContentList : NSObject
+
+@property (nonatomic , copy) NSString              * clickType;
+
 @property (nonatomic , copy) NSString              * itemRecommendedLanguage;
 @property (nonatomic , copy) NSString              * volume;
 @property (nonatomic , copy) NSString              * earn_money;

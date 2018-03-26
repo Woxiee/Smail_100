@@ -43,19 +43,24 @@
     segmentMenuVc.SlideColor = KMAINCOLOR;
     segmentMenuVc.advanceLoadNextVc = NO;
     NSMutableArray *titles = [[NSMutableArray alloc] init];
+//    NSArray *vcArr = @[vc1,vc2,vc3,vc4,vc5,vc6];
+    NSMutableArray *vcArr = [[NSMutableArray alloc] init];
     for (ColumnModel *model in self.resorceArray) {
+       
+        HomeVC    *vc1 = [[HomeVC alloc]init];
+        [vcArr addObject:vc1];
         [titles addObject:model.name];
     }
     /* 创建测试数据 */
 //    NSArray *titles = @[@"推荐",@"积分商城",@"品牌馆",@"随身Wifi",@"智能科技",@"日用商品"];
-    HomeVC      *vc1 = [[HomeVC alloc]init];
-    HomeVC      *vc2 = [[HomeVC alloc]init];
-    HomeVC    *vc3 = [[HomeVC alloc]init];
-    HomeVC     *vc4 = [[HomeVC alloc]init];
-    HomeVC     *vc5 = [[HomeVC alloc]init];
-    HomeVC      *vc6 = [[HomeVC alloc]init];
-    
-    NSArray *vcArr = @[vc1,vc2,vc3,vc4,vc5,vc6];
+//    HomeVC      *vc1 = [[HomeVC alloc]init];
+//    HomeVC      *vc2 = [[HomeVC alloc]init];
+//    HomeVC    *vc3 = [[HomeVC alloc]init];
+//    HomeVC     *vc4 = [[HomeVC alloc]init];
+//    HomeVC     *vc5 = [[HomeVC alloc]init];
+//    HomeVC      *vc6 = [[HomeVC alloc]init];
+//
+  
     
     /* 导入数据 */
     [segmentMenuVc addSubVc:vcArr subTitles:titles];

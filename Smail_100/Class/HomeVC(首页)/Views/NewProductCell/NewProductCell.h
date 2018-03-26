@@ -12,4 +12,6 @@
 @interface NewProductCell : UICollectionViewCell
 @property (nonatomic, strong) ItemContentList *model;
 
+@property (nonatomic, copy) void(^didClickCellBlock)(ItemContentList *model);
+
 @end

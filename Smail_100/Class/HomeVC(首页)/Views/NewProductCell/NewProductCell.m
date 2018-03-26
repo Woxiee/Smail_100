@@ -94,5 +94,13 @@
 //    }
 }
 
+- (IBAction)didClckAddAction:(UIButton *)sender {
+    if (self.didClickCellBlock) {
+        self.didClickCellBlock(_model);
+    }
+    
+}
+
+
 
 @end

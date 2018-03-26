@@ -44,9 +44,9 @@
 {
     _modelArray = modelArray;
     if (_modelArray.count <3) return;
-    [imgview1 sd_setImageWithURL:[NSURL URLWithString:_modelArray[0]] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
+    [imgview1 sd_setImageWithURL:[NSURL URLWithString:_modelArray[2]] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
     [imgView2 sd_setImageWithURL:[NSURL URLWithString:_modelArray[1]] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
-    [imgView3 sd_setImageWithURL:[NSURL URLWithString:_modelArray[2]] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
+    [imgView3 sd_setImageWithURL:[NSURL URLWithString:_modelArray[0]] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
 
 }
 
