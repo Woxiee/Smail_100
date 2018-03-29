@@ -51,6 +51,12 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 //    pageController.superVC = self;
     [self setup];
     [self setNavationView];
+    
+    
+    WEAKSELF
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf requestListNetWork];
+    }];
 }
 
 
@@ -106,10 +112,12 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     [navationView layerForViewWith:4 AndLineWidth:0];
     
     UIButton *selectBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
-    selectBtn.backgroundColor = [UIColor lightGrayColor];
+    selectBtn.backgroundColor = RGB(228, 229, 230);
     [selectBtn setTitle:@"商家" forState:UIControlStateNormal];
+    [selectBtn setImage:[UIImage imageNamed:@"xianxiashangjia1@3x.png"] forState:UIControlStateNormal];
     [selectBtn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
     selectBtn.titleLabel.font = Font15;
+    [selectBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
     [selectBtn addTarget:self  action:@selector(clickToSelect:) forControlEvents:UIControlEventTouchUpInside];
     [navationView addSubview:selectBtn];
     self.selectBtn = selectBtn;
@@ -145,7 +153,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     [self.tableView registerNib:[UINib nibWithNibName:@"LineOffGoodsCell" bundle:nil] forCellReuseIdentifier:llineOffGoodsCell];
     [self requestListNetWork];
 
-    
+
 }
 
 
@@ -170,6 +178,9 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 //    [self.view addSubview:headerView];
     self.tableView.tableHeaderView = _headerView;
     
+    [self setRightNaviBtnImage:[UIImage imageNamed:@"shouye18@3x.png"]];
+
+    
     SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 125) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
     [headerView addSubview:cycleView];
     self.cycleView = cycleView;
@@ -182,7 +193,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 
 
 - (void)clickToSelect:(UIButton *)sender{
-    [YBPopupMenu showRelyOnView:sender titles:@[@"商家",@"商品"] icons: nil menuWidth:60 delegate:self];
+    [YBPopupMenu showRelyOnView:sender titles:@[@"商家",@"商品"] icons: nil menuWidth:70 delegate:self];
 }
 
 
@@ -201,6 +212,12 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 {
     
     
+}
+
+
+- (void)didClickRightNaviBtn
+{
+    self.tabBarController.selectedIndex = 3;
 }
 
 

@@ -18,7 +18,7 @@
 
 
 
-@interface GoodsDetailVC ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
+@interface GoodsDetailVC ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,YBPopupMenuDelegate>
 @property(nonatomic,strong)DLNavigationTabBar *navigationTabBar;
 @property(nonatomic,strong)NSMutableArray<UIViewController *> *subViewControllers;
 
@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     /// 配置基础设置
     [self setConfiguration];
     /// 初始化视图
@@ -49,34 +50,22 @@
 {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
     GoodContenVC  *VC1 = [[GoodContenVC alloc] init];
-    VC1.title = @"商品";
+    VC1.title = @"商品详情";
     VC1.typeStr = self.typeStr;
     VC1.productID = self.productID;
     VC1.superVC = self;
-    [array addObject:@"商品"];
+    [array addObject:@"商品详情"];
     [_subViewControllers addObject:VC1];
-    
-    GoodDetailImageVC *webViewVC = [GoodDetailImageVC new];
-    webViewVC.title = @"详情";
-    
-    webViewVC.typeStr = self.typeStr;
-    webViewVC.productID = self.productID;
-    [array addObject:@"详情"];
-    [_subViewControllers addObject:webViewVC];
-
-    
+ 
     GoodDetailImageVC *webViewVC1 = [GoodDetailImageVC new];
-    webViewVC1.title = @"须知";
+    webViewVC1.title = @"购买须知";
     webViewVC1.typeStr = self.typeStr;
     webViewVC1.productID = self.productID;
-    [array addObject:@"须知"];
+    [array addObject:@"购买须知"];
     [_subViewControllers addObject:webViewVC1];
-//    GoodsDetailCommenAllVC *VC2 = [GoodsDetailCommenAllVC new];
-//    VC2.title = @"评价";
 
-//    [array addObject:@"评价"];
+    WEAKSELF;
     self.navigationTabBar = [[DLNavigationTabBar alloc] initWithTitles:array];
-    __weak typeof(self) weakSelf = self;
     [self.navigationTabBar setDidClickAtIndex:^(NSInteger index){
         [weakSelf navigationDidSelectedControllerIndex:index];
     }];
@@ -90,6 +79,9 @@
                    direction:UIPageViewControllerNavigationDirectionReverse
                     animated:NO
                   completion:nil];
+    
+    VC1.navigationTabBar =   self.navigationTabBar;
+
 }
 
 
@@ -105,10 +97,10 @@
 
 - (void)setNavigetionBarItms
 {
-    //    /// 自定义返回按钮
+    /// 自定义返回按钮
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
-    [backButton setImage:[UIImage imageNamed:@"bangzhufankui3@3x.png"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"bangzhufankui3@3x.png"] forState:UIControlStateHighlighted];
+    [backButton setImage:[UIImage imageNamed:@"shouye6@3x.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"shouye6@3x.png"] forState:UIControlStateHighlighted];
     backButton.titleLabel.font=[UIFont systemFontOfSize:18];
     [backButton.titleLabel setTextAlignment:NSTextAlignmentLeft];
     
@@ -118,12 +110,12 @@
     [backButton sizeToFit];
     
     UIButton *moreBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
-    [moreBtn setImage:[UIImage imageNamed:@"19@3x.png"] forState:UIControlStateNormal];
-    [moreBtn setImage:[UIImage imageNamed:@"19@3x.png"] forState:UIControlStateHighlighted];
+    [moreBtn setImage:[UIImage imageNamed:@"shouye5@3x.png"] forState:UIControlStateNormal];
+    [moreBtn setImage:[UIImage imageNamed:@"shouye5@3x.png"] forState:UIControlStateHighlighted];
     moreBtn.titleLabel.font=[UIFont systemFontOfSize:18];
     [moreBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
     
-    [moreBtn addTarget:self action:@selector(didClickMoreAction) forControlEvents:UIControlEventTouchUpInside];
+    [moreBtn addTarget:self action:@selector(didClickMoreAction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *moreItem = [[UIBarButtonItem alloc] initWithCustomView:moreBtn];
     [self.navigationItem setRightBarButtonItem:moreItem];
     [moreBtn sizeToFit];
@@ -140,20 +132,20 @@
 
 
 ///定制更多点击
-- (void)didClickMoreAction
-{
-    WEAKSELF;
-    [PopupView addCellWithIcon:[UIImage imageNamed:@"39@3x.png"] text:@"首页" action:^{
-        weakSelf.tabBarController.selectedIndex = 0;
-        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-    }];
+- (void)didClickMoreAction:(UIButton *)sender{
+//    WEAKSELF;
+//    [PopupView addCellWithIcon:[UIImage imageNamed:@"39@3x.png"] text:@"首页" action:^{
+  
+//    }];
+//
+//    [PopupView addCellWithIcon:[UIImage imageNamed:@"40@3x.png"] text:@"我的" action:^{
     
-    [PopupView addCellWithIcon:[UIImage imageNamed:@"40@3x.png"] text:@"我的" action:^{
-            weakSelf.tabBarController.selectedIndex = 3;
-        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-    }];
+//    }];
+//
+//    [PopupView popupView];
     
-    [PopupView popupView];
+    [YBPopupMenu showRelyOnView:sender titles:@[@"首页",@"我的"] icons:nil menuWidth:70 delegate:self];
+
 
 }
 
@@ -190,10 +182,23 @@
 }
 
 
+
+
 #pragma mark - PrivateMethod
 - (void)navigationDidSelectedControllerIndex:(NSInteger)index {
     [self setViewControllers:@[[self.subViewControllers objectAtIndex:index]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 
+- (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu
+{
+    if (index == 0) {
+        self.tabBarController.selectedIndex = 0;
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else{
+        self.tabBarController.selectedIndex = 3;
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
 
 @end

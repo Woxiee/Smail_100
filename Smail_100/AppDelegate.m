@@ -9,8 +9,8 @@
 #import "AppDelegate.h"
 #import "KX_BaseTabbarController.h"
 #import "KX_BaseNavController.h"
-
-@interface AppDelegate ()
+#import "WXApi.h"
+@interface AppDelegate ()<WXApiDelegate>
 @property (nonatomic, strong) KX_BaseTabbarController *tabbarVC;
 
 @end
@@ -39,18 +39,7 @@
     manager.enable = YES;
     manager.shouldResignOnTouchOutside = YES;//这个是点击空白区域键盘收缩的开关
     manager.enableAutoToolbar = YES;//这个是它自带键盘工具条开关
-    
-    
-//    UIColor * colors = [UIColor whiteColor];
-//    NSDictionary * dict= [NSDictionary dictionaryWithObjectsAndKeys:colors,NSForegroundColorAttributeName,nil];
-//    [UINavigationBar appearance].titleTextAttributes  = dict;
-//    [UINavigationBar appearance].tintColor = colors;
-//
-//    [[UINavigationBar appearance]  setBackgroundImage:[UIImage
-//                                                       imageNamed:@"Navigation_BackgroundImage"] forBarMetrics:UIBarMetricsDefault];
-//    [UINavigationBar appearance].barStyle = UIBarStyleBlackOpaque;//设置不要透明 图片没有不要透明纸
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    
+
     // 设置导航栏默认的背景颜色
     [WRNavigationBar wr_setDefaultNavBarBarTintColor:KMAINCOLOR];
     [WRNavigationBar wr_setDefaultNavBarTitleColor:[UIColor whiteColor]];
@@ -60,7 +49,17 @@
     [WRNavigationBar wr_setDefaultStatusBarStyle:UIStatusBarStyleLightContent];
     // 如果需要设置导航栏底部分割线隐藏，可以在这里统一设置
     [WRNavigationBar wr_setDefaultNavBarShadowImageHidden:YES];
+//    8780ece09fd44bcc5146c52aa0c8e2e7
+    [WXApi registerApp:@"8780ece09fd44bcc5146c52aa0c8e2e7" enableMTA:NO];
+
+    
 }
+
+//9.0前的方法，为了适配低版本 保留
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
 
 
 - (BOOL)application:(UIApplication *)application
@@ -74,6 +73,10 @@
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
             NSLog(@"result = %@",resultDic);
         }];
+    }else
+    {
+        return [WXApi handleOpenURL:url delegate:self];
+
     }
     return YES;
 }
@@ -89,7 +92,39 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTICEMEPAYMSG object:resultDic];
         }];
     }
+    else{
+         return  [WXApi handleOpenURL:url delegate:self];
+    }
     return YES;
 }
+
+
+
+//微信SDK自带的方法，处理从微信客户端完成操作后返回程序之后的回调方法,显示支付结果的
+-(void) onResp:(BaseResp*)resp
+{
+    //启动微信支付的response
+    NSString *payResoult = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+    if([resp isKindOfClass:[PayResp class]]){
+        //支付返回结果，实际支付结果需要去微信服务器端查询
+        switch (resp.errCode) {
+            case 0:
+                payResoult = @"支付结果：成功！";
+                break;
+            case -1:
+                payResoult = @"支付结果：失败！";
+                break;
+            case -2:
+                payResoult = @"用户已经退出支付！";
+                break;
+            default:
+                payResoult = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
+                break;
+        }
+    }
+}
+
+
+
 
 @end

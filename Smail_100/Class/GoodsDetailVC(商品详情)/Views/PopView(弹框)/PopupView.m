@@ -145,6 +145,7 @@ BOOL isShow = NO;
     }
     
     popupView.bgView.frame = CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64);
+    popupView.bgView.backgroundColor = [UIColor clearColor];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:popupView action:@selector(clickBgViewToHide)];
     [popupView.bgView addGestureRecognizer:tap];
     [window addSubview:popupView.bgView];

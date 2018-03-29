@@ -30,11 +30,12 @@
 - (void)setup
 {
     [connetBtn layerWithRadius:12 lineWidth:0.5 color:KMAINCOLOR];
+    
     clickDeviceView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tagGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickClickAction)];
     
     [clickDeviceView addGestureRecognizer:tagGesture];
-    clickDeviceContenHeight.constant = 0;
+//    clickDeviceContenHeight.constant = 0;
 }
 
 
@@ -43,6 +44,14 @@
 {
     if (_didClickLookInfoBlcok ) {
         _didClickLookInfoBlcok();
+    }
+}
+
+
+- (IBAction)didClickConnetAction:(id)sender {
+    UIButton *btn = (UIButton *)sender;
+    if (_didClickConnectionBlcok ) {
+        _didClickConnectionBlcok(btn.titleLabel.text);
     }
 }
 

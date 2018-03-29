@@ -76,6 +76,11 @@
 
 #define FIRSTLOGIN @"firstLogin"
 
+
+/// 点击过广告了
+#define FIRSTLCLICK @"firstClick"
+
+
 #pragma mark ---- AppDelegate
 //AppDelegate
 #define APPDELEGATES (AppDelegate *)[[UIApplication sharedApplication] delegate];

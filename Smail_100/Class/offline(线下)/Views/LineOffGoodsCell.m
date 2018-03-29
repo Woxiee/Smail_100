@@ -7,11 +7,10 @@
 //
 
 #import "LineOffGoodsCell.h"
-
+#import "DQStarView.h"
 @implementation LineOffGoodsCell
 {
     __weak IBOutlet UILabel *titleLB;
-    __weak IBOutlet UIImageView *scoreImageView;
     
     __weak IBOutlet UIImageView *logoImageView;
     __weak IBOutlet UILabel *commone;
@@ -20,6 +19,7 @@
     __weak IBOutlet UILabel *distanceLB;
     __weak IBOutlet UIView *lineView1;
     
+    __weak IBOutlet DQStarView *scoreImageView;
     __weak IBOutlet UILabel *telLb;
 }
 
@@ -49,7 +49,10 @@
     distanceLB.text = [NSString stringWithFormat:@"%@m",_model.distance];
     telLb.text = _model.contact_phone;
     
-//    [scoreImageView sd_setImageWithURL:[NSURL URLWithString:_model.shop_image] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
+    scoreImageView.userInteractionEnabled = NO;
+    scoreImageView.starTotalCount = 5;
+    scoreImageView.ShowStyle = DQStarShowStyleSliding;
+    [scoreImageView ShowDQStarScoreFunction:3];
 
 }
 

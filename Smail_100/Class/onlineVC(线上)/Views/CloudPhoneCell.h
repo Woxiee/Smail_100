@@ -12,4 +12,7 @@
 
 @property (strong, nonatomic) void(^didClickLookInfoBlcok)();
 
+@property (strong, nonatomic) void(^didClickConnectionBlcok)(NSString *str );
+
+
 @end

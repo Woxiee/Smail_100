@@ -33,11 +33,9 @@ typedef NS_ENUM(NSInteger,  GoodsScreenSelectType){
 @property (nonatomic, strong)  NSString   *orderBy; /// 排序：：
 @property (nonatomic, strong)  NSString   *keyWord; ///关键字筛选
 @property (nonatomic, strong)  NSString   *region; ///地区筛选
-@property (nonatomic, strong)  NSString   *seachClassId; ///商品类别id
 
-/// 供应商订单查看 所需字段
-@property (nonatomic, assign) BOOL  isSupply;
-@property (nonatomic, strong)  NSString  *parentClassId; ///类型的二级节点id
+@property (nonatomic, strong)  NSString   *category_id; ///商品类别id
+
 
 
 @end

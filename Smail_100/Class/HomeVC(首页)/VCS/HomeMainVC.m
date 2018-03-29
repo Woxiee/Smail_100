@@ -10,6 +10,9 @@
 #import "HomeVC.h"
 #import "HomeVModel.h"
 #import "ColumnModel.h"
+#import "RecommendedView.h"
+#import "SIDADView.h"
+
 @interface HomeMainVC ()<PYSearchViewControllerDelegate>
 @property (nonatomic, strong)  UITextField *inPutTextField;
 @property (nonatomic, strong)  NSMutableArray *hotArray;
@@ -23,6 +26,7 @@
     [self getHomeIndexRequest];
     [self getHoldKeyWorld];
 }
+
 
 
 - (void)setup
@@ -46,8 +50,8 @@
 //    NSArray *vcArr = @[vc1,vc2,vc3,vc4,vc5,vc6];
     NSMutableArray *vcArr = [[NSMutableArray alloc] init];
     for (ColumnModel *model in self.resorceArray) {
-       
         HomeVC    *vc1 = [[HomeVC alloc]init];
+        vc1.categoryId = model.category_id;
         [vcArr addObject:vc1];
         [titles addObject:model.name];
     }
@@ -115,6 +119,7 @@
     [inPutTextField addSubview:coverToSeach];
     self.navigationItem.titleView = inPutTextField;
 
+
 }
 
 - (void)getHomeIndexRequest
@@ -128,6 +133,8 @@
         
     }];
 }
+
+
 
 /// 获取热门关键词
 - (void)getHoldKeyWorld

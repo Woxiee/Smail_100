@@ -27,6 +27,8 @@
     
     __weak IBOutlet UILabel *sellLB;
     
+    __weak IBOutlet UIView *tagsView;
+    __weak IBOutlet NSLayoutConstraint *tagsContraintsH;
 }
 
 
@@ -68,30 +70,28 @@
     integralLB.text =[NSString stringWithFormat:@"送%@积分",_model.earn_point];
     sellLB.text = [NSString stringWithFormat:@"已出售:%@",_model.store_nums];
 
+    if (_model.tags.count >0) {
+        tagsContraintsH.constant = 20;
+        tagsView.hidden = NO;
+    }else{
+        tagsContraintsH.constant = 0;
+        tagsView.hidden = YES;
+    }
 
-//    if (_model.keyWordList.count >=2) {
-//        shLB.text = _model.keyWordList[0];
-//        nyLB.text = _model.keyWordList[1];
-//        shLB.hidden = NO;
-//        nyLB.hidden = NO;
-//
-//    }
-//    else if (_model.keyWordList.count >0 && _model.keyWordList.count <2){
-//        nyLB.text = _model.keyWordList[0];
-//        shLB.hidden = YES;
-//        nyLB.hidden = NO;
-//    }
-//    else {
-        shLB.hidden = YES;
-        nyLB.hidden = YES;
-//    }
-//    
-//    for (NSString *str in _model.keyWordList) {
-//        if (KX_NULLString(str)) {
-//            shLB.hidden = YES;
-//            nyLB.hidden = YES;
-//        }
-//    }
+    
+    for (int i= 0; i<_model.tags.count; i++) {
+        NSDictionary *dic = _model.tags[i];
+        UILabel *lb = [[UILabel alloc] init];
+        lb.frame = CGRectMake(27*i, 0, 25, 13);
+        lb.font =  KY_FONT(9);
+        lb.textColor = [UIColor whiteColor];
+        lb.textAlignment = NSTextAlignmentCenter;
+        lb.text = dic[@"title"];
+        [lb layerForViewWith:4 AndLineWidth:0];
+        lb.backgroundColor = [UIColor colorWithHexString:dic[@"color"]];
+        [tagsView addSubview:lb];
+    }
+
 }
 
 - (IBAction)didClckAddAction:(UIButton *)sender {

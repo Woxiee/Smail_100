@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DLNavigationTabBar.h"
 
 @interface GoodContenVC : UIViewController
 @property (nonatomic, strong) NSString  *productID;
 @property (nonatomic, strong) NSString  *typeStr;
 @property (nonatomic, strong) UIViewController *superVC;
 
+@property(nonatomic,strong)DLNavigationTabBar *navigationTabBar;
 
 
 @end

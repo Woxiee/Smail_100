@@ -21,20 +21,20 @@
 
 #import "ColumnModel.h"
 #import "TimeLimtKillCell.h"
-
 //#import "GoodsNewsVC.h"
-
 #import "LoginVModel.h"
 #import "TimelimitCell.h"
 #import "RecommendedView.h"
-
 #import "GoodsDetailVC.h"
-
 #import "TimeLimtCollectCell.h"
 #import "shoppingCarVM.h"
 #import "GoodsAuctionXYVC.h"
 #import "GoodsScreeningVC.h"
 #import "GoodsVModel.h"
+
+#import "GoodsScreeningVC.h"
+#import "SIDADView.h"
+
 
 @interface HomeVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,PYSearchViewControllerDelegate,HomePageCycScrollViewDelegate>
 @property (weak, nonatomic) UICollectionView *collectionView;
@@ -78,12 +78,15 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-
-    
-
+    [super viewDidAppear:animated];
+    [self getShowInfoRequest];
+    NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"click+%@",_categoryId]];
+    if (KX_NULLString(str)) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:[NSString stringWithFormat:@"click+%@",_categoryId]];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 
 }
 
@@ -119,6 +122,38 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     }];
 }
 
+
+/// 获取顶部弹出框
+- (void)getShowInfoRequest
+{
+    WEAKSELF;
+    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+    [param setObject:_categoryId  forKey:@"category_id"];
+    [BaseHttpRequest postWithUrl:@"/mall/getpopup" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+        
+            NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"click+%@",_categoryId]];
+            if ([result[@"data"][@"clickType"] isEqualToString:@"app_category"]) {
+                if ([str isEqualToString:@"0"]) {
+                    SIDADView *adView = [[SIDADView alloc]init];
+                    [adView showInView:self.view.window withFaceInfo:result[@"data"][@"imageUrl"] advertisementImage:[UIImage imageNamed:DEFAULTIMAGE] borderColor:nil];
+                    [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:[NSString stringWithFormat:@"click+%@",_categoryId]];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                }
+               
+                
+            }else{
+                if ([str isEqualToString:@"0"]) {
+                    [weakSelf systemAlertWithTitle:nil andMsg:result[@"data"][@"content"]];
+                    [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:[NSString stringWithFormat:@"click+%@",_categoryId]];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+
+                }
+            }
+
+        }
+    }];
+}
 
 ///检查账号是否有异常
 - (void)cheackAccoutRequest
@@ -418,7 +453,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     {
         return CGSizeMake(SCREEN_WIDTH, 105 *hScale);
     }
-    return CGSizeMake((SCREEN_WIDTH - 25)/2, 285);
+    return CGSizeMake((SCREEN_WIDTH - 25)/2, 290);
 
 }
 
@@ -535,17 +570,20 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     ItemInfoList *model =  self.resorceArray[indexPath.section];
-   ItemContentList *contenModle =  model.itemContentList[indexPath.row];
-    
+    ItemContentList *contenModle =  model.itemContentList[indexPath.row];
     if ([contenModle.clickType isEqualToString:@"web"]) {
-        GoodsScreeningVC *VC = [[GoodsScreeningVC alloc] init];
+        GoodsAuctionXYVC *VC = [[GoodsAuctionXYVC alloc] init];
         VC.hidesBottomBarWhenPushed = YES;
+        VC.clickUrl = contenModle.url;
+
         [self.navigationController pushViewController:VC animated:YES];
     }
     else if ([contenModle.clickType isEqualToString:@"app_category"]){
-        
+        GoodsScreeningVC *VC = [[GoodsScreeningVC alloc] init];
+        VC.category_id = contenModle.id;
+        VC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:VC animated:YES];
     }
     else {
         
@@ -558,9 +596,6 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         [self.navigationController pushViewController: vc animated:YES];
     }
     
-    
-//
-    
 
 }
 
@@ -571,20 +606,19 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 {
 //    ItemInfoList *model =   self.resorceArray[indexPath.section];
     for (ItemInfoList *model  in self.resorceArray) {
-        if ([model.itemType isEqualToString:@"themeBanner"]) {
+        if ([model.itemType isEqualToString:@"topBanner"]) {
             ItemContentList *contenModle =  model.itemContentList[index];
             if ([contenModle.clickType isEqualToString:@"web"]) {
                 GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
-                VC.clickUrl = @"";
+                VC.clickUrl = contenModle.url;
                 VC.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:VC animated:YES];
-
             }
             else if ([contenModle.clickType isEqualToString:@"app_category"]){
                 GoodsScreeningVC *VC = [[GoodsScreeningVC alloc] init];
                 VC.hidesBottomBarWhenPushed = YES;
+                VC.category_id = contenModle.id;
                 [self.navigationController pushViewController:VC animated:YES];
-
             }
             else {
                 /// 商品类型=1:新机。2:配构件。3:整机流转

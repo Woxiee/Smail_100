@@ -419,22 +419,20 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     ItemContentList *contenModle =  model.itemContentList[indexPath.row];
 
     if ([contenModle.itemTitle isEqualToString:@"产品分类"]){
-        if (indexPath.row == 4) {
             GoodsClassVC *VC = [[GoodsClassVC alloc] init];
             VC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:VC animated:YES];
             return;
-        }
+       
 
     }
     
     if ([contenModle.itemTitle isEqualToString:@"我的云设备"]){
-        if (indexPath.row == 4) {
             ClouldPhoneVC *VC = [[ClouldPhoneVC alloc] init];
             VC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:VC animated:YES];
             return;
-        }
+      
         
     }
     

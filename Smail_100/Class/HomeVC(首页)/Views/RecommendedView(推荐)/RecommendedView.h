@@ -13,4 +13,7 @@
 @property (nonatomic, strong) UILabel *titleLB;
 @property (nonatomic, strong) UILabel *detailLB;
 
+@property (nonatomic, strong) UIButton *detailBtn;
+
+
 @end

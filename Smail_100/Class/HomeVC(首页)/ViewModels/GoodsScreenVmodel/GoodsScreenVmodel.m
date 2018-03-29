@@ -9,6 +9,8 @@
 #import "GoodsScreenVmodel.h"
 #import "GoodsScreenmodel.h"
 #import "GoodsScreenListModel.h"
+#import "ItemContentList.h"
+
 @implementation GoodsScreenVmodel
 
 /// 返回筛选数据
@@ -48,16 +50,19 @@
 /// 返回列表数据
 + (void)getGoodsScreenListParam:(NSDictionary *)param WithDataList:(void(^)(NSArray *dataArray, BOOL success))sBlock
 {
-    [BaseHttpRequest postWithUrl:@"/o/o_053" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+    [BaseHttpRequest postWithUrl:@"/goods/getCategoryList" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         if (error) {
             sBlock(nil, NO);
         }else{
             NSMutableArray *listArray = [[NSMutableArray alloc] init];
-            NSInteger state = [[result valueForKey:@"state"] integerValue];
-            NSArray *dataList = [result valueForKey:@"data"][@"obj"][@"data"];
+            NSInteger state = [[result valueForKey:@"code"] integerValue];
+            NSArray *dataList = [result valueForKey:@"itemInfoList"];
             if ([dataList isKindOfClass:[NSArray class]]) {
                 if (state == 0) {
-                    listArray = [GoodsScreenListModel mj_objectArrayWithKeyValuesArray:dataList];
+                    for (NSDictionary *dic in dataList) {
+                        ItemContentList *model = [ItemContentList yy_modelWithJSON:dic[@"itemContentList"]];
+                        [listArray addObject:model];
+                    }
                 }
                 sBlock(listArray, YES);
                 

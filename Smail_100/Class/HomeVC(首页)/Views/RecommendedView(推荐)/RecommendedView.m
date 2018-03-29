@@ -34,6 +34,12 @@
     _detailLB.font = Font14;
     _detailLB.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_detailLB];
+    
+    _detailBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _detailBtn.frame = CGRectMake(0, 0, SCREEN_WIDTH, 50);
+    _detailBtn.titleLabel.font =  Font15;
+    [_detailBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
+    [self addSubview:_detailBtn];
 
 }
 

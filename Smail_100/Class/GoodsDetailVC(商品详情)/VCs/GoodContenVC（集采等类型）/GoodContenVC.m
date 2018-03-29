@@ -31,10 +31,18 @@
 #import "ItemContentList.h"
 
 #import "shoppingCarVM.h"
+#import "HomeVModel.h"
 
+#import "NewProductCell.h"
 
 #import "DWQSelectAttributes.h"
 #import "DWQSelectView.h"
+#define NAVBAR_COLORCHANGE_POINT 0
+#define NAV_HEIGHT 64
+#define IMAGE_HEIGHT 400
+#define SCROLL_DOWN_LIMIT 0
+#define LIMIT_OFFSET_Y -(IMAGE_HEIGHT + SCROLL_DOWN_LIMIT)
+
 
 @interface GoodContenVC ()<UITableViewDelegate, UITableViewDataSource,SDCycleScrollViewDelegate,SDPhotoBrowserDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIWebViewDelegate,SelectAttributesDelegate>
 @property (nonatomic, copy) NSMutableArray  *resorceArray;
@@ -89,7 +97,7 @@ static NSString *const goodsDetailCommonCellID = @"goodsDetailCommonCellID";
 static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
 static NSString * const goodsSameWebCellID = @"goodsSameWebCellID";
 static NSString *homeStoreHeaderViewIdentifier = @"HomeStoreHeaderView";
-static NSString *goodsSameCellID = @"goodsSameCellID";
+static NSString *newProductCell = @"newProductID";
 static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 
 
@@ -110,6 +118,8 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     [self.tableView headerWithRefreshingBlock:^{
         [weakSelf getGoodsDetailInfoRequest];
     }];
+    
+    [self getRecommendedRequest];
     
 
 }
@@ -141,7 +151,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     
     [_sameGoodsCollectView registerNib:[UINib nibWithNibName:@"GoodsSameWebCell" bundle:nil] forCellWithReuseIdentifier:goodsSameWebCellID];
     
-    [_sameGoodsCollectView registerNib:[UINib nibWithNibName:@"GoodsSameCell" bundle:nil] forCellWithReuseIdentifier:goodsSameCellID];
+    [_sameGoodsCollectView registerNib:[UINib nibWithNibName:@"NewProductCell" bundle:nil] forCellWithReuseIdentifier:newProductCell];
 
     //SectionheaderView
     [_sameGoodsCollectView registerNib:[UINib nibWithNibName:@"HomeHeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:homeStoreHeaderViewIdentifier];
@@ -155,8 +165,32 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 /// 初始化视图
 - (void)setup
 {
+    self.contentView = [UIView new];
+    self.contentView.frame =CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 45);
+    [self.view addSubview:self.contentView];
+    [self.contentView addSubview:self.tableView];
     
-    [self.view addSubview:self.tableView];
+    self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
+
+    self.tableView.tableHeaderView = self.headView;
+    
+    [self.superVC wr_setNavBarBackgroundAlpha:0];
+    self.navigationTabBar.alpha = 0;
+    self.superVC.navigationItem.titleView.hidden = YES;
+    [self wr_setNavBarShadowImageHidden:NO];
+    
+    
+    UICollectionViewFlowLayout  *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.minimumLineSpacing = 0.0;
+    layout.minimumInteritemSpacing = 0.0;
+    layout.sectionInset = UIEdgeInsetsZero;
+    _sameGoodsCollectView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, SCREEN_HEIGHT- 45) collectionViewLayout:layout];
+    _sameGoodsCollectView.delegate = self;
+    _sameGoodsCollectView.dataSource = self;
+    _sameGoodsCollectView.backgroundColor = BACKGROUND_COLOR;
+    [self.contentView addSubview:_sameGoodsCollectView];
+    // 开始监听_sameGoodsCollectView的偏移量
+    [_sameGoodsCollectView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
 
 }
 
@@ -179,10 +213,8 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 {
     if (_bottomView == nil ) {
         WEAKSELF
-      
         _bottomView = [[StoreBottomView alloc] init];
-        _bottomView.frame = CGRectMake(0, CGRectGetMaxY(self.tableView.frame), SCREEN_WIDTH, 45);
-
+        _bottomView.frame = CGRectMake(0, CGRectGetMaxY(self.contentView.frame), SCREEN_WIDTH, 45);
         _bottomView.backgroundColor = [UIColor whiteColor];
         _bottomView.selectBlock = ^(NSInteger index){
             ItemInfoList *model = nil;
@@ -208,9 +240,6 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
                 [weakSelf addGoodsInCar:model.itemContent];
             }
             else if (index == 4){
-                
-                
-                
                 GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
                 model.itemContent.goods_id = weakSelf.productID;
                 VC.itemsModel = model.itemContent;
@@ -390,6 +419,24 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     
 }
 
+- (void)getRecommendedRequest
+{
+    WEAKSELF;
+    [HomeVModel getHomeNewsParam:nil successBlock:^(ItemInfoList *listModel, BOOL isSuccess) {
+        [_sameArray addObject:@[@""]];
+        [_sameArray addObject:listModel.itemContentList];
+        [_sameTitleArr addObject:@"热销商品"];
+
+        if (_isLoading == NO) {
+            [_sameGoodsCollectView reloadData];
+            _isLoading= YES;
+        }
+
+    }];
+}
+
+
+
 
 ///  加入购物车
 - (void)addGoodsInCar:(ItemContentList *)model{
@@ -421,7 +468,6 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
         NSString *sper_vlue = [self.selectItems componentsJoinedByString:@","];
         [param setObject:sper_vlue forKey:@"spec"];
     }
- 
     [GoodsVModel getGoodsDetailPriceParam:param successBlock:^(NSDictionary *relust, BOOL isSuccess) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -459,34 +505,6 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     }];
 }
 
-///  类似产品
-- (void)getGoodsDetailSameRequest
-{
-    WEAKSELF;
-    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setObject:_typeStr forKey:@"itemsType"];
-    [GoodsVModel getGoodsSameDetailParam:param successBlock:^(NSArray *dataArray,NSArray *dataArray1, BOOL isSuccess) {
-        if (isSuccess) {
-            [_sameArray removeAllObjects];
-            [_sameArray addObject:self.resorceArray];
-            [_sameTitleArr addObject:@""];
-
-            if (dataArray.count >0) {
-                [_sameArray addObject:dataArray];
-                [_sameTitleArr addObject:@"热销商品"];
-            }
-            if (dataArray1.count >0) {
-                [_sameArray addObject:dataArray1];
-                [_sameTitleArr addObject:@"产品推荐"];
-
-            }
-        }
-        if (_isLoading == NO) {
-            [_sameGoodsCollectView reloadData];
-            _isLoading= YES;
-        }
-    }];
-}
 
 
 /// 收藏取消收藏操作
@@ -521,34 +539,17 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 - (UITableView *)tableView
 {
     if(!_tableView){
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT- 45) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT- 50) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
+        _tableView.rowHeight = 40.f;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//        _tableView.tableFooterView = self.footView;
-        _tableView.tableFooterView = [UIView new];
-        _tableView.tableHeaderView = self.headView;
+        _tableView.tableFooterView = self.footView;
     }
     return _tableView;
 }
 
-- (UIWebView *)webView
-{
-    if(!_webView){
-        _webView = [[UIWebView alloc] init];
-        if (_tableView.contentSize.height < SCREEN_HEIGHT) {
-            _webView.frame =    CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, SCREEN_HEIGHT-50 - 64);
-        }else
-        {
-            _webView.frame =    CGRectMake(0, _tableView.contentSize.height, SCREEN_WIDTH,  SCREEN_HEIGHT-50 - 64);
-        }
-        
-        _webView.delegate = self;
-//        _webView.scrollView.delegate = self;
-        _webView.scrollView.scrollEnabled = YES;
-    }
-    return _webView;
-}
+
 
 
 -(SDCycleScrollView *)headView
@@ -639,39 +640,10 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
         ItemInfoList *model = self.resorceArray[indexPath.section+1];
         GoodsDetailInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsDetailInfoCellID forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        if (model.mainResult.dizhi.count <2) {
-//            cell.rightImageView.hidden = YES;
-//        }
+
         cell.model = model.itemContent;
         cell.clickCollectBlcok = ^(NSString *str,NSInteger index){
-   
-//            if (index == 100) {
-//                if (KX_NULLString(str)) {
-//                    [weakSelf.view toastShow:@"此号码无效~"];
-//                    return ;
-//                }
-//                if ( !KX_NULLString(model.businessResult.busiCompTel) && !KX_NULLString(model.businessResult.userPhone)) {
-//
-//
-//                }else{
-//                    SuccessView *successV  = [[SuccessView alloc]initWithTrueCancleTitle:[NSString stringWithFormat:@"%@",str] clickDex:^(NSInteger clickDex) {
-//                        if (clickDex == 1) {
-//                            NSMutableString *str1=[[NSMutableString alloc] initWithFormat:@"tel:%@",str];
-//                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str1]];
-//                        }}];
-//                    [successV showSuccess];
-        
-        
-                
 
-//            }else{
-//                if (model.mainResult.dizhi.count >1) {
-//                    AttributeListView *view = [[AttributeListView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//                    view.dizhiArr = model.mainResult.dizhi;
-//                    [view show];
-//                }
-//            }
-        
         };
         return cell;
     }
@@ -738,23 +710,25 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    WEAKSELF;
     if (indexPath.section ==0) {
-        GoodSDetailModel *model = _sameArray[0][0];
         GoodsSameWebCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:goodsSameWebCellID forIndexPath:indexPath];
         if (!cell) {
             cell = [GoodsSameWebCell new];
         }
         cell.detailWebView.delegate = self;
         cell.detailWebView.scrollView.scrollEnabled = NO;
-        [ cell.detailWebView loadHTMLString:model.mainResult.detailDesc baseURL:[NSURL URLWithString:HEAD__URL]];
+        [ cell.detailWebView loadHTMLString: _itemIfoModel.itemContent.content baseURL:[NSURL URLWithString:HEAD__URL]];
         return cell;
     }
-    GoodsSameCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:goodsSameCellID forIndexPath:indexPath];
+    NewProductCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:newProductCell forIndexPath:indexPath];
     if (!cell) {
-        cell = [GoodsSameCell new];
+        cell = [NewProductCell new];
     }
-    cell.backgroundColor = [UIColor whiteColor];
-    cell.model = _sameArray[indexPath.section][indexPath.row];
+    cell.didClickCellBlock = ^(ItemContentList *model) {
+        [weakSelf addGoodsInCar:model];
+    };
+    cell.model =_sameArray[indexPath.section][indexPath.row];
     return cell;
 }
 
@@ -767,15 +741,8 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
         }
         return CGSizeMake(SCREEN_WIDTH,_maxWebHight);
     }
-    return CGSizeMake((SCREEN_WIDTH - 12)/2, 237);
+    return CGSizeMake((SCREEN_WIDTH - 25)/2, 290);
 }
-
-//定义每个UICollectionView 的 margin
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsMake(0, 0, 0, 0);
-}
-
 
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if (section == 0) {
@@ -793,10 +760,25 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 }
 
 
+//定义每个UICollectionView 的 margin
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(5, 10, 5, 10);//商品cell
+
+}
+
+//item 列间距(纵)
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section;
+{
+
+    return 5;
+}
+
+
 - (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     if (kind == UICollectionElementKindSectionHeader) {
         HomeHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:homeStoreHeaderViewIdentifier forIndexPath:indexPath];
-        headerView.titleLabel.text = _sameTitleArr[indexPath.section];
+        headerView.titleLabel.text = _sameTitleArr.lastObject;
         headerView.moreBtn.hidden = YES;
         indexPath.section == 0?  (headerView.hidden = YES): (headerView.hidden = NO);
         return headerView;
@@ -819,6 +801,175 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 //    vc.typeStr = model.salesType;
 //    [self.navigationController pushViewController: vc animated:YES];
 }
+
+#pragma mark ---- scrollView delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat offsetY = scrollView.contentOffset.y;
+    if (offsetY <15) {
+        offsetY = 0;
+    }
+    if (offsetY > NAVBAR_COLORCHANGE_POINT)
+    {
+        CGFloat alpha = (offsetY - NAVBAR_COLORCHANGE_POINT) / NAV_HEIGHT;
+        [self.superVC wr_setNavBarBackgroundAlpha:alpha];
+        self.navigationTabBar.alpha = alpha;
+        self.superVC.navigationItem.titleView.hidden = NO;
+
+        if (alpha > 0.5) {
+            [self wr_setNavBarTintColor:[UIColor redColor]];
+
+            [self.superVC wr_setNavBarTitleColor:[UIColor blackColor]];
+            [self.superVC wr_setStatusBarStyle:UIStatusBarStyleDefault];
+        } else {
+            
+            [self.superVC wr_setNavBarTintColor:[UIColor whiteColor]];
+            [self.superVC wr_setNavBarTitleColor:[UIColor clearColor]];
+            [self.superVC wr_setStatusBarStyle:UIStatusBarStyleLightContent];
+        }
+
+    }
+    else
+    {
+        [self.superVC wr_setNavBarBackgroundAlpha:0];
+        self.navigationTabBar.alpha = 0;
+
+        [self.superVC wr_setNavBarTintColor:[UIColor whiteColor]];
+        [self.superVC wr_setNavBarTitleColor:[UIColor clearColor]];
+        [self.superVC wr_setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
+    
+    //限制下拉的距离
+    if(offsetY < LIMIT_OFFSET_Y) {
+        [scrollView setContentOffset:CGPointMake(0, LIMIT_OFFSET_Y)];
+    }
+    
+    // 改变图片框的大小 (上滑的时候不改变)
+    // 这里不能使用offsetY，因为当（offsetY < LIMIT_OFFSET_Y）的时候，y = LIMIT_OFFSET_Y 不等于 offsetY
+    CGFloat newOffsetY = scrollView.contentOffset.y;
+    if (newOffsetY < -IMAGE_HEIGHT)
+    {
+        self.headView.frame = CGRectMake(0, newOffsetY, kScreenWidth, -newOffsetY);
+    }
+}
+
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    CGFloat offsetY = scrollView.contentOffset.y;
+    
+    if([scrollView isKindOfClass:[UITableView class]]) // tableView界面上的滚动
+    {
+        // 能触发翻页的理想值:tableView整体的高度减去屏幕本省的高度
+        CGFloat valueNum = _tableView.contentSize.height -SCREEN_HEIGHT +50;
+        if ((offsetY - valueNum) > _maxContentOffSet_Y)
+        {
+            [self goToDetailAnimation]; // 进入图片详情的动画
+        }
+    }
+    else // webView页面上的滚动
+    {
+        NSLog(@"-----webView-------");
+        if(offsetY<0 && -offsetY>_maxContentOffSet_Y)
+        {
+            [self backToFirstPageAnimation]; // 返回基本详情界面的动画
+        }
+    }
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    
+}
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSString *jsStr = [NSString getJSWithScreentWidth:SCREEN_WIDTH];
+    //注入js
+    [webView stringByEvaluatingJavaScriptFromString:jsStr];
+    //获取webView的contentSize
+    CGFloat height = [[webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].scrollHeight"] floatValue];
+    _maxWebHight = height;
+    if ([webView isFinishLoading] == YES) {
+        _maxWebHight = height;
+        [_sameGoodsCollectView reloadData];
+    }
+
+}
+
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    
+    NSLog(@"%@",error);
+    NSLog(@"加载失败");
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if(object == _sameGoodsCollectView && [keyPath isEqualToString:@"contentOffset"])
+    {
+        [self headLabAnimation:[change[@"new"] CGPointValue].y];
+    }else
+    {
+        [self observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+    
+}
+
+// 头部提示文本动画
+- (void)headLabAnimation:(CGFloat)offsetY
+{
+    _headLab.alpha = -offsetY/60;
+    _headLab.center = CGPointMake(SCREEN_WIDTH/2, -offsetY/2.f);
+    // 图标翻转，表示已超过临界值，松手就会返回上页
+    if(-offsetY>_maxContentOffSet_Y){
+        _headLab.textColor = BACKGROUND_COLORHL;
+        _headLab.text = @"释放，返回详情";
+    }else{
+        _headLab.textColor = BACKGROUND_COLORHL;
+        _headLab.text = @"上拉，返回详情";
+    }
+}
+
+
+// 进入详情的动画
+- (void)goToDetailAnimation
+{
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
+        _sameGoodsCollectView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT- 45);
+        _tableView.frame = CGRectMake(0, -self.contentView.bounds.size.height, SCREEN_WIDTH, self.contentView.bounds.size.height);
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+
+// 返回第一个界面的动画
+- (void)backToFirstPageAnimation
+{
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
+        _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.contentView.bounds.size.height);
+        _sameGoodsCollectView.frame = CGRectMake(0, _tableView.contentSize.height, SCREEN_WIDTH, SCREEN_HEIGHT-45);
+        
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+
+- (UILabel *)headLab
+{
+    if(!_headLab){
+        _headLab = [[UILabel alloc] init];
+        _headLab.text = @"上拉，返回详情";
+        _headLab.font = Font15;
+        _headLab.textAlignment = NSTextAlignmentCenter;
+    }
+    _headLab.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40.f);
+    _headLab.alpha = 0.f;
+    return _headLab;
+}
+
+
 
 - (void)dealloc
 {
