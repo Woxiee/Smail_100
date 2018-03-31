@@ -28,7 +28,7 @@
 + (void)getHomeInsuranceParam:(id)pararm successBlock:(void(^)(NSArray <ColumnModel *>*dataArray1,NSArray <ColumnModel *>*dataArray2,BOOL isSuccess))sBlcok;
 
 ///// 首页标题栏数据
-+ (void)getHomeIndexList:(void(^)(NSArray *dataArray,BOOL isSuccess))completeBlock;
++ (void)getHomeIndexParam:(id)pararm list:(void(^)(NSArray *dataArray,BOOL isSuccess))completeBlock;
 
 
 ///获取热门关键搜索词

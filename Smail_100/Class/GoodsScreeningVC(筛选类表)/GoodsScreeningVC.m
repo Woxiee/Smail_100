@@ -41,8 +41,17 @@ static NSString *newProductCell = @"newProductID";
     [self setup];
     [self setConfiguration];
 
-    [self requestListNetWork];
-
+    WEAKSELF
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.page = 1;
+        [self requestListNetWork];
+    }];
+    
+    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.page++;
+        [weakSelf requestListNetWork];
+    }];
+    [self .collectionView.mj_header beginRefreshing];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -97,11 +106,20 @@ static NSString *newProductCell = @"newProductID";
     [GoodsScreenVmodel getGoodsScreenListParam:param WithDataList:^(NSArray *dataArray, BOOL success) {
         [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
         if (success) {
-            if (weakSelf.page == 0) {
-                [weakSelf.sourceData removeAllObjects];
+            if (dataArray.count>0) {
+                if (weakSelf.page == 1) {
+                    [weakSelf.resorceArray removeAllObjects];
+                }
+                [weakSelf.resorceArray addObjectsFromArray:dataArray];
+                [weakSelf.collectionView reloadData];
+                [weakSelf.collectionView.mj_header endRefreshing];
+                [weakSelf.collectionView.mj_footer endRefreshing];
+                
+            }else{
+                [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
+
             }
-            [weakSelf.resorceArray addObjectsFromArray:dataArray];
-            [weakSelf.collectionView reloadData];
+           
         }else{
             [weakSelf.view makeToast:LocalMyString(NOTICEMESSAGE)];
         }
@@ -395,7 +413,7 @@ static NSString *newProductCell = @"newProductID";
 //定义每个Item 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((SCREEN_WIDTH - 25)/2, 285);
+    return CGSizeMake((SCREEN_WIDTH - 15)/2, 285);
 
 }
 
@@ -403,7 +421,7 @@ static NSString *newProductCell = @"newProductID";
 //定义每个UICollectionView 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(5, 10, 5, 10);//商品cell
+    return UIEdgeInsetsMake(5,5, 5,5);//商品cell
 
 }
 
@@ -417,7 +435,10 @@ static NSString *newProductCell = @"newProductID";
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
    ItemContentList *model = self.resorceArray[indexPath.row];
+    
+   
     GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
                                                  navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     vc.productID = model.goods_id;

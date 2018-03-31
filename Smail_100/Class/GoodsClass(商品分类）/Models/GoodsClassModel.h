@@ -23,6 +23,8 @@
 @property (nonatomic , copy) NSString              * id;
 @property (nonatomic , copy) NSString              * logo;
 @property (nonatomic , copy) NSString              * name;
+@property (nonatomic , copy) NSString              * type;
+
 @property (nonatomic, assign) BOOL select;
 
 @end
@@ -31,6 +33,8 @@
 @property (nonatomic , copy) NSString              * id;
 @property (nonatomic , copy) NSString              * logo;
 @property (nonatomic , copy) NSString              * name;
+@property (nonatomic , copy) NSString              * type;
+
 
 @end
 

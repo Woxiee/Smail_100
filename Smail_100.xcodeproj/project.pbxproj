@@ -803,6 +803,15 @@
 		E126DA43206CEA4F00653419 /* DQStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E126DA42206CEA4F00653419 /* DQStarView.m */; };
 		E126DA46206CEBE000653419 /* star01-on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E126DA44206CEBDF00653419 /* star01-on@3x.png */; };
 		E126DA47206CEBE000653419 /* star-one@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E126DA45206CEBE000653419 /* star-one@3x.png */; };
+		E14881FF206F756000A3CC03 /* PointStoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E14881FE206F756000A3CC03 /* PointStoreVC.m */; };
+		E148821E206F947500A3CC03 /* KYGotoHeaderAndShowCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1488219206F947500A3CC03 /* KYGotoHeaderAndShowCountView.m */; };
+		E148821F206F947500A3CC03 /* KYGoTopBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E148821B206F947500A3CC03 /* KYGoTopBtn.m */; };
+		E1488220206F947500A3CC03 /* KYShowCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = E148821D206F947500A3CC03 /* KYShowCountView.m */; };
+		E1488222206F987000A3CC03 /* gotop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1488221206F987000A3CC03 /* gotop@2x.png */; };
+		E151CC7F206E202100F4EF9E /* moren@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E151CC7D206E202000F4EF9E /* moren@3x.png */; };
+		E151CC80206E202100F4EF9E /* moren2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E151CC7E206E202000F4EF9E /* moren2@3x.png */; };
+		E151CC82206E42B100F4EF9E /* gerenzhongxin001.png in Resources */ = {isa = PBXBuildFile; fileRef = E151CC81206E42B000F4EF9E /* gerenzhongxin001.png */; };
+		E151CC84206E441900F4EF9E /* gerenzhongxin1.png in Resources */ = {isa = PBXBuildFile; fileRef = E151CC83206E441900F4EF9E /* gerenzhongxin1.png */; };
 		E16596E420564EAF008ADC6B /* ChangeGoodsCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = E16596E220564EAF008ADC6B /* ChangeGoodsCountView.m */; };
 		E16596E520564EB0008ADC6B /* goodsAd.png in Resources */ = {isa = PBXBuildFile; fileRef = E16596E320564EAF008ADC6B /* goodsAd.png */; };
 		E16596E920564FE4008ADC6B /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E16596E820564FE4008ADC6B /* Toast+UIView.m */; };
@@ -2183,6 +2192,19 @@
 		E126DA42206CEA4F00653419 /* DQStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DQStarView.m; sourceTree = "<group>"; };
 		E126DA44206CEBDF00653419 /* star01-on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star01-on@3x.png"; sourceTree = "<group>"; };
 		E126DA45206CEBE000653419 /* star-one@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-one@3x.png"; sourceTree = "<group>"; };
+		E14881FD206F756000A3CC03 /* PointStoreVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PointStoreVC.h; sourceTree = "<group>"; };
+		E14881FE206F756000A3CC03 /* PointStoreVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PointStoreVC.m; sourceTree = "<group>"; };
+		E1488218206F947500A3CC03 /* KYGotoHeaderAndShowCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYGotoHeaderAndShowCountView.h; sourceTree = "<group>"; };
+		E1488219206F947500A3CC03 /* KYGotoHeaderAndShowCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYGotoHeaderAndShowCountView.m; sourceTree = "<group>"; };
+		E148821A206F947500A3CC03 /* KYGoTopBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYGoTopBtn.h; sourceTree = "<group>"; };
+		E148821B206F947500A3CC03 /* KYGoTopBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYGoTopBtn.m; sourceTree = "<group>"; };
+		E148821C206F947500A3CC03 /* KYShowCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYShowCountView.h; sourceTree = "<group>"; };
+		E148821D206F947500A3CC03 /* KYShowCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYShowCountView.m; sourceTree = "<group>"; };
+		E1488221206F987000A3CC03 /* gotop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gotop@2x.png"; sourceTree = "<group>"; };
+		E151CC7D206E202000F4EF9E /* moren@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moren@3x.png"; sourceTree = "<group>"; };
+		E151CC7E206E202000F4EF9E /* moren2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moren2@3x.png"; sourceTree = "<group>"; };
+		E151CC81206E42B000F4EF9E /* gerenzhongxin001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gerenzhongxin001.png; sourceTree = "<group>"; };
+		E151CC83206E441900F4EF9E /* gerenzhongxin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gerenzhongxin1.png; sourceTree = "<group>"; };
 		E16596E120564EAF008ADC6B /* ChangeGoodsCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGoodsCountView.h; sourceTree = "<group>"; };
 		E16596E220564EAF008ADC6B /* ChangeGoodsCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGoodsCountView.m; sourceTree = "<group>"; };
 		E16596E320564EAF008ADC6B /* goodsAd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goodsAd.png; sourceTree = "<group>"; };
@@ -4150,6 +4172,8 @@
 				E1EFC6AB2068EF0500C78A8C /* ClouldPhone */,
 				E10B0CBA20528AE8008BA706 /* OnlineVC.h */,
 				E10B0CBB20528AE8008BA706 /* OnlineVC.m */,
+				E14881FD206F756000A3CC03 /* PointStoreVC.h */,
+				E14881FE206F756000A3CC03 /* PointStoreVC.m */,
 			);
 			path = VCS;
 			sourceTree = "<group>";
@@ -5193,6 +5217,7 @@
 		E10B0FEE20528B02008BA706 /* KX_Vender */ = {
 			isa = PBXGroup;
 			children = (
+				E1488217206F947500A3CC03 /* KYGoheadView(快速回到顶部) */,
 				E126DA40206CEA4F00653419 /* DQStarView */,
 				E18CBA88206620A3003DF53A /* FYLCityPickView */,
 				3E5FC2C4205E31980067CFA5 /* YBPopupMenu */,
@@ -5416,6 +5441,10 @@
 		E10B10B220528B05008BA706 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E151CC83206E441900F4EF9E /* gerenzhongxin1.png */,
+				E151CC81206E42B000F4EF9E /* gerenzhongxin001.png */,
+				E151CC7D206E202000F4EF9E /* moren@3x.png */,
+				E151CC7E206E202000F4EF9E /* moren2@3x.png */,
 				E126DA45206CEBE000653419 /* star-one@3x.png */,
 				E126DA44206CEBDF00653419 /* star01-on@3x.png */,
 				E1EFC6BA2068FCEE00C78A8C /* home_add.png */,
@@ -6080,6 +6109,20 @@
 			path = DQStarView;
 			sourceTree = "<group>";
 		};
+		E1488217206F947500A3CC03 /* KYGoheadView(快速回到顶部) */ = {
+			isa = PBXGroup;
+			children = (
+				E1488221206F987000A3CC03 /* gotop@2x.png */,
+				E1488218206F947500A3CC03 /* KYGotoHeaderAndShowCountView.h */,
+				E1488219206F947500A3CC03 /* KYGotoHeaderAndShowCountView.m */,
+				E148821A206F947500A3CC03 /* KYGoTopBtn.h */,
+				E148821B206F947500A3CC03 /* KYGoTopBtn.m */,
+				E148821C206F947500A3CC03 /* KYShowCountView.h */,
+				E148821D206F947500A3CC03 /* KYShowCountView.m */,
+			);
+			path = "KYGoheadView(快速回到顶部)";
+			sourceTree = "<group>";
+		};
 		E16596E020564EAF008ADC6B /* ShoppingCarChangeMun */ = {
 			isa = PBXGroup;
 			children = (
@@ -6472,6 +6515,7 @@
 				E10B128020528B06008BA706 /* jinrongbankuai2@3x.png in Resources */,
 				E10B11C920528B06008BA706 /* gerenzhongxin19@3x.png in Resources */,
 				E10B0D5A20528AE8008BA706 /* 1saixuan@2x.png in Resources */,
+				E151CC82206E42B100F4EF9E /* gerenzhongxin001.png in Resources */,
 				E10B11FF20528B06008BA706 /* shangchengdingdan5@3x.png in Resources */,
 				E10B0D7720528AE8008BA706 /* AddressChanegAndEidteVC.xib in Resources */,
 				E10B0D5820528AE8008BA706 /* TimeLimtKillCell.xib in Resources */,
@@ -6503,6 +6547,7 @@
 				E172EBA9205FA2380079CD3D /* OfflineInfoDetailCell.xib in Resources */,
 				E10B0D0220528AE8008BA706 /* GoodsDetailInfoCell.xib in Resources */,
 				E10B0D4120528AE8008BA706 /* GoodGuigeSectionHeadView.xib in Resources */,
+				E151CC80206E202100F4EF9E /* moren2@3x.png in Resources */,
 				E10B0FAA20528AFA008BA706 /* JKImagePickerController.strings in Resources */,
 				E10B121F20528B06008BA706 /* wodetuandui2@3x.png in Resources */,
 				E10B128F20528B06008BA706 /* shouye18@3x.png in Resources */,
@@ -6607,6 +6652,7 @@
 				E10B11C620528B06008BA706 /* gerenzhongxin16@3x.png in Resources */,
 				E10B11E120528B06008BA706 /* chuangkeweidian11@3x.png in Resources */,
 				E10B11BB20528B06008BA706 /* 28@3x.png in Resources */,
+				E151CC84206E441900F4EF9E /* gerenzhongxin1.png in Resources */,
 				E11557612063930600B344B3 /* jfzf@3x.png in Resources */,
 				E10B120D20528B06008BA706 /* shangjiazhongxin19@3x.png in Resources */,
 				E10B0DAC20528AE8008BA706 /* AddressListCell.xib in Resources */,
@@ -6618,10 +6664,12 @@
 				E10B121B20528B06008BA706 /* bangzhufankui2@3x.png in Resources */,
 				E10B0DBE20528AE8008BA706 /* MemberMoneyCell.xib in Resources */,
 				E10B11E620528B06008BA706 /* chuangkeweidian2@3x.png in Resources */,
+				E1488222206F987000A3CC03 /* gotop@2x.png in Resources */,
 				E11557072062556700B344B3 /* AgentPlatformVC.xib in Resources */,
 				E10B121120528B06008BA706 /* shangjiazhongxin22@3x.png in Resources */,
 				E16596E520564EB0008ADC6B /* goodsAd.png in Resources */,
 				E10B11FC20528B06008BA706 /* shangchengdingdan2@3x.png in Resources */,
+				E151CC7F206E202100F4EF9E /* moren@3x.png in Resources */,
 				E10B0DE720528AE8008BA706 /* StoreMangerVHeadView.xib in Resources */,
 				E10B0D2B20528AE8008BA706 /* GoodsOrderNomalVC.xib in Resources */,
 				E10B128220528B06008BA706 /* jinrongbankuai4@3x.png in Resources */,
@@ -6992,6 +7040,7 @@
 				E10B0FB820528AFA008BA706 /* UIView+JKPicker.m in Sources */,
 				E10B0DD020528AE8008BA706 /* MyTeamPersenView.m in Sources */,
 				E10B0E9F20528AF5008BA706 /* UITableView+FDTemplateLayoutCell.m in Sources */,
+				E148821E206F947500A3CC03 /* KYGotoHeaderAndShowCountView.m in Sources */,
 				E10B0D2F20528AE8008BA706 /* HomeHeaderImageModel.m in Sources */,
 				E167EC6A205B9BEC00A8F744 /* KYBaseCellItem.m in Sources */,
 				E167EC57205B9B6B00A8F744 /* BaseInforVC.m in Sources */,
@@ -7101,6 +7150,7 @@
 				E167EC34205A55FD00A8F744 /* AcctoutWater.m in Sources */,
 				E10B0DE820528AE8008BA706 /* OfflineVC.m in Sources */,
 				E10B0DF720528AE8008BA706 /* ShopCarLimitCell.m in Sources */,
+				E1488220206F947500A3CC03 /* KYShowCountView.m in Sources */,
 				3E5FC2CB205E31990067CFA5 /* YBRectConst.m in Sources */,
 				E10B0CEC20528AE8008BA706 /* GoodDetailImageVC.m in Sources */,
 				E10B0FD420528AFA008BA706 /* CityTableViewCell.m in Sources */,
@@ -7114,6 +7164,7 @@
 				E10B0EAE20528AF5008BA706 /* KYTitleView.m in Sources */,
 				E10B0DA220528AE8008BA706 /* ContractDetailPayCell.m in Sources */,
 				E10B0E1720528AF0008BA706 /* KX_BaseCollectionViewCell.m in Sources */,
+				E148821F206F947500A3CC03 /* KYGoTopBtn.m in Sources */,
 				E10B0D9720528AE8008BA706 /* SettingVC.m in Sources */,
 				3EB8E012205FFB7E00E717B1 /* MeChantOrderModel.m in Sources */,
 				E10B0D8C20528AE8008BA706 /* CategoryVC.m in Sources */,
@@ -7246,6 +7297,7 @@
 				E10B0DBA20528AE8008BA706 /* MemberCenterHeaderView.m in Sources */,
 				E10B0D7120528AE8008BA706 /* ManagementModel.m in Sources */,
 				E10B0DE420528AE8008BA706 /* OrderMoneyCell.m in Sources */,
+				E14881FF206F756000A3CC03 /* PointStoreVC.m in Sources */,
 				E16597082058C354008ADC6B /* OrderSectionFootView.m in Sources */,
 				E10B0D5E20528AE8008BA706 /* LoginFindAndRegirsVC.m in Sources */,
 				E10B0CE020528AE8008BA706 /* CommentModel.m in Sources */,

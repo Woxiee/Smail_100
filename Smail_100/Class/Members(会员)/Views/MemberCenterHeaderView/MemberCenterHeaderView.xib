@@ -18,6 +18,15 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dvh-fh-JeH">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41P-gd-dvD">
+                    <rect key="frame" x="20" y="63" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="1AH-Kd-IFp"/>
+                        <constraint firstAttribute="height" constant="36" id="irW-Bu-eI6"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <state key="normal" backgroundImage="gerenzhongxin001.png"/>
+                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="6@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="ptz-eE-b6r">
                     <rect key="frame" x="120" y="19" width="80" height="80"/>
                     <constraints>
@@ -25,8 +34,8 @@
                         <constraint firstAttribute="height" constant="80" id="NgA-VZ-QBU"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="骑士" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1MA-Cj-O1h">
-                    <rect key="frame" x="120" y="82" width="80" height="25"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="骑士" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1MA-Cj-O1h">
+                    <rect key="frame" x="120" y="81" width="80" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="GU4-8U-t4h"/>
                     </constraints>
@@ -40,10 +49,6 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rihgtIcon@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="E1M-5V-Y8J">
-                    <rect key="frame" x="298" y="67" width="10" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gerenzhongxin2@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yht-Xd-0hX">
                     <rect key="frame" x="206" y="113" width="80" height="20"/>
                     <constraints>
@@ -57,11 +62,21 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNS-TF-cnn">
+                    <rect key="frame" x="264" y="63" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="IW2-VQ-HeP"/>
+                        <constraint firstAttribute="width" constant="36" id="hfD-WP-Wa7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <state key="normal" backgroundImage="gerenzhongxin1.png"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ohq-5f-bmk" firstAttribute="leading" secondItem="Yht-Xd-0hX" secondAttribute="leading" id="4HV-7I-9xw"/>
                 <constraint firstItem="Yht-Xd-0hX" firstAttribute="leading" secondItem="9Bn-Va-c8H" secondAttribute="trailing" constant="5" id="5y4-vn-t8K"/>
+                <constraint firstItem="ptz-eE-b6r" firstAttribute="bottom" secondItem="41P-gd-dvD" secondAttribute="bottom" id="6Wz-x6-5pi"/>
                 <constraint firstItem="1MA-Cj-O1h" firstAttribute="top" secondItem="ptz-eE-b6r" secondAttribute="bottom" constant="-17" id="8EV-xB-tMJ"/>
                 <constraint firstItem="9Bn-Va-c8H" firstAttribute="top" secondItem="ptz-eE-b6r" secondAttribute="bottom" constant="15" id="Eau-Mc-epU"/>
                 <constraint firstItem="1MA-Cj-O1h" firstAttribute="centerX" secondItem="1py-vz-0Ai" secondAttribute="centerX" id="Eib-LG-InD"/>
@@ -69,13 +84,16 @@
                 <constraint firstItem="ptz-eE-b6r" firstAttribute="centerX" secondItem="1py-vz-0Ai" secondAttribute="centerX" id="GnY-iQ-nYf"/>
                 <constraint firstItem="ohq-5f-bmk" firstAttribute="bottom" secondItem="Yht-Xd-0hX" secondAttribute="bottom" id="Gyi-UJ-3bH"/>
                 <constraint firstItem="ohq-5f-bmk" firstAttribute="top" secondItem="Yht-Xd-0hX" secondAttribute="top" id="I3P-qu-pY3"/>
+                <constraint firstAttribute="trailing" secondItem="Dvh-fh-JeH" secondAttribute="trailing" id="NvJ-R2-caY"/>
                 <constraint firstItem="Dvh-fh-JeH" firstAttribute="leading" secondItem="1py-vz-0Ai" secondAttribute="leading" id="OCt-Bp-8t1"/>
                 <constraint firstItem="1MA-Cj-O1h" firstAttribute="width" relation="greaterThanOrEqual" secondItem="ptz-eE-b6r" secondAttribute="width" id="Pvr-AB-dBR"/>
-                <constraint firstAttribute="trailing" secondItem="Dvh-fh-JeH" secondAttribute="trailing" id="QW5-z0-Rwv"/>
                 <constraint firstItem="9Bn-Va-c8H" firstAttribute="centerX" secondItem="1py-vz-0Ai" secondAttribute="centerX" id="QWX-a7-pWq"/>
                 <constraint firstItem="Yht-Xd-0hX" firstAttribute="top" secondItem="9Bn-Va-c8H" secondAttribute="top" constant="-1" id="T1p-vO-y3s"/>
                 <constraint firstItem="ohq-5f-bmk" firstAttribute="trailing" secondItem="Yht-Xd-0hX" secondAttribute="trailing" id="YIt-ak-Zyi"/>
                 <constraint firstItem="Dvh-fh-JeH" firstAttribute="top" secondItem="1py-vz-0Ai" secondAttribute="top" id="Z4c-dR-8Ih"/>
+                <constraint firstItem="DNS-TF-cnn" firstAttribute="bottom" secondItem="ptz-eE-b6r" secondAttribute="bottom" id="Zon-Yz-azs"/>
+                <constraint firstItem="41P-gd-dvD" firstAttribute="leading" secondItem="1py-vz-0Ai" secondAttribute="leading" constant="20" id="foh-BR-Zmg"/>
+                <constraint firstAttribute="trailing" secondItem="DNS-TF-cnn" secondAttribute="trailing" constant="20" id="grE-xj-wG1"/>
                 <constraint firstItem="ptz-eE-b6r" firstAttribute="top" secondItem="1py-vz-0Ai" secondAttribute="top" constant="19" id="kPH-8w-EBf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -87,14 +105,14 @@
                 <outlet property="nameTopConstain" destination="8EV-xB-tMJ" id="1I6-eW-wbf"/>
                 <outlet property="nickNeme" destination="1MA-Cj-O1h" id="gmK-wv-Uod"/>
                 <outlet property="phoneLabel" destination="9Bn-Va-c8H" id="G35-20-80O"/>
-                <outlet property="rightIconView" destination="E1M-5V-Y8J" id="uyd-iF-phd"/>
             </connections>
-            <point key="canvasLocation" x="-229" y="-129"/>
+            <point key="canvasLocation" x="-433" y="-184"/>
         </view>
     </objects>
     <resources>
         <image name="6@3x.png" width="16" height="16"/>
+        <image name="gerenzhongxin001.png" width="74" height="73"/>
+        <image name="gerenzhongxin1.png" width="72" height="86"/>
         <image name="gerenzhongxin2@3x.png" width="16" height="16"/>
-        <image name="rihgtIcon@3x.png" width="16" height="16"/>
     </resources>
 </document>

@@ -230,9 +230,11 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
                 [weakSelf getCollectionRequestWithISCollect];
             }
             else if (index == 2){
+//                [weakSelf.superVC.navigationController popToRootViewControllerAnimated:YES];
+
+                weakSelf.superVC.tabBarController.selectedIndex = 3;
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
 
-                weakSelf.tabBarController.selectedIndex = 3;
 
             }
             else if (index == 3){

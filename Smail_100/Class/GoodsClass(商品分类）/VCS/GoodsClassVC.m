@@ -14,6 +14,7 @@
 #import "PYSearchViewController.h"
 #import "GoodsDetailVC.h"
 #import "HomeScrollCell.h"
+#import "GoodsScreeningVC.h"
 
 //#import "header"
 @interface GoodsClassVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate,PYSearchViewControllerDelegate,HomePageCycScrollViewDelegate>
@@ -51,7 +52,7 @@ static NSString * const imageCellIdentifier = @"HomeScrollCellID";
 /// 配置基础设置
 - (void)setConfiguration
 {
-    self.title = @"分类";
+//    self.title = @"分类";
     _titleArr = [[NSMutableArray alloc] init];
 
 }
@@ -252,7 +253,7 @@ static NSString * const imageCellIdentifier = @"HomeScrollCellID";
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"GoodsCategoryCell" owner:nil options:nil]lastObject];
     }
-  
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
      LeftCategory * model = _titleArr[indexPath.row];
     if (model.select) {
         cell.backgroundColor = [UIColor clearColor];
@@ -358,9 +359,9 @@ static NSString * const imageCellIdentifier = @"HomeScrollCellID";
 //定义每个Item 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat itemW = (self.collectionView.width)/3;
+    CGFloat itemW = (self.collectionView.width -10)/3;
     if (indexPath.section == 0 ) {
-        return CGSizeMake(self.collectionView.width,itemW+30);
+        return CGSizeMake(self.collectionView.width -10,itemW+30);
     }
     
     return CGSizeMake(itemW,itemW+30);
@@ -370,10 +371,10 @@ static NSString * const imageCellIdentifier = @"HomeScrollCellID";
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     if (section ==1) {
-        return UIEdgeInsetsMake(10, 0, 0,0);
+        return UIEdgeInsetsMake(5, 5, 5,0);
 
     }
-    return UIEdgeInsetsMake(0, 0, 0,0);
+    return UIEdgeInsetsMake(5, 5, 0,5);
 }
 
 //item 列间距(纵)
@@ -407,14 +408,23 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 
     
     LeftCategory * model =  self.resorceArray[indexPath.row];
-    /// 商品类型=1:新机。2:配构件。3:整机流转
-    GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
-                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    //    vc.productID = model.mainResult.mainId;
-    //    vc.typeStr = model.productType;
-    vc.productID = model.id;
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController: vc animated:YES];
+    if ([model.type intValue] == 0) {
+        GoodsScreeningVC *vc = [[GoodsScreeningVC alloc] init];
+        vc.category_id = model.id;
+        [self.navigationController pushViewController: vc animated:YES];
+
+    }
+    else{
+        /// 商品类型=1:新机。2:配构件。3:整机流转
+        GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+                                                     navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        //    vc.productID = model.mainResult.mainId;
+        //    vc.typeStr = model.productType;
+        vc.productID = model.id;
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController: vc animated:YES];
+    }
+
 
 
 

@@ -33,7 +33,9 @@
     [_moreBtn setImage:[UIImage imageNamed:@"shouye30@3x.png"] forState:UIControlStateNormal];
     [_moreBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:3];
     _lineView.backgroundColor = LINECOLOR;
-    _timeView.timestamp = 3421123/1000;
+//    _timeView.timestamp = 3421123/1000;
+    _timeView.backgroundColor = [UIColor clearColor];
+    _timeView.hidden = YES;
 
 }
 
@@ -41,8 +43,9 @@
 -(void)setModel:(ItemContentList *)model
 {
     _model = model;
-    _detailLB.text = _model.next_msg;
-    _timeView.timestamp = [_model.next_time integerValue]/1000;
+    _detailLB.text = @"";
+//    _detailLB.text = _model.next_msg;
+//    _timeView.timestamp = [_model.next_time integerValue]/1000;
 }
 
 

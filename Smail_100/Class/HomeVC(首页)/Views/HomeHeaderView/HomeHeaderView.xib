@@ -32,16 +32,6 @@
                         <action selector="didClickMoreBtn:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="mxv-Hn-6OT"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="限时抢购" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dw8-xL-e6A">
-                    <rect key="frame" x="29" y="13" width="73" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="73" id="E4m-T5-sRK"/>
-                        <constraint firstAttribute="height" constant="21" id="OVn-40-c1s"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Blb-b5-Y0G">
                     <rect key="frame" x="12" y="45" width="296" height="1"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -60,6 +50,16 @@
                         <constraint firstAttribute="height" constant="21" id="je8-qI-aMN"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐商品" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dw8-xL-e6A">
+                    <rect key="frame" x="29" y="13" width="73" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="73" id="E4m-T5-sRK"/>
+                        <constraint firstAttribute="height" constant="21" id="OVn-40-c1s"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>

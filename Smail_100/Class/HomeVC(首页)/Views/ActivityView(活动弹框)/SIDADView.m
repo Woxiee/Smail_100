@@ -112,6 +112,10 @@
         [_bgView addSubview:_adImageView];
     
     }
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, VIEW_BY(_titleBgView), VIEW_W(_bgView), VIEW_H(_bgView)-VIEW_H(_titleBgView));
+    [btn addTarget:self action:@selector(didClicAction) forControlEvents:UIControlEventTouchUpInside];
+    [_bgView addSubview:btn];
     
     return self;
 }
@@ -152,6 +156,11 @@
     _adImageView.image = nil;
     _titleLable.text = nil;
 
+}
+
+- (void)didClicAction
+{
+    
 }
 
 - (void)dealloc{

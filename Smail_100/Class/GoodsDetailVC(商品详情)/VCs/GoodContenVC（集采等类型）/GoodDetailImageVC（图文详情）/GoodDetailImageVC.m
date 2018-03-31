@@ -86,7 +86,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
         if (isSuccess) {
 
             ItemInfoList *infoModel = dataArray[1];
-            NSURL *url = [NSURL URLWithString:infoModel.itemContent.content_link];
+            NSURL *url = [NSURL URLWithString:infoModel.itemContent.notice_link];
          NSURLRequest* request = [NSURLRequest requestWithURL:url];
             [weakSelf.webView loadRequest:request];//加载
 
@@ -246,9 +246,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 {
     if(!_webView){
         _webView = [[UIWebView alloc] init];
-   
-        _webView.frame =    CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT - 64);
-        
+        _webView.frame =  self.view.bounds;
         _webView.delegate = self;
         _webView.scrollView.scrollEnabled = YES;
     }

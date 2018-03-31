@@ -96,7 +96,7 @@
                     userinfo.realname = dataDic[@"realname"];
                     userinfo.avatar_url = dataDic[@"avatar_url"];
                     userinfo.agent_trees = dataDic[@"agent_trees"];
-                    userinfo.wxname = dataDic[@"wxname"];
+                    userinfo.wxname = [NSString stringWithFormat:@"%@",dataDic[@"wxname"]];
                     userinfo.department = dataDic[@"department"];
                     userinfo.mobile = dataDic[@"mobile"];
                     userinfo.pid = dataDic[@"pid"];

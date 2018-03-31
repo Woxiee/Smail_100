@@ -55,8 +55,11 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     
     WEAKSELF
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.page = 1;
         [weakSelf requestListNetWork];
     }];
+    
+  
 }
 
 
@@ -159,6 +162,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 
 - (void)setup
 {
+    _page = 1;
     self.leftNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.leftNaviBtn setImage:[UIImage imageNamed:@"muban1@3x.png"] forState:UIControlStateNormal];
     [self.leftNaviBtn setImage:[UIImage imageNamed:@"muban1@3x.png"] forState:UIControlStateHighlighted];
@@ -181,7 +185,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     [self setRightNaviBtnImage:[UIImage imageNamed:@"shouye18@3x.png"]];
 
     
-    SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 125) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
+    SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 125) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW]];
     [headerView addSubview:cycleView];
     self.cycleView = cycleView;
     

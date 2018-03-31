@@ -27,6 +27,7 @@
 @property (nonatomic , copy) NSArray              * tags;
 @property (nonatomic , copy) NSString              * url;
 @property (nonatomic , copy) NSString              * content;
+@property (nonatomic , copy) NSString              * notice_link;
 
 
 @property (nonatomic , copy) NSString              * itemRecommendedLanguage;

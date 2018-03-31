@@ -15,6 +15,7 @@
     __weak IBOutlet UIImageView *infoImageView;
     
     
+    __weak IBOutlet UIButton *myCodeBtn;
     __weak IBOutlet NSLayoutConstraint *nameTopConstain;
 }
 
@@ -28,7 +29,7 @@
     self.headImage.layer.cornerRadius  = 40;
     self.headImage.clipsToBounds = YES;
     _memberCenterBg.backgroundColor = KMAINCOLOR;
-  
+    [myCodeBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:5];
 }
 
 - (void)refreshInfo
@@ -36,7 +37,7 @@
     if ([KX_UserInfo sharedKX_UserInfo].loginStatus) {
         nameTopConstain.constant  = -17;
 
-        _nickNeme.text = [KX_UserInfo sharedKX_UserInfo].nickname;
+        _nickNeme.text = [NSString stringWithFormat:@"%@(昵称)",[KX_UserInfo sharedKX_UserInfo].nickname];
         _phoneLabel.text = [KX_UserInfo sharedKX_UserInfo].mobile;
         _nickNeme.hidden = NO;
         _compangLB.hidden = NO;

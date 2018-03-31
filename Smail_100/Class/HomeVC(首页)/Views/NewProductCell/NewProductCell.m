@@ -66,10 +66,9 @@
     titleLabel.text  = _model.itemTitle;
     detailLabel.text = _model.itemSubTitle;
     moneyLabel.text = [NSString stringWithFormat:@"￥%@",_model.price];
-    getPericeLB.text = [NSString stringWithFormat:@"赚￥%@",_model.earn_point];
+    getPericeLB.text = [NSString stringWithFormat:@"赚￥%@",_model.earn_money];
     integralLB.text =[NSString stringWithFormat:@"送%@积分",_model.earn_point];
     sellLB.text = [NSString stringWithFormat:@"已出售:%@",_model.store_nums];
-
     if (_model.tags.count >0) {
         tagsContraintsH.constant = 20;
         tagsView.hidden = NO;
@@ -77,7 +76,6 @@
         tagsContraintsH.constant = 0;
         tagsView.hidden = YES;
     }
-
     
     for (int i= 0; i<_model.tags.count; i++) {
         NSDictionary *dic = _model.tags[i];

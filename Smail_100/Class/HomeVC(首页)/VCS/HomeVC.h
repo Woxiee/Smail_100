@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) NSDictionary *param;
 @property (nonatomic, strong) NSString *categoryId;
+@property (nonatomic, assign) int bottomHeight;
 - (void)getHomeGoodsRequest:(NSString *)categoryId;
 
 @end

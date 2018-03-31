@@ -31,9 +31,9 @@
 }
 
 ///// 首页标题栏数据
-+ (void)getHomeIndexList:(void(^)(NSArray *dataArray,BOOL isSuccess))completeBlock
++ (void)getHomeIndexParam:(id)pararm list:(void(^)(NSArray *dataArray,BOOL isSuccess))completeBlock
 {
-    [BaseHttpRequest postWithUrl:@"/goods/top_category" andParameters:nil andRequesultBlock:^(id result, NSError *error) {
+    [BaseHttpRequest postWithUrl:@"/goods/top_category" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
         NSArray *dataList = [result valueForKey:@"data"];
         NSMutableArray *listArray  = [[NSMutableArray alloc] init];
         if ([dataList isKindOfClass:[NSArray class]]) {

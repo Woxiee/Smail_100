@@ -253,6 +253,7 @@
 - (void) systemAlertWithTitle:(NSString *)title andMsg:(NSString *)msg
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [[UIView appearance] setTintColor:KMAINCOLOR];
     [alert show];
 }
 
