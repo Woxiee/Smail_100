@@ -74,7 +74,7 @@
     [self layerForViewWith:0 AndLineWidth:0.5];
     
     shouYeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    shouYeBtn.frame = CGRectMake(10, 6,SCREEN_WIDTH/7 - 8, 40);
+    shouYeBtn.frame = CGRectMake(10, 8,SCREEN_WIDTH/7 - 8, 40);
     [shouYeBtn addTarget:self action:@selector(didClickBottomViewAction:) forControlEvents:UIControlEventTouchUpInside];
     shouYeBtn.tag = 100;
 //    shouYeBtn.backgroundColor = [UIColor redColor];
@@ -123,7 +123,7 @@
     
     
     addCartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    addCartBtn.frame = CGRectMake(CGRectGetMaxX(cartBtn.frame), 0,  2* SCREEN_WIDTH/7, 45);
+    addCartBtn.frame = CGRectMake(CGRectGetMaxX(cartBtn.frame), 0,  2* SCREEN_WIDTH/7, 50);
     [addCartBtn addTarget:self action:@selector(didClickBottomViewAction:) forControlEvents:UIControlEventTouchUpInside];
     addCartBtn.tag = 103;
     [addCartBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -135,7 +135,7 @@
  
 
     buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    buyBtn.frame = CGRectMake(CGRectGetMaxX(addCartBtn.frame), 0, 2* SCREEN_WIDTH/7, 45);
+    buyBtn.frame = CGRectMake(CGRectGetMaxX(addCartBtn.frame), 0, 2* SCREEN_WIDTH/7, 50);
     [buyBtn addTarget:self action:@selector(didClickBottomViewAction:) forControlEvents:UIControlEventTouchUpInside];
     buyBtn.tag = 104;
     [buyBtn setTitle:@"立即购买" forState:UIControlStateNormal];

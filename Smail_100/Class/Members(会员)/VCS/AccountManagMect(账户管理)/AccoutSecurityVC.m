@@ -1,33 +1,28 @@
 //
-//  AccountManagVC.m
-//  Smile_100
+//  AccoutSecurityVC.m
+//  Smail_100
 //
-//  Created by ap on 2018/3/2.
-//  Copyright © 2018年 com.Smile100.wxApp. All rights reserved.
+//  Created by ap on 2018/4/3.
+//  Copyright © 2018年 Smail_100. All rights reserved.
 //
 
-#import "AccountManagVC.h"
-#import "AddressManageVC.h"
-#import "BaseInforVC.h"
 #import "AccoutSecurityVC.h"
+#import "SetLoginPwdVC.h"
+#import "SetPayPwdVC.h"
 
-@interface AccountManagVC ()
+@interface AccoutSecurityVC ()
 
 @end
 
-@implementation AccountManagVC
+@implementation AccoutSecurityVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    self.view.backgroundColor = BACKGROUNDNOMAL_COLOR;
-//    self.tableView.backgroundColor = BACKGROUNDNOMAL_COLOR;
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.title = @"账户管理";
     self.tableView.tableFooterView = [UIView new];
-    NSArray *dataArray = @[@"基本资料",@"实名认证",@"银行卡管理",@"我的收获地址",@"账户安全设置"];
+    NSArray *dataArray = @[@"设置登录密码",@"设置支付密码"];
     [self.resorceArray addObjectsFromArray:dataArray];
-
+    
     [self.tableView reloadData];
 }
 
@@ -68,30 +63,24 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSString *titleStr = self.resorceArray[indexPath.row];
-    if ([titleStr isEqualToString:@"我的收获地址"]) {
-        AddressManageVC *VC = [[AddressManageVC alloc] init];
-        [self.navigationController pushViewController:VC animated:YES];
-
-    }
-//    NSArray *dataArray = @[@"基本资料",@"实名认证",@"银行卡管理",@"我的收获地址",@"账户安全设置"];
-//
-   else if ([titleStr isEqualToString:@"基本资料"]) {
-        BaseInforVC *VC = [[BaseInforVC alloc] init];
+    if ([titleStr isEqualToString:@"设置登录密码"]) {
+        SetLoginPwdVC *VC = [[SetLoginPwdVC alloc] init];
+        VC.title = titleStr;
         [self.navigationController pushViewController:VC animated:YES];
         
     }
-    
-   else if ([titleStr isEqualToString:@"账户安全设置"]) {
-       AccoutSecurityVC *VC = [[AccoutSecurityVC alloc] init];
-       [self.navigationController pushViewController:VC animated:YES];
-       
-   }
-    
-    
-   else{
-       [self.view toastShow:@"该功能暂未开放,请稍后!"];
-   }
+    //    NSArray *dataArray = @[@"基本资料",@"实名认证",@"银行卡管理",@"我的收获地址",@"账户安全设置"];
+    //
+    else if ([titleStr isEqualToString:@"设置支付密码"]) {
+        SetPayPwdVC *VC = [[SetPayPwdVC alloc] init];
+        VC.title = titleStr;
+
+        [self.navigationController pushViewController:VC animated:YES];
+        
+    }
+  
     
     
 }
+
 @end

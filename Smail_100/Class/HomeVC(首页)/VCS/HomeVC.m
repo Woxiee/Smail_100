@@ -514,7 +514,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 //    {
 //        return CGSizeMake(SCREEN_WIDTH, 105 *hScale);
 //    }
-    return CGSizeMake((SCREEN_WIDTH - 15)/2, 290);
+    return CGSizeMake((SCREEN_WIDTH - 15)/2, 285);
 
 }
 

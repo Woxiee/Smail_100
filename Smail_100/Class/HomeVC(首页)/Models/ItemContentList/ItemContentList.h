@@ -28,6 +28,8 @@
 @property (nonatomic , copy) NSString              * url;
 @property (nonatomic , copy) NSString              * content;
 @property (nonatomic , copy) NSString              * notice_link;
+@property (nonatomic , copy) NSString              * desc;
+@property (nonatomic , copy) NSString              * freight;
 
 
 @property (nonatomic , copy) NSString              * itemRecommendedLanguage;

@@ -246,7 +246,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 {
     if(!_webView){
         _webView = [[UIWebView alloc] init];
-        _webView.frame =  self.view.bounds;
+        _webView.frame =  CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT- 50);
         _webView.delegate = self;
         _webView.scrollView.scrollEnabled = YES;
     }

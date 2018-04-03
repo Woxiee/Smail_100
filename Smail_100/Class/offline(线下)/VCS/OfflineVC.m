@@ -252,13 +252,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
-//                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-//    //    vc.productID = model.mainResult.mainId;
-//    //    vc.typeStr = model.productType;
-//    vc.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController: vc animated:YES];
-    
+
     OffLineDetailVC *VC = [[OffLineDetailVC alloc] init];
     OffLineModel *model = self.resorceArray[indexPath.row];
     VC.model = model;

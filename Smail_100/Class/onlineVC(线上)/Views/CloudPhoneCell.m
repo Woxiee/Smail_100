@@ -38,14 +38,27 @@
 //    clickDeviceContenHeight.constant = 0;
 }
 
+- (void)setResultDic:(NSDictionary *)resultDic
+{
+    _resultDic = resultDic;
+    acoutTF.text =  _resultDic[@"devid"];
+    if ([_resultDic[@"status"] isEqualToString:@"Enabled"]) {
+        [connetBtn setTitle:@"解除绑定" forState:UIControlStateNormal];
+    }else{
+        [connetBtn setTitle:@"关联" forState:UIControlStateNormal];
+
+    }
+}
 
 
 - (void)didClickClickAction
 {
-    if (_didClickLookInfoBlcok ) {
-        _didClickLookInfoBlcok();
+    if ([_resultDic[@"status"] isEqualToString:@"Enabled"]) {
+        if (_didClickLookInfoBlcok ) {
+            _didClickLookInfoBlcok();
+        }
     }
-}
+   }
 
 
 - (IBAction)didClickConnetAction:(id)sender {
@@ -53,6 +66,7 @@
     if (_didClickConnectionBlcok ) {
         _didClickConnectionBlcok(btn.titleLabel.text);
     }
+   
 }
 
 @end

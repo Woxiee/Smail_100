@@ -30,12 +30,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     /// 配置基础设置
     [self setConfiguration];
     /// 初始化视图
     [self setup];
-
     /// 初始化导航栏按钮
     [self setNavigetionBarItms];
 
@@ -108,17 +106,17 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     [self.navigationItem setLeftBarButtonItem:backItem];
     [backButton sizeToFit];
-    
-    UIButton *moreBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
-    [moreBtn setImage:[UIImage imageNamed:@"shouye5@3x.png"] forState:UIControlStateNormal];
-    [moreBtn setImage:[UIImage imageNamed:@"shouye5@3x.png"] forState:UIControlStateHighlighted];
-    moreBtn.titleLabel.font=[UIFont systemFontOfSize:18];
-    [moreBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
-    
-    [moreBtn addTarget:self action:@selector(didClickMoreAction:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *moreItem = [[UIBarButtonItem alloc] initWithCustomView:moreBtn];
-    [self.navigationItem setRightBarButtonItem:moreItem];
-    [moreBtn sizeToFit];
+//
+//    UIButton *moreBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+//    [moreBtn setImage:[UIImage imageNamed:@"shouye5@3x.png"] forState:UIControlStateNormal];
+//    [moreBtn setImage:[UIImage imageNamed:@"shouye5@3x.png"] forState:UIControlStateHighlighted];
+//    moreBtn.titleLabel.font=[UIFont systemFontOfSize:18];
+//    [moreBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
+//
+//    [moreBtn addTarget:self action:@selector(didClickMoreAction:) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *moreItem = [[UIBarButtonItem alloc] initWithCustomView:moreBtn];
+//    [self.navigationItem setRightBarButtonItem:moreItem];
+//    [moreBtn sizeToFit];
     
 }
 
@@ -133,20 +131,7 @@
 
 ///定制更多点击
 - (void)didClickMoreAction:(UIButton *)sender{
-//    WEAKSELF;
-//    [PopupView addCellWithIcon:[UIImage imageNamed:@"39@3x.png"] text:@"首页" action:^{
-  
-//    }];
-//
-//    [PopupView addCellWithIcon:[UIImage imageNamed:@"40@3x.png"] text:@"我的" action:^{
-    
-//    }];
-//
-//    [PopupView popupView];
-    
     [YBPopupMenu showRelyOnView:sender titles:@[@"首页",@"我的"] icons:nil menuWidth:70 delegate:self];
-
-
 }
 
 

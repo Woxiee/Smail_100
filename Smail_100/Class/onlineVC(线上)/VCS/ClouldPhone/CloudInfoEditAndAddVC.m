@@ -32,7 +32,25 @@
 
 - (void)getNetWorkRequest
 {
+    if (KX_NULLString(_codeTF.text)) {
+        [self.view toastShow:_codeTF.placeholder];
+        return;
+    }
     
+    if (KX_NULLString(_nameTF.text)) {
+        [self.view toastShow:_nameTF.placeholder];
+        return;
+    }
+    
+    if (![NSString valiMobile:_telTF.text]) {
+        [self.view toastShow:@"请输入正确的手机号码"];
+        return;
+    }
+    
+    if(![NSString checkIdentityCardNo:_idTF.text]){
+        [self.view toastShow:@"请输入正确的身份证号码"];
+        return;
+    }
     WEAKSELF;
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     [param setObject:_codeTF.text  forKey:@"devid"];
@@ -42,18 +60,17 @@
     [param setObject:_telTF.text  forKey:@"mobile"];
     
     [BaseHttpRequest postWithUrl:@"/device/bind" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        NSString *msg = result[@"msg"];
+
         if ([result isKindOfClass:[NSDictionary class]]) {
             if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
-                
-                NSArray  *imgList = result[@"data"];
-                //                for (ItemInfoList *model in imgList ) {
-                //                    model.itemContentList = [NSArray yy_modelArrayWithClass:[ItemContentList class] json:model.itemContentList];
-                //                }
-                
-                
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+                [weakSelf.view toastShow:msg];
+
             }
             
         }else{
+            [weakSelf.view toastShow:msg];
         }
         
     }];

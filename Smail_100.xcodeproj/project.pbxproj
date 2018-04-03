@@ -872,6 +872,13 @@
 		E1EFC6B92068F3FC00C78A8C /* CloudPhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC6B72068F3FC00C78A8C /* CloudPhoneCell.xib */; };
 		E1EFC6BC2068FCEE00C78A8C /* home_add.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC6BA2068FCEE00C78A8C /* home_add.png */; };
 		E1EFC6BD2068FCEE00C78A8C /* home_share.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC6BB2068FCEE00C78A8C /* home_share.png */; };
+		E1F51025207356CE003227B6 /* GoodWebInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F51022207356CB003227B6 /* GoodWebInfoCell.xib */; };
+		E1F51026207356CE003227B6 /* GoodWebInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F51023207356CC003227B6 /* GoodWebInfoCell.m */; };
+		E1F510292073873E003227B6 /* AccoutSecurityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F510282073873E003227B6 /* AccoutSecurityVC.m */; };
+		E1F5103320738862003227B6 /* SetLoginPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F5103120738862003227B6 /* SetLoginPwdVC.m */; };
+		E1F5103420738862003227B6 /* SetLoginPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F5103220738862003227B6 /* SetLoginPwdVC.xib */; };
+		E1F5103820738881003227B6 /* SetPayPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F5103620738881003227B6 /* SetPayPwdVC.m */; };
+		E1F5103920738881003227B6 /* SetPayPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F5103720738881003227B6 /* SetPayPwdVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2299,6 +2306,17 @@
 		E1EFC6B72068F3FC00C78A8C /* CloudPhoneCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CloudPhoneCell.xib; sourceTree = "<group>"; };
 		E1EFC6BA2068FCEE00C78A8C /* home_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_add.png; sourceTree = "<group>"; };
 		E1EFC6BB2068FCEE00C78A8C /* home_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_share.png; sourceTree = "<group>"; };
+		E1F51022207356CB003227B6 /* GoodWebInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodWebInfoCell.xib; sourceTree = "<group>"; };
+		E1F51023207356CC003227B6 /* GoodWebInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodWebInfoCell.m; sourceTree = "<group>"; };
+		E1F51024207356CD003227B6 /* GoodWebInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodWebInfoCell.h; sourceTree = "<group>"; };
+		E1F510272073873E003227B6 /* AccoutSecurityVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccoutSecurityVC.h; sourceTree = "<group>"; };
+		E1F510282073873E003227B6 /* AccoutSecurityVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccoutSecurityVC.m; sourceTree = "<group>"; };
+		E1F5103020738862003227B6 /* SetLoginPwdVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetLoginPwdVC.h; sourceTree = "<group>"; };
+		E1F5103120738862003227B6 /* SetLoginPwdVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetLoginPwdVC.m; sourceTree = "<group>"; };
+		E1F5103220738862003227B6 /* SetLoginPwdVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetLoginPwdVC.xib; sourceTree = "<group>"; };
+		E1F5103520738881003227B6 /* SetPayPwdVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetPayPwdVC.h; sourceTree = "<group>"; };
+		E1F5103620738881003227B6 /* SetPayPwdVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetPayPwdVC.m; sourceTree = "<group>"; };
+		E1F5103720738881003227B6 /* SetPayPwdVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetPayPwdVC.xib; sourceTree = "<group>"; };
 		E60962CF3B597F7C431212A7 /* libPods-Smail_100Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Smail_100Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6B1D3A6DB1A20BAB619951F /* libPods-Smail_100UITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Smail_100UITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -2894,6 +2912,9 @@
 		E10B0AC320528AE8008BA706 /* GoodsDetailViewS(商品详情View) */ = {
 			isa = PBXGroup;
 			children = (
+				E1F51024207356CD003227B6 /* GoodWebInfoCell.h */,
+				E1F51023207356CC003227B6 /* GoodWebInfoCell.m */,
+				E1F51022207356CB003227B6 /* GoodWebInfoCell.xib */,
 				E10B0AC420528AE8008BA706 /* GoodsCommonCell.h */,
 				E10B0AC520528AE8008BA706 /* GoodsCommonCell.m */,
 				E10B0AC620528AE8008BA706 /* GoodsCommonCell.xib */,
@@ -3605,6 +3626,14 @@
 			children = (
 				E10B0BC120528AE8008BA706 /* AccountManagVC.h */,
 				E10B0BC220528AE8008BA706 /* AccountManagVC.m */,
+				E1F510272073873E003227B6 /* AccoutSecurityVC.h */,
+				E1F510282073873E003227B6 /* AccoutSecurityVC.m */,
+				E1F5103020738862003227B6 /* SetLoginPwdVC.h */,
+				E1F5103120738862003227B6 /* SetLoginPwdVC.m */,
+				E1F5103220738862003227B6 /* SetLoginPwdVC.xib */,
+				E1F5103520738881003227B6 /* SetPayPwdVC.h */,
+				E1F5103620738881003227B6 /* SetPayPwdVC.m */,
+				E1F5103720738881003227B6 /* SetPayPwdVC.xib */,
 				E167EC4B205B9B6A00A8F744 /* 基本资料 */,
 			);
 			path = "AccountManagMect(账户管理)";
@@ -6496,6 +6525,7 @@
 				E10B120820528B06008BA706 /* shangjiazhongxin14@3x.png in Resources */,
 				E10B0DE220528AE8008BA706 /* OrderWeekInfoCell.xib in Resources */,
 				E10B11EC20528B06008BA706 /* chuangkeweidian8@3x.png in Resources */,
+				E1F5103920738881003227B6 /* SetPayPwdVC.xib in Resources */,
 				E10B0FA620528AFA008BA706 /* SZCalendarPicker.xib in Resources */,
 				E10B11BF20528B06008BA706 /* 归档.zip in Resources */,
 				E10B129E20528B06008BA706 /* shouye31@3x.png in Resources */,
@@ -6531,6 +6561,7 @@
 				E10B121220528B06008BA706 /* shangjiazhongxin23@3x.png in Resources */,
 				E167EC5D205B9B6B00A8F744 /* SexView.xib in Resources */,
 				E10B0FAB20528AFA008BA706 /* ImagesPicker.xcassets in Resources */,
+				E1F51025207356CE003227B6 /* GoodWebInfoCell.xib in Resources */,
 				E10B11E320528B06008BA706 /* chuangkeweidian13@3x.png in Resources */,
 				E10B129C20528B06008BA706 /* shouye2@3x.png in Resources */,
 				E10B11D720528B06008BA706 /* dailipingtai5@3x.png in Resources */,
@@ -6586,6 +6617,7 @@
 				E10B0DE520528AE8008BA706 /* OrderMoneyCell.xib in Resources */,
 				E10B0D7920528AE8008BA706 /* AddressManageVC.xib in Resources */,
 				E10B12A320528B06008BA706 /* shouye7@3x.png in Resources */,
+				E1F5103420738862003227B6 /* SetLoginPwdVC.xib in Resources */,
 				E1EFC6B92068F3FC00C78A8C /* CloudPhoneCell.xib in Resources */,
 				E10B125220528B06008BA706 /* muban15@3x.png in Resources */,
 				E10B124C20528B06008BA706 /* qianbaozhuanzeng3@3x.png in Resources */,
@@ -7152,6 +7184,7 @@
 				E10B0DF720528AE8008BA706 /* ShopCarLimitCell.m in Sources */,
 				E1488220206F947500A3CC03 /* KYShowCountView.m in Sources */,
 				3E5FC2CB205E31990067CFA5 /* YBRectConst.m in Sources */,
+				E1F5103820738881003227B6 /* SetPayPwdVC.m in Sources */,
 				E10B0CEC20528AE8008BA706 /* GoodDetailImageVC.m in Sources */,
 				E10B0FD420528AFA008BA706 /* CityTableViewCell.m in Sources */,
 				E10B0EA220528AF5008BA706 /* NSDictionary+Safe.m in Sources */,
@@ -7164,6 +7197,7 @@
 				E10B0EAE20528AF5008BA706 /* KYTitleView.m in Sources */,
 				E10B0DA220528AE8008BA706 /* ContractDetailPayCell.m in Sources */,
 				E10B0E1720528AF0008BA706 /* KX_BaseCollectionViewCell.m in Sources */,
+				E1F51026207356CE003227B6 /* GoodWebInfoCell.m in Sources */,
 				E148821F206F947500A3CC03 /* KYGoTopBtn.m in Sources */,
 				E10B0D9720528AE8008BA706 /* SettingVC.m in Sources */,
 				3EB8E012205FFB7E00E717B1 /* MeChantOrderModel.m in Sources */,
@@ -7353,6 +7387,7 @@
 				E10B0FB420528AFA008BA706 /* JKPhotoBrowserCell.m in Sources */,
 				E10B0EBF20528AF5008BA706 /* KCWebProgress.m in Sources */,
 				E10B0FDB20528AFA008BA706 /* UIView+LayerExtension.m in Sources */,
+				E1F5103320738862003227B6 /* SetLoginPwdVC.m in Sources */,
 				E10B0DAA20528AE8008BA706 /* CoupsCell.m in Sources */,
 				E10B0FAD20528AFA008BA706 /* JKAssetsCollectionFooterView.m in Sources */,
 				E10B0CFC20528AE8008BA706 /* GoodsCollectCell.m in Sources */,
@@ -7400,6 +7435,7 @@
 				E1EFC6AE2068EF2600C78A8C /* ClouldPhoneVC.m in Sources */,
 				E10B0CF120528AE8008BA706 /* AttributeCell.m in Sources */,
 				E1EFC6B82068F3FC00C78A8C /* CloudPhoneCell.m in Sources */,
+				E1F510292073873E003227B6 /* AccoutSecurityVC.m in Sources */,
 				E10B0D8020528AE8008BA706 /* MeChantOrderDetailVC.m in Sources */,
 				E10B0EBB20528AF5008BA706 /* UIColor+Utils.m in Sources */,
 				E10B0D6F20528AE8008BA706 /* OrderModel.m in Sources */,

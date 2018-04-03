@@ -15,12 +15,15 @@
 #import "RecommendedView.h"
 #import "ItemContentList.h"
 #import "CloudInfoEditAndAddVC.h"
+#import "GoodsAuctionXYVC.h"
 
 
 
 
 @interface ClouldPhoneVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) UICollectionView *collectionView;
+@property(nonatomic,assign) NSUInteger page;
+@property (nonatomic, strong) NSMutableDictionary *deviceDic;
 
 @end
 
@@ -34,33 +37,50 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
     [super viewDidLoad];
     [self setup];
     [self setConfiguration];
-    [self getRecommendedRequest];
+    [self getNetWorkRequest];
+
+    WEAKSELF;
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.page = 1;
+        [weakSelf getNetWorkRequest];
+    }];
     
+    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.page++;
+        [weakSelf getNetWorkRequest];
+    }];
+    [weakSelf.collectionView.mj_header endRefreshing];
+
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getDeviceInfoRequest];
 }
 #pragma mark - request
 
-- (void)getRecommendedRequest
-{
-    WEAKSELF;
-    [HomeVModel getHomeNewsParam:nil successBlock:^(ItemInfoList *listModel, BOOL isSuccess) {
-        [weakSelf.resorceArray addObjectsFromArray:listModel.itemContentList];
-        [weakSelf.collectionView reloadData];
-        [weakSelf.collectionView.mj_header endRefreshing];
-    }];
-}
+
 
 - (void)getNetWorkRequest
 {
     WEAKSELF;
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObject:@""  forKey:@"devid"];
-    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
-
-    [BaseHttpRequest postWithUrl:@"/device/unbind" andParameters:nil andRequesultBlock:^(id result, NSError *error) {
+    [param setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_page] forKey:@"pageno"];
+    [param setObject:@"10" forKey:@"page_size"];
+    [BaseHttpRequest postWithUrl:@"/Device/getGoods" andParameters:nil andRequesultBlock:^(id result, NSError *error) {
         if ([result isKindOfClass:[NSDictionary class]]) {
             if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
-                NSArray  *imgList = result[@"data"];
-                
+                NSArray  *imgList = [NSArray yy_modelArrayWithClass:[ItemContentList class] json:result[@"itemInfoList"]];
+                for (int i= 0; i< imgList.count;i++) {
+                    NSDictionary *dic = result[@"itemInfoList"][i];
+                    ItemContentList *item = [ItemContentList yy_modelWithJSON:dic[@"itemContentList"]];
+                    [weakSelf.resorceArray addObject:item];
+
+                }
+                [weakSelf.collectionView reloadData];
+               
             }
         }else{
             
@@ -69,6 +89,57 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
     }];
 }
 
+
+- (void)getRemoveRequest
+{
+    WEAKSELF;
+    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    [param setObject:_deviceDic[@"devid"] forKey:@"devid"];
+    [BaseHttpRequest postWithUrl:@"/device/unbind" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        if ([result isKindOfClass:[NSDictionary class]]) {
+            if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+                [weakSelf getDeviceInfoRequest];
+                [weakSelf.view toastShow:result[@"msg"]];
+          
+            }
+        }else{
+            _deviceDic[@""] = @"";
+            _deviceDic = nil;
+//            [weakSelf.view toastShow:result[@"msg"]];
+        }
+        
+    }];
+
+}
+
+
+
+- (void)getDeviceInfoRequest
+{
+    WEAKSELF;
+    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    [BaseHttpRequest postWithUrl:@"/device/getInfo" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+            NSMutableDictionary *mutableItem = [NSMutableDictionary dictionaryWithDictionary:result[@"data"]];
+            weakSelf.deviceDic = mutableItem ;
+            [weakSelf.collectionView reloadData];
+        }
+        else{
+            weakSelf.deviceDic = [[NSMutableDictionary alloc] init];
+            weakSelf.deviceDic[@"status"] = @"status";
+            weakSelf.deviceDic[@"devid"] = @"";
+            [weakSelf.collectionView reloadData];
+
+//            [weakSelf.view toastShow:result[@"msg"]];
+        }
+    }];
+    
+}
+
+
+//api/device/getInfo
 #pragma mark - private
 /// 配置基础设置
 - (void)setConfiguration
@@ -87,6 +158,7 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
 /// 初始化视图
 - (void)setup
 {
+    _page = 1;
     UICollectionViewFlowLayout  *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 0.0;
     layout.minimumInteritemSpacing = 0.0;
@@ -124,26 +196,24 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
         if (!cell) {
             cell = [CloudPhoneCell new];
         }
+        cell.resultDic = _deviceDic;
         cell.didClickLookInfoBlcok = ^{
-            CloudInfoEditAndAddVC *vc = [[CloudInfoEditAndAddVC alloc] init];
-            
+            GoodsAuctionXYVC  *vc = [[GoodsAuctionXYVC alloc] init];
+            vc.clickUrl = _deviceDic[@"vid_url"];
+            vc.title = @"设备信息";
             [weakSelf.navigationController pushViewController:vc animated:YES];
-
         };
+        
         cell.didClickConnectionBlcok = ^(NSString *str ){
             if ([str isEqualToString:@"关联"]) {
                 CloudInfoEditAndAddVC *vc = [[CloudInfoEditAndAddVC alloc] init];
                 vc.isConnection = YES;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             }else{
-                [weakSelf getNetWorkRequest];
+                [weakSelf getRemoveRequest];
             }
-        
         };
 
-        //    cell.didClickCellBlock = ^(ItemContentList *model) {
-        //        [weakSelf addGoodsInCar:model];
-        //    };
         return cell;
     }
 
@@ -166,7 +236,7 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
     if (indexPath.section == 0) {
         return CGSizeMake(SCREEN_WIDTH, 130);
     }
-    return CGSizeMake((SCREEN_WIDTH - 25)/2, 285);
+    return CGSizeMake((SCREEN_WIDTH - 15)/2, 270);
 
 }
 
@@ -197,14 +267,14 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
 //定义每个UICollectionView 的 margin
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(5, 10, 5, 10);//商品cell
+    return UIEdgeInsetsMake(5, 5,5, 5);//商品cell
 
 }
 
 //item 列间距(纵)
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section;
 {
-    return 0;
+    return 5;
 }
 
 @end

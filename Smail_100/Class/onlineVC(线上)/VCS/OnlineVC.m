@@ -427,7 +427,8 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     else if ([model.itemType isEqualToString:@"cateList"]){
         return CGSizeMake((SCREEN_WIDTH)/5 ,(SCREEN_WIDTH)/5 + 20);
     }
-    
+//    ItemContentList *items =  model.itemContentList[indexPath.row];
+ 
     return CGSizeMake((SCREEN_WIDTH - 15)/2, 285);
 
 }
@@ -483,6 +484,11 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     return CGSizeZero;
 }
 
+//item 列间距(纵)
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section;
+{
+    return 5;
+}
 
 
 - (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{

@@ -34,7 +34,11 @@
     __weak IBOutlet UIButton *title4Btn;
     
     __weak IBOutlet UIView *lineView;
+    
+    __weak IBOutlet UIView *tagsView;
+    __weak IBOutlet NSLayoutConstraint *tagsContraintsH;
 
+    __weak IBOutlet UILabel *descLB;
 }
 
 - (void)awakeFromNib {
@@ -62,8 +66,8 @@
     lineView2.backgroundColor = LINECOLOR;
     lineView3.backgroundColor = LINECOLOR;
 
-    postage.textColor = KMAINCOLOR;
-    
+    postage.textColor = DETAILTEXTCOLOR1;
+    descLB.textColor = DETAILTEXTCOLOR1;
     [title1Btn setTitleColor:DETAILTEXTCOLOR1 forState:UIControlStateNormal];
     [title2Btn setTitleColor:DETAILTEXTCOLOR1 forState:UIControlStateNormal];
     [title3Btn setTitleColor:DETAILTEXTCOLOR1 forState:UIControlStateNormal];
@@ -78,66 +82,70 @@
 
 }
 
-//-(void)setModel:(GoodSDetailModel *)model
-//{
-//    _model = model;
-//    /// certification    1表示认证0表示未认证
-//    if ([_model.mainResult.certification isEqualToString:@"1"]) {
-//        certificationLabel.text = @"已认证";
-//        nameLabel.text = [NSString stringWithFormat:@"                   %@",_model.mainResult.productName];
-//    }else{
-//        certificationLabel.hidden = YES;
-//        nameLabel.text = _model.mainResult.productName;
-//    }
-//    productPriceLabel.text = [NSString stringWithFormat:@"￥%@",_model.showPirce];
-//    if ([_model.param5 isEqualToString:@"1"]) {
-//        numLabel.text  = @"库存充足";
-// 
-//    }else{
-//        numLabel.text  = [NSString stringWithFormat:@"库存：%@",_model.cargoNumber];
-//
-//    }
-//    [companyLabel  setTitle:_model.businessResult.busiCompName forState:UIControlStateNormal];
-//
-//    if (_model.mainResult.dizhi.count >0) {
-//        Dizhi *dizhi = _model.mainResult.dizhi[0];
-//        if ([_model.typeStr isEqualToString:@"3"] || [_model.typeStr isEqualToString:@"4"] || [_model.typeStr isEqualToString:@"5"]) {
-//            [addressLabel setTitle:[NSString stringWithFormat:@"产品当前所在地：%@%@%@",dizhi.prov,dizhi.city,dizhi.area] forState:UIControlStateNormal];
-// 
-//        }
-//        else{
-//            [addressLabel setTitle:[NSString stringWithFormat:@"销售范围：%@%@%@",dizhi.prov,dizhi.city,dizhi.area] forState:UIControlStateNormal];
-//
-//        }
-//    }
-//
-//    /// deliveryType    发货形式 1自提 2    发货
-//    if ([_model.mainResult.deliveryType isEqualToString:@"1"]) {
-//        pickUpLabel.text = @"自提";
-//    }else{
-//        pickUpLabel.text = @"发货";
-//    }
-//    
-//    
-//    if ([_model.mainResult.isDeposit isEqualToString:@"1"]) {
-//        despoitLB.text = [NSString stringWithFormat:@"押金：￥%@", _model.mainResult.gepositPrice];
-//    }else{
-//        despoitContonsH.constant = 0;
-//        despoitLB.hidden = YES;
-//    }
-//
-//}
+
 
 -(void)setModel:(ItemContentList *)model
 {
     _model = model;
     nameLabel.text = _model.name;
     productPriceLabel.text = [NSString stringWithFormat:@"￥%@",_model.price];
-    integralLB.text = [NSString stringWithFormat:@"送%@积分",_model.point];
-    makeLB.text = [NSString stringWithFormat:@"赚￥%@",_model.point];
+    if ([_model.price intValue] == 0) {
+        productPriceLabel.hidden = YES;
+    }
+    if ([_model.earn_point intValue] == 0) {
+        integralLB.hidden = YES;
+    }
+    if ([_model.earn_money intValue] == 0) {
+        makeLB.hidden = YES;
+    }
+    if ([_model.freight floatValue] > 0) {
+        postage.hidden = NO;
+    }else{
+        postage.hidden = YES;
 
+    }
+    integralLB.text = [NSString stringWithFormat:@"送%@积分",_model.earn_point];
+    makeLB.text = [NSString stringWithFormat:@"赚￥%@",_model.earn_money];
     numLabel.text = [NSString stringWithFormat:@"已出售:%@",_model.sale_num];
-    postage.text = [NSString stringWithFormat:@"快递:￥%@",_model.sale_num];
+    
+    postage.text = [NSString stringWithFormat:@"快递:￥%@",_model.freight];
+    descLB.text = _model.desc;
+    NSInteger  tagCount = 0;
+    NSInteger row = SCREEN_WIDTH/27;
+
+    if (_model.tags.count >0 ) {
+        tagsContraintsH.constant = 15;
+        tagsView.hidden = NO;
+        tagCount = _model.tags.count ;
+    }
+    else{
+        tagsContraintsH.constant = 0;
+        tagCount = 0;
+        tagsView.hidden = YES;
+    }
+    
+    if (_model.tags.count > row)
+    {
+        tagsContraintsH.constant = 30;
+        tagsView.hidden = NO;
+        tagCount= _model.tags.count;
+    }
+  
+    
+    for (int i= 0; i<tagCount; i++) {
+        NSInteger index = i % row;
+        NSInteger page = i / row;
+        NSDictionary *dic = _model.tags[i];
+        UILabel *lb = [[UILabel alloc] init];
+        lb.frame = CGRectMake(index *27, page*18, 25, 15);
+        lb.font =  KY_FONT(9);
+        lb.textColor = [UIColor whiteColor];
+        lb.textAlignment = NSTextAlignmentCenter;
+        lb.text = dic[@"title"];
+        [lb layerForViewWith:4 AndLineWidth:0];
+        lb.backgroundColor = [UIColor colorWithHexString:dic[@"color"]];
+        [tagsView addSubview:lb];
+    }
     
 }
 

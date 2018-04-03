@@ -14,5 +14,6 @@
 
 @property (strong, nonatomic) void(^didClickConnectionBlcok)(NSString *str );
 
+@property (nonatomic, strong) NSDictionary *resultDic;
 
 @end

@@ -135,4 +135,8 @@
 /// yes  则有
 /// NO   则无
 +(BOOL)fkTheillegalCharacter:(NSString *)content;
+
+/// 校验身份证
++(BOOL)checkIdentityCardNo:(NSString*)cardNo;
+
 @end

@@ -69,18 +69,36 @@
     getPericeLB.text = [NSString stringWithFormat:@"赚￥%@",_model.earn_money];
     integralLB.text =[NSString stringWithFormat:@"送%@积分",_model.earn_point];
     sellLB.text = [NSString stringWithFormat:@"已出售:%@",_model.store_nums];
+    NSInteger  tagCount = 0;
     if (_model.tags.count >0) {
-        tagsContraintsH.constant = 20;
+        tagsContraintsH.constant = 15;
         tagsView.hidden = NO;
-    }else{
+        tagCount = _model.tags.count ;
+    }
+    else{
         tagsContraintsH.constant = 0;
+        tagCount = 0;
         tagsView.hidden = YES;
     }
     
-    for (int i= 0; i<_model.tags.count; i++) {
+    if (_model.tags.count > 6)
+    {
+        tagsContraintsH.constant = 15;
+        tagsView.hidden = NO;
+        tagCount= 6;
+    }
+    else{
+        tagsContraintsH.constant = 0;
+        tagCount = 0;
+        tagsView.hidden = YES;
+    }
+  
+    for (int i= 0; i<tagCount; i++) {
+        NSInteger index = i % 6;
+        NSInteger page = i / 6;
         NSDictionary *dic = _model.tags[i];
         UILabel *lb = [[UILabel alloc] init];
-        lb.frame = CGRectMake(27*i, 0, 25, 13);
+        lb.frame = CGRectMake(index *27, page*18, 25, 15);
         lb.font =  KY_FONT(9);
         lb.textColor = [UIColor whiteColor];
         lb.textAlignment = NSTextAlignmentCenter;

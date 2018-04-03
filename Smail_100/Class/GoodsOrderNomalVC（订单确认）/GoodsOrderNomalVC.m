@@ -236,12 +236,9 @@ static NSString * const DeductionCellID = @"DeductionCellID";
                 if (KX_NULLString(model.address.province)) {
                     weakSelf.model.addressID = @"";
                     [weakSelf.resorceArray addObject:@"新增收货地址"];
-
-//                    [weakSelf.resorceArray insertObject:@[@"新增收货地址"] atIndex:0];
                 }else{
                     [weakSelf.resorceArray addObject:@"新增收货地址"];
 
-//                    [weakSelf.resorceArray insertObject:model.address atIndex:0];
                 }
             }
 
