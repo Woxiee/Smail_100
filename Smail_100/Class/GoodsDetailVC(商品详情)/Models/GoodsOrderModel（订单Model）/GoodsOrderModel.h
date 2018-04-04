@@ -22,6 +22,9 @@
 @property (nonatomic , copy) NSString              * commend_id;
 @property (nonatomic , copy) NSString              * seller_name;
 @property (nonatomic , copy) NSString              * store_nums;
+@property (nonatomic , copy) NSString              * earn_money;
+@property (nonatomic , copy) NSString              * freight;
+
 
 
 
@@ -161,5 +164,8 @@
 @property (nonatomic , copy) NSString              * ctime;
 
 @property (nonatomic , assign) BOOL              isDetail;
+
+@property (nonatomic , assign) float             allPrices;
+
 
 @end

@@ -18,6 +18,9 @@
 @property (nonatomic , copy) NSString              * coins_money;
 @property (nonatomic , copy) NSString              * point;
 @property (nonatomic , copy) NSString              * wxpay;
+@property (nonatomic , copy) NSString              * phone_money;
+
+
 
 @end
 

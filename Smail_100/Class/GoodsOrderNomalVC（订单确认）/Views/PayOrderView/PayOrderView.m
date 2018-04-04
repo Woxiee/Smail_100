@@ -256,7 +256,7 @@ static NSString * const OthercellID = @"OthercellID";
         payDetailModel.isSelect = NO;
     }
     model.isSelect = YES;
-    _orderModel.payIndexStr = [NSString stringWithFormat:@"%ld",indexPath.row];
+    _orderModel.payIndexStr = model.title;
     [self.tableView reloadData];
  
 }

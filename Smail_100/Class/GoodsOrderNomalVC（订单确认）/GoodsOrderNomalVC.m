@@ -31,9 +31,11 @@
 #import "PayModels.h"
 #import "APOrderInfo.h"
 #import "APRSASigner.h"
+#import "JHCoverView.h"
+#import "SetPayPwdVC.h"
 
 
-@interface GoodsOrderNomalVC ()<UITableViewDelegate,UITextViewDelegate>
+@interface GoodsOrderNomalVC ()<UITableViewDelegate,UITextViewDelegate,JHCoverViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UILabel *orderPiceLB;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
@@ -55,6 +57,8 @@
 
 @property (nonatomic, strong)    PayModels *payModel;            //
 
+@property (nonatomic, strong)    NSAttributedString *allCountStr;            //
+@property (nonatomic, strong) JHCoverView *coverView;
 
 @end
 
@@ -118,36 +122,70 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 {
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPayTypeRelute:) name:NOTICEMEPAYMSG object:nil];
-    
+
+    JHCoverView *coverView = [[JHCoverView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    coverView.delegate = self;
+    self.coverView = coverView;
+    coverView.hidden = YES;
+    coverView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
+    [self.view addSubview:coverView];
 }
+
+
+
 
 
 /// 展示 付款方式
 - (void)showPayView
 {
     WEAKSELF;
-    NSArray *titleArr;
-    NSArray *imageArr;
 
+    NSMutableArray *titleArr = [[NSMutableArray alloc] init];
+    NSMutableArray *imageArr = [[NSMutableArray alloc] init];
     PayOrderView *view;
-    if ([self.orderModel.userinfo.point integerValue]>0) {
-//        [self.resorceArray addObject:@"积分抵扣"];
-        view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeOther];
-        titleArr  = @[@"微信支付",@"支付宝支付",@"激励笑脸支付",@"空充笑脸支付",@"积分兑换"];
-        imageArr = @[@"wxzf@3x.png",@"zfb@3x.png",@"jlxl@3x.png",@"kcxl@3x.png",@"jfzf@3x.png"];
-
-    }else{
-        view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeNoaml];
-        titleArr  = @[@"微信支付",@"支付宝支付",@"激励笑脸支付",@"空充笑脸支付"];
-        imageArr = @[@"wxzf@3x.png",@"zfb@3x.png",@"jlxl@3x.png",@"kcxl@3x.png"];
+    if ([_orderModel.pay_method.wxpay isEqualToString:@"Y"]) {
+        [titleArr addObject:@"微信支付"];
+        [imageArr addObject:@"wxzf@3x.png"];
     }
-//    view.didClickPayTypeBlock = ^(NSInteger index){
-//
-//    };
+    
+    if ([_orderModel.pay_method.alipay isEqualToString:@"Y"]) {
+        [titleArr addObject:@"支付宝支付"];
+        [imageArr addObject:@"zfb@3x.png"];
+    }
+    
+    if ([_orderModel.pay_method.coins_money isEqualToString:@"Y"]) {
+        [titleArr addObject:@"激励笑脸支付"];
+        [imageArr addObject:@"jlxl@3x.png"];
+    }
+    
+    if ([_orderModel.pay_method.coins_air_money isEqualToString:@"Y"]) {
+        [titleArr addObject:@"空充笑脸支付"];
+        [imageArr addObject:@"kcxl@3x.png"];
+    }
+    
+    if ([_orderModel.pay_method.phone_money isEqualToString:@"Y"]) {
+        [titleArr addObject:@"话费支付"];
+        [imageArr addObject:@"hfdh@3x.png"];
+    }
+    view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeNoaml];
+    
+    if ([_orderModel.pay_method.point isEqualToString:@"Y"]) {
+        [titleArr addObject:@"积分兑换"];
+        [imageArr addObject:@"kcxl@3x.png"];
+        view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeOther];
+
+    }
+
     view.didChangeJFValueBlock = ^(GoodsOrderModel *orderModel) {
-//        [weakSelf getPayKeyInfoRequest];
+        
+      
+        
         [weakSelf submitOrderInfoRequest];
+
+        
     };
+    
+
     NSMutableArray *dataArray = [[NSMutableArray alloc] init];
     for (int i = 0; i<titleArr.count; i++) {
         PayDetailModel *model = [PayDetailModel new];
@@ -214,12 +252,10 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     if (_orderType == ShoppinCarType) {
         [param setObject:@"product" forKey:@"type"];
         
-        
     }else{
         [param setObject:@"goods" forKey:@"type"];
         [param setObject:_itemsModel.goods_id forKey:@"goods_id"];
         [param setObject:_itemsModel.cartNum?_itemsModel.cartNum:@"1" forKey:@"goods_num"];
-
 
     }
     [GoodsOrderVModel getGoodsOrderParam:param successBlock:^(NSArray<GoodsOrderModel *> *dataArray, BOOL isSuccess) {
@@ -250,14 +286,8 @@ static NSString * const DeductionCellID = @"DeductionCellID";
                 _model.noteConten = @"";
             }
    
-            if ([_orderModel.point integerValue] >0) {
-                NSString *str1 =[NSString stringWithFormat:@"￥%@+%@",_orderModel.price,_orderModel.point];
-                NSString *str = [NSString stringWithFormat:@"合计：%@积分",str1];
-                NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(3, str1.length) withColor:KMAINCOLOR withFont:[UIFont systemFontOfSize:17 weight:UIFontWeightMedium]];
-                weakSelf.orderPiceLB.attributedText =  attributedStr;
-            }else{
-                 weakSelf.orderPiceLB.text = [NSString stringWithFormat:@"合计：%@",_orderModel.price];
-            }
+            [weakSelf getGoodsOrderAllInfo];
+     
            
             [weakSelf.tableView reloadData];
 
@@ -291,8 +321,20 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     [param setObject:_orderModel.noteStr forKey:@"message"];
     [param setObject:_orderModel.express_type forKey:@"express_type"];
     [param setObject:@"" forKey:@"spec"];
-    [GoodsOrderVModel getSubmitOrderInfoParam:param successBlock:^(NSString *orderID,BOOL isSuccess) {
-        [weakSelf getPayKeyInfoRequest:orderID];
+    [GoodsOrderVModel getSubmitOrderInfoParam:param successBlock:^(NSString *orderID,BOOL isSuccess, NSString *msg) {
+        if (isSuccess) {
+            weakSelf.orderModel.orderno = orderID;
+            if ([_orderModel.payIndexStr isEqualToString:@"微信支付"] || [_orderModel.payIndexStr isEqualToString:@"支付宝支付"]) {
+                [weakSelf getPayKeyInfoRequest:orderID];
+            }
+            else{
+                [weakSelf getPayPwdYZRequest];
+            }
+        }
+        else{
+            [weakSelf showHint:msg];
+        }
+
     }];
 }
 
@@ -302,16 +344,85 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     WEAKSELF;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
-//    [param setObject:@[] forKey:@"type_value"];
     [param setObject:orderID forKey:@"orderno"];
+    
+    if ([_orderModel.jfValue intValue] >0) {
+        [param setObject:_orderModel.jfValue forKey:@"type_value[point]"];
+    }
+    
+    if ([_orderModel.payIndexStr isEqualToString:@"微信支付"]) {
+        [param setObject:@"auto" forKey:@"type_value[wxpay]"];
 
-    [GoodsOrderVModel getPayInfoKryParam:param successBlock:^(PayModels *model, BOOL isSuccess) {
+    }
+    if ([_orderModel.payIndexStr isEqualToString:@"支付宝支付"]) {
+        [param setObject:@"auto" forKey:@"type_value[alipay]"];
+    }
+    if ([_orderModel.payIndexStr isEqualToString:@"激励笑脸支付"]) {
+        [param setObject:@"auto" forKey:@"type_value[coins_money]"];
+    }
+    if ([_orderModel.payIndexStr isEqualToString:@"空充笑脸支付"]) {
+        [param setObject:@"auto"  forKey:@"type_value[coins_air_money]"];
+    }
+    if ([_orderModel.payIndexStr isEqualToString:@"话费支付"]) {
+        [param setObject:@"auto"  forKey:@"type_value[phone_money]"];
+    }
+  
+    [GoodsOrderVModel getPayInfoKryParam:param successBlock:^(PayModels *model, BOOL isSuccess,NSString *msg) {
+        if (isSuccess ) {
+            weakSelf.payModel = model;
+            if (isSuccess) {
+                if ([_orderModel.payIndexStr isEqualToString:@"微信支付"]) {
+                    [weakSelf doWxPay];
+
+                }
+                else if ([_orderModel.payIndexStr isEqualToString:@"支付宝支付"]) {
+                    [weakSelf doAPPay];
+                }
+                else{
+                    OrderCommitSuccessVC *vc = [[OrderCommitSuccessVC alloc] init];
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                    
+                }
+                
+            }
+     
+            
+        }
+        else{
+            [weakSelf showHint:msg];
+        }
+    }];
+    
+ 
+}
+
+- (void)getPayPwdYZRequest
+{
+    WEAKSELF;
+    if (KX_NULLString([KX_UserInfo sharedKX_UserInfo].pay_password)) {
+        [self systemAlertWithTitle:nil andMsg:@"您还未设置支付密码" cancel:@"取消" sure:@"去设置" withOkBlock:^(BOOL isOk) {
+            SetPayPwdVC  *vc = [[SetPayPwdVC alloc] init];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
+    }else{
+        self.coverView.hidden = NO;
+        [self.coverView.payTextField becomeFirstResponder];
+
+    }
+
+}
+
+/// 微信  支付宝
+- (void)getPayKeyRequesParam:(id)param
+{
+    WEAKSELF;
+    [GoodsOrderVModel getPayInfoKryParam:param successBlock:^(PayModels *model, BOOL isSuccess,NSString *msg) {
         if (isSuccess ) {
             weakSelf.payModel = model;
             [weakSelf doAPPay];
         }
         else{
-            [weakSelf showHint:@"支付失败,请重试"];
+            [weakSelf showHint:msg];
         }
     }];
 }
@@ -338,10 +449,8 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 {
     WEAKSELF;
     NSString *str = self.resorceArray[indexPath.section];
-    
     if (indexPath.section == 0) {
-        
-        if (KX_NULLString(_orderModel.address.province)) {
+        if (KX_NULLString(_orderModel.address.addr_id)) {
             GoodSOrderCommonCell *cell = [tableView dequeueReusableCellWithIdentifier:goodSOrderCommonCell forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.titleLB.text = self.resorceArray[indexPath.section];
@@ -393,7 +502,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 
      if ([str isEqualToString:@"新增收货地址"])
      {
-         if (KX_NULLString(_orderModel.address.province)) {
+         if (KX_NULLString(_orderModel.address.addr_id)) {
              return 44;
          }
     
@@ -444,38 +553,11 @@ static NSString * const DeductionCellID = @"DeductionCellID";
         lineView.backgroundColor = BACKGROUND_COLOR;
         [headView addSubview:lineView];
         
-        UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, SCREEN_WIDTH - 12, 44)];
+        UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, SCREEN_WIDTH - 25, 44)];
         titleLB.textColor = TITLETEXTLOWCOLOR;
         titleLB.font = Font15;
         titleLB.textAlignment = NSTextAlignmentRight;
-        NSString *allNumber = [NSString stringWithFormat:@"%@",_orderModel.count];
-        NSString *allPrice = [NSString stringWithFormat:@"￥%@",_orderModel.price];
-        NSString *allPoint = [NSString stringWithFormat:@"%@",_orderModel.point];
-        if ([_orderModel.point integerValue] >0) {
-            NSMutableAttributedString *hintString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"共%@件商品   合计:%@+%@积分",allNumber,allPrice,allPoint]];
-            //获取要调整颜色的文字位置,调整颜色
-            NSRange range1=[[hintString string]rangeOfString:allNumber];
-            [hintString addAttribute:NSForegroundColorAttributeName  value:KMAINCOLOR range:range1];
-            
-            NSRange range2=[[hintString string]rangeOfString:allPrice];
-            [hintString addAttribute:NSForegroundColorAttributeName value:KMAINCOLOR range:range2];
-            
-            NSRange range3 =[[hintString string]rangeOfString:allPoint];
-            [hintString addAttribute:NSForegroundColorAttributeName value:KMAINCOLOR range:range3];
-            titleLB.attributedText =hintString;
-        }else{
-            NSMutableAttributedString *hintString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"共%@件商品   合计:%@",allNumber,allPrice]];
-            //获取要调整颜色的文字位置,调整颜色
-            NSRange range1=[[hintString string]rangeOfString:allNumber];
-            [hintString addAttribute:NSForegroundColorAttributeName  value:KMAINCOLOR range:range1];
-            
-            NSRange range2=[[hintString string]rangeOfString:allPrice];
-            [hintString addAttribute:NSForegroundColorAttributeName value:KMAINCOLOR range:range2];
-            
-            titleLB.attributedText =hintString;
-        }
-
-        
+        titleLB.attributedText = _allCountStr;
         [headView addSubview:titleLB];
         
         UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 49, SCREEN_WIDTH, 1)];
@@ -505,8 +587,10 @@ static NSString * const DeductionCellID = @"DeductionCellID";
             AddressManageVC *VC = [[AddressManageVC alloc] init];
             VC.model = _model;
             VC.didClickAddressCellBlock = ^(GoodsOrderAddressModel* model){
-//               weakSelf.model.addressID = model.addr_id;
-//                cell.addressModel = _orderModel.address;
+
+                if ( weakSelf.orderModel.address == nil) {
+                    weakSelf.orderModel.address = [[Address alloc] init];
+                }
                 weakSelf.orderModel.address.addr_id = model.addr_id;
                 weakSelf.orderModel.address.contact_username = model.contact_username;
                 weakSelf.orderModel.address.contact_mobile = model.contact_mobile;
@@ -514,10 +598,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
                 weakSelf.orderModel.address.city = model.city;
                 weakSelf.orderModel.address.district = model.district;
                 [weakSelf.tableView reloadData];
-//                notDefaultName.text = [NSString stringWithFormat:@"联系人:%@",_model.contact_username];
-//                phoneNum.text = _model.contact_mobile;
-//                adressDetail.text = [NSString stringWithFormat:@"收货地址:%@%@%@",_model.province,_model.city,_model.district];
-                
+
             };
             [self.navigationController pushViewController:VC animated:YES];
         }
@@ -558,6 +639,49 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     
 }
 
+#pragma mark  - JHCoverViewDelegate
+/**
+ 忘记密码
+ */
+- (void)forgetPassWordCoverView:(JHCoverView *)control
+{
+    
+}
+
+/**
+ JHCoverViewDelegate的代理方法,密码输入错误
+ */
+- (void)coverView:(JHCoverView *)control
+{
+    
+    
+}
+
+/**
+ JHCoverViewDelegate的代理方法，密码输入正确
+ */
+- (void)inputCorrectCoverView:(JHCoverView *)control
+{
+    WEAKSELF;
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].pay_password forKey:@"pay_password"];
+    
+    [GoodsOrderVModel  getVerify_paypwdParam:param successBlock:^(BOOL isSuccess, NSString *msg) {
+        if (isSuccess) {
+
+            
+            [weakSelf getPayKeyInfoRequest:weakSelf.orderModel.orderno];
+
+        }
+        else{
+            [weakSelf showHint:msg];
+        }
+    }];
+    
+
+}
 
 
 #pragma mark - private
@@ -594,8 +718,6 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 
 - (IBAction)submitBtn:(id)sender {
     [self showPayView];
-    
-    
     
 }
 
@@ -634,7 +756,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     order.biz_content.subject = @"1";
     order.biz_content.out_trade_no = _payModel.orderid; //订单ID（由商家自行制定）
     order.biz_content.timeout_express = @"30m"; //超时时间设置
-    order.biz_content.total_amount = [NSString stringWithFormat:@"%.2f", 0.01]; //商品价格
+    order.biz_content.total_amount = [NSString stringWithFormat:@"%.2f", _orderModel.allPrices]; //商品价格
     
     //将商品信息拼接成字符串
     NSString *orderInfo = [order orderInfoEncoded:NO];
@@ -667,6 +789,41 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     }
 }
 
+
+- (void)doWxPay
+{
+
+//    "appid" = wx500ed907f1edd985,
+//    "amount" = 3800,
+//    "timestamp" = 1522837325,
+//    "acctId" = 1500486322,
+//    "keyWord" = pay_order,
+//    "privateKey" = WEIxiao100wx1payWEIxiao100wx1pay,
+//    "nonce_str" = WkUn4aFIasuBtcnk,
+//    "orderid" = 20180404182205111257,
+//    "callback" = http://39.108.4.18:6803/api/notify/wxcallback,
+//    "prepay_id" = wx04182205349192796e46de214059341414,
+//    "trade_type" = APP,
+//    "sign" = F9BEA2F0EA730FFFA710386C7C1C8E4F,
+    
+    PayReq *req   = [[PayReq alloc] init];
+    req.openID = _payModel.appid;
+    req.partnerId = _payModel.acctId;
+    req.prepayId  =  _payModel.prepay_id;
+    req.sign = _payModel.sign;
+    req.package = @"Sign=WXPay";
+    req.nonceStr  = _payModel.nonce_str;
+//    int timesta= [_payModel.timestamp intValue];
+//    UInt32 timestamp = (UInt32)timesta;
+    req.timeStamp =_payModel.timestamp.intValue;
+    if ([WXApi sendReq:req]) { //发送请求到微信，等待微信返回onResp
+        NSLog(@"吊起微信成功...");
+    }else{
+        NSLog(@"吊起微信失败...");
+    }
+    
+}
+
 - (void)getPayTypeRelute:(NSNotification *)notification
 {
     OrderCommitSuccessVC *vc = [[OrderCommitSuccessVC alloc] init];
@@ -674,6 +831,58 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     
 }
 
+
+- (void)getGoodsOrderAllInfo
+{
+    CGFloat allPrices = 0;
+    CGFloat allPoint = 0;
+    CGFloat allFreight = 0;
+    int count =0;
+    
+    for (Seller *seller in _orderModel.seller) {
+        for (Products *item  in seller.products) {
+            allPrices += item.price.intValue *item.goods_nums.intValue;
+            allPoint += item.point.intValue *item.goods_nums.intValue;
+            allFreight +=  item.freight.intValue *item.goods_nums.intValue;
+            count += item.goods_nums.intValue;
+        }
+    }
+    
+    NSString *allPriceStr = @"";
+    NSMutableArray *priceArr = [NSMutableArray array];
+    if (allPrices>0) {
+        NSString *str = [NSString stringWithFormat:@"￥%.0f",allPrices];
+        [priceArr addObject:str];
+    }
+    
+    _orderModel.allPrices = allPrices;
+    if (allPoint>0) {
+         NSString *str = [NSString stringWithFormat:@"%.0f积分",allPoint];
+        [priceArr addObject:str];
+    }
+    
+    if (allFreight>0) {
+        NSString *str = [NSString stringWithFormat:@"%.0f邮费",allFreight];
+        [priceArr addObject:str];
+    }
+    
+    allPriceStr = [priceArr componentsJoinedByString:@"+"];
+    NSString *countStr = [NSString stringWithFormat:@"共%d件商品   小计:",count];
+
+    NSString *allStr = [NSString stringWithFormat:@"%@%@",countStr,allPriceStr];
+    NSAttributedString *attributedStr =  [allStr creatAttributedString:allStr withMakeRange:NSMakeRange(countStr.length, allStr.length - countStr.length) withColor:KMAINCOLOR withFont:[UIFont systemFontOfSize:17 weight:UIFontWeightMedium]];
+    _allCountStr =  attributedStr;
+
+    
+
+    NSString *countStr1 = @"合计:";
+    NSString *allStr1 = [NSString stringWithFormat:@"%@%@",countStr1,allPriceStr];
+    NSAttributedString *attributedStr2 =  [allStr1 creatAttributedString:allStr1 withMakeRange:NSMakeRange(countStr1.length, allStr1.length - countStr1.length) withColor:KMAINCOLOR withFont:[UIFont systemFontOfSize:17 weight:UIFontWeightMedium]];
+    _orderPiceLB.attributedText =  attributedStr2;
+
+
+    
+}
 
 
 @end

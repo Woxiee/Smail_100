@@ -18,11 +18,14 @@
 + (void)getGoodsOrderParam:(id)pararm successBlock:(void(^)(NSArray <GoodsOrderModel *>*dataArray,BOOL isSuccess))sBlcok;
 
 ///获取支付密文
-+ (void)getPayInfoKryParam:(id)pararm successBlock:(void(^)(PayModels *model,BOOL isSuccess))sBlcok;
++ (void)getPayInfoKryParam:(id)pararm successBlock:(void(^)(PayModels *model,BOOL isSuccess, NSString *msg))sBlcok;
 
 
 /// 生成订单
-+ (void)getSubmitOrderInfoParam:(id)pararm successBlock:(void(^)(NSString *orderID, BOOL isSuccess))sBlcok;
++ (void)getSubmitOrderInfoParam:(id)pararm successBlock:(void(^)(NSString *orderID, BOOL isSuccess,NSString *msg))sBlcok;
+
+/// 检验支付密码
++ (void)getVerify_paypwdParam:(id)pararm successBlock:(void(^)(BOOL isSuccess,NSString *msg))sBlcok;
 
 
 ///集采订单确认

@@ -39,22 +39,22 @@
 
 
 /// 生成订单
-+ (void)getSubmitOrderInfoParam:(id)pararm successBlock:(void(^)(NSString *orderID, BOOL isSuccess))sBlcok;
++ (void)getSubmitOrderInfoParam:(id)pararm successBlock:(void(^)(NSString *orderID, BOOL isSuccess,NSString *msg))sBlcok;
 {
     [BaseHttpRequest postWithUrl:@"/order/generate_order" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
         LOG(@"订单确认 == %@",result);
         NSString *data = [result valueForKey:@"data"];
         NSMutableArray *listArray  = [[NSMutableArray alloc] init];
-        
+        NSString *msg =  result[@"msg"];
         if ([data isKindOfClass:[NSString class]]) {
             if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
               
-                sBlcok(data, YES);
+                sBlcok(data, YES,msg);
             }else{
-                sBlcok(@"",NO);
+                sBlcok(@"",NO,msg);
             }
         }else{
-            sBlcok(@"",NO);
+            sBlcok(@"",NO,msg);
 
         }
     }];
@@ -90,21 +90,40 @@
 
 
 ///获取支付密文
-+ (void)getPayInfoKryParam:(id)pararm successBlock:(void(^)(PayModels *model,BOOL isSuccess))sBlcok
++ (void)getPayInfoKryParam:(id)pararm successBlock:(void(^)(PayModels *model,BOOL isSuccess, NSString *msg))sBlcok
 {
     [BaseHttpRequest postWithUrl:@"/pay/check_balance" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
-        
+        NSString *msg = result[@"msg"];
         if ([result isKindOfClass:[NSDictionary class]]) {
             if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
                 PayModels *model = [PayModels yy_modelWithJSON:result[@"data"]];
-                sBlcok(model,YES);
+                sBlcok(model,YES,msg);
             }else{
-                sBlcok(nil,NO);
+                sBlcok(nil,NO,msg);
 
             }
 
         }else{
-            sBlcok(nil,NO);
+            sBlcok(nil,NO,msg);
+        }
+        
+    }];
+}
+
+
+/// 检验支付密码
++ (void)getVerify_paypwdParam:(id)pararm successBlock:(void(^)(BOOL isSuccess,NSString *msg))sBlcok
+{
+    [BaseHttpRequest postWithUrl:@"/pay/verify_paypwd" andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
+        NSString *msg = result[@"msg"];
+        if ([result isKindOfClass:[NSDictionary class]]) {
+            if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+                sBlcok(YES,msg);
+            }else{
+                sBlcok(NO,msg);
+            }
+        }else{
+            sBlcok(NO,msg);
         }
         
     }];

@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "KX_BaseTabbarController.h"
 #import "KX_BaseNavController.h"
-#import "WXApi.h"
 @interface AppDelegate ()<WXApiDelegate>
 @property (nonatomic, strong) KX_BaseTabbarController *tabbarVC;
 
@@ -50,7 +49,8 @@
     // 如果需要设置导航栏底部分割线隐藏，可以在这里统一设置
     [WRNavigationBar wr_setDefaultNavBarShadowImageHidden:YES];
 //    8780ece09fd44bcc5146c52aa0c8e2e7
-    [WXApi registerApp:@"8780ece09fd44bcc5146c52aa0c8e2e7" enableMTA:NO];
+    
+    [WXApi registerApp:@"wx500ed907f1edd985" enableMTA:NO];
 
     
 }
@@ -110,9 +110,13 @@
         switch (resp.errCode) {
             case 0:
                 payResoult = @"支付结果：成功！";
+                [self.window toastShow:@"支付成功"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTICEMEPAYMSG object:nil];
                 break;
             case -1:
                 payResoult = @"支付结果：失败！";
+                [self.window toastShow:@"支付失败"];
+
                 break;
             case -2:
                 payResoult = @"用户已经退出支付！";

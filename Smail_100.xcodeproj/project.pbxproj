@@ -879,6 +879,11 @@
 		E1F5103420738862003227B6 /* SetLoginPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F5103220738862003227B6 /* SetLoginPwdVC.xib */; };
 		E1F5103820738881003227B6 /* SetPayPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F5103620738881003227B6 /* SetPayPwdVC.m */; };
 		E1F5103920738881003227B6 /* SetPayPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F5103720738881003227B6 /* SetPayPwdVC.xib */; };
+		E1F51040207474D9003227B6 /* FindPaypwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F5103E207474D9003227B6 /* FindPaypwdVC.m */; };
+		E1F51041207474D9003227B6 /* FindPaypwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F5103F207474D9003227B6 /* FindPaypwdVC.xib */; };
+		E1F510432074851A003227B6 /* hfdh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F5104220748519003227B6 /* hfdh@3x.png */; };
+		E1F510492074BA11003227B6 /* JHCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F510462074BA11003227B6 /* JHCoverView.m */; };
+		E1F5104A2074BA11003227B6 /* NewTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F510482074BA11003227B6 /* NewTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2317,6 +2322,14 @@
 		E1F5103520738881003227B6 /* SetPayPwdVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetPayPwdVC.h; sourceTree = "<group>"; };
 		E1F5103620738881003227B6 /* SetPayPwdVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetPayPwdVC.m; sourceTree = "<group>"; };
 		E1F5103720738881003227B6 /* SetPayPwdVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetPayPwdVC.xib; sourceTree = "<group>"; };
+		E1F5103D207474D9003227B6 /* FindPaypwdVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindPaypwdVC.h; sourceTree = "<group>"; };
+		E1F5103E207474D9003227B6 /* FindPaypwdVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindPaypwdVC.m; sourceTree = "<group>"; };
+		E1F5103F207474D9003227B6 /* FindPaypwdVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FindPaypwdVC.xib; sourceTree = "<group>"; };
+		E1F5104220748519003227B6 /* hfdh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hfdh@3x.png"; sourceTree = "<group>"; };
+		E1F510452074BA11003227B6 /* JHCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHCoverView.h; sourceTree = "<group>"; };
+		E1F510462074BA11003227B6 /* JHCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHCoverView.m; sourceTree = "<group>"; };
+		E1F510472074BA11003227B6 /* NewTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTextField.h; sourceTree = "<group>"; };
+		E1F510482074BA11003227B6 /* NewTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTextField.m; sourceTree = "<group>"; };
 		E60962CF3B597F7C431212A7 /* libPods-Smail_100Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Smail_100Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6B1D3A6DB1A20BAB619951F /* libPods-Smail_100UITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Smail_100UITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -3634,6 +3647,9 @@
 				E1F5103520738881003227B6 /* SetPayPwdVC.h */,
 				E1F5103620738881003227B6 /* SetPayPwdVC.m */,
 				E1F5103720738881003227B6 /* SetPayPwdVC.xib */,
+				E1F5103D207474D9003227B6 /* FindPaypwdVC.h */,
+				E1F5103E207474D9003227B6 /* FindPaypwdVC.m */,
+				E1F5103F207474D9003227B6 /* FindPaypwdVC.xib */,
 				E167EC4B205B9B6A00A8F744 /* 基本资料 */,
 			);
 			path = "AccountManagMect(账户管理)";
@@ -5470,6 +5486,7 @@
 		E10B10B220528B05008BA706 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E1F5104220748519003227B6 /* hfdh@3x.png */,
 				E151CC83206E441900F4EF9E /* gerenzhongxin1.png */,
 				E151CC81206E42B000F4EF9E /* gerenzhongxin001.png */,
 				E151CC7D206E202000F4EF9E /* moren@3x.png */,
@@ -6050,6 +6067,7 @@
 		E115312A2052993E00B5852F /* PayOrderView */ = {
 			isa = PBXGroup;
 			children = (
+				E1F510442074BA11003227B6 /* payViewControl */,
 				E115312B2052993E00B5852F /* PayDetailModel.h */,
 				E115312C2052993E00B5852F /* PayDetailModel.m */,
 				E115312D2052993E00B5852F /* PayOrderView.h */,
@@ -6339,6 +6357,18 @@
 			);
 			path = Model;
 			sourceTree = "<group>";
+		};
+		E1F510442074BA11003227B6 /* payViewControl */ = {
+			isa = PBXGroup;
+			children = (
+				E1F510452074BA11003227B6 /* JHCoverView.h */,
+				E1F510462074BA11003227B6 /* JHCoverView.m */,
+				E1F510472074BA11003227B6 /* NewTextField.h */,
+				E1F510482074BA11003227B6 /* NewTextField.m */,
+			);
+			name = payViewControl;
+			path = "Smail_100/Class/GoodsOrderNomalVC（订单确认）/Views/payViewControl";
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -6823,6 +6853,8 @@
 				E10B122120528B06008BA706 /* wodetuandui4@3x.png in Resources */,
 				E10B11F220528B06008BA706 /* hehuorenshengji1@3x.png in Resources */,
 				E10B120720528B06008BA706 /* shangjiazhongxin13@3x.png in Resources */,
+				E1F51041207474D9003227B6 /* FindPaypwdVC.xib in Resources */,
+				E1F510432074851A003227B6 /* hfdh@3x.png in Resources */,
 				E10B0D4E20528AE8008BA706 /* HomeScrollCell.xib in Resources */,
 				E10B128920528B06008BA706 /* shouye12@3x.png in Resources */,
 				E10B129020528B06008BA706 /* shouye19@3x.png in Resources */,
@@ -7353,6 +7385,7 @@
 				E10B0D9C20528AE8008BA706 /* AssetVModel.m in Sources */,
 				E10B0EB120528AF5008BA706 /* NSString+Extension.m in Sources */,
 				E10B0D1D20528AE8008BA706 /* GoodSOrderNomalCell.m in Sources */,
+				E1F5104A2074BA11003227B6 /* NewTextField.m in Sources */,
 				E10B0D7620528AE8008BA706 /* AddressChanegAndEidteVC.m in Sources */,
 				E10B0DE620528AE8008BA706 /* StoreMangerVHeadView.m in Sources */,
 				E10B0E1520528AF0008BA706 /* GlobalExceptionProcess.m in Sources */,
@@ -7445,8 +7478,10 @@
 				E10B0D9420528AE8008BA706 /* MemberInforVC.m in Sources */,
 				E10B0D6420528AE8008BA706 /* LoginSureForgetVC.m in Sources */,
 				E10B0D4220528AE8008BA706 /* SheetDownCollectonView.m in Sources */,
+				E1F51040207474D9003227B6 /* FindPaypwdVC.m in Sources */,
 				E10B0D2D20528AE8008BA706 /* GoodsScreenListModel.m in Sources */,
 				E10B0D4F20528AE8008BA706 /* InsuranceCellCell.m in Sources */,
+				E1F510492074BA11003227B6 /* JHCoverView.m in Sources */,
 				E10B10AA20528B03008BA706 /* PYSearchViewController.m in Sources */,
 				E10B0E1C20528AF0008BA706 /* KX_BaseViewController.m in Sources */,
 				E115310E2052969200B5852F /* APAuthInfo.m in Sources */,

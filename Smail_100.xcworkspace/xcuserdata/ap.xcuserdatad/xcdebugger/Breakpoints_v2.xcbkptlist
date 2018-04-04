@@ -148,12 +148,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Smail_100/Class/GoodsDetailVC(&#x5546;&#x54c1;&#x8be6;&#x60c5;)/VCs/GoodContenVC&#xff08;&#x96c6;&#x91c7;&#x7b49;&#x7c7b;&#x578b;&#xff09;/GoodContenVC.m"
-            timestampString = "544443836.950971"
+            timestampString = "544530459.77783"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
-            landmarkName = "-initSelectView"
+            startingLineNumber = "729"
+            endingLineNumber = "729"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Smail_100/Class/GoodsOrderNomalVC&#xff08;&#x8ba2;&#x5355;&#x786e;&#x8ba4;&#xff09;/Views/PayOrderView/PayOrderView.m"
+            timestampString = "544530459.777969"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
+            landmarkName = "-textFieldDidEndEditing:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -164,12 +180,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Smail_100/Class/GoodsOrderNomalVC&#xff08;&#x8ba2;&#x5355;&#x786e;&#x8ba4;&#xff09;/GoodsOrderNomalVC.m"
-            timestampString = "544443836.9511"
+            timestampString = "544530534.410522"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
-            landmarkName = "-getGoodsOrderInfoRequest"
+            startingLineNumber = "819"
+            endingLineNumber = "819"
+            landmarkName = "-doWxPay"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

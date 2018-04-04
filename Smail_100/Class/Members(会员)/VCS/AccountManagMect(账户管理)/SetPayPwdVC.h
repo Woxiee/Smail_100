@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SetPayPwdVC : UIViewController
+@interface SetPayPwdVC : KX_BaseViewController
 
 @end

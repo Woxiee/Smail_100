@@ -39,8 +39,8 @@
                                 <action selector="submitBtn:" destination="-1" eventType="touchUpInside" id="leK-Pk-cGT"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHb-T7-cKV">
-                            <rect key="frame" x="0.0" y="0.0" width="267" height="44"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHb-T7-cKV">
+                            <rect key="frame" x="15" y="0.0" width="252" height="44"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -53,7 +53,7 @@
                         <constraint firstAttribute="bottom" secondItem="C25-yd-dtF" secondAttribute="bottom" id="WQy-vV-JBA"/>
                         <constraint firstAttribute="trailing" secondItem="C25-yd-dtF" secondAttribute="trailing" id="Wfl-ia-c1l"/>
                         <constraint firstItem="C25-yd-dtF" firstAttribute="leading" secondItem="CHb-T7-cKV" secondAttribute="trailing" id="Yvu-oe-hmM"/>
-                        <constraint firstItem="CHb-T7-cKV" firstAttribute="leading" secondItem="HCB-ZK-g0V" secondAttribute="leading" id="eSS-gx-kdC"/>
+                        <constraint firstItem="CHb-T7-cKV" firstAttribute="leading" secondItem="HCB-ZK-g0V" secondAttribute="leading" constant="15" id="eSS-gx-kdC"/>
                         <constraint firstAttribute="bottom" secondItem="CHb-T7-cKV" secondAttribute="bottom" id="mew-gW-DTg"/>
                         <constraint firstItem="C25-yd-dtF" firstAttribute="top" secondItem="HCB-ZK-g0V" secondAttribute="top" id="qsV-UH-Pr5"/>
                     </constraints>

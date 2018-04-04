@@ -14,9 +14,16 @@
 @property (nonatomic , copy) NSString              * keyWord;
 @property (nonatomic , copy) NSString              * sellerId;
 @property (nonatomic , copy) NSString              * orderid;
-
 @property (nonatomic , copy) NSString              * privatekey;
 @property (nonatomic , copy) NSString              * callback;
+@property (nonatomic , copy) NSString              * sign;
+@property (nonatomic , copy) NSString              * nonce_str;
+@property (nonatomic , copy) NSString              * trade_type;
+@property (nonatomic , copy) NSString              * appid;
+
+@property (nonatomic , copy) NSString              * privateKey;
+@property (nonatomic , copy) NSString              * prepay_id;
+@property (nonatomic , copy) NSString              * timestamp;
 
 
 @end

@@ -63,6 +63,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "Toast+UIView.h"
 #import "KX_ActionSheet.h"
+#import "WXApi.h"
 
 //#import<BaiduMapAPI_Map/BMKMapView.h>
 //

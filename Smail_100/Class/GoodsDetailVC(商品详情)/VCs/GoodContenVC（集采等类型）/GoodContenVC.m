@@ -135,6 +135,12 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 }
 
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.selectView removeFromSuperview];
+    self.selectView = nil;
+}
 
 /// 配置基础设置
 - (void)setConfiguration
