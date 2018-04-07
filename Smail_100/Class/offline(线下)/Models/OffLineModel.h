@@ -9,9 +9,25 @@
 #import <Foundation/Foundation.h>
 
 @class Banners;
+@class Catelist;
+
+
+@interface Catelist :NSObject
+@property (nonatomic , copy) NSString              * ad_id;
+@property (nonatomic , copy) NSString              * url;
+@property (nonatomic , copy) NSString              * click_type;
+@property (nonatomic , copy) NSString              * category_id;
+@property (nonatomic , copy) NSString              * id;
+@property (nonatomic , copy) NSString              * title;
+@property (nonatomic , copy) NSString              * pict_url;
+@property (nonatomic , copy) NSString              * goods_id;
+
+@end
 
 @interface OffLineModel : NSObject
 @property (nonatomic , copy) NSArray<Banners *>              * banners;
+@property (nonatomic , copy) NSArray<Catelist *>              * catelist;
+
 @property (nonatomic , copy) NSString              * district;
 @property (nonatomic , copy) NSString              * city;
 @property (nonatomic , copy) NSString              * distance;

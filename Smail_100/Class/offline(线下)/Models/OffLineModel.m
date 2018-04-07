@@ -8,6 +8,8 @@
 
 #import "OffLineModel.h"
 
+@implementation Catelist
+@end
 
 @implementation OffLineModel
 

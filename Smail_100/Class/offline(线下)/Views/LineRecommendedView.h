@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "OffLineModel.h"
 @interface LineRecommendedView : UIView
+@property (nonatomic, strong) NSArray *catelist;
 
+@property (nonatomic, copy) void(^didClickItemBlock)(Catelist *item);
 @end

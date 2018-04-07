@@ -42,7 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="五谷坊湘菜馆五谷坊湘菜馆五谷坊湘菜馆" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjE-HK-WGq">
-                        <rect key="frame" x="130" y="49" width="127.5" height="40"/>
+                        <rect key="frame" x="130" y="49" width="119.5" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="4eq-La-LVD"/>
                         </constraints>
@@ -51,10 +51,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2001M" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCc-dU-9Cf">
-                        <rect key="frame" x="268" y="50.5" width="42" height="16"/>
+                        <rect key="frame" x="260" y="50.5" width="50" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="1sa-Hg-NV9"/>
-                            <constraint firstAttribute="width" constant="41.5" id="G2v-91-erX"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="G2v-91-erX"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>

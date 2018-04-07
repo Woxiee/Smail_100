@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OfflineDetailModel.h"
 
 @interface MeunLineOffVC : KX_BaseViewController
 
+@property (nonatomic, strong) OfflineDetailModel *detailModel;
 @end

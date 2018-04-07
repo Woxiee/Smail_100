@@ -72,7 +72,21 @@
     }
 }
 
+/// 二维码
+- (IBAction)didClickCordAction:(id)sender {
+}
 
+
+
+/// 代理商
+- (IBAction)didCikckHHR:(id)sender {
+    
+    if (self.didClickHHRBlock) {
+        self.didClickHHRBlock();
+    }
+
+    
+}
 
 
 

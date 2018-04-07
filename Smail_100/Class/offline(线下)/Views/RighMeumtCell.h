@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+
+#import "OrderGoodsModel.h"
 @interface RighMeumtCell : UITableViewCell
-@property(nonatomic,strong) void(^cellAdd)(void);
-@property(nonatomic,strong) void(^cellReduce)(void);
-@property(nonatomic,strong) void(^cellInputText)(void);
+@property(nonatomic,strong) void(^cellAdd)(OrderGoodsModel *model);
+@property(nonatomic,strong) void(^cellReduce)(OrderGoodsModel *model);
+@property(nonatomic,strong) void(^cellInputText)(OrderGoodsModel *model);
+
+@property (nonatomic, strong) OrderGoodsModel *model;
+
 @end

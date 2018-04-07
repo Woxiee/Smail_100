@@ -17,8 +17,10 @@
     
     __weak IBOutlet UIButton *reduceBtn;
     __weak IBOutlet UIButton *addBtn;
-    __weak IBOutlet UILabel *countLb;
     
+    __weak IBOutlet UITextField *countTf;
+    
+    __weak IBOutlet UILabel *jfLb;
 }
 
 
@@ -28,30 +30,50 @@
     //    goodCommom.textColor = DETAILTEXTCOLOR;
     priceLable.textColor = KMAINCOLOR;
     seleNum.textColor = DETAILTEXTCOLOR;
-    countLb.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickInput)];
-    [countLb addGestureRecognizer:tap];}
+    countTf.userInteractionEnabled = YES;
+    [countTf layerWithRadius:0 lineWidth:1 color:KMAINCOLOR];
+    jfLb.textColor = DETAILTEXTCOLOR;
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickInput)];
+//    [countTf addGestureRecognizer:tap];
+    
+    
+}
 
 - (IBAction)addToShoppingCar:(UIButton *)sender {
     
     if (_cellAdd) {
-        _cellAdd();
+        _cellAdd(_model);
     }
 }
 
 - (IBAction)clickreduceToShoppingCar:(id)sender {
     
     if (_cellReduce) {
-        _cellReduce();
+        _cellReduce(_model);
     }
 }
 
 -(void)clickInput{
     
     if (_cellInputText) {
-        _cellInputText();
+        _cellInputText(_model);
     }
     
+}
+
+
+- (void)setModel:(OrderGoodsModel *)model
+{
+    _model = model;
+    nameLable.text = _model.productName;
+    [headImage sd_setImageWithURL:[NSURL URLWithString:_model.productLogo] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
+  priceLable.text = [NSString stringWithFormat:@"￥%@",_model.productPrice];
+    if (_model.point.floatValue <=0) {
+        jfLb.hidden = YES;
+    }
+    jfLb.text = [NSString stringWithFormat:@"送%@积分",_model.point];
+  
+    countTf.text = _model.itemCount;
 }
 
 @end

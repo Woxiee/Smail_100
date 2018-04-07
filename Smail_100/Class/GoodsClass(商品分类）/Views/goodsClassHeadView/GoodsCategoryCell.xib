@@ -26,7 +26,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123132" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKj-zm-Z7X">
-                        <rect key="frame" x="20" y="20" width="280" height="20"/>
+                        <rect key="frame" x="15" y="20" width="290" height="20"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="9Ur-RN-Yjt"/>
@@ -38,9 +38,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="A4x-fw-Gq8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5O4-of-hM1"/>
-                    <constraint firstAttribute="trailing" secondItem="nKj-zm-Z7X" secondAttribute="trailing" constant="20" id="LrF-Kg-FXe"/>
+                    <constraint firstAttribute="trailing" secondItem="nKj-zm-Z7X" secondAttribute="trailing" constant="15" id="LrF-Kg-FXe"/>
                     <constraint firstItem="nKj-zm-Z7X" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PmW-Gr-yuO"/>
-                    <constraint firstItem="nKj-zm-Z7X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Te9-Nk-2c0"/>
+                    <constraint firstItem="nKj-zm-Z7X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Te9-Nk-2c0"/>
                     <constraint firstAttribute="trailing" secondItem="A4x-fw-Gq8" secondAttribute="trailing" id="djC-g3-Nj2"/>
                     <constraint firstAttribute="bottom" secondItem="A4x-fw-Gq8" secondAttribute="bottom" id="mLF-kE-1xm"/>
                 </constraints>

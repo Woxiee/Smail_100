@@ -60,9 +60,30 @@
 }
 
 
-- (void)setModel:(OffLineModel *)model
+- (void)setModel:(OfflineDetailModel *)model
 {
     _model = model;
+    storeLb.text = _model.shop_name;
+//    _starImageView
+    _commNumberLB.text = [NSString stringWithFormat:@"%@",_model.comment_count];
+    addressLB.text = [NSString stringWithFormat:@"%@%@%@%@",_model.province,_model.city,_model.district,_model.address];
+    distanceLB.text =  [NSString stringWithFormat:@"%@米",_model.distance];
+    [findLb setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    
+    tellLB.text = _model.contact_phone;
+    timeLB.text = [NSString stringWithFormat:@"营业时间: %@",@"08:00-23:00"];
+    mianLb.text = _model.business_info;
+    
+    commentLb.text = [NSString stringWithFormat:@"%@人评价",_model.comment_count];
+    if (_model.comment.count >0) {
+        Comment *item = _model.comment[0];
+        
+        nameLb.text = @"测试";
+        commTextLb.text = item.comment;
+        comDate.text = item.ctime;
+        
+    }
+
     
     
 }

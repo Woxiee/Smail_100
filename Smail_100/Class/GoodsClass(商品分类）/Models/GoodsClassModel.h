@@ -19,11 +19,27 @@
 
 @end
 
+@interface RightGoods :NSObject
+@property (nonatomic , copy) NSString              * pict_url;
+@property (nonatomic , copy) NSString              * goods_id;
+@property (nonatomic , copy) NSString              * earn_point;
+@property (nonatomic , copy) NSString              * price;
+@property (nonatomic , copy) NSString              * title;
+@property (nonatomic , copy) NSString              * shop_id;
+@property (nonatomic , copy) NSString              * nums;
+
+@property (nonatomic , copy) NSString              * itemCount;
+
+
+@end
+
 @interface LeftCategory :NSObject
 @property (nonatomic , copy) NSString              * id;
 @property (nonatomic , copy) NSString              * logo;
 @property (nonatomic , copy) NSString              * name;
 @property (nonatomic , copy) NSString              * type;
+
+@property (nonatomic , copy) NSString              * nums;
 
 @property (nonatomic, assign) BOOL select;
 
@@ -51,5 +67,8 @@
 @property (nonatomic , copy) NSArray<Banners *>              * banners;
 @property (nonatomic , copy) NSArray<LeftCategory *>              * leftCategory;
 @property (nonatomic , copy) NSArray<RightCategory *>              * rightCategory;
+@property (nonatomic , copy) NSArray<RightGoods *>              * rightGoods;
+@property (nonatomic, copy)  NSString *UUID;
+
 
 @end

@@ -201,6 +201,8 @@
 }
 
 
+
+
 /**
  4.5完成结算 清空购物车
  0
@@ -222,6 +224,33 @@
 //
 //        }
 //    }];
+}
+
+
+/**
+ 修改本地商家购物车的数量
+ 
+ @param count 修改后的数量
+ @param shopaCarGoodsBlock 成功／失败回调
+ */
+-(void)changeOffLineShopCarGoodsCount:(NSString *)count goods:(OrderGoodsModel*)goodsModel  Params:(id)param  handleback:(void(^) (NSInteger code))shopaCarGoodsBlock
+{
+    if (count == nil) {
+        [self showErrMsg:@"系统异常"];
+    }
+    
+    [BaseHttpRequest postWithUrl:@"/shop/save_goods_nums" andParameters:param  andRequesultBlock:^(id result, NSError *error) {
+        
+        if (error) {
+            [self showErrMsg:LocalMyString(NOTICEMESSAGE)];
+        }else{
+            NSInteger state = [result[@"code"] integerValue];
+            NSString *msg = result[@"msg"];
+            shopaCarGoodsBlock(state);
+            [self showErrMsg:msg];
+            if (state == 0) return ;
+        }
+    }];
 }
 
 
@@ -385,6 +414,27 @@
 //    item.sendInfo = model.ruleInfo;
 //    return item;
 //}
+
+
++ (OrderGoodsModel*)changeRightGoodsModelInListToOrderGoodsModel:(RightGoods *)model
+{
+    OrderGoodsModel *item = [OrderGoodsModel new];
+    item.id = model.goods_id;
+    item.productId = model.goods_id;
+    item.productName = model.title;
+
+    item.itemCount = model.nums;
+    item.productPrice = model.price;
+    item.point = model.earn_point;
+    item.seller_id = @"";
+    item.store_nums = @"";
+    item.productLogo = model.pict_url;
+
+//    item.property = model.spec;
+//    item.selectStatue = model.selectStatue?model.selectStatue:@"0";
+//    item.cid = model.cid;
+    return item;
+}
 #pragma mark - private
 -(void)showErrMsg:(NSString *)errMsg{
     

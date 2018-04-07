@@ -139,4 +139,7 @@
 /// 校验身份证
 +(BOOL)checkIdentityCardNo:(NSString*)cardNo;
 
+///MD5加密的字符串分类
+- (NSString *)md5String;
+
 @end

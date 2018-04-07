@@ -26,6 +26,9 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
                     <state key="normal" backgroundImage="gerenzhongxin001.png"/>
+                    <connections>
+                        <action selector="didCikckHHR:" destination="1py-vz-0Ai" eventType="touchUpInside" id="7pn-5b-Xhz"/>
+                    </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="6@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="ptz-eE-b6r">
                     <rect key="frame" x="120" y="19" width="80" height="80"/>
@@ -70,6 +73,9 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
                     <state key="normal" backgroundImage="gerenzhongxin1.png"/>
+                    <connections>
+                        <action selector="didClickCordAction:" destination="1py-vz-0Ai" eventType="touchUpInside" id="GXf-np-9Pn"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

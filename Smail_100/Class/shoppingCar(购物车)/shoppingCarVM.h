@@ -71,6 +71,13 @@
  */
 -(void)changeShopCarGoodsCount:(NSString *)count goods:(OrderGoodsModel*)goodsModel  Params:(id)param  handleback:(void(^) (NSInteger code))shopaCarGoodsBlock;
 
+/**
+ 修改本地商家购物车的数量
+ 
+ @param count 修改后的数量
+ @param shopaCarGoodsBlock 成功／失败回调
+ */
+-(void)changeOffLineShopCarGoodsCount:(NSString *)count goods:(OrderGoodsModel*)goodsModel  Params:(id)param  handleback:(void(^) (NSInteger code))shopaCarGoodsBlock;
 
 /**
  清空购物车
@@ -113,6 +120,10 @@
 + (OrderGoodsModel*)changeProductsModelInListToOrderGoodsModel:(Products*)model;
 
 + (OrderGoodsModel*)changeMarkModeValueWithGoodsModel:(MarketRuleList *)model;
+
+
++ (OrderGoodsModel*)changeRightGoodsModelInListToOrderGoodsModel:(RightGoods *)model;
+
 
 
 @end

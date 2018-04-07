@@ -8,6 +8,12 @@
 
 #import "GoodsClassModel.h"
 
+
+@implementation RightGoods
+
+@end
+
+
 @implementation Banners
 
 @end

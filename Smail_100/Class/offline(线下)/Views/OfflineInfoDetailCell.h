@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OffLineModel.h"
-
+#import "OfflineDetailModel.h"
 @interface OfflineInfoDetailCell : UITableViewCell
-@property (nonatomic, strong) OffLineModel *model;
+@property (nonatomic, strong) OfflineDetailModel *model;
 @property (nonatomic, copy) void(^didClickInfoCellBlock)(NSInteger index);
 
 @end

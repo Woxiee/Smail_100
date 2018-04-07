@@ -7,7 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E24E8F22077C962006F5C32 /* OfflineCommetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E24E8F02077C962006F5C32 /* OfflineCommetCell.m */; };
+		3E24E8F32077C962006F5C32 /* OfflineCommetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E24E8F12077C962006F5C32 /* OfflineCommetCell.xib */; };
+		3E24E8F720785A1A006F5C32 /* LevepartnerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E24E8F620785A1A006F5C32 /* LevepartnerVC.m */; };
+		3E24E8FB20785B7A006F5C32 /* LevePartnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E24E8F920785B7A006F5C32 /* LevePartnerCell.m */; };
+		3E24E8FC20785B7A006F5C32 /* LevePartnerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E24E8FA20785B7A006F5C32 /* LevePartnerCell.xib */; };
+		3E24E8FF207862C2006F5C32 /* LevePartNerHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E24E8FE207862C2006F5C32 /* LevePartNerHeadView.m */; };
+		3E24E90520786536006F5C32 /* LevePartnerHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E24E90320786535006F5C32 /* LevePartnerHeadCell.m */; };
+		3E24E90820786AEF006F5C32 /* LevePartnerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E24E90720786AEF006F5C32 /* LevePartnerModel.m */; };
+		3E24E91820791202006F5C32 /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E24E90B20791201006F5C32 /* CAAnimation+WAnimation.m */; };
+		3E24E91920791202006F5C32 /* UIBarButtonItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E24E91020791201006F5C32 /* UIBarButtonItem+WZLBadge.m */; };
+		3E24E91A20791202006F5C32 /* UITabBarItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E24E91120791201006F5C32 /* UITabBarItem+WZLBadge.m */; };
+		3E24E91B20791202006F5C32 /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E24E91720791201006F5C32 /* UIView+WZLBadge.m */; };
 		3E27F91D2053B21200A1DA2F /* PayModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27F91C2053B21200A1DA2F /* PayModels.m */; };
+		3E2BE65B207719F3009BD7A7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E2BE658207719F3009BD7A7 /* README.txt */; };
+		3E2BE65C207719F3009BD7A7 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2BE65A207719F3009BD7A7 /* libWeChatSDK.a */; };
+		3E519A472076819C00785177 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E519A462076819B00785177 /* libsqlite3.0.tbd */; };
 		3E5D837A20557661001B542E /* goodsAdd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E5D837920557660001B542E /* goodsAdd@2x.png */; };
 		3E5F264D2061456A0057269A /* StoreMangerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F264B2061456A0057269A /* StoreMangerVC.m */; };
 		3E5F264E2061456A0057269A /* StoreMangerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5F264C2061456A0057269A /* StoreMangerVC.xib */; };
@@ -20,6 +35,7 @@
 		3EB8E0172060048A00E717B1 /* AddOrEidtGoodVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8E0152060048A00E717B1 /* AddOrEidtGoodVC.xib */; };
 		3ECD1CC0205CC86A008D8686 /* QrCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD1CBE205CC86A008D8686 /* QrCodeVC.m */; };
 		3ECD1CC1205CC86A008D8686 /* QrCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ECD1CBF205CC86A008D8686 /* QrCodeVC.xib */; };
+		3EE5592820776625003574E0 /* OfflineDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE5592720776625003574E0 /* OfflineDetailModel.m */; };
 		7361221E789C7F5110C27B63 /* libPods-Smail_100Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E60962CF3B597F7C431212A7 /* libPods-Smail_100Tests.a */; };
 		82F5EE41AA9646C1E825EDAF /* libPods-Smail_100UITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B1D3A6DB1A20BAB619951F /* libPods-Smail_100UITests.a */; };
 		8C0866987E6E96672AB3A8CE /* libPods-Smail_100.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A86AB9D82022D48C4DD265CC /* libPods-Smail_100.a */; };
@@ -904,8 +920,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E24E8EF2077C962006F5C32 /* OfflineCommetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfflineCommetCell.h; sourceTree = "<group>"; };
+		3E24E8F02077C962006F5C32 /* OfflineCommetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfflineCommetCell.m; sourceTree = "<group>"; };
+		3E24E8F12077C962006F5C32 /* OfflineCommetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfflineCommetCell.xib; sourceTree = "<group>"; };
+		3E24E8F520785A1A006F5C32 /* LevepartnerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevepartnerVC.h; sourceTree = "<group>"; };
+		3E24E8F620785A1A006F5C32 /* LevepartnerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LevepartnerVC.m; sourceTree = "<group>"; };
+		3E24E8F820785B7A006F5C32 /* LevePartnerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevePartnerCell.h; sourceTree = "<group>"; };
+		3E24E8F920785B7A006F5C32 /* LevePartnerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LevePartnerCell.m; sourceTree = "<group>"; };
+		3E24E8FA20785B7A006F5C32 /* LevePartnerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LevePartnerCell.xib; sourceTree = "<group>"; };
+		3E24E8FD207862C2006F5C32 /* LevePartNerHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevePartNerHeadView.h; sourceTree = "<group>"; };
+		3E24E8FE207862C2006F5C32 /* LevePartNerHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LevePartNerHeadView.m; sourceTree = "<group>"; };
+		3E24E90320786535006F5C32 /* LevePartnerHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevePartnerHeadCell.m; sourceTree = "<group>"; };
+		3E24E90420786535006F5C32 /* LevePartnerHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevePartnerHeadCell.h; sourceTree = "<group>"; };
+		3E24E90620786AEF006F5C32 /* LevePartnerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevePartnerModel.h; sourceTree = "<group>"; };
+		3E24E90720786AEF006F5C32 /* LevePartnerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LevePartnerModel.m; sourceTree = "<group>"; };
+		3E24E90B20791201006F5C32 /* CAAnimation+WAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+WAnimation.m"; sourceTree = "<group>"; };
+		3E24E90C20791201006F5C32 /* CAAnimation+WAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+WAnimation.h"; sourceTree = "<group>"; };
+		3E24E90E20791201006F5C32 /* UIBarButtonItem+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WZLBadge.h"; sourceTree = "<group>"; };
+		3E24E90F20791201006F5C32 /* UITabBarItem+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+WZLBadge.h"; sourceTree = "<group>"; };
+		3E24E91020791201006F5C32 /* UIBarButtonItem+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+WZLBadge.m"; sourceTree = "<group>"; };
+		3E24E91120791201006F5C32 /* UITabBarItem+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+WZLBadge.m"; sourceTree = "<group>"; };
+		3E24E91220791201006F5C32 /* WZLBadgeImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLBadgeImport.h; sourceTree = "<group>"; };
+		3E24E91420791201006F5C32 /* WZLBadgeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLBadgeProtocol.h; sourceTree = "<group>"; };
+		3E24E91620791201006F5C32 /* UIView+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WZLBadge.h"; sourceTree = "<group>"; };
+		3E24E91720791201006F5C32 /* UIView+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WZLBadge.m"; sourceTree = "<group>"; };
 		3E27F91B2053B21200A1DA2F /* PayModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayModels.h; sourceTree = "<group>"; };
 		3E27F91C2053B21200A1DA2F /* PayModels.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayModels.m; sourceTree = "<group>"; };
+		3E2BE656207719F3009BD7A7 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		3E2BE657207719F3009BD7A7 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		3E2BE658207719F3009BD7A7 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		3E2BE659207719F3009BD7A7 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		3E2BE65A207719F3009BD7A7 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		3E519A462076819B00785177 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		3E5D837920557660001B542E /* goodsAdd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goodsAdd@2x.png"; sourceTree = "<group>"; };
 		3E5F264A2061456A0057269A /* StoreMangerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreMangerVC.h; sourceTree = "<group>"; };
 		3E5F264B2061456A0057269A /* StoreMangerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreMangerVC.m; sourceTree = "<group>"; };
@@ -926,6 +972,8 @@
 		3ECD1CBD205CC86A008D8686 /* QrCodeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QrCodeVC.h; sourceTree = "<group>"; };
 		3ECD1CBE205CC86A008D8686 /* QrCodeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QrCodeVC.m; sourceTree = "<group>"; };
 		3ECD1CBF205CC86A008D8686 /* QrCodeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QrCodeVC.xib; sourceTree = "<group>"; };
+		3EE5592620776625003574E0 /* OfflineDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfflineDetailModel.h; sourceTree = "<group>"; };
+		3EE5592720776625003574E0 /* OfflineDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfflineDetailModel.m; sourceTree = "<group>"; };
 		4934D657891FA445D50032BA /* Pods-Smail_100Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smail_100Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smail_100Tests/Pods-Smail_100Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5339DC5FA894BA8623772C85 /* Pods-Smail_100.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smail_100.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smail_100/Pods-Smail_100.debug.xcconfig"; sourceTree = "<group>"; };
 		564A11ABF291BAB4A9567C14 /* Pods-Smail_100.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smail_100.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smail_100/Pods-Smail_100.release.xcconfig"; sourceTree = "<group>"; };
@@ -2339,6 +2387,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E519A472076819C00785177 /* libsqlite3.0.tbd in Frameworks */,
+				3E2BE65C207719F3009BD7A7 /* libWeChatSDK.a in Frameworks */,
 				E11531152052984700B5852F /* CoreMotion.framework in Frameworks */,
 				E1153129205298B800B5852F /* CFNetwork.framework in Frameworks */,
 				E1153127205298B200B5852F /* Foundation.framework in Frameworks */,
@@ -2376,6 +2426,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E24E8F4207859FD006F5C32 /* Levepartner(合伙人) */ = {
+			isa = PBXGroup;
+			children = (
+				3E24E8F520785A1A006F5C32 /* LevepartnerVC.h */,
+				3E24E8F620785A1A006F5C32 /* LevepartnerVC.m */,
+				3E24E8F820785B7A006F5C32 /* LevePartnerCell.h */,
+				3E24E8F920785B7A006F5C32 /* LevePartnerCell.m */,
+				3E24E90420786535006F5C32 /* LevePartnerHeadCell.h */,
+				3E24E90320786535006F5C32 /* LevePartnerHeadCell.m */,
+				3E24E8FA20785B7A006F5C32 /* LevePartnerCell.xib */,
+				3E24E8FD207862C2006F5C32 /* LevePartNerHeadView.h */,
+				3E24E8FE207862C2006F5C32 /* LevePartNerHeadView.m */,
+				3E24E90620786AEF006F5C32 /* LevePartnerModel.h */,
+				3E24E90720786AEF006F5C32 /* LevePartnerModel.m */,
+			);
+			path = "Levepartner(合伙人)";
+			sourceTree = "<group>";
+		};
+		3E24E90920791201006F5C32 /* WZLBadge */ = {
+			isa = PBXGroup;
+			children = (
+				3E24E90A20791201006F5C32 /* CategorySupport */,
+				3E24E90D20791201006F5C32 /* BarItem */,
+				3E24E91220791201006F5C32 /* WZLBadgeImport.h */,
+				3E24E91320791201006F5C32 /* Protocol */,
+				3E24E91520791201006F5C32 /* View */,
+			);
+			path = WZLBadge;
+			sourceTree = "<group>";
+		};
+		3E24E90A20791201006F5C32 /* CategorySupport */ = {
+			isa = PBXGroup;
+			children = (
+				3E24E90B20791201006F5C32 /* CAAnimation+WAnimation.m */,
+				3E24E90C20791201006F5C32 /* CAAnimation+WAnimation.h */,
+			);
+			path = CategorySupport;
+			sourceTree = "<group>";
+		};
+		3E24E90D20791201006F5C32 /* BarItem */ = {
+			isa = PBXGroup;
+			children = (
+				3E24E90E20791201006F5C32 /* UIBarButtonItem+WZLBadge.h */,
+				3E24E90F20791201006F5C32 /* UITabBarItem+WZLBadge.h */,
+				3E24E91020791201006F5C32 /* UIBarButtonItem+WZLBadge.m */,
+				3E24E91120791201006F5C32 /* UITabBarItem+WZLBadge.m */,
+			);
+			path = BarItem;
+			sourceTree = "<group>";
+		};
+		3E24E91320791201006F5C32 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				3E24E91420791201006F5C32 /* WZLBadgeProtocol.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		3E24E91520791201006F5C32 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3E24E91620791201006F5C32 /* UIView+WZLBadge.h */,
+				3E24E91720791201006F5C32 /* UIView+WZLBadge.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3E27F9192053B1F700A1DA2F /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -2391,6 +2508,18 @@
 				3E27F91C2053B21200A1DA2F /* PayModels.m */,
 			);
 			path = PayModels;
+			sourceTree = "<group>";
+		};
+		3E2BE655207719F3009BD7A7 /* WechatSDK */ = {
+			isa = PBXGroup;
+			children = (
+				3E2BE656207719F3009BD7A7 /* WXApi.h */,
+				3E2BE657207719F3009BD7A7 /* WXApiObject.h */,
+				3E2BE658207719F3009BD7A7 /* README.txt */,
+				3E2BE659207719F3009BD7A7 /* WechatAuthSDK.h */,
+				3E2BE65A207719F3009BD7A7 /* libWeChatSDK.a */,
+			);
+			path = WechatSDK;
 			sourceTree = "<group>";
 		};
 		3E5FC2C4205E31980067CFA5 /* YBPopupMenu */ = {
@@ -2411,6 +2540,8 @@
 			children = (
 				3E5FC2CF205EB4470067CFA5 /* OffLineModel.h */,
 				3E5FC2D0205EB4470067CFA5 /* OffLineModel.m */,
+				3EE5592620776625003574E0 /* OfflineDetailModel.h */,
+				3EE5592720776625003574E0 /* OfflineDetailModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2440,6 +2571,7 @@
 		B0CA06D981E6AED9FBBF3AB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E519A462076819B00785177 /* libsqlite3.0.tbd */,
 				E1153128205298B800B5852F /* CFNetwork.framework */,
 				E1153126205298B200B5852F /* Foundation.framework */,
 				E1153124205298AC00B5852F /* UIKit.framework */,
@@ -3614,6 +3746,7 @@
 		E10B0BBF20528AE8008BA706 /* VCS */ = {
 			isa = PBXGroup;
 			children = (
+				3E24E8F4207859FD006F5C32 /* Levepartner(合伙人) */,
 				E115577F2063AF4700B344B3 /* OpenBusinss(开通商家) */,
 				E11557022062554B00B344B3 /*  AgentPlatformVC(代理平台) */,
 				E11556EE2061FF6300B344B3 /* ChangeThePhone(话费兑换) */,
@@ -4196,6 +4329,9 @@
 				E172EBD0205FC2280079CD3D /* RighMeumtCell.h */,
 				E172EBD1205FC2280079CD3D /* RighMeumtCell.m */,
 				E172EBD2205FC2280079CD3D /* RighMeumtCell.xib */,
+				3E24E8EF2077C962006F5C32 /* OfflineCommetCell.h */,
+				3E24E8F02077C962006F5C32 /* OfflineCommetCell.m */,
+				3E24E8F12077C962006F5C32 /* OfflineCommetCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5262,6 +5398,8 @@
 		E10B0FEE20528B02008BA706 /* KX_Vender */ = {
 			isa = PBXGroup;
 			children = (
+				3E24E90920791201006F5C32 /* WZLBadge */,
+				3E2BE655207719F3009BD7A7 /* WechatSDK */,
 				E1488217206F947500A3CC03 /* KYGoheadView(快速回到顶部) */,
 				E126DA40206CEA4F00653419 /* DQStarView */,
 				E18CBA88206620A3003DF53A /* FYLCityPickView */,
@@ -6652,6 +6790,7 @@
 				E10B125220528B06008BA706 /* muban15@3x.png in Resources */,
 				E10B124C20528B06008BA706 /* qianbaozhuanzeng3@3x.png in Resources */,
 				E10B11D120528B06008BA706 /* gerenzhongxin7@3x.png in Resources */,
+				3E24E8FC20785B7A006F5C32 /* LevePartnerCell.xib in Resources */,
 				E10B122E20528B06008BA706 /* xitongshezhi1@3x.png in Resources */,
 				E10B0D8920528AE8008BA706 /* SendCommentsVC.xib in Resources */,
 				E11557642063930600B344B3 /* wxzf@3x.png in Resources */,
@@ -6686,6 +6825,7 @@
 				E10B121E20528B06008BA706 /* wodetuandui1@3x.png in Resources */,
 				3EB8E0172060048A00E717B1 /* AddOrEidtGoodVC.xib in Resources */,
 				3E5D837A20557661001B542E /* goodsAdd@2x.png in Resources */,
+				3E2BE65B207719F3009BD7A7 /* README.txt in Resources */,
 				E10B123720528B06008BA706 /* zhanghuguanli14@3x.png in Resources */,
 				E10B0DC420528AE8008BA706 /* MeOrderGoodsCell.xib in Resources */,
 				E10B127420528B06008BA706 /* xianxiashangjia19@3x.png in Resources */,
@@ -6730,6 +6870,7 @@
 				E11557072062556700B344B3 /* AgentPlatformVC.xib in Resources */,
 				E10B121120528B06008BA706 /* shangjiazhongxin22@3x.png in Resources */,
 				E16596E520564EB0008ADC6B /* goodsAd.png in Resources */,
+				3E24E8F32077C962006F5C32 /* OfflineCommetCell.xib in Resources */,
 				E10B11FC20528B06008BA706 /* shangchengdingdan2@3x.png in Resources */,
 				E151CC7F206E202100F4EF9E /* moren@3x.png in Resources */,
 				E10B0DE720528AE8008BA706 /* StoreMangerVHeadView.xib in Resources */,
@@ -6982,14 +7123,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Smail_100/Pods-Smail_100-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/JSBadgeView/JSBadgeView.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/JSBadgeView/JSBadgeView.bundle,
 				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/JSBadgeView.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7075,6 +7214,7 @@
 				E10B0D3120528AE8008BA706 /* ItemContentList.m in Sources */,
 				E10B0CD920528AE8008BA706 /* GoodsClassVModel.m in Sources */,
 				E10B0CEE20528AE8008BA706 /* GoodsDetailVC.m in Sources */,
+				3E24E8F22077C962006F5C32 /* OfflineCommetCell.m in Sources */,
 				E10B0FED20528AFF008BA706 /* KX_UserInfo.m in Sources */,
 				E10B108D20528B03008BA706 /* NSObject+MJCoding.m in Sources */,
 				E10B0CF720528AE8008BA706 /* FLCountDownView.m in Sources */,
@@ -7144,6 +7284,7 @@
 				E10B0D4320528AE8008BA706 /* GoodScreenCollectCell.m in Sources */,
 				E10B0CD320528AE8008BA706 /* BrowsingHistoryVC.m in Sources */,
 				E10B0F9E20528AFA008BA706 /* FK_ActionSheetCell.m in Sources */,
+				3E24E8FB20785B7A006F5C32 /* LevePartnerCell.m in Sources */,
 				E10B0DDF20528AE8008BA706 /* OrderServiewInfoCell.m in Sources */,
 				E10B0D5420528AE8008BA706 /* TimelimitCell.m in Sources */,
 				E10B0FE220528AFA008BA706 /* ZYShareSheetCell.m in Sources */,
@@ -7158,6 +7299,7 @@
 				E10B108C20528B03008BA706 /* NSObject+MJClass.m in Sources */,
 				E167EC44205A6F0200A8F744 /* AcctouWaterMeunView.m in Sources */,
 				E10B0FD820528AFA008BA706 /* UIView+SEKExtension.m in Sources */,
+				3E24E8FF207862C2006F5C32 /* LevePartNerHeadView.m in Sources */,
 				E10B0CF320528AE8008BA706 /* AttributeListView.m in Sources */,
 				E10B029E205289EC008BA706 /* main.m in Sources */,
 				E115577E2063A5BE00B344B3 /* AgentPlatformModel.m in Sources */,
@@ -7248,6 +7390,7 @@
 				E10B0DF420528AE8008BA706 /* shoppingCarVM.m in Sources */,
 				E10B0DD120528AE8008BA706 /* CloseReasonView.m in Sources */,
 				E10B0CDA20528AE8008BA706 /* ShopMoreGoodsCell.m in Sources */,
+				3E24E91A20791202006F5C32 /* UITabBarItem+WZLBadge.m in Sources */,
 				E10B0D9E20528AE8008BA706 /* DemandVModel.m in Sources */,
 				E10B0CDE20528AE8008BA706 /* GoodsCategoryCollectionHeader.m in Sources */,
 				E10B0D7F20528AE8008BA706 /* MeChantMainVC.m in Sources */,
@@ -7260,6 +7403,7 @@
 				E10B0DF220528AE8008BA706 /* ShoppingCarVC.m in Sources */,
 				E10B0FDE20528AFA008BA706 /* XXPageTabItemLable.m in Sources */,
 				E10B0FD220528AFA008BA706 /* ResultCityController.m in Sources */,
+				3E24E8F720785A1A006F5C32 /* LevepartnerVC.m in Sources */,
 				E10B0D6A20528AE8008BA706 /* AssetModel.m in Sources */,
 				E167EC3B205A5C9400A8F744 /* AcctoutWaterModel.m in Sources */,
 				E10B0FCD20528AFA008BA706 /* FlipTableView.m in Sources */,
@@ -7323,6 +7467,7 @@
 				E10B0FD620528AFA008BA706 /* CustomTopView.m in Sources */,
 				E10B0D5D20528AE8008BA706 /* LoginVModel.m in Sources */,
 				E11531372052993E00B5852F /* PayOtherCell.m in Sources */,
+				3E24E90820786AEF006F5C32 /* LevePartnerModel.m in Sources */,
 				E115577A20639E1900B344B3 /* AgentPlatfoemMainVC.m in Sources */,
 				E10B0EA020528AF5008BA706 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				E10B0D5620528AE8008BA706 /* TimeLimtCollectCell.m in Sources */,
@@ -7359,6 +7504,7 @@
 				E10B0DD620528AE8008BA706 /* OrderAutionCell.m in Sources */,
 				E10B0D1720528AE8008BA706 /* GoodsCombinedCell.m in Sources */,
 				E10B0DCD20528AE8008BA706 /* MySelectTeamView.m in Sources */,
+				3E24E91820791202006F5C32 /* CAAnimation+WAnimation.m in Sources */,
 				E16596E420564EAF008ADC6B /* ChangeGoodsCountView.m in Sources */,
 				E10B0DBA20528AE8008BA706 /* MemberCenterHeaderView.m in Sources */,
 				E10B0D7120528AE8008BA706 /* ManagementModel.m in Sources */,
@@ -7387,6 +7533,7 @@
 				E10B0D1D20528AE8008BA706 /* GoodSOrderNomalCell.m in Sources */,
 				E1F5104A2074BA11003227B6 /* NewTextField.m in Sources */,
 				E10B0D7620528AE8008BA706 /* AddressChanegAndEidteVC.m in Sources */,
+				3E24E91B20791202006F5C32 /* UIView+WZLBadge.m in Sources */,
 				E10B0DE620528AE8008BA706 /* StoreMangerVHeadView.m in Sources */,
 				E10B0E1520528AF0008BA706 /* GlobalExceptionProcess.m in Sources */,
 				E16596F5205773CE008ADC6B /* UIView+DWQExtension.m in Sources */,
@@ -7455,6 +7602,7 @@
 				E10B0D0520528AE8008BA706 /* GoodsDetailCommonCell.m in Sources */,
 				E10B0EC420528AF5008BA706 /* NSArray+JPLogArray.m in Sources */,
 				E10B0D0A20528AE8008BA706 /* GoodsSameFootView.m in Sources */,
+				3E24E90520786536006F5C32 /* LevePartnerHeadCell.m in Sources */,
 				E10B10A220528B03008BA706 /* UIScrollView+MJExtension.m in Sources */,
 				E126DA43206CEA4F00653419 /* DQStarView.m in Sources */,
 				E10B0E1A20528AF0008BA706 /* KX_BaseTabbarController.m in Sources */,
@@ -7501,6 +7649,7 @@
 				E10B0D3020528AE8008BA706 /* InsuranceModel.m in Sources */,
 				E10B0E9820528AF5008BA706 /* SelectWeekView.m in Sources */,
 				E10B0DEE20528AE8008BA706 /* MenuView.m in Sources */,
+				3E24E91920791202006F5C32 /* UIBarButtonItem+WZLBadge.m in Sources */,
 				E10B0CEF20528AE8008BA706 /* GoodsDetailCommenAllVC.m in Sources */,
 				E10B108620528B03008BA706 /* MGSwipeTableCell.m in Sources */,
 				E10B108520528B03008BA706 /* MGSwipeButton.m in Sources */,
@@ -7508,6 +7657,7 @@
 				E10B0D8420528AE8008BA706 /* MyTeamDetailVC.m in Sources */,
 				E10B0DED20528AE8008BA706 /* LineRecommendedView.m in Sources */,
 				E10B108220528B03008BA706 /* MBProgressHUD+Add.m in Sources */,
+				3EE5592820776625003574E0 /* OfflineDetailModel.m in Sources */,
 				E10B0DF120528AE8008BA706 /* OrderGoodsModel.m in Sources */,
 				E10B0FC720528AFA008BA706 /* UITableView+KYRefresh.m in Sources */,
 				E10B0DD920528AE8008BA706 /* OrderGoodDetailCell.m in Sources */,
@@ -7716,6 +7866,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/AppPaySdK",
+					"$(PROJECT_DIR)/Smail_100/KX_Vender/SDKExport",
+					"$(PROJECT_DIR)/Smail_100/KX_Vender/WechtSDK1.8.2_NoPay",
+					"$(PROJECT_DIR)/Smail_100/KX_Vender/WechatSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WX100.Smail.Smail-100";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -7757,6 +7910,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/AppPaySdK",
+					"$(PROJECT_DIR)/Smail_100/KX_Vender/SDKExport",
+					"$(PROJECT_DIR)/Smail_100/KX_Vender/WechtSDK1.8.2_NoPay",
+					"$(PROJECT_DIR)/Smail_100/KX_Vender/WechatSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.WX100.Smail.Smail-100";
 				PRODUCT_NAME = "$(TARGET_NAME)";

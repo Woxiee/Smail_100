@@ -20,6 +20,9 @@
 #import "ChangeThePhoneVC.h"
 #import "AgentPlatformVC.h"
 
+#import "LevepartnerVC.h"
+
+
 @interface MemberCenterMainVC ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) MemberCenterHeaderView * headerView;
 @property (nonatomic, assign) NSInteger sectionCount;
@@ -88,7 +91,11 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     _headerView = [MemberCenterHeaderView membershipHeadView];
-    
+    WEAKSELF;
+    _headerView.didClickHHRBlock = ^{
+        LevepartnerVC *VC = [[LevepartnerVC alloc] init];
+        [weakSelf.navigationController pushViewController:VC animated:YES];
+    };
     self.tableView.tableHeaderView = _headerView;
     if ([self.tableView respondsToSelector:@selector(setContentInsetAdjustmentBehavior:)]) {
         if (@available(iOS 11.0, *)) {

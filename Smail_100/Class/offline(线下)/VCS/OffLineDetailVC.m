@@ -13,6 +13,7 @@
 
 #import "GoodsDetailCommenAllVC.h"
 #import "MeunLineOffVC.h"
+#import "OfflineDetailModel.h"
 
 
 @interface OffLineDetailVC ()<UITableViewDelegate, UITableViewDataSource,SDCycleScrollViewDelegate,SDPhotoBrowserDelegate>
@@ -55,6 +56,7 @@ static NSString * const OfflineInfoDetailCellID = @"OfflineInfoDetailCellID";
 /// 初始化视图
 - (void)setup
 {
+    self.title = @"商家详情";
     [self.tableView registerNib:[UINib nibWithNibName:@"OfflineInfoDetailCell" bundle:nil] forCellReuseIdentifier:OfflineInfoDetailCellID];
 
     [self.view addSubview:self.tableView];
@@ -65,6 +67,30 @@ static NSString * const OfflineInfoDetailCellID = @"OfflineInfoDetailCellID";
 /// 商品详情
 - (void)getGoodsDetailInfoRequest
 {
+    WEAKSELF;
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:_model.shop_id forKey:@"shop_id"];
+    [MBProgressHUD showMessag:@"加载中..." toView:self.view];
+    [BaseHttpRequest postWithUrl:@"/shop/shop_detail" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSString *msg = [result valueForKey:@"msg"];
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+            OfflineDetailModel *model = [OfflineDetailModel yy_modelWithJSON:result[@"data"]];
+            model.comment = [NSArray yy_modelArrayWithClass:[Comment class] json: model.comment];
+            [weakSelf.resorceArray removeAllObjects];
+            [weakSelf.resorceArray addObject:model];
+            
+            NSMutableArray *arr = [[NSMutableArray alloc] init];
+            [arr addObject:model.shop_image];
+            weakSelf.headView.imageURLStringsGroup = arr;
+            [weakSelf.tableView reloadData];
+            
+        }
+        else{
+            [weakSelf showHint:msg];
+
+        }
+    }];
 }
 
 
@@ -78,6 +104,9 @@ static NSString * const OfflineInfoDetailCellID = @"OfflineInfoDetailCellID";
         //        _tableView.tableFooterView = self.footView;
         _tableView.tableFooterView = [UIView new];
         _tableView.tableHeaderView = self.headView;
+        self.tableView.estimatedRowHeight = 350;
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
+
     }
     return _tableView;
 }
@@ -129,7 +158,7 @@ static NSString * const OfflineInfoDetailCellID = @"OfflineInfoDetailCellID";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 1;
+    return self.resorceArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -140,7 +169,8 @@ static NSString * const OfflineInfoDetailCellID = @"OfflineInfoDetailCellID";
     if (cell == nil) {
         cell = [[OfflineInfoDetailCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:OfflineInfoDetailCellID];
     }
-    
+    OfflineDetailModel *model = self.resorceArray[indexPath.row];
+
     cell.didClickInfoCellBlock = ^(NSInteger index) {
         if (index == 0) {//找位置
             
@@ -148,6 +178,7 @@ static NSString * const OfflineInfoDetailCellID = @"OfflineInfoDetailCellID";
         
         if (index == 1) {//查看商家
             MeunLineOffVC *VC = [[MeunLineOffVC alloc] init];
+            VC.detailModel = model;
             [weakSelf.navigationController pushViewController:VC animated:YES];
 
         }
@@ -157,16 +188,17 @@ static NSString * const OfflineInfoDetailCellID = @"OfflineInfoDetailCellID";
         }
     };
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    cell.model = model;
+    cell.model = model;
+    
     return cell;
     
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 505;
-
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 340;
+//
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {

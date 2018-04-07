@@ -18,6 +18,11 @@
 #import "TopScreenView.h"
 #import "OffLineDetailVC.h"
 
+#import "GoodsAuctionXYVC.h"
+#import "GoodsScreeningVC.h"
+
+#import "GoodsDetailVC.h"
+
 @interface OfflineVC ()<SDCycleScrollViewDelegate,PYSearchViewControllerDelegate,YBPopupMenuDelegate>
 @property (weak, nonatomic) SDCycleScrollView  *cycleView;
 @property (nonatomic, strong)  UITextField *inPutTextField;
@@ -35,6 +40,10 @@
 @property (nonatomic, strong) NSString *q;
 
 @property (nonatomic, strong) TopScreenView *topSreenView;
+
+@property (nonatomic, strong) NSArray *catelist;
+
+
 
 @end
 
@@ -88,6 +97,18 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
             if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
                 listArray = [OffLineModel mj_objectArrayWithKeyValuesArray:dic[@"list"]];
                 NSArray *bannerList = [Banners mj_objectArrayWithKeyValuesArray:dic[@"banners"]];
+                NSArray *catelist = [Catelist mj_objectArrayWithKeyValuesArray:dic[@"catelist"]];
+                int i = 0;
+                for (int j = 0; j<catelist.count; j++) {
+                    if (j%4 == 0) {
+                        i++;
+                    }
+                }
+                weakSelf.teamPersenView.frame = CGRectMake(0, CGRectGetMaxY(_cycleView.frame), SCREEN_WIDTH, i*75);
+               weakSelf.headerView.frame = CGRectMake(0, 0, kScreenWidth, weakSelf.cycleView.mj_h +weakSelf.teamPersenView.mj_h);
+
+               weakSelf.teamPersenView.catelist = catelist;
+
                 NSMutableArray *imgList = [[NSMutableArray alloc] init];
                 for (Banners *banner in bannerList) {
                     [imgList addObject:banner.pict_url];
@@ -96,6 +117,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
                 if (weakSelf.page == 0) {
                     [weakSelf.resorceArray removeAllObjects];
                 }
+                [weakSelf.resorceArray removeAllObjects];
                 [weakSelf.resorceArray addObjectsFromArray:listArray];
                 [weakSelf.tableView reloadData];
                 [weakSelf setRefreshs];
@@ -152,10 +174,10 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     [inPutTextField addSubview:coverToSeach];
     
     self.navigationItem.titleView = navationView;
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"LineOffGoodsCell" bundle:nil] forCellReuseIdentifier:llineOffGoodsCell];
     [self requestListNetWork];
 
+    
 
 }
 
@@ -163,35 +185,62 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 - (void)setup
 {
     _page = 1;
-    self.leftNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.leftNaviBtn setImage:[UIImage imageNamed:@"muban1@3x.png"] forState:UIControlStateNormal];
-    [self.leftNaviBtn setImage:[UIImage imageNamed:@"muban1@3x.png"] forState:UIControlStateHighlighted];
-    [self.leftNaviBtn setTitle:[KX_UserInfo sharedKX_UserInfo].city?[KX_UserInfo sharedKX_UserInfo].city:@"深圳" forState:UIControlStateNormal];
-    self.leftNaviBtn.titleLabel.font=[UIFont systemFontOfSize:16];
-    [self.leftNaviBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
-    self.leftNaviBtn.backgroundColor=[UIColor clearColor];
-    [self.leftNaviBtn addTarget:self action:@selector(popVC) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem * rightButton = [[UIBarButtonItem alloc]initWithCustomView:self.leftNaviBtn];
-    self.navigationItem.leftBarButtonItem = rightButton;
-    [self.leftNaviBtn sizeToFit];
-    
-    [self.leftNaviBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
+//    self.leftNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.leftNaviBtn setImage:[UIImage imageNamed:@"muban1@3x.png"] forState:UIControlStateNormal];
+//    [self.leftNaviBtn setImage:[UIImage imageNamed:@"muban1@3x.png"] forState:UIControlStateHighlighted];
+//    [self.leftNaviBtn setTitle:[KX_UserInfo sharedKX_UserInfo].city?[KX_UserInfo sharedKX_UserInfo].city:@"深圳" forState:UIControlStateNormal];
+//    self.leftNaviBtn.titleLabel.font=[UIFont systemFontOfSize:16];
+//    [self.leftNaviBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
+//    self.leftNaviBtn.backgroundColor=[UIColor clearColor];
+//    [self.leftNaviBtn addTarget:self action:@selector(popVC) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem * rightButton = [[UIBarButtonItem alloc]initWithCustomView:self.leftNaviBtn];
+//    self.navigationItem.leftBarButtonItem = rightButton;
+//    [self.leftNaviBtn sizeToFit];
+//
+//    [self.leftNaviBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
     UIView * headerView = [[UIView alloc]init];
     headerView.frame = CGRectMake(0, 0, kScreenWidth, kHeaderViewHeight+10);
     _headerView = headerView;
 //    [self.view addSubview:headerView];
+    self.tableView.tableFooterView = [UIView new];
     self.tableView.tableHeaderView = _headerView;
-    
+//    self.tableView
     [self setRightNaviBtnImage:[UIImage imageNamed:@"shouye18@3x.png"]];
 
     
-    SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 125) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW]];
+    SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 220 *hScale) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW]];
     [headerView addSubview:cycleView];
     self.cycleView = cycleView;
     
     LineRecommendedView *teamPersenView = [[LineRecommendedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(cycleView.frame), SCREEN_WIDTH, 145)];
+    teamPersenView.didClickItemBlock = ^(Catelist *item) {
+
+            if ([item.click_type isEqualToString:@"web"]) {
+                GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
+                VC.clickUrl = item.url;
+                VC.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:VC animated:YES];
+            }
+            else if ([item.click_type isEqualToString:@"app_category"]){
+                GoodsScreeningVC *VC = [[GoodsScreeningVC alloc] init];
+                VC.hidesBottomBarWhenPushed = YES;
+                VC.category_id = item.id;
+                VC.title =  item.title;
+                [self.navigationController pushViewController:VC animated:YES];
+            }
+            else {
+                /// 商品类型=1:新机。2:配构件。3:整机流转
+                GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+                                                             navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+                vc.productID = item.id;
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController: vc animated:YES];
+            }
+        
+    };
     [headerView addSubview:teamPersenView];
     self.teamPersenView = teamPersenView;
+    self.tableView.tableHeaderView = headerView;
     
 }
 
@@ -237,8 +286,9 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     return 1;
 }
 
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     OffLineModel *model = self.resorceArray[indexPath.row];
     LineOffGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:llineOffGoodsCell];
     if (cell == nil) {

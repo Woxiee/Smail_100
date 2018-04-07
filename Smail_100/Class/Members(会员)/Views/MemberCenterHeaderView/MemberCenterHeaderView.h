@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *headImage;
 
 @property(nonatomic,strong) void(^ChangeHeadImage)(void);
+
+@property(nonatomic,strong) void(^didClickHHRBlock)(void);
+
 @property (weak, nonatomic) IBOutlet UILabel *compangLB;
 
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
