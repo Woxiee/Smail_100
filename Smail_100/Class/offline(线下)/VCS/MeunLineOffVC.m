@@ -33,7 +33,7 @@
 @property (strong, nonatomic)  NSMutableArray * allInfoArr;
 
 
-@property (strong, nonatomic)  NSMutableArray * oldSelectArr;
+@property (strong, nonatomic)  NSMutableDictionary * itemsDic;
 
 
 @end
@@ -45,6 +45,7 @@
 {
 
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUI];
@@ -74,7 +75,6 @@
             GoodsClassModel *model = [GoodsClassModel yy_modelWithJSON:result[@"data"]];
             model.leftCategory = [NSArray yy_modelArrayWithClass:[LeftCategory class] json:model.leftCategory];
             for (int i = 0; i<model.leftCategory.count; i++) {
-                
                 LeftCategory *category = model.leftCategory[i];
                 if (i == _oldIndex) {
                     category.select = YES;
@@ -94,6 +94,8 @@
           
             weakSelf.classModel = model;
             
+            [_itemsDic setObject:weakSelf.resorceArray forKey:@(_oldIndex)];
+
             
             [weakSelf.leftTableView reloadData];
             
@@ -122,8 +124,7 @@
     _titleArr = [[NSMutableArray alloc] init];
     
     _allInfoArr= [[NSMutableArray alloc] init];
-    _oldSelectArr = [[NSMutableArray alloc] init];
-    
+    _itemsDic = [[NSMutableDictionary alloc] init];
     self.view.backgroundColor = BACKGROUND_COLOR;
     _leftTableView.dataSource = self;
     _leftTableView.delegate = self;
@@ -201,13 +202,11 @@
     cell.cellAdd = ^(OrderGoodsModel *model){
         model.selectStatue =@"1";
         [weakSelf changeShopCarGoodsCount:model add:YES];
-        [_oldSelectArr addObject:model];
     };
     
     cell.cellReduce = ^(OrderGoodsModel *model){
           model.selectStatue =@"1";
         [weakSelf changeShopCarGoodsCount:model add:NO];
-        [_oldSelectArr addObject:model];
 
     };
     
@@ -349,6 +348,8 @@
  @param goodsModels 商品
  */
 -(void)calculationCarAllPrice:(NSArray *)goodsModels{
+    
+    
 
     CGFloat allPrice = 0;
     int allPoint  = 0;
