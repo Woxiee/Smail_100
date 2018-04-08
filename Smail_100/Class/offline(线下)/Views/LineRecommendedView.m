@@ -8,6 +8,13 @@
 
 #import "LineRecommendedView.h"
 
+@interface LineRecommendedView()
+@property (nonatomic, strong)  NSMutableArray *titleArr;
+@property (nonatomic, strong)  NSMutableArray *imageArr;
+
+@end
+
+
 @implementation LineRecommendedView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -43,6 +50,12 @@
 //
 //
 //        }
+        
+        _imageArr = [[NSMutableArray alloc] init];
+        
+        _titleArr = [[NSMutableArray alloc] init];
+        
+        
     }
     return self;
 }
@@ -51,34 +64,36 @@
 - (void)setCatelist:(NSArray *)catelist
 {
     _catelist = catelist;
-    
-    int btnW =  SCREEN_WIDTH/4;
-    
-    for (int i = 0; i<_catelist.count; i++) {
-        Catelist *model = _catelist[i];
-        NSInteger index = i % 4;
-        NSInteger page = i / 4;
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setFrame:CGRectMake(SCREEN_WIDTH/4*index , page*75,
-                                 btnW , 75)];
+    if (_imageArr.count == 0) {
+        int btnW =  SCREEN_WIDTH/4;
         
-        btn.tag = 100 +i;
-        [btn addTarget:self action:@selector(didClickItemsAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:btn];
-        
-        UIImageView *imageView =[[UIImageView alloc] initWithFrame:CGRectMake((btnW-25)/2, 10, 25, 25)];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:model.pict_url] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
-        [btn addSubview:imageView];
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(imageView.frame)+10, btn.width, 20)];
-        label.text = model.title;
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor blackColor];
-        label.font = Font12;
-        [btn addSubview:label];
-        
-        
+        for (int i = 0; i<_catelist.count; i++) {
+            Catelist *model = _catelist[i];
+            NSInteger index = i % 4;
+            NSInteger page = i / 4;
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [btn setFrame:CGRectMake(SCREEN_WIDTH/4*index , page*75,
+                                     btnW , 75)];
+            
+            btn.tag = 100 +i;
+            [btn addTarget:self action:@selector(didClickItemsAction:) forControlEvents:UIControlEventTouchUpInside];
+            [self addSubview:btn];
+            
+            UIImageView *imageView =[[UIImageView alloc] initWithFrame:CGRectMake((btnW-38)/2, 10, 38, 38)];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:model.pict_url] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
+            [btn addSubview:imageView];
+            
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(imageView.frame)+8, btn.width, 15)];
+            label.text = model.title;
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor = TITLETEXTLOWCOLOR;
+            label.font = Font12;
+            [btn addSubview:label];
+            [_imageArr addObject:btn];
+        }
     }
+    
+   
 }
 
 - (void)didClickItemsAction:(UIButton *)sender

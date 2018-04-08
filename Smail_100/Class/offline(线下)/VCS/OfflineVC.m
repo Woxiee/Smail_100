@@ -316,7 +316,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 112;
+    return 117;
 }
 
 

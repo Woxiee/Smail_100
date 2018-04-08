@@ -813,6 +813,10 @@
 		E115577E2063A5BE00B344B3 /* AgentPlatformModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E115577D2063A5BE00B344B3 /* AgentPlatformModel.m */; };
 		E11557832063AF6A00B344B3 /* OpenBusinssVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11557812063AF6A00B344B3 /* OpenBusinssVC.m */; };
 		E11557842063AF6A00B344B3 /* OpenBusinssVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11557822063AF6A00B344B3 /* OpenBusinssVC.xib */; };
+		E116597C2079FAB500826E2F /* CommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E116597A2079FAB400826E2F /* CommentsCell.m */; };
+		E116597F207A075600826E2F /* CommentsHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E116597E207A075600826E2F /* CommentsHeadView.m */; };
+		E1165981207A077900826E2F /* CommentsHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1165980207A077900826E2F /* CommentsHeadView.xib */; };
+		E1165983207A083D00826E2F /* star@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1165982207A083D00826E2F /* star@3x.png */; };
 		E11D418D206A2F230073E062 /* CloudInfoEditAndAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11D418B206A2F230073E062 /* CloudInfoEditAndAddVC.m */; };
 		E11D418E206A2F230073E062 /* CloudInfoEditAndAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11D418C206A2F230073E062 /* CloudInfoEditAndAddVC.xib */; };
 		E11D4191206A4EBD0073E062 /* SIDADView.m in Sources */ = {isa = PBXBuildFile; fileRef = E11D4190206A4EBC0073E062 /* SIDADView.m */; };
@@ -2243,6 +2247,12 @@
 		E11557802063AF6A00B344B3 /* OpenBusinssVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenBusinssVC.h; sourceTree = "<group>"; };
 		E11557812063AF6A00B344B3 /* OpenBusinssVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenBusinssVC.m; sourceTree = "<group>"; };
 		E11557822063AF6A00B344B3 /* OpenBusinssVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenBusinssVC.xib; sourceTree = "<group>"; };
+		E116597A2079FAB400826E2F /* CommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsCell.m; sourceTree = "<group>"; };
+		E116597B2079FAB400826E2F /* CommentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsCell.h; sourceTree = "<group>"; };
+		E116597D207A075600826E2F /* CommentsHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentsHeadView.h; sourceTree = "<group>"; };
+		E116597E207A075600826E2F /* CommentsHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentsHeadView.m; sourceTree = "<group>"; };
+		E1165980207A077900826E2F /* CommentsHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsHeadView.xib; sourceTree = "<group>"; };
+		E1165982207A083D00826E2F /* star@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star@3x.png"; sourceTree = "<group>"; };
 		E11D418A206A2F230073E062 /* CloudInfoEditAndAddVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CloudInfoEditAndAddVC.h; sourceTree = "<group>"; };
 		E11D418B206A2F230073E062 /* CloudInfoEditAndAddVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CloudInfoEditAndAddVC.m; sourceTree = "<group>"; };
 		E11D418C206A2F230073E062 /* CloudInfoEditAndAddVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CloudInfoEditAndAddVC.xib; sourceTree = "<group>"; };
@@ -4332,6 +4342,11 @@
 				3E24E8EF2077C962006F5C32 /* OfflineCommetCell.h */,
 				3E24E8F02077C962006F5C32 /* OfflineCommetCell.m */,
 				3E24E8F12077C962006F5C32 /* OfflineCommetCell.xib */,
+				E116597B2079FAB400826E2F /* CommentsCell.h */,
+				E116597A2079FAB400826E2F /* CommentsCell.m */,
+				E116597D207A075600826E2F /* CommentsHeadView.h */,
+				E116597E207A075600826E2F /* CommentsHeadView.m */,
+				E1165980207A077900826E2F /* CommentsHeadView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5624,6 +5639,7 @@
 		E10B10B220528B05008BA706 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E1165982207A083D00826E2F /* star@3x.png */,
 				E1F5104220748519003227B6 /* hfdh@3x.png */,
 				E151CC83206E441900F4EF9E /* gerenzhongxin1.png */,
 				E151CC81206E42B000F4EF9E /* gerenzhongxin001.png */,
@@ -6673,6 +6689,7 @@
 				E10B0D5920528AE8008BA706 /* 1saixuan-@2x.png in Resources */,
 				E16597052058BF7F008ADC6B /* OrderSectionHeadView.xib in Resources */,
 				E10B121320528B06008BA706 /* shangjiazhongxin2@3x.png in Resources */,
+				E1165981207A077900826E2F /* CommentsHeadView.xib in Resources */,
 				E10B120A20528B06008BA706 /* shangjiazhongxin16@3x.png in Resources */,
 				E10B11E020528B06008BA706 /* chuangkeweidian10@3x.png in Resources */,
 				E10B122B20528B06008BA706 /* xiaoxizhongxin6@3x.png in Resources */,
@@ -6944,6 +6961,7 @@
 				E1EFC6A62068CAA300C78A8C /* GoodsAuctionXYVC.xib in Resources */,
 				E10B121420528B06008BA706 /* shangjiazhongxin3@3x.png in Resources */,
 				E10B11E720528B06008BA706 /* chuangkeweidian3@3x.png in Resources */,
+				E1165983207A083D00826E2F /* star@3x.png in Resources */,
 				E10B124B20528B06008BA706 /* qianbaozhuanzeng2@3x.png in Resources */,
 				E165970A2058C362008ADC6B /* OrderSectionFootView.xib in Resources */,
 				E10B124F20528B06008BA706 /* muban12@3x.png in Resources */,
@@ -7240,6 +7258,7 @@
 				E10B108920528B03008BA706 /* MJProperty.m in Sources */,
 				E10B0DD720528AE8008BA706 /* OrderCell.m in Sources */,
 				E10B0EAB20528AF5008BA706 /* KYEditorTextView.m in Sources */,
+				E116597F207A075600826E2F /* CommentsHeadView.m in Sources */,
 				E10B0FDC20528AFA008BA706 /* UIViewExt.m in Sources */,
 				E10B0FB820528AFA008BA706 /* UIView+JKPicker.m in Sources */,
 				E10B0DD020528AE8008BA706 /* MyTeamPersenView.m in Sources */,
@@ -7583,6 +7602,7 @@
 				E10B0DA020528AE8008BA706 /* OrderVModel.m in Sources */,
 				E10B0D6220528AE8008BA706 /* LoginForgetVC.m in Sources */,
 				E10B0DC520528AE8008BA706 /* MeOrderNumberCell.m in Sources */,
+				E116597C2079FAB500826E2F /* CommentsCell.m in Sources */,
 				E10B0D3320528AE8008BA706 /* HomeVC.m in Sources */,
 				E10B0D4B20528AE8008BA706 /* HomeHeaderView.m in Sources */,
 				E10B0F9A20528AFA008BA706 /* DTKDropdownMenuView.m in Sources */,

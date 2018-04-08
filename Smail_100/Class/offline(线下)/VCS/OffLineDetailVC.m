@@ -15,16 +15,24 @@
 #import "MeunLineOffVC.h"
 #import "OfflineDetailModel.h"
 
+#import "CommentsCell.h"
+#import "CommentsHeadView.h"
 
 @interface OffLineDetailVC ()<UITableViewDelegate, UITableViewDataSource,SDCycleScrollViewDelegate,SDPhotoBrowserDelegate>
 @property (nonatomic, strong) UITableView   *tableView;
 @property (nonatomic, strong)  NSMutableArray *titleArray;
 @property (nonatomic, strong) SDCycleScrollView *headView;
+@property (nonatomic, strong) OfflineDetailModel *detailModle;
+
+
 
 @end
 
 @implementation OffLineDetailVC
 static NSString * const OfflineInfoDetailCellID = @"OfflineInfoDetailCellID";
+static NSString * const CommentsCellID = @"CommentsCell";
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,6 +66,7 @@ static NSString * const OfflineInfoDetailCellID = @"OfflineInfoDetailCellID";
 {
     self.title = @"商家详情";
     [self.tableView registerNib:[UINib nibWithNibName:@"OfflineInfoDetailCell" bundle:nil] forCellReuseIdentifier:OfflineInfoDetailCellID];
+    [self.tableView registerClass:[CommentsCell class] forCellReuseIdentifier:CommentsCellID];
 
     [self.view addSubview:self.tableView];
 }
@@ -78,11 +87,14 @@ static NSString * const OfflineInfoDetailCellID = @"OfflineInfoDetailCellID";
             OfflineDetailModel *model = [OfflineDetailModel yy_modelWithJSON:result[@"data"]];
             model.comment = [NSArray yy_modelArrayWithClass:[Comment class] json: model.comment];
             [weakSelf.resorceArray removeAllObjects];
-            [weakSelf.resorceArray addObject:model];
             
             NSMutableArray *arr = [[NSMutableArray alloc] init];
             [arr addObject:model.shop_image];
             weakSelf.headView.imageURLStringsGroup = arr;
+            weakSelf.detailModle = model;
+            [weakSelf.resorceArray addObject:@"详情"];
+            [weakSelf.resorceArray addObject:@"评论"];
+
             [weakSelf.tableView reloadData];
             
         }
@@ -97,15 +109,13 @@ static NSString * const OfflineInfoDetailCellID = @"OfflineInfoDetailCellID";
 - (UITableView *)tableView
 {
     if(!_tableView){
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT- 45) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT- 64) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         //        _tableView.tableFooterView = self.footView;
         _tableView.tableFooterView = [UIView new];
         _tableView.tableHeaderView = self.headView;
-        self.tableView.estimatedRowHeight = 350;
-        self.tableView.rowHeight = UITableViewAutomaticDimension;
 
     }
     return _tableView;
@@ -152,61 +162,126 @@ static NSString * const OfflineInfoDetailCellID = @"OfflineInfoDetailCellID";
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    return 1;
+    return self.resorceArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return self.resorceArray.count;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WEAKSELF;
 //    OffLineModel *model = self.resorceArray[indexPath.row];
-    OfflineInfoDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:OfflineInfoDetailCellID];
-    if (cell == nil) {
-        cell = [[OfflineInfoDetailCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:OfflineInfoDetailCellID];
-    }
-    OfflineDetailModel *model = self.resorceArray[indexPath.row];
-
-    cell.didClickInfoCellBlock = ^(NSInteger index) {
-        if (index == 0) {//找位置
-            
+    NSString *title = self.resorceArray[indexPath.section];
+    if ([title isEqualToString:@"详情"]) {
+        OfflineInfoDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:OfflineInfoDetailCellID];
+        if (cell == nil) {
+            cell = [[OfflineInfoDetailCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:OfflineInfoDetailCellID];
         }
         
-        if (index == 1) {//查看商家
-            MeunLineOffVC *VC = [[MeunLineOffVC alloc] init];
-            VC.detailModel = model;
-            [weakSelf.navigationController pushViewController:VC animated:YES];
-
-        }
-        if (index == 2) {//查看评论
-            GoodsDetailCommenAllVC *VC = [[GoodsDetailCommenAllVC alloc] init];
-            [weakSelf.navigationController pushViewController:VC animated:YES];
-        }
-    };
+        cell.didClickInfoCellBlock = ^(NSInteger index) {
+            if (index == 0) {//找位置
+                
+            }
+            if (index == 1) {//查看商家
+                MeunLineOffVC *VC = [[MeunLineOffVC alloc] init];
+                VC.detailModel = _detailModle;
+                [weakSelf.navigationController pushViewController:VC animated:YES];
+            }
+            if (index == 2) {//查看评论
+                GoodsDetailCommenAllVC *VC = [[GoodsDetailCommenAllVC alloc] init];
+                [weakSelf.navigationController pushViewController:VC animated:YES];
+            }
+        };
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.model = _detailModle;
+        
+        return cell;
+    }
+ 
+    CommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:CommentsCellID];
+    if (cell == nil) {
+        cell = [[CommentsCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:OfflineInfoDetailCellID];
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.model = model;
+    cell.model = _detailModle.comment[indexPath.row];
     
     return cell;
     
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return 340;
-//
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *title = self.resorceArray[indexPath.section];
+    if ([title isEqualToString:@"详情"]) {
+        CGSize heightSize = [NSString heightForString:_detailModle.business_info fontSize:Font14 WithSize:CGSizeMake(SCREEN_WIDTH - 50, SCREEN_WIDTH)];
+        return 285 + heightSize.height;
+    }else{
+//            return 85;
+        Comment *model= _detailModle.comment[indexPath.row];
+        return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[CommentsCell class] contentViewWidth:SCREEN_WIDTH];
+    }
+    return 0;
+
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
-    return 10;
+    NSString *title = self.resorceArray[section];
+    if ([title isEqualToString:@"详情"]) {
+
+    }else{
+        return 60;
+
+    }
+    return 0;
+
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+//    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 60)];
+//    UIView *lineView1 =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 5)];
+//    lineView1.backgroundColor = LINECOLOR;
+//    [headView addSubview:lineView1];
+//
+//    UIView *lineView2 =[[UIView alloc] initWithFrame:CGRectMake(0, 5, SCREEN_WIDTH, 0.5)];
+//    lineView2.backgroundColor = LINECOLOR;
+//    [headView addSubview:lineView2];
+//
+//    UIImageView *starImageView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 15, 15, 14)];
+//    starImageView.image = [UIImage imageNamed:@""];
+//    [headView addSubview:starImageView];
+//
+//    UILabel *titleLb = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(starImageView.frame) +5, 10, SCREEN_WIDTH, 17)];
+//    titleLb.textColor = KMAINCOLOR;
+//    titleLb.font = Font15;
+//    titleLb.textAlignment = NSTextAlignmentLeft;
+//    [headView addSubview:titleLb];
+//
+//    UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    moreBtn setTitle:@"查看更多评价" forState:uicon
+    
+    CommentsHeadView *headview = [[NSBundle mainBundle] loadNibNamed:@"CommentsHeadView" owner:nil options: nil].lastObject;
+    headview.titleLB.text = [NSString stringWithFormat:@"用户评价(%@人评价)",_detailModle.comment_count];
+    [headview.moreBtn setTitle:@"查看更多评价 >" forState:UIControlStateNormal];
+    [headview.moreBtn addTarget:self action:@selector(didClickMoreAction) forControlEvents:UIControlEventTouchUpInside];
+    return headview;
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+}
+
+
+- (void)didClickMoreAction
+{
+    GoodsDetailCommenAllVC *VC = [[GoodsDetailCommenAllVC alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 @end

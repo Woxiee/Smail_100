@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
-
+#import <CoreLocation/CoreLocation.h>
 
 typedef NS_ENUM(NSUInteger,OPENURLType) {
     OPENURLTypeWifi = 0,

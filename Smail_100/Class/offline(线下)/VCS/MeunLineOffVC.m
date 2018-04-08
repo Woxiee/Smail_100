@@ -29,6 +29,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *bugInfoLb;
 
+@property (strong, nonatomic)  UIButton *cartBtn;
+@property (strong, nonatomic)  NSMutableArray * allInfoArr;
+
+
+@property (strong, nonatomic)  NSMutableArray * oldSelectArr;
 
 
 @end
@@ -37,12 +42,15 @@
 
 
 @implementation MeunLineOffVC
+{
 
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUI];
     [self loadShopCarData];
-    
+    [self allMoneyAfterSelect];
+
 }
 
 
@@ -90,6 +98,8 @@
             [weakSelf.leftTableView reloadData];
             
             [weakSelf.rightTableview reloadData];
+            [weakSelf allMoneyAfterSelect];
+
             
         }
         else{
@@ -103,9 +113,17 @@
 
 - (void)setUI
 {
+//    allPrice = 0;
+//    allPoint = 0;
+//    allCount = 0;
+    
     self.title = @"查看商家产品";
     _carVM = [shoppingCarVM new];
     _titleArr = [[NSMutableArray alloc] init];
+    
+    _allInfoArr= [[NSMutableArray alloc] init];
+    _oldSelectArr = [[NSMutableArray alloc] init];
+    
     self.view.backgroundColor = BACKGROUND_COLOR;
     _leftTableView.dataSource = self;
     _leftTableView.delegate = self;
@@ -120,10 +138,18 @@
     
     [self setRightNaviBtnImage:[UIImage imageNamed:@"moreOne@2x.png"]];
 
-    [self.rightNaviBtn showBadgeWithStyle:WBadgeStyleNumber value:3 animationType:WBadgeAnimTypeNone];
+//    [self.rightNaviBtn showBadgeWithStyle:WBadgeStyleNumber value:3 animationType:WBadgeAnimTypeNone];
 
-    _bugInfoLb.text = @"￥138.00";
     
+    
+    _cartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _cartBtn.frame = CGRectMake(0, SCREEN_HEIGHT - 50 - 64, 74, 50);
+//    _cartBtn.backgroundColor = [UIColor redColor];
+    [self.view addSubview:_cartBtn];
+//    _cartBtn.badgeCenterOffset = CGPointMake(-25, 9);
+
+//    [_cartBtn showBadgeWithStyle:WBadgeStyleNumber value:3 animationType:WBadgeAnimTypeNone];
+//    _cartBtn.badgeCenterOffset = CGPointMake(-25, 9);
 }
 
 
@@ -173,14 +199,20 @@
     }
     WEAKSELF;
     cell.cellAdd = ^(OrderGoodsModel *model){
+        model.selectStatue =@"1";
         [weakSelf changeShopCarGoodsCount:model add:YES];
+        [_oldSelectArr addObject:model];
     };
     
     cell.cellReduce = ^(OrderGoodsModel *model){
+          model.selectStatue =@"1";
         [weakSelf changeShopCarGoodsCount:model add:NO];
+        [_oldSelectArr addObject:model];
+
     };
     
     cell.cellInputText = ^(OrderGoodsModel *model){
+        
         [weakSelf changeShopCarGoodsCount:model ];
     };
 
@@ -205,6 +237,8 @@
     return view;
 
 }
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (![KX_UserInfo sharedKX_UserInfo].loginStatus) {
@@ -212,6 +246,7 @@
         return;
     }
     if (tableView == _leftTableView) {
+ 
         for (LeftCategory * model in _titleArr) {
             model.select = NO;
         }
@@ -219,9 +254,10 @@
         model.select = YES;
         _sub_category_id = model.id;
         _oldIndex = indexPath.section;
+        
+        
+        
         [self loadShopCarData];
-//        [tableView reloadData];
-//
     }
     
 }
@@ -231,31 +267,33 @@
 -(void)changeShopCarGoodsCount:(OrderGoodsModel *)goods add:(BOOL)add{
     
     NSString *count = [NSString stringWithFormat:@"%ld",(goods.itemCount.integerValue + (add?1:-1))];
-    if ([count isEqualToString:@"0"]) {
-        [self.view makeToast:@"数量最少是1"];
-        return;
-    }
+//    if ([count isEqualToString:@"0"]) {
+//        [self.view makeToast:@"数量最少是1"];
+//        return;
+//    }
     NSDictionary *param = @{@"nums":count,@"goods_id":goods.id,@"uuid":_classModel.UUID,@"sub_category_id":_sub_category_id};
-
+    WEAKSELF;
 //    /shop/save_goods_nums
     [_carVM changeOffLineShopCarGoodsCount:count goods:goods Params:param  handleback:^(NSInteger code) {
         if (code == 0) {
             //修改本地
             goods.itemCount = count;
-            [self loadShopCarData];
+            [weakSelf loadShopCarData];
+
         }
         
     }];
+    
 }
 
 //手动修改商品的数目
 -(void)changeShopCarGoodsCount:(OrderGoodsModel *)goods {
     
     NSString *count = [NSString stringWithFormat:@"%ld",goods.itemCount.integerValue];
-    if ([count isEqualToString:@"0"]) {
-        [self.view makeToast:@"数量最少是1"];
-        return;
-    }
+//    if ([count isEqualToString:@"0"]) {
+//        [self.view makeToast:@"数量最少是1"];
+//        return;
+//    }
     WS(b_self)
     ChangeGoodsCountView *changeView = [ChangeGoodsCountView changeCountViewWith:count getChangeValue:^(NSString *changeValue) {
         NSDictionary *param = @{@"cart_id":goods.cid,@"nums":changeValue,@"goods_id":goods.id,@"method":@"edit",@"user_id":[KX_UserInfo sharedKX_UserInfo].user_id};
@@ -264,7 +302,7 @@
                 //修改本地
                 goods.itemCount = count;
                 //                [ShoppingCar_dataSocure updateGoodsCount:goods];
-                [b_self loadShopCarData];
+                
             }
             
         }];
@@ -286,5 +324,83 @@
 }
 
 
+///计算勾选后的总金额 和iitem的数量
+- (void)allMoneyAfterSelect{
+    
+    [self calculationCarAllPrice:self.resorceArray];
+    NSString *allPoint = [_carVM calculationCarAllPoint:self.resorceArray];
+//    if ([allPoint intValue] > 0) {
+//        NSString *str1 = [NSString stringWithFormat:@"%@",allPoint];
+//        NSString *str =[NSString stringWithFormat:@"+%@积分",str1];
+//        NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(1, str1.length) withColor:BACKGROUND_COLORHL withFont:Font15];
+//    }else{
+//        _jifeLB.text = @"";
+//    }
+    NSString *count = [_carVM calcilationShopCarAllCount:self.resorceArray];
+    //    minCountLb.text = [NSString stringWithFormat:@"%@件商品",count];
+//    [toPayBtn setTitle:[NSString stringWithFormat:@"结算(%@)",count] forState:UIControlStateNormal];
+    
+}
+
+
+/**
+ 计算总价
+ 
+ @param goodsModels 商品
+ */
+-(void)calculationCarAllPrice:(NSArray *)goodsModels{
+
+    CGFloat allPrice = 0;
+    int allPoint  = 0;
+    int allCount  = 0;
+    
+    NSString *allPriceStr = @"";
+    NSString *allPointStr = @"";
+    NSString *allCountStr = @"";
+    
+    for (OrderGoodsModel*model in goodsModels  ) {
+        if (model.products.count >0) {
+            for (OrderGoodsModel*item in model.goodModel) {
+                allPrice += item.productPrice.intValue *item.itemCount.intValue;
+                allPoint += item.point.integerValue *item.itemCount.intValue;
+                allCount += item.itemCount.integerValue;
+            }
+            
+        }else{
+            allPrice += model.productPrice.intValue *model.itemCount.intValue;
+            allPoint += model.point.integerValue *model.itemCount.intValue;
+            allCount += model.itemCount.integerValue;
+        }
+        
+    }
+
+    
+    [_allInfoArr removeAllObjects];
+    if (allCount>0) {
+        allCountStr = [NSString stringWithFormat:@"已选%d件",allCount];
+        [_allInfoArr addObject:allCountStr];
+    }
+    if (allPrice>0) {
+        allPriceStr = [NSString stringWithFormat:@"共%.2f元",allPrice];
+        [_allInfoArr addObject:allPriceStr];
+
+    }
+    
+    if (allPoint>0) {
+        allPointStr = [NSString stringWithFormat:@"送%d积分",allPoint];
+        [_allInfoArr addObject:allPointStr];
+
+    }
+  
+    if (_allInfoArr.count <1) {
+        _bugInfoLb.text = @"赶紧下单吧~";
+
+    }else{
+        _bugInfoLb.text = [_allInfoArr componentsJoinedByString:@","];
+    }
+
+//    return [NSString stringWithFormat:@"¥%.2f",allPrice];
+    
+}
 
 @end

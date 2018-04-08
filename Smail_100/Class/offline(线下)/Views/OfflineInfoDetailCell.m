@@ -69,6 +69,10 @@
     addressLB.text = [NSString stringWithFormat:@"%@%@%@%@",_model.province,_model.city,_model.district,_model.address];
     distanceLB.text =  [NSString stringWithFormat:@"%@米",_model.distance];
     [findLb setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [findLb setTitle:@"到这里去" forState:UIControlStateNormal];
+    findLb.titleLabel.font = KY_FONT(10);
+    [findLb setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
+    [findLb layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:2];
     
     tellLB.text = _model.contact_phone;
     timeLB.text = [NSString stringWithFormat:@"营业时间: %@",@"08:00-23:00"];

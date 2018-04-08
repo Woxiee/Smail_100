@@ -36,6 +36,10 @@
     telLb.textColor = DETAILTEXTCOLOR;
     distanceLB.textColor = DETAILTEXTCOLOR;
     lineView1.backgroundColor = LINECOLOR;
+    commone.textColor = DETAILTEXTCOLOR;
+    distanceLB.textColor = DETAILTEXTCOLOR;
+    telLb.textColor = DETAILTEXTCOLOR;
+
 }
 
 
