@@ -432,7 +432,6 @@
 
 //    item.property = model.spec;
 //    item.selectStatue = model.selectStatue?model.selectStatue:@"0";
-//    item.cid = model.cid;
     return item;
 }
 #pragma mark - private

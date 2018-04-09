@@ -23,4 +23,12 @@ typedef NS_ENUM(NSInteger, GoodsOrderType) {
 @property (nonatomic, strong) ItemContentList *itemsModel;
 //@property (nonatomic, strong) OrderGoodsModel *orderGoodsModel;
 @property(nonatomic,strong) NSMutableArray <OrderGoodsModel*>* goodsListArray;
+
+@property (nonatomic, strong) NSString *cart_ids;
+@property (nonatomic, strong) NSString *spec;
+@property (nonatomic, strong) NSString *uuid;
+
+
+
+
 @end

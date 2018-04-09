@@ -230,12 +230,12 @@ static NSString * const DeductionCellID = @"DeductionCellID";
                 if (_isValue == NO) {
                     [_addressArr removeAllObjects];
                     weakSelf.model.addressID = @"";
-                    [weakSelf.resorceArray  replaceObjectAtIndex:0  withObject:@[@"新增收货新增收货地址"]];
+                    [weakSelf.resorceArray  replaceObjectAtIndex:0  withObject:@[@"新增收货地址"]];
                     [weakSelf.tableView reloadData];
                 }
             }
         }
-        [weakSelf.resorceArray  replaceObjectAtIndex:0  withObject:@[@"新增收货新增收货地址"]];
+        [weakSelf.resorceArray  replaceObjectAtIndex:0  withObject:@[@"新增收货地址"]];
         [weakSelf.tableView reloadData];
     }];
 }
@@ -248,16 +248,27 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     WEAKSELF;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
-    [param setObject:@"" forKey:@"address_id"];
     if (_orderType == ShoppinCarType) {
-        [param setObject:@"product" forKey:@"type"];
+        if (KX_NULLString(_uuid)) {
+            [param setObject:@"product" forKey:@"type"];
+            [param setObject:_cart_ids forKey:@"cart_ids"];
+            [param setObject:_itemsModel.cartNum?_itemsModel.cartNum:@"1" forKey:@"goods_num"];
+            [param setObject:@"" forKey:@"address_id"];
+        }else{
+            [param setObject:_spec forKey:@"spec"];
+            [param setObject:@"uuid" forKey:@"type"];
+            [param setObject:_uuid forKey:@"uuid"];
+        }
         
     }else{
         [param setObject:@"goods" forKey:@"type"];
         [param setObject:_itemsModel.goods_id forKey:@"goods_id"];
         [param setObject:_itemsModel.cartNum?_itemsModel.cartNum:@"1" forKey:@"goods_num"];
+        [param setObject:@"" forKey:@"address_id"];
 
     }
+    
+    
     [GoodsOrderVModel getGoodsOrderParam:param successBlock:^(NSArray<GoodsOrderModel *> *dataArray, BOOL isSuccess) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (isSuccess) {
@@ -276,9 +287,11 @@ static NSString * const DeductionCellID = @"DeductionCellID";
                     [weakSelf.resorceArray addObject:@"新增收货地址"];
 
                 }
+                [weakSelf.resorceArray addObjectsFromArray:model.seller];
+//                [weakSelf.resorceArray addObject:@"备注"];
+
             }
 
-            [weakSelf.resorceArray addObject:@"商品详情"];
         
             
             weakSelf.orderModel = dataArray[0];
@@ -309,11 +322,9 @@ static NSString * const DeductionCellID = @"DeductionCellID";
         [param setObject:@"product" forKey:@"direct_type"];
         [param setObject:@"" forKey:@"cart_ids"];
         [param setObject:@"2" forKey:@"goods_num"];
-
     }else{
         [param setObject:@"goods" forKey:@"direct_type"];
         [param setObject:@"1" forKey:@"goods_num"];
-
     }
     [param setObject:_orderModel.address.addr_id forKey:@"address_id"];
     
@@ -352,17 +363,20 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     
     if ([_orderModel.payIndexStr isEqualToString:@"微信支付"]) {
         [param setObject:@"auto" forKey:@"type_value[wxpay]"];
-
     }
+    
     if ([_orderModel.payIndexStr isEqualToString:@"支付宝支付"]) {
         [param setObject:@"auto" forKey:@"type_value[alipay]"];
     }
+    
     if ([_orderModel.payIndexStr isEqualToString:@"激励笑脸支付"]) {
         [param setObject:@"auto" forKey:@"type_value[coins_money]"];
     }
+    
     if ([_orderModel.payIndexStr isEqualToString:@"空充笑脸支付"]) {
         [param setObject:@"auto"  forKey:@"type_value[coins_air_money]"];
     }
+    
     if ([_orderModel.payIndexStr isEqualToString:@"话费支付"]) {
         [param setObject:@"auto"  forKey:@"type_value[phone_money]"];
     }
@@ -432,39 +446,57 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+   
     return self.resorceArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if ([self.resorceArray[section] isKindOfClass:[NSString class]]) {
+        return 1;
+    }else{
+        Seller *seller = _orderModel.seller[section];
+        return seller.products.count;
 
-    NSString *str = self.resorceArray[section];
-    if ([str isEqualToString:@"商品详情"]) {
-        return _orderModel.seller.count;
     }
-    return 1;
+
+    return 0;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WEAKSELF;
-    NSString *str = self.resorceArray[indexPath.section];
-    if (indexPath.section == 0) {
-        if (KX_NULLString(_orderModel.address.addr_id)) {
-            GoodSOrderCommonCell *cell = [tableView dequeueReusableCellWithIdentifier:goodSOrderCommonCell forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.titleLB.text = self.resorceArray[indexPath.section];
-            cell.titleLB.textColor = TITLETEXTLOWCOLOR;
-            cell.detailLB.text = @"";
-            return cell;
-        }else{
-            DefaultAdressCell *cell = [tableView dequeueReusableCellWithIdentifier:defaultAdressCellID forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.addressModel = _orderModel.address;
-            return cell;
+    if ([self.resorceArray[indexPath.section] isKindOfClass:[NSString class]]) {
+        NSString *str = self.resorceArray[indexPath.section];
+        if ([str isEqualToString:@"新增收货地址"]) {
+            if (KX_NULLString(_orderModel.address.addr_id)) {
+                GoodSOrderCommonCell *cell = [tableView dequeueReusableCellWithIdentifier:goodSOrderCommonCell forIndexPath:indexPath];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.titleLB.text = self.resorceArray[indexPath.section];
+                cell.titleLB.textColor = TITLETEXTLOWCOLOR;
+                cell.detailLB.text = @"";
+                return cell;
+            }else{
+                DefaultAdressCell *cell = [tableView dequeueReusableCellWithIdentifier:defaultAdressCellID forIndexPath:indexPath];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.addressModel = _orderModel.address;
+                return cell;
+            }
+            
         }
-    }
-    else if (indexPath.section ==1){
+//        else if ([str isEqualToString:@"备注"])
+//        {
+//            DeductionCell *cell = [tableView dequeueReusableCellWithIdentifier:DeductionCellID forIndexPath:indexPath];
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            cell.didChageJFNumberBlock = ^(NSString *buyNumber) {
+//
+//            };
+//            cell.userInfo = _orderModel.userinfo;
+//            return cell;
+//        }
+        
+    }else{
         GoodSOrderNomalCell *cell = [tableView dequeueReusableCellWithIdentifier:goodSOrderNomalCellID forIndexPath:indexPath];
         cell.didChangeNumberBlock = ^(NSString *buyNumber){
             weakSelf.model.goodSCount = [buyNumber integerValue];
@@ -480,17 +512,9 @@ static NSString * const DeductionCellID = @"DeductionCellID";
         
         return cell;
     }
-
-    else if (indexPath.section == 2){
-        DeductionCell *cell = [tableView dequeueReusableCellWithIdentifier:DeductionCellID forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.didChageJFNumberBlock = ^(NSString *buyNumber) {
-            
-        };
-        cell.userInfo = _orderModel.userinfo;
-        return cell;
-        
-    }
+   
+  
+  
     
     return nil;
     
@@ -499,44 +523,42 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *str = self.resorceArray[indexPath.section];
-
-     if ([str isEqualToString:@"新增收货地址"])
-     {
-         if (KX_NULLString(_orderModel.address.addr_id)) {
-             return 44;
-         }
-    
+    if ([self.resorceArray[indexPath.section] isKindOfClass:[NSString class]]) {
+        if ([str isEqualToString:@"新增收货地址"])
+        {
+            if (KX_NULLString(_orderModel.address.addr_id)) {
+                return 44;
+            }
+            
             return 82;
+        }
     }
-     else if ([str isEqualToString:@"商品详情"])
-     {
-         return 235;
-         
-     }
-
-     else if([str isEqualToString:@"积分抵扣"]){
-         return 100;
-     }
-    return 0;
+    
+//     else if ([str isEqualToString:@"商品详情"])
+//     {
+//         return 235;
+//
+//     }
+//
+//     else if([str isEqualToString:@"积分抵扣"]){
+//         return 100;
+//     }
+     return 235;
 
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     
-    if (section == 2) {
-        return 10;
+    if ([self.resorceArray[section] isKindOfClass:[Seller class]]) {
+        return 40;
     }
-    if (section == 1) {
-        return 0;
-    }
-
     return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 1){
+    if ([self.resorceArray[section] isKindOfClass:[Seller class]]) {
         return 50;
     }
     return 0;
@@ -546,7 +568,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == 1) {
+    if ([self.resorceArray[section] isKindOfClass:[Seller class]]) {
         UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH -10, 50)];
         headView.backgroundColor = [UIColor whiteColor];
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
@@ -583,7 +605,9 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WEAKSELF;
-        if (indexPath.section == 0) {
+    if ([self.resorceArray[indexPath.section] isKindOfClass:[NSString class]]) {
+        NSString *str = self.resorceArray[indexPath.section];
+        if ([str isEqualToString:@"新增收货地址"]) {
             AddressManageVC *VC = [[AddressManageVC alloc] init];
             VC.model = _model;
             VC.didClickAddressCellBlock = ^(GoodsOrderAddressModel* model){
@@ -602,17 +626,18 @@ static NSString * const DeductionCellID = @"DeductionCellID";
             };
             [self.navigationController pushViewController:VC animated:YES];
         }
-        else if (indexPath.section == 1){
-//            [self.navigationController popViewControllerAnimated:YES];
-        }
-        else if (indexPath.section == 4){
-            if (indexPath.row == 0) {
-                
-            }
-            else {
-                [self showPaySheetView];
-            }
-        } 
+    }
+//        else if (indexPath.section == 1){
+////            [self.navigationController popViewControllerAnimated:YES];
+//        }
+//        else if (indexPath.section == 4){
+//            if (indexPath.row == 0) {
+//
+//            }
+//            else {
+//                [self showPaySheetView];
+//            }
+//        }
 
 }
 

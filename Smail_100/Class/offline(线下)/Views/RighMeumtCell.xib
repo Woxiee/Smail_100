@@ -122,8 +122,8 @@
                 <outlet property="countTf" destination="o1e-pA-KGP" id="kz6-L5-F9i"/>
                 <outlet property="headImage" destination="8v2-YV-D1R" id="zAP-bt-lcZ"/>
                 <outlet property="jfLb" destination="ure-Ka-1Zc" id="oVm-Ab-mL5"/>
-                <outlet property="nameLable" destination="63Z-Eh-uuA" id="3g8-Dv-s8C"/>
-                <outlet property="priceLable" destination="63Z-Eh-uuA" id="WU8-8I-nap"/>
+                <outlet property="nameLable" destination="R7X-Dx-52A" id="fOE-FK-4es"/>
+                <outlet property="priceLable" destination="63Z-Eh-uuA" id="Jl1-vt-baM"/>
                 <outlet property="reduceBtn" destination="biX-a0-1lu" id="bOx-Az-aPR"/>
             </connections>
             <point key="canvasLocation" x="34" y="89"/>

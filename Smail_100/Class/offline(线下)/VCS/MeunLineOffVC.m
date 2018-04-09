@@ -11,6 +11,8 @@
 #import "RighMeumtCell.h"
 #import "shoppingCarVM.h"
 #import "ChangeGoodsCountView.h"
+#import "GoodsOrderNomalVC.h"
+#import "GoodSDetailModel.h"
 
 @interface MeunLineOffVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *leftTableView;
@@ -33,7 +35,7 @@
 @property (strong, nonatomic)  NSMutableArray * allInfoArr;
 
 
-@property (strong, nonatomic)  NSMutableDictionary * itemsDic;
+@property (nonatomic,copy)  NSMutableDictionary *itemsDic;
 
 
 @end
@@ -63,8 +65,9 @@
     [param setObject:_detailModel.shop_id forKey:@"shop_id"];
     [param setObject:_classModel.UUID?_classModel.UUID:@"" forKey:@"uuid"];
 
-    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+//    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
+    
     [BaseHttpRequest postWithUrl:@"/shop/shop_category_goods" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSString *msg = [result valueForKey:@"msg"];
@@ -79,26 +82,20 @@
                 if (i == _oldIndex) {
                     category.select = YES;
                     weakSelf.sub_category_id = category.id;
-                    //                        break;
                 }
                 [weakSelf.titleArr addObject:category];
                 
             }
-            
+            NSMutableArray * list = [[NSMutableArray alloc] init];
             model.rightGoods = [NSArray yy_modelArrayWithClass:[RightGoods class] json:model.rightGoods];
-
             for (RightGoods *item in model.rightGoods) {
                OrderGoodsModel *model = [shoppingCarVM changeRightGoodsModelInListToOrderGoodsModel:item];
-                [weakSelf.resorceArray addObject:model];
+                [list addObject:model];
             }
-          
+            [weakSelf.resorceArray addObjectsFromArray:list];
             weakSelf.classModel = model;
-            
-            [_itemsDic setObject:weakSelf.resorceArray forKey:@(_oldIndex)];
-
-            
+            [weakSelf.itemsDic setObject:list forKey:[NSString stringWithFormat:@"%ld",(long)_oldIndex]];
             [weakSelf.leftTableView reloadData];
-            
             [weakSelf.rightTableview reloadData];
             [weakSelf allMoneyAfterSelect];
 
@@ -115,14 +112,12 @@
 
 - (void)setUI
 {
-//    allPrice = 0;
-//    allPoint = 0;
-//    allCount = 0;
-    
     self.title = @"查看商家产品";
+    _bugInfoLb.text = @"赶紧下单吧~";
     _carVM = [shoppingCarVM new];
     _titleArr = [[NSMutableArray alloc] init];
     
+
     _allInfoArr= [[NSMutableArray alloc] init];
     _itemsDic = [[NSMutableDictionary alloc] init];
     self.view.backgroundColor = BACKGROUND_COLOR;
@@ -146,7 +141,7 @@
     _cartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _cartBtn.frame = CGRectMake(0, SCREEN_HEIGHT - 50 - 64, 74, 50);
 //    _cartBtn.backgroundColor = [UIColor redColor];
-    [self.view addSubview:_cartBtn];
+//    [self.view addSubview:_cartBtn];
 //    _cartBtn.badgeCenterOffset = CGPointMake(-25, 9);
 
 //    [_cartBtn showBadgeWithStyle:WBadgeStyleNumber value:3 animationType:WBadgeAnimTypeNone];
@@ -311,35 +306,56 @@
 
 
 - (IBAction)buyAciton:(id)sender {
+
+    NSMutableArray *cart_ids = [[NSMutableArray alloc] init];
+    NSMutableArray *specs = [[NSMutableArray alloc] init];
+    for (NSArray *items in _itemsDic.allValues  ) {
+        for (OrderGoodsModel*item in items) {
+            if (item.itemCount.intValue >0) {
+                [cart_ids addObject:item.cid];
+                [specs addObject:item.spec];
+            }
+        }
+    }
     
+    GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
+    VC.cart_ids = [cart_ids componentsJoinedByString:@","];
+    VC.spec = [specs componentsJoinedByString:@","];
+    VC.orderType  = ShoppinCarType;
+    VC.uuid  = _classModel.UUID?_classModel.UUID:@"";
+    [self.navigationController pushViewController:VC animated:YES];
+   
 }
 
 - (IBAction)goToCartAction:(id)sender {
+
+    self.tabBarController.selectedIndex = 3;
+
 }
 
 
 - (IBAction)addCartAction:(id)sender {
+    WEAKSELF;
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    [param setObject:_detailModel.shop_id forKey:@"shop_id"];
+    [param setObject:_classModel.UUID?_classModel.UUID:@"" forKey:@"uuid"];
+    
+    [BaseHttpRequest postWithUrl:@"/ucenter/add_mulit_cart" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSString *msg = [result valueForKey:@"msg"];
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+            [weakSelf.view toastShow:msg];
+            
+            
+            
+        }else{
+            [weakSelf.view toastShow:msg];
+        }
+    }];
     
 }
 
-
-///计算勾选后的总金额 和iitem的数量
-- (void)allMoneyAfterSelect{
-    
-    [self calculationCarAllPrice:self.resorceArray];
-    NSString *allPoint = [_carVM calculationCarAllPoint:self.resorceArray];
-//    if ([allPoint intValue] > 0) {
-//        NSString *str1 = [NSString stringWithFormat:@"%@",allPoint];
-//        NSString *str =[NSString stringWithFormat:@"+%@积分",str1];
-//        NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(1, str1.length) withColor:BACKGROUND_COLORHL withFont:Font15];
-//    }else{
-//        _jifeLB.text = @"";
-//    }
-    NSString *count = [_carVM calcilationShopCarAllCount:self.resorceArray];
-    //    minCountLb.text = [NSString stringWithFormat:@"%@件商品",count];
-//    [toPayBtn setTitle:[NSString stringWithFormat:@"结算(%@)",count] forState:UIControlStateNormal];
-    
-}
 
 
 /**
@@ -347,10 +363,7 @@
  
  @param goodsModels 商品
  */
--(void)calculationCarAllPrice:(NSArray *)goodsModels{
-    
-    
-
+- (void)allMoneyAfterSelect{
     CGFloat allPrice = 0;
     int allPoint  = 0;
     int allCount  = 0;
@@ -358,23 +371,19 @@
     NSString *allPriceStr = @"";
     NSString *allPointStr = @"";
     NSString *allCountStr = @"";
-    
-    for (OrderGoodsModel*model in goodsModels  ) {
-        if (model.products.count >0) {
-            for (OrderGoodsModel*item in model.goodModel) {
+    for (NSArray *items in _itemsDic.allValues  ) {
+        
+        for (OrderGoodsModel*item in items) {
+            if (item.itemCount.intValue >0) {
                 allPrice += item.productPrice.intValue *item.itemCount.intValue;
                 allPoint += item.point.integerValue *item.itemCount.intValue;
                 allCount += item.itemCount.integerValue;
             }
             
-        }else{
-            allPrice += model.productPrice.intValue *model.itemCount.intValue;
-            allPoint += model.point.integerValue *model.itemCount.intValue;
-            allCount += model.itemCount.integerValue;
         }
         
     }
-
+    
     
     [_allInfoArr removeAllObjects];
     if (allCount>0) {
@@ -384,24 +393,19 @@
     if (allPrice>0) {
         allPriceStr = [NSString stringWithFormat:@"共%.2f元",allPrice];
         [_allInfoArr addObject:allPriceStr];
-
     }
     
     if (allPoint>0) {
         allPointStr = [NSString stringWithFormat:@"送%d积分",allPoint];
         [_allInfoArr addObject:allPointStr];
-
     }
-  
-    if (_allInfoArr.count <1) {
+    if (KX_NULLString(_bugInfoLb.text )) {
         _bugInfoLb.text = @"赶紧下单吧~";
-
     }else{
         _bugInfoLb.text = [_allInfoArr componentsJoinedByString:@","];
     }
-
-//    return [NSString stringWithFormat:@"¥%.2f",allPrice];
-    
 }
+
+
 
 @end

@@ -32,6 +32,7 @@
 @property (nonatomic,strong)NSString *seller_name;
 
 @property (nonatomic,strong) NSString *store_nums;
+@property (nonatomic, strong) NSString *spec;
 
 @property (nonatomic,strong)NSString *id;
 @property (nonatomic,strong)NSString *cid;
@@ -58,6 +59,7 @@
 @property(nonatomic,strong)NSString *isGive;//是否正品的如餐
 
 
+@property(nonatomic,assign) BOOL  isEdit;//是否编辑
 
 
 

@@ -77,6 +77,9 @@
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSJ-cB-kuo">
                             <rect key="frame" x="1" y="0.0" width="74" height="50"/>
+                            <connections>
+                                <action selector="goToCartAction:" destination="-1" eventType="touchUpInside" id="Oy0-t9-r4c"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.92933845520019531" green="0.93328207731246948" blue="0.93725335597991943" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

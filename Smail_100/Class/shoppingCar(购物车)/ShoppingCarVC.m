@@ -47,6 +47,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *allSelectbtn;
 @property (weak, nonatomic) IBOutlet UILabel *jifeLB;
 
+
+@property (nonatomic,strong) UIButton *rightButton;
+
 @end
 
 @implementation ShoppingCarVC
@@ -80,6 +83,23 @@
     
     toPayBtn.backgroundColor = KMAINCOLOR;
     _jifeLB.textColor = TITLETEXTLOWCOLOR;
+    
+    // 右上角编辑
+    self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.rightButton.frame = CGRectMake(0, 0, 40, 40);
+    [self.rightButton setTitle:@"编辑" forState:UIControlStateNormal];
+    [self.rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.rightButton setTitle:@"完成" forState:UIControlStateSelected];
+    [self.rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    
+    [self.rightButton setTitle:@"编辑" forState:UIControlStateDisabled];
+    [self.rightButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+    
+    [self.rightButton addTarget:self action:@selector(clickAllEdit:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *batbutton = [[UIBarButtonItem alloc] initWithCustomView:self.rightButton];
+    self.navigationItem.rightBarButtonItem = batbutton;
+//    [cell showSwipe:MGSwipeDirectionRightToLeft animated:YES];
+
 }
 
 
@@ -124,15 +144,10 @@
             [b_self allMoneyAfterSelect];
             [shopCarGoodsList reloadData];
             backView.hidden = NO;
-            
-            //清空backView 的数据
-//            [carVM.limitDatasArr removeAllObjects];
-//            [limitCollectionView reloadData];
             return;
         }
         [shopCarGoodsList stopFresh:_dataSocure.count pageIndex:0];
         backView.hidden = YES;
-//            [b_self setLimitView];
     }];
 }
 
@@ -350,19 +365,27 @@
 ///结算
 - (IBAction)toMakeOrder:(UIButton *)sender {
     
+    NSMutableArray *cart_ids = [[NSMutableArray alloc] init];
+    NSMutableArray *specs = [[NSMutableArray alloc] init];
     GoodsOrderNomalVC * makeSure = [GoodsOrderNomalVC new];
     makeSure.orderType =  ShoppinCarType;
     makeSure.goodsListArray  = [NSMutableArray array];
-
     for (OrderGoodsModel*model in _dataSocure) {
-        if (model.selectStatue.integerValue ==1) {
-            [makeSure.goodsListArray addObject:model];
+      
+        for (OrderGoodsModel*item in model.goodModel) {
+            if (item.selectStatue.integerValue ==1) {
+                [cart_ids addObject:item.cid];
+                [specs addObject:item.spec];
+                [makeSure.goodsListArray addObject:model];
+            }
         }
     }
     if (makeSure.goodsListArray.count==0) {
         [self.view makeToast:@"至少选择一件商品~"];
         return;
     }
+    makeSure.cart_ids = [cart_ids componentsJoinedByString:@","];
+    makeSure.spec = [specs componentsJoinedByString:@","];
     [makeSure setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:makeSure animated:YES];
 }
@@ -397,7 +420,15 @@
     OrderGoodsModel * cellModel  = _dataSocure[indexPath.section];
    OrderGoodsModel * goodsModel = cellModel.goodModel[indexPath.row];
     cell.rightButtons = [self createRightButtons:goodsModel];
+    
+    if (goodsModel.isEdit) {
+        [cell showSwipe:MGSwipeDirectionRightToLeft animated:YES];
+    }else{
+        [cell hideSwipeAnimated:YES];
+    }
+
     cell.goodsModel = goodsModel;
+//
 
     //单个购物车商品加
     cell.addBlock = ^(OrderGoodsModel * goodsModel){
@@ -455,7 +486,7 @@
     //跳转详情界面
     OrderGoodsModel * cellModel  = _dataSocure[indexPath.section];
     GoodsDetailVC *goodVC = [GoodsDetailVC new];
-    goodVC.productID = cellModel.productId;
+    goodVC.productID = cellModel.productId?cellModel.productId:cellModel.seller_id ;
     goodVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:goodVC animated:YES];
 }
@@ -489,6 +520,21 @@
         chaildModel = goodsModels;
 
     }
+
+}
+
+/// 编辑所有购物车
+- (void)clickAllEdit:(UIButton *)button
+{
+    button.selected =! button.selected;
+    for (OrderGoodsModel*model in _dataSocure) {
+        for (OrderGoodsModel*item in model.goodModel) {
+            item.isEdit = button.selected;
+        }
+        
+    }
+    
+    [shopCarGoodsList reloadData];
 
 }
 

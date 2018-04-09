@@ -148,7 +148,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Smail_100/Class/GoodsDetailVC(&#x5546;&#x54c1;&#x8be6;&#x60c5;)/VCs/GoodContenVC&#xff08;&#x96c6;&#x91c7;&#x7b49;&#x7c7b;&#x578b;&#xff09;/GoodContenVC.m"
-            timestampString = "544530459.77783"
+            timestampString = "544962859.842081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "729"
@@ -180,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Smail_100/Class/GoodsOrderNomalVC&#xff08;&#x8ba2;&#x5355;&#x786e;&#x8ba4;&#xff09;/GoodsOrderNomalVC.m"
-            timestampString = "544530534.410522"
+            timestampString = "544962859.842618"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "819"
-            endingLineNumber = "819"
+            startingLineNumber = "844"
+            endingLineNumber = "844"
             landmarkName = "-doWxPay"
             landmarkType = "7">
          </BreakpointContent>
@@ -228,7 +228,7 @@
                   moduleName = "Smail_100"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ap/Documents/GitHub/Smail_100/Smail_100/KX_Base/KX_BaseTabbarController.m"
-                  timestampString = "544876226.886585"
+                  timestampString = "544962860.675828"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "195"
@@ -243,7 +243,7 @@
                   moduleName = "Smail_100"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ap/Documents/GitHub/Smail_100/Smail_100/KX_Base/KX_BaseTabbarController.m"
-                  timestampString = "544876226.888389"
+                  timestampString = "544962860.6775891"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "196"
@@ -291,13 +291,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Smail_100/Class/shoppingCar(&#x8d2d;&#x7269;&#x8f66;)/shoppingCarVM.m"
-            timestampString = "544876226.5717109"
+            filePath = "Smail_100/Class/GoodsOrderNomalVC&#xff08;&#x8ba2;&#x5355;&#x786e;&#x8ba4;&#xff09;/GoodsOrderNomalVC.m"
+            timestampString = "544962859.8430459"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "-calculationCarAllPrice:"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
+            landmarkName = "-getGoodsOrderInfoRequest"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Smail_100/Class/GoodsOrderNomalVC&#xff08;&#x8ba2;&#x5355;&#x786e;&#x8ba4;&#xff09;/GoodsOrderNomalVC.m"
+            timestampString = "544962859.84331"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "455"
+            endingLineNumber = "455"
+            landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

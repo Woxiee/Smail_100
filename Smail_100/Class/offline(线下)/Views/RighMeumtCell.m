@@ -10,7 +10,6 @@
 
 @implementation RighMeumtCell
 {
-    __weak IBOutlet UILabel *seleNum;
     __weak IBOutlet UILabel *priceLable;
     __weak IBOutlet UIImageView *headImage;
     __weak IBOutlet UILabel *nameLable;
@@ -29,12 +28,10 @@
     nameLable.textColor = TITLETEXTLOWCOLOR;
     //    goodCommom.textColor = DETAILTEXTCOLOR;
     priceLable.textColor = KMAINCOLOR;
-    seleNum.textColor = DETAILTEXTCOLOR;
     countTf.userInteractionEnabled = NO;
     [countTf layerWithRadius:0 lineWidth:1 color:KMAINCOLOR];
     jfLb.textColor = DETAILTEXTCOLOR;
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickInput)];
-//    [countTf addGestureRecognizer:tap];
+
     
     
 }

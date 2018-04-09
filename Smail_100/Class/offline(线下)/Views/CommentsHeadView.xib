@@ -84,7 +84,6 @@
             <connections>
                 <outlet property="lineView1" destination="dpF-GX-Gta" id="gxB-zo-4PK"/>
                 <outlet property="moreBtn" destination="n0D-ya-o0R" id="Xo1-RS-fUe"/>
-                <outlet property="titleLB" destination="OMg-Z5-1dB" id="qgu-9q-7MQ"/>
             </connections>
             <point key="canvasLocation" x="34.5" y="-251"/>
         </view>
