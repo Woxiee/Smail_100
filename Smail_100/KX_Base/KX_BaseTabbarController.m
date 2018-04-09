@@ -168,21 +168,29 @@
         // 总是授权
         [self.locationManager requestAlwaysAuthorization];
         self.locationManager.distanceFilter = 10.0f;
-        [self.locationManager requestAlwaysAuthorization];
+        if ([[[UIDevice currentDevice]systemVersion] doubleValue] >8.0)
+        {
+            // 设置定位权限仅iOS8以上有意义,而且iOS8以上必须添加此行代码
+            [self.locationManager requestAlwaysAuthorization];
+        
+            // [self.locationManager requestAlwaysAuthorization];//前后台同时定位
+        }
+        [self.locationManager requestWhenInUseAuthorization];
+        if (@available(iOS 9.0, *)) {
+            self.locationManager.allowsBackgroundLocationUpdates =YES;
+        } else {
+            // Fallback on earlier versions
+        }
 
         [self.locationManager startUpdatingLocation];
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    if ([error code] == kCLErrorDenied) {
-        LOG(@"访问被拒绝");
-    }
-    if ([error code] == kCLErrorLocationUnknown) {
-        LOG(@"无法获取位置信息");
-    }
+// 定位失误时触发
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"error:%@",error);
 }
-
 
 
 //定位代理经纬度回调

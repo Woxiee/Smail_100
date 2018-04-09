@@ -455,7 +455,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     if ([self.resorceArray[section] isKindOfClass:[NSString class]]) {
         return 1;
     }else{
-        Seller *seller = _orderModel.seller[section];
+        Seller *seller = _orderModel.seller[section -1];
         return seller.products.count;
 
     }
@@ -507,7 +507,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
             weakSelf.orderModel.express_type = [NSString stringWithFormat:@"%ld",type+1];
         };
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        Seller *seller = _orderModel.seller[indexPath.row];
+        Seller *seller = _orderModel.seller[indexPath.section-1];
         cell.products = seller.products[indexPath.row];
         
         return cell;
@@ -551,10 +551,36 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 {
     
     if ([self.resorceArray[section] isKindOfClass:[Seller class]]) {
-        return 40;
+        return 50;
     }
     return 0;
 }
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    Seller *seller = _orderModel.seller[section -1];
+
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH -10, 50)];
+    headView.backgroundColor = [UIColor whiteColor];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
+    lineView.backgroundColor = BACKGROUND_COLOR;
+    [headView addSubview:lineView];
+    
+    UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, SCREEN_WIDTH - 25, 44)];
+    titleLB.textColor = TITLETEXTLOWCOLOR;
+    titleLB.font = Font15;
+    titleLB.textAlignment = NSTextAlignmentLeft;
+
+    titleLB.text = seller.seller_name;
+    [headView addSubview:titleLB];
+    
+    UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 45, SCREEN_WIDTH, 1)];
+    lineView1.backgroundColor = LINECOLOR;
+    [headView addSubview:lineView1];
+    
+    return headView;
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {

@@ -54,12 +54,16 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>是否允许此App使用你的相机？</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDeion</key>
+	<string>App需要您的同意,才能访问您的位置</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>我们需要通过您的地理位置信息获取您的周边数据</string>
-	<key>NSLocationUsageDescription</key>
-	<string>我们需要通过您的地理位置信息获取您的周边数据</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string> 是否允许此App访问你的媒体资料库？</string>
+	<string>是否允许此App访问你的媒体资料库？</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UISupportedInterfaceOrientations</key>

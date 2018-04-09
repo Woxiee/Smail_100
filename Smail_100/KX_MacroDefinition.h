@@ -23,13 +23,11 @@
 /// ----------------------接口所需---------------------------
 //默认路径
 #if DEBUG
-//#define HEAD__URL @"http://192.168.2.110"  //蔡钊名
 #define HEAD__URL @"http://39.108.4.18:6803"  //测试服务器
 //#define HEAD__URL @"http://open.myjihui.com"  //正式服务器
 
 #else
 #define HEAD__URL @"http://39.108.4.18:6803"  //测试服务器
-//#define HEAD__URL @"http://192.168.2.110"  //蔡钊名
 //#define HEAD__URL @"http://open.myjihui.cn"  //测试服务器
 
 #endif

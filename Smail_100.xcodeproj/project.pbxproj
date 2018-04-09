@@ -33,6 +33,7 @@
 		3EB8E012205FFB7E00E717B1 /* MeChantOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8E011205FFB7E00E717B1 /* MeChantOrderModel.m */; };
 		3EB8E0162060048A00E717B1 /* AddOrEidtGoodVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8E0142060048A00E717B1 /* AddOrEidtGoodVC.m */; };
 		3EB8E0172060048A00E717B1 /* AddOrEidtGoodVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8E0152060048A00E717B1 /* AddOrEidtGoodVC.xib */; };
+		3EBDCFAE207BC12E003F3649 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EBDCFAD207BC12E003F3649 /* MapKit.framework */; };
 		3ECD1CC0205CC86A008D8686 /* QrCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD1CBE205CC86A008D8686 /* QrCodeVC.m */; };
 		3ECD1CC1205CC86A008D8686 /* QrCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ECD1CBF205CC86A008D8686 /* QrCodeVC.xib */; };
 		3EE5592820776625003574E0 /* OfflineDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE5592720776625003574E0 /* OfflineDetailModel.m */; };
@@ -973,6 +974,7 @@
 		3EB8E0132060048A00E717B1 /* AddOrEidtGoodVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddOrEidtGoodVC.h; sourceTree = "<group>"; };
 		3EB8E0142060048A00E717B1 /* AddOrEidtGoodVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddOrEidtGoodVC.m; sourceTree = "<group>"; };
 		3EB8E0152060048A00E717B1 /* AddOrEidtGoodVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddOrEidtGoodVC.xib; sourceTree = "<group>"; };
+		3EBDCFAD207BC12E003F3649 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3ECD1CBD205CC86A008D8686 /* QrCodeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QrCodeVC.h; sourceTree = "<group>"; };
 		3ECD1CBE205CC86A008D8686 /* QrCodeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QrCodeVC.m; sourceTree = "<group>"; };
 		3ECD1CBF205CC86A008D8686 /* QrCodeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QrCodeVC.xib; sourceTree = "<group>"; };
@@ -2401,6 +2403,7 @@
 				3E2BE65C207719F3009BD7A7 /* libWeChatSDK.a in Frameworks */,
 				E11531152052984700B5852F /* CoreMotion.framework in Frameworks */,
 				E1153129205298B800B5852F /* CFNetwork.framework in Frameworks */,
+				3EBDCFAE207BC12E003F3649 /* MapKit.framework in Frameworks */,
 				E1153127205298B200B5852F /* Foundation.framework in Frameworks */,
 				E1153125205298AC00B5852F /* UIKit.framework in Frameworks */,
 				E1153123205298A500B5852F /* CoreGraphics.framework in Frameworks */,
@@ -2581,6 +2584,7 @@
 		B0CA06D981E6AED9FBBF3AB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3EBDCFAD207BC12E003F3649 /* MapKit.framework */,
 				3E519A462076819B00785177 /* libsqlite3.0.tbd */,
 				E1153128205298B800B5852F /* CFNetwork.framework */,
 				E1153126205298B200B5852F /* Foundation.framework */,
@@ -6601,6 +6605,14 @@
 					E10B028A205289EC008BA706 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					E10B02A2205289EC008BA706 = {
 						CreatedOnToolsVersion = 9.2;
@@ -7881,7 +7893,7 @@
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/AppPaySdK",
 				);
 				INFOPLIST_FILE = Smail_100/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7925,7 +7937,7 @@
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/AppPaySdK",
 				);
 				INFOPLIST_FILE = Smail_100/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
