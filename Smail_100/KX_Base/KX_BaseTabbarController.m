@@ -159,6 +159,7 @@
 
 //开始定位
 - (void)startLocation {
+    
     if ([CLLocationManager locationServicesEnabled]) {
         //        CLog(@"--------开始定位");
         self.locationManager = [[CLLocationManager alloc]init];
@@ -166,24 +167,14 @@
         //控制定位精度,越高耗电量越
         self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
         // 总是授权
-        [self.locationManager requestAlwaysAuthorization];
         self.locationManager.distanceFilter = 10.0f;
-        if ([[[UIDevice currentDevice]systemVersion] doubleValue] >8.0)
-        {
-            // 设置定位权限仅iOS8以上有意义,而且iOS8以上必须添加此行代码
-            [self.locationManager requestAlwaysAuthorization];
-        
-            // [self.locationManager requestAlwaysAuthorization];//前后台同时定位
-        }
         [self.locationManager requestWhenInUseAuthorization];
-        if (@available(iOS 9.0, *)) {
-            self.locationManager.allowsBackgroundLocationUpdates =YES;
-        } else {
-            // Fallback on earlier versions
-        }
-
         [self.locationManager startUpdatingLocation];
     }
+    
+    [[KX_UserInfo sharedKX_UserInfo] loadUserInfoFromSanbox];
+    [KX_UserInfo sharedKX_UserInfo].city = @"全国";
+    [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
 }
 
 // 定位失误时触发
@@ -193,10 +184,10 @@
 }
 
 
+
 //定位代理经纬度回调
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     CLLocation *newLocation = locations[0];
-    
     // 获取当前所在的城市名
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     //根据经纬度反向地理编译出地址信息
@@ -211,8 +202,11 @@
                 city = placemark.administrativeArea;
             }
             NSLog(@"city = %@", city);
+            NSString *cityStr = [city stringByReplacingOccurrencesOfString:@"市" withString:@""];
+            [[KX_UserInfo sharedKX_UserInfo] loadUserInfoFromSanbox];
+            [KX_UserInfo sharedKX_UserInfo].city = cityStr;
+            [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
             
-//            [self httpGetWeather:city];
         }
         else if (error == nil && [array count] == 0)
         {
@@ -223,7 +217,6 @@
             NSLog(@"An error occurred = %@", error);
         }
     }];
-    //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
     [manager stopUpdatingLocation];
     
 }

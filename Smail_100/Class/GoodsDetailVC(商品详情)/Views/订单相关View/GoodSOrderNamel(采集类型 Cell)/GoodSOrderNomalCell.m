@@ -110,7 +110,7 @@
     
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:_products.img] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
     _titleLB.text = _products.name;
-    _detailLB.text = [NSString stringWithFormat:@"规格: %@",@"默认"];
+    _detailLB.text = _products.spec?_products.spec:[NSString stringWithFormat:@"规格: %@",@"默认"];
     _priceLB.text = [NSString stringWithFormat:@"￥%@",_products.price];
 //    _products.point = @"22";
     if ([_products.point integerValue] >0) {

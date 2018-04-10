@@ -514,6 +514,13 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 //    {
 //        return CGSizeMake(SCREEN_WIDTH, 105 *hScale);
 //    }
+   ItemContentList *item =  model.itemContentList[indexPath.row];
+    if (item.tags.count >0) {
+        return CGSizeMake((SCREEN_WIDTH - 15)/2, 300);
+    }
+    if (item.tags.count >=6) {
+        return CGSizeMake((SCREEN_WIDTH - 15)/2, 320);
+    }
     return CGSizeMake((SCREEN_WIDTH - 15)/2, 285);
 
 }

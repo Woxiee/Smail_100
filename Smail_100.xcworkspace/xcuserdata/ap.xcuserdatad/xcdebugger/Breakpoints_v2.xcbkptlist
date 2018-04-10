@@ -147,22 +147,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Smail_100/Class/GoodsDetailVC(&#x5546;&#x54c1;&#x8be6;&#x60c5;)/VCs/GoodContenVC&#xff08;&#x96c6;&#x91c7;&#x7b49;&#x7c7b;&#x578b;&#xff09;/GoodContenVC.m"
-            timestampString = "544962859.842081"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "729"
-            endingLineNumber = "729"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Smail_100/Class/GoodsOrderNomalVC&#xff08;&#x8ba2;&#x5355;&#x786e;&#x8ba4;&#xff09;/Views/PayOrderView/PayOrderView.m"
             timestampString = "544530459.777969"
             startingColumnNumber = "9223372036854775807"
@@ -180,140 +164,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Smail_100/Class/GoodsOrderNomalVC&#xff08;&#x8ba2;&#x5355;&#x786e;&#x8ba4;&#xff09;/GoodsOrderNomalVC.m"
-            timestampString = "544962859.842618"
+            timestampString = "545048803.637786"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "844"
-            endingLineNumber = "844"
-            landmarkName = "-doWxPay"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Smail_100/KX_Base/KX_BaseTabbarController.m"
-            timestampString = "544876226.571368"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
-            landmarkName = "-locationManager:didUpdateLocations:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Smail_100/KX_Base/KX_BaseTabbarController.m"
-            timestampString = "544876226.5714869"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
-            landmarkName = "-locationManager:didUpdateLocations:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[KX_BaseTabbarController locationManager:didUpdateLocations:]"
-                  moduleName = "Smail_100"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ap/Documents/GitHub/Smail_100/Smail_100/KX_Base/KX_BaseTabbarController.m"
-                  timestampString = "544962860.675828"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "195"
-                  endingLineNumber = "195"
-                  offsetFromSymbolStart = "155">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__62-[KX_BaseTabbarController locationManager:didUpdateLocations:]_block_invoke"
-                  moduleName = "Smail_100"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ap/Documents/GitHub/Smail_100/Smail_100/KX_Base/KX_BaseTabbarController.m"
-                  timestampString = "544962860.6775891"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "196"
-                  endingLineNumber = "196"
-                  offsetFromSymbolStart = "75">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Smail_100/KX_Base/KX_BaseTabbarController.m"
-            timestampString = "544876226.571565"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
-            landmarkName = "-locationManager:didUpdateLocations:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Smail_100/KX_Base/KX_BaseTabbarController.m"
-            timestampString = "544876226.571653"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "-locationManager:didFailWithError:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Smail_100/Class/GoodsOrderNomalVC&#xff08;&#x8ba2;&#x5355;&#x786e;&#x8ba4;&#xff09;/GoodsOrderNomalVC.m"
-            timestampString = "544962859.8430459"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "290"
-            endingLineNumber = "290"
-            landmarkName = "-getGoodsOrderInfoRequest"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Smail_100/Class/GoodsOrderNomalVC&#xff08;&#x8ba2;&#x5355;&#x786e;&#x8ba4;&#xff09;/GoodsOrderNomalVC.m"
-            timestampString = "544962859.84331"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "455"
-            endingLineNumber = "455"
-            landmarkName = "-tableView:numberOfRowsInSection:"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "-showPayView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

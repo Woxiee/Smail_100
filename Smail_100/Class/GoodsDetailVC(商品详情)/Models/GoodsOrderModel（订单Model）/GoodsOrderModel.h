@@ -162,6 +162,8 @@
 
 @property (nonatomic , copy) NSString              * orderno;
 @property (nonatomic , copy) NSString              * ctime;
+@property (nonatomic , copy) NSString              * message;
+
 
 @property (nonatomic , assign) BOOL              isDetail;
 

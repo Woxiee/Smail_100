@@ -34,6 +34,7 @@
 #import "JHCoverView.h"
 #import "SetPayPwdVC.h"
 
+#import "OrderSectionFooterView.h"
 
 @interface GoodsOrderNomalVC ()<UITableViewDelegate,UITextViewDelegate,JHCoverViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -175,6 +176,8 @@ static NSString * const DeductionCellID = @"DeductionCellID";
         view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeOther];
 
     }
+    
+
 
     view.didChangeJFValueBlock = ^(GoodsOrderModel *orderModel) {
         
@@ -255,14 +258,15 @@ static NSString * const DeductionCellID = @"DeductionCellID";
             [param setObject:_itemsModel.cartNum?_itemsModel.cartNum:@"1" forKey:@"goods_num"];
             [param setObject:@"" forKey:@"address_id"];
         }else{
-            [param setObject:_spec forKey:@"spec"];
+            [param setObject:_spec?_spec:@"" forKey:@"spec"];
             [param setObject:@"uuid" forKey:@"type"];
-            [param setObject:_uuid forKey:@"uuid"];
+            [param setObject:_uuid?_uuid:@"" forKey:@"uuid"];
         }
         
     }else{
         [param setObject:@"goods" forKey:@"type"];
         [param setObject:_itemsModel.goods_id forKey:@"goods_id"];
+        [param setObject:_spec?_spec:@"" forKey:@"spec"];
         [param setObject:_itemsModel.cartNum?_itemsModel.cartNum:@"1" forKey:@"goods_num"];
         [param setObject:@"" forKey:@"address_id"];
 
@@ -319,19 +323,25 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     if (_orderType == ShoppinCarType) {
-        [param setObject:@"product" forKey:@"direct_type"];
-        [param setObject:@"" forKey:@"cart_ids"];
-        [param setObject:@"2" forKey:@"goods_num"];
+        if (KX_NULLString(_uuid)) {
+            [param setObject:@"product" forKey:@"direct_type"];
+            [param setObject:_cart_ids forKey:@"cart_ids"];
+             [param setObject:_itemsModel.cartNum?_itemsModel.cartNum:@"1" forKey:@"goods_num"];
+        }else{
+            [param setObject:@"uuid" forKey:@"direct_type"];
+            [param setObject:_uuid?_uuid:@"" forKey:@"uuid"];
+        }
+        
     }else{
         [param setObject:@"goods" forKey:@"direct_type"];
         [param setObject:@"1" forKey:@"goods_num"];
+        [param setObject:_itemsModel.goods_id forKey:@"goods_id"];
+
     }
     [param setObject:_orderModel.address.addr_id forKey:@"address_id"];
-    
-    [param setObject:_itemsModel.goods_id forKey:@"goods_id"];
-    [param setObject:_orderModel.noteStr forKey:@"message"];
+    [param setObject:_orderModel.message forKey:@"message"];
     [param setObject:_orderModel.express_type forKey:@"express_type"];
-    [param setObject:@"" forKey:@"spec"];
+    [param setObject:_spec?_spec:@"" forKey:@"spec"];
     [GoodsOrderVModel getSubmitOrderInfoParam:param successBlock:^(NSString *orderID,BOOL isSuccess, NSString *msg) {
         if (isSuccess) {
             weakSelf.orderModel.orderno = orderID;
@@ -380,6 +390,9 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     if ([_orderModel.payIndexStr isEqualToString:@"话费支付"]) {
         [param setObject:@"auto"  forKey:@"type_value[phone_money]"];
     }
+    
+    
+
   
     [GoodsOrderVModel getPayInfoKryParam:param successBlock:^(PayModels *model, BOOL isSuccess,NSString *msg) {
         if (isSuccess ) {
@@ -485,16 +498,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
             }
             
         }
-//        else if ([str isEqualToString:@"备注"])
-//        {
-//            DeductionCell *cell = [tableView dequeueReusableCellWithIdentifier:DeductionCellID forIndexPath:indexPath];
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            cell.didChageJFNumberBlock = ^(NSString *buyNumber) {
-//
-//            };
-//            cell.userInfo = _orderModel.userinfo;
-//            return cell;
-//        }
+
         
     }else{
         GoodSOrderNomalCell *cell = [tableView dequeueReusableCellWithIdentifier:goodSOrderNomalCellID forIndexPath:indexPath];
@@ -502,10 +506,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
             weakSelf.model.goodSCount = [buyNumber integerValue];
             [self getGoodsOrderInfoRequest];
         };
-        cell.didChangeEmailTypeBlock = ^(NSInteger type) {
-            // type  0 邮寄  1门店
-            weakSelf.orderModel.express_type = [NSString stringWithFormat:@"%ld",type+1];
-        };
+     
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         Seller *seller = _orderModel.seller[indexPath.section-1];
         cell.products = seller.products[indexPath.row];
@@ -533,17 +534,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
             return 82;
         }
     }
-    
-//     else if ([str isEqualToString:@"商品详情"])
-//     {
-//         return 235;
-//
-//     }
-//
-//     else if([str isEqualToString:@"积分抵扣"]){
-//         return 100;
-//     }
-     return 235;
+    return 100;
 
 }
 
@@ -584,8 +575,8 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if ([self.resorceArray[section] isKindOfClass:[Seller class]]) {
-        return 50;
+    if (![self.resorceArray[section] isKindOfClass:[NSString class]]) {
+        return 145;
     }
     return 0;
 }
@@ -594,34 +585,24 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if ([self.resorceArray[section] isKindOfClass:[Seller class]]) {
-        UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH -10, 50)];
-        headView.backgroundColor = [UIColor whiteColor];
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
-        lineView.backgroundColor = BACKGROUND_COLOR;
-        [headView addSubview:lineView];
+    WEAKSELF;
+    if (![self.resorceArray[section] isKindOfClass:[NSString class]]) {
+        OrderSectionFooterView *footView=  [[OrderSectionFooterView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 145)];
+        footView.model = _orderModel;
+        footView.didChangeEmailTypeBlock = ^(NSInteger type) {
+            
+            // type  0 邮寄  1门店
+            weakSelf.orderModel.express_type = [NSString stringWithFormat:@"%ld",type+1];
+        };
+        footView.backgroundColor = [UIColor whiteColor];
+        footView.titleLB3.attributedText = _allCountStr;
+        return footView;
         
-        UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, SCREEN_WIDTH - 25, 44)];
-        titleLB.textColor = TITLETEXTLOWCOLOR;
-        titleLB.font = Font15;
-        titleLB.textAlignment = NSTextAlignmentRight;
-        titleLB.attributedText = _allCountStr;
-        [headView addSubview:titleLB];
-        
-        UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 49, SCREEN_WIDTH, 1)];
-        lineView1.backgroundColor = LINECOLOR;
-        [headView addSubview:lineView1];
-        
-        return headView;
+//        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
+//        view.backgroundColor = [UIColor whiteColor];
+//      return view;
     }
-    else{
-        
-        UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
-        headView.backgroundColor = BACKGROUND_COLOR;
-        return headView;
-
-        //        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1
-    }
+    
     return nil;
 }
 
@@ -653,17 +634,6 @@ static NSString * const DeductionCellID = @"DeductionCellID";
             [self.navigationController pushViewController:VC animated:YES];
         }
     }
-//        else if (indexPath.section == 1){
-////            [self.navigationController popViewControllerAnimated:YES];
-//        }
-//        else if (indexPath.section == 4){
-//            if (indexPath.row == 0) {
-//
-//            }
-//            else {
-//                [self showPaySheetView];
-//            }
-//        }
 
 }
 
@@ -929,7 +899,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     
     for (Seller *seller in _orderModel.seller) {
         for (Products *item  in seller.products) {
-            allPrices += item.price.intValue *item.goods_nums.intValue;
+            allPrices += item.price.floatValue *item.goods_nums.floatValue;
             allPoint += item.point.intValue *item.goods_nums.intValue;
             allFreight +=  item.freight.intValue *item.goods_nums.intValue;
             count += item.goods_nums.intValue;
@@ -939,7 +909,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     NSString *allPriceStr = @"";
     NSMutableArray *priceArr = [NSMutableArray array];
     if (allPrices>0) {
-        NSString *str = [NSString stringWithFormat:@"￥%.0f",allPrices];
+        NSString *str = [NSString stringWithFormat:@"￥%.1f",allPrices];
         [priceArr addObject:str];
     }
     

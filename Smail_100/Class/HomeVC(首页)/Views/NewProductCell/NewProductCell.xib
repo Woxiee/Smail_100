@@ -28,7 +28,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STC2200" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1CM-Rh-TxI">
                         <rect key="frame" x="10" y="186" width="160" height="17"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="17" id="OAV-9s-53t"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="OAV-9s-53t"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
@@ -71,10 +71,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shouye3@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="IXx-cE-GKr">
-                        <rect key="frame" x="155" y="262" width="13" height="13"/>
+                        <rect key="frame" x="153" y="262" width="15" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="13" id="AGT-wy-Q4c"/>
-                            <constraint firstAttribute="width" constant="13" id="cNH-Gg-Ncg"/>
+                            <constraint firstAttribute="height" constant="15" id="AGT-wy-Q4c"/>
+                            <constraint firstAttribute="width" constant="15" id="cNH-Gg-Ncg"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TEN-v2-iAP">

@@ -307,22 +307,34 @@
 
 - (IBAction)buyAciton:(id)sender {
 
-    NSMutableArray *cart_ids = [[NSMutableArray alloc] init];
+    if (![KX_UserInfo sharedKX_UserInfo].loginStatus) {
+        [KX_UserInfo presentToLoginView:self];
+        return;
+    }
+    
+    
+    NSMutableArray *cartList = [[NSMutableArray alloc] init];
     NSMutableArray *specs = [[NSMutableArray alloc] init];
     for (NSArray *items in _itemsDic.allValues  ) {
         for (OrderGoodsModel*item in items) {
             if (item.itemCount.intValue >0) {
-                [cart_ids addObject:item.cid];
+                [cartList addObject:item];
                 [specs addObject:item.spec];
             }
         }
     }
     
+    
+    if (cartList.count == 0) {
+        [self.view toastShow:@"请先添加商品在下单~"];
+        return;
+    }
     GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
-    VC.cart_ids = [cart_ids componentsJoinedByString:@","];
+    VC.cart_ids = [cartList componentsJoinedByString:@","];
     VC.spec = [specs componentsJoinedByString:@","];
     VC.orderType  = ShoppinCarType;
     VC.uuid  = _classModel.UUID?_classModel.UUID:@"";
+    
     [self.navigationController pushViewController:VC animated:YES];
    
 }

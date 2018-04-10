@@ -89,7 +89,7 @@
     _model = model;
     nameLabel.text = _model.name;
     productPriceLabel.text = [NSString stringWithFormat:@"￥%@",_model.price];
-    if ([_model.price intValue] == 0) {
+    if ([_model.price floatValue] <=0) {
         productPriceLabel.hidden = YES;
     }
     if ([_model.earn_point intValue] == 0) {

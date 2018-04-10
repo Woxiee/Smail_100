@@ -116,10 +116,11 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     [self setLeftItems];
     [self initBottomView];
 
-    [self.tableView headerWithRefreshingBlock:^{
-        [weakSelf getGoodsDetailInfoRequest];
-    }];
-    
+//    [self.tableView headerWithRefreshingBlock:^{
+//        [weakSelf getGoodsDetailInfoRequest];
+//    }];
+    [self getGoodsDetailInfoRequest];
+
     [self getRecommendedRequest];
     
 
@@ -128,7 +129,6 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self getGoodsDetailInfoRequest];
 
     _guiGeVlue = @"";
     _goodSCount = 1;
@@ -314,6 +314,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
             GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
             weakSelf.itemIfoModel.itemContent.goods_id = weakSelf.productID;
             VC.itemsModel = weakSelf.itemIfoModel.itemContent;
+            VC.spec = weakSelf.itemIfoModel.itemContent.spec;
             [weakSelf.superVC.navigationController pushViewController:VC animated:YES];
             
         }
@@ -375,6 +376,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     
     NSLog(@"%@",_attributesArray);
     NSMutableArray *selectItems = [NSMutableArray new];
+
     for (NSString *str in _attributesArray) {
         for (Value *value in _allItems) {
             if ([str isEqualToString:value.spec_name]) {
@@ -386,7 +388,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     _selectItems =  [selectItems mutableCopy];
     NSString *comm = [_attributesArray componentsJoinedByString:@","];
     self.selectView.LB_detail.text = [NSString stringWithFormat:@"选择了 %@",comm];
-    
+    _itemIfoModel.itemContent.spec =  [_selectItems componentsJoinedByString:@","];
     [self getGoodsDetailPriceRequest];
 }
 

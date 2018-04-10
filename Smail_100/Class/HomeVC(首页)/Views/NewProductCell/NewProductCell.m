@@ -54,7 +54,7 @@
     getPericeLB.textColor = KMAINCOLOR;
     integralLB.textColor = DETAILTEXTCOLOR1;
     sellLB.textColor = DETAILTEXTCOLOR1;
-
+    sellLB.font = Font14;
     
 }
 
@@ -65,10 +65,26 @@
     [iconImageView sd_setImageWithURL:[NSURL URLWithString:_model.imageUrl] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
     titleLabel.text  = _model.itemTitle;
     detailLabel.text = _model.itemSubTitle;
-    moneyLabel.text = [NSString stringWithFormat:@"￥%@",_model.price];
+//    NSString *str1 = [NSString stringWithFormat:@"%.2f",priceStr];
+//    NSString *str =[NSString stringWithFormat:@"￥%@",str1];
+//    NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str.length- str1.length, str1.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:17 weight:UIFontWeightThin]];
+//    _numberTextField.attributedText = attributedStr;
+    if (_model.earn_point.floatValue >0) {
+        
+        NSString *moneyStr = [NSString stringWithFormat:@"￥%@+%@积分",_model.price,_model.earn_point];
+        NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[@"积分"]];
+//        NSAttributedString *attributedStr = [moneyStr creatAttributedString:moneyStr withMakeRange:NSMakeRange(0, moneyStr.length) withColor:KMAINCOLOR withFont:Font14];
+        integralLB.hidden = NO;
+        moneyLabel.attributedText  = attributedStr;
+
+    }else{
+        integralLB.hidden = YES;
+        moneyLabel.text  =  [NSString stringWithFormat:@"￥%@",_model.price];
+    }
+
     getPericeLB.text = [NSString stringWithFormat:@"赚￥%@",_model.earn_money];
     integralLB.text =[NSString stringWithFormat:@"送%@积分",_model.earn_point];
-    sellLB.text = [NSString stringWithFormat:@"已出售:%@",_model.store_nums];
+    sellLB.text = [NSString stringWithFormat:@"已出售:%@",_model.volume];
     NSInteger  tagCount = 0;
     if (_model.tags.count >0) {
         tagsContraintsH.constant = 15;
@@ -81,7 +97,7 @@
         tagsView.hidden = YES;
     }
     
-    if (_model.tags.count > 6)
+    if (_model.tags.count >= 6)
     {
         tagsContraintsH.constant = 15;
         tagsView.hidden = NO;
@@ -117,6 +133,49 @@
     
 }
 
+ - (NSAttributedString *)attributeStringWithContent:(NSString *)content keyWords:(NSArray *)keyWords
 
+{
+    
+    UIColor *color = KMAINCOLOR;
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:content];
+    
+    if (keyWords) {
+        
+        [keyWords enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            NSMutableString *tmpString=[NSMutableString stringWithString:content];
+            
+            NSRange range=[content rangeOfString:obj];
+            
+            NSInteger location=0;
+            
+            while (range.length>0) {
+                
+                [attString addAttribute:(NSString*)NSForegroundColorAttributeName value:color range:NSMakeRange(location+range.location, range.length)];
+                [attString addAttribute:NSFontAttributeName
+                                value:Font11
+                                range:range];
+                
+                location+=(range.location+range.length);
+                
+                NSString *tmp= [tmpString substringWithRange:NSMakeRange(range.location+range.length, content.length-location)];
+                
+                tmpString=[NSMutableString stringWithString:tmp];
+                
+                range=[tmp rangeOfString:obj];
+                
+            }
+            
+            
+        }];
+        
+    }
+    
+    
+    return attString;
+    
+}
 
 @end
