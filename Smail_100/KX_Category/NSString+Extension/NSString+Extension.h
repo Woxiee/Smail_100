@@ -142,4 +142,8 @@
 ///MD5加密的字符串分类
 - (NSString *)md5String;
 
++(NSString*) createMd5Sign:(NSMutableDictionary*)dict withAppKey:(NSString *) appKey;
+
++ (NSAttributedString *)attributeStringWithContent:(NSString *)content keyWords:(NSArray *)keyWords;
+
 @end

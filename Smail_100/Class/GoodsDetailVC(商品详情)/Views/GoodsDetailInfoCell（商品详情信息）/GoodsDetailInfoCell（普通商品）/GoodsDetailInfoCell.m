@@ -19,7 +19,7 @@
     
     __weak IBOutlet UILabel *numLabel;  /// 库存
     
-    __weak IBOutlet UILabel *postage;  /// 邮费
+    __weak IBOutlet UILabel *postage;  /// 快递费
 
     __weak IBOutlet UIView *lineView2;
     

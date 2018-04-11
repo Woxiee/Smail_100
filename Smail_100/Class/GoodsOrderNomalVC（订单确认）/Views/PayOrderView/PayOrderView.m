@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSString *number;
 @property (nonatomic, strong)  UILabel *jfLb;
 
+@property (nonatomic, assign)  BOOL isLoading;
 
 @end
 
@@ -62,8 +63,8 @@ static NSString * const OthercellID = @"OthercellID";
 //    }else{
 //        bottomView.frame = CGRectMake(0, SCREEN_HEIGHT  -(_dataArr.count+1) *44 - hegiht, self.frame.size.width,(_dataArr.count+1) *44 +hegiht);
 //    }
-    bottomView.frame = CGRectMake(0, SCREEN_HEIGHT  -(_dataArr.count+1) *44 -hegiht, self.frame.size.width,(_dataArr.count+1) *44 +hegiht);
-
+    
+    bottomView.frame = CGRectMake(0, SCREEN_HEIGHT  -(_dataArr.count+1) *50 -hegiht, self.frame.size.width,(_dataArr.count+1) *50 +hegiht);
     bottomView.backgroundColor  = [UIColor whiteColor];
     [self addSubview:bottomView];
     self.bottomView = bottomView;
@@ -88,7 +89,7 @@ static NSString * const OthercellID = @"OthercellID";
     [dissBtn addTarget:self action:@selector(hiddenSheetView) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:dissBtn];
 
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView.frame)+1, self.frame.size.width,_dataArr?_dataArr.count*44 : _dataArray.count*44) style:UITableViewStylePlain];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView.frame)+1, self.frame.size.width,_dataArr?_dataArr.count*50 : _dataArray.count*50) style:UITableViewStylePlain];
     tableView.dataSource = self;
     tableView.delegate = self;
     tableView.rowHeight = 44;
@@ -102,19 +103,19 @@ static NSString * const OthercellID = @"OthercellID";
     [self.tableView registerNib:[UINib nibWithNibName:@"PayViewCell" bundle:nil] forCellReuseIdentifier:payViewCellID];
 
 
-    UILabel *jfLb = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(tableView.frame)+0, self.frame.size.width, 44)];
-//    jfLb.text = @"￥33";
+    UILabel *jfLb = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(tableView.frame)+10, self.frame.size.width, 44)];
     jfLb.textAlignment = NSTextAlignmentCenter;
     jfLb.font = [UIFont systemFontOfSize:15];
+    jfLb.textColor = DETAILTEXTCOLOR;
     [bottomView addSubview:jfLb];
     self.jfLb = jfLb;
   
     UIButton *sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    sureBtn.frame = CGRectMake(20, bottomView.mj_h - 100,self.frame.size.width - 40 , 50);
+    sureBtn.frame = CGRectMake(20, bottomView.mj_h - 90,self.frame.size.width - 30 , 45);
     [sureBtn setTitle:@"确认支付" forState:UIControlStateNormal];
     sureBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     sureBtn.backgroundColor = KMAINCOLOR;
-    [sureBtn layerForViewWith:8 AndLineWidth:0];
+    [sureBtn layerForViewWith:10 AndLineWidth:0];
     [sureBtn addTarget:self action:@selector(didClickCompletAction) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:sureBtn];
 }
@@ -191,13 +192,15 @@ static NSString * const OthercellID = @"OthercellID";
 ///
 - (void)didClickCompletAction
 {
-    if ([_orderModel.jfValue integerValue] > [_orderModel.userinfo.point integerValue]) {
-        [self makeToast:@"输入积分不能大于可用积分"];
+    [self endEditing:YES];
+ 
+    if (KX_NULLString(_orderModel.payIndexStr)) {
+        [self makeToast:@"还未选择支付方式哦"];
         return;
     }
     
-    if (KX_NULLString(_orderModel.payIndexStr)) {
-        [self makeToast:@"还未选择支付方式哦"];
+    if ([_orderModel.jfValue intValue] > _orderModel.allPoint) {
+        [self toastShow:@"兑换积分大于待支付积分"];
         return;
     }
     
@@ -225,20 +228,33 @@ static NSString * const OthercellID = @"OthercellID";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PayDetailModel *model = self.dataArr[indexPath.row];
-    if ([model.title isEqualToString:@"积分兑换"]) {
-        PayOtherCell *cell = [tableView dequeueReusableCellWithIdentifier:OthercellID forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.model = self.dataArr[indexPath.row];
-        cell.numberTextFied.delegate = self;
-        return cell;
-  
-    }else{
+    if ( self.payType == PayTypeOther) {
         PayViewCell *cell = [tableView dequeueReusableCellWithIdentifier:payViewCellID forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = self.dataArr[indexPath.row];
         return cell;
-    }
+    }else{
+        if ([model.title isEqualToString:@"积分兑换"]) {
+            PayOtherCell *cell = [tableView dequeueReusableCellWithIdentifier:OthercellID forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.numberTextFied.delegate = self;
+            
+            cell.model = self.dataArr[indexPath.row];
+            
+            
+            cell.numberTextFied.placeholder = [NSString stringWithFormat:@"当前可兑换积分%@",_orderModel.userinfo.point];
+            return cell;
+            
+        }else{
+            PayViewCell *cell = [tableView dequeueReusableCellWithIdentifier:payViewCellID forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.model = self.dataArr[indexPath.row];
+            return cell;
+        }
 
+    }
+    
+   
     return nil;
 }
 
@@ -252,12 +268,26 @@ static NSString * const OthercellID = @"OthercellID";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self endEditing:YES];
     PayDetailModel *model = self.dataArr[indexPath.row];
-    for (PayDetailModel *payDetailModel in self.dataArr) {
-        payDetailModel.isSelect = NO;
+    if ([model.title isEqualToString:@"积分兑换"]) {
+        if ( self.payType == PayTypeOther) {
+            for (PayDetailModel *payDetailModel in self.dataArr) {
+                payDetailModel.isSelect = NO;
+            }
+            model.isSelect = YES;
+            _orderModel.payIndexStr = model.title;
+            [self.tableView reloadData];
+        }
+        
+    }else{
+        for (PayDetailModel *payDetailModel in self.dataArr) {
+          payDetailModel.isSelect = NO;
+        }
+       
+        model.isSelect = YES;
+        _orderModel.payIndexStr = model.title;
+        [self.tableView reloadData];
     }
-    model.isSelect = YES;
-    _orderModel.payIndexStr = model.title;
-    [self.tableView reloadData];
+
  
 }
 
@@ -267,6 +297,13 @@ static NSString * const OthercellID = @"OthercellID";
  -(void)setDataArr:(NSArray *)dataArr
 {
     _dataArr = dataArr;
+    
+    if (_dataArr.count == 1 ) {
+        PayDetailModel *model = _dataArr.lastObject;
+        if ([model.title isEqualToString:@"积分兑换"]) {
+            _orderModel.payIndexStr = model.title;
+        }
+    }
     
     [self setup];
 
@@ -283,11 +320,24 @@ static NSString * const OthercellID = @"OthercellID";
 - (void)setOrderModel:(GoodsOrderModel *)orderModel
 {
     _orderModel = orderModel;
-    self.jfLb.text = [NSString stringWithFormat:@"%@%@",_orderModel.price,_orderModel.point];
+     self.jfLb.attributedText = _orderModel.allPriceAttriStr;
+
     
 }
 
 #pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (_isLoading ==  NO) {
+         _number = @"1";
+        [self.tableView reloadData];
+        _isLoading = YES;
+    }
+   
+    return YES;
+}
+
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     LOG(@"textField.TEXT = %@   string = %@",textField.text,string);
@@ -303,7 +353,9 @@ static NSString * const OthercellID = @"OthercellID";
         textField.text =@"99999999";
         return YES;
     }
+    _number = textField.text;
     
+
     return YES;
 }
 
@@ -311,8 +363,10 @@ static NSString * const OthercellID = @"OthercellID";
 -  (void)textFieldDidEndEditing:(UITextField *)textField
 {
     _number = textField.text;
+
     _orderModel.jfValue = textField.text;
-   
+    
+    
 }
 
 @end

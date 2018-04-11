@@ -41,7 +41,7 @@
     [super viewDidLoad];
     [self setConfiguration];
     [self setup];
-    [self gettHotSearchRequest];
+//    [self gettHotSearchRequest];
     
 }
 
@@ -81,6 +81,8 @@
     segmentMenuVc.MenuVcSlideType = WJSegmentMenuVcSlideTypeSlide;
     segmentMenuVc.SlideColor = KMAINCOLOR;
     segmentMenuVc.advanceLoadNextVc = NO;
+    segmentMenuVc.backgroundColor = [UIColor whiteColor];
+
 
     //    NewOrderTitleType,                  /// 新机
     //    AccessoriesOrderTitleType,          ///配件
@@ -94,32 +96,24 @@
     
   
     self.title = @"商场订单";
-    titleArr = @[@"全部",@"待付款",@"待发货",@"待收货",@"售后"];
+    titleArr = @[@"全部",@"待发货",@"待收货",@"售后"];
     _allVC = [[OrderManagementVC alloc]init];
     _allVC.orderType = AllOrderType;
-    _allVC.orderTypeTitle = @"";
+    _allVC.shipstatus = @"";
     
     _waitVC = [[OrderManagementVC alloc]init];
     _waitVC.orderType = WaitOrderType;
-    _waitVC.orderTypeTitle = @"0";
+    _waitVC.shipstatus = @"Waiting";
     
     _signingVC = [[OrderManagementVC alloc]init];
     _signingVC.orderType = SigningOrderType;
-    _signingVC.orderTypeTitle = @"1";
-    
-    _waitSendVC = [[OrderManagementVC alloc]init];
-    _waitSendVC.orderType = WaitSendOrderType;
-    _waitSendVC.orderTypeTitle = @"4";
-    
-    
-    _didSendVC = [[OrderManagementVC alloc]init];
-    _didSendVC.orderType = DidSendOrderType;
-    _didSendVC.orderTypeTitle = @"5";
+    _signingVC.shipstatus = @"Delivery";
     
     _closedVC = [[OrderManagementVC alloc]init];
     _closedVC.orderType = DidClosedOrderType;
-    _closedVC.orderTypeTitle = @"6";
-    _contollers = @[_allVC,_waitVC,_signingVC,_waitSendVC,_didSendVC,_closedVC];
+    _closedVC.shipstatus = @"Receive";
+    
+    _contollers = @[_allVC,_waitVC,_signingVC,_closedVC];
 
       /* 导入数据 */
     [segmentMenuVc addSubVc:_contollers subTitles:titleArr];

@@ -129,27 +129,10 @@
 }
 
 -(void)clickRightBtn{
-//  if (_successType == CommitSuccessSupplyType){
-//      LookSupplyVC *vc = [[LookSupplyVC alloc] init];
-//      vc.type  = LookSupplyTypeForSelect;
-//      [self.navigationController pushViewController:vc animated:YES];
-//  }else{
-//      if (_model) {
-          AllOrderManageVC *VC = [[AllOrderManageVC alloc ] init];
-//          VC.orderTitleType = [_model.productInfo.productType integerValue] - 1;
-//          if ([_model.productInfo.productType isEqualToString:@"9"]) {
-//              VC.orderTitleType = BuyOrderTitleType;
-//          }
-//          else if ([_model.productInfo.productType isEqualToString:@"10"])
-//          {
-//              VC.orderTitleType = AuctionOrderTitleType;
-//
-//          }
-          [self.navigationController pushViewController:VC animated:YES];
-          
-//      }
-//  }
+
+    AllOrderManageVC *VC = [[AllOrderManageVC alloc ] init];
     
+    [self.navigationController pushViewController:VC animated:YES];
 
 }
 

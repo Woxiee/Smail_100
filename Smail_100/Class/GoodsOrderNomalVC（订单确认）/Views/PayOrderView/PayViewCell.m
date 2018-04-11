@@ -22,6 +22,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     lineView.backgroundColor = LINECOLOR;
+    titleLB.textColor = DETAILTEXTCOLOR;
 }
 
 - (void)setModel:(PayDetailModel *)model

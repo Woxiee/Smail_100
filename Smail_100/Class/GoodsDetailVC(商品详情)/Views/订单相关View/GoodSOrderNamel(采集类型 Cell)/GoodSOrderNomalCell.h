@@ -18,5 +18,6 @@ typedef void(^DidChageNumberBlock)(NSString *buyNumber);
 @property (nonatomic, copy) void(^didChangeEmailTypeBlock)(NSInteger type);
 
 @property (nonatomic, strong)  Products *products;
+@property (nonatomic, strong)  Seller *seller;
 
 @end

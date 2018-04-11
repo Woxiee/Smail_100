@@ -60,7 +60,7 @@
     _nameLB.font = Font15;
     
     _priceLB = [UILabel new];
-    _priceLB.textColor = TITLETEXTLOWCOLOR;
+    _priceLB.textColor = KMAINCOLOR;
     _priceLB.font = Font14;
     _priceLB.textAlignment = NSTextAlignmentLeft;
 
@@ -171,30 +171,18 @@
     _timeLB.text = [NSString stringWithFormat:@"交易时间：  %@",_seller.ctime];
     _numLB.text = [NSString stringWithFormat:@"*%@",_seller.goods_nums];
     [self setupAutoHeightWithBottomView:_lineView2 bottomMargin:1];
-    NSString *allNumber = [NSString stringWithFormat:@"%@",_seller.goods_nums];
+//    NSString *allNumber = [NSString stringWithFormat:@"%@",_seller.goods_nums];
     NSString *allPrice = [NSString stringWithFormat:@"￥%@",_seller.price];
     NSString *allPoint = [NSString stringWithFormat:@"%@",_seller.point];
+    
+    
 
     if ([_seller.point integerValue] >0) {
-        NSMutableAttributedString *hintString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@积分+%@",allPrice,allPoint]];
-        //获取要调整颜色的文字位置,调整颜色
-        NSRange range1=[[hintString string]rangeOfString:allNumber];
-        [hintString addAttribute:NSForegroundColorAttributeName  value:KMAINCOLOR range:range1];
-        
-        NSRange range2=[[hintString string]rangeOfString:allPrice];
-        [hintString addAttribute:NSForegroundColorAttributeName value:KMAINCOLOR range:range2];
-        
-        NSRange range3 =[[hintString string]rangeOfString:allPoint];
-        [hintString addAttribute:NSForegroundColorAttributeName value:KMAINCOLOR range:range3];
-        _priceLB.attributedText =hintString;
+        NSString * hintString =  [NSString stringWithFormat:@"%@+%@积分",allPrice,allPoint];
+        _priceLB.attributedText = [NSString attributeStringWithContent:hintString keyWords:@[@"积分",@"+"]];
     }else{
-        NSMutableAttributedString *hintString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@",allPrice]];
-   
-        NSRange range2=[[hintString string]rangeOfString:allPrice];
-        [hintString addAttribute:NSForegroundColorAttributeName value:KMAINCOLOR range:range2];
-        
- 
-        _priceLB.attributedText =hintString;
+
+        _priceLB.text = [NSString stringWithFormat:@"%@",allPrice] ;
     }
 
    
@@ -219,24 +207,7 @@
         _priceLB.text = [NSString stringWithFormat:@"￥%@",_model.price];
     }
     _numLB.text = [NSString stringWithFormat:@"x%@",_model.buyCount];
-    if ([_model.payMentType isEqualToString:@"1"] ) {
-        [_payBtn setTitle:@"直接付款" forState:UIControlStateNormal];
-    }
-    else if ([_model.payMentType isEqualToString:@"2"] )
-    {
-        [_payBtn setTitle:@"分期付款" forState:UIControlStateNormal];
-    }
-    
-    else if ([_model.payMentType isEqualToString:@"3"] )
-    {
-        [_payBtn setTitle:@"先用后付" forState:UIControlStateNormal];
-    }
-    else if ([_model.payMentType isEqualToString:@"4"] ){
-        [_payBtn setTitle:@"融资租赁" forState:UIControlStateNormal];
-    }else{
-        _payBtn.hidden = YES;
-    }
-    [_payBtn setupAutoSizeWithHorizontalPadding:6 buttonHeight:22];
+   
 
      NSString *str1 = [NSString stringWithFormat:@"￥%@",_model.sumAmout];
      NSString *str = @"";
@@ -246,22 +217,6 @@
     else{
         str =  [NSString stringWithFormat:@"小计：%@",str1];
     }
-//    NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str.length- str1.length, str1.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:16 weight:UIFontWeightThin]];
-//    _totalLB.attributedText = attributedStr;
-
-//    NSString *str2 = [NSString stringWithFormat:@"￥%@",_model.orderPay];
-//    NSString *str3 =[NSString stringWithFormat:@"已支付金额：%@",str2];
-//    NSAttributedString *attributedStr1 =  [str3 creatAttributedString:str3 withMakeRange:NSMakeRange(str3.length- str2.length, str2.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:16 weight:UIFontWeightThin]];
-//    _relustLB.attributedText = attributedStr1;
-    
-    
-//    if (_cellType == CheckOrderCellType) {
-//        _footView.showType = CheckShowType;
-//    }
-//    else if (_cellType == BuyOrderCellType){
-//        _footView.showType = BuyShowType;
-//    }
-//    _footView.model = _model;
 
     UIView *bottomView;
     bottomView = _priceLB;

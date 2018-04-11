@@ -18,5 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *numberTextFied;
 
+@property (weak, nonatomic) IBOutlet UILabel *commLb;
 
 @end

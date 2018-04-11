@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <CoreLocation/CoreLocation.h>
+#import "PayModels.h"
 
 typedef NS_ENUM(NSUInteger,OPENURLType) {
     OPENURLTypeWifi = 0,

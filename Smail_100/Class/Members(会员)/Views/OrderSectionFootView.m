@@ -28,8 +28,7 @@
     _footView = footVeiw;
     
     _titleArr = [[NSMutableArray alloc] init];
-    [_titleArr addObject:@"付款"];
-    [_titleArr addObject:@"取消订单"];
+
 
 }
 
@@ -39,32 +38,65 @@
     _model = model;
     NSString *allNumber = [NSString stringWithFormat:@"%@",_model.count];
     NSString *allPrice = [NSString stringWithFormat:@"￥%@",_model.price];
-    NSString *allPoint = [NSString stringWithFormat:@"%@",_model.point];
-    
-    if ([_model.point integerValue] >0) {
-        NSMutableAttributedString *hintString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"共%@件商品   合计:%@+%@积分",allNumber,allPrice,allPoint]];
-        //获取要调整颜色的文字位置,调整颜色
-        NSRange range1=[[hintString string]rangeOfString:allNumber];
-        [hintString addAttribute:NSForegroundColorAttributeName  value:KMAINCOLOR range:range1];
-        
-        NSRange range2=[[hintString string]rangeOfString:allPrice];
-        [hintString addAttribute:NSForegroundColorAttributeName value:KMAINCOLOR range:range2];
-        
-        NSRange range3 =[[hintString string]rangeOfString:allPoint];
-        [hintString addAttribute:NSForegroundColorAttributeName value:KMAINCOLOR range:range3];
-        contenLB.attributedText =hintString;
-    }else{
-        NSMutableAttributedString *hintString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"共%@件商品   合计:%@",allNumber,allPrice]];
-        //获取要调整颜色的文字位置,调整颜色
-        NSRange range1=[[hintString string]rangeOfString:allNumber];
-        [hintString addAttribute:NSForegroundColorAttributeName  value:KMAINCOLOR range:range1];
-        
-        NSRange range2=[[hintString string]rangeOfString:allPrice];
-        [hintString addAttribute:NSForegroundColorAttributeName value:KMAINCOLOR range:range2];
-        
-        
-        contenLB.attributedText =hintString;
+    NSString *allPoint = [NSString stringWithFormat:@"%@积分",_model.point];
+    NSString *freights = [NSString stringWithFormat:@"%@快递费",_model.freight];
+    NSMutableArray *infoArr = [[NSMutableArray alloc] init];
+    if (_model.price.floatValue >0) {
+        [infoArr addObject: allPrice];
     }
+    
+    if (_model.point.floatValue >0) {
+        [infoArr addObject: allPoint];
+    }
+    
+    if (_model.freight.floatValue >0) {
+        [infoArr addObject: freights];
+    }
+    
+    NSString *infoStr = [NSString stringWithFormat:@"共%@件商品   合计:%@",allNumber,[infoArr componentsJoinedByString:@"+"]];
+    contenLB.attributedText = [NSString attributeStringWithContent:infoStr keyWords:@[@"积分",@"快递费",@"+",allNumber,allPrice,freights,allPoint]];
+
+
+    if ([_model.paystatus isEqualToString:@"Pendding"] || [_model.paystatus isEqualToString:@"Preview"] || [_model.paystatus isEqualToString:@"Fail"]) {
+        [_titleArr addObject:@"付款"];
+    }
+    
+    
+    
+    if ([_model.paystatus isEqualToString:@"Complete"] && [_model.shipstatus isEqualToString:@"Delivery"] ) {
+        [_titleArr addObject:@"确认收货"];
+    }
+    
+    
+    
+    if ([_model.paystatus isEqualToString:@"Complete"]) {
+        [_titleArr addObject:@"查看详情"];
+    }
+    
+    
+    if ([_model.paystatus isEqualToString:@"Complete"] && [_model.paystatus isEqualToString:@"Waiting"] ) {
+        [_titleArr addObject:@"申请售后"];
+    }
+    
+    if ([_model.paystatus isEqualToString:@"Complete"] && [_model.paystatus isEqualToString:@"Delivery"] ) {
+        [_titleArr addObject:@"查看物流"];
+    }
+    
+    if ([_model.paystatus isEqualToString:@"Pendding"] || [_model.paystatus isEqualToString:@"Preview"] || [_model.paystatus isEqualToString:@"Fail"]) {
+        [_titleArr addObject:@"取消订单"];
+    }
+    
+  
+    
+    if ([_model.paystatus isEqualToString:@"Complete"] &&  [_model.shipstatus isEqualToString:@"Waiting"] ) {
+        [_titleArr addObject:@"提醒发货"];
+    }
+    
+
+    
+  
+    
+  
 
 
     UIView *lastTopView = self;
@@ -76,7 +108,7 @@
         [btn addTarget:self action:@selector(didClickOrderAction:) forControlEvents:UIControlEventTouchUpInside];
         [btn layerForViewWith:3 AndLineWidth:1];
         [btn setTitleColor:DETAILTEXTCOLOR1 forState:UIControlStateNormal];
-        if ([_titleArr[i] isEqualToString:@"申请撤单"] || [_titleArr[i] isEqualToString:@"删除订单"] || [_titleArr[i] isEqualToString:@"取消订单"] ||[_titleArr[i] isEqualToString:@"申请退租"] ) {
+        if ([_titleArr[i] isEqualToString:@"申请售后"] || [_titleArr[i] isEqualToString:@"查看物流"] || [_titleArr[i] isEqualToString:@"取消订单"] || [_titleArr[i] isEqualToString:@"提醒发货"] ) {
             [btn layerForViewWith:3 AndLineWidth:1];
             [btn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
         }
@@ -103,7 +135,9 @@
 
 - (void)didClickOrderAction:(UIButton *)sender
 {
-    
+    if (_didClickItemBlock) {
+        _didClickItemBlock(sender.titleLabel.text);
+    }
     
 }
 

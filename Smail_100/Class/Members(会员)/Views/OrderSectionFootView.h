@@ -12,6 +12,7 @@
 @property (nonatomic, strong) OrderModel *model;
 @property (nonatomic, strong) NSMutableArray *titleArr;
 
+@property (nonatomic, copy) void(^didClickItemBlock)(NSString *title);
 
 
 @end

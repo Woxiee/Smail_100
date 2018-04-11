@@ -128,6 +128,29 @@
     
 }
 
+- (void)setSeller:(Seller *)seller
+{
+    _seller = seller;
+    
+    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:_seller.img] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
+    _titleLB.text = _seller.name;
+    _detailLB.text = _seller.spec?_seller.spec:[NSString stringWithFormat:@"规格: %@",@"默认"];
+    _priceLB.text = [NSString stringWithFormat:@"￥%@",_seller.price];
+    //    _products.point = @"22";
+    if ([_seller.point integerValue] >0) {
+        //        NSString *allPrice = [NSString]
+        NSString *str = [NSString stringWithFormat:@"%@积分+￥%@",_seller.point,_seller.price];
+        NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(_seller.point.length, 2) withColor:TITLETEXTLOWCOLOR withFont:Font13];
+        _priceLB.attributedText = attributedStr;
+    }
+    _number.text = [NSString stringWithFormat:@"*%@",_seller.goods_nums];
+    
+    if (_model.isDetail) {
+        _shouYeBtn.userInteractionEnabled = NO;
+        _meBtn.userInteractionEnabled = NO;
+    }
+}
+
 /// 增加 减少BTN
 - (IBAction)didClickChangeAction:(UIButton *)btn
 {

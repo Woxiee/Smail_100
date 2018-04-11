@@ -163,11 +163,13 @@
 @property (nonatomic , copy) NSString              * orderno;
 @property (nonatomic , copy) NSString              * ctime;
 @property (nonatomic , copy) NSString              * message;
+@property (nonatomic , copy) NSAttributedString              * allPriceAttriStr;
 
 
 @property (nonatomic , assign) BOOL              isDetail;
 
 @property (nonatomic , assign) float             allPrices;
+@property (nonatomic , assign) float              allPoint;
 
 
 @end

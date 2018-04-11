@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "OrderModel.h"
 #import "OrderDetailModel.h"
+#import "ItemContentList.h"
 
 #import "GoodsOrderVModel.h"
 
@@ -19,8 +20,15 @@
 /// 处理订单
 + (void)getOrderOperationUrl:(NSString *)url Param:(id)pararm successBlock:(void(^)(BOOL isSuccess,NSString *message))sBlcok;
 
+/// 获取订单付款操作
++ (void)getOrderPayTypeUrl:(NSString *)url Param:(id)pararm successBlock:(void(^)(Pay_method *pay_method,BOOL isSuccess))sBlcok;
+
+
 ///订单详情
 + (void)getOrderDetailParam:(id)pararm successBlock:(void(^)(NSArray < GoodsOrderVModel *>*dataArray,BOOL isSuccess))sBlcok;
+
+
+
 
 /// 金融
 + (void)getFinanListUrl:(NSString *)url Param:(id)pararm successBlock:(void(^)(NSArray < OrderModel *>*dataArray,BOOL isSuccess))sBlcok;

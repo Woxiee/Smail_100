@@ -134,9 +134,7 @@
 }
 
  - (NSAttributedString *)attributeStringWithContent:(NSString *)content keyWords:(NSArray *)keyWords
-
 {
-    
     UIColor *color = KMAINCOLOR;
     
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:content];
@@ -165,17 +163,10 @@
                 tmpString=[NSMutableString stringWithString:tmp];
                 
                 range=[tmp rangeOfString:obj];
-                
             }
-            
-            
         }];
-        
     }
-    
-    
     return attString;
-    
 }
 
 @end

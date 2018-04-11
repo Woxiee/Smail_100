@@ -54,6 +54,8 @@ typedef NS_ENUM(NSInteger, GoodOrderType){
 @property (nonatomic, assign)  BOOL isDetection;   /// 是否检测吊运
 @property (nonatomic, assign)  GoodOrderType goodOrderType;   /// 订单类型
 @property(nonatomic,strong) NSString *quickSearch;  /// 搜索字段
+@property(nonatomic,strong) NSString *paystatus;  //// 付款
+@property(nonatomic,strong) NSString *shipstatus;  ////     Waiting(待发货),Delivery(待收货),Receive(售后)
 
 -(void)requestListNetWork;
 

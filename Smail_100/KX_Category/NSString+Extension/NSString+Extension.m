@@ -589,4 +589,69 @@
     return [ms copy];
 }
 
++(NSString*) createMd5Sign:(NSMutableDictionary*)dict withAppKey:(NSString *) appKey
+{
+    NSMutableString *contentString  =[NSMutableString string];
+    NSArray *keys = [dict allKeys];
+    //按字母顺序排序
+    NSArray *sortedArray = [keys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [obj1 compare:obj2 options:NSNumericSearch];
+    }];
+    //拼接字符串
+    for (NSString *categoryId in sortedArray) {
+        if (   ![[dict objectForKey:categoryId] isEqualToString:@""]
+            && ![categoryId isEqualToString:@"sign"]
+            && ![categoryId isEqualToString:@"key"]
+            )
+        {
+            [contentString appendFormat:@"%@=%@&", categoryId, [dict objectForKey:categoryId]];
+        }
+        
+    }
+    //添加key字段
+    [contentString appendFormat:@"key=%@",appKey];//这个key是商户key
+    
+    //得到MD5 sign签名
+    NSString *md5Sign =[self md5HexDigest:contentString];
+    
+    return md5Sign;
+}
+
++ (NSAttributedString *)attributeStringWithContent:(NSString *)content keyWords:(NSArray *)keyWords
+{
+    UIColor *color = KMAINCOLOR;
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:content];
+    
+    if (keyWords) {
+        
+        [keyWords enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            NSMutableString *tmpString=[NSMutableString stringWithString:content];
+            
+            NSRange range=[content rangeOfString:obj];
+            
+            NSInteger location=0;
+            
+            while (range.length>0) {
+                
+                [attString addAttribute:(NSString*)NSForegroundColorAttributeName value:color range:NSMakeRange(location+range.location, range.length)];
+                [attString addAttribute:NSFontAttributeName
+                                  value:Font11
+                                  range:range];
+                
+                location+=(range.location+range.length);
+                
+                NSString *tmp= [tmpString substringWithRange:NSMakeRange(range.location+range.length, content.length-location)];
+                
+                tmpString=[NSMutableString stringWithString:tmp];
+                
+                range=[tmp rangeOfString:obj];
+            }
+        }];
+    }
+    return attString;
+}
+
+
 @end

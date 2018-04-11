@@ -46,19 +46,12 @@
 {
     [BaseHttpRequest postWithUrl:url andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
         LOG(@"订单操作 == %@",result);
-        NSInteger state = [[result valueForKey:@"data"][@"state"]integerValue];
-        NSInteger code = [[result valueForKey:@"code"]integerValue];
-        NSString *msg = result[@"data"][@"msg"];
-        if (code == 000) {
-            if (state == 0) {
+        NSString *msg = [result valueForKey:@"msg"];
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
             sBlcok(YES,msg);
-            }
-            else{
-                sBlcok(NO,msg);
-            }
+
         }else{
             sBlcok(NO,msg);
-
         }
         //        NSString *msg = [result valueForKey:@"msg"];
     }];
@@ -94,6 +87,23 @@
 
 }
 
+
+/// 获取订单付款操作
++ (void)getOrderPayTypeUrl:(NSString *)url Param:(id)pararm successBlock:(void(^)(Pay_method *pay_method,BOOL isSuccess))sBlcok
+{
+    [BaseHttpRequest postWithUrl:url andParameters:pararm andRequesultBlock:^(id result, NSError *error) {
+        LOG(@"订单操作 == %@",result);
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+            Pay_method *payMethod = [Pay_method yy_modelWithJSON:result[@"data"]];
+            sBlcok(payMethod,YES);
+
+        }else{
+            sBlcok(nil,NO);
+
+        }
+        //        NSString *msg = [result valueForKey:@"msg"];
+    }];
+}
 
 /// 金融 订单类表接口
 + (void)getFinanListUrl:(NSString *)url Param:(id)pararm successBlock:(void(^)(NSArray < OrderModel *>*dataArray,BOOL isSuccess))sBlcok

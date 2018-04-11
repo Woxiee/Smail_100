@@ -125,6 +125,8 @@
         _didChangeEmailTypeBlock(sender.tag - 100);
     }
 }
+
+
 // Will End Editing Action
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {

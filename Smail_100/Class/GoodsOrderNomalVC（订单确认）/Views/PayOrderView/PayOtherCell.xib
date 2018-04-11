@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +20,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P0g-Mn-Lw7">
-                        <rect key="frame" x="68.5" y="14" width="104.5" height="17"/>
+                        <rect key="frame" x="10" y="14" width="184.5" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="V6d-ev-w0k"/>
+                        </constraints>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -30,8 +32,11 @@
                         </connections>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(输入要兑换的积分数量)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qjb-od-kbO">
-                        <rect key="frame" x="178" y="15" width="132" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <rect key="frame" x="199.5" y="15" width="110.5" height="14.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14.5" id="gII-Qo-fxw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -42,35 +47,16 @@
                             <constraint firstAttribute="height" constant="1" id="hxv-Eh-NO1"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xwz-BC-9HR">
-                        <rect key="frame" x="10" y="15" width="15" height="15"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="15" id="GnT-V4-DTe"/>
-                            <constraint firstAttribute="width" constant="15" id="seL-Jo-Zaf"/>
-                        </constraints>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C6i-f1-liK">
-                        <rect key="frame" x="35" y="10" width="23.5" height="23.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="C6i-f1-liK" secondAttribute="height" multiplier="1:1" id="2l8-I9-L0T"/>
-                            <constraint firstAttribute="width" constant="23.5" id="rj7-WQ-MBE"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="P0g-Mn-Lw7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7LC-6I-CMB"/>
-                    <constraint firstItem="Qjb-od-kbO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8oQ-Fc-vX6"/>
-                    <constraint firstItem="C6i-f1-liK" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="AcU-UY-EtB"/>
-                    <constraint firstAttribute="trailing" secondItem="Qjb-od-kbO" secondAttribute="trailing" constant="10" id="C7C-S5-mPL"/>
                     <constraint firstItem="D1E-jn-VJg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="FPc-hC-AoT"/>
-                    <constraint firstItem="P0g-Mn-Lw7" firstAttribute="leading" secondItem="C6i-f1-liK" secondAttribute="trailing" constant="10" id="GxJ-Kt-JMh"/>
                     <constraint firstAttribute="bottom" secondItem="D1E-jn-VJg" secondAttribute="bottom" id="IcE-Zh-9UZ"/>
+                    <constraint firstAttribute="trailing" secondItem="Qjb-od-kbO" secondAttribute="trailing" constant="10" id="QwF-ct-fXI"/>
                     <constraint firstAttribute="trailing" secondItem="D1E-jn-VJg" secondAttribute="trailing" id="Ryf-x4-wRJ"/>
-                    <constraint firstItem="xwz-BC-9HR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="YzU-2n-foW"/>
-                    <constraint firstItem="C6i-f1-liK" firstAttribute="width" secondItem="C6i-f1-liK" secondAttribute="height" multiplier="1:1" id="aek-hj-OGK"/>
-                    <constraint firstItem="xwz-BC-9HR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eMD-vX-Q9E"/>
-                    <constraint firstItem="Qjb-od-kbO" firstAttribute="leading" secondItem="P0g-Mn-Lw7" secondAttribute="trailing" constant="5" id="oIB-xT-y7F"/>
-                    <constraint firstItem="C6i-f1-liK" firstAttribute="leading" secondItem="xwz-BC-9HR" secondAttribute="trailing" constant="10" id="qNh-mb-7VH"/>
+                    <constraint firstItem="P0g-Mn-Lw7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="WTC-tp-YrU"/>
+                    <constraint firstItem="Qjb-od-kbO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Yi1-RO-0Tr"/>
+                    <constraint firstItem="Qjb-od-kbO" firstAttribute="leading" secondItem="P0g-Mn-Lw7" secondAttribute="trailing" constant="5" id="aLh-Rj-t42"/>
+                    <constraint firstItem="P0g-Mn-Lw7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hCw-CW-OEy"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>

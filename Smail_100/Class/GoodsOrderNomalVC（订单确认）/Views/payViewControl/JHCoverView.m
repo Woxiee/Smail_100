@@ -84,7 +84,7 @@
         //设置bottomView的高度为所有控件的高度和空隙之和
         CGRect bottomFrame = self.bottomView.frame;
         bottomFrame.size.height = self.keyBoardHeight + CGRectGetMaxY(self.forgetPWBtn.frame);
-        bottomFrame.origin.y = self.bounds.size.height - bottomFrame.size.height;
+        bottomFrame.origin.y = self.bounds.size.height - bottomFrame.size.height -70;
         self.bottomView.frame = bottomFrame;
     }
     
@@ -144,7 +144,7 @@
     UIButton *deleteBtn = [[UIButton alloc] init];
     deleteBtn.bounds = CGRectMake(0, 0, 40, 40);
     deleteBtn.center = CGPointMake(deleteBtn.bounds.size.width/2 + 10, headerView.bounds.size.height/2);
-    [deleteBtn setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+    [deleteBtn setImage:[UIImage imageNamed:@"hehuorenshengji7@3x"] forState:UIControlStateNormal];
     [deleteBtn addTarget:self action:@selector(deleteClick:) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:deleteBtn];
     //输入密码提示
@@ -200,7 +200,7 @@
     UIButton *forgetPWBtn = [[UIButton alloc] init];
     self.forgetPWBtn = forgetPWBtn;
     [forgetPWBtn setTitle:@"忘记密码？" forState:UIControlStateNormal];
-    [forgetPWBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [forgetPWBtn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
     forgetPWBtn.titleLabel.font = [UIFont systemFontOfSize:17];
     [forgetPWBtn sizeToFit];
     forgetPWBtn.frame = CGRectMake(bottomView.bounds.size.width - forgetPWBtn.bounds.size.width - 10, CGRectGetMaxY(payTextField.frame) + 10, forgetPWBtn.bounds.size.width, forgetPWBtn.bounds.size.height);

@@ -90,5 +90,6 @@
 @property (nonatomic , copy) NSString              * paystatus;
 @property (nonatomic , copy) NSArray<Seller *>              * seller;
 @property (nonatomic , copy) NSString              * orderstatus_name;
+@property (nonatomic , copy) NSString              * shipstatus;
 
 @end

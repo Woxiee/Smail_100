@@ -14,7 +14,6 @@
     
     __weak IBOutlet UIImageView *iconImageView;
     
-    __weak IBOutlet UILabel *commLb;
     __weak IBOutlet UIView *lineview;
     
 }
@@ -22,18 +21,19 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
     [self setup];
 }
 
 - (void)setModel:(PayDetailModel *)model
 {
     _model = model;
-    _numberTextFied.placeholder  = @"当前可兑换积分42323";
     
     if (!_model.isSelect) {
         markImgaeView.image = [UIImage imageNamed:@"zhuce2@3x.png"];
     }else{
         markImgaeView.image = [UIImage imageNamed:@"23@3x.png"];
+
     }
     iconImageView.image = [UIImage imageNamed:_model.icon];
 
@@ -48,7 +48,9 @@
 - (void)setup
 {
     lineview.backgroundColor = LINECOLOR;
-    commLb.textColor = KMAINCOLOR;
+    _commLb.textColor = KMAINCOLOR;
+    _numberTextFied.textColor = DETAILTEXTCOLOR;
+
 }
 
 
