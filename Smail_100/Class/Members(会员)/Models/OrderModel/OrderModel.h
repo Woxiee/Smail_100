@@ -92,4 +92,8 @@
 @property (nonatomic , copy) NSString              * orderstatus_name;
 @property (nonatomic , copy) NSString              * shipstatus;
 
+@property (nonatomic , assign) BOOL              isDetail;  /// 1  供应商订单   0购买订单
+
+
+
 @end

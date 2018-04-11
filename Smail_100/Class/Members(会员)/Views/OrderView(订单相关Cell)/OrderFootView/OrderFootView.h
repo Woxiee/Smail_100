@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OrderModel.h"
-#import "OrderDetailModel.h"
+#import "GoodsOrderModel.h"
 #import "AssetModel.h"
 #import "ManagementModel.h"
 typedef NS_ENUM(NSInteger, ShowType){
@@ -19,9 +19,9 @@ typedef NS_ENUM(NSInteger, ShowType){
 };
 typedef void(^DidClickOrderItemBlock)(NSString *title);
 @interface OrderFootView : UIView
-@property (nonatomic, strong) OrderModel *model;
+@property (nonatomic, strong) GoodsOrderModel *model;
 @property (nonatomic, assign) ShowType showType;
-@property (nonatomic, strong) OrderDetailModel  *detailModel;
+//@property (nonatomic, strong) OrderDetailModel  *detailModel;
 @property (nonatomic, strong) AssetModel  *assetModel;
 @property (nonatomic, strong) ManagementModel *managementModel;
 

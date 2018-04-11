@@ -36,7 +36,7 @@
     
 }
 
--(void)setModel:(OrderModel *)model
+-(void)setModel:(GoodsOrderModel *)model
 {
     _model = model;
     for(UIButton *subView in [self subviews])
@@ -44,178 +44,76 @@
         [subView removeFromSuperview];
         
     }
-
     [_titleArr removeAllObjects];
 
-    if (_model.bidKey) {
-//        if ([_model.orderStatus  integerValue] == 1 ) {
-//            [_titleArr addObject:@"取消订单"];
-//        }
-//        if ([_model.orderStatus  integerValue] == 2 && [_model.signStatus   integerValue] == 1  ) {
-//            [_titleArr addObject:@"立即签约"];
-//        }
-//        if ([_model.orderStatus  integerValue] == 2 &&[_model.signStatus   integerValue] == 2  ) {
-//            [_titleArr addObject:@"同意合同"];
-//        }
-        
-        if ([_model.orderStatus   integerValue] >= 2  && [_model.signStatus    integerValue] >= 2 ) {
-            [_titleArr addObject:@"合同详情"];
-        }
-//        if ([_model.orderStatus  integerValue] == 3 ) {
-//            if (_showType == CheckShowType) {
-//                [_titleArr addObject:@"发起服务"];
-//            }else{
-//                [_titleArr addObject:@"立即发货"];
-//            }
-//        }
-//
-//        if ([_model.orderStatus  integerValue] == 5 && ([_model.orderType intValue] == 3 || [_model.orderType intValue] == 4)) {
-//            [_titleArr addObject:@"结束租赁"];
-//        }
-        
-//        if ([_model.orderType  integerValue] == 6 && [_model.orderStatus  integerValue] >= 4) {
-//            [_titleArr addObject:@"查看"];
-//        }
-        
-//        if ([_model.orderStatus   integerValue] > 0  && [_model.isApplyClose   integerValue] == 1) {
-//            [_titleArr addObject:@"确认撤单"];
-//        }
-        
-       
-        
-//        if ([_model.orderStatus   integerValue] < 6  && [_model.isFronzen     integerValue] == 0 ) {
-//            [_titleArr addObject:@"订单冻结"];
-//        }
-        
-//        if ([_model.orderStatus   integerValue] < 6  && [_model.isFronzen     integerValue] == 1 ) {
-//            [_titleArr addObject:@"解除冻结"];
-//        }
-//        [_titleArr removeAllObjects];
-        if (_titleArr.count == 0) {
-            [_titleArr addObject:@""];
-        }
-        ///// ---------------------------------
-    }else{
-        if ([_model.orderStatus   integerValue] == 4 &&  [_model.isReceipt  integerValue] == 0) {
-            if ([_model.param2 isEqualToString:@"6"]) {
-                [_titleArr addObject:@"确认服务"];
-            }else{
-                [_titleArr addObject:@"确认收货"];
-
-            }
-        }
-        
-        if ([_model.orderStatus integerValue] >=  2  && [_model.signStatus integerValue] >= 2) {
-            [_titleArr addObject:@"合同详情"];
-        }
+    if ([_model.paystatus isEqualToString:@"Pendding"] || [_model.paystatus isEqualToString:@"Preview"] || [_model.paystatus isEqualToString:@"Fail"]) {
+        [_titleArr addObject:@"付款"];
+    }
     
-      
-        
     
-     
-        
-      //  orderStatus >= 5 && payStatus > 0 && isComment == 0     发表评价
-        if ([_model.orderStatus  integerValue] >=5  &&[_model.payStatus  integerValue] >0 && [_model.isComment  integerValue] == 0 && ![_model.param2 isEqualToString:@"10"]) {
-            [_titleArr addObject:@"发表评价"];
-        }
-        
-        if ([_model.orderStatus  integerValue] >=5  &&[_model.payStatus  integerValue] >0 && [_model.isComment  integerValue] == 1 && ![_model.param2 isEqualToString:@"10"]) {
-            [_titleArr addObject:@"评价详情"];
-        }
-        
-        
-        if ([_model.param2 isEqualToString:@"3"] || [_model.param2 isEqualToString:@"4"]) {
-            if ([_model.orderStatus integerValue] == 5 && [_model.isApplyFinish integerValue] == 0) {
-                [_titleArr addObject:@"申请退租"];
-            }
-        }
-        
-        if ([_model.payStatus integerValue] <2 && [_model.payStatus integerValue] >= 0 && [_model.orderStatus integerValue] > 1) {
-            [_titleArr addObject:@"付款"];
-        }
-        
-        ///集采类型 没有退租
-        if (![_model.param2 isEqualToString:@"9"] ) {
-            
-            if ([_model.orderStatus integerValue] == 1 ) {
-                [_titleArr addObject:@"取消订单"];
-            }
-        }
-        
-        if (([_model.orderStatus integerValue] == 0 || [_model.orderStatus  integerValue] == 6) && [_model.groupOrderStatusByGroupOrder integerValue] != 100 && [_model.auctionOrderBySingUp integerValue] != 100) {
-            [_titleArr addObject:@"删除订单"];
-        }
-
-        if (([_model.orderStatus integerValue]  >1  && [_model.orderStatus integerValue] <=3 && [_model.isApplyClose integerValue] == 0) || [_model.groupOrderStatus integerValue] == 100) {
-            [_titleArr addObject:@"申请撤单"];
-        }
-        
-        if ([_model.status integerValue] == 1) {
-            [_titleArr addObject:@"取消参与"];
-        }
-        
-        if (_titleArr.count == 0) {
-            [_titleArr addObject:@""];
-        }
-
+    
+    if ([_model.paystatus isEqualToString:@"Complete"] && [_model.shipstatus isEqualToString:@"Delivery"] ) {
+        [_titleArr addObject:@"确认收货"];
+    }
+    
+    
+    
+    if ([_model.paystatus isEqualToString:@"Complete"]) {
+        [_titleArr addObject:@"查看详情"];
+    }
+    
+    
+    if ([_model.paystatus isEqualToString:@"Complete"] && [_model.paystatus isEqualToString:@"Waiting"] ) {
+        [_titleArr addObject:@"申请售后"];
+    }
+    
+    if ([_model.paystatus isEqualToString:@"Complete"] && [_model.paystatus isEqualToString:@"Delivery"] ) {
+        [_titleArr addObject:@"查看物流"];
+    }
+    
+    if ([_model.paystatus isEqualToString:@"Pendding"] || [_model.paystatus isEqualToString:@"Preview"] || [_model.paystatus isEqualToString:@"Fail"]) {
+        [_titleArr addObject:@"取消订单"];
+    }
+    
+    
+    
+    if ([_model.paystatus isEqualToString:@"Complete"] &&  [_model.shipstatus isEqualToString:@"Waiting"] ) {
+        [_titleArr addObject:@"提醒发货"];
     }
     
 
-    if (_titleArr.count >0) {
-        UIView *lastTopView = self;
-//        NSSet *set = [NSSet setWithArray:_titleArr];
-
-//        NSArray* reversedArray = [[[set allObjects] reverseObjectEnumerator] allObjects];
-        for (int  i = 0; i<_titleArr.count; i++) {
-            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btn setTitle:_titleArr[i] forState:UIControlStateNormal];
-            btn.titleLabel.font = PLACEHOLDERFONT;
-            [btn addTarget:self action:@selector(didClickOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *lastTopView = self;
+    
+    for (int  i = 0; i<_titleArr.count; i++) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitle:_titleArr[i] forState:UIControlStateNormal];
+        btn.titleLabel.font = PLACEHOLDERFONT;
+        [btn addTarget:self action:@selector(didClickOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+        [btn layerForViewWith:3 AndLineWidth:1];
+//        btn.frame = CGRectMake(0, 0, 100, 30);
+        [btn setTitleColor:DETAILTEXTCOLOR1 forState:UIControlStateNormal];
+        if ([_titleArr[i] isEqualToString:@"申请售后"] || [_titleArr[i] isEqualToString:@"查看物流"] || [_titleArr[i] isEqualToString:@"取消订单"] || [_titleArr[i] isEqualToString:@"提醒发货"] ) {
             [btn layerForViewWith:3 AndLineWidth:1];
-            [btn setTitleColor:DETAILTEXTCOLOR1 forState:UIControlStateNormal];
-            if ([_model.isFronzen integerValue] == 1) {
-                [btn layerForViewWith:3 AndLineWidth:1];
-                [btn setTitleColor:DETAILTEXTCOLOR1 forState:UIControlStateNormal];
-
-            }else{
-                if ([_titleArr[i] isEqualToString:@"申请撤单"] || [_titleArr[i] isEqualToString:@"删除订单"] || [_titleArr[i] isEqualToString:@"取消订单"] ||[_titleArr[i] isEqualToString:@"申请退租"] ) {
-                    [btn layerForViewWith:3 AndLineWidth:1];
-                    [btn setTitleColor:DETAILTEXTCOLOR1 forState:UIControlStateNormal];
-                }
-                else{
-                    [btn layerWithRadius:3 lineWidth:0.5 color:BACKGROUND_COLORHL];
-                    [btn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateNormal];
-                }
-
-            }
-            [self addSubview:btn];
-//            btn.sd_layout
-//            .rightSpaceToView(lastTopView, 10)
-//            .topSpaceToView(self, 12);
-//            [btn setupAutoSizeWithHorizontalPadding:12 buttonHeight:30];
-//            lastTopView = btn;
-//            [self setupAutoHeightWithBottomView:lastTopView bottomMargin:10];
-            if ([_titleArr[i] isEqualToString:@""]) {
-                btn.sd_layout
-                .rightSpaceToView(lastTopView, 0)
-                .topSpaceToView(self, 0)
-                .heightIs(0);
-                [btn setupAutoSizeWithHorizontalPadding:0 buttonHeight:0];
-                lastTopView = btn;
-                [self setupAutoHeightWithBottomView:lastTopView bottomMargin:0];
-
-            }else{
-                btn.sd_layout
-                .rightSpaceToView(lastTopView, 10)
-                .topSpaceToView(self, 12);
-                [btn setupAutoSizeWithHorizontalPadding:12 buttonHeight:30];
-                lastTopView = btn;
-                [self setupAutoHeightWithBottomView:lastTopView bottomMargin:10];
-            }
-            
+            [btn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
         }
+        else{
+            [btn layerWithRadius:3 lineWidth:0.5 color:BACKGROUND_COLORHL];
+            [btn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateNormal];
+        }
+        [self addSubview:btn];
+        
+        
+        btn.sd_layout
+        .rightSpaceToView(lastTopView, 10)
+        .topSpaceToView(self, 50)
+        .widthIs(75)
+        .heightIs(30);
+        //        [btn setupAutoSizeWithHorizontalPadding:12 buttonHeight:30];
+        lastTopView = btn;
+        
     }
-   
+
 }
 
 
