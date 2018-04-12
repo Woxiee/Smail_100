@@ -26,7 +26,7 @@ static NSString * const CardCellID = @"CardCell";
 #pragma mark - request
 - (void)requestListNetWork
 {
-    
+    WEAKSELF;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [param setObject:@"get" forKey:@"method"];
@@ -34,6 +34,13 @@ static NSString * const CardCellID = @"CardCell";
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     [BaseHttpRequest postWithUrl:@"/ucenter/bank" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSString *msg = result[@"msg"];
+        if ([result[@"code"] integerValue] == 000) {
+            
+        else{
+            [weakSelf.view toastShow:msg];
+        }
+
 
     }];
     

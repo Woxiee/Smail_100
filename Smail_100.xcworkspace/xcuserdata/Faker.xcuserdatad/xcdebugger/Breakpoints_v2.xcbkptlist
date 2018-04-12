@@ -100,7 +100,7 @@
                   moduleName = "Smail_100"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Faker/Documents/github/Smail_100/Smail_100/KX_Base/BaseHttpRequest.m"
-                  timestampString = "545154860.014482"
+                  timestampString = "545240085.809881"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "153"
@@ -115,7 +115,7 @@
                   moduleName = "Smail_100"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Faker/Documents/github/Smail_100/Smail_100/KX_Base/BaseHttpRequest.m"
-                  timestampString = "545154860.020694"
+                  timestampString = "545240085.816723"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "153"
@@ -218,6 +218,22 @@
             startingLineNumber = "39"
             endingLineNumber = "39"
             landmarkName = "-setOrderModel:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Smail_100/Class/Members(&#x4f1a;&#x5458;)/VCS/AccountManagMect(&#x8d26;&#x6237;&#x7ba1;&#x7406;)/CardManage/AddCardVC.m"
+            timestampString = "545240085.319471"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-requestListNetWork"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

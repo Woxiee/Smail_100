@@ -44,16 +44,28 @@
     if (!_isAdd) {
         [param setObject:_model.bind_id forKey:@"bind_id"];
     }
+    [param setObject:_model.real_name forKey:@"real_name"];
+    [param setObject:_model.bank_id forKey:@"bank_id"];
+
+    
     [param setObject:_model.bank_account forKey:@"bank_account"];
     [param setObject:_model.bank_mobile forKey:@"bank_address"];
     [param setObject:_model.bank_mobile forKey:@"bank_mobile"];
     [param setObject:_model.bank_region forKey:@"bank_region"];
     [param setObject:@"N" forKey:@"is_default"];
-
+    WEAKSELF;
     //    [param setObject:@"" forKey:@"bind_id"];
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     [BaseHttpRequest postWithUrl:@"/ucenter/bank" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSString *msg = result[@"msg"];
+        if ([result[@"code"] integerValue] == 000) {
+            [weakSelf.view toastShow:msg];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            [weakSelf.view toastShow:msg];
+        }
         
     }];
     
