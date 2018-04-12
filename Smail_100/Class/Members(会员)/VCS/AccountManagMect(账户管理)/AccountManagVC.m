@@ -10,6 +10,7 @@
 #import "AddressManageVC.h"
 #import "BaseInforVC.h"
 #import "AccoutSecurityVC.h"
+#import "CardManageVC.h"
 
 @interface AccountManagVC ()
 
@@ -83,6 +84,11 @@
     
    else if ([titleStr isEqualToString:@"账户安全设置"]) {
        AccoutSecurityVC *VC = [[AccoutSecurityVC alloc] init];
+       [self.navigationController pushViewController:VC animated:YES];
+       
+   }
+   else if ([titleStr isEqualToString:@"银行卡管理"]) {
+       CardManageVC *VC = [[CardManageVC alloc] init];
        [self.navigationController pushViewController:VC animated:YES];
        
    }

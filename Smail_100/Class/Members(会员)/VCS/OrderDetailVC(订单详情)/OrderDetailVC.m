@@ -392,8 +392,6 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
 
 - (void)doWxPay
 {
-    
-    
     PayReq *req   = [[PayReq alloc] init];
     req.openID = _payModel.appid;
     req.partnerId = _payModel.acctId;
@@ -436,13 +434,8 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
     WEAKSELF;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPayTypeRelute:) name:NOTICEMEPAYMSG object:nil];
     
-    JHCoverView *coverView = [[JHCoverView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    coverView.delegate = self;
-    self.coverView = coverView;
-    coverView.hidden = YES;
-    coverView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
-    [self.view addSubview:coverView];
-    
+
+
     
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 40) style:UITableViewStylePlain];
     tableView.dataSource = self;
@@ -453,7 +446,6 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
     [self.view addSubview:tableView];
     self.tableView = tableView;
     OrderFootView *footView = [[OrderFootView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 45 - 64, SCREEN_WIDTH, 45)];
-    footView.backgroundColor = [UIColor redColor];
     [self.view  addSubview:footView];
     self.footView = footView;
     
@@ -479,7 +471,14 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
 
     [ self.tableView  registerNib:[UINib nibWithNibName:@"AttributeCell" bundle:nil] forCellReuseIdentifier:cellID];
 
-
+    JHCoverView *coverView = [[JHCoverView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    coverView.delegate = self;
+        coverView.hidden = YES;
+    coverView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
+    [self.view addSubview:coverView];
+//    self.coverView.backgroundColor = [UIColor redColor];
+    
+    self.coverView = coverView;
 }
 
 /// 配置基础设置
@@ -560,7 +559,6 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
         cell.didChangeNumberBlock = ^(NSString *buyNumber){
 
         };
-        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         Seller *seller = _orderModel.seller[indexPath.row];
         cell.seller = seller;
@@ -646,6 +644,7 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
     if (![self.resorceArray[section] isKindOfClass:[NSString class]]) {
         OrderSectionFooterView *footView=  [[OrderSectionFooterView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 145)];
         footView.model = _orderModel;
+        
         footView.didChangeEmailTypeBlock = ^(NSInteger type) {
 
             // type  0 邮寄  1门店

@@ -50,18 +50,13 @@
         [_titleArr addObject:@"付款"];
     }
     
-    
-    
     if ([_model.paystatus isEqualToString:@"Complete"] && [_model.shipstatus isEqualToString:@"Delivery"] ) {
         [_titleArr addObject:@"确认收货"];
     }
     
-    
-    
-    if ([_model.paystatus isEqualToString:@"Complete"]) {
+    if ([_model.paystatus isEqualToString:@"Complete"] && _model.isDetail == NO) {
         [_titleArr addObject:@"查看详情"];
     }
-    
     
     if ([_model.paystatus isEqualToString:@"Complete"] && [_model.paystatus isEqualToString:@"Waiting"] ) {
         [_titleArr addObject:@"申请售后"];
@@ -75,13 +70,9 @@
         [_titleArr addObject:@"取消订单"];
     }
     
-    
-    
     if ([_model.paystatus isEqualToString:@"Complete"] &&  [_model.shipstatus isEqualToString:@"Waiting"] ) {
         [_titleArr addObject:@"提醒发货"];
     }
-    
-
     
     UIView *lastTopView = self;
     
@@ -91,7 +82,7 @@
         btn.titleLabel.font = PLACEHOLDERFONT;
         [btn addTarget:self action:@selector(didClickOrderAction:) forControlEvents:UIControlEventTouchUpInside];
         [btn layerForViewWith:3 AndLineWidth:1];
-//        btn.frame = CGRectMake(0, 0, 100, 30);
+//
         [btn setTitleColor:DETAILTEXTCOLOR1 forState:UIControlStateNormal];
         if ([_titleArr[i] isEqualToString:@"申请售后"] || [_titleArr[i] isEqualToString:@"查看物流"] || [_titleArr[i] isEqualToString:@"取消订单"] || [_titleArr[i] isEqualToString:@"提醒发货"] ) {
             [btn layerForViewWith:3 AndLineWidth:1];
@@ -103,10 +94,15 @@
         }
         [self addSubview:btn];
         
+//        if (i == 0) {
+//              btn.frame = CGRectMake(SCREEN_WIDTH - 85, 0, 75, 30);
+//        }else{
+//            btn.frame = CGRectMake(SCREEN_WIDTH - 85 - 85, 0, 75, 30);
+//        }
         
         btn.sd_layout
         .rightSpaceToView(lastTopView, 10)
-        .topSpaceToView(self, 50)
+        .topSpaceToView(self, 10)
         .widthIs(75)
         .heightIs(30);
         //        [btn setupAutoSizeWithHorizontalPadding:12 buttonHeight:30];
@@ -127,7 +123,6 @@
     if (_titleArr.count >0) {
         [_titleArr removeAllObjects];
     }
-    
 
     if ([_assetModel.applyState  integerValue] == 0) {
         [_titleArr addObject:@"申请估价"];

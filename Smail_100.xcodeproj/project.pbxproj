@@ -872,6 +872,15 @@
 		E169B219207CB62D00137791 /* OrderSectionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E169B218207CB62D00137791 /* OrderSectionFooterView.m */; };
 		E169B220207DDC3800137791 /* hfdh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E169B21E207DDC3700137791 /* hfdh@3x.png */; };
 		E169B221207DDC3800137791 /* jfzf@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E169B21F207DDC3700137791 /* jfzf@3x.png */; };
+		E169B2A0207F42ED00137791 /* SmileForVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E169B29E207F42ED00137791 /* SmileForVC.m */; };
+		E169B2A1207F42ED00137791 /* SmileForVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E169B29F207F42ED00137791 /* SmileForVC.xib */; };
+		E169B2A5207F449300137791 /* CardManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E169B2A4207F449300137791 /* CardManageVC.m */; };
+		E169B2AB207F44F100137791 /* CardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E169B2A9207F44F100137791 /* CardCell.m */; };
+		E169B2AC207F44F100137791 /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E169B2AA207F44F100137791 /* CardCell.xib */; };
+		E169B2B0207F4F8900137791 /* AddCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E169B2AE207F4F8900137791 /* AddCardVC.m */; };
+		E169B2B1207F4F8900137791 /* AddCardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E169B2AF207F4F8900137791 /* AddCardVC.xib */; };
+		E169B2B6207F5FBC00137791 /* CardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E169B2B5207F5FBC00137791 /* CardModel.m */; };
+		E169B2B9207F624A00137791 /* SelectBankCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E169B2B8207F624A00137791 /* SelectBankCardVC.m */; };
 		E172EBA1205F8F740079CD3D /* OffLineDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E172EBA0205F8F740079CD3D /* OffLineDetailVC.m */; };
 		E172EBA4205F92A90079CD3D /* OfflineDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E172EBA3205F92A90079CD3D /* OfflineDetailCell.m */; };
 		E172EBA8205FA2380079CD3D /* OfflineInfoDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E172EBA6205FA2380079CD3D /* OfflineInfoDetailCell.m */; };
@@ -2340,6 +2349,21 @@
 		E169B218207CB62D00137791 /* OrderSectionFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderSectionFooterView.m; sourceTree = "<group>"; };
 		E169B21E207DDC3700137791 /* hfdh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hfdh@3x.png"; sourceTree = "<group>"; };
 		E169B21F207DDC3700137791 /* jfzf@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jfzf@3x.png"; sourceTree = "<group>"; };
+		E169B29D207F42ED00137791 /* SmileForVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmileForVC.h; sourceTree = "<group>"; };
+		E169B29E207F42ED00137791 /* SmileForVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmileForVC.m; sourceTree = "<group>"; };
+		E169B29F207F42ED00137791 /* SmileForVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmileForVC.xib; sourceTree = "<group>"; };
+		E169B2A3207F449300137791 /* CardManageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardManageVC.h; sourceTree = "<group>"; };
+		E169B2A4207F449300137791 /* CardManageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardManageVC.m; sourceTree = "<group>"; };
+		E169B2A8207F44F100137791 /* CardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardCell.h; sourceTree = "<group>"; };
+		E169B2A9207F44F100137791 /* CardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardCell.m; sourceTree = "<group>"; };
+		E169B2AA207F44F100137791 /* CardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
+		E169B2AD207F4F8900137791 /* AddCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddCardVC.h; sourceTree = "<group>"; };
+		E169B2AE207F4F8900137791 /* AddCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddCardVC.m; sourceTree = "<group>"; };
+		E169B2AF207F4F8900137791 /* AddCardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCardVC.xib; sourceTree = "<group>"; };
+		E169B2B4207F5FBC00137791 /* CardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardModel.h; sourceTree = "<group>"; };
+		E169B2B5207F5FBC00137791 /* CardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardModel.m; sourceTree = "<group>"; };
+		E169B2B7207F624A00137791 /* SelectBankCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectBankCardVC.h; sourceTree = "<group>"; };
+		E169B2B8207F624A00137791 /* SelectBankCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectBankCardVC.m; sourceTree = "<group>"; };
 		E172EB9F205F8F740079CD3D /* OffLineDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OffLineDetailVC.h; sourceTree = "<group>"; };
 		E172EBA0205F8F740079CD3D /* OffLineDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OffLineDetailVC.m; sourceTree = "<group>"; };
 		E172EBA2205F92A90079CD3D /* OfflineDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfflineDetailCell.h; sourceTree = "<group>"; };
@@ -3761,6 +3785,7 @@
 		E10B0BBF20528AE8008BA706 /* VCS */ = {
 			isa = PBXGroup;
 			children = (
+				E169B29C207F42C800137791 /* SmileFor */,
 				3E24E8F4207859FD006F5C32 /* Levepartner(合伙人) */,
 				E115577F2063AF4700B344B3 /* OpenBusinss(开通商家) */,
 				E11557022062554B00B344B3 /*  AgentPlatformVC(代理平台) */,
@@ -3785,6 +3810,7 @@
 		E10B0BC020528AE8008BA706 /* AccountManagMect(账户管理) */ = {
 			isa = PBXGroup;
 			children = (
+				E169B2A2207F448300137791 /* CardManage */,
 				E10B0BC120528AE8008BA706 /* AccountManagVC.h */,
 				E10B0BC220528AE8008BA706 /* AccountManagVC.m */,
 				E1F510272073873E003227B6 /* AccoutSecurityVC.h */,
@@ -6463,6 +6489,51 @@
 			path = KYBaseCell;
 			sourceTree = "<group>";
 		};
+		E169B29C207F42C800137791 /* SmileFor */ = {
+			isa = PBXGroup;
+			children = (
+				E169B29D207F42ED00137791 /* SmileForVC.h */,
+				E169B29E207F42ED00137791 /* SmileForVC.m */,
+				E169B29F207F42ED00137791 /* SmileForVC.xib */,
+			);
+			path = SmileFor;
+			sourceTree = "<group>";
+		};
+		E169B2A2207F448300137791 /* CardManage */ = {
+			isa = PBXGroup;
+			children = (
+				E169B2A7207F44CF00137791 /* Models */,
+				E169B2A6207F44CF00137791 /* Views */,
+				E169B2A3207F449300137791 /* CardManageVC.h */,
+				E169B2A4207F449300137791 /* CardManageVC.m */,
+				E169B2AD207F4F8900137791 /* AddCardVC.h */,
+				E169B2AE207F4F8900137791 /* AddCardVC.m */,
+				E169B2AF207F4F8900137791 /* AddCardVC.xib */,
+				E169B2B7207F624A00137791 /* SelectBankCardVC.h */,
+				E169B2B8207F624A00137791 /* SelectBankCardVC.m */,
+			);
+			path = CardManage;
+			sourceTree = "<group>";
+		};
+		E169B2A6207F44CF00137791 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E169B2A8207F44F100137791 /* CardCell.h */,
+				E169B2A9207F44F100137791 /* CardCell.m */,
+				E169B2AA207F44F100137791 /* CardCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E169B2A7207F44CF00137791 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E169B2B4207F5FBC00137791 /* CardModel.h */,
+				E169B2B5207F5FBC00137791 /* CardModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E18CBA88206620A3003DF53A /* FYLCityPickView */ = {
 			isa = PBXGroup;
 			children = (
@@ -6868,6 +6939,7 @@
 				E10B11F120528B06008BA706 /* hehuorenshengji12@3x.png in Resources */,
 				E10B11D620528B06008BA706 /* dailipingtai4@3x.png in Resources */,
 				E10B126620528B06008BA706 /* zhuce2@3x.png in Resources */,
+				E169B2AC207F44F100137791 /* CardCell.xib in Resources */,
 				E10B123B20528B06008BA706 /* zhanghuguanli18@3x.png in Resources */,
 				E11557602063930600B344B3 /* zfb@3x.png in Resources */,
 				E10B125720528B06008BA706 /* muban2@3x.png in Resources */,
@@ -6900,6 +6972,7 @@
 				E10B0EB420528AF5008BA706 /* sousuo@2x.png in Resources */,
 				E10B121B20528B06008BA706 /* bangzhufankui2@3x.png in Resources */,
 				E10B0DBE20528AE8008BA706 /* MemberMoneyCell.xib in Resources */,
+				E169B2B1207F4F8900137791 /* AddCardVC.xib in Resources */,
 				E10B11E620528B06008BA706 /* chuangkeweidian2@3x.png in Resources */,
 				E1488222206F987000A3CC03 /* gotop@2x.png in Resources */,
 				E11557072062556700B344B3 /* AgentPlatformVC.xib in Resources */,
@@ -7001,6 +7074,7 @@
 				E10B129920528B06008BA706 /* shouye27@3x.png in Resources */,
 				E10B122820528B06008BA706 /* xiaoxizhongxin3@3x.png in Resources */,
 				E10B127020528B06008BA706 /* xianxiashangjia15@3x.png in Resources */,
+				E169B2A1207F42ED00137791 /* SmileForVC.xib in Resources */,
 				E10B122220528B06008BA706 /* wodetuandui5@3x.png in Resources */,
 				E10B120B20528B06008BA706 /* shangjiazhongxin17@3x.png in Resources */,
 				E10B126920528B06008BA706 /* yunshebei2@3x.png in Resources */,
@@ -7267,6 +7341,7 @@
 				E11556FB20623A7F00B344B3 /* GoodManageVC.m in Sources */,
 				E10B108F20528B03008BA706 /* NSObject+MJProperty.m in Sources */,
 				E10B10A920528B03008BA706 /* PYSearchSuggestionViewController.m in Sources */,
+				E169B2A0207F42ED00137791 /* SmileForVC.m in Sources */,
 				E10B0DF520528AE8008BA706 /* ShopCarGoodsCell.m in Sources */,
 				E10B0FAC20528AFA008BA706 /* JKAssets.m in Sources */,
 				E10B0D0820528AE8008BA706 /* GoodsSameCell.m in Sources */,
@@ -7278,6 +7353,7 @@
 				E116597F207A075600826E2F /* CommentsHeadView.m in Sources */,
 				E10B0FDC20528AFA008BA706 /* UIViewExt.m in Sources */,
 				E10B0FB820528AFA008BA706 /* UIView+JKPicker.m in Sources */,
+				E169B2B9207F624A00137791 /* SelectBankCardVC.m in Sources */,
 				E10B0DD020528AE8008BA706 /* MyTeamPersenView.m in Sources */,
 				E10B0E9F20528AF5008BA706 /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				E148821E206F947500A3CC03 /* KYGotoHeaderAndShowCountView.m in Sources */,
@@ -7320,6 +7396,7 @@
 				E10B0D4320528AE8008BA706 /* GoodScreenCollectCell.m in Sources */,
 				E10B0CD320528AE8008BA706 /* BrowsingHistoryVC.m in Sources */,
 				E10B0F9E20528AFA008BA706 /* FK_ActionSheetCell.m in Sources */,
+				E169B2AB207F44F100137791 /* CardCell.m in Sources */,
 				3E24E8FB20785B7A006F5C32 /* LevePartnerCell.m in Sources */,
 				E10B0DDF20528AE8008BA706 /* OrderServiewInfoCell.m in Sources */,
 				E10B0D5420528AE8008BA706 /* TimelimitCell.m in Sources */,
@@ -7338,6 +7415,7 @@
 				3E24E8FF207862C2006F5C32 /* LevePartNerHeadView.m in Sources */,
 				E10B0CF320528AE8008BA706 /* AttributeListView.m in Sources */,
 				E10B029E205289EC008BA706 /* main.m in Sources */,
+				E169B2B6207F5FBC00137791 /* CardModel.m in Sources */,
 				E115577E2063A5BE00B344B3 /* AgentPlatformModel.m in Sources */,
 				E10B0DAD20528AE8008BA706 /* FK_SheetCoupsView.m in Sources */,
 				E10B0FE120528AFA008BA706 /* ZYShareItemCell.m in Sources */,
@@ -7549,11 +7627,13 @@
 				E14881FF206F756000A3CC03 /* PointStoreVC.m in Sources */,
 				E16597082058C354008ADC6B /* OrderSectionFootView.m in Sources */,
 				E10B0D5E20528AE8008BA706 /* LoginFindAndRegirsVC.m in Sources */,
+				E169B2A5207F449300137791 /* CardManageVC.m in Sources */,
 				E10B0CE020528AE8008BA706 /* CommentModel.m in Sources */,
 				E10B10A520528B03008BA706 /* SDWeiXinPhotoContainerView.m in Sources */,
 				E10B109320528B03008BA706 /* MJRefreshComponent.m in Sources */,
 				E10B0DDD20528AE8008BA706 /* OrderPayTypeCell.m in Sources */,
 				E10B0D0C20528AE8008BA706 /* GoodsSupplierViewCell.m in Sources */,
+				E169B2B0207F4F8900137791 /* AddCardVC.m in Sources */,
 				E10B0DCB20528AE8008BA706 /* MyRecommendCell.m in Sources */,
 				E10B0EA120528AF5008BA706 /* NSArray+Safe.m in Sources */,
 				E10B0FAF20528AFA008BA706 /* JKAssetsGroupsView.m in Sources */,
