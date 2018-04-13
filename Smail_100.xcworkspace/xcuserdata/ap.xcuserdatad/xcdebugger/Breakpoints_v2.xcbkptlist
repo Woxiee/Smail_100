@@ -132,7 +132,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Smail_100/Class/Members(&#x4f1a;&#x5458;)/VCS/AllOrderManage(&#x8ba2;&#x5355;&#x7ba1;&#x7406;)/OrderManagementVC.m"
-            timestampString = "545208470.990267"
+            timestampString = "545297441.199787"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "177"
@@ -148,7 +148,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Smail_100/Class/HomeVC(&#x9996;&#x9875;)/VCS/HomeVC.m"
-            timestampString = "545206865.292922"
+            timestampString = "545308309.776185"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "474"
@@ -170,6 +170,22 @@
             startingLineNumber = "174"
             endingLineNumber = "174"
             landmarkName = "-setAssetModel:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Smail_100/Class/GoodsOrderNomalVC&#xff08;&#x8ba2;&#x5355;&#x786e;&#x8ba4;&#xff09;/GoodsOrderNomalVC.m"
+            timestampString = "545305263.836669"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "608"
+            endingLineNumber = "608"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

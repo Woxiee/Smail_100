@@ -16,7 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableView.tableFooterView = [UIView new];
+
 //    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
 //
 //    //设置导航栏字体颜色

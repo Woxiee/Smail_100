@@ -8,7 +8,6 @@
 
 #import "AddCardVC.h"
 #import "LZCityPickerController.h"
-#import "CardModel.h"
 #import "SelectBankCardVC.h"
 
 @interface AddCardVC ()<UITextFieldDelegate>
@@ -21,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *addressTF;
 @property (weak, nonatomic) IBOutlet UITextField *bankNameTF;
 @property (weak, nonatomic) IBOutlet UIButton *sureBtn;
-@property (nonatomic, strong) CardModel *model;
 
 @end
 
@@ -40,18 +38,25 @@
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
-    [param setObject:@"bind" forKey:@"method"];
     if (!_isAdd) {
         [param setObject:_model.bind_id forKey:@"bind_id"];
+        [param setObject:@"edit" forKey:@"method"];
+
+    }else{
+        [param setObject:@"bind" forKey:@"method"];
+
     }
     [param setObject:_model.real_name forKey:@"real_name"];
     [param setObject:_model.bank_id forKey:@"bank_id"];
 
     
     [param setObject:_model.bank_account forKey:@"bank_account"];
-    [param setObject:_model.bank_mobile forKey:@"bank_address"];
-    [param setObject:_model.bank_mobile forKey:@"bank_mobile"];
+    [param setObject:_model.bank_name forKey:@"bank_name"];
+//    [param setObject:_model.bank_mobile forKey:@"bank_mobile"];
     [param setObject:_model.bank_region forKey:@"bank_region"];
+    [param setObject:_model.bank_address forKey:@"bank_address"];
+
+    
     [param setObject:@"N" forKey:@"is_default"];
     WEAKSELF;
     //    [param setObject:@"" forKey:@"bind_id"];
@@ -79,6 +84,38 @@
         _model = [[CardModel alloc] init];
     }
     else{
+        _nameTF.text = _model.real_name;
+        _codeTF.text = _model.bank_account;
+        _bankTypeTF.text = _model.bank_name;
+        _addressTF.text =  _model.bank_region;
+        _bankNameTF.text = _model.bank_address;
+
+//        if (KX_NULLString( _nameTF.text)) {
+//            [self.view toastShow:_nameTF.placeholder];
+//            return;
+//        }
+//        if (KX_NULLString( _codeTF.text)) {
+//            [self.view toastShow:_codeTF.placeholder];
+//            return;
+//        }
+//        if (![Common validateBankAccount:_codeTF.text]) {
+//            [self.view toastShow:@"请输入有效的银行卡号"];
+//            return;
+//        }
+//        
+//        if (KX_NULLString(_bankTypeTF.text)) {
+//            [self.view toastShow:_bankTypeTF.placeholder];
+//            return;
+//        }
+//        if (KX_NULLString( _addressTF.text)) {
+//            [self.view toastShow:_addressTF.placeholder];
+//            return;
+//        }
+//        if (KX_NULLString( _bankNameTF.text)) {
+//            [self.view toastShow:_bankNameTF.placeholder];
+//            return;
+//        }
+
         
     }
     
@@ -107,8 +144,9 @@
     SelectBankCardVC *vc = [[SelectBankCardVC alloc] init];
     vc.didSelectItemBlock = ^(CardModel *model) {
         weakSelf.model.bank_id = model.id;
+        weakSelf.model.bank_name = model.name;
         weakSelf.bankTypeTF.text = model.name;
-    
+
     };
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -116,6 +154,7 @@
 
 - (void)didClickAddressAction
 {
+    [self.view endEditing:YES];
 
     WEAKSELF;
     [LZCityPickerController showPickerInViewController:self selectBlock:^(NSString *address, NSString *province, NSString *city, NSString *area) {
@@ -123,7 +162,7 @@
         NSLog(@"%@--%@--%@--%@",address,province,city,area);
         //        weakSelf.model.province = province;
         //        weakSelf.model.city = city;
-        weakSelf.model.bank_address = address;
+        weakSelf.model.bank_region = address;
         weakSelf.addressTF.text = address;
         //        [adressBtn setTitle:address forState:UIControlStateNormal];
     }];
@@ -146,13 +185,39 @@
     }
     
     if (textField == _bankNameTF) {
-        _model.bank_region = _bankNameTF.text;
+        _model.bank_address = _bankNameTF.text;
     }
 }
 
 - (IBAction)didClickSureAction:(id)sender {
     
     [self.view endEditing:YES];
+    if (KX_NULLString( _nameTF.text)) {
+        [self.view toastShow:_nameTF.placeholder];
+        return;
+    }
+    if (KX_NULLString( _codeTF.text)) {
+        [self.view toastShow:_codeTF.placeholder];
+        return;
+    }
+    if (![Common validateBankAccount:_codeTF.text]) {
+        [self.view toastShow:@"请输入有效的银行卡号"];
+        return;
+    }
+
+    if (KX_NULLString(_bankTypeTF.text)) {
+        [self.view toastShow:_bankTypeTF.placeholder];
+        return;
+    }
+    if (KX_NULLString( _addressTF.text)) {
+        [self.view toastShow:_addressTF.placeholder];
+        return;
+    }
+    if (KX_NULLString( _bankNameTF.text)) {
+        [self.view toastShow:_bankNameTF.placeholder];
+        return;
+    }
+
     [self requestListNetWork];
 }
 

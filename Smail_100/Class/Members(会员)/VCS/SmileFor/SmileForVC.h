@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SmileForVC : UIViewController
+@interface SmileForVC : KX_BaseTableViewController
 
 @end

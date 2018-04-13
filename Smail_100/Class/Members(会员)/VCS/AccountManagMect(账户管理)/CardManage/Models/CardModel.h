@@ -19,5 +19,8 @@
 @property (nonatomic , copy) NSString              * is_default;
 @property (nonatomic , copy) NSString              * name;
 @property (nonatomic , copy) NSString              * id;
+@property (nonatomic , copy) NSString              * bank_name;
+
+
 
 @end

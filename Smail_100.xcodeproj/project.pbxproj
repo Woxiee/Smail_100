@@ -873,7 +873,6 @@
 		E169B220207DDC3800137791 /* hfdh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E169B21E207DDC3700137791 /* hfdh@3x.png */; };
 		E169B221207DDC3800137791 /* jfzf@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E169B21F207DDC3700137791 /* jfzf@3x.png */; };
 		E169B2A0207F42ED00137791 /* SmileForVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E169B29E207F42ED00137791 /* SmileForVC.m */; };
-		E169B2A1207F42ED00137791 /* SmileForVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E169B29F207F42ED00137791 /* SmileForVC.xib */; };
 		E169B2A5207F449300137791 /* CardManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E169B2A4207F449300137791 /* CardManageVC.m */; };
 		E169B2AB207F44F100137791 /* CardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E169B2A9207F44F100137791 /* CardCell.m */; };
 		E169B2AC207F44F100137791 /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E169B2AA207F44F100137791 /* CardCell.xib */; };
@@ -890,6 +889,8 @@
 		E172EBD3205FC2280079CD3D /* RighMeumtCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E172EBD1205FC2280079CD3D /* RighMeumtCell.m */; };
 		E172EBD4205FC2280079CD3D /* RighMeumtCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E172EBD2205FC2280079CD3D /* RighMeumtCell.xib */; };
 		E172EBD6205FC6F00079CD3D /* moreOne@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E172EBD5205FC6F00079CD3D /* moreOne@2x.png */; };
+		E178ECBB2080A4D5007BA896 /* SmileForMoneyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E178ECB92080A4D5007BA896 /* SmileForMoneyCell.m */; };
+		E178ECBC2080A4D5007BA896 /* SmileForMoneyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E178ECBA2080A4D5007BA896 /* SmileForMoneyCell.xib */; };
 		E18CBA862065FEDD003DF53A /* doorImageView@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E18CBA842065FEDA003DF53A /* doorImageView@3x.png */; };
 		E18CBA872065FEDD003DF53A /* XyImageView@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E18CBA852065FEDB003DF53A /* XyImageView@3x.png */; };
 		E18CBA94206620A3003DF53A /* FYLCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = E18CBA89206620A3003DF53A /* FYLCity.plist */; };
@@ -2351,7 +2352,6 @@
 		E169B21F207DDC3700137791 /* jfzf@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jfzf@3x.png"; sourceTree = "<group>"; };
 		E169B29D207F42ED00137791 /* SmileForVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmileForVC.h; sourceTree = "<group>"; };
 		E169B29E207F42ED00137791 /* SmileForVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmileForVC.m; sourceTree = "<group>"; };
-		E169B29F207F42ED00137791 /* SmileForVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmileForVC.xib; sourceTree = "<group>"; };
 		E169B2A3207F449300137791 /* CardManageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardManageVC.h; sourceTree = "<group>"; };
 		E169B2A4207F449300137791 /* CardManageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardManageVC.m; sourceTree = "<group>"; };
 		E169B2A8207F44F100137791 /* CardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardCell.h; sourceTree = "<group>"; };
@@ -2378,6 +2378,9 @@
 		E172EBD1205FC2280079CD3D /* RighMeumtCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RighMeumtCell.m; sourceTree = "<group>"; };
 		E172EBD2205FC2280079CD3D /* RighMeumtCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RighMeumtCell.xib; sourceTree = "<group>"; };
 		E172EBD5205FC6F00079CD3D /* moreOne@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moreOne@2x.png"; sourceTree = "<group>"; };
+		E178ECB82080A4D5007BA896 /* SmileForMoneyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmileForMoneyCell.h; sourceTree = "<group>"; };
+		E178ECB92080A4D5007BA896 /* SmileForMoneyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmileForMoneyCell.m; sourceTree = "<group>"; };
+		E178ECBA2080A4D5007BA896 /* SmileForMoneyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmileForMoneyCell.xib; sourceTree = "<group>"; };
 		E18CBA842065FEDA003DF53A /* doorImageView@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "doorImageView@3x.png"; sourceTree = "<group>"; };
 		E18CBA852065FEDB003DF53A /* XyImageView@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "XyImageView@3x.png"; sourceTree = "<group>"; };
 		E18CBA89206620A3003DF53A /* FYLCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FYLCity.plist; sourceTree = "<group>"; };
@@ -6494,7 +6497,9 @@
 			children = (
 				E169B29D207F42ED00137791 /* SmileForVC.h */,
 				E169B29E207F42ED00137791 /* SmileForVC.m */,
-				E169B29F207F42ED00137791 /* SmileForVC.xib */,
+				E178ECB82080A4D5007BA896 /* SmileForMoneyCell.h */,
+				E178ECB92080A4D5007BA896 /* SmileForMoneyCell.m */,
+				E178ECBA2080A4D5007BA896 /* SmileForMoneyCell.xib */,
 			);
 			path = SmileFor;
 			sourceTree = "<group>";
@@ -6911,6 +6916,7 @@
 				E167EC5A205B9B6B00A8F744 /* changeInfoVC.xib in Resources */,
 				E1EFC6BD2068FCEE00C78A8C /* home_share.png in Resources */,
 				E10B0DF620528AE8008BA706 /* ShopCarGoodsCell.xib in Resources */,
+				E178ECBC2080A4D5007BA896 /* SmileForMoneyCell.xib in Resources */,
 				E115575720638A9800B344B3 /* bule_ju@3x.png in Resources */,
 				E10B122C20528B06008BA706 /* xiaoxizhongxin7@3x.png in Resources */,
 				E18CBA94206620A3003DF53A /* FYLCity.plist in Resources */,
@@ -7074,7 +7080,6 @@
 				E10B129920528B06008BA706 /* shouye27@3x.png in Resources */,
 				E10B122820528B06008BA706 /* xiaoxizhongxin3@3x.png in Resources */,
 				E10B127020528B06008BA706 /* xianxiashangjia15@3x.png in Resources */,
-				E169B2A1207F42ED00137791 /* SmileForVC.xib in Resources */,
 				E10B122220528B06008BA706 /* wodetuandui5@3x.png in Resources */,
 				E10B120B20528B06008BA706 /* shangjiazhongxin17@3x.png in Resources */,
 				E10B126920528B06008BA706 /* yunshebei2@3x.png in Resources */,
@@ -7627,6 +7632,7 @@
 				E14881FF206F756000A3CC03 /* PointStoreVC.m in Sources */,
 				E16597082058C354008ADC6B /* OrderSectionFootView.m in Sources */,
 				E10B0D5E20528AE8008BA706 /* LoginFindAndRegirsVC.m in Sources */,
+				E178ECBB2080A4D5007BA896 /* SmileForMoneyCell.m in Sources */,
 				E169B2A5207F449300137791 /* CardManageVC.m in Sources */,
 				E10B0CE020528AE8008BA706 /* CommentModel.m in Sources */,
 				E10B10A520528B03008BA706 /* SDWeiXinPhotoContainerView.m in Sources */,

@@ -41,6 +41,8 @@ typedef void (^UIActionSheetViewBlock)(NSInteger index);
 
 -(void)setRightNaviBtnTitle:(NSString*)str withTitleColor:(UIColor *)titleColor;
 
+
+- (void)didClickRightNaviBtn;
 //系统返回
 - (void)setbackBarAction;
 

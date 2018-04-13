@@ -67,6 +67,7 @@
 
 #import "WXApi.h"
 
+#import "Common.h"
 
 
 /// 业务头文件

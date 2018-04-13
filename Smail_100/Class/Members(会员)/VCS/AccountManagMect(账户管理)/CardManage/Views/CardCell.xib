@@ -41,13 +41,20 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <state key="normal" title=" 默认银行卡" image="zhanghuguanli19@3x.png"/>
+                        <connections>
+                            <action selector="didSetDefBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="XQo-cS-yYa"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jR3-ec-ceg">
                         <rect key="frame" x="293" y="64" width="47" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <state key="normal" title="删除" image="zhanghuguanli18@3x.png"/>
+                        <connections>
+                            <action selector="deleteBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="toe-Rz-AF1"/>
+                        </connections>
                     </button>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="NUP-8x-b2t" firstAttribute="top" secondItem="ngg-RH-5Rf" secondAttribute="bottom" constant="15" id="4PP-UU-N3f"/>
                     <constraint firstItem="jR3-ec-ceg" firstAttribute="bottom" secondItem="NUP-8x-b2t" secondAttribute="bottom" id="5qY-gk-eCh"/>
@@ -65,6 +72,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="bgImageView" destination="es4-C2-gLY" id="iAP-MY-pIa"/>
                 <outlet property="codelb" destination="ngg-RH-5Rf" id="9Xx-zV-Dqo"/>
                 <outlet property="deleteBtn" destination="jR3-ec-ceg" id="ZO6-En-Kgu"/>
                 <outlet property="nameLB" destination="MTs-y0-yas" id="3J8-sa-DLn"/>

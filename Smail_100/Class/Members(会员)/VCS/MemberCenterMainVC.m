@@ -21,6 +21,7 @@
 #import "AgentPlatformVC.h"
 
 #import "LevepartnerVC.h"
+#import "SmileForVC.h"
 
 
 @interface MemberCenterMainVC ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
@@ -217,6 +218,12 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
+    
+   else if ([titleStr isEqualToString:@"笑脸兑换"]) {
+       SmileForVC *vc = [[SmileForVC alloc] init];
+       vc.hidesBottomBarWhenPushed = YES;
+       [self.navigationController pushViewController:vc animated:YES];
+   }
     
     else{
         [self.view toastShow:@"该功能暂未开放,请稍后!"];

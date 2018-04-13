@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CardModel.h"
 
 @interface CardManageVC : KX_BaseTableViewController
-
+@property (nonatomic, assign) BOOL isSelect;
+@property (nonatomic, copy) void(^didClickCellBlock)(CardModel *model);
 @end
