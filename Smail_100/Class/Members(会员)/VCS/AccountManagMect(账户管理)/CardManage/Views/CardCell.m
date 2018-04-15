@@ -18,6 +18,9 @@
     __weak IBOutlet UIButton *setDeflutBtn;
     
     __weak IBOutlet UIButton *deleteBtn;
+    
+    
+    __weak IBOutlet UIButton *showBtn;
 }
 
 
@@ -41,6 +44,13 @@
     }else{
         [setDeflutBtn setImage:[UIImage imageNamed:@"zhanghuguanli19@3x.png"] forState:UIControlStateNormal];
 
+    }
+    showBtn.hidden = YES;
+
+    if (_model.isShow) {
+        showBtn.hidden = NO;
+        setDeflutBtn.hidden = YES;
+        deleteBtn.hidden = YES;
     }
     
     

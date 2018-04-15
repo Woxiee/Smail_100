@@ -22,6 +22,7 @@
 
 #import "LevepartnerVC.h"
 #import "SmileForVC.h"
+#import "SendSmailValueVC.h"
 
 
 @interface MemberCenterMainVC ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
@@ -224,6 +225,14 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
        vc.hidesBottomBarWhenPushed = YES;
        [self.navigationController pushViewController:vc animated:YES];
    }
+   else if ([titleStr isEqualToString:@"钱包转赠"]) {
+       SendSmailValueVC *vc = [[SendSmailValueVC alloc] init];
+       vc.hidesBottomBarWhenPushed = YES;
+       [self.navigationController pushViewController:vc animated:YES];
+   }
+    
+    
+    
     
     else{
         [self.view toastShow:@"该功能暂未开放,请稍后!"];

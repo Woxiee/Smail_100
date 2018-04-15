@@ -53,7 +53,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8w-UR-Zhw">
-                        <rect key="frame" x="262.5" y="24" width="32.5" height="16"/>
+                        <rect key="frame" x="267.5" y="24" width="32.5" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -73,7 +73,7 @@
                     <constraint firstItem="Gmt-QT-3ff" firstAttribute="leading" secondItem="1CJ-4C-wP6" secondAttribute="leading" id="gk9-9a-Ahw"/>
                     <constraint firstItem="2oZ-zY-YHx" firstAttribute="width" relation="greaterThanOrEqual" secondItem="xYt-8e-2uU" secondAttribute="width" id="igO-lR-uqf"/>
                     <constraint firstItem="Gmt-QT-3ff" firstAttribute="top" secondItem="1CJ-4C-wP6" secondAttribute="bottom" constant="5" id="jtc-wn-T8m"/>
-                    <constraint firstAttribute="trailing" secondItem="Z8w-UR-Zhw" secondAttribute="trailing" constant="20" id="pen-RJ-Vtw"/>
+                    <constraint firstAttribute="trailing" secondItem="Z8w-UR-Zhw" secondAttribute="trailing" constant="15" id="pen-RJ-Vtw"/>
                     <constraint firstItem="Gmt-QT-3ff" firstAttribute="width" secondItem="1CJ-4C-wP6" secondAttribute="width" id="pug-Oj-6hn"/>
                     <constraint firstItem="RsE-hD-f7w" firstAttribute="leading" secondItem="xYt-8e-2uU" secondAttribute="leading" id="q6g-F9-EBj"/>
                     <constraint firstItem="xYt-8e-2uU" firstAttribute="leading" secondItem="1CJ-4C-wP6" secondAttribute="trailing" constant="20" id="rZL-Nx-eVK"/>

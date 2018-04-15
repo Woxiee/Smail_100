@@ -23,4 +23,12 @@
 @property (nonatomic , copy) NSString              * user_id;
 @property (nonatomic , copy) NSString              * value;
 
+
+@property (nonatomic , copy) NSString              * tb;
+@property (nonatomic , copy) NSString              * fee;
+@property (nonatomic , copy) NSString              * commission_type;
+@property (nonatomic , copy) NSString              * bank_info;
+@property (nonatomic , copy) NSString              * is_plus;
+
+
 @end

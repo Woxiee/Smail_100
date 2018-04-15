@@ -53,15 +53,30 @@
                             <action selector="deleteBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="toe-Rz-AF1"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpX-Pg-m4V">
+                        <rect key="frame" x="20" y="66.5" width="335" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="ACl-4l-gER"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="STq-Xy-qk7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="更改默认兑换的银行卡" image="shangjiazhongxin13@3x.png"/>
+                        <connections>
+                            <action selector="didSetDefBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ghk-XW-EoU"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="NUP-8x-b2t" firstAttribute="top" secondItem="ngg-RH-5Rf" secondAttribute="bottom" constant="15" id="4PP-UU-N3f"/>
                     <constraint firstItem="jR3-ec-ceg" firstAttribute="bottom" secondItem="NUP-8x-b2t" secondAttribute="bottom" id="5qY-gk-eCh"/>
                     <constraint firstAttribute="trailing" secondItem="jR3-ec-ceg" secondAttribute="trailing" constant="35" id="8WB-5m-jTm"/>
+                    <constraint firstAttribute="bottom" secondItem="kpX-Pg-m4V" secondAttribute="bottom" constant="15" id="9cC-6x-VlZ"/>
                     <constraint firstItem="es4-C2-gLY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="BeN-1q-oOM"/>
+                    <constraint firstItem="kpX-Pg-m4V" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="CuL-d6-J5C"/>
                     <constraint firstItem="es4-C2-gLY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="HkZ-h3-sqR"/>
                     <constraint firstItem="NUP-8x-b2t" firstAttribute="leading" secondItem="ngg-RH-5Rf" secondAttribute="leading" id="MT9-zJ-JME"/>
+                    <constraint firstAttribute="trailing" secondItem="kpX-Pg-m4V" secondAttribute="trailing" constant="20" id="bfG-Xf-anp"/>
                     <constraint firstItem="MTs-y0-yas" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="35" id="fkf-qA-Eye"/>
                     <constraint firstAttribute="bottom" secondItem="es4-C2-gLY" secondAttribute="bottom" id="gjT-Hv-E31"/>
                     <constraint firstAttribute="trailing" secondItem="es4-C2-gLY" secondAttribute="trailing" constant="15" id="jGv-Yf-Ow4"/>
@@ -77,11 +92,13 @@
                 <outlet property="deleteBtn" destination="jR3-ec-ceg" id="ZO6-En-Kgu"/>
                 <outlet property="nameLB" destination="MTs-y0-yas" id="3J8-sa-DLn"/>
                 <outlet property="setDeflutBtn" destination="NUP-8x-b2t" id="76z-yr-thk"/>
+                <outlet property="showBtn" destination="kpX-Pg-m4V" id="nWb-zL-9v0"/>
             </connections>
             <point key="canvasLocation" x="67.5" y="2"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="shangjiazhongxin13@3x.png" width="16" height="16"/>
         <image name="zhanghuguanli13@3x.png" width="16" height="16"/>
         <image name="zhanghuguanli18@3x.png" width="16" height="16"/>
         <image name="zhanghuguanli19@3x.png" width="16" height="16"/>

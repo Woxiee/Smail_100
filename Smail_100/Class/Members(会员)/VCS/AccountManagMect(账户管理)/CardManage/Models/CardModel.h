@@ -21,6 +21,7 @@
 @property (nonatomic , copy) NSString              * id;
 @property (nonatomic , copy) NSString              * bank_name;
 
+@property (nonatomic , assign) BOOL              isShow;
 
 
 @end

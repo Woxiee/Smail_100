@@ -12,10 +12,14 @@
 #import "CardManageVC.h"
 #import "SmileForMoneyCell.h"
 #import "GoodSOrderCommonCell.h"
+#import "JHCoverView.h"
+#import "SetPayPwdVC.h"
+#import "SmileMainListVC.h"
 
-@interface SmileForVC ()
+@interface SmileForVC ()<JHCoverViewDelegate>
 @property (nonatomic, strong) NSDictionary *dataDic;
 @property (nonatomic, strong) NSString *value;
+@property (nonatomic, strong) JHCoverView *coverView;
 
 @end
 
@@ -50,18 +54,16 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
         if ([result[@"code"] integerValue] == 000) {
             [weakSelf.resorceArray removeAllObjects];
             NSArray *arr = [NSArray yy_modelArrayWithClass:[CardModel class] json:result[@"data"]];
-//            for ( CardModel * model in arr) {
-//                if ([model.is_default isEqualToString:@"Y"]) {
-//                    [weakSelf.resorceArray  addObject:model];
-//                    break;
-//                }else{
+            for ( CardModel * model in arr) {
+                if ([model.is_default isEqualToString:@"Y"]) {
+                    model.isShow = YES;
+                    [weakSelf.resorceArray  addObject:model];
+                    break;
+                }else{
                     [weakSelf.resorceArray  addObject:@"添加银行卡"];
-
-//                }
-//            }
+                }
+            }
             [weakSelf requestListNetWork];
-
-            
         }
         else{
             [weakSelf.view toastShow:msg];
@@ -88,7 +90,6 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
             [weakSelf.view toastShow:msg];
         }
         
-        
     }];
 }
 
@@ -106,19 +107,7 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
         NSString *msg = result[@"msg"];
         if ([result[@"code"] integerValue] == 000) {
             [weakSelf.view toastShow:msg];
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                SuccessView *successV = [[SuccessView alloc] initWithTrueCancleTitle:@"您的账号出现异常，请重新登录，如若不是本人操作，请联系管理员~" cancelTitle:@"" clickDex:^(NSInteger clickDex) {
-//                    if (clickDex == 1) {
-//                        [KX_UserInfo presentToLoginView:self];
-//
-//                    }}];
-//                [successV showSuccess];
-//            });
-
-          
-            
-
+//            [weakSelf.navigationController popViewControllerAnimated:YES];
         }
         else{
             [weakSelf.view toastShow:msg];
@@ -149,6 +138,14 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
     sureBtn.backgroundColor = BACKGROUND_COLORHL;
     sureBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [self.view addSubview:sureBtn];
+    
+    JHCoverView *coverView = [[JHCoverView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    coverView.delegate = self;
+    self.coverView = coverView;
+    coverView.hidden = YES;
+    coverView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
+    [self.view addSubview:coverView];
+
 }
 
 
@@ -162,7 +159,9 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
 #pragma mark - publice
 - (void)didClickRightNaviBtn
 {
+    SmileMainListVC *vc = [[SmileMainListVC alloc] init];
     
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //
@@ -173,7 +172,18 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
         [self.view toastShow:@"请输入想要兑换的数量"];
         return;
     }
-    [self getReflectRequest];
+    WEAKSELF;
+    if (KX_NULLString([KX_UserInfo sharedKX_UserInfo].pay_password)) {
+        [self systemAlertWithTitle:nil andMsg:@"您还未设置支付密码" cancel:@"取消" sure:@"去设置" withOkBlock:^(BOOL isOk) {
+            SetPayPwdVC  *vc = [[SetPayPwdVC alloc] init];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
+    }else{
+        self.coverView.hidden = NO;
+        [self.coverView.payTextField becomeFirstResponder];
+        
+    }
+
 }
 
 
@@ -277,6 +287,20 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
         };
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+
+
+- (void)extracted {
+    [self getReflectRequest];
+}
+
+/**
+ JHCoverViewDelegate的代理方法，密码输入正确
+ */
+- (void)inputCorrectCoverView:(JHCoverView *)control
+{
+    [self extracted];
 }
 
 @end

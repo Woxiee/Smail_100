@@ -33,6 +33,13 @@
 		3EB8E012205FFB7E00E717B1 /* MeChantOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8E011205FFB7E00E717B1 /* MeChantOrderModel.m */; };
 		3EB8E0162060048A00E717B1 /* AddOrEidtGoodVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8E0142060048A00E717B1 /* AddOrEidtGoodVC.m */; };
 		3EB8E0172060048A00E717B1 /* AddOrEidtGoodVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8E0152060048A00E717B1 /* AddOrEidtGoodVC.xib */; };
+		3EBDCFB12081A0AA003F3649 /* SmileForListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EBDCFB02081A0AA003F3649 /* SmileForListVC.m */; };
+		3EBDCFB82081A231003F3649 /* SmileForListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EBDCFB62081A231003F3649 /* SmileForListCell.m */; };
+		3EBDCFB92081A231003F3649 /* SmileForListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EBDCFB72081A231003F3649 /* SmileForListCell.xib */; };
+		3EBDCFBC20824519003F3649 /* SmileForHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EBDCFBB20824518003F3649 /* SmileForHeadView.m */; };
+		3EBDCFBF20830E81003F3649 /* SmileMainListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EBDCFBE20830E81003F3649 /* SmileMainListVC.m */; };
+		3EBDCFC4208358EE003F3649 /* SendSmailValueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EBDCFC2208358EE003F3649 /* SendSmailValueVC.m */; };
+		3EBDCFC5208358EE003F3649 /* SendSmailValueVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EBDCFC3208358EE003F3649 /* SendSmailValueVC.xib */; };
 		3ECD1CC0205CC86A008D8686 /* QrCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD1CBE205CC86A008D8686 /* QrCodeVC.m */; };
 		3ECD1CC1205CC86A008D8686 /* QrCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ECD1CBF205CC86A008D8686 /* QrCodeVC.xib */; };
 		3EE5592820776625003574E0 /* OfflineDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE5592720776625003574E0 /* OfflineDetailModel.m */; };
@@ -985,6 +992,18 @@
 		3EB8E0132060048A00E717B1 /* AddOrEidtGoodVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddOrEidtGoodVC.h; sourceTree = "<group>"; };
 		3EB8E0142060048A00E717B1 /* AddOrEidtGoodVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddOrEidtGoodVC.m; sourceTree = "<group>"; };
 		3EB8E0152060048A00E717B1 /* AddOrEidtGoodVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddOrEidtGoodVC.xib; sourceTree = "<group>"; };
+		3EBDCFAF2081A0AA003F3649 /* SmileForListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmileForListVC.h; sourceTree = "<group>"; };
+		3EBDCFB02081A0AA003F3649 /* SmileForListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmileForListVC.m; sourceTree = "<group>"; };
+		3EBDCFB52081A231003F3649 /* SmileForListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmileForListCell.h; sourceTree = "<group>"; };
+		3EBDCFB62081A231003F3649 /* SmileForListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmileForListCell.m; sourceTree = "<group>"; };
+		3EBDCFB72081A231003F3649 /* SmileForListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmileForListCell.xib; sourceTree = "<group>"; };
+		3EBDCFBA20824518003F3649 /* SmileForHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmileForHeadView.h; sourceTree = "<group>"; };
+		3EBDCFBB20824518003F3649 /* SmileForHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmileForHeadView.m; sourceTree = "<group>"; };
+		3EBDCFBD20830E81003F3649 /* SmileMainListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmileMainListVC.h; sourceTree = "<group>"; };
+		3EBDCFBE20830E81003F3649 /* SmileMainListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmileMainListVC.m; sourceTree = "<group>"; };
+		3EBDCFC1208358EE003F3649 /* SendSmailValueVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendSmailValueVC.h; sourceTree = "<group>"; };
+		3EBDCFC2208358EE003F3649 /* SendSmailValueVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SendSmailValueVC.m; sourceTree = "<group>"; };
+		3EBDCFC3208358EE003F3649 /* SendSmailValueVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendSmailValueVC.xib; sourceTree = "<group>"; };
 		3ECD1CBD205CC86A008D8686 /* QrCodeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QrCodeVC.h; sourceTree = "<group>"; };
 		3ECD1CBE205CC86A008D8686 /* QrCodeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QrCodeVC.m; sourceTree = "<group>"; };
 		3ECD1CBF205CC86A008D8686 /* QrCodeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QrCodeVC.xib; sourceTree = "<group>"; };
@@ -2597,6 +2616,16 @@
 			path = MeChantOrderModel;
 			sourceTree = "<group>";
 		};
+		3EBDCFC02083589A003F3649 /* SendSmailValue */ = {
+			isa = PBXGroup;
+			children = (
+				3EBDCFC1208358EE003F3649 /* SendSmailValueVC.h */,
+				3EBDCFC2208358EE003F3649 /* SendSmailValueVC.m */,
+				3EBDCFC3208358EE003F3649 /* SendSmailValueVC.xib */,
+			);
+			path = SendSmailValue;
+			sourceTree = "<group>";
+		};
 		A2D5C5FE1A124C37E0F2F69D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3788,6 +3817,7 @@
 		E10B0BBF20528AE8008BA706 /* VCS */ = {
 			isa = PBXGroup;
 			children = (
+				3EBDCFC02083589A003F3649 /* SendSmailValue */,
 				E169B29C207F42C800137791 /* SmileFor */,
 				3E24E8F4207859FD006F5C32 /* Levepartner(合伙人) */,
 				E115577F2063AF4700B344B3 /* OpenBusinss(开通商家) */,
@@ -6497,6 +6527,15 @@
 			children = (
 				E169B29D207F42ED00137791 /* SmileForVC.h */,
 				E169B29E207F42ED00137791 /* SmileForVC.m */,
+				3EBDCFBD20830E81003F3649 /* SmileMainListVC.h */,
+				3EBDCFBE20830E81003F3649 /* SmileMainListVC.m */,
+				3EBDCFAF2081A0AA003F3649 /* SmileForListVC.h */,
+				3EBDCFB02081A0AA003F3649 /* SmileForListVC.m */,
+				3EBDCFB52081A231003F3649 /* SmileForListCell.h */,
+				3EBDCFB62081A231003F3649 /* SmileForListCell.m */,
+				3EBDCFB72081A231003F3649 /* SmileForListCell.xib */,
+				3EBDCFBA20824518003F3649 /* SmileForHeadView.h */,
+				3EBDCFBB20824518003F3649 /* SmileForHeadView.m */,
 				E178ECB82080A4D5007BA896 /* SmileForMoneyCell.h */,
 				E178ECB92080A4D5007BA896 /* SmileForMoneyCell.m */,
 				E178ECBA2080A4D5007BA896 /* SmileForMoneyCell.xib */,
@@ -7125,11 +7164,13 @@
 				E10B0D4A20528AE8008BA706 /* HomeFootView.xib in Resources */,
 				E10B0DF820528AE8008BA706 /* ShopCarLimitCell.xib in Resources */,
 				E1EFC6BC2068FCEE00C78A8C /* home_add.png in Resources */,
+				3EBDCFB92081A231003F3649 /* SmileForListCell.xib in Resources */,
 				E10B0CF520528AE8008BA706 /* ActionOfficeCell.xib in Resources */,
 				E10B11FE20528B06008BA706 /* shangchengdingdan4@3x.png in Resources */,
 				E10B127C20528B06008BA706 /* xianxiashangjia7@3x.png in Resources */,
 				E10B126E20528B06008BA706 /* xianxiashangjia13@3x.png in Resources */,
 				E172EBD6205FC6F00079CD3D /* moreOne@2x.png in Resources */,
+				3EBDCFC5208358EE003F3649 /* SendSmailValueVC.xib in Resources */,
 				E10B123620528B06008BA706 /* zhanghuguanli13@3x.png in Resources */,
 				E10B11C820528B06008BA706 /* gerenzhongxin18@3x.png in Resources */,
 				E10B11DF20528B06008BA706 /* hehuorenpingtai5@3x.png in Resources */,
@@ -7377,6 +7418,7 @@
 				E10B0E1620528AF0008BA706 /* GlobalQueueOperation.m in Sources */,
 				E10B10AF20528B03008BA706 /* SDBrowserImageView.m in Sources */,
 				E10B0E9E20528AF5008BA706 /* UITableView+FDKeyedHeightCache.m in Sources */,
+				3EBDCFB82081A231003F3649 /* SmileForListCell.m in Sources */,
 				E10B0FC020528AFA008BA706 /* KX_TextView.m in Sources */,
 				E10B0D1B20528AE8008BA706 /* GoodSOrderCommonCell.m in Sources */,
 				E10B0F9D20528AFA008BA706 /* KeyChainStore.m in Sources */,
@@ -7455,6 +7497,7 @@
 				E10B0EC320528AF5008BA706 /* JPDbg.m in Sources */,
 				E167EC2D205A50A800A8F744 /* SaleAfterVC.m in Sources */,
 				E10B0EC020528AF5008BA706 /* KCWebView.m in Sources */,
+				3EBDCFB12081A0AA003F3649 /* SmileForListVC.m in Sources */,
 				E10B0D7B20528AE8008BA706 /* OrderManagementVC.m in Sources */,
 				E10B0FBB20528AFA008BA706 /* UIColor+hex.m in Sources */,
 				E10B0D8220528AE8008BA706 /* MerchantCenterVC.m in Sources */,
@@ -7515,6 +7558,7 @@
 				E10B0D7F20528AE8008BA706 /* MeChantMainVC.m in Sources */,
 				E172EBA4205F92A90079CD3D /* OfflineDetailCell.m in Sources */,
 				E10B0FB120528AFA008BA706 /* JKAssetsViewCell.m in Sources */,
+				3EBDCFC4208358EE003F3649 /* SendSmailValueVC.m in Sources */,
 				E11531132052969200B5852F /* openssl_wrapper.m in Sources */,
 				E10B0EA720528AF5008BA706 /* UIButton+EdgeInsets.m in Sources */,
 				E10B0DBF20528AE8008BA706 /* MenberInforCell.m in Sources */,
@@ -7586,6 +7630,7 @@
 				E10B108720528B03008BA706 /* MJExtensionConst.m in Sources */,
 				E10B0FD620528AFA008BA706 /* CustomTopView.m in Sources */,
 				E10B0D5D20528AE8008BA706 /* LoginVModel.m in Sources */,
+				3EBDCFBF20830E81003F3649 /* SmileMainListVC.m in Sources */,
 				E11531372052993E00B5852F /* PayOtherCell.m in Sources */,
 				3E24E90820786AEF006F5C32 /* LevePartnerModel.m in Sources */,
 				E115577A20639E1900B344B3 /* AgentPlatfoemMainVC.m in Sources */,
@@ -7599,6 +7644,7 @@
 				E10B0FA520528AFA008BA706 /* SZCalendarPicker.m in Sources */,
 				E10B0D7E20528AE8008BA706 /* MemberCenterMainVC.m in Sources */,
 				E11556E82061151500B344B3 /* SelectGoodSClassVC.m in Sources */,
+				3EBDCFBC20824519003F3649 /* SmileForHeadView.m in Sources */,
 				E10B109A20528B03008BA706 /* MJRefreshBackNormalFooter.m in Sources */,
 				E11556F22061FF7F00B344B3 /* ChangeThePhoneVC.m in Sources */,
 				E10B0FE320528AFA008BA706 /* ZYShareSheetView.m in Sources */,

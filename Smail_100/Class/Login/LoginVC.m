@@ -105,8 +105,13 @@
                     userinfo.phone_money = dataDic[@"phone_money"];
                     userinfo.username = dataDic[@"username"];
                     
+//                    "used_point" = 0.00,
+
                     userinfo.point = dataDic[@"point"];
                     userinfo.used_point = dataDic[@"used_point"];
+//                    "money" = 15006.93,
+//                    "air_money" = 0.00,
+
                     userinfo.air_money   = dataDic[@"coins"][@"air_money"];
                     userinfo.money   = dataDic[@"coins"][@"money"];
                     if ([dataDic[@"mType"] isEqualToString:@"1"]) {
