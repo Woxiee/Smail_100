@@ -797,7 +797,6 @@
 		E11556EC2061165A00B344B3 /* SelectGoodsClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E11556EA2061165A00B344B3 /* SelectGoodsClassCell.m */; };
 		E11556ED2061165A00B344B3 /* SelectGoodsClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11556EB2061165A00B344B3 /* SelectGoodsClassCell.xib */; };
 		E11556F22061FF7F00B344B3 /* ChangeThePhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11556F02061FF7F00B344B3 /* ChangeThePhoneVC.m */; };
-		E11556F32061FF7F00B344B3 /* ChangeThePhoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11556F12061FF7F00B344B3 /* ChangeThePhoneVC.xib */; };
 		E11556F720622B9C00B344B3 /* ChildModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E11556F620622B9C00B344B3 /* ChildModel.m */; };
 		E11556FB20623A7F00B344B3 /* GoodManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11556F920623A7F00B344B3 /* GoodManageVC.m */; };
 		E11557002062417600B344B3 /* AddGoodsMuenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11556FE2062417600B344B3 /* AddGoodsMuenVC.m */; };
@@ -830,6 +829,13 @@
 		E126DA43206CEA4F00653419 /* DQStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E126DA42206CEA4F00653419 /* DQStarView.m */; };
 		E126DA46206CEBE000653419 /* star01-on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E126DA44206CEBDF00653419 /* star01-on@3x.png */; };
 		E126DA47206CEBE000653419 /* star-one@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E126DA45206CEBE000653419 /* star-one@3x.png */; };
+		E1481A8820849B61005AD9E7 /* RealNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1481A8620849B61005AD9E7 /* RealNameVC.m */; };
+		E1481A8920849B61005AD9E7 /* RealNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1481A8620849B61005AD9E7 /* RealNameVC.m */; };
+		E1481A8A20849B61005AD9E7 /* RealNameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1481A8720849B61005AD9E7 /* RealNameVC.xib */; };
+		E1481A8B20849B61005AD9E7 /* RealNameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1481A8720849B61005AD9E7 /* RealNameVC.xib */; };
+		E1481A8E2084B0F1005AD9E7 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1481A8D2084B0F1005AD9E7 /* CustomAlertView.m */; };
+		E1481A9E2085DF5B005AD9E7 /* waitImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1481A9D2085DF5B005AD9E7 /* waitImage@3x.png */; };
+		E1481AA02085EA09005AD9E7 /* isSelecticon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1481A9F2085EA09005AD9E7 /* isSelecticon@3x.png */; };
 		E14881FF206F756000A3CC03 /* PointStoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E14881FE206F756000A3CC03 /* PointStoreVC.m */; };
 		E148821E206F947500A3CC03 /* KYGotoHeaderAndShowCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1488219206F947500A3CC03 /* KYGotoHeaderAndShowCountView.m */; };
 		E148821F206F947500A3CC03 /* KYGoTopBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E148821B206F947500A3CC03 /* KYGoTopBtn.m */; };
@@ -2246,7 +2252,6 @@
 		E11556EB2061165A00B344B3 /* SelectGoodsClassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectGoodsClassCell.xib; sourceTree = "<group>"; };
 		E11556EF2061FF7F00B344B3 /* ChangeThePhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeThePhoneVC.h; sourceTree = "<group>"; };
 		E11556F02061FF7F00B344B3 /* ChangeThePhoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeThePhoneVC.m; sourceTree = "<group>"; };
-		E11556F12061FF7F00B344B3 /* ChangeThePhoneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeThePhoneVC.xib; sourceTree = "<group>"; };
 		E11556F520622B9C00B344B3 /* ChildModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChildModel.h; sourceTree = "<group>"; };
 		E11556F620622B9C00B344B3 /* ChildModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChildModel.m; sourceTree = "<group>"; };
 		E11556F820623A7F00B344B3 /* GoodManageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodManageVC.h; sourceTree = "<group>"; };
@@ -2293,6 +2298,13 @@
 		E126DA42206CEA4F00653419 /* DQStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DQStarView.m; sourceTree = "<group>"; };
 		E126DA44206CEBDF00653419 /* star01-on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star01-on@3x.png"; sourceTree = "<group>"; };
 		E126DA45206CEBE000653419 /* star-one@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-one@3x.png"; sourceTree = "<group>"; };
+		E1481A8520849B61005AD9E7 /* RealNameVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealNameVC.h; sourceTree = "<group>"; };
+		E1481A8620849B61005AD9E7 /* RealNameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealNameVC.m; sourceTree = "<group>"; };
+		E1481A8720849B61005AD9E7 /* RealNameVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RealNameVC.xib; sourceTree = "<group>"; };
+		E1481A8C2084B0F1005AD9E7 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
+		E1481A8D2084B0F1005AD9E7 /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
+		E1481A9D2085DF5B005AD9E7 /* waitImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "waitImage@3x.png"; sourceTree = "<group>"; };
+		E1481A9F2085EA09005AD9E7 /* isSelecticon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "isSelecticon@3x.png"; sourceTree = "<group>"; };
 		E14881FD206F756000A3CC03 /* PointStoreVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PointStoreVC.h; sourceTree = "<group>"; };
 		E14881FE206F756000A3CC03 /* PointStoreVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PointStoreVC.m; sourceTree = "<group>"; };
 		E1488218206F947500A3CC03 /* KYGotoHeaderAndShowCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYGotoHeaderAndShowCountView.h; sourceTree = "<group>"; };
@@ -2494,9 +2506,9 @@
 				3E24E8F620785A1A006F5C32 /* LevepartnerVC.m */,
 				3E24E8F820785B7A006F5C32 /* LevePartnerCell.h */,
 				3E24E8F920785B7A006F5C32 /* LevePartnerCell.m */,
+				3E24E8FA20785B7A006F5C32 /* LevePartnerCell.xib */,
 				3E24E90420786535006F5C32 /* LevePartnerHeadCell.h */,
 				3E24E90320786535006F5C32 /* LevePartnerHeadCell.m */,
-				3E24E8FA20785B7A006F5C32 /* LevePartnerCell.xib */,
 				3E24E8FD207862C2006F5C32 /* LevePartNerHeadView.h */,
 				3E24E8FE207862C2006F5C32 /* LevePartNerHeadView.m */,
 				3E24E90620786AEF006F5C32 /* LevePartnerModel.h */,
@@ -3843,6 +3855,7 @@
 		E10B0BC020528AE8008BA706 /* AccountManagMect(账户管理) */ = {
 			isa = PBXGroup;
 			children = (
+				E1481A8420849B3F005AD9E7 /* RealNameVC */,
 				E169B2A2207F448300137791 /* CardManage */,
 				E10B0BC120528AE8008BA706 /* AccountManagVC.h */,
 				E10B0BC220528AE8008BA706 /* AccountManagVC.m */,
@@ -5703,6 +5716,8 @@
 		E10B10B220528B05008BA706 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E1481A9F2085EA09005AD9E7 /* isSelecticon@3x.png */,
+				E1481A9D2085DF5B005AD9E7 /* waitImage@3x.png */,
 				E169B21E207DDC3700137791 /* hfdh@3x.png */,
 				E169B21F207DDC3700137791 /* jfzf@3x.png */,
 				E1165982207A083D00826E2F /* star@3x.png */,
@@ -6309,7 +6324,6 @@
 			children = (
 				E11556EF2061FF7F00B344B3 /* ChangeThePhoneVC.h */,
 				E11556F02061FF7F00B344B3 /* ChangeThePhoneVC.m */,
-				E11556F12061FF7F00B344B3 /* ChangeThePhoneVC.xib */,
 			);
 			path = "ChangeThePhone(话费兑换)";
 			sourceTree = "<group>";
@@ -6375,6 +6389,18 @@
 				E126DA42206CEA4F00653419 /* DQStarView.m */,
 			);
 			path = DQStarView;
+			sourceTree = "<group>";
+		};
+		E1481A8420849B3F005AD9E7 /* RealNameVC */ = {
+			isa = PBXGroup;
+			children = (
+				E1481A8520849B61005AD9E7 /* RealNameVC.h */,
+				E1481A8620849B61005AD9E7 /* RealNameVC.m */,
+				E1481A8720849B61005AD9E7 /* RealNameVC.xib */,
+				E1481A8C2084B0F1005AD9E7 /* CustomAlertView.h */,
+				E1481A8D2084B0F1005AD9E7 /* CustomAlertView.m */,
+			);
+			path = RealNameVC;
 			sourceTree = "<group>";
 		};
 		E1488217206F947500A3CC03 /* KYGoheadView(快速回到顶部) */ = {
@@ -6833,6 +6859,7 @@
 				E10B11E920528B06008BA706 /* chuangkeweidian5@3x.png in Resources */,
 				E10B123D20528B06008BA706 /* zhanghuguanli1@3x.png in Resources */,
 				E10B0CFE20528AE8008BA706 /* GoodsCollectionCell.xib in Resources */,
+				E1481A8A20849B61005AD9E7 /* RealNameVC.xib in Resources */,
 				E10B0D5F20528AE8008BA706 /* LoginFindAndRegirsVC.xib in Resources */,
 				E10B11DC20528B06008BA706 /* hehuorenpingtai2@3x.png in Resources */,
 				E10B11C720528B06008BA706 /* gerenzhongxin17@3x.png in Resources */,
@@ -6937,6 +6964,7 @@
 				E10B12A320528B06008BA706 /* shouye7@3x.png in Resources */,
 				E1F5103420738862003227B6 /* SetLoginPwdVC.xib in Resources */,
 				E1EFC6B92068F3FC00C78A8C /* CloudPhoneCell.xib in Resources */,
+				E1481AA02085EA09005AD9E7 /* isSelecticon@3x.png in Resources */,
 				E10B125220528B06008BA706 /* muban15@3x.png in Resources */,
 				E10B124C20528B06008BA706 /* qianbaozhuanzeng3@3x.png in Resources */,
 				E10B11D120528B06008BA706 /* gerenzhongxin7@3x.png in Resources */,
@@ -7152,7 +7180,6 @@
 				E10B0D4E20528AE8008BA706 /* HomeScrollCell.xib in Resources */,
 				E10B128920528B06008BA706 /* shouye12@3x.png in Resources */,
 				E10B129020528B06008BA706 /* shouye19@3x.png in Resources */,
-				E11556F32061FF7F00B344B3 /* ChangeThePhoneVC.xib in Resources */,
 				E10B0D1C20528AE8008BA706 /* GoodSOrderCommonCell.xib in Resources */,
 				E11557012062417600B344B3 /* AddGoodsMuenVC.xib in Resources */,
 				E10B0D1E20528AE8008BA706 /* GoodSOrderNomalCell.xib in Resources */,
@@ -7187,6 +7214,7 @@
 				E10B126820528B06008BA706 /* yunshebei1@3x.png in Resources */,
 				E10B127520528B06008BA706 /* xianxiashangjia1@3x.png in Resources */,
 				E10B0D4820528AE8008BA706 /* GoodsScreenOutCell.xib in Resources */,
+				E1481A9E2085DF5B005AD9E7 /* waitImage@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7201,6 +7229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1481A8B20849B61005AD9E7 /* RealNameVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7652,6 +7681,7 @@
 				E10B0FEC20528AFF008BA706 /* KX_UserEntity.m in Sources */,
 				E10B0D9820528AE8008BA706 /* ChangeToNewMobile.m in Sources */,
 				E10B108A20528B03008BA706 /* MJPropertyKey.m in Sources */,
+				E1481A8820849B61005AD9E7 /* RealNameVC.m in Sources */,
 				E11556F720622B9C00B344B3 /* ChildModel.m in Sources */,
 				E10B0E9920528AF5008BA706 /* ZHDatePickerView.m in Sources */,
 				E10B0D3720528AE8008BA706 /* HomeVModel.m in Sources */,
@@ -7812,6 +7842,7 @@
 				E115310F2052969200B5852F /* APOrderInfo.m in Sources */,
 				E10B0FDD20528AFA008BA706 /* WHC_ModelSqlite.m in Sources */,
 				E10B0E9A20528AF5008BA706 /* GetThefont.m in Sources */,
+				E1481A8E2084B0F1005AD9E7 /* CustomAlertView.m in Sources */,
 				E10B0EA320528AF5008BA706 /* NSObject+Runtime.m in Sources */,
 				E10B0CE920528AE8008BA706 /* ProductDetailViewController.m in Sources */,
 				E10B0D5C20528AE8008BA706 /* TopScreenView.m in Sources */,
@@ -7859,6 +7890,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E10B02B3205289EC008BA706 /* Smail_100UITests.m in Sources */,
+				E1481A8920849B61005AD9E7 /* RealNameVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

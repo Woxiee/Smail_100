@@ -47,11 +47,10 @@
 - (void)setItemContentList:(ItemContentList *)itemContentList
 {
     _itemContentList = itemContentList;
-    [logoImageView sd_setImageWithURL:[NSURL URLWithString:_itemContentList.itemBackgroundImageUrl] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
-    
+    [logoImageView sd_setImageWithURL:[NSURL URLWithString:_itemContentList.imageUrl] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
     titleLb.text = _itemContentList.itemTitle;
 
-    if ([_itemContentList.earn_point floatValue] <0) {
+    if ([_itemContentList.earn_point floatValue] <= 0) {
         jfLB.hidden = YES;
     }
     pirceLB.text = [NSString stringWithFormat:@"￥%@",_itemContentList.price];
@@ -60,11 +59,17 @@
     
     saleLB.text = [NSString stringWithFormat:@"已售出: %@",_itemContentList.store_nums];
     
+    if (_itemContentList.showType.integerValue == 2) {
+        saleLB.text = [NSString stringWithFormat:@"已兑换: %@",_itemContentList.volume];
+        [delegateBtn setTitle:@"立即兑换" forState:UIControlStateNormal];
+    }
         
 }
 
 - (IBAction)delegateAction:(id)sender {
-    
+    if (_didClickItemBlock) {
+        _didClickItemBlock(_itemContentList.goods_id);
+    }
     
 }
 

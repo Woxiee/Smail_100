@@ -36,24 +36,18 @@
 {
     _model = model;
     nameLB.text = _model.bank_name;
-    
-    codelb.text = _model.bank_account;
+        codelb.text = _model.bank_account;
     if ([_model.is_default isEqualToString:@"Y"]) {
-        [setDeflutBtn setImage:[UIImage imageNamed:@"zhanghuguanli9@3x.png"] forState:UIControlStateNormal];
-
+        [setDeflutBtn setImage:[UIImage imageNamed:@"isSelecticon@3x.png"] forState:UIControlStateNormal];
     }else{
         [setDeflutBtn setImage:[UIImage imageNamed:@"zhanghuguanli19@3x.png"] forState:UIControlStateNormal];
-
     }
     showBtn.hidden = YES;
-
     if (_model.isShow) {
         showBtn.hidden = NO;
         setDeflutBtn.hidden = YES;
         deleteBtn.hidden = YES;
     }
-    
-    
     
 }
 

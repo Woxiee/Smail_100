@@ -61,13 +61,14 @@
 
 #import "PYSearchViewController.h"
 #import "WJSegmentMenuVc.h"
-#import <AlipaySDK/AlipaySDK.h>
+
 #import "Toast+UIView.h"
 #import "KX_ActionSheet.h"
 
 #import "WXApi.h"
-
+#import <AlipaySDK/AlipaySDK.h>
 #import "Common.h"
+#import "KYTextView.h"
 
 
 /// 业务头文件

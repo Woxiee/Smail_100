@@ -40,5 +40,7 @@ typedef void (^ImageUrlBlock)(NSString *imageName);
  */
 + (instancetype) requestUploadImage:(UIImage *)img Url:(NSString *)url Params:(id)paramter andFileContents:(NSString *)contents andBlock:(ImageUrlBlock)block;
 
+- (instancetype) requestUploadImageList:(NSArray *)listArr Url:(NSString *)url Params:(id)paramter andBlock:(ImageUrlBlock)block;
+
 
 @end

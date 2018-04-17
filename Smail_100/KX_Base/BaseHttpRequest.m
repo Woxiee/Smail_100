@@ -177,6 +177,74 @@
 
 }
 
+- (instancetype)requestUploadImageList:(NSArray *)listArr Url:(NSString *)url Params:(id)paramter andBlock:(ImageUrlBlock)block
+{
+    
+    if (self == [super init]) {
+        
+        //[self sendGainFileServerURLRequestWith:img andPath:path andBlock:block];
+        [self uploadWithImageList:listArr Url:url  Params:paramter andBlock:block];
+    }
+    return self;
+}
+
+
+- (void) uploadWithImageList:(NSArray *)listArr Url:(NSString *)url Params:(id)paramter   andBlock:(ImageUrlBlock)block
+{
+    self.imageBlock = block;
+    
+    
+    NSString *returnName = @"file";
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//设置服务器允许的请求格式内容
+    
+    url = [NSString stringWithFormat:@"%@/api%@",HEAD__URL,url];
+    _interfaceURL = url;
+    _params = paramter;
+    
+    [manager POST:_interfaceURL parameters:paramter constructingBodyWithBlock:^(id  _Nonnull formData) {
+        for (int i = 0; i < listArr.count; i++) {
+            UIImage *img = listArr[i];
+            NSData *imageData = UIImageJPEGRepresentation(img, 0.3);
+            if (i==0) {
+                [formData appendPartWithFileData :imageData name:@"file[idcard_image]" fileName:@"file[idcard_image]" mimeType:@"multipart/form-data"];
+            }
+            else if (i == 1){
+                [formData appendPartWithFileData :imageData name:@"file[idcard_image_back]" fileName:@"file[idcard_image_back]" mimeType:@"multipart/form-data"];
+            }
+            else{
+                [formData appendPartWithFileData :imageData name:@"file[people_image]" fileName:@"file[people_image]" mimeType:@"multipart/form-data"];
+            }
+
+        }
+
+    }
+         progress:^(NSProgress * _Nonnull uploadProgress) {
+             NSLog(@"uploadProgress = %@",uploadProgress);
+         }
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+              NSLog(@"responseObject = %@, task = %@",responseObject,task);
+              NSString *strdata = [[NSString alloc] initWithData:responseObject  encoding:NSUTF8StringEncoding];
+#ifdef DEBUG
+              [self debug:strdata];
+#endif
+              NSDictionary *dic = [strdata mj_JSONObject];
+              
+              NSInteger status = [dic[@"code"] integerValue];
+              if (status == 0) {
+                  self.imageBlock(dic[@"msg"]);
+              }
+              
+              
+          }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              
+          }];
+}
+
+
 -(void)debug:(NSString *)strdata{
     
     NSArray *allkeys = [_params allKeys];

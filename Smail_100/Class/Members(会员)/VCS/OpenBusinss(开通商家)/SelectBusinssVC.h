@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ChildModel.h"
 @interface SelectBusinssVC : KX_BaseViewController
-@property (nonatomic,copy) void(^didClickCompleBlock)(NSArray *listArr);
+@property (nonatomic,copy) void(^didClickCompleBlock)(ChildModel *model);
 
 @end

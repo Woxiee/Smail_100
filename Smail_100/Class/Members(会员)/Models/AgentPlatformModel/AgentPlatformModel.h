@@ -38,7 +38,17 @@
 @property (nonatomic , copy) NSString              * idcard_image;
 @property (nonatomic , copy) NSString              * idcard_image_back;
 
+@property (nonatomic , copy) NSString              * title1;
+@property (nonatomic , copy) NSString              * value1;
 
+@property (nonatomic , copy) NSString              * title2;
+@property (nonatomic , copy) NSString              * value2;
+
+@property (nonatomic , copy) NSString              * title3;
+@property (nonatomic , copy) NSString              * value3;
+
+@property (nonatomic , copy) NSString              * title4;
+@property (nonatomic , copy) NSString              * value4;
 
 
 @end

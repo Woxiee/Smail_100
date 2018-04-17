@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LevePartnerCell : UITableViewCell
-@property (nonatomic , strong) ItemContentList              * itemContentList;
+@property (nonatomic , strong) ItemContentList     * itemContentList;
 
+@property (nonatomic, copy) void(^didClickItemBlock)(NSString *goodsId);
 @end

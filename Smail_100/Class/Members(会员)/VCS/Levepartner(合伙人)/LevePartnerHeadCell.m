@@ -25,7 +25,7 @@
 {
     
     contenLB = [UILabel new ];
-    contenLB.font = Font15;
+    contenLB.font = Font14;
     [self.contentView sd_addSubviews:@[contenLB]];
   
     

@@ -183,7 +183,7 @@
 + (BOOL)compareOneDay:(NSString *)startDay withAnotherDay:(NSString *)endDay
 {
      NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+     [dateFormatter setDateFormat:@"HH:mm"];
 
      NSDate *dateA = [dateFormatter dateFromString:startDay];
      NSDate *dateB = [dateFormatter dateFromString:endDay];

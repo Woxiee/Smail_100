@@ -77,8 +77,11 @@
     [btn addTarget:self action:@selector(didClickBottomAction) forControlEvents:UIControlEventTouchUpInside];
     btn.titleLabel.font = Font15;
     [self.view addSubview:btn];
+    
     self.title = @"选择行业";
+ 
 }
+
 
 - (void)setConfiguration
 {
@@ -105,7 +108,6 @@
     static NSString* cellID = @"ManagementCellID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell ) {
-//        cell = [[[NSBundle mainBundle]loadNibNamed:@"SelectGoodsClassCell" owner:nil options:nil]lastObject];
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
     }
     ChildModel *model = self.resorceArray[indexPath.row];
@@ -122,11 +124,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-   
-        ChildModel *model = self.resorceArray[indexPath.row];
-        model.isSelect =! model.isSelect;
-        
-        [self.tableView reloadData];
+    ChildModel *model = self.resorceArray[indexPath.row];
+
+    if (_didClickCompleBlock) {
+        _didClickCompleBlock(model);
+    }
+
+    [self.navigationController popViewControllerAnimated:YES];
 
     
     
@@ -139,13 +143,12 @@
 {
     if (!_tableView) {
         //初始化数据
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64 - 50) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64 ) style:UITableViewStylePlain];
         _tableView.tableFooterView = [UIView new];//默认设置为空
         [_tableView setSeparatorInset:UIEdgeInsetsZero];//默认设置下划线左边移动 15.0f
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.rowHeight = 50;
-        
         _tableView.backgroundColor = BACKGROUND_COLOR;
     }
     return _tableView;

@@ -65,6 +65,9 @@
 
 @property (nonatomic , copy) NSString              * spec;
 
+@property (nonatomic , copy) NSString              * showType; ///话费兑换用到字段
+
+
 @end
 
 @interface ItemInfoList :NSObject

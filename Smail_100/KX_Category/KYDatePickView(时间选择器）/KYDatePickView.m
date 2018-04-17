@@ -60,7 +60,7 @@
     _sureBtn.tag = 100;
      _sureBtn.titleLabel.font = [UIFont systemFontOfSize:16];
      [_sureBtn setTitle:@"确定" forState:UIControlStateNormal];
-    [_sureBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_sureBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
     [_sureBtn addTarget:self action:@selector(pressentPickerView:) forControlEvents:UIControlEventTouchUpInside];
     [_topView addSubview:_sureBtn];
 
@@ -68,7 +68,7 @@
     _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:16];
       _cancelBtn.tag = 101;
     [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [_cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_cancelBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
     [_cancelBtn addTarget:self action:@selector(pressentPickerView:) forControlEvents:UIControlEventTouchUpInside];
     [_topView addSubview:_cancelBtn];
 
@@ -77,7 +77,7 @@
     NSDate *currentDate = [NSDate date];
     self.date = currentDate;
     _formater = [[NSDateFormatter alloc] init];
-    [_formater setDateFormat:@"yyyy-MM-dd"];
+    [_formater setDateFormat:@"HH:mm"];
     [_dateBgView addSubview: _datePicker];
     [_datePicker addTarget:self action:@selector(selectDate:) forControlEvents:UIControlEventValueChanged];
 }
@@ -164,7 +164,6 @@
 -(void)selectDate:(id)sender {
     
     _dateStr =[_formater stringFromDate:_datePicker.date];
-    
 }
 
 #pragma mark  - getting & setting
@@ -213,7 +212,7 @@
     _datePickerMode =datePickerMode;
     _datePicker.datePickerMode = _datePickerMode;
     if (_datePickerMode == UIDatePickerModeTime) {
-            [_formater setDateFormat:@"HH:ss"];
+            [_formater setDateFormat:@"HH:mm"];
     }else{
         [_formater setDateFormat:@"yyyy-MM-dd"];
     }

@@ -88,7 +88,7 @@
     _sureBtn.frame =  CGRectMake(SCREEN_HEIGHT - kbtnW - 12  , (topView.height - kbtnH)/2, kbtnW, kbtnH);
     _sureBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [_sureBtn setTitle:@"确定" forState:UIControlStateNormal];
-    [_sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_sureBtn setTitleColor:KMAINCOLOR  forState:UIControlStateNormal];
     [_sureBtn addTarget:self action:@selector(clicTrueBtn) forControlEvents:UIControlEventTouchUpInside];
     _sureBtn.backgroundColor = BACKGROUND_COLOR;
     [_sureBtn setConnerRediu:3];
@@ -98,7 +98,7 @@
     _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     _cancelBtn.frame =  CGRectMake(12, (topView.height - kbtnH)/2, kbtnW, kbtnH);;
     [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [_cancelBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [_cancelBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
     [_cancelBtn addTarget:self action:@selector(hideDateView) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:_cancelBtn];
     

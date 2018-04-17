@@ -12,7 +12,7 @@
 #import "LevePartNerHeadView.h"
 #import "LevePartnerModel.h"
 #import "SDCycleScrollView.h"
-
+#import "GoodsDetailVC.h"
 @interface LevepartnerVC ()<SDCycleScrollViewDelegate>
 @property (nonatomic,strong)  LevePartnerModel *leveModel;
 @property (weak, nonatomic) SDCycleScrollView  *cycleView;
@@ -66,7 +66,7 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
             for (NSDictionary *dic  in  model.list) {
              ItemContentList *item = [ItemContentList yy_modelWithJSON:dic[@"itemContentList"]];
                 
-                [self.resorceArray addObject:item];
+            [self.resorceArray addObject:item];
             }
             NSMutableArray *imgList = [[NSMutableArray alloc] init];
             for (Banners *banner in model.banner) {
@@ -120,6 +120,13 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
         LevePartnerCell *cell = [tableView dequeueReusableCellWithIdentifier:levePartnerCellID forIndexPath:indexPath];
         cell.itemContentList = self.resorceArray[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.didClickItemBlock = ^(NSString *goodsId) {
+            GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+                                                         navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+            vc.productID = goodsId;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController: vc animated:YES];
+        };
         return cell;
     }
     
@@ -140,7 +147,9 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     //    self.topSreenView.backgroundColor = [UIColor redColor];
-    
+    if (self.resorceArray.count == 0) {
+        return nil;
+    }
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 55)];
 
     

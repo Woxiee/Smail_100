@@ -12,6 +12,7 @@
 #import "AccoutSecurityVC.h"
 #import "CardManageVC.h"
 
+#import "RealNameVC.h"
 @interface AccountManagVC ()
 
 @end
@@ -89,6 +90,11 @@
    }
    else if ([titleStr isEqualToString:@"银行卡管理"]) {
        CardManageVC *VC = [[CardManageVC alloc] init];
+       [self.navigationController pushViewController:VC animated:YES];
+       
+   }
+   else if ([titleStr isEqualToString:@"实名认证"]) {
+       RealNameVC *VC = [[RealNameVC alloc] init];
        [self.navigationController pushViewController:VC animated:YES];
        
    }

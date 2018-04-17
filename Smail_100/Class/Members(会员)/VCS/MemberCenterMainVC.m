@@ -40,17 +40,10 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     [super viewDidLoad];
     [self setup];
     [self setConfiguration];
-    NSArray *dataArray = nil;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickLogin)];
     [_headerView addGestureRecognizer:tap];
-    if (![KX_UserInfo sharedKX_UserInfo].loginStatus) {
-        dataArray = @[@[@"订单管理"],@[@"账户管理",@"我的推广",@"钱包转赠",@"笑脸兑换",@"账户流水",@"话费兑换",@"消息中心",@"官方客服",@"帮助反馈",@"系统设置"]];
 
-    }else{
-        dataArray = @[@[@"账户积分"],@[@"订单管理"],@[@"账户管理",@"我的推广",@"钱包转赠",@"笑脸兑换",@"账户流水",@"话费兑换",@"消息中心",@"官方客服",@"帮助反馈",@"系统设置"]];
-     }
-    [self.resorceArray addObjectsFromArray:dataArray];
-    [self.tableView reloadData];
+    [self getUserInfo];
 
 }
 
@@ -60,6 +53,18 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 
     [_headerView refreshInfo];
+    [self.resorceArray removeAllObjects];
+    NSArray *dataArray = nil;
+
+    if (![KX_UserInfo sharedKX_UserInfo].loginStatus) {
+        dataArray = @[@[@"订单管理"],@[@"账户管理",@"钱包转赠",@"笑脸兑换",@"账户流水",@"话费兑换",@"消息中心",@"官方客服",@"帮助反馈",@"系统设置"]];
+        
+    }else{
+        dataArray = @[@[@"账户积分"],@[@"订单管理"],@[@"账户管理",@"钱包转赠",@"笑脸兑换",@"账户流水",@"话费兑换",@"消息中心",@"官方客服",@"帮助反馈",@"系统设置"]];
+    }
+   
+    [self.resorceArray addObjectsFromArray:dataArray];
+    [self.tableView reloadData];
 
 }
 
@@ -70,6 +75,53 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
 
 }
 
+
+- (void)getUserInfo
+{
+    [BaseHttpRequest postWithUrl:@"/goods/getPhoneGoods" andParameters:nil andRequesultBlock:^(id result, NSError *error) {
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+            KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
+            NSDictionary *dataDic = [result valueForKey:@"data"];
+
+            userinfo.paytime =  dataDic[@"paytime"];
+            userinfo.mall_id = dataDic[@"mall_id"];
+            userinfo.status = dataDic[@"status"];
+            userinfo.openid = dataDic[@"openid"];
+            userinfo.ctime = dataDic[@"ctime"];
+            userinfo.openid = dataDic[@"openid"];
+            userinfo.nickname = dataDic[@"nickname"];
+            userinfo.pid_trees = dataDic[@"pid_trees"];
+            userinfo.agent = dataDic[@"agent"];
+            userinfo.sex = dataDic[@"sex"];
+            userinfo.qrcode = dataDic[@"qrcode"];
+            userinfo.mtime = dataDic[@"mtime"];
+            userinfo.user_id = dataDic[@"user_id"];
+            userinfo.realname = dataDic[@"realname"];
+            userinfo.avatar_url = dataDic[@"avatar_url"];
+            userinfo.agent_trees = dataDic[@"agent_trees"];
+            userinfo.wxname = [NSString stringWithFormat:@"%@",dataDic[@"wxname"]];
+            userinfo.department = dataDic[@"department"];
+            userinfo.mobile = dataDic[@"mobile"];
+            userinfo.pid = dataDic[@"pid"];
+            userinfo.pay_password = dataDic[@"pay_password"];
+            userinfo.password = dataDic[@"password"];
+            userinfo.phone_money = dataDic[@"phone_money"];
+            userinfo.username = dataDic[@"username"];
+            
+            //                    "used_point" = 0.00,
+            
+            userinfo.point = dataDic[@"point"];
+            userinfo.used_point = dataDic[@"used_point"];
+            //                    "money" = 15006.93,
+            //                    "air_money" = 0.00,
+            
+            userinfo.air_money   = dataDic[@"coins"][@"air_money"];
+            userinfo.money   = dataDic[@"coins"][@"money"];
+ [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
+        }
+
+    }];
+}
 
 /// 配置基础设置
 - (void)setConfiguration
@@ -103,10 +155,12 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         if (@available(iOS 11.0, *)) {
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {
-            // Fallback on earlier versions
+          
         }
     }
 }
+
+
 
 
 

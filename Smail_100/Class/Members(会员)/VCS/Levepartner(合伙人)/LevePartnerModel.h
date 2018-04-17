@@ -25,4 +25,9 @@
 @property (nonatomic , copy) NSArray<Banners *>              * banner;
 @property (nonatomic , copy) NSString              * notice;
 @property (nonatomic , copy) NSArray              * list;
+@property (nonatomic , copy) NSString              * username;
+@property (nonatomic , copy) NSString              * valid_time;
+@property (nonatomic , copy) NSString              * phone_money;
+
+
 @end
