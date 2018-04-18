@@ -238,11 +238,16 @@
         return;
     }
     
-    
     if (![_pswTextFiled.text isEqualToString:_oldPswTextFiled.text]) {
         [self.view makeToast:@"两次输入密码不一致!"];
         return;
     }
+    if (!KX_NULLString( _recommendedTF.text)) {
+        [self.view toastShow: _recommendedTF.placeholder];
+        return;
+    }
+    
+    
     if (_agreeBtn.selected == NO) {
         [self.view makeToast:@"未同意协议!"];
         return;
@@ -294,17 +299,8 @@
         [self.view makeToast:@"请输入正确的手机号！"];
         return;
     }
-    
-//    if (KX_NULLString(_codeImageTF.text)) {
-//        [self.view makeToast:@"请输入图片验证码!"];
-//        return;
-//    }
-//
-//    if (![NSString codeCompareWithTheOne:_codeImageTF.text wihTwo:_imageCodeStr]) {
-//        [self.view makeToast:@"图片验证码输入错误!"];
-//        return;
-//    }
-    [self cheakUserPhoneRequest];
+
+    [self getYzmCodeRequet];
 
 }
 

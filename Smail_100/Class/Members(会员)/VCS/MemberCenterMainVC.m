@@ -24,11 +24,19 @@
 #import "SmileForVC.h"
 #import "SendSmailValueVC.h"
 
+#define NAVBAR_COLORCHANGE_POINT - IMAGE_HEIGHT
+#define NAV_HEIGHT 64
+#define IMAGE_HEIGHT -64
+#define SCROLL_DOWN_LIMIT 0
+#define LIMIT_OFFSET_Y -(IMAGE_HEIGHT + SCROLL_DOWN_LIMIT)
+
 
 @interface MemberCenterMainVC ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) MemberCenterHeaderView * headerView;
 @property (nonatomic, assign) NSInteger sectionCount;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, copy) NSMutableArray  *resorceArray;
+
 @end
 
 @implementation MemberCenterMainVC
@@ -49,8 +57,8 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+//    self.navigationController.navigationBarHidden = YES;
+//    [self.navigationController setNavigationBarHidden:YES animated:NO];
 
     [_headerView refreshInfo];
     [self.resorceArray removeAllObjects];
@@ -70,8 +78,8 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBarHidden = NO;
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+//    self.navigationController.navigationBarHidden = NO;
+//    [self.navigationController setNavigationBarHidden:NO animated:NO];
 
 }
 
@@ -151,17 +159,54 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         [weakSelf.navigationController pushViewController:VC animated:YES];
     };
     self.tableView.tableHeaderView = _headerView;
-    if ([self.tableView respondsToSelector:@selector(setContentInsetAdjustmentBehavior:)]) {
-        if (@available(iOS 11.0, *)) {
-            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        } else {
-          
-        }
-    }
+    self.tableView.contentInset = UIEdgeInsetsMake(IMAGE_HEIGHT-64, 0, 0, 0);
+
+    [self wr_setNavBarBarTintColor:KMAINCOLOR];
+    [self wr_setNavBarBackgroundAlpha:0];
+    [self wr_setNavBarShadowImageHidden:NO];
 }
 
 
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat offsetY = scrollView.contentOffset.y;
+    
+    if (offsetY > NAVBAR_COLORCHANGE_POINT)
+    {
+        CGFloat alpha = (offsetY - NAVBAR_COLORCHANGE_POINT) / NAV_HEIGHT;
+        [self wr_setNavBarBackgroundAlpha:alpha];
+        if (alpha > 0.5) {
+            [self wr_setNavBarTintColor:[UIColor redColor]];
+            [self wr_setNavBarTitleColor:[UIColor blackColor]];
+            [self wr_setStatusBarStyle:UIStatusBarStyleDefault];
+        } else {
+            [self wr_setNavBarTintColor:[UIColor whiteColor]];
+            [self wr_setNavBarTitleColor:[UIColor clearColor]];
+            [self wr_setStatusBarStyle:UIStatusBarStyleLightContent];
+        }
+    }
+    else
+    {
+        [self wr_setNavBarBackgroundAlpha:0];
+        [self wr_setNavBarTintColor:[UIColor whiteColor]];
+        [self wr_setNavBarTitleColor:[UIColor clearColor]];
+        [self wr_setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
+    
+    //限制下拉的距离
+    if(offsetY < LIMIT_OFFSET_Y) {
+        [scrollView setContentOffset:CGPointMake(0, LIMIT_OFFSET_Y)];
+    }
+    
+    // 改变图片框的大小 (上滑的时候不改变)
+    // 这里不能使用offsetY，因为当（offsetY < LIMIT_OFFSET_Y）的时候，y = LIMIT_OFFSET_Y 不等于 offsetY
+    CGFloat newOffsetY = scrollView.contentOffset.y;
+    if (newOffsetY < -IMAGE_HEIGHT)
+    {
+        self.headerView.frame = CGRectMake(0, newOffsetY, kScreenWidth, -newOffsetY);
+    }
+}
 
 
 
@@ -344,6 +389,17 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         [self.view toastShow:@"该功能暂未开放,请稍后!"];
     }
     
+}
+
+/**
+ * 懒加载数据源
+ */
+- (NSMutableArray *)resorceArray
+{
+    if (_resorceArray == nil) {
+        _resorceArray = [[NSMutableArray alloc] init];
+    }
+    return _resorceArray;
 }
 
 @end

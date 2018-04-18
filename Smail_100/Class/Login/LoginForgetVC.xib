@@ -158,7 +158,7 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入6-16位的新密码" textAlignment="natural" minimumFontSize="17" disabledBackground="denglu2@3x.png" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CcS-pR-KHm">
                             <rect key="frame" x="5" y="0.0" width="350" height="44"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -183,7 +183,7 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请再次输入确认密码" textAlignment="natural" minimumFontSize="17" disabledBackground="denglu2@3x.png" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3F6-7N-vYZ">
                             <rect key="frame" x="7" y="0.0" width="348" height="44"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

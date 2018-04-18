@@ -66,8 +66,8 @@
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     [param setObject:_userNameTextField.text forKey:@"mobile"];
     [param setObject:_userPassWDTextField.text forKey:@"password"];
-//     [param setObject:@"18757587673" forKey:@"mobile"];
-//    [param setObject:@"130118" forKey:@"password"];
+     [param setObject:@"15989467261" forKey:@"mobile"];
+    [param setObject:@"123456" forKey:@"password"];
 
     WEAKSELF;
     [BaseHttpRequest postWithUrl:@"/ucenter/login" andParameters:param andRequesultBlock:^(id result, NSError *error) {
@@ -101,6 +101,10 @@
                     userinfo.mobile = dataDic[@"mobile"];
                     userinfo.pid = dataDic[@"pid"];
                     userinfo.pay_password = dataDic[@"pay_password"];
+
+                    if (KX_NULLString(dataDic[@"pay_password"])) {
+                        userinfo.pay_password = @"";
+                    }
                     userinfo.password = dataDic[@"password"];
                     userinfo.phone_money = dataDic[@"phone_money"];
                     userinfo.username = dataDic[@"username"];

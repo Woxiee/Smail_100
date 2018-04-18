@@ -31,7 +31,7 @@
 //#define HEAD__URL @"http://open.myjihui.cn"  //测试服务器
 
 #endif
-
+ 
 /// ----------------------接口业务参数---------------------------
 #define request_version  @"1.0.0"
 #define request_token  @"888888"
@@ -179,6 +179,7 @@
 
 /// 判断字符是否为null
 #define KX_NULLString(string) (!([string class] == [NSNull class]) && ((![string isKindOfClass:[NSString class]])||[string isEqualToString:@""] || (string == nil)||[string isEqualToString:@"<null>"] || [string isEqualToString:@""] || [string isKindOfClass:[NSNull class]]||[[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0))
+
 
 ///----------------------环信所用--------------------------
 #define KNOTIFICATION_LOGINCHANGE @"loginStateChange"

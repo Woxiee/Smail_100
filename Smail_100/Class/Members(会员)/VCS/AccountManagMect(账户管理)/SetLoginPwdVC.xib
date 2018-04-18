@@ -12,7 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SetLoginPwdVC">
             <connections>
+                <outlet property="loginBtn" destination="H0Q-8E-Zu9" id="y2k-Yg-THk"/>
                 <outlet property="oldPwdContensH" destination="SQp-Vd-HJP" id="ptw-ZP-KaZ"/>
+                <outlet property="oldTF" destination="XvG-v8-ZVz" id="mew-4j-uq6"/>
+                <outlet property="remenberBtn" destination="RCv-gS-wsb" id="URa-yK-KVz"/>
+                <outlet property="sure2TF" destination="LrC-Fc-8oA" id="K6X-VR-24G"/>
+                <outlet property="sureTF" destination="rfh-lP-FXM" id="yPO-Sa-LdN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -37,18 +42,30 @@
                             <rect key="frame" x="107" y="0.0" width="218" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
+                        <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SVV-Ef-gW9">
+                            <rect key="frame" x="325" y="0.0" width="50" height="50"/>
+                            <state key="normal" title="0" image="denglu5@3x.png"/>
+                            <state key="selected" image="denglu4@3x.png"/>
+                            <connections>
+                                <action selector="isAbelAction:" destination="-1" eventType="touchUpInside" id="Y4Q-sX-Vkw"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="RMf-8v-6Ih" secondAttribute="bottom" id="0Ss-vQ-pX4"/>
                         <constraint firstItem="XvG-v8-ZVz" firstAttribute="leading" secondItem="RMf-8v-6Ih" secondAttribute="trailing" constant="5" id="5zu-X2-Pfd"/>
+                        <constraint firstItem="SVV-Ef-gW9" firstAttribute="leading" secondItem="XvG-v8-ZVz" secondAttribute="trailing" id="Crg-cn-LgO"/>
                         <constraint firstAttribute="bottom" secondItem="XvG-v8-ZVz" secondAttribute="bottom" id="DEF-tz-uQM"/>
+                        <constraint firstAttribute="trailing" secondItem="SVV-Ef-gW9" secondAttribute="trailing" id="Nw9-CH-cZa"/>
+                        <constraint firstAttribute="bottom" secondItem="SVV-Ef-gW9" secondAttribute="bottom" id="O43-jp-xTS"/>
                         <constraint firstItem="RMf-8v-6Ih" firstAttribute="top" secondItem="xuz-DO-XXL" secondAttribute="top" id="PWE-zg-L7X"/>
                         <constraint firstAttribute="height" constant="50" id="SQp-Vd-HJP"/>
                         <constraint firstItem="XvG-v8-ZVz" firstAttribute="top" secondItem="xuz-DO-XXL" secondAttribute="top" id="l62-sV-AvG"/>
                         <constraint firstItem="RMf-8v-6Ih" firstAttribute="leading" secondItem="xuz-DO-XXL" secondAttribute="leading" constant="12" id="o65-7Z-vgm"/>
+                        <constraint firstItem="SVV-Ef-gW9" firstAttribute="top" secondItem="xuz-DO-XXL" secondAttribute="top" id="uXW-yF-H8i"/>
                         <constraint firstAttribute="trailing" secondItem="XvG-v8-ZVz" secondAttribute="trailing" constant="50" id="zha-Su-TAx"/>
                     </constraints>
                 </view>
@@ -68,12 +85,22 @@
                             <rect key="frame" x="107" y="0.0" width="218" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
+                        <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZr-hN-cCA">
+                            <rect key="frame" x="325" y="0.0" width="50" height="50"/>
+                            <state key="normal" title="0" image="denglu5@3x.png"/>
+                            <state key="selected" image="denglu4@3x.png"/>
+                            <connections>
+                                <action selector="isAbelAction:" destination="-1" eventType="touchUpInside" id="FuG-DW-eb0"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="rfh-lP-FXM" secondAttribute="trailing" constant="50" id="7Qo-BD-45A"/>
+                        <constraint firstAttribute="bottom" secondItem="LZr-hN-cCA" secondAttribute="bottom" id="AIC-2K-1j8"/>
+                        <constraint firstItem="LZr-hN-cCA" firstAttribute="leading" secondItem="rfh-lP-FXM" secondAttribute="trailing" id="BUA-rZ-osl"/>
                         <constraint firstAttribute="bottom" secondItem="rfh-lP-FXM" secondAttribute="bottom" id="G54-s7-dVr"/>
                         <constraint firstAttribute="bottom" secondItem="HM5-CL-ags" secondAttribute="bottom" id="GuL-Xa-kBK"/>
                         <constraint firstAttribute="height" constant="50" id="PZj-IN-Pgh"/>
@@ -81,6 +108,8 @@
                         <constraint firstItem="rfh-lP-FXM" firstAttribute="leading" secondItem="HM5-CL-ags" secondAttribute="trailing" constant="5" id="dUa-jw-3UQ"/>
                         <constraint firstItem="HM5-CL-ags" firstAttribute="leading" secondItem="XBx-Cz-mKH" secondAttribute="leading" constant="12" id="fVd-6g-aos"/>
                         <constraint firstItem="rfh-lP-FXM" firstAttribute="top" secondItem="XBx-Cz-mKH" secondAttribute="top" id="ldq-t0-nuf"/>
+                        <constraint firstAttribute="trailing" secondItem="LZr-hN-cCA" secondAttribute="trailing" id="ucp-Ry-nqK"/>
+                        <constraint firstItem="LZr-hN-cCA" firstAttribute="top" secondItem="XBx-Cz-mKH" secondAttribute="top" id="zqi-ce-mPC"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4Z-SU-td4">
@@ -99,18 +128,30 @@
                             <rect key="frame" x="107" y="0.0" width="218" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
+                        <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQu-EA-oe5">
+                            <rect key="frame" x="325" y="0.0" width="50" height="50"/>
+                            <state key="normal" title="0" image="denglu5@3x.png"/>
+                            <state key="selected" image="denglu4@3x.png"/>
+                            <connections>
+                                <action selector="isAbelAction:" destination="-1" eventType="touchUpInside" id="WVd-KL-Ok9"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="LrC-Fc-8oA" secondAttribute="trailing" constant="50" id="0IQ-nS-srz"/>
                         <constraint firstItem="bvo-6w-W0R" firstAttribute="top" secondItem="x4Z-SU-td4" secondAttribute="top" id="9JC-m2-n3O"/>
+                        <constraint firstItem="pQu-EA-oe5" firstAttribute="leading" secondItem="LrC-Fc-8oA" secondAttribute="trailing" id="FWJ-8o-P8p"/>
                         <constraint firstAttribute="bottom" secondItem="bvo-6w-W0R" secondAttribute="bottom" id="GTM-Wz-Zv5"/>
                         <constraint firstAttribute="bottom" secondItem="LrC-Fc-8oA" secondAttribute="bottom" id="T79-ba-Ac6"/>
                         <constraint firstItem="LrC-Fc-8oA" firstAttribute="top" secondItem="x4Z-SU-td4" secondAttribute="top" id="VNS-aV-j76"/>
                         <constraint firstItem="LrC-Fc-8oA" firstAttribute="leading" secondItem="bvo-6w-W0R" secondAttribute="trailing" constant="5" id="Vq8-TD-G7W"/>
+                        <constraint firstAttribute="bottom" secondItem="pQu-EA-oe5" secondAttribute="bottom" id="bOp-nG-PPs"/>
                         <constraint firstItem="bvo-6w-W0R" firstAttribute="leading" secondItem="x4Z-SU-td4" secondAttribute="leading" constant="12" id="d5h-c4-lhD"/>
+                        <constraint firstAttribute="trailing" secondItem="pQu-EA-oe5" secondAttribute="trailing" id="trC-lX-rxa"/>
+                        <constraint firstItem="pQu-EA-oe5" firstAttribute="top" secondItem="x4Z-SU-td4" secondAttribute="top" id="wLP-uN-2KB"/>
                         <constraint firstAttribute="height" constant="50" id="x4S-1a-2PS"/>
                     </constraints>
                 </view>
@@ -121,9 +162,12 @@
                         <constraint firstAttribute="height" constant="15" id="xYW-mv-4HQ"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="忘记支付密码？">
+                    <state key="normal" title="忘记登录密码？">
                         <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="remenAction:" destination="-1" eventType="touchUpInside" id="FMt-cf-77F"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0Q-8E-Zu9">
                     <rect key="frame" x="15" y="222" width="345" height="44"/>
@@ -131,9 +175,12 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="PlV-JE-U90"/>
                     </constraints>
-                    <state key="normal" title="登录">
+                    <state key="normal" title="提交">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="didLogAction:" destination="-1" eventType="touchUpInside" id="OxN-nd-PdA"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温馨提示:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TX8-Tc-YSp">
                     <rect key="frame" x="15" y="291" width="65.5" height="18"/>
@@ -177,4 +224,8 @@
             <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="denglu4@3x.png" width="16" height="16"/>
+        <image name="denglu5@3x.png" width="16" height="16"/>
+    </resources>
 </document>
