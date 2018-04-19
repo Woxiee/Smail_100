@@ -75,7 +75,7 @@
 
     markImageView.image = [UIImage imageNamed:@"63@3x.png"];
     titleLabel.text = _model.needBuyName;
-    NSString *str1 = [NSString stringWithFormat:@"￥%@/月",_model.hopePrice];
+    NSString *str1 = [NSString stringWithFormat:@"¥%@/月",_model.hopePrice];
     NSString *str =[NSString stringWithFormat:@"期望价: %@",str1];
     NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str.length- str1.length, str1.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:14 weight:UIFontWeightThin]];
     priceLabel.attributedText = attributedStr;
@@ -92,7 +92,7 @@
     [iconImageView sd_setImageWithURL:[NSURL URLWithString:_model.full_path] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
 
     titleLabel.text = _historyModel.param2;
-    NSString *str1 = [NSString stringWithFormat:@"￥%@/月",_historyModel.param3];
+    NSString *str1 = [NSString stringWithFormat:@"¥%@/月",_historyModel.param3];
     NSString *str =[NSString stringWithFormat:@"期望价: %@",str1];
     NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str.length- str1.length, str1.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:14 weight:UIFontWeightThin]];
     priceLabel.attributedText = attributedStr;

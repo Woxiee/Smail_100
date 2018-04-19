@@ -19,6 +19,7 @@
     
     __weak IBOutlet UILabel *oldPriceLB;
     
+    __weak IBOutlet UIView *lineView;
 }
 
 
@@ -34,6 +35,7 @@
     self.backgroundColor = [UIColor whiteColor];
     priceLb.textColor = KMAINCOLOR;
     oldPriceLB.textColor = TITLETEXTLOWCOLOR;
+    lineView.backgroundColor = LINECOLOR;;
 }
 
 
@@ -42,15 +44,31 @@
 {
     _model = model;
     [imgeView sd_setImageWithURL:[NSURL URLWithString:_model.imageUrl] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
+    NSMutableArray *titleList = [[NSMutableArray alloc] init];
+    
     titleLB.text = [NSString stringWithFormat:@"%@",_model.clickUrl];
-    priceLb.text = [NSString stringWithFormat:@"%@积分",_model.earn_point];
-    if ([_model.itemSubTitle intValue] >0) {
-        oldPriceLB.hidden = NO;
+//    priceLb.text = [NSString stringWithFormat:@"%@积分",_model.earn_point];
+//    if ([_model.itemSubTitle intValue] >0) {
+////        oldPriceLB.hidden = NO;
+////        lineView.hidden = NO;
+//
+//        titleList
+//    }
+//    else{
+//        oldPriceLB.hidden = YES;
+//        lineView.hidden = YES;
+//
+//    }
+    
+    if ([model.price floatValue] >0) {
+        [titleList addObject:[NSString stringWithFormat:@"¥%@",_model.price]];
     }
-    else{
-        oldPriceLB.hidden = YES;
+    
+    if ([model.point floatValue] >0) {
+        [titleList addObject:[NSString stringWithFormat:@"%@积分",_model.point]];
     }
-    oldPriceLB.text = [NSString stringWithFormat:@"+￥%@",_model.itemSubTitle];
+
+    priceLb.text = [titleList componentsJoinedByString:@"+"];
 }
 
 

@@ -37,17 +37,17 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
     [super viewDidLoad];
     [self setup];
     [self setConfiguration];
-    [self getNetWorkRequest];
+    [self requestListNetWork];
 
     WEAKSELF;
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         weakSelf.page = 1;
-        [weakSelf getNetWorkRequest];
+        [weakSelf requestListNetWork];
     }];
     
     self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         weakSelf.page++;
-        [weakSelf getNetWorkRequest];
+        [weakSelf requestListNetWork];
     }];
     [weakSelf.collectionView.mj_header endRefreshing];
 
@@ -61,9 +61,7 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
 }
 #pragma mark - request
 
-
-
-- (void)getNetWorkRequest
+- (void)requestListNetWork
 {
     WEAKSELF;
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
@@ -71,6 +69,9 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
     [param setObject:@"10" forKey:@"page_size"];
     [BaseHttpRequest postWithUrl:@"/Device/getGoods" andParameters:nil andRequesultBlock:^(id result, NSError *error) {
         if ([result isKindOfClass:[NSDictionary class]]) {
+            if (weakSelf.page == 1) {
+                [weakSelf.resorceArray removeAllObjects];
+            }
             if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
                 NSArray  *imgList = [NSArray yy_modelArrayWithClass:[ItemContentList class] json:result[@"itemInfoList"]];
                 for (int i= 0; i< imgList.count;i++) {
@@ -80,7 +81,8 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
 
                 }
                 [weakSelf.collectionView reloadData];
-               
+                [weakSelf stopRefresh];
+
             }
         }else{
             
@@ -160,15 +162,20 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
 {
     _page = 1;
     UICollectionViewFlowLayout  *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.minimumLineSpacing = 0.0;
-    layout.minimumInteritemSpacing = 0.0;
     layout.sectionInset = UIEdgeInsetsZero;
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT ) collectionViewLayout:layout];
+
     collectionView.delegate = self;
     collectionView.dataSource = self;
     collectionView.backgroundColor = BACKGROUNDNOMAL_COLOR;
     [self.view addSubview:collectionView];
     self.collectionView = collectionView;
+    
+    self.collectionView.sd_layout
+    .topSpaceToView(self.view, 0)
+    .leftSpaceToView(self.view, 0)
+    .rightSpaceToView(self.view, 0)
+    .bottomSpaceToView(self.view, 0);
 }
 
 
@@ -236,7 +243,14 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
     if (indexPath.section == 0) {
         return CGSizeMake(SCREEN_WIDTH, 130);
     }
-    return CGSizeMake((SCREEN_WIDTH - 15)/2, 270);
+    ItemContentList *item = self.resorceArray[indexPath.row];
+    if (item.tags.count >0) {
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 295);
+    }
+    if (item.tags.count >=6) {
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 310);
+    }
+    return CGSizeMake((SCREEN_WIDTH - 2)/2, 275);
 
 }
 
@@ -265,16 +279,56 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
 }
 
 //定义每个UICollectionView 的 margin
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(5, 5,5, 5);//商品cell
-
+    return UIEdgeInsetsMake(5, 0, 0, 0);//商品cell
 }
 
 //item 列间距(纵)
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section;
 {
-    return 5;
+    return 2;//商品cell
+    
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 2;
 }
 
+#pragma mark - refresh 添加刷新方法
+-(void)setRefresh
+{
+    WEAKSELF;
+    [self.collectionView headerWithRefreshingBlock:^{
+        [weakSelf loadNewDate];
+    }];
+    
+    [self.collectionView footerWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
+    
+}
+
+-(void)loadNewDate
+{
+    self.page = 0;
+    [self requestListNetWork];
+}
+
+-(void)loadMoreData{
+    
+    self.page++;
+    [self requestListNetWork];
+}
+-(void)stopRefresh
+{
+    [self.collectionView  stopFresh:self.resorceArray.count pageIndex:self.page];
+    //
+    if (self.resorceArray.count == 0) {
+        [self.collectionView addSubview:[KX_LoginHintView notDataView]];
+    }else{
+        [KX_LoginHintView removeFromSupView:self.collectionView];
+    }
+    
+}
 @end

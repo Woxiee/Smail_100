@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSString *isVersion;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
+@property (nonatomic, strong) NSString *msg;
+
 @end
 
 @implementation KX_BaseTabbarController
@@ -48,10 +50,10 @@
     [self addSubViewControllerWithVC:@"MemberCenterMainVC" norImage:@"muban16@3x.png" selImage:@"muban17@3x.png" title:@"账户"];
     self.selectedIndex = 0;//默认选择首页
 //    if (![KX_UserInfo sharedKX_UserInfo].addressList) {
-        [self getAllAddressList];
+//        [self getAllAddressList];
 //    }
     /// 检查版本更新接口
-//    [self cheakVersonNeedUpdateRequest];
+    [self cheakVersonNeedUpdateRequest];
 }
 
 
@@ -77,29 +79,28 @@
 ///检查请求更新
 - (void)cheakVersonNeedUpdateRequest
 {
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+
     WEAKSELF
-    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:@"30",@"siteConfigId", nil];
-    [BaseHttpRequest postWithUrl:@"/o/o_118" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:@"ios",@"os",app_Version,@"version", nil];
+    [BaseHttpRequest postWithUrl:@"/mall/upgrade" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         if (error) {
             [weakSelf.view makeToast:LocalMyString(NOTICEMESSAGE)];
         }else{
-            NSDictionary *dataDic = [result valueForKey:@"data"];
-            NSInteger state = [dataDic[@"state"] integerValue];
-            if (state == 0) {
+            if ([result[@"code"] integerValue] == 0) {
+//                不是, 0是可以升级但不强制, 1是必须升级后才能用
                 NSString *accoutStr =  [[NSUserDefaults standardUserDefaults] objectForKey:@"mobile"];
-                if (![accoutStr isEqualToString:@"15200000000"]) {
-                    if ([result[@"code"]integerValue ] == 000) {
-                        self.isVersion = @"2";
-                        
-                        self.isVersion  = dataDic[@"obj"][@"configValue"];
-                        if ([self.isVersion isEqualToString:@"0"]) {
-                            //处理新版本功能
-                            [self handelTheNewVerSion];
-                        }
-                
-                    }
-                    
+
+                if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+                        _isVersion  = result[@"data"][@"force"];
+                        _msg = result[@"data"][@"msg"];
+                        _strakUrl = result[@"data"][@"url"];
+                        [self handelTheNewVerSion];
+                   
                 }
+                
             }
         }
     }];
@@ -120,20 +121,31 @@
 #pragma mark - 处理新版本功能
 -(void)handelTheNewVerSion
 {
+    
+//    if (!KX_NULLString(_strakUrl)) {
+//        NSString *versionTitle = @"有可用的新版本可更新";
+//        STRONGSELF
+//        NSString *cancle = [self.isVersion isEqualToString:@"0"]?@"忽略此版本":nil;
+//        UIAlertView *aletView = [[UIAlertView alloc]initWithTitle:versionTitle message:_msg delegate:strongSelf cancelButtonTitle:cancle
+//                                                otherButtonTitles:@"更新", nil];
+//        [aletView show];
+//    }else{
+//
+//    }
     WEAKSELF   //在登录的时候 isVersion ＝＝0或者空  那么久代表永不会提示升级
 //    if ([self.isVersion isEqualToString:@"1.0"] || self.isVersion == nil)  return;
     [KX_Version kx_isNewVersionSuccess:^(NewVersionType newVersion, NSString *versionStr,NSString *strakUrl, NSString *releaseNotes) {
         if (newVersion == NewVersionTypeNeedUp) {
-            weakSelf.strakUrl = strakUrl;
+            if (!KX_NULLString(strakUrl)) {
+                weakSelf.strakUrl = strakUrl;
+            }
             NSString *versionTitle = @"有可用的新版本可更新";
             STRONGSELF
-            //            NSString *cancle = [self.isVersion isEqualToString:@"1"]?@"忽略此版本":nil;
-            NSString *cancle = @"忽略此版本";
-            UIAlertView *aletView = [[UIAlertView alloc]initWithTitle:versionTitle message:releaseNotes delegate:strongSelf cancelButtonTitle:cancle
+            NSString *cancle = [self.isVersion isEqualToString:@"0"]?@"忽略此版本":nil;
+            UIAlertView *aletView = [[UIAlertView alloc]initWithTitle:versionTitle message:_msg delegate:strongSelf cancelButtonTitle:cancle
                                                     otherButtonTitles:@"更新", nil];
             [aletView show];
         }
-        
         
     }];
     

@@ -135,7 +135,7 @@
     name.text = [NSString stringWithFormat:@"%@",goodsModel.productName];
 //    [NSString]
 
-    priceLable.text =[NSString stringWithFormat:@"￥%@",goodsModel.productPrice];
+    priceLable.text =[NSString stringWithFormat:@"¥%@",goodsModel.productPrice];
     
     number = [goodsModel.itemCount intValue];
     numberLable.text = goodsModel.itemCount;

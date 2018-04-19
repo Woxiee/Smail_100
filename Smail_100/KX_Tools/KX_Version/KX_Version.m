@@ -50,7 +50,7 @@ static  NSString * version_Key = @"KX_VersionKey";//const
     //1 得到appid
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
 //    NSString *appid =@"1245034886";
-    NSString *appid =  @"1261714523";
+    NSString *appid =  @"1314844761";
 
     NSString *url   =  [NSString stringWithFormat:@"http://itunes.apple.com/cn/lookup?id=%@",appid];
     
@@ -75,9 +75,9 @@ static  NSString * version_Key = @"KX_VersionKey";//const
         NSString *versionStr = [dic objectForKey:@"version"];
         NSString *trackViewUrl = [dic objectForKey:@"trackViewUrl"];
         NSString *releaseNotes = [dic objectForKey:@"releaseNotes"];//更新日志
-        //4 对比版本处理事件
+//        //4 对比版本处理事件
         if ([self comparateVersionGetGreaterCurrentVersion:versionStr otherVersion:locationVersion] ) {
-            //有新版本
+//            //有新版本
             newVersion(NewVersionTypeNeedUp,versionStr,trackViewUrl,releaseNotes);
         }else
         {

@@ -296,7 +296,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     [self.selectView.headImage  sd_setImageWithURL:[NSURL URLWithString:_itemIfoModel.itemContent.imageUrl] placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW]];
     
     self.selectView.nameLB.text = _itemIfoModel.itemContent.name;
-    self.selectView.LB_price.text =[NSString stringWithFormat:@"￥%@",_itemIfoModel.itemContent.price];
+    self.selectView.LB_price.text =[NSString stringWithFormat:@"¥%@",_itemIfoModel.itemContent.price];
     self.selectView.LB_stock.text = @"";
     self.selectView.LB_showSales.text = [NSString stringWithFormat:@"销量%@件",_itemIfoModel.itemContent.sale_num] ;
     self.selectView.LB_detail.text = @"请选择规格属性";
@@ -491,7 +491,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
         if (isSuccess == YES) {
             weakSelf.itemIfoModel.itemContent.price = relust[@"sell_price"];
             weakSelf.itemIfoModel.itemContent.store_nums = relust[@"store_nums"];
-            weakSelf.selectView.LB_price.text =[NSString stringWithFormat:@"￥%@", weakSelf.itemIfoModel.itemContent.price ];
+            weakSelf.selectView.LB_price.text =[NSString stringWithFormat:@"¥%@", weakSelf.itemIfoModel.itemContent.price ];
             self.selectView.LB_stock.text = [NSString stringWithFormat:@"库存%@件", weakSelf.itemIfoModel.itemContent.store_nums];
              [self.tableView reloadData];
             

@@ -37,7 +37,7 @@
 {
     _model = model;
     NSString *allNumber = [NSString stringWithFormat:@"%@",_model.count];
-    NSString *allPrice = [NSString stringWithFormat:@"￥%@",_model.price];
+    NSString *allPrice = [NSString stringWithFormat:@"¥%@",_model.price];
     NSString *allPoint = [NSString stringWithFormat:@"%@积分",_model.point];
     NSString *freights = [NSString stringWithFormat:@"%@快递费",_model.freight];
     NSMutableArray *infoArr = [[NSMutableArray alloc] init];

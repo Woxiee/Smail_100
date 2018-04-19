@@ -23,7 +23,7 @@
 - (void)setup
 {
     self.backgroundColor = [UIColor whiteColor];
-    _titleLB = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, 17)];
+    _titleLB = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, SCREEN_WIDTH, 17)];
     _titleLB.textColor = KMAINCOLOR;
     _titleLB.font = Font15;
     _titleLB.textAlignment = NSTextAlignmentCenter;
@@ -34,6 +34,7 @@
     _detailLB.font = Font14;
     _detailLB.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_detailLB];
+    
     
     _detailBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _detailBtn.frame = CGRectMake(0, 0, SCREEN_WIDTH, 50);

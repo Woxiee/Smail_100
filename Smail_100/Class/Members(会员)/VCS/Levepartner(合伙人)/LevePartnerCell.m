@@ -53,7 +53,7 @@
     if ([_itemContentList.earn_point floatValue] <= 0) {
         jfLB.hidden = YES;
     }
-    pirceLB.text = [NSString stringWithFormat:@"￥%@",_itemContentList.price];
+    pirceLB.text = [NSString stringWithFormat:@"¥%@",_itemContentList.price];
     
     jfLB.text = [NSString stringWithFormat:@"送%@积分",_itemContentList.earn_point];
     

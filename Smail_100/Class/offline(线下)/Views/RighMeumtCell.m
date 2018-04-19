@@ -64,7 +64,7 @@
     _model = model;
     nameLable.text = _model.productName;
     [headImage sd_setImageWithURL:[NSURL URLWithString:_model.productLogo] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
-  priceLable.text = [NSString stringWithFormat:@"￥%@",_model.productPrice];
+  priceLable.text = [NSString stringWithFormat:@"¥%@",_model.productPrice];
     if (_model.point.floatValue <=0) {
         jfLb.hidden = YES;
     }

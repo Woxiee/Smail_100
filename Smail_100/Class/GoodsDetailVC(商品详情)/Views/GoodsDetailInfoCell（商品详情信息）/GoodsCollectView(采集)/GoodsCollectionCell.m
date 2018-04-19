@@ -40,7 +40,7 @@
 - (void)setModel:(GroupBuyPriceList *)model
 {
     _model = model;
-    pricLabel.text = [NSString stringWithFormat:@"￥%@",_model.jcPrice];
+    pricLabel.text = [NSString stringWithFormat:@"¥%@",_model.jcPrice];
 
     _numberLabel.text = [NSString stringWithFormat:@"%@-%@台",_model.minCount,_model.maxCount];
 }

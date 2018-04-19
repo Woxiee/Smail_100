@@ -43,6 +43,7 @@
 
 @property (nonatomic, strong) NSArray *catelist;
 
+@property (nonatomic, strong)  UIButton *item;
 
 
 @end
@@ -132,6 +133,19 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 
 - (void)setNavationView
 {
+    UIButton *cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cityBtn addTarget:self action:@selector(cityClick) forControlEvents:UIControlEventTouchUpInside];
+    [cityBtn setImage:[UIImage imageNamed:@"20@3x.png"] forState:UIControlStateNormal];
+    [cityBtn setImage:[UIImage imageNamed:@"20@3x.png"] forState:UIControlStateHighlighted];
+    cityBtn.titleLabel.font = Font15;
+    [cityBtn setTitle:[KX_UserInfo sharedKX_UserInfo].city forState:UIControlStateNormal];
+    UIBarButtonItem *cityItem = [[UIBarButtonItem alloc] initWithCustomView:cityBtn];
+    _item = cityBtn;
+    [_item sizeToFit];
+    [_item layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
+    self.navigationItem.leftBarButtonItems  = @[cityItem];
+    
+    
     UIView *navationView = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 120)/2, 10, SCREEN_WIDTH - 120, 30)];
     navationView.backgroundColor = [UIColor whiteColor];
     [navationView layerForViewWith:4 AndLineWidth:0];
@@ -216,6 +230,9 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     teamPersenView.didClickItemBlock = ^(Catelist *item) {
 
             if ([item.click_type isEqualToString:@"web"]) {
+                if (KX_NULLString(item.url)) {
+                    return;
+                }
                 GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
                 VC.clickUrl = item.url;
                 VC.hidesBottomBarWhenPushed = YES;
@@ -267,6 +284,29 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     
 }
 
+
+- (void)cityClick
+{
+    WEAKSELF;
+    CityViewController *controller = [[CityViewController alloc] init];
+    [[KX_UserInfo sharedKX_UserInfo] loadUserInfoFromSanbox];
+    if (!KX_NULLString([KX_UserInfo sharedKX_UserInfo].city)) {
+        controller.currentCityString = [KX_UserInfo sharedKX_UserInfo].city;
+    }
+    controller.selectString = ^(NSString *string){
+        LOG(@" 城市 = %@",string);
+        [[KX_UserInfo sharedKX_UserInfo] loadUserInfoFromSanbox];
+        [KX_UserInfo sharedKX_UserInfo].city = string;
+        [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
+        [weakSelf.item setTitle:string forState:UIControlStateNormal];
+        [weakSelf.item sizeToFit];
+        [weakSelf.item layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
+        
+        [weakSelf requestListNetWork];
+    };
+    [self presentViewController:controller animated:YES completion:nil];
+  
+}
 
 - (void)didClickRightNaviBtn
 {

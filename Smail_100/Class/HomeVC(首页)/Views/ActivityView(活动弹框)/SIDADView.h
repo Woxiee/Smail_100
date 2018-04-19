@@ -24,4 +24,6 @@
 //不带NavigationBar呈现方法：
 - (void)showInView:(UIView *)view withFaceInfo: (NSDictionary *)info advertisementImage: (UIImage *)image borderColor: (UIColor *)color;
 
+@property (nonatomic, strong) void (^didClickImageBlock)();
+
 @end

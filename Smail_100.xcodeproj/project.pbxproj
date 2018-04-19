@@ -768,6 +768,9 @@
 		E10B12A520528B06008BA706 /* shouye9@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10B11B620528B06008BA706 /* shouye9@3x.png */; };
 		E10B12A620528B06008BA706 /* shouye32@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10B11B820528B06008BA706 /* shouye32@3x.png */; };
 		E10B12AA20528B0A008BA706 /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B12A920528B09008BA706 /* UIViewController+HUD.m */; };
+		E110DDCB20887B4D00456844 /* home_miss.png in Resources */ = {isa = PBXBuildFile; fileRef = E110DDCA20887B4C00456844 /* home_miss.png */; };
+		E110DDCD2088809900456844 /* add_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E110DDCC2088809800456844 /* add_icon.png */; };
+		E110DDD02088919800456844 /* UICollectionView+KYRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = E110DDCF2088919800456844 /* UICollectionView+KYRefresh.m */; };
 		E115310C2052969200B5852F /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E11530B32052969100B5852F /* AlipaySDK.bundle */; };
 		E115310D2052969200B5852F /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E11530B42052969100B5852F /* AlipaySDK.framework */; };
 		E115310E2052969200B5852F /* APAuthInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E11530B62052969100B5852F /* APAuthInfo.m */; };
@@ -2137,6 +2140,10 @@
 		E10B12A920528B09008BA706 /* UIViewController+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HUD.m"; sourceTree = "<group>"; };
 		E10B12AB20528B11008BA706 /* MyCity-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyCity-Prefix.pch"; sourceTree = "<group>"; };
 		E10B12AC20528B17008BA706 /* KX_MacroDefinition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KX_MacroDefinition.h; sourceTree = "<group>"; };
+		E110DDCA20887B4C00456844 /* home_miss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_miss.png; sourceTree = "<group>"; };
+		E110DDCC2088809800456844 /* add_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_icon.png; sourceTree = "<group>"; };
+		E110DDCE2088919800456844 /* UICollectionView+KYRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+KYRefresh.h"; sourceTree = "<group>"; };
+		E110DDCF2088919800456844 /* UICollectionView+KYRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+KYRefresh.m"; sourceTree = "<group>"; };
 		E11530B32052969100B5852F /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		E11530B42052969100B5852F /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		E11530B52052969100B5852F /* APAuthInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAuthInfo.h; sourceTree = "<group>"; };
@@ -5284,6 +5291,8 @@
 				E10B0F4A20528AFA008BA706 /* KYRefreshGifHeader.m */,
 				E10B0F4B20528AFA008BA706 /* UITableView+KYRefresh.h */,
 				E10B0F4C20528AFA008BA706 /* UITableView+KYRefresh.m */,
+				E110DDCE2088919800456844 /* UICollectionView+KYRefresh.h */,
+				E110DDCF2088919800456844 /* UICollectionView+KYRefresh.m */,
 			);
 			path = "KYRefresh(刷新控件)";
 			sourceTree = "<group>";
@@ -5716,6 +5725,8 @@
 		E10B10B220528B05008BA706 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E110DDCC2088809800456844 /* add_icon.png */,
+				E110DDCA20887B4C00456844 /* home_miss.png */,
 				E1481A9F2085EA09005AD9E7 /* isSelecticon@3x.png */,
 				E1481A9D2085DF5B005AD9E7 /* waitImage@3x.png */,
 				E169B21E207DDC3700137791 /* hfdh@3x.png */,
@@ -6749,7 +6760,7 @@
 				TargetAttributes = {
 					E10B028A205289EC008BA706 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -6820,6 +6831,7 @@
 				E10B11BA20528B06008BA706 /* 23@3x.png in Resources */,
 				E10B11C420528B06008BA706 /* gerenzhongxin14@3x.png in Resources */,
 				E167EC41205A5CCA00A8F744 /* AcctoutWaterCell.xib in Resources */,
+				E110DDCB20887B4D00456844 /* home_miss.png in Resources */,
 				E10B0DA520528AE8008BA706 /* ContractOrderInfoCell.xib in Resources */,
 				E10B0DF320528AE8008BA706 /* ShoppingCarVC.xib in Resources */,
 				E10B11F720528B06008BA706 /* hehuorenshengji6@3x.png in Resources */,
@@ -6894,6 +6906,7 @@
 				E10B0D5820528AE8008BA706 /* TimeLimtKillCell.xib in Resources */,
 				E10B120520528B06008BA706 /* shangjiazhongxin11@3x.png in Resources */,
 				E10B125E20528B06008BA706 /* muban9@3x.png in Resources */,
+				E110DDCD2088809900456844 /* add_icon.png in Resources */,
 				E16596FC2057844F008ADC6B /* 35@3x.png in Resources */,
 				E10B120120528B06008BA706 /* shangchengdingdan7@3x.png in Resources */,
 				E10B123C20528B06008BA706 /* zhanghuguanli19@3x.png in Resources */,
@@ -7690,6 +7703,7 @@
 				E10B0EAC20528AF5008BA706 /* KYProgramTimeView.m in Sources */,
 				E10B0FC120528AFA008BA706 /* KX_ShareView.m in Sources */,
 				E10B0EB020528AF5008BA706 /* NSDate+Utils.m in Sources */,
+				E110DDD02088919800456844 /* UICollectionView+KYRefresh.m in Sources */,
 				E10B0CFA20528AE8008BA706 /* GoodsCommonChooseView.m in Sources */,
 				E10B0D9120528AE8008BA706 /* CompanyInfoVC.m in Sources */,
 				E10B0D3E20528AE8008BA706 /* GoodGuigeCell.m in Sources */,
@@ -8042,8 +8056,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 68F7Y9HMY7;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/AppPaySdK",
@@ -8072,7 +8086,7 @@
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/WechtSDK1.8.2_NoPay",
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/WechatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.WX100.Smail.Smail-100";
+				PRODUCT_BUNDLE_IDENTIFIER = com.WX.wxSmail100;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -8086,8 +8100,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 68F7Y9HMY7;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/AppPaySdK",
@@ -8116,7 +8130,7 @@
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/WechtSDK1.8.2_NoPay",
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/WechatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.WX100.Smail.Smail-100";
+				PRODUCT_BUNDLE_IDENTIFIER = com.WX.wxSmail100;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

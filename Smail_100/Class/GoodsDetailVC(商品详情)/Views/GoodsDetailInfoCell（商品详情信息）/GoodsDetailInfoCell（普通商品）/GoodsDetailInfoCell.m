@@ -88,7 +88,7 @@
 {
     _model = model;
     nameLabel.text = _model.name;
-    productPriceLabel.text = [NSString stringWithFormat:@"￥%@",_model.price];
+    productPriceLabel.text = [NSString stringWithFormat:@"¥%@",_model.price];
     if ([_model.price floatValue] <=0) {
         productPriceLabel.hidden = YES;
     }
@@ -105,10 +105,10 @@
 
     }
     integralLB.text = [NSString stringWithFormat:@"送%@积分",_model.earn_point];
-    makeLB.text = [NSString stringWithFormat:@"赚￥%@",_model.earn_money];
+    makeLB.text = [NSString stringWithFormat:@"赚¥%@",_model.earn_money];
     numLabel.text = [NSString stringWithFormat:@"已出售:%@",_model.sale_num];
     
-    postage.text = [NSString stringWithFormat:@"快递:￥%@",_model.freight];
+    postage.text = [NSString stringWithFormat:@"快递:¥%@",_model.freight];
     descLB.text = _model.desc;
     NSInteger  tagCount = 0;
     NSInteger row = SCREEN_WIDTH/27;

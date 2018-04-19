@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 typedef NS_ENUM(NSInteger,  GoodsScreenSelectType){
     GoodsScreenNomalType,               /// 正常显示
-    GoodsScreenCollectType,             ///采集
+    GoodsScreenSerchType,             ///搜索
     GoodsScreenAuctionType,             ///拍卖
     GoodsScreenWholeType,               ///  整机流转 &  共享
     GoodsScreenSoliciType,              ///  求租

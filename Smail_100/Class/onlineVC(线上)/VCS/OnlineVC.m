@@ -72,6 +72,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         [weakSelf getRecommendedRequest];
     }];
     [self .collectionView.mj_header beginRefreshing];
+    [self getHoldKeyWorld];
 
 }
 
@@ -156,12 +157,11 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
             //            [weakSelf.resorceArray addObjectsFromArray:dataArray];
             //            [weakSelf setup];
             for (NSDictionary *dic in dataArray) {
-                [weakSelf.hotArray addObject:dic[@"keyword"]];
+                [weakSelf.hotArray addObject:dic];
             }
         }
         
     }];
-    
     
 }
 
@@ -170,11 +170,10 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 /// 初始化视图
 - (void)setup
 {
-
-    UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH - 100 , 30)];
-    inPutTextField.placeholder = @"商品";
+    UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake(20, 10, SCREEN_WIDTH - 80 , 30)];
+    inPutTextField.placeholder = @"运动户外超级品牌类日 跨店铺";
     inPutTextField.textColor = [UIColor whiteColor];
-    inPutTextField.font = [UIFont systemFontOfSize:13];
+    inPutTextField.font = Font13;
     inPutTextField.returnKeyType = UIReturnKeySearch;
     inPutTextField.backgroundColor =[UIColor whiteColor];
     inPutTextField.borderStyle = UITextBorderStyleNone;
@@ -283,12 +282,23 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 
 - (void)clickToSearch
 {
-
+    NSMutableArray *listArr = [[NSMutableArray alloc] init];
+    for (NSDictionary *dic in _hotArray) {
+        [listArr addObject:dic[@"keyword"]];
+    }
     WEAKSELF;
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:_hotArray searchBarPlaceholder:@"找商品、找商家、找品牌" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-        //        weakSelf.keyWord = searchText;
-        //        [weakSelf requestListNetWork];
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:_hotArray searchBarPlaceholder:@"运动户外超级品牌类日 跨店铺" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        for (NSDictionary *dics in _hotArray) {
+            if ([searchText isEqualToString:dics[@"keyword"]]) {
+                GoodsScreeningVC *VC = [[GoodsScreeningVC alloc] init];
+                VC.hidesBottomBarWhenPushed = YES;
+                //                VC.category_id = dics[@"id"];
+                VC.goodsScreenType = GoodsScreenSerchType;
+                VC.title =  searchText;
+                [weakSelf.navigationController pushViewController:VC animated:YES];
+                break;
+            }
+        }
     }];
     // 3. Set style for popular search and search history
     searchViewController.searchHistoryStyle = PYSearchHistoryStyleCell;
@@ -429,7 +439,14 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     }
 //    ItemContentList *items =  model.itemContentList[indexPath.row];
  
-    return CGSizeMake((SCREEN_WIDTH - 15)/2, 285);
+    ItemContentList *item =  model.itemContentList[indexPath.row];
+    if (item.tags.count >0) {
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 295);
+    }
+    if (item.tags.count >=6) {
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 310);
+    }
+    return CGSizeMake((SCREEN_WIDTH - 2)/2, 275);
 
 }
 
@@ -458,7 +475,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     //        return UIEdgeInsetsMake(0, 0, 0, 0);
     //    }
     else if ([model.itemType isEqualToString:@"recommended_ware"]){
-        return UIEdgeInsetsMake(5, 5,0, 5);//商品cell
+        return UIEdgeInsetsMake(5, 0, 0, 0);//商品cell
     }
     return UIEdgeInsetsMake(0, 0, 0, 0);//商品cell
 
@@ -484,10 +501,25 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     return CGSizeZero;
 }
 
+
+
 //item 列间距(纵)
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section;
 {
-    return 5;
+    ItemInfoList *model =   self.resorceArray[section];
+    if ([model.itemType isEqualToString:@"recommended_ware"]){
+        return 2;//商品cell
+    }
+    return 0;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    ItemInfoList *model =   self.resorceArray[section];
+    if ([model.itemType isEqualToString:@"recommended_ware"]){
+        return 2;//商品cell
+    }
+    return 0;
 }
 
 
@@ -555,10 +587,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     
     /// 积分商城
     else if ([contenModle.clickType isEqualToString:@"point_mall"]){
-//        ClouldPhoneVC *VC = [[ClouldPhoneVC alloc] init];
-//        VC.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:VC animated:YES];
-//        return;
+
         
         PointStoreVC *VC = [[PointStoreVC alloc] init];
         VC.hidesBottomBarWhenPushed = YES;
@@ -577,8 +606,11 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     }
     
    else if ([contenModle.clickType isEqualToString:@"web"]) {
+       if (KX_NULLString(contenModle.url)) {
+           return;
+       }
         GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
-        VC.clickUrl = @"";
+        VC.clickUrl = contenModle.url;
         VC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:VC animated:YES];
     }
@@ -622,8 +654,11 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         if ([model.itemType isEqualToString:@"themeBanner"]) {
             ItemContentList *contenModle =  model.itemContentList[index];
             if ([contenModle.clickType isEqualToString:@"web"]) {
+                if (KX_NULLString(contenModle.url)) {
+                    return;
+                }
                 GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
-                VC.clickUrl = @"";
+                VC.clickUrl = contenModle.url;
                 VC.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:VC animated:YES];
                 

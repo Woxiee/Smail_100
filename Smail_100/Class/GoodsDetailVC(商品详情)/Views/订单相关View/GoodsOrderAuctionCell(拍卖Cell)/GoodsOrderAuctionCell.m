@@ -49,7 +49,7 @@
 {
     _model = model;
     titleLB.text = _model.productInfo.productName;
-    NSString *str1 = [NSString stringWithFormat:@"￥%@",_model.productInfo.dqPrice];
+    NSString *str1 = [NSString stringWithFormat:@"¥%@",_model.productInfo.dqPrice];
     NSString *str =[NSString stringWithFormat:@"当前价：%@",str1];
     NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str.length- str1.length, str1.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:15 weight:UIFontWeightThin]];
     priceLB.attributedText = attributedStr;

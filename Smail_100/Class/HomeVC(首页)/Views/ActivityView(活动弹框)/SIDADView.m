@@ -60,17 +60,17 @@
         
         _bgView = ({
         
-            UIView *view =[[UIView alloc]initWithFrame: CGRectMake(0, 0, 0.8125*Screen_width, 1.46*0.825*Screen_width)];
-            view.frame = CGRectMake(0, 0, 0.8125*Screen_width, 1.46*0.825*Screen_width);
+            UIView *view =[[UIView alloc]initWithFrame: CGRectMake(0, 0, 0.8125*Screen_width, 1.46*0.825*Screen_width - 50)];
+            view.frame = CGRectMake(0, 0, 0.8125*Screen_width, 1.46*0.825*Screen_width - 50);
             view.center = CGPointMake(Screen_width/2, Screen_height/2);
             if (isIphone4) {
                 
                 self.center = CGPointMake(Screen_width/2, Screen_height/2+20);
             }
-            view.backgroundColor = [UIColor redColor];
+            view.backgroundColor = [UIColor clearColor];
             view.layer.cornerRadius = 6.0;
             view.clipsToBounds = YES;
-            view.layer.borderWidth=1;
+            view.layer.borderWidth=0;
             view.layer.borderColor=superid_ad_color_title.CGColor;
             view;
             
@@ -81,9 +81,9 @@
         _closeBtn = ({
         
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];;
-            btn.frame = CGRectMake((SCREEN_WIDTH - 33)/2, CGRectGetMaxY(_bgView.frame) + 20, 33, 33);
+            btn.frame = CGRectMake((SCREEN_WIDTH - 33)/2, CGRectGetMaxY(_bgView.frame)+10 , 33, 33);
          
-            [btn setBackgroundImage:[self imageOfSuperid_ad_close] forState:normal];
+            [btn setBackgroundImage:[UIImage imageNamed:@"home_miss.png"] forState:normal];
             [btn addTarget:self action:@selector(closeBtnClickEventHandle) forControlEvents:UIControlEventTouchUpInside];
             
             btn;
@@ -104,7 +104,7 @@
         
         _adImageView = ({
         
-            UIImageView *view = [[UIImageView alloc]initWithFrame:CGRectMake(0, VIEW_BY(_titleBgView), VIEW_W(_bgView), VIEW_H(_bgView)-VIEW_H(_titleBgView))];
+            UIImageView *view = [[UIImageView alloc]initWithFrame:_bgView.bounds];
             
             view;
             
@@ -113,7 +113,8 @@
     
     }
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, VIEW_BY(_titleBgView), VIEW_W(_bgView), VIEW_H(_bgView)-VIEW_H(_titleBgView));
+    btn.backgroundColor = [UIColor clearColor];
+    btn.frame =  _adImageView.bounds;
     [btn addTarget:self action:@selector(didClicAction) forControlEvents:UIControlEventTouchUpInside];
     [_bgView addSubview:btn];
     
@@ -160,7 +161,12 @@
 
 - (void)didClicAction
 {
-    
+    [self removeFromSuperview];
+    _adImageView.image = nil;
+    _titleLable.text = nil;
+    if (_didClickImageBlock) {
+        _didClickImageBlock();
+    }
 }
 
 - (void)dealloc{
@@ -210,7 +216,7 @@
     //// yuan Drawing
     UIBezierPath* yuanPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(2, 2, 60, 61)];
     [white setStroke];
-    yuanPath.lineWidth = 2;
+    yuanPath.lineWidth = 0;
     [yuanPath stroke];
     
     

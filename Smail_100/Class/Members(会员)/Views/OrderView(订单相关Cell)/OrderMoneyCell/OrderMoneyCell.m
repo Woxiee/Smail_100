@@ -56,9 +56,9 @@
     _payDetailList = payDetailList;
     
     if (_indexPath.row == 0) {
-        titlelB.text = [NSString stringWithFormat:@"%@:￥%@",_payDetailList.number ,_payDetailList.payAmount];
+        titlelB.text = [NSString stringWithFormat:@"%@:¥%@",_payDetailList.number ,_payDetailList.payAmount];
     }else{
-        titlelB.text = [NSString stringWithFormat:@"第%@期:￥%@",_payDetailList.number ,_payDetailList.payAmount];
+        titlelB.text = [NSString stringWithFormat:@"第%@期:¥%@",_payDetailList.number ,_payDetailList.payAmount];
     }
     detailLn.text = _payDetailList.payTime;
     if ([_payDetailList.status integerValue] == 0 ) {

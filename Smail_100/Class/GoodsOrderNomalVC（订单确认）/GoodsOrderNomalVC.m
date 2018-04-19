@@ -869,7 +869,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     NSString *allPriceStr = @"";
     NSMutableArray *priceArr = [NSMutableArray array];
     if (allPrices>0) {
-        NSString *str = [NSString stringWithFormat:@"￥%.1f",allPrices];
+        NSString *str = [NSString stringWithFormat:@"¥%.1f",allPrices];
         [priceArr addObject:str];
     }
     

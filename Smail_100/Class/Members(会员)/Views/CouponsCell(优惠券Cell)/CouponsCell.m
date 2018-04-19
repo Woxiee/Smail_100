@@ -39,7 +39,7 @@
 {
     _model = model;
     [couponsImgView sd_setImageWithURL:[NSURL URLWithString:_model.back_imgUrl] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
-//    NSString *str1 = @"￥";
+//    NSString *str1 = @"¥";
 //    NSString *str =[NSString stringWithFormat:@"%@%@",str1,_model.fixedQuota];
 //    NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str1.length,str.length- str1.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:25 weight:UIFontWeightMedium]];
 //

@@ -41,7 +41,7 @@
 //
 //    payLB.text = _model.payValue;
 //
-//    priceLB.text = [NSString stringWithFormat:@"￥%@",_model.order.sumAmout];
+//    priceLB.text = [NSString stringWithFormat:@"¥%@",_model.order.sumAmout];
 //
 //
 //}

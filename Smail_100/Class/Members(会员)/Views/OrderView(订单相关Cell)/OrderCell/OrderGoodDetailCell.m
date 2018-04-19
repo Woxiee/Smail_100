@@ -59,7 +59,7 @@
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:_model.order.productImgPath] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
     _titleLB.text = _model.order.productName;
     _detailLB.text = _model.order.property;
-    _priceLB.text  = [NSString stringWithFormat:@"￥%@",_model.order.price];
+    _priceLB.text  = [NSString stringWithFormat:@"¥%@",_model.order.price];
     
     _payTypeLabel.text = _model.payValue;
     

@@ -26,6 +26,7 @@
     self.tabbarVC = tabbarVC;
     [self setConfiguration];
     [_window makeKeyAndVisible];
+
     return YES;
 }
 

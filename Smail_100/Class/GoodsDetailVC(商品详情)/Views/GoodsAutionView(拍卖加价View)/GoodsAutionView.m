@@ -128,7 +128,7 @@
     }
     float priceStr =  [_model.minAddPrice intValue] * _model.goodSCount ;
     NSString *str1 = [NSString stringWithFormat:@"%.2f",priceStr];
-    NSString *str =[NSString stringWithFormat:@"￥%@",str1];
+    NSString *str =[NSString stringWithFormat:@"¥%@",str1];
     NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str.length- str1.length, str1.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:17 weight:UIFontWeightThin]];
     _numberTextField.attributedText = attributedStr;
 
@@ -149,7 +149,7 @@
 {
     _model = model;
     NSString *str1 = [NSString stringWithFormat:@"%@",_model.minAddPrice];
-    NSString *str =[NSString stringWithFormat:@"￥%@",str1];
+    NSString *str =[NSString stringWithFormat:@"¥%@",str1];
     NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str.length- str1.length, str1.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:17 weight:UIFontWeightThin]];
    _numberTextField.attributedText = attributedStr;
 }

@@ -34,7 +34,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    titleLabel.font = PLACEHOLDERFONT;
+    titleLabel.font = Font13;
     titleLabel.textColor = [UIColor blackColor];
     
     detailLabel.font = Font11;
@@ -54,7 +54,7 @@
     getPericeLB.textColor = KMAINCOLOR;
     integralLB.textColor = DETAILTEXTCOLOR1;
     sellLB.textColor = DETAILTEXTCOLOR1;
-    sellLB.font = Font14;
+    sellLB.font = Font13;
     
 }
 
@@ -65,24 +65,31 @@
     [iconImageView sd_setImageWithURL:[NSURL URLWithString:_model.imageUrl] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
     titleLabel.text  = _model.itemTitle;
     detailLabel.text = _model.itemSubTitle;
-//    NSString *str1 = [NSString stringWithFormat:@"%.2f",priceStr];
-//    NSString *str =[NSString stringWithFormat:@"￥%@",str1];
-//    NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str.length- str1.length, str1.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:17 weight:UIFontWeightThin]];
-//    _numberTextField.attributedText = attributedStr;
-    if (_model.earn_point.floatValue >0) {
-        
-        NSString *moneyStr = [NSString stringWithFormat:@"￥%@+%@积分",_model.price,_model.earn_point];
-        NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[@"积分"]];
-//        NSAttributedString *attributedStr = [moneyStr creatAttributedString:moneyStr withMakeRange:NSMakeRange(0, moneyStr.length) withColor:KMAINCOLOR withFont:Font14];
-        integralLB.hidden = NO;
+    NSMutableArray *priceArr = [[NSMutableArray alloc] init];
+    if (_model.price.floatValue >0) {
+        [priceArr addObject:[NSString stringWithFormat:@"¥%@",_model.price]];
+    }
+    if (_model.point.floatValue >0) {
+        [priceArr addObject:[NSString stringWithFormat:@"%@积分",_model.point]];
+    }
+    NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
+    if (_model.earn_money.floatValue >0) {
+        NSString *getMoney = [NSString stringWithFormat:@"赚¥%@",_model.earn_money];
+        NSString *moneyStr = [NSString stringWithFormat:@"%@ %@",allPrice,getMoney];
+        NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[getMoney,@"+"]];
         moneyLabel.attributedText  = attributedStr;
 
     }else{
+        moneyLabel.text  = allPrice;
+    }
+    
+    
+    if (_model.earn_point.floatValue >0) {
+        integralLB.hidden = NO;
+    }else{
         integralLB.hidden = YES;
-        moneyLabel.text  =  [NSString stringWithFormat:@"￥%@",_model.price];
     }
 
-    getPericeLB.text = [NSString stringWithFormat:@"赚￥%@",_model.earn_money];
     integralLB.text =[NSString stringWithFormat:@"送%@积分",_model.earn_point];
     sellLB.text = [NSString stringWithFormat:@"已出售:%@",_model.volume];
     NSInteger  tagCount = 0;
@@ -91,11 +98,6 @@
         tagsView.hidden = NO;
         tagCount = _model.tags.count ;
     }
-    else{
-        tagsContraintsH.constant = 0;
-        tagCount = 0;
-        tagsView.hidden = YES;
-    }
     
     if (_model.tags.count >= 6)
     {
@@ -103,7 +105,8 @@
         tagsView.hidden = NO;
         tagCount= 6;
     }
-    else{
+
+    if (_model.tags.count == 0) {
         tagsContraintsH.constant = 0;
         tagCount = 0;
         tagsView.hidden = YES;

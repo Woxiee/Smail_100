@@ -42,7 +42,7 @@
     
     [iconImageView sd_setImageWithURL:[NSURL URLWithString:_model.imgList1] placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW]];
     contenLB.text = _model.mainProductNameAdv;
-    priceLB.text = [NSString stringWithFormat:@"￥ %@",_model.cargoPriceAdv];
+    priceLB.text = [NSString stringWithFormat:@"¥ %@",_model.cargoPriceAdv];
 
 }
 

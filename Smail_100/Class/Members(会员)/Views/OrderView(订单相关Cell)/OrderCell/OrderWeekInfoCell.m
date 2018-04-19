@@ -60,7 +60,7 @@
 
     bhLB.text = [NSString stringWithFormat:@"%@至%@",_model.order.leaseStartTimeData,_model.order.leaseEndTimeData];
     lxLB.text = _model.payValue;
-    timeLB.text =  [NSString stringWithFormat:@"￥%@",_model.order.sumAmout];
+    timeLB.text =  [NSString stringWithFormat:@"¥%@",_model.order.sumAmout];
     
 }
 @end

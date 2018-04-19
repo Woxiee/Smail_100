@@ -42,7 +42,7 @@
 -(void)setModel:(GoodSDetailModel *)model
 {
     _model = model;
-    priceLB.text = [NSString stringWithFormat:@"价格：￥%@",_model.offerPrice];
+    priceLB.text = [NSString stringWithFormat:@"价格：¥%@",_model.offerPrice];
     compangLB.text = [NSString stringWithFormat:@"竞拍企业：%@",_model.userName];
     if ([_model.top isEqualToString:@"1"]) {
         markLB.text = @"领先";

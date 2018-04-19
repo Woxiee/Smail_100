@@ -94,7 +94,7 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
     pricekLabel.textAlignment = NSTextAlignmentLeft;
     [bottomView addSubview:pricekLabel];
     self.pricekLabel = pricekLabel;
-    self.pricekLabel.text = [NSString stringWithFormat:@"￥%@",_itemInfoList.itemContent.price];
+    self.pricekLabel.text = [NSString stringWithFormat:@"¥%@",_itemInfoList.itemContent.price];
     /// 库存
     UILabel *kuCunLabel = [[UILabel alloc]  initWithFrame:CGRectMake(CGRectGetMaxX(iconImageView.frame) +12,CGRectGetMaxY(pricekLabel.frame) +7 , 200, 15)];
 //    kuCunLabel.text = _model.productQty;

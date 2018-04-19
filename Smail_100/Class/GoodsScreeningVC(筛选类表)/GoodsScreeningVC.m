@@ -20,18 +20,20 @@
 @property (nonatomic, weak) TopScreenView *topSreenView;
 @property (nonatomic, weak) KYActionSheetDown *sheet;          /// 弹窗
 @property (nonatomic, strong) Values *values;        /// 记录上一次选择collectList;
-@property(nonatomic,strong)NSMutableArray *sourceData;
 @property (weak, nonatomic) UICollectionView *collectionView;
 @property(nonatomic,assign)NSUInteger page;
 @property (nonatomic, strong) NSArray *hotSeaches;
 
 @property (nonatomic, strong)  UIButton *item;
 
+
+
 @end
 
 @implementation GoodsScreeningVC
 {
     NSInteger oldIndex[4] ;   /// 记录上一次选择tabelviewlist
+    UITableView *tableviewl;
 }
 static NSString *newProductCell = @"newProductID";
 
@@ -97,34 +99,70 @@ static NSString *newProductCell = @"newProductID";
 
 - (void)requestListNetWork
 {
+    
+//    http://39.108.4.18:6803/api/goods/getSearch 
     WEAKSELF;
 
-    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    [param setObject:_category_id forKey:@"category_id"];
-    [param setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_page] forKey:@"pageIndex"];
-    [param setObject:@"10" forKey:@"pageSize"];
-    [GoodsScreenVmodel getGoodsScreenListParam:param WithDataList:^(NSArray *dataArray, BOOL success) {
-        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
-        if (success) {
-            if (dataArray.count>0) {
+    if (_goodsScreenType == GoodsScreenSerchType) {
+        NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+        [param setObject:self.title forKey:@"keyword"];
+        [param setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_page] forKey:@"pageIndex"];
+        [param setObject:@"10" forKey:@"pageSize"];
+        [BaseHttpRequest postWithUrl:@"/goods/getSearch" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+            NSMutableArray *listArray = [[NSMutableArray alloc] init];
+            NSInteger state = [[result valueForKey:@"code"] integerValue];
+//            NSArray *dataList = [result valueForKey:@"itemInfoList"];
+            if (state == 0) {
+//                for (NSDictionary *dic in dataList) {
+              
+                NSArray  *dataList = result[@"itemInfoList"];
+                for (int i = 0; i <dataList.count ; i++) {
+//                    ItemInfoList *model = [ItemInfoList new];
+                    NSDictionary *dic = dataList[i];
+                   ItemContentList *model = [ItemContentList yy_modelWithJSON:dic[@"itemContentList"]];
+                    [listArray addObject:model];
+                }
+             
                 if (weakSelf.page == 1) {
                     [weakSelf.resorceArray removeAllObjects];
                 }
-                [weakSelf.resorceArray addObjectsFromArray:dataArray];
+             
+                [weakSelf.resorceArray addObjectsFromArray:listArray];
                 [weakSelf.collectionView reloadData];
-                [weakSelf.collectionView.mj_header endRefreshing];
-                [weakSelf.collectionView.mj_footer endRefreshing];
                 
             }else{
-                [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
-
+                [weakSelf.view makeToast:LocalMyString(NOTICEMESSAGE)];
             }
-           
-        }else{
-            [weakSelf.view makeToast:LocalMyString(NOTICEMESSAGE)];
-        }
-        [weakSelf stopRefresh];
-    }];
+            
+            [weakSelf stopRefresh];
+
+       
+        }];
+            
+    }else{
+        
+        NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+        [param setObject:_category_id forKey:@"category_id"];
+        [param setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_page] forKey:@"pageIndex"];
+        [param setObject:@"10" forKey:@"pageSize"];
+        [GoodsScreenVmodel getGoodsScreenListParam:param WithDataList:^(NSArray *dataArray, BOOL success) {
+            [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+            if (success) {
+                if (dataArray.count>0) {
+                    if (weakSelf.page == 1) {
+                        [weakSelf.resorceArray removeAllObjects];
+                    }
+                    [weakSelf.resorceArray addObjectsFromArray:dataArray];
+                    [weakSelf.collectionView reloadData];
+                }
+                
+            }else{
+                [weakSelf.view makeToast:LocalMyString(NOTICEMESSAGE)];
+            }
+            [weakSelf stopRefresh];
+        }];
+        
+    }
 
 }
 
@@ -332,28 +370,20 @@ static NSString *newProductCell = @"newProductID";
 }
 
 
-/*懒加载*/
--(NSMutableArray *)sourceData
-{
-    if (!_sourceData) {
-        //初始化数据
-        _sourceData = [NSMutableArray array];
-    }
-    return _sourceData;
-}
+
 
 
 #pragma mark - refresh 添加刷新方法
 -(void)setRefresh
 {
     WEAKSELF;
-//    [self.tableView headerWithRefreshingBlock:^{
-//        [weakSelf loadNewDate];
-//    }];
-//    
-//    [self.tableView footerWithRefreshingBlock:^{
-//        [weakSelf loadMoreData];
-//    }];
+    [self.collectionView headerWithRefreshingBlock:^{
+        [weakSelf loadNewDate];
+    }];
+
+    [self.collectionView footerWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
     
 }
 
@@ -372,13 +402,13 @@ static NSString *newProductCell = @"newProductID";
 
 -(void)stopRefresh
 {
-//    [self.tableView stopFresh:self.sourceData.count pageIndex:self.page];
+    [self.collectionView  stopFresh:self.resorceArray.count pageIndex:self.page];
 //
-//    if (self.sourceData.count == 0) {
-//        [self.tableView addSubview:[KX_LoginHintView notDataView]];
-//    }else{
-//        [KX_LoginHintView removeFromSupView:self.tableView];
-//    }
+    if (self.resorceArray.count == 0) {
+        [self.collectionView addSubview:[KX_LoginHintView notDataView]];
+    }else{
+        [KX_LoginHintView removeFromSupView:self.collectionView];
+    }
   
 }
 
@@ -413,7 +443,15 @@ static NSString *newProductCell = @"newProductID";
 //定义每个Item 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((SCREEN_WIDTH - 15)/2, 285);
+//    ItemInfoList *model =   self.resorceArray[indexPath.section];
+    ItemContentList *item = self.resorceArray[indexPath.row];
+    if (item.tags.count >0) {
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 295);
+    }
+    if (item.tags.count >=6) {
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 310);
+    }
+    return CGSizeMake((SCREEN_WIDTH - 2)/2, 275);
 
 }
 
@@ -421,15 +459,18 @@ static NSString *newProductCell = @"newProductID";
 //定义每个UICollectionView 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(5,5, 5,5);//商品cell
-
+    return UIEdgeInsetsMake(5, 0, 0, 0);//商品cell
 }
 
 //item 列间距(纵)
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section;
 {
-    return 5;//商品cell
+        return 2;//商品cell
 
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 2;
 }
 
 //UICollectionView被选中时调用的方法
@@ -437,8 +478,6 @@ static NSString *newProductCell = @"newProductID";
 {
     
    ItemContentList *model = self.resorceArray[indexPath.row];
-    
-   
     GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
                                                  navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     vc.productID = model.goods_id;

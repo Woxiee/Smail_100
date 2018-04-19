@@ -181,7 +181,7 @@
     UIView *bottomView;
 
     if (_cellType == AutionCellOfferType) {
-        NSString *str2 = [NSString stringWithFormat:@"￥%@",model.offerPrice];
+        NSString *str2 = [NSString stringWithFormat:@"¥%@",model.offerPrice];
         NSString *str3 =[NSString stringWithFormat:@"出价金额：%@",str2];
         NSAttributedString *attributedStr1 =  [str3 creatAttributedString:str3 withMakeRange:NSMakeRange(str3.length- str2.length, str2.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:16 weight:UIFontWeightThin]];
         _relustLB.attributedText = attributedStr1;
@@ -204,7 +204,7 @@
             _makeLB.text = @"已返回保证金";
             _makeLB.textColor = DETAILTEXTCOLOR;
         }
-        NSString *str2 = [NSString stringWithFormat:@"￥%@",model.depositAmounts];
+        NSString *str2 = [NSString stringWithFormat:@"¥%@",model.depositAmounts];
         NSString *str3 =[NSString stringWithFormat:@"保证金：%@",str2];
         NSAttributedString *attributedStr1 =  [str3 creatAttributedString:str3 withMakeRange:NSMakeRange(str3.length- str2.length, str2.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:16 weight:UIFontWeightThin]];
         _relustLB.attributedText = attributedStr1;

@@ -182,7 +182,7 @@
     _attribute.text = [NSString stringWithFormat:@"已参与 %@",_model.joinCount];;
     [ _iconView sd_setImageWithURL:[NSURL URLWithString:model.productImgPath] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
     _timeLB.text = _model.joinTimeData;
-//    _priceLB.text = [NSString stringWithFormat:@"￥%@", _model.price];
+//    _priceLB.text = [NSString stringWithFormat:@"¥%@", _model.price];
     [_nameLB setMaxNumberOfLinesToShow:2];
     _footView.showType = BuyShowType;
     _footView.model = _model;

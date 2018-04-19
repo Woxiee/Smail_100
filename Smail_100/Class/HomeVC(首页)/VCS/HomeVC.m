@@ -67,6 +67,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     [super viewDidLoad];
     [self setup];
     [self setConfiguration];
+    [self getShowInfoRequest];
 
     WEAKSELF
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -86,7 +87,6 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self getShowInfoRequest];
     NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"click+%@",_categoryId]];
     if (KX_NULLString(str)) {
         [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:[NSString stringWithFormat:@"click+%@",_categoryId]];
@@ -168,23 +168,37 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     [BaseHttpRequest postWithUrl:@"/mall/getpopup" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
         
-            NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"click+%@",_categoryId]];
-            if ([result[@"data"][@"clickType"] isEqualToString:@"app_category"]) {
-//                if ([str isEqualToString:@"0"]) {
+            if ([result[@"data"][@"clickType"] isEqualToString:@"web"]) {
                     SIDADView *adView = [[SIDADView alloc]init];
+                adView.didClickImageBlock = ^{
+                    if ([result[@"data"][@"clickType"] isEqualToString:@"web"]) {
+                        if (KX_NULLString(result[@"data"][@"url"])) {
+                            return;
+                        }
+                        GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
+                        VC.clickUrl = result[@"data"][@"url"] ;
+                        VC.hidesBottomBarWhenPushed = YES;
+                        [self.navigationController pushViewController:VC animated:YES];
+                    }
+                    else if ([result[@"data"][@"clickType"] isEqualToString:@"app_category"]){
+                        GoodsScreeningVC *VC = [[GoodsScreeningVC alloc] init];
+                        VC.hidesBottomBarWhenPushed = YES;
+                        VC.category_id = result[@"data"][@"id"];
+                        VC.title = result[@"data"][@"title"];
+                        [self.navigationController pushViewController:VC animated:YES];
+                    }
+                    else {
+                        /// 商品类型=1:新机。2:配构件。3:整机流转
+                        GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+                                                                     navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+                        vc.productID = result[@"data"][@"id"];
+                        vc.hidesBottomBarWhenPushed = YES;
+                        [self.navigationController pushViewController: vc animated:YES];
+                    }
+                };
                     [adView showInView:self.view.window withFaceInfo:result[@"data"][@"imageUrl"] advertisementImage:[UIImage imageNamed:DEFAULTIMAGE] borderColor:nil];
-//                    [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:[NSString stringWithFormat:@"click+%@",_categoryId]];
-//                    [[NSUserDefaults standardUserDefaults] synchronize];
-//                }
-               
-                
             }else{
-//                if ([str isEqualToString:@"0"]) {
-                    [weakSelf systemAlertWithTitle:@"通知" andMsg:result[@"data"][@"content"]];
-//                    [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:[NSString stringWithFormat:@"click+%@",_categoryId]];
-//                    [[NSUserDefaults standardUserDefaults] synchronize];
-
-//                }
+                [weakSelf systemAlertWithTitle:@"通知" andMsg:result[@"data"][@"content"]];
             }
 
         }
@@ -335,20 +349,20 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 
 ///  加入购物车
 - (void)addGoodsInCar:(ItemContentList *)model{
-    WEAKSELF;
-    [MBProgressHUD showMessag:@"添加收藏..." toView:self.view];
-    model.cartNum = @"1";
-    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setObject:model.id  forKey:@"goods_id"];
-    [param setObject:@"add" forKey:@"method"];
-    [param setObject:@"Maker" forKey:@"type"];
-    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
-    [GoodsVModel getGoodCollectParam:param successBlock:^(BOOL isSuccess, NSString *msg) {
-        
-        [weakSelf.view toastShow:msg];
-        if (isSuccess) {
-        }
-    }];
+//    WEAKSELF;
+//    [MBProgressHUD showMessag:@"添加收藏..." toView:self.view];
+//    model.cartNum = @"1";
+//    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+//    [param setObject:model.id  forKey:@"goods_id"];
+//    [param setObject:@"add" forKey:@"method"];
+//    [param setObject:@"Maker" forKey:@"type"];
+//    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+//    [GoodsVModel getGoodCollectParam:param successBlock:^(BOOL isSuccess, NSString *msg) {
+//
+//        [weakSelf.view toastShow:msg];
+//        if (isSuccess) {
+//        }
+//    }];
    
 }
 
@@ -372,7 +386,10 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     ItemInfoList *model =   self.resorceArray[section];
     if ([model.itemType isEqualToString:@"topBanner"]) {
-        return 1;
+        if (model.itemContentList.count >0) {
+            return 1;
+        }
+      return 0;
     }
     
     else if ([model.itemType isEqualToString:@"cateList"]){
@@ -436,8 +453,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         cell.didClickItemBlock = ^(ItemContentList *model) {
          GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
                                                       navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-         //    vc.productID = model.mainResult.mainId;
-         //    vc.typeStr = model.productType;
+
          vc.productID = model.id;
          vc.hidesBottomBarWhenPushed = YES;
          [weakSelf.navigationController pushViewController: vc animated:YES];
@@ -504,7 +520,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     }
     
     else if ([model.itemType isEqualToString:@"recommended_goods"]){
-        return CGSizeMake(SCREEN_WIDTH, 160);
+        return CGSizeMake(SCREEN_WIDTH, 150);
     }
 //
 ////    else if ([model.itemType isEqualToString:@"action"]){
@@ -516,12 +532,12 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 //    }
    ItemContentList *item =  model.itemContentList[indexPath.row];
     if (item.tags.count >0) {
-        return CGSizeMake((SCREEN_WIDTH - 15)/2, 300);
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 295);
     }
     if (item.tags.count >=6) {
-        return CGSizeMake((SCREEN_WIDTH - 15)/2, 320);
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 310);
     }
-    return CGSizeMake((SCREEN_WIDTH - 15)/2, 285);
+    return CGSizeMake((SCREEN_WIDTH - 2)/2, 275);
 
 }
 
@@ -550,7 +566,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 //        return UIEdgeInsetsMake(0, 0, 0, 0);
 //    }
     else if ([model.itemType isEqualToString:@"recommended_ware"]){
-        return UIEdgeInsetsMake(1, 5,0, 5);//商品cell
+        return UIEdgeInsetsMake(5, 0, 0, 0);//商品cell
     }
     return UIEdgeInsetsMake(0, 0, 0, 0);//商品cell
 }
@@ -561,7 +577,16 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 {
     ItemInfoList *model =   self.resorceArray[section];
     if ([model.itemType isEqualToString:@"recommended_ware"]){
-        return 5;//商品cell
+        return 2;//商品cell
+    }
+    return 0;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    ItemInfoList *model =   self.resorceArray[section];
+    if ([model.itemType isEqualToString:@"recommended_ware"]){
+        return 2;//商品cell
     }
     return 0;
 }
@@ -613,9 +638,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
             
             else if ([model.itemType isEqualToString:@"recommended_ware"]){
                 RecommendedView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:RecommendedViewIdentifier forIndexPath:indexPath];
-//              ItemContentList *model = models.itemContentList[indexPath.row];
 
-//                headerView.model = models.itemContentList[indexPath.row];
 
                 headerView.titleLB.text = @"-- 主题推荐 --";
                 headerView.detailLB.text = @"都是你的兴趣";
@@ -647,9 +670,13 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+  
     ItemInfoList *model =  self.resorceArray[indexPath.section];
     ItemContentList *contenModle =  model.itemContentList[indexPath.row];
     if ([contenModle.clickType isEqualToString:@"web"]) {
+        if (KX_NULLString(contenModle.url)) {
+            return;
+        }
         GoodsAuctionXYVC *VC = [[GoodsAuctionXYVC alloc] init];
         VC.hidesBottomBarWhenPushed = YES;
         VC.clickUrl = contenModle.url;
@@ -705,11 +732,16 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 /** 点击图片回调 */
 - (void)didSelectCycleScrollViewItemAtIndex:(NSInteger)index
 {
+    
+    
 //    ItemInfoList *model =   self.resorceArray[indexPath.section];
     for (ItemInfoList *model  in self.resorceArray) {
         if ([model.itemType isEqualToString:@"topBanner"]) {
             ItemContentList *contenModle =  model.itemContentList[index];
             if ([contenModle.clickType isEqualToString:@"web"]) {
+                if (KX_NULLString(contenModle.url)) {
+                    return;
+                }
                 GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
                 VC.clickUrl = contenModle.url;
                 VC.hidesBottomBarWhenPushed = YES;

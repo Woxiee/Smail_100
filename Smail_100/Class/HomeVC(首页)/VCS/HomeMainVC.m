@@ -12,6 +12,7 @@
 #import "ColumnModel.h"
 #import "RecommendedView.h"
 #import "SIDADView.h"
+#import "GoodsScreeningVC.h"
 
 @interface HomeMainVC ()<PYSearchViewControllerDelegate>
 @property (nonatomic, strong)  UITextField *inPutTextField;
@@ -86,7 +87,7 @@
     
     UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 120)/2, 10, SCREEN_WIDTH - 120, 30)];
    
-    inPutTextField.placeholder = @"找商品, 找商家,找品牌";
+    inPutTextField.placeholder = @"运动户外超级品牌类日 跨店铺";
     inPutTextField.textColor = [UIColor whiteColor];
     inPutTextField.font = Font13;
     inPutTextField.returnKeyType = UIReturnKeySearch;
@@ -145,12 +146,11 @@
 //            [weakSelf.resorceArray addObjectsFromArray:dataArray];
 //            [weakSelf setup];
             for (NSDictionary *dic in dataArray) {
-                [weakSelf.hotArray addObject:dic[@"keyword"]];
+                [weakSelf.hotArray addObject:dic];
             }
         }
         
     }];
-    
     
 }
 
@@ -169,12 +169,28 @@
 ///搜索
 - (void)clickToSearch
 {
- 
+    NSMutableArray *listArr = [[NSMutableArray alloc] init];
+    for (NSDictionary *dic in _hotArray) {
+        [listArr addObject:dic[@"keyword"]];
+    }
     WEAKSELF;
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:_hotArray searchBarPlaceholder:@"找商品、找商家、找品牌" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-//        weakSelf.keyWord = searchText;
-//        [weakSelf requestListNetWork];
+    
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:listArr searchBarPlaceholder:@"运动户外超级品牌类日 跨店铺" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
+
+        for (NSDictionary *dics in _hotArray) {
+            if ([searchText isEqualToString:dics[@"keyword"]]) {
+                GoodsScreeningVC *VC = [[GoodsScreeningVC alloc] init];
+                VC.hidesBottomBarWhenPushed = YES;
+//                VC.category_id = dics[@"id"];
+                VC.goodsScreenType = GoodsScreenSerchType;
+                VC.title =  searchText;
+                [weakSelf.navigationController pushViewController:VC animated:YES];
+                break;
+            }
+        }
+//        NSDictionary *dic = weakSelf.hotArray[]
+
     }];
     // 3. Set style for popular search and search history
     searchViewController.searchHistoryStyle = PYSearchHistoryStyleCell;

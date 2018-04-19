@@ -70,6 +70,7 @@
 #import "Common.h"
 #import "KYTextView.h"
 
+#import "UICollectionView+KYRefresh.h"
 
 /// 业务头文件
 #import "GoodsClassModel.h"

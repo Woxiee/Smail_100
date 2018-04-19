@@ -111,11 +111,11 @@
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:_products.img] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
     _titleLB.text = _products.name;
     _detailLB.text = _products.spec?_products.spec:[NSString stringWithFormat:@"规格: %@",@"默认"];
-    _priceLB.text = [NSString stringWithFormat:@"￥%@",_products.price];
+    _priceLB.text = [NSString stringWithFormat:@"¥%@",_products.price];
 //    _products.point = @"22";
     if ([_products.point integerValue] >0) {
 //        NSString *allPrice = [NSString]
-        NSString *str = [NSString stringWithFormat:@"%@积分+￥%@",_products.point,_products.price];
+        NSString *str = [NSString stringWithFormat:@"%@积分+¥%@",_products.point,_products.price];
         NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(_products.point.length, 2) withColor:TITLETEXTLOWCOLOR withFont:Font13];
         _priceLB.attributedText = attributedStr;
     }
@@ -135,11 +135,11 @@
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:_seller.img] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
     _titleLB.text = _seller.name;
     _detailLB.text = _seller.spec?_seller.spec:[NSString stringWithFormat:@"规格: %@",@"默认"];
-    _priceLB.text = [NSString stringWithFormat:@"￥%@",_seller.price];
+    _priceLB.text = [NSString stringWithFormat:@"¥%@",_seller.price];
     //    _products.point = @"22";
     if ([_seller.point integerValue] >0) {
         //        NSString *allPrice = [NSString]
-        NSString *str = [NSString stringWithFormat:@"%@积分+￥%@",_seller.point,_seller.price];
+        NSString *str = [NSString stringWithFormat:@"%@积分+¥%@",_seller.point,_seller.price];
         NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(_seller.point.length, 2) withColor:TITLETEXTLOWCOLOR withFont:Font13];
         _priceLB.attributedText = attributedStr;
     }

@@ -172,7 +172,7 @@
     _numLB.text = [NSString stringWithFormat:@"*%@",_seller.goods_nums];
     [self setupAutoHeightWithBottomView:_lineView2 bottomMargin:1];
 //    NSString *allNumber = [NSString stringWithFormat:@"%@",_seller.goods_nums];
-    NSString *allPrice = [NSString stringWithFormat:@"￥%@",_seller.price];
+    NSString *allPrice = [NSString stringWithFormat:@"¥%@",_seller.price];
     NSString *allPoint = [NSString stringWithFormat:@"%@",_seller.point];
     
     
@@ -199,17 +199,17 @@
     [ _iconView sd_setImageWithURL:[NSURL URLWithString:model.productImgPath] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
     if (KX_NULLString(_model.price)) {
         if (!KX_NULLString(_model.sumAmout)) {
-            _priceLB.text = [NSString stringWithFormat:@"￥%@",_model.sumAmout];
+            _priceLB.text = [NSString stringWithFormat:@"¥%@",_model.sumAmout];
         }else{
             _priceLB.text = @"";
         }
     }else{
-        _priceLB.text = [NSString stringWithFormat:@"￥%@",_model.price];
+        _priceLB.text = [NSString stringWithFormat:@"¥%@",_model.price];
     }
     _numLB.text = [NSString stringWithFormat:@"x%@",_model.buyCount];
    
 
-     NSString *str1 = [NSString stringWithFormat:@"￥%@",_model.sumAmout];
+     NSString *str1 = [NSString stringWithFormat:@"¥%@",_model.sumAmout];
      NSString *str = @"";
     if ([_model.param2 isEqualToString:@"10"]) {
        str =  [NSString stringWithFormat:@"共%@件，合计：%@",_model.buyCount,str1];

@@ -65,7 +65,7 @@
     /// 采集
     if (_cellShowType == GoodsScreenCellCollectType) {
         titleLabel.text = _model.groupBuyName;
-        priceLabel.text = [NSString stringWithFormat:@"￥%@",_model.price];
+        priceLabel.text = [NSString stringWithFormat:@"¥%@",_model.price];
         compangLabel.text = [NSString stringWithFormat:@"有效时间   %@之前",_model.endTime];
         addressLabel.text = [NSString stringWithFormat:@"已获得集采量 %@",_model.buyCount];
         markImageView.image = [UIImage imageNamed:@"61@3x.png"];
@@ -79,7 +79,7 @@
         markImageView.hidden = NO;
 
         titleLabel.text = _model.productName;
-        NSString *str1 = [NSString stringWithFormat:@"￥%@",_model.dqPrice];
+        NSString *str1 = [NSString stringWithFormat:@"¥%@",_model.dqPrice];
         NSString *str =[NSString stringWithFormat:@"当前价%@",str1];
         NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str.length- str1.length, str1.length) withColor:BACKGROUND_COLORHL withFont:[UIFont systemFontOfSize:15 weight:UIFontWeightThin]];
 //        weakSelf.orderPiceLB.attributedText =  attributedStr;
@@ -106,16 +106,16 @@
         titleLabel.text = _model.productName;
         if (_cellShowType == GoodsScreenCellWholeType) {
             NSString *str1 = @"/月";
-            NSString *str = [NSString stringWithFormat:@"￥%@%@",_model.formatDouble,str1];           NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str.length- str1.length, str1.length) withColor:DETAILTEXTCOLOR withFont:[UIFont systemFontOfSize:15 weight:UIFontWeightThin]];
+            NSString *str = [NSString stringWithFormat:@"¥%@%@",_model.formatDouble,str1];           NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(str.length- str1.length, str1.length) withColor:DETAILTEXTCOLOR withFont:[UIFont systemFontOfSize:15 weight:UIFontWeightThin]];
             //        weakSelf.orderPiceLB.attributedText =  attributedStr;
             priceLabel.attributedText  = attributedStr;
         }
         else if (_cellShowType == GoodsScreenCellDetectionType){
-            priceLabel.text = [NSString stringWithFormat:@"￥%@",_model.price];
+            priceLabel.text = [NSString stringWithFormat:@"¥%@",_model.price];
             markImageView.image = [UIImage imageNamed:@"60@3x.png"];
         }
         else{
-            priceLabel.text =[NSString stringWithFormat:@"￥%@", _model.formatDouble];
+            priceLabel.text =[NSString stringWithFormat:@"¥%@", _model.formatDouble];
         }
         compangLabel.text = _model.companyName;
         addressLabel.text = [NSString stringWithFormat:@"%@%@%@",_model.province,_model.city,_model.area];
@@ -136,7 +136,7 @@
         markImageView.image = [UIImage imageNamed:@"61@3x.png"];
 
         titleLabel.text = _collectModel.mainResult.productName;
-        priceLabel.text = [NSString stringWithFormat:@"￥%@",_collectModel.mainResult.price];
+        priceLabel.text = [NSString stringWithFormat:@"¥%@",_collectModel.mainResult.price];
         compangLabel.text = [NSString stringWithFormat:@"有效时间   %@",_collectModel.endTime];
         addressLabel.text = [NSString stringWithFormat:@"已参与人数  %@",_collectModel.joinCount];
         
@@ -146,20 +146,20 @@
         titleLabel.text = _collectModel.mainResult.productName;
         if (_cellShowType == GoodsScreenCellNomalType) {
             markImageView.image = [UIImage imageNamed:@"61@3x.png"];
-            priceLabel.text = [NSString stringWithFormat:@"￥%@",_collectModel.mainResult.price];
+            priceLabel.text = [NSString stringWithFormat:@"¥%@",_collectModel.mainResult.price];
             compangLabel.text = _collectModel.businessResult.busiCompName;
         }
         
         else if (_cellShowType == GoodsScreenCellDetectionType){
             markImageView.image = [UIImage imageNamed:@"60@3x.png"];
-            priceLabel.text = [NSString stringWithFormat:@"￥%@",_collectModel.mainResult.price];
+            priceLabel.text = [NSString stringWithFormat:@"¥%@",_collectModel.mainResult.price];
 
             compangLabel.text = [NSString stringWithFormat:@"%@",_collectModel.businessResult.busiCompName];
         }
         
         else if (_cellShowType == GoodsScreenCellWholeType){
             markImageView.image = [UIImage imageNamed:@"62@3x.png"];
-            priceLabel.text = [NSString stringWithFormat:@"￥%@",_collectModel.mainResult.price];
+            priceLabel.text = [NSString stringWithFormat:@"¥%@",_collectModel.mainResult.price];
 
             compangLabel.text = [NSString stringWithFormat:@"%@",_collectModel.businessResult.busiCompName];
             
@@ -179,13 +179,13 @@
 
     if ([_historyModel.productType isEqualToString:@"9"]) {
         titleLabel.text = _historyModel.param2;
-        priceLabel.text = [NSString stringWithFormat:@"￥%@",_historyModel.param3];
+        priceLabel.text = [NSString stringWithFormat:@"¥%@",_historyModel.param3];
         compangLabel.text = [NSString stringWithFormat:@"有效时间   %@之前",_collectModel.endTime];
         addressLabel.text = [NSString stringWithFormat:@"已参与人数  %@",_collectModel.buyCount];
 
     }else{
         titleLabel.text = _historyModel.param2;
-        priceLabel.text = [NSString stringWithFormat:@"￥%@",_historyModel.param3];
+        priceLabel.text = [NSString stringWithFormat:@"¥%@",_historyModel.param3];
         compangLabel.text = _historyModel.param4;
         addressLabel.text = _historyModel.param5;
     }
