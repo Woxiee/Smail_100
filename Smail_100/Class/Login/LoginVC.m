@@ -66,8 +66,8 @@
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     [param setObject:_userNameTextField.text forKey:@"mobile"];
     [param setObject:_userPassWDTextField.text forKey:@"password"];
-     [param setObject:@"15989467261" forKey:@"mobile"];
-    [param setObject:@"123456" forKey:@"password"];
+//     [param setObject:@"15989467261" forKey:@"mobile"];
+//    [param setObject:@"123456" forKey:@"password"];
 
     WEAKSELF;
     [BaseHttpRequest postWithUrl:@"/ucenter/login" andParameters:param andRequesultBlock:^(id result, NSError *error) {

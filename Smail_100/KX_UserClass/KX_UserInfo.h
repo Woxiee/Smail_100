@@ -58,6 +58,8 @@ singleton_interface(KX_UserInfo);
 @property (nonatomic,copy)NSString *companyName;
 @property (nonatomic,copy)NSArray *addressList ; //地址数据
 
+@property (nonatomic,copy)NSString *latitude;
+@property (nonatomic,copy)NSString *longitude;
 
 
 

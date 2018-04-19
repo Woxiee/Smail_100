@@ -109,7 +109,7 @@ static NSString * const CommentsCellID = @"CommentsCell";
 - (UITableView *)tableView
 {
     if(!_tableView){
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT- 64) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT- 64 ) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -167,8 +167,12 @@ static NSString * const CommentsCellID = @"CommentsCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    return 1;
+    NSString *title = self.resorceArray[section];
+    if ([title isEqualToString:@"详情"]) {
+        return 1;
+
+    }
+    return _detailModle.comment.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -234,7 +238,11 @@ static NSString * const CommentsCellID = @"CommentsCell";
     if ([title isEqualToString:@"详情"]) {
 
     }else{
-        return 60;
+        if ( _detailModle.comment.count>0) {
+            return 60;
+
+        }
+        return 0;
 
     }
     return 0;

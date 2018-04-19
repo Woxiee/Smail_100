@@ -174,7 +174,7 @@
 
 #define kScrollViewOriginY   (kHeaderViewHeight + kNavigationHeight - kNavigationHeight)
 #define kMenuViewHeight      44
-#define kHeaderViewHeight    260
+#define kHeaderViewHeight    200
 #define kNavigationHeight    64
 
 /// 判断字符是否为null

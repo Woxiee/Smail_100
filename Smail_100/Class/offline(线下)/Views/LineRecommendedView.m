@@ -65,15 +65,14 @@
 {
     _catelist = catelist;
     if (_imageArr.count == 0) {
-        int btnW =  SCREEN_WIDTH/4;
-        
+        int btnW =  SCREEN_WIDTH/5;
         for (int i = 0; i<_catelist.count; i++) {
             Catelist *model = _catelist[i];
-            NSInteger index = i % 4;
-            NSInteger page = i / 4;
+            NSInteger index = i % 5;
+            NSInteger page = i / 5;
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btn setFrame:CGRectMake(SCREEN_WIDTH/4*index , page*75,
-                                     btnW , 75)];
+            [btn setFrame:CGRectMake(SCREEN_WIDTH/5*index , page*btnW,
+                                     btnW , btnW)];
             
             btn.tag = 100 +i;
             [btn addTarget:self action:@selector(didClickItemsAction:) forControlEvents:UIControlEventTouchUpInside];

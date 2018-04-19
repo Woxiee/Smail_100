@@ -56,7 +56,7 @@
     scoreImageView.userInteractionEnabled = NO;
     scoreImageView.starTotalCount = 5;
     scoreImageView.ShowStyle = DQStarShowStyleSliding;
-    [scoreImageView ShowDQStarScoreFunction:3];
+    [scoreImageView ShowDQStarScoreFunction:[_model.stars intValue]];
 
 }
 

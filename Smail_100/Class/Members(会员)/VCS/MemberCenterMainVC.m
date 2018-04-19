@@ -26,7 +26,7 @@
 
 #define NAVBAR_COLORCHANGE_POINT - IMAGE_HEIGHT
 #define NAV_HEIGHT 64
-#define IMAGE_HEIGHT -50
+#define IMAGE_HEIGHT 0
 #define SCROLL_DOWN_LIMIT 0
 #define LIMIT_OFFSET_Y -(IMAGE_HEIGHT + SCROLL_DOWN_LIMIT)
 
@@ -51,7 +51,6 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickLogin)];
     [_headerView addGestureRecognizer:tap];
 
-    [self getUserInfo];
 
 }
 
@@ -59,6 +58,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     [super viewWillAppear:animated];
 //    self.navigationController.navigationBarHidden = YES;
 //    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self getUserInfo];
 
     [_headerView refreshInfo];
     [self.resorceArray removeAllObjects];
@@ -164,6 +164,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     [self wr_setNavBarBarTintColor:KMAINCOLOR];
     [self wr_setNavBarBackgroundAlpha:0];
     [self wr_setNavBarShadowImageHidden:NO];
+    self.title = @"我的";
 }
 
 
@@ -178,7 +179,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         [self wr_setNavBarBackgroundAlpha:alpha];
         if (alpha > 0.5) {
             [self wr_setNavBarTintColor:[UIColor redColor]];
-            [self wr_setNavBarTitleColor:[UIColor blackColor]];
+            [self wr_setNavBarTitleColor:[UIColor whiteColor]];
             [self wr_setStatusBarStyle:UIStatusBarStyleDefault];
         } else {
             [self wr_setNavBarTintColor:[UIColor whiteColor]];
@@ -282,7 +283,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     if (section == 0) {
         return 0;
     }
-    return 10;
+    return 5;
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

@@ -23,6 +23,8 @@
 
 #import "GoodsDetailVC.h"
 
+#import "HomeVModel.h"
+
 @interface OfflineVC ()<SDCycleScrollViewDelegate,PYSearchViewControllerDelegate,YBPopupMenuDelegate>
 @property (weak, nonatomic) SDCycleScrollView  *cycleView;
 @property (nonatomic, strong)  UITextField *inPutTextField;
@@ -69,12 +71,15 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
         [weakSelf requestListNetWork];
     }];
     
-  
+    [self getHoldKeyWorld];
+
 }
 
 
 - (void)requestListNetWork
 {
+    _xy = [NSString stringWithFormat:@"%@,%@",[KX_UserInfo sharedKX_UserInfo].latitude,[KX_UserInfo sharedKX_UserInfo].longitude];
+
     WEAKSELF;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_page] forKey:@"pageno"];
@@ -101,7 +106,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
                 NSArray *catelist = [Catelist mj_objectArrayWithKeyValuesArray:dic[@"catelist"]];
                 int i = 0;
                 for (int j = 0; j<catelist.count; j++) {
-                    if (j%4 == 0) {
+                    if (j%5 == 0) {
                         i++;
                     }
                 }
@@ -130,6 +135,22 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     }];
 }
 
+/// 获取热门关键词
+- (void)getHoldKeyWorld
+{
+    WEAKSELF;
+    [HomeVModel getHotList:^(NSArray *dataArray, BOOL isSuccess) {
+        if (isSuccess) {
+            //            [weakSelf.resorceArray addObjectsFromArray:dataArray];
+            //            [weakSelf setup];
+            for (NSDictionary *dic in dataArray) {
+                [weakSelf.hotArray addObject:dic];
+            }
+        }
+        
+    }];
+    
+}
 
 - (void)setNavationView
 {
@@ -213,7 +234,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 //
 //    [self.leftNaviBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
     UIView * headerView = [[UIView alloc]init];
-    headerView.frame = CGRectMake(0, 0, kScreenWidth, kHeaderViewHeight+10);
+    headerView.frame = CGRectMake(0, 0, kScreenWidth, 280 );
     _headerView = headerView;
 //    [self.view addSubview:headerView];
     self.tableView.tableFooterView = [UIView new];
@@ -226,7 +247,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     [headerView addSubview:cycleView];
     self.cycleView = cycleView;
     
-    LineRecommendedView *teamPersenView = [[LineRecommendedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(cycleView.frame), SCREEN_WIDTH, 145)];
+    LineRecommendedView *teamPersenView = [[LineRecommendedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(cycleView.frame), SCREEN_WIDTH, 0)];
     teamPersenView.didClickItemBlock = ^(Catelist *item) {
 
             if ([item.click_type isEqualToString:@"web"]) {
@@ -257,6 +278,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     };
     [headerView addSubview:teamPersenView];
     self.teamPersenView = teamPersenView;
+    
     self.tableView.tableHeaderView = headerView;
     
 }
@@ -280,8 +302,36 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 
 - (void)clickToSearch
 {
-    
-    
+    NSMutableArray *listArr = [[NSMutableArray alloc] init];
+    for (NSDictionary *dic in _hotArray) {
+        [listArr addObject:dic[@"keyword"]];
+    }
+    WEAKSELF;
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:listArr searchBarPlaceholder:@"运动户外超级品牌类日 跨店铺" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        
+        for (NSDictionary *dics in _hotArray) {
+            if ([searchText isEqualToString:dics[@"keyword"]]) {
+                GoodsScreeningVC *VC = [[GoodsScreeningVC alloc] init];
+                VC.hidesBottomBarWhenPushed = YES;
+                //                VC.category_id = dics[@"id"];
+                VC.goodsScreenType = GoodsScreenSerchType;
+                VC.title =  searchText;
+                [weakSelf.navigationController pushViewController:VC animated:YES];
+                break;
+            }
+        }
+        //        NSDictionary *dic = weakSelf.hotArray[]
+        
+    }];
+    // 3. Set style for popular search and search history
+    searchViewController.searchHistoryStyle = PYSearchHistoryStyleCell;
+    searchViewController.hotSearchStyle =  PYHotSearchStyleRectangleTag;
+    // 4. Set delegate
+    searchViewController.delegate = self;
+    // 5. Present a navigation controller
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 
@@ -363,14 +413,22 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 45;
+    if (self.resorceArray.count >0) {
+        return 45;
+
+    }
+    return 0;
 }
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 //    self.topSreenView.backgroundColor = [UIColor redColor];
-    return self.topSreenView;
+    if (self.resorceArray.count >0) {
+        return self.topSreenView;
+
+    }
+    return nil;
 }
 
 
@@ -412,6 +470,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 //            [weakSelf showDownMuenTitleKey:key andIndex:index andTitle:title];
             
         };
+        [_topSreenView layerForViewWith:0 AndLineWidth:0.5];
     }
     return _topSreenView;
 }

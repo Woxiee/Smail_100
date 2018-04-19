@@ -165,7 +165,6 @@
     }
     
     
-    
 }
 
 
@@ -203,6 +202,12 @@
     // 获取当前所在的城市名
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     //根据经纬度反向地理编译出地址信息
+    NSLog(@"%f%f",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+    [[KX_UserInfo sharedKX_UserInfo] loadUserInfoFromSanbox];
+    [KX_UserInfo sharedKX_UserInfo].latitude = [NSString stringWithFormat:@"%f",newLocation.coordinate.latitude];
+    [KX_UserInfo sharedKX_UserInfo].longitude = [NSString stringWithFormat:@"%f",newLocation.coordinate.longitude];
+    [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
+
     [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *array, NSError *error){
         if (array.count > 0){
             CLPlacemark *placemark = [array objectAtIndex:0];

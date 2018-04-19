@@ -346,7 +346,29 @@
 }
 
 
+- (IBAction)didBottowAction:(UIButton *)sender {
+    ///1000 1001  1002
+        if (sender.tag == 1000) {
+        self.tabBarController.selectedIndex = 0;
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    
+    if (sender.tag == 1001) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    if (sender.tag == 1002) {
+        self.tabBarController.selectedIndex = 3;
+        [self.navigationController popToRootViewControllerAnimated:YES];
+
+
+    }
+    
+}
+
+
 - (IBAction)addCartAction:(id)sender {
+    
+    
     WEAKSELF;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
@@ -411,10 +433,12 @@
         allPointStr = [NSString stringWithFormat:@"送%d积分",allPoint];
         [_allInfoArr addObject:allPointStr];
     }
-    if (KX_NULLString(_bugInfoLb.text )) {
-        _bugInfoLb.text = @"赶紧下单吧~";
-    }else{
+    if (_allInfoArr.count>0) {
         _bugInfoLb.text = [_allInfoArr componentsJoinedByString:@","];
+
+    }else{
+        _bugInfoLb.text = @"赶紧下单吧~";
+
     }
 }
 

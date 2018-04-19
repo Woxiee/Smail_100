@@ -39,7 +39,13 @@
     numberLN.text = _model.ass_mobile;
     numberNO.text = [NSString stringWithFormat:@"订单号:%@",_model.orderno];
     dateLNA.text = _model.ctime;
-    momeyLB.text = [NSString stringWithFormat:@"+%@",_model.last_value];
+    if (_model.is_plus.integerValue == 1  ) {
+        momeyLB.textColor = KMAINCOLOR;
+    }else{
+        momeyLB.textColor = [UIColor greenColor];
+
+    }
+    momeyLB.text = [NSString stringWithFormat:@"%@",_model.value];
     nameType.text = _model.title;
 
 }

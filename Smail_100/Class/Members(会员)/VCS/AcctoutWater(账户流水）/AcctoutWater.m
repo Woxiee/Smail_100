@@ -44,7 +44,10 @@
     segmentMenuVc.selectedColor = KMAINCOLOR;
     segmentMenuVc.MenuVcSlideType = WJSegmentMenuVcSlideTypeSlide;
     segmentMenuVc.SlideColor = KMAINCOLOR;
+    segmentMenuVc.backgroundColor = [UIColor whiteColor];
     segmentMenuVc.advanceLoadNextVc = NO;
+    
+    [segmentMenuVc layerForViewWith:0 AndLineWidth:1];
     
     //    NewOrderTitleType,                  /// 新机
     //    AccessoriesOrderTitleType,          ///配件

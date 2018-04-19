@@ -79,9 +79,14 @@
     [BaseHttpRequest postWithUrl:@"/ucenter/change_paypwd" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         NSString *msg = result[@"msg"];
-        if (result[@"code"] == 0) {
+        if ([result[@"code"] integerValue] == 0) {
             [weakSelf.view toastShow:msg];
-            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+
+            [[KX_UserInfo sharedKX_UserInfo] loadUserInfoFromSanbox];
+            [KX_UserInfo sharedKX_UserInfo].pay_password = _newsPwdTF.text;
+            [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
+
         }
         else{
             [weakSelf.view toastShow:msg];
