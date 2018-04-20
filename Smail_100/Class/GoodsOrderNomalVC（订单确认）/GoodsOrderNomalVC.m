@@ -744,12 +744,12 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     // NOTE: app_id设置
     order.app_id = appID;
     
-    // NOTE: 支付接口名称
+    // NOTE: 支付接口名称`
     order.method = @"alipay.trade.app.pay";
     
     // NOTE: 参数编码格式
     order.charset = @"utf-8";
-//    order.notifyUR = _payModel.callback;
+    order.notify_url = _payModel.callback;
     // NOTE: 当前时间点
     NSDateFormatter* formatter = [NSDateFormatter new];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];

@@ -15,8 +15,11 @@
     __weak IBOutlet UIImageView *infoImageView;
     
     
-    __weak IBOutlet UIButton *myCodeBtn;
     __weak IBOutlet NSLayoutConstraint *nameTopConstain;
+    
+    __weak IBOutlet UIButton *leveBtn;
+    __weak IBOutlet UIButton *myCodeBtn;
+
 }
 
 + (instancetype)membershipHeadView
@@ -36,7 +39,7 @@
 {
     if ([KX_UserInfo sharedKX_UserInfo].loginStatus) {
         nameTopConstain.constant  = -17;
-
+ ///"1",  0普通,1总代,2代理商,3合伙人  普通用户点击代理平台不能进入
         _nickNeme.text = [NSString stringWithFormat:@"%@(昵称)",[KX_UserInfo sharedKX_UserInfo].nickname];
         _phoneLabel.text = [KX_UserInfo sharedKX_UserInfo].mobile;
         _nickNeme.hidden = NO;
@@ -44,6 +47,18 @@
         _phoneLabel.hidden = NO;
         rightIconView.hidden = NO;
         infoImageView.hidden = NO;
+        
+        myCodeBtn.hidden = NO;
+        leveBtn.hidden = NO;
+        
+        
+        if ([[KX_UserInfo sharedKX_UserInfo].agent_level intValue] >0 ) {
+            leveBtn.hidden = YES;
+           
+            NSArray *leveList = @[@"",@"总代",@"代理商",@"合伙人"];
+           
+            _compangLB.text  = leveList[[[KX_UserInfo sharedKX_UserInfo].agent_level intValue]];
+        }
         self.nickNeme.backgroundColor = [UIColor whiteColor];
         self.nickNeme.textColor = KMAINCOLOR;
         [self.nickNeme layerForViewWith:10 AndLineWidth:0];
@@ -61,6 +76,9 @@
         _nickNeme.hidden = NO;
         rightIconView.hidden = YES;
         infoImageView.hidden = YES;
+        leveBtn.hidden = YES;
+        myCodeBtn.hidden = YES;
+        
       _headImage.image = [ UIImage imageNamed:@"6@3x.png"];
 
     }
@@ -74,6 +92,10 @@
 
 /// 二维码
 - (IBAction)didClickCordAction:(id)sender {
+    
+    if (_didClickMyCodeBlock) {
+        _didClickMyCodeBlock();
+    }
 }
 
 

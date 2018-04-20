@@ -17,6 +17,9 @@
 
 @property(nonatomic,strong) void(^didClickHHRBlock)(void);
 
+@property(nonatomic,strong) void(^didClickMyCodeBlock)(void);
+
+
 @property (weak, nonatomic) IBOutlet UILabel *compangLB;
 
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;

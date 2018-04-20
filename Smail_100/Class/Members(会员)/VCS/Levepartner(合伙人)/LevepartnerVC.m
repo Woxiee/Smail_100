@@ -121,6 +121,10 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
         cell.itemContentList = self.resorceArray[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.didClickItemBlock = ^(NSString *goodsId) {
+//            if ([[KX_UserInfo sharedKX_UserInfo].agent_level intValue] == 0 ) {
+//                [self.view toastShow:@"亲，购买创业礼包即可免费升级成为合伙人"];
+//                return;
+//            }
             GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
                                                          navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
             vc.productID = goodsId;

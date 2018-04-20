@@ -19,6 +19,9 @@
 
 @property (nonatomic, strong) NSMutableArray *detailList;
 
+@property (nonatomic, strong) NSDictionary *user_infoDic;
+
+
 @end
 
 @implementation ChangeThePhoneVC
@@ -46,6 +49,7 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
             LevePartnerModel *model = [LevePartnerModel yy_modelWithJSON:result[@"data"]];
             NSDictionary *userinfoDic = result[@"data"][@"user_info"];
+            weakSelf.user_infoDic = userinfoDic;
             model.banner = [NSArray yy_modelArrayWithClass:[Banners class] json:model.banner];
 
             NSMutableArray *imgList = [[NSMutableArray alloc] init];
@@ -127,6 +131,7 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    WEAKSELF;
     if ([self.resorceArray[indexPath.section] isKindOfClass:[NSString class]]) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"indefiiecell"];
         if (cell == nil) {
@@ -142,9 +147,23 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
         return cell;
     }else{
         LevePartnerCell *cell = [tableView dequeueReusableCellWithIdentifier:levePartnerCellID forIndexPath:indexPath];
-        cell.itemContentList = self.resorceArray[indexPath.section];
+        ItemContentList *model = self.resorceArray[indexPath.section];
+        cell.itemContentList = model;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.didClickItemBlock = ^(NSString *goodsId) {
+            if (![[KX_UserInfo sharedKX_UserInfo].idcard_auth isEqualToString:@"Y"] ) {
+                [self.view toastShow:@"请先实名认证后点击兑换"];
+                return ;
+            }
+            if ( [KX_UserInfo sharedKX_UserInfo].phone_money.integerValue <=0 ) {
+                [self.view toastShow:@"话费不足，不能进行兑换"];
+                return ;
+            }
+            if ([NSString compareOneDay:weakSelf.user_infoDic[@"valid_time"] withAnotherDay:[NSString getCurrentTime]]) {
+                [self.view toastShow:@"话费已过有效期，不能进行兑换"];
+                return ;
+            }
+            
             GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
                                                          navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
             vc.productID = goodsId;

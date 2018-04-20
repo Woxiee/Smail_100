@@ -916,6 +916,8 @@
 		E18CBA95206620A3003DF53A /* FYLCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E18CBA8B206620A3003DF53A /* FYLCityModel.m */; };
 		E18CBA96206620A3003DF53A /* FYLCityPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = E18CBA8D206620A3003DF53A /* FYLCityPickView.m */; };
 		E18CBA9B20662203003DF53A /* SelectBusinssVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E18CBA9A20662203003DF53A /* SelectBusinssVC.m */; };
+		E1D560512089CADF00422EB1 /* MyCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1D5604E2089CADE00422EB1 /* MyCodeVC.xib */; };
+		E1D560522089CADF00422EB1 /* MyCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D560502089CADF00422EB1 /* MyCodeVC.m */; };
 		E1EFC6A52068CAA300C78A8C /* GoodsAuctionXYVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC6A22068CAA200C78A8C /* GoodsAuctionXYVC.m */; };
 		E1EFC6A62068CAA300C78A8C /* GoodsAuctionXYVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EFC6A32068CAA200C78A8C /* GoodsAuctionXYVC.xib */; };
 		E1EFC6AA2068D8D700C78A8C /* GoodsScreeningVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EFC6A92068D8D700C78A8C /* GoodsScreeningVC.m */; };
@@ -2434,6 +2436,9 @@
 		E18CBA8D206620A3003DF53A /* FYLCityPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYLCityPickView.m; sourceTree = "<group>"; };
 		E18CBA9920662203003DF53A /* SelectBusinssVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectBusinssVC.h; sourceTree = "<group>"; };
 		E18CBA9A20662203003DF53A /* SelectBusinssVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectBusinssVC.m; sourceTree = "<group>"; };
+		E1D5604E2089CADE00422EB1 /* MyCodeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCodeVC.xib; sourceTree = "<group>"; };
+		E1D5604F2089CADF00422EB1 /* MyCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCodeVC.h; sourceTree = "<group>"; };
+		E1D560502089CADF00422EB1 /* MyCodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCodeVC.m; sourceTree = "<group>"; };
 		E1EFC6A22068CAA200C78A8C /* GoodsAuctionXYVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsAuctionXYVC.m; sourceTree = "<group>"; };
 		E1EFC6A32068CAA200C78A8C /* GoodsAuctionXYVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsAuctionXYVC.xib; sourceTree = "<group>"; };
 		E1EFC6A42068CAA300C78A8C /* GoodsAuctionXYVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsAuctionXYVC.h; sourceTree = "<group>"; };
@@ -3842,6 +3847,7 @@
 		E10B0BBF20528AE8008BA706 /* VCS */ = {
 			isa = PBXGroup;
 			children = (
+				E1D5604D2089CAC800422EB1 /* MyCode */,
 				3EBDCFC02083589A003F3649 /* SendSmailValue */,
 				E169B29C207F42C800137791 /* SmileFor */,
 				3E24E8F4207859FD006F5C32 /* Levepartner(合伙人) */,
@@ -6556,6 +6562,16 @@
 			path = FYLCityPickView;
 			sourceTree = "<group>";
 		};
+		E1D5604D2089CAC800422EB1 /* MyCode */ = {
+			isa = PBXGroup;
+			children = (
+				E1D5604F2089CADF00422EB1 /* MyCodeVC.h */,
+				E1D560502089CADF00422EB1 /* MyCodeVC.m */,
+				E1D5604E2089CADE00422EB1 /* MyCodeVC.xib */,
+			);
+			path = MyCode;
+			sourceTree = "<group>";
+		};
 		E1EFC6A72068D8D700C78A8C /* GoodsScreeningVC(筛选类表) */ = {
 			isa = PBXGroup;
 			children = (
@@ -7110,6 +7126,7 @@
 				E10B126520528B06008BA706 /* zhaohuimima@3x.png in Resources */,
 				E10B11D320528B06008BA706 /* gerenzhongxin9@3x.png in Resources */,
 				E11D418E206A2F230073E062 /* CloudInfoEditAndAddVC.xib in Resources */,
+				E1D560512089CADF00422EB1 /* MyCodeVC.xib in Resources */,
 				E10B127120528B06008BA706 /* xianxiashangjia16@3x.png in Resources */,
 				E10B0DDA20528AE8008BA706 /* OrderGoodDetailCell.xib in Resources */,
 				E10B125C20528B06008BA706 /* muban7@3x.png in Resources */,
@@ -7472,6 +7489,7 @@
 				E167EC2D205A50A800A8F744 /* SaleAfterVC.m in Sources */,
 				E10B0EC020528AF5008BA706 /* KCWebView.m in Sources */,
 				3EBDCFB12081A0AA003F3649 /* SmileForListVC.m in Sources */,
+				E1D560522089CADF00422EB1 /* MyCodeVC.m in Sources */,
 				E10B0D7B20528AE8008BA706 /* OrderManagementVC.m in Sources */,
 				E10B0FBB20528AFA008BA706 /* UIColor+hex.m in Sources */,
 				E10B0D8220528AE8008BA706 /* MerchantCenterVC.m in Sources */,
@@ -7989,7 +8007,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 68F7Y9HMY7;
+				DEVELOPMENT_TEAM = X2B23A8J7H;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/AppPaySdK",
@@ -8018,7 +8036,7 @@
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/WechtSDK1.8.2_NoPay",
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/WechatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Wx.WeiXiao;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wx.weixiao100;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -8034,7 +8052,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 68F7Y9HMY7;
+				DEVELOPMENT_TEAM = X2B23A8J7H;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/AppPaySdK",
@@ -8063,7 +8081,7 @@
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/WechtSDK1.8.2_NoPay",
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/WechatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Wx.WeiXiao;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wx.weixiao100;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

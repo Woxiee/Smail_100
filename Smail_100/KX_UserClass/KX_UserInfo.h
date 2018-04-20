@@ -93,6 +93,10 @@ singleton_interface(KX_UserInfo);
 @property (nonatomic , copy) NSString              * phone_money;
 @property (nonatomic , copy) NSString              * username;
 
+@property (nonatomic , copy) NSString              * agent_level; ///"1",  0普通,1总代,2代理商,3合伙人  普通用户点击代理平台不能进入，提示【您还不是代理商，请签约成为代理。】
+@property (nonatomic , copy) NSString              * maker_level; /// 0表示没有店铺，点击商家中心不能进入，提示【您还不是商家，请开通商家后进入。】
+@property (nonatomic , copy) NSString              * shop_level; /// "1",   大于0说明有推荐权限
+@property (nonatomic , copy) NSString              * idcard_auth; ///实名制字段 Y 
 
 
 /**

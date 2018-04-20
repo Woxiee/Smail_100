@@ -210,6 +210,12 @@ singleton_implementation(KX_UserInfo)
     [defaults setObject:self.point forKey:@"point"];
     [defaults setObject:self.air_money forKey:@"air_money"];
 
+    [defaults setObject:self.agent_level forKey:@"agent_level"];
+    [defaults setObject:self.maker_level forKey:@"maker_level"];
+    [defaults setObject:self.shop_level forKey:@"shop_level"];
+    [defaults setObject:self.idcard_auth forKey:@"idcard_auth"];
+
+
 
     [defaults synchronize];
 }
@@ -292,6 +298,13 @@ singleton_implementation(KX_UserInfo)
     self.air_money   = [defaults objectForKey:@"air_money"];
 
     self.point   = [defaults objectForKey:@"point"];
+    
+    
+    self.agent_level   = [defaults objectForKey:@"agent_level"];
+    self.maker_level   = [defaults objectForKey:@"maker_level"];
+    self.shop_level   = [defaults objectForKey:@"shop_level"];
+    self.idcard_auth   = [defaults objectForKey:@"idcard_auth"];
+
 
 }
 

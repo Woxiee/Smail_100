@@ -60,8 +60,8 @@
         
         _bgView = ({
         
-            UIView *view =[[UIView alloc]initWithFrame: CGRectMake(0, 0, 0.8125*Screen_width, 1.46*0.825*Screen_width - 50)];
-            view.frame = CGRectMake(0, 0, 0.8125*Screen_width, 1.46*0.825*Screen_width - 50);
+            UIView *view =[[UIView alloc]initWithFrame: CGRectMake(0, 0, 0.8125*Screen_width, 0.8125*Screen_width)];
+            view.frame = CGRectMake(0, 0, 0.8125*Screen_width, 0.8125*Screen_width);
             view.center = CGPointMake(Screen_width/2, Screen_height/2);
             if (isIphone4) {
                 

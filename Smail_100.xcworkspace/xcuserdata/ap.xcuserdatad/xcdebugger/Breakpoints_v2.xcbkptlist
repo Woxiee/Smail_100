@@ -19,22 +19,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Smail_100/Class/Members(&#x4f1a;&#x5458;)/VCS/AcctoutWater(&#x8d26;&#x6237;&#x6d41;&#x6c34;&#xff09;/AcctoutWater.m"
-            timestampString = "542878449.9204071"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "-setup"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Smail_100/Class/Members(&#x4f1a;&#x5458;)/VCS/AccountManagMect(&#x8d26;&#x6237;&#x7ba1;&#x7406;)/&#x57fa;&#x672c;&#x8d44;&#x6599;/BaseInforVC.m"
             timestampString = "543234621.914197"
             startingColumnNumber = "9223372036854775807"
@@ -132,7 +116,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Smail_100/KX_Base/KX_BaseTabbarController.m"
-            timestampString = "545826488.4643871"
+            timestampString = "545895890.853428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "163"

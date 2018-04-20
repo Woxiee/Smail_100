@@ -52,6 +52,8 @@
 - (IBAction)loginBtnAction:(id)sender {
     [self.view endEditing:YES];
 
+    
+    
     if ([NSString cheakInputStrIsBlankSpace:_userNameTextField.text]) {
         [self.view makeToast:@"请输入账号！"];
           return;
@@ -66,9 +68,10 @@
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     [param setObject:_userNameTextField.text forKey:@"mobile"];
     [param setObject:_userPassWDTextField.text forKey:@"password"];
-//     [param setObject:@"15989467261" forKey:@"mobile"];
-//    [param setObject:@"123456" forKey:@"password"];
 
+    [param setObject:@"18757587673" forKey:@"mobile"];
+    [param setObject:@"123456" forKey:@"password"];
+    
     WEAKSELF;
     [BaseHttpRequest postWithUrl:@"/ucenter/login" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -129,7 +132,10 @@
 
                     }
 //                    [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
-                    
+                    userinfo.maker_level = dataDic[@"maker_level"];
+                    userinfo.shop_level = dataDic[@"shop_level"];
+                    userinfo.agent_level = dataDic[@"agent_level"];
+
 //                    [weakSelf getUserInfoRequest];
                     userinfo.loginStatus = YES;
                     userinfo.accout = _userNameTextField.text;

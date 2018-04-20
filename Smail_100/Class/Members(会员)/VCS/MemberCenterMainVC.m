@@ -24,6 +24,9 @@
 #import "SmileForVC.h"
 #import "SendSmailValueVC.h"
 
+#import "MyCodeVC.h"
+
+
 #define NAVBAR_COLORCHANGE_POINT - IMAGE_HEIGHT
 #define NAV_HEIGHT 64
 #define IMAGE_HEIGHT 0
@@ -86,11 +89,14 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
 
 - (void)getUserInfo
 {
-    [BaseHttpRequest postWithUrl:@"/goods/getPhoneGoods" andParameters:nil andRequesultBlock:^(id result, NSError *error) {
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    [param setObject:@"get" forKey:@"method"];
+//http://39.108.4.18:6803/api/ucenter/user  user_id=84561&method=get
+    [BaseHttpRequest postWithUrl:@"/ucenter/user" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
             KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
             NSDictionary *dataDic = [result valueForKey:@"data"];
-
             userinfo.paytime =  dataDic[@"paytime"];
             userinfo.mall_id = dataDic[@"mall_id"];
             userinfo.status = dataDic[@"status"];
@@ -125,7 +131,13 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
             
             userinfo.air_money   = dataDic[@"coins"][@"air_money"];
             userinfo.money   = dataDic[@"coins"][@"money"];
- [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
+            userinfo.maker_level = dataDic[@"maker_level"];
+            userinfo.shop_level = dataDic[@"shop_level"];
+            userinfo.agent_level = dataDic[@"agent_level"];
+            userinfo.idcard_auth = dataDic[@"idcard_auth"];
+
+            
+            [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
         }
 
     }];
@@ -153,9 +165,17 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     _headerView = [MemberCenterHeaderView membershipHeadView];
+    _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 165);
     WEAKSELF;
     _headerView.didClickHHRBlock = ^{
         LevepartnerVC *VC = [[LevepartnerVC alloc] init];
+        VC.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:VC animated:YES];
+    };
+    
+    _headerView.didClickMyCodeBlock = ^{
+        MyCodeVC *VC = [[MyCodeVC alloc] init];
+        VC.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:VC animated:YES];
     };
     self.tableView.tableHeaderView = _headerView;
@@ -355,18 +375,26 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
 
 - (void)pushVCIndex:(NSInteger )index
 {
-   
-    if (index == 4) {
-        MerchantCenterVC *VC = [[MerchantCenterVC alloc] init];
-        VC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController  pushViewController:VC animated:YES];
 
+    if (index == 4) {
+        if ([KX_UserInfo sharedKX_UserInfo].maker_level.integerValue >0) {
+            MerchantCenterVC *VC = [[MerchantCenterVC alloc] init];
+            VC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController  pushViewController:VC animated:YES];
+        }else{
+            [self.view toastShow:@"您还不是商家，请开通商家后进入"];
+        }
     }
     
     else if (index == 6) {
-        AgentPlatformVC *VC = [[AgentPlatformVC alloc] init];
-        VC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController  pushViewController:VC animated:YES];
+        if ([KX_UserInfo sharedKX_UserInfo].agent_level.integerValue >0) {
+            AgentPlatformVC *VC = [[AgentPlatformVC alloc] init];
+            VC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController  pushViewController:VC animated:YES];
+        }else{
+            [self.view toastShow:@"您还不是代理商，请签约成为代理。"];
+        }
+     
     }
     
     else if (index == 7) {

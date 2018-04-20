@@ -691,13 +691,20 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 //        if (contenH.height >20) {
 //               return 165+contenH.height;
 //        }
+        ItemInfoList *model = self.resorceArray[indexPath.section+1];
+
         NSInteger row = SCREEN_WIDTH/27;
         if(self.resorceArray.count <2) return 140;
-        ItemInfoList *model = self.resorceArray[indexPath.section+1];
+           CGSize contenSize1 = [NSString heightForString:model.itemContent.desc fontSize:Font13 WithSize:CGSizeMake(SCREEN_WIDTH - 30, SCREEN_WIDTH)];
+        
         if (model.itemContent.tags.count > row) {
-            return 160+15;
+            return 160+15 +contenSize1.height - 15;
         }
-        return 160;
+        if (model.itemContent.tags.count == 0) {
+            return 160 +contenSize1.height  - 23;
+        }
+     
+        return 160 +contenSize1.height  - 10;
     }
     else if (indexPath.section == 2){
         if (_maxWebHight == 0) {

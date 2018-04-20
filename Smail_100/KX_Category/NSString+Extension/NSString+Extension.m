@@ -189,22 +189,16 @@
      NSDate *dateB = [dateFormatter dateFromString:endDay];
     if (dateA == nil || dateB == nil) {
         [dateFormatter setDateFormat:@"yyyy-MM-dd "];
-        NSDate *dateA = [dateFormatter dateFromString:startDay];
-        NSDate *dateB = [dateFormatter dateFromString:endDay];
-        NSComparisonResult result = [dateA compare:dateB];
-        /// NSOrderedDescending 过去
-        if (result == NSOrderedDescending) {
-            return NO;
-        }
-        /// NSOrderedSame 当前
-        else if (result == NSOrderedSame){
-            return YES;
-        }
-        /// NSOrderedAscending 未来
-        else if (result == NSOrderedAscending){
-            return YES;
-        }
+       dateA = [dateFormatter dateFromString:startDay];
+       dateB = [dateFormatter dateFromString:endDay];
 
+    }
+    if (dateA == nil || dateB == nil) {
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+       dateA = [dateFormatter dateFromString:startDay];
+       dateB = [dateFormatter dateFromString:endDay];
+        
+        
     }
 
      NSComparisonResult result = [dateA compare:dateB];
