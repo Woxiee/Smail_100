@@ -18,6 +18,7 @@
                 <outlet property="industryTF" destination="mDE-dd-L3r" id="GVh-df-I6i"/>
                 <outlet property="jfblTF" destination="6xC-pG-kEe" id="Tl7-U1-XzY"/>
                 <outlet property="recommendedTF" destination="hQa-8s-IMm" id="f3D-kt-r4g"/>
+                <outlet property="scrollView" destination="kZx-xF-l7p" id="NUb-9a-bfJ"/>
                 <outlet property="storeAddressTF" destination="hZ4-Kd-fgU" id="SDp-b1-2GR"/>
                 <outlet property="storeAddressView" destination="C2Z-lV-AqC" id="mCn-U4-Tq8"/>
                 <outlet property="storeInfoTF" destination="kJ7-oA-ZKD" id="I4c-el-IYb"/>

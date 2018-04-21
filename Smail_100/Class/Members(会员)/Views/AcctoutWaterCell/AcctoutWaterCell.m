@@ -42,8 +42,7 @@
     if (_model.is_plus.integerValue == 1  ) {
         momeyLB.textColor = KMAINCOLOR;
     }else{
-        momeyLB.textColor = [UIColor greenColor];
-
+        momeyLB.textColor = RGB(99, 166, 95);
     }
     momeyLB.text = [NSString stringWithFormat:@"%@",_model.value];
     nameType.text = _model.title;

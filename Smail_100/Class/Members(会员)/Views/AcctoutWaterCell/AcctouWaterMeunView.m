@@ -17,7 +17,7 @@
 @property (nonatomic,strong) UIButton *selectedBtn2;
 
 @property (nonatomic, strong) NSString *direction;
-@property (nonatomic, strong) NSString *trans_type;
+@property (nonatomic, strong) NSString *type;
 
 @property (nonatomic, strong) NSMutableArray *btnArr1;
 @property (nonatomic, strong) NSMutableArray *btnArr2;
@@ -53,7 +53,7 @@
     [self.darkView addGestureRecognizer:tapGestureRecognizer];
     
     UIView *bottomView = [[UIView alloc] init];
-    bottomView.frame = CGRectMake(0,darkView.mj_y, SCREEN_WIDTH,155);
+    bottomView.frame = CGRectMake(0,darkView.mj_y, SCREEN_WIDTH,195);
     bottomView.backgroundColor  = [UIColor whiteColor];
     [self addSubview:bottomView];
     self.bottomView = bottomView;
@@ -62,9 +62,8 @@
     lineView.backgroundColor = BACKGROUND_COLOR;
     [bottomView addSubview:lineView];
     
-    
     NSArray *titles1  = @[@"方向",@"全部类型",@"收入",@"支出"];
-    NSArray *titles2  = @[@"类型",@"全部类型",@"激励笑脸",@"兑换积分",@"空充笑脸",@"笑脸兑换"];
+    NSArray *titles2  = @[@"类型",@"全部类型",@"激励笑脸",@"兑换积分",@"空充笑脸",@"笑脸兑换",@"",@"支付宝",@"微信"];
 
     int btnW = 55;
     int btnH = 30;
@@ -80,9 +79,8 @@
         [btn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
         [btn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateSelected];
         [btn layerWithRadius:6 lineWidth:1 color:LINECOLOR];
-        if (i ==  0) {
+        if (i ==  0 ) {
             btn.titleLabel.font = Font15;
-            [btn layerWithRadius:0 lineWidth:0 color:LINECOLOR];
 
         }else{
             if (i == 1) {
@@ -98,10 +96,16 @@
     lineView1.backgroundColor = BACKGROUND_COLOR;
     [bottomView addSubview:lineView1];
     
-    
+ 
+
     for (int i = 0; i<titles2.count; i++) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake((btnW+pading)*i, CGRectGetMaxY(lineView1.frame)+10, btnW , btnH);
+        NSInteger index = i % 6;
+        NSInteger page = i / 6;
+        if (SCREEN_WIDTH == 320) {
+           index = i % 5;
+        }
+                                                                                                                                                                                UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake((btnW+pading)*index, CGRectGetMaxY(lineView1.frame)+10 +page*(btnH+10), btnW , btnH);
         btn.tag = 100 + i;
         btn.timeInterVal = 0;
         btn.titleLabel.font = Font11;
@@ -110,9 +114,10 @@
         [btn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
         [btn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateSelected];
         [btn layerWithRadius:6 lineWidth:1 color:LINECOLOR];
-        if (i ==  0) {
+        if (i ==  0 ||  i == 6) {
             btn.titleLabel.font = Font15;
             [btn layerWithRadius:0 lineWidth:0 color:LINECOLOR];
+
         }else{
             if (i == 1) {
                 btn.selected = YES;
@@ -127,7 +132,7 @@
 //    UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,60, 50)];
 //    titleLB.text = @"方向"；[
     
-    UIView  *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView1.frame)+10+30+10, SCREEN_WIDTH, 1)];
+    UIView  *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView1.frame)+80+10, SCREEN_WIDTH, 1)];
     lineView2.backgroundColor = BACKGROUND_COLOR;
     [bottomView addSubview:lineView2];
     
@@ -181,11 +186,11 @@
         _direction = @"";
     }
     if ([str isEqualToString:@"收入"]) {
-        _direction = @"";
+        _direction = @"IN";
 
     }
     if ([str isEqualToString:@"支出"]) {
-        _direction = @"";
+        _direction = @"OUT";
 
     }
 
@@ -194,7 +199,7 @@
 
 - (void)clickIndex1:(UIButton *)sender
 {
-//    NSArray *titles2  = @[@"类型",@"全部类型",@"激励笑脸",@"兑换积分",@"空充笑脸",@"笑脸兑换"];
+ //   NSArray *titles2  = @[@"类型",@"全部类型",@"激励笑脸",@"兑换积分",@"空充笑脸",@"笑脸兑换",@"",@"支付宝",@"微信"];
     for (UIButton *btn in _btnArr2) {
         btn.selected = NO;
         
@@ -216,32 +221,41 @@
     
     NSString *str = sender.titleLabel.text;
     if ([str isEqualToString:@"全部类型"]) {
-        _trans_type = @"";
+        _type = @"";
     }
     if ([str isEqualToString:@"激励笑脸"]) {
-        _trans_type = @"";
+        _type = @"coins_money";
 
     }
     if ([str isEqualToString:@"兑换积分"]) {
-        _trans_type = @"";
+        _type = @"point";
 
     }
     
     if ([str isEqualToString:@"空充笑脸"]) {
-        _trans_type = @"";
+        _type = @"coins_air_money";
 
     }
     
     if ([str isEqualToString:@"笑脸兑换"]) {
-        _trans_type = @"";
+        _type = @"Withdraw";
 
+    }
+    
+    if ([str isEqualToString:@"支付宝"]) {
+        _type = @"alipay";
+        
+    }
+    if ([str isEqualToString:@"微信"]) {
+        _type = @"wxpay";
+        
     }
     [_selectedBtn2 layerWithRadius:6 lineWidth:1 color:KMAINCOLOR];
 
     
     if ([str isEqualToString:@"确定"]) {
         if (_didClickCellBlock) {
-            _didClickCellBlock(_direction,_trans_type);
+            _didClickCellBlock(_direction,_type);
         }
         [self hiddenSheetView];
 

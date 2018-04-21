@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SmileForVC : KX_BaseTableViewController
-
-@end
+@property (nonatomic, strong) NSString *showType; /// nil 笑脸兑换  1商家体现
+ @end

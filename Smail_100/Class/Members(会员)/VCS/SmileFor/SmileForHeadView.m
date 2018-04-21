@@ -31,7 +31,7 @@
     _imgList = [[NSMutableArray alloc] init];
 
     for (NSInteger i = 0; i < 3; i++) {
-        UILabel *numberLB = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 3 * i, 30, SCREEN_WIDTH / 3, 20)];
+        UILabel *numberLB = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 3 * i, 15, SCREEN_WIDTH / 3, 20)];
         numberLB.font = [UIFont systemFontOfSize:20];
         numberLB.textColor = KMAINCOLOR;
         numberLB.textAlignment = NSTextAlignmentCenter;

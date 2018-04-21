@@ -24,7 +24,7 @@ static NSString* cellID = @"AgentPlatfoemListCellID";
     [super viewDidLoad];
     [self setup];
     [self setConfiguration];
-    [self setRefreshs];
+    [self setRefresh];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -50,6 +50,20 @@ static NSString* cellID = @"AgentPlatfoemListCellID";
 }
 
 
+#pragma mark - refresh 添加刷新方法
+-(void)setRefresh
+{
+    WEAKSELF;
+    [self.tableView headerWithRefreshingBlock:^{
+        [weakSelf loadNewDate];
+    }];
+    
+    [self.tableView footerWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
+    
+}
+
 -(void)loadNewDate
 {
     self.page = 0;
@@ -62,8 +76,7 @@ static NSString* cellID = @"AgentPlatfoemListCellID";
     [self requestListNetWork];
 }
 
-
--(void)setRefreshs
+-(void)stopRefresh
 {
     [self.tableView stopFresh:self.resorceArray.count pageIndex:self.page];
     if (self.resorceArray.count == 0) {
@@ -124,7 +137,7 @@ static NSString* cellID = @"AgentPlatfoemListCellID";
                     }
                     [weakSelf.resorceArray addObjectsFromArray:listArray];
                     [weakSelf.tableView reloadData];
-                    [weakSelf setRefreshs];
+                    [weakSelf stopRefresh];
                 }
             }
         }else{

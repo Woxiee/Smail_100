@@ -342,6 +342,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     
    else if ([titleStr isEqualToString:@"笑脸兑换"]) {
        SmileForVC *vc = [[SmileForVC alloc] init];
+       vc.title = titleStr;
        vc.hidesBottomBarWhenPushed = YES;
        [self.navigationController pushViewController:vc animated:YES];
    }

@@ -45,11 +45,8 @@
 /// 初始化视图
 - (void)setup
 {
-    
-    
-    _lineView3= [UIView new];
+     _lineView3= [UIView new];
     _lineView3.backgroundColor = LINECOLOR;
-    
     
      _iconView = [UIImageView new];
 //    [ _iconView layerForViewWith:2 AndLineWidth:1];
@@ -144,7 +141,7 @@
     .topSpaceToView(_numLB, 0)
     .leftSpaceToView(contentView, 0)
     .rightSpaceToView(contentView, 0)
-    .heightIs(1);
+    .heightIs(0);
     
 }
 
@@ -172,18 +169,28 @@
     _numLB.text = [NSString stringWithFormat:@"*%@",_seller.goods_nums];
     [self setupAutoHeightWithBottomView:_lineView2 bottomMargin:1];
 //    NSString *allNumber = [NSString stringWithFormat:@"%@",_seller.goods_nums];
-    NSString *allPrice = [NSString stringWithFormat:@"¥%@",_seller.price];
-    NSString *allPoint = [NSString stringWithFormat:@"%@",_seller.point];
+//    NSString *allPrice = [NSString stringWithFormat:@"¥%@",_seller.price];
+//    NSString *allPoint = [NSString stringWithFormat:@"%@",_seller.point];
     
-    
-
-    if ([_seller.point integerValue] >0) {
-        NSString * hintString =  [NSString stringWithFormat:@"%@+%@积分",allPrice,allPoint];
-        _priceLB.attributedText = [NSString attributeStringWithContent:hintString keyWords:@[@"积分",@"+"]];
-    }else{
-
-        _priceLB.text = [NSString stringWithFormat:@"%@",allPrice] ;
+    NSMutableArray *periceArr = [[NSMutableArray alloc] init];
+    if (_seller.price.floatValue >0) {
+        [periceArr addObject:[NSString stringWithFormat:@"¥%@",_seller.price]];
     }
+
+    if (_seller.point.floatValue >0) {
+        [periceArr addObject:[NSString stringWithFormat:@"%@积分",_seller.point]];
+    }
+    NSString * hintString = [periceArr componentsJoinedByString:@"+"];
+    _priceLB.attributedText = [NSString attributeStringWithContent:hintString keyWords:@[@"积分",@"+"]];
+
+
+//    if ([_seller.point integerValue] >0) {
+//        NSString * hintString =  [NSString stringWithFormat:@"%@+%@积分",allPrice,allPoint];
+//        _priceLB.attributedText = [NSString attributeStringWithContent:hintString keyWords:@[@"积分",@"+"]];
+//    }else{
+//
+//        _priceLB.text = [NSString stringWithFormat:@"%@",allPrice] ;
+//    }
 
    
  

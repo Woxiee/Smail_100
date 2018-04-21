@@ -72,7 +72,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     }];
     
     [self getHoldKeyWorld];
-
+    [self setRefresh];
 }
 
 
@@ -120,13 +120,13 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
                     [imgList addObject:banner.pict_url];
                 }
                 _cycleView.imageURLStringsGroup = imgList;
-                if (weakSelf.page == 0) {
+                if (weakSelf.page == 1) {
                     [weakSelf.resorceArray removeAllObjects];
                 }
                 [weakSelf.resorceArray removeAllObjects];
                 [weakSelf.resorceArray addObjectsFromArray:listArray];
                 [weakSelf.tableView reloadData];
-                [weakSelf setRefreshs];
+                [weakSelf stopRefresh];
             }
         }else{
             [weakSelf showHint:msg];
@@ -431,10 +431,23 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     return nil;
 }
 
+-(void)setRefresh
+{
+    WEAKSELF;
+    [self.tableView headerWithRefreshingBlock:^{
+        [weakSelf loadNewDate];
+    }];
+    
+    [self.tableView footerWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
+    
+}
+
 
 -(void)loadNewDate
 {
-    self.page = 0;
+    self.page = 1;
     [self requestListNetWork];
 }
 
@@ -444,7 +457,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     [self requestListNetWork];
 }
 
--(void)setRefreshs
+-(void)stopRefresh
 {
     [self.tableView stopFresh:self.resorceArray.count pageIndex:self.page];
     if (self.resorceArray.count == 0) {

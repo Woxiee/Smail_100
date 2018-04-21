@@ -73,6 +73,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="lineView" destination="SfW-u0-wKs" id="d80-io-JYt"/>
+                <outlet property="upBtn" destination="7vx-m3-onK" id="n8B-h3-P6y"/>
             </connections>
             <point key="canvasLocation" x="-1" y="-262"/>
         </view>

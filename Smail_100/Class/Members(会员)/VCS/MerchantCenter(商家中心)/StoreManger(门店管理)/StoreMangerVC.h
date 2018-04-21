@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StoreMangerVC : UIViewController
+@interface StoreMangerVC : KX_BaseViewController
 
 @end

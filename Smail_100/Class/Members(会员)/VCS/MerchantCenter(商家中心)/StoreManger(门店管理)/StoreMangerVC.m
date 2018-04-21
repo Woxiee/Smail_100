@@ -9,6 +9,9 @@
 #import "StoreMangerVC.h"
 
 @interface StoreMangerVC ()
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+
 @property (weak, nonatomic) IBOutlet UIView *storeView;
 @property (weak, nonatomic) IBOutlet UITextField *storeTF;
 @property (weak, nonatomic) IBOutlet UITextField *storeInfoTF;
@@ -32,6 +35,11 @@
     [super viewDidLoad];
     
     
+}
+
+
+-(void)viewDidLayoutSubviews{
+    _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 900);
 }
 
 - (IBAction)didSureAciton:(id)sender {

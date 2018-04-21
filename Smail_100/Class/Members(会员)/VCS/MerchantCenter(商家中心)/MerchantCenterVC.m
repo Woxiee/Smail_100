@@ -12,8 +12,15 @@
 #import "StoreMangerVC.h"
 #import "GoodsManagerVC.h"
 #import "GoodManageVC.h"
+#import "SmileForVC.h"
 
 @interface MerchantCenterVC ()
+@property (nonatomic, strong) NSDictionary *resultDic;
+
+@property (nonatomic, strong) NSMutableArray  *titleArr;
+@property (nonatomic, strong) NSMutableArray  *detailArr;
+@property (nonatomic, strong)   UILabel *nameLB;
+
 
 @end
 
@@ -22,20 +29,43 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
+    [self getInfoRequest];
+}
+
+- (void)getInfoRequest
+{
+    WEAKSELF;
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    [BaseHttpRequest postWithUrl:@"/shop/myshop" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+            NSArray *monenyList = @[result[@"data"][@"today_money"],result[@"data"][@"month_money"],result[@"data"][@"money"]];
+            for (int i = 0; i<monenyList.count; i++) {
+                UILabel *label = _titleArr[i];
+                label.text = monenyList[i];
+            }
+            _nameLB.text = result[@"data"][@"shop_name"];
+            
+            weakSelf.resultDic = result[@"data"];
+
+        }
+    }];
 }
 
 
 - (void)setup
 {
-//    MerchantHeadView *headView = [[MerchantHeadView alloc] initWithFrame:self.view.bounds];
-//    [self.view addSubview:headView];
-    
+
+    _titleArr = [[NSMutableArray alloc] init];
+    _detailArr = [[NSMutableArray alloc] init];
+
+
     self.title  = @"商家中心";
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 140)];
     headView.backgroundColor = KMAINCOLOR;
     [self.view addSubview:headView];
     
-    NSArray *listArr = @[@"推荐人数",@"本月营业额(元) ",@"总营业额(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                                    "];
+    NSArray *listArr = @[@"今日营业额(元)",@"本月营业额(元) ",@"总营业额(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                                    "];
     NSArray *numberArr = @[@"8888",@"18888",@"888888                                                                                                                                                                                                                                                                                                                                                                                                                                                                    "];
 
     for (NSInteger i = 0; i < 3; i++) {
@@ -53,6 +83,8 @@
         titleLB.textAlignment = NSTextAlignmentCenter;
         [headView addSubview:titleLB];
         
+        [_titleArr addObject:numberLB];
+
     }
     
     UILabel *nameLB = [[UILabel alloc] initWithFrame:CGRectMake(0, 90, SCREEN_WIDTH, 20)];
@@ -61,6 +93,7 @@
     nameLB.textColor = [UIColor whiteColor];
     nameLB.textAlignment = NSTextAlignmentCenter;
     [headView addSubview:nameLB];
+    _nameLB = nameLB;
 
     
     UIButton *reflectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -74,7 +107,7 @@
     
     
     
-    UIImageView *bottomView = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(headView.frame)- 30, SCREEN_WIDTH, 190)];
+    UIImageView *bottomView = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(headView.frame)- 25, SCREEN_WIDTH, 190)];
     bottomView.image = [UIImage imageNamed:@"shangjiazhongxin14@3x.png"];
     bottomView.userInteractionEnabled  = YES;
     [self.view addSubview:bottomView];
@@ -104,7 +137,7 @@
         label.text = titleArray[i];
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor blackColor];
-        label.font = Font15;
+        label.font = Font14;
         [btn addSubview:label];
         
     }
@@ -154,8 +187,14 @@
 
 - (void)didClilkAction
 {
-    
+    SmileForVC *vc = [[SmileForVC alloc] init];
+    vc.title = @"商家体现";
+    vc.showType = @"1";
+    [self.navigationController pushViewController:vc animated:YES];
 }
+
+
+
 
 
 @end

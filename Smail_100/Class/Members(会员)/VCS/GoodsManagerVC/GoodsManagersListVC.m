@@ -91,13 +91,22 @@
 }
 
 
-- (void)editGoodList:(MeChantOrderModel *)model andUrl:(NSString *)url
+- (void)editGoodList:(MeChantOrderModel *)model andUrl:(NSString *)url isUpdate:(BOOL)isUpdate
 {
     WEAKSELF;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:model.goods_id forKey:@"goods_id"];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    if (isUpdate) {
+        
+        if ([model.status isEqualToString:@"Enabled"]) {
+            [param setObject:@"Disabled" forKey:@"status"];
 
+        }else{
+            [param setObject:@"Enabled" forKey:@"status"];
+
+        }
+    }
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     [BaseHttpRequest postWithUrl:url andParameters:param andRequesultBlock:^(id result, NSError *error) {
         LOG(@"商品订单 == %@",result);
@@ -106,7 +115,6 @@
         NSString *msg = [result valueForKey:@"msg"];
         //        NSDictionary *dic = result[@"data"];
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
-            
             NSArray *listArray  = [[NSArray alloc] init];
             if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
 //                listArray = [MeChantOrderModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
@@ -147,6 +155,7 @@
     }
     MeChantOrderModel *model = self.resorceArray[indexPath.section];
     cell.model = model;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }
@@ -186,23 +195,19 @@
     WEAKSELF;
     GoodsManageView *footView = [[NSBundle mainBundle] loadNibNamed:@"GoodsManageView" owner:nil options:nil].lastObject;
     MeChantOrderModel *model = self.resorceArray[section];
-
+    footView.model = model;
     footView.didClickChangBtnBlock = ^(NSInteger index) {
         /// 0上架 1 编辑  2 删除
         if (index == 0) {
-//            AddOrEidtGoodVC *VC =  [[AddOrEidtGoodVC alloc] init];
-//            VC.model  = model;
-//            [weakSelf.navigationController pushViewController:VC animated:YES];
+            [weakSelf editGoodList:model andUrl:@"/shop/goods_status" isUpdate:YES];
         }
         if (index == 1) {
             AddOrEidtGoodVC *VC =  [[AddOrEidtGoodVC alloc] init];
             VC.model  = model;
             [weakSelf.navigationController pushViewController:VC animated:YES];
-//            [weakSelf editGoodList:model andUrl:@"/shop/goods_delete"];
-
         }
         if (index == 2) {
-            [weakSelf editGoodList:model andUrl:@"/shop/goods_delete"];
+            [weakSelf editGoodList:model andUrl:@"/shop/goods_delete" isUpdate:NO];
 
         }
     };

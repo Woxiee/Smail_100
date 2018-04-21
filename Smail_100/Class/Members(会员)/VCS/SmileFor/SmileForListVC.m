@@ -28,8 +28,8 @@ static NSString* SmileForListCellID = @"SmileForListCell";
     [super viewDidLoad];
     [self setup];
     [self setConfiguration];
-    [self setRefreshs];
-    
+    [self setRefresh];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -51,17 +51,20 @@ static NSString* SmileForListCellID = @"SmileForListCell";
 /// 初始化视图
 - (void)setup
 {
-    SmileForHeadView *headView = [[SmileForHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
-    headView.backgroundColor = [UIColor whiteColor];
-    self.tableView.tableHeaderView = headView;
     [self.view addSubview:self.tableView];
-    self.headView = headView;
+    if (KX_NULLString(_status)) {
+        SmileForHeadView *headView = [[SmileForHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 55)];
+        headView.backgroundColor = [UIColor whiteColor];
+        self.tableView.tableHeaderView = headView;
+        self.headView = headView;
+    }
+
 }
 
 
 -(void)loadNewDate
 {
-    self.page = 0;
+    self.page = 1;
     [self requestListNetWork];
 }
 
@@ -71,7 +74,22 @@ static NSString* SmileForListCellID = @"SmileForListCell";
     [self requestListNetWork];
 }
 
--(void)setRefreshs
+-(void)setRefresh
+{
+    WEAKSELF;
+    [self.tableView headerWithRefreshingBlock:^{
+        [weakSelf loadNewDate];
+    }];
+    
+    [self.tableView footerWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
+    
+}
+
+
+
+-(void)stopRefresh
 {
     [self.tableView stopFresh:self.resorceArray.count pageIndex:self.page];
     if (self.resorceArray.count == 0) {
@@ -81,8 +99,6 @@ static NSString* SmileForListCellID = @"SmileForListCell";
     }
     
 }
-
-
 
 #pragma mark - set懒加载
 /*懒加载*/
@@ -130,13 +146,13 @@ static NSString* SmileForListCellID = @"SmileForListCell";
             if ([dataArr isKindOfClass:[NSArray class]]) {
                 if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
                     listArray = [AcctoutWaterModel mj_objectArrayWithKeyValuesArray:dataArr];
-                    if (weakSelf.page == 0) {
+                    if (weakSelf.page == 1) {
                         [weakSelf.resorceArray removeAllObjects];
                     }
                     [weakSelf.resorceArray addObjectsFromArray:listArray];
                     weakSelf.headView.dataDic = result;
                     [weakSelf.tableView reloadData];
-                    [weakSelf setRefreshs];
+                    [weakSelf stopRefresh];
                 }
             }
         }else{

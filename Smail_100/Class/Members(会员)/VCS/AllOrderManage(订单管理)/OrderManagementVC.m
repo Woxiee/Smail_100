@@ -203,7 +203,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
 
         if (isSuccess) {
-            if (weakSelf.page == 0) {
+            if (weakSelf.page == 1) {
                 [weakSelf.resorceArray removeAllObjects];
             }
             [weakSelf.resorceArray addObjectsFromArray:dataArray];
@@ -335,7 +335,7 @@
     
     // NOTE: 参数编码格式
     order.charset = @"utf-8";
-    //    order.notifyUR = _payModel.callback;
+    order.notify_url = _payModel.callback;
     // NOTE: 当前时间点
     NSDateFormatter* formatter = [NSDateFormatter new];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];

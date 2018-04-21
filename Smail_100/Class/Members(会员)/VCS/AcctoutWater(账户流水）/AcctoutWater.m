@@ -12,8 +12,9 @@
 
 @interface AcctoutWater ()
 @property (nonatomic, strong) AcctoutWaterLIstVC *allVC;
-@property (nonatomic, strong) AcctoutWaterLIstVC *incomeVC;
-@property (nonatomic, strong) AcctoutWaterLIstVC *spendVC;
+@property (nonatomic, strong) AcctoutWaterLIstVC *inVC;
+@property (nonatomic, strong) AcctoutWaterLIstVC *outVC;
+
 @property(nonatomic,strong)  AcctouWaterMeunView *meunView;
 @property(nonatomic,assign)  NSInteger selectIndex;
 @property(nonatomic,strong)  NSArray *contollers;
@@ -62,15 +63,16 @@
     
     self.title = @"账户流水";
     titleArr = @[@"全部",@"收入",@"支出"];
-    _allVC = [[AcctoutWaterLIstVC alloc]init];
-    _allVC.direction = @"";
     
-    _incomeVC = [[AcctoutWaterLIstVC alloc]init];
-    _allVC.direction = @"IN";
+    _allVC = [[AcctoutWaterLIstVC alloc] init];
+    _allVC.directions = @"";
     
-    _spendVC = [[AcctoutWaterLIstVC alloc]init];
-    _allVC.direction = @"OUT";
-    _contollers = @[_allVC,_incomeVC,_spendVC];
+    _inVC = [[AcctoutWaterLIstVC alloc] init];
+    _inVC.directions = @"IN";
+    _outVC = [[AcctoutWaterLIstVC alloc] init];
+    _outVC.directions = @"OUT";
+    
+    _contollers = @[_allVC,_inVC,_outVC];
     /* 导入数据 */
     [segmentMenuVc addSubVc:_contollers subTitles:titleArr];
     WEAKSELF;
@@ -86,8 +88,8 @@
     AcctouWaterMeunView *meunView = [[AcctouWaterMeunView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 47)];
     meunView.didClickCellBlock = ^(NSString *str, NSString *str1) {
         AcctoutWaterLIstVC *VC  = [_contollers objectAtIndex:weakSelf.selectIndex];
-        VC.direction = str;
-        VC.trans_type = str1;
+        VC.directions = str;
+        VC.type = str1;
         [VC requestListNetWork];
     };
     self.meunView = meunView;

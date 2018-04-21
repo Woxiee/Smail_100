@@ -23,7 +23,7 @@
 - (void)setup
 {
     
-    self.title = @"兑换流水";
+    self.title = @"兑换记录";
     WJSegmentMenuVc *segmentMenuVc = [[WJSegmentMenuVc alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 45)];
     [self.view addSubview:segmentMenuVc];
     /* 自定义设置(可不设置为默认值) */
@@ -34,6 +34,8 @@
     segmentMenuVc.MenuVcSlideType = WJSegmentMenuVcSlideTypeSlide;
     segmentMenuVc.SlideColor = KMAINCOLOR;
     segmentMenuVc.advanceLoadNextVc = NO;
+    segmentMenuVc.backgroundColor = [UIColor whiteColor];
+    [segmentMenuVc layerForViewWith:0 AndLineWidth:0.5];
     NSArray *titleArr = @[@"全部",@"兑换中",@"已成功",@"已驳回"];
     NSArray *status = @[@"",@"Pending",@"Enabled",@"Fail"];
     NSMutableArray *contollers =  [[NSMutableArray alloc] init];

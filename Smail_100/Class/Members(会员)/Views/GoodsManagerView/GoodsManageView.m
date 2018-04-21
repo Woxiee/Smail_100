@@ -13,6 +13,7 @@
     
     __weak IBOutlet UIView *lineView;
     
+    __weak IBOutlet UIButton *upBtn;
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -39,5 +40,15 @@
 }
 
 
+
+- (void)setModel:(MeChantOrderModel *)model
+{
+    _model = model;
+    if ([_model.status isEqualToString:@"Enabled"]) {
+        [upBtn setTitle:@" 下架" forState:UIControlStateNormal];
+    }else{
+        [upBtn setTitle:@" 上架" forState:UIControlStateNormal];
+    }
+}
 
 @end

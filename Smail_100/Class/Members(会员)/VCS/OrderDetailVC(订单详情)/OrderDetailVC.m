@@ -338,7 +338,7 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
     
     // NOTE: 参数编码格式
     order.charset = @"utf-8";
-    //    order.notifyUR = _payModel.callback;
+    order.notify_url = _payModel.callback;
     // NOTE: 当前时间点
     NSDateFormatter* formatter = [NSDateFormatter new];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];

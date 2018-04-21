@@ -10,4 +10,5 @@
 
 @interface GoodsManagersListVC : KX_BaseViewController
 @property (nonatomic, strong) NSString *orderTypeTitle;
+-(void)requestListNetWork;
 @end

@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MeChantOrderModel.h"
 @interface GoodsManageView : UIView
 
 @property(nonatomic, copy) void(^didClickChangBtnBlock)(NSInteger index);
-
+@property (nonatomic, copy)  MeChantOrderModel *model;
 
 @end

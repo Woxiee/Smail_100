@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface AcctoutWaterLIstVC : KX_BaseViewController
-@property(nonatomic,strong) NSString *direction;  ///
-@property(nonatomic,strong) NSString *trans_type;  ///
+@property(nonatomic,strong) NSString *directions;  ///
+@property(nonatomic,strong) NSString *type;  ///
 
 -(void)requestListNetWork;
 @end

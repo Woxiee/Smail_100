@@ -40,7 +40,7 @@
     if ([KX_UserInfo sharedKX_UserInfo].loginStatus) {
         nameTopConstain.constant  = -17;
  ///"1",  0普通,1总代,2代理商,3合伙人  普通用户点击代理平台不能进入
-        _nickNeme.text = [NSString stringWithFormat:@"%@(昵称)",[KX_UserInfo sharedKX_UserInfo].nickname];
+        _nickNeme.text = [NSString stringWithFormat:@" %@(昵称) ",[KX_UserInfo sharedKX_UserInfo].nickname];
         _phoneLabel.text = [KX_UserInfo sharedKX_UserInfo].mobile;
         _nickNeme.hidden = NO;
         _compangLB.hidden = NO;

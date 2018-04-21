@@ -11,6 +11,7 @@
 #import "StoreMangerVC.h"
 #import "GoodsManagerVC.h"
 #import "SelectGoodSClassVC.h"
+#import "AddOrEidtGoodVC.h"
 
 
 @interface GoodManageVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -84,11 +85,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WEAKSELF;
+
     static NSString* cellID = @"cellID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell ) {
         cell =  [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+    }
+    if (indexPath.row == 0) {
+        cell.imageView.image = [UIImage imageNamed:@"shangjiazhongxin9@3x.png"];
+
+    }else{
+        cell.imageView.image = [UIImage imageNamed:@"shangjiazhongxin10@3x.png"];
+
     }
     cell.textLabel.text = self.resorceArray[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; //显示最右边的箭头
@@ -135,7 +143,8 @@
 /// 确认选择
 - (void)didClickBottomAction
 {
-    StoreMangerVC *vc = [[StoreMangerVC alloc] init];
+    AddOrEidtGoodVC *vc = [[AddOrEidtGoodVC alloc] init];
+    vc.title = @"发布商品";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

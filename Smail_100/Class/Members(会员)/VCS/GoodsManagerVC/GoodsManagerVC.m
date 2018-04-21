@@ -11,6 +11,7 @@
 
 
 @interface GoodsManagerVC ()
+@property (nonatomic, assign)  NSInteger index;
 
 @end
 
@@ -25,7 +26,7 @@
 {
     self.title = @"商品管理";
     
-    [self setRightNaviBtnTitle:@"分类" withTitleColor:[UIColor whiteColor]];
+//    [self setRightNaviBtnTitle:@"分类" withTitleColor:[UIColor whiteColor]];
     self.view.backgroundColor = [UIColor whiteColor];
     
     /* 创建WJSegmentMenuVc */
@@ -41,7 +42,7 @@
     segmentMenuVc.SlideColor = KMAINCOLOR;
     segmentMenuVc.advanceLoadNextVc = NO;
     /* 创建测试数据 */
-    NSArray *titles = @[@"出售中(4)",@"仓库中（4）"];
+    NSArray *titles = @[@"出售中",@"仓库中"];
     GoodsManagersListVC *vc1 = [[GoodsManagersListVC alloc] init];
     vc1.orderTypeTitle = @"Enabled";
     
@@ -59,6 +60,17 @@
     NSArray *vcArr = @[vc1,vc2];
     /* 导入数据 */
     [segmentMenuVc addSubVc:vcArr subTitles:titles];
+    WEAKSELF;
+    segmentMenuVc.didClickPageIndexBlock = ^(NSInteger index){
+        LOG(@"index = %ld",(long)index);
+        weakSelf.index = index;
+        if (vcArr.count >0) {
+            GoodsManagersListVC *VC  = [vcArr objectAtIndex:index];
+            [VC requestListNetWork];
+        }
+        
+    };
+    
 }
 
 @end

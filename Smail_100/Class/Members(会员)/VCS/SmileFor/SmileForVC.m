@@ -121,7 +121,6 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
 #pragma mark - private
 - (void)setup
 {
-    self.title = @"笑脸兑换";
     [self setRightNaviBtnTitle:@"兑换记录"];
     [self.tableView registerNib:[UINib nibWithNibName:@"CardCell" bundle:nil] forCellReuseIdentifier:CardCellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"SmileForMoneyCell" bundle:nil] forCellReuseIdentifier:SmileForMoneyCellID];

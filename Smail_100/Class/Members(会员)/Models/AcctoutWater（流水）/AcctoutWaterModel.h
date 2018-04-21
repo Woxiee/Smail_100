@@ -24,6 +24,8 @@
 @property (nonatomic , copy) NSString              * value;
 
 
+@property (nonatomic , copy) NSString              * status;
+
 @property (nonatomic , copy) NSString              * tb;
 @property (nonatomic , copy) NSString              * fee;
 @property (nonatomic , copy) NSString              * commission_type;

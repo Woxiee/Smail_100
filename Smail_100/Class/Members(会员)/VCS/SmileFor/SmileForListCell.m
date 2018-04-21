@@ -28,12 +28,12 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    orderNo.textColor = DETAILTEXTCOLOR;
+    orderNo.textColor = TITLETEXTLOWCOLOR;
     timeLB.textColor = DETAILTEXTCOLOR;
     cardLB.textColor = DETAILTEXTCOLOR;
     nameLB.textColor = DETAILTEXTCOLOR;
     socotLB.textColor = DETAILTEXTCOLOR;
-    countLB.textColor = DETAILTEXTCOLOR;
+    countLB.textColor = TITLETEXTLOWCOLOR;
 
     
 }
@@ -43,7 +43,16 @@
 {
     _model = model;
     
-    stateLb.text = @"兑换中";
+    if ([_model.status isEqualToString:@"Enabled"] ) {
+        stateLb.text = @"已成功";
+    }
+    else if ([_model.status isEqualToString:@"Fail"] )
+    {
+        stateLb.text = @"已驳回";
+    }
+    else{
+        stateLb.text = @"进行中";
+    }
     orderNo.text = [NSString stringWithFormat:@"订单号%@",_model.orderno];
     timeLB.text = [NSString stringWithFormat:@"时间:%@",_model.ctime];
     cardLB.text = [NSString stringWithFormat:@"银行卡:%@",_model.bank_info];

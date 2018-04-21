@@ -24,7 +24,9 @@
     [super viewDidLoad];
     [self setup];
     [self setConfiguration];
-    [self setRefreshs];
+    [self setRefresh];
+    [self requestListNetWork];
+
 
 }
 
@@ -32,7 +34,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self requestListNetWork];
     
 }
 
@@ -48,15 +49,13 @@
 /// 初始化视图
 - (void)setup
 {
-    _direction = @"";
-    _trans_type = @"";
     [self.view addSubview:self.tableView];
 }
 
 
 -(void)loadNewDate
 {
-    self.page = 0;
+    self.page = 1;
     [self requestListNetWork];
 }
 
@@ -67,7 +66,19 @@
 }
 
 
--(void)setRefreshs
+-(void)setRefresh
+{
+    WEAKSELF;
+    [self.tableView headerWithRefreshingBlock:^{
+        [weakSelf loadNewDate];
+    }];
+    
+    [self.tableView footerWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
+    
+}
+-(void)stopRefresh
 {
     [self.tableView stopFresh:self.resorceArray.count pageIndex:self.page];
     if (self.resorceArray.count == 0) {
@@ -77,9 +88,6 @@
     }
     
 }
-
-
-
 
 #pragma mark - set懒加载
 /*懒加载*/
@@ -106,9 +114,11 @@
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_page] forKey:@"pageno"];
     [param setObject:@"20" forKey:@"page_size"];
-    [param setObject:@"" forKey:@"type"];
-    [param setObject:_direction forKey:@"direction"];
-    [param setObject:_trans_type forKey:@"trans_type"];
+    [param setObject:_type?_type:@"" forKey:@"type"];
+    if ([_type isEqualToString:@"Withdraw"]) {
+        [param setObject:_type forKey:@"trans_type"];
+    }
+    [param setObject:_directions?_directions:@"" forKey:@"direction"];
     //    [param setObject:_quickSearch forKey:@"quickSearch"];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
@@ -126,12 +136,12 @@
             if ([dataArr isKindOfClass:[NSArray class]]) {
                 if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
                     listArray = [AcctoutWaterModel mj_objectArrayWithKeyValuesArray:dataArr];
-                    if (weakSelf.page == 0) {
+                    if (weakSelf.page == 1) {
                         [weakSelf.resorceArray removeAllObjects];
                     }
                     [weakSelf.resorceArray addObjectsFromArray:listArray];
                     [weakSelf.tableView reloadData];
-                    [weakSelf setRefreshs];
+                    [weakSelf stopRefresh];
                 }
             }
         }else{
