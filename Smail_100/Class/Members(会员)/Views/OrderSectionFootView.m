@@ -69,8 +69,8 @@
     
     
     
-    if ([_model.paystatus isEqualToString:@"Complete"]) {
-        [_titleArr addObject:@"查看详情"];
+    if ([_model.paystatus isEqualToString:@"Complete"] &&  [_model.comm_nums isEqualToString:@"0"]) {
+        [_titleArr addObject:@"待评论"];
     }
     
     

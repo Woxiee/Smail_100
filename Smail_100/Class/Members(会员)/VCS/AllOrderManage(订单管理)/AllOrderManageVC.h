@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 typedef NS_ENUM(NSInteger, OrderTitleType){
     NewOrderTitleType,                  /// 新机
-    AccessoriesOrderTitleType,          ///配件
+    OffLineTitleType,                    ///线下
     WholeOrderTitleType,                ///整机
     SharedOrderTitleType,               ///  整机流转 &  共享
     GoodsOrderTitleType,                ///  二手
@@ -28,6 +28,7 @@ typedef NS_ENUM(NSInteger, SupplRoleType){
 @interface AllOrderManageVC : KX_BaseViewController
 @property (nonatomic, assign) OrderTitleType orderTitleType;
 @property (nonatomic, assign) SupplRoleType supplyRoleType;
+@property (nonatomic, strong) NSString *shop_id;
 
 //@property (nonatomic, strong) BOOL is
 @end

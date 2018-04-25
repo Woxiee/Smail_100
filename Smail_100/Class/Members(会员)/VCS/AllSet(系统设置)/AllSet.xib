@@ -14,7 +14,7 @@
             <connections>
                 <outlet property="aboutMeVeiw" destination="0cd-kl-Iu6" id="biA-Te-aGf"/>
                 <outlet property="checkView" destination="x9q-1l-NUB" id="WBS-86-UO8"/>
-                <outlet property="cleanBtn" destination="hxJ-2T-LdJ" id="0Ub-2g-7Sl"/>
+                <outlet property="cleanBtn" destination="LCb-yQ-Ald" id="6Ut-cw-Ilx"/>
                 <outlet property="notictionSwift" destination="4rd-o4-wYk" id="Xlc-Om-pzP"/>
                 <outlet property="notictionView" destination="rqo-wg-1Mv" id="gHe-x8-tMR"/>
                 <outlet property="outBtn" destination="F9F-7X-Elb" id="c9u-MW-PAa"/>
@@ -99,7 +99,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="highlightedColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </label>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4rd-o4-wYk">
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4rd-o4-wYk">
                             <rect key="frame" x="314" y="6.5" width="51" height="31"/>
                         </switch>
                     </subviews>
@@ -125,8 +125,11 @@
                             <rect key="frame" x="298" y="0.0" width="65" height="44"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title="有缓存" image="32@3x.png">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <connections>
+                                <action selector="didRemoveaction:" destination="-1" eventType="touchUpInside" id="aBA-Gn-v65"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -176,6 +179,9 @@
                     <state key="normal" title="退出登录">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="didClickOutAction:" destination="-1" eventType="touchUpInside" id="K9g-Jf-phP"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="深圳微笑一百网络科技有限公司" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dc3-Hr-b6f">
                     <rect key="frame" x="0.0" y="569" width="375" height="18"/>

@@ -74,7 +74,7 @@
     [findLb layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:2];
     
     tellLB.text = _model.contact_phone;
-    timeLB.text = [NSString stringWithFormat:@"营业时间: %@",@"08:00-23:00"];
+    timeLB.text = [NSString stringWithFormat:@"营业时间: %@",_model.ontime_scope];
     mianLb.text = _model.business_info;
     
    _commNumberLB.text= [NSString stringWithFormat:@"%@人评价",_model.comment_count];

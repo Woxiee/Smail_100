@@ -42,6 +42,7 @@
     for (int i = 0; i<4; i++) {
         SmileForListVC *vc = [[SmileForListVC alloc] init];
         vc.status = status[i];
+        vc.shopID = _shopID?_shopID:@"";
         [contollers addObject:vc];
     }
     [segmentMenuVc addSubVc:contollers subTitles:titleArr];

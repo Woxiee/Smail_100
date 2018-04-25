@@ -15,7 +15,7 @@
 
 #import "LoginVC.h"
 #import "KX_ActionSheet.h"
-#import "QrCodeVC.h"
+#import "MyCodeVC.h"
 
 
 static NSInteger infoCellTag = 100;
@@ -93,12 +93,12 @@ static NSInteger infoCellTag = 100;
 }
 
 -(void)loadItem{
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 35)];
-    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [btn setTitle:@"保存" forState:UIControlStateNormal];
-    btn.titleLabel.font = KY_FONT(15);
-    [btn addTarget:self action:@selector(saveAndUpLoad:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+//    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 35)];
+//    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [btn setTitle:@"保存" forState:UIControlStateNormal];
+//    btn.titleLabel.font = KY_FONT(15);
+//    [btn addTarget:self action:@selector(saveAndUpLoad:) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
     outBtn.backgroundColor =KMAINCOLOR;
 }
 
@@ -134,6 +134,9 @@ static NSInteger infoCellTag = 100;
 }
 
 
+- (IBAction)didchangeAciton:(id)sender {
+    [self didClickImageAction];
+}
 
 /// 点击图片
 - (void)didClickImageAction
@@ -246,30 +249,12 @@ static NSInteger infoCellTag = 100;
     //0-6 头像  1昵称 2手机 3性别 4生日 5地区 6个性签名  9=推出登陆
     WEAKSELF;
     switch (tag) {
-
         case 0:{
-            changeInfoVC *changeVC = [[changeInfoVC alloc]init];
-            changeVC.aTitle= @"修改昵称";
-            changeVC.inputText = userNameLb.text;
-            changeVC.warnStr = @"注意:与微笑100业务或商家品牌冲突的昵称，微笑100有权收回";
-            __block typeof(userNameLb) b_userNameLb = userNameLb;
-            changeVC.clickTrue = ^(NSString *content){
-
-                b_userNameLb.text = content;
-                KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
-                userinfo.nickname = content;
-                [weakSelf requestListNetWork];
-            };
-            [self.navigationController pushViewController:changeVC animated:YES];
-            
-        
-        }break;
-        case 1:{
             KX_ActionSheet *sheetView  = [KX_ActionSheet  sheetWithTitle:@"选择性别" cancelButtonTitle:@"取消" clicked:^(KX_ActionSheet *actionSheet, NSInteger buttonIndex) {
-
+                
                 KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
                 if (buttonIndex == 1) {
-                   sexLb.text = @"男";
+                    sexLb.text = @"男";
                     userinfo.sex = @"1";
                 }
                 else if(buttonIndex == 2)
@@ -277,18 +262,47 @@ static NSInteger infoCellTag = 100;
                     sexLb.text = @"女";
                     userinfo.sex = @"2";
                 }
-                [weakSelf requestListNetWork];
-
+                [weakSelf updateUserInfoRequest];
+                
             } otherButtonTitleArray:@[@"男",@"女"]];
             [sheetView show];
             
+        
+        }break;
+        case 1:{
+          
+            changeInfoVC *changeVC = [[changeInfoVC alloc]init];
+            changeVC.aTitle= @"修改昵称";
+            changeVC.inputText = userNameLb.text;
+            changeVC.warnStr = @"注意:与微笑100业务或商家品牌冲突的昵称，微笑100有权收回";
+            __block typeof(userNameLb) b_userNameLb = userNameLb;
+            changeVC.clickTrue = ^(NSString *content){
+                
+                b_userNameLb.text = content;
+                KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
+                userinfo.nickname = content;
+                [weakSelf updateUserInfoRequest];
+            };
+            [self.navigationController pushViewController:changeVC animated:YES];
         }break;
         case 2:{
-            
+            changeInfoVC *changeVC = [[changeInfoVC alloc]init];
+            changeVC.aTitle= @"修改微信名称";
+            changeVC.inputText = wxLb.text;
+            changeVC.warnStr = @"";
+            __block typeof(userNameLb) b_userNameLb = wxLb;
+            changeVC.clickTrue = ^(NSString *content){
+                
+                b_userNameLb.text = content;
+                KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
+                userinfo.wxname = content;
+                [weakSelf updateUserInfoRequest];
+            };
+            [self.navigationController pushViewController:changeVC animated:YES];
             
         }break;
         case 3:{
-            QrCodeVC * VC = [[QrCodeVC alloc]init];
+            MyCodeVC * VC = [[MyCodeVC alloc]init];
             VC.title = @"我的二维码";
             [self.navigationController pushViewController:VC animated:YES];
 //            ChangeSexVC *sexVC = [[ChangeSexVC alloc]init];
@@ -411,8 +425,6 @@ static NSInteger infoCellTag = 100;
 {
     WEAKSELF;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setObject:@"20" forKey:@"page_size"];
-    [param setObject:@"" forKey:@"type"];
     [param setObject:@"" forKey:@"method"];
     [param setObject:@"" forKey:@"nickname"];
     [param setObject:@"" forKey:@"sex"];
@@ -420,7 +432,7 @@ static NSInteger infoCellTag = 100;
     
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     
-    [BaseHttpRequest postWithUrl:@"/ucenter/wealth_history" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+    [BaseHttpRequest postWithUrl:@"/ucenter/user" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         LOG(@"订单列表 == %@",result);
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [MBProgressHUD hideHUDForView:self.view animated:YES];

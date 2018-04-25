@@ -27,9 +27,10 @@
 
 @implementation AcctouWaterMeunView
 
-- (instancetype)initWithFrame:(CGRect)frame
+-(instancetype)initWithFrame:(CGRect)frame withtrans_type:(NSString *)type
 {
     if (self = [super initWithFrame:frame]) {
+        _trans_type = type;
         [self setup];
     }
     return self;
@@ -63,7 +64,15 @@
     [bottomView addSubview:lineView];
     
     NSArray *titles1  = @[@"方向",@"全部类型",@"收入",@"支出"];
-    NSArray *titles2  = @[@"类型",@"全部类型",@"激励笑脸",@"兑换积分",@"空充笑脸",@"笑脸兑换",@"",@"支付宝",@"微信"];
+    NSArray *titles2;
+    if (KX_NULLString(_trans_type)) {
+       titles2 = @[@"类型",@"全部类型",@"激励笑脸",@"兑换积分",@"空充笑脸",@"笑脸兑换",@"",@"支付宝",@"微信"];
+    }
+    else{
+        titles2 = @[@"类型",@"全部类型",@"激励笑脸",@"兑换积分",@"空充笑脸",@"笑脸兑换"];
+        _bottomView.frame = CGRectMake(0,darkView.mj_y, SCREEN_WIDTH,150);
+
+    }
 
     int btnW = 55;
     int btnH = 30;
@@ -97,10 +106,11 @@
     [bottomView addSubview:lineView1];
     
  
-
+    NSInteger pages = 0;
     for (int i = 0; i<titles2.count; i++) {
         NSInteger index = i % 6;
         NSInteger page = i / 6;
+        pages= page;
         if (SCREEN_WIDTH == 320) {
            index = i % 5;
         }
@@ -132,7 +142,7 @@
 //    UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,60, 50)];
 //    titleLB.text = @"方向"；[
     
-    UIView  *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView1.frame)+80+10, SCREEN_WIDTH, 1)];
+    UIView  *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView1.frame)+40*(pages+1)+10, SCREEN_WIDTH, 1)];
     lineView2.backgroundColor = BACKGROUND_COLOR;
     [bottomView addSubview:lineView2];
     

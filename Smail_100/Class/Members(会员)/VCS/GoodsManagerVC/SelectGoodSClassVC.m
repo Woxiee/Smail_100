@@ -72,15 +72,17 @@
 
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, CGRectGetMaxY(self.tableView.frame), SCREEN_WIDTH, 50);
-    [btn setTitle:@"发布商品" forState:UIControlStateNormal];
+//    [btn setTitle:@"发布商品" forState:UIControlStateNormal];
     btn.backgroundColor = MainColor;
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(didClickBottomAction) forControlEvents:UIControlEventTouchUpInside];
     btn.titleLabel.font = Font15;
     [self.view addSubview:btn];
     
-    self.title = _isManage?@"管理分类":@"";
-    btn.hidden = _isManage;
+    self.title = _isManage?@"商品分类":@"选择分类";
+    [btn setTitle:_isManage?@"添加分类":@"确定" forState:UIControlStateNormal];
+
+//    btn.hidden = _isManage;
 }
 
 - (void)setConfiguration
@@ -135,9 +137,12 @@
         [self.navigationController pushViewController:vc animated:YES];
         
     }else{
+        for (ChildModel *model in self.resorceArray) {
+            model.isSelect = NO;
+        }
         ChildModel *model = self.resorceArray[indexPath.row];
         //    MeChantOrderModel *model = self.resorceArray[indexPath.section];
-        model.isSelect =! model.isSelect;
+        model.isSelect =YES;
         
         [self.tableView reloadData];
     }
@@ -168,6 +173,12 @@
 /// 确认选择
 - (void)didClickBottomAction
 {
+    if (_isManage) {
+        AddGoodsMuenVC *vc = [[AddGoodsMuenVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    
     NSMutableArray *selectList = [[NSMutableArray alloc] init];
     for ( ChildModel *model  in self.resorceArray) {
         if (model.isSelect) {

@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddressChanegAndEidteVC">
             <connections>
                 <outlet property="adressBtn" destination="o7W-Vc-s2k" id="bO6-nT-g2d"/>
+                <outlet property="defultBtn" destination="mkD-u5-eEN" id="2xd-VP-ebX"/>
                 <outlet property="nameTF" destination="6HE-0D-5Vx" id="4aD-aX-asP"/>
                 <outlet property="phoneTF" destination="0iL-Ma-34a" id="SwF-9d-HNv"/>
                 <outlet property="saveBtn" destination="hJw-KF-v94" id="FKN-lB-Dc3"/>
@@ -166,7 +167,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJw-KF-v94">
-                    <rect key="frame" x="12" y="199" width="351" height="44"/>
+                    <rect key="frame" x="12" y="253" width="351" height="44"/>
                     <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="88s-r0-1iK"/>
@@ -178,29 +179,58 @@
                         <action selector="didSavaBtn:" destination="-1" eventType="touchUpInside" id="N8i-WQ-vbw"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f3e-9c-fey">
+                    <rect key="frame" x="0.0" y="199" width="375" height="44"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mkD-u5-eEN">
+                            <rect key="frame" x="12" y="0.0" width="351" height="44"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="  设置默认地址" image="zhanghuguanli10@3x.png">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </state>
+                            <state key="selected" image="zhanghuguanli9@3x.png"/>
+                            <connections>
+                                <action selector="didSeleDefaleAction:" destination="-1" eventType="touchUpInside" id="3N4-KX-PcS"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="mkD-u5-eEN" firstAttribute="top" secondItem="f3e-9c-fey" secondAttribute="top" id="3N0-wO-3J8"/>
+                        <constraint firstAttribute="height" constant="44" id="4M6-0a-2FQ"/>
+                        <constraint firstItem="mkD-u5-eEN" firstAttribute="leading" secondItem="f3e-9c-fey" secondAttribute="leading" constant="12" id="ZtU-dV-ySX"/>
+                        <constraint firstAttribute="bottom" secondItem="mkD-u5-eEN" secondAttribute="bottom" id="hmD-WR-tb8"/>
+                        <constraint firstAttribute="trailing" secondItem="mkD-u5-eEN" secondAttribute="trailing" constant="12" id="oA1-xz-6iZ"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.94901960784313721" green="0.95686274509803926" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="f3e-9c-fey" firstAttribute="top" secondItem="0v1-WH-C6F" secondAttribute="bottom" constant="10" id="7Oo-WV-kRD"/>
                 <constraint firstAttribute="trailing" secondItem="L1q-yR-3vr" secondAttribute="trailing" id="HHV-Vu-j9a"/>
                 <constraint firstAttribute="trailing" secondItem="hJw-KF-v94" secondAttribute="trailing" constant="12" id="Hh2-1e-8fk"/>
                 <constraint firstItem="L1q-yR-3vr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Igd-zZ-ZGh"/>
                 <constraint firstItem="L1q-yR-3vr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="Kvg-VK-G6D"/>
                 <constraint firstAttribute="trailing" secondItem="KeT-aq-u2w" secondAttribute="trailing" id="S5u-Yh-WJf"/>
                 <constraint firstItem="kso-x9-zwR" firstAttribute="top" secondItem="KeT-aq-u2w" secondAttribute="bottom" constant="1" id="Uhb-h4-zOL"/>
+                <constraint firstItem="f3e-9c-fey" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Whi-um-fxS"/>
+                <constraint firstAttribute="trailing" secondItem="f3e-9c-fey" secondAttribute="trailing" id="axM-BM-866"/>
                 <constraint firstItem="0v1-WH-C6F" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cUm-6U-tVz"/>
                 <constraint firstItem="KeT-aq-u2w" firstAttribute="top" secondItem="L1q-yR-3vr" secondAttribute="bottom" constant="1" id="efl-NA-qJT"/>
                 <constraint firstAttribute="trailing" secondItem="kso-x9-zwR" secondAttribute="trailing" id="euf-eg-QZG"/>
-                <constraint firstItem="hJw-KF-v94" firstAttribute="top" secondItem="0v1-WH-C6F" secondAttribute="bottom" constant="10" id="kIX-bv-eOj"/>
+                <constraint firstItem="hJw-KF-v94" firstAttribute="top" secondItem="f3e-9c-fey" secondAttribute="bottom" constant="10" id="i0L-67-RC8"/>
                 <constraint firstItem="hJw-KF-v94" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="lGk-KO-FIm"/>
                 <constraint firstAttribute="trailing" secondItem="0v1-WH-C6F" secondAttribute="trailing" id="pOV-rw-oAf"/>
                 <constraint firstItem="0v1-WH-C6F" firstAttribute="top" secondItem="kso-x9-zwR" secondAttribute="bottom" constant="1" id="tbA-l2-Dfs"/>
                 <constraint firstItem="kso-x9-zwR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tzk-Vz-Vk6"/>
                 <constraint firstItem="KeT-aq-u2w" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ywG-g0-COO"/>
             </constraints>
-            <point key="canvasLocation" x="-569" y="70"/>
+            <point key="canvasLocation" x="-569.5" y="69.5"/>
         </view>
     </objects>
     <resources>
         <image name="32@3x.png" width="16" height="16"/>
+        <image name="zhanghuguanli10@3x.png" width="16" height="16"/>
+        <image name="zhanghuguanli9@3x.png" width="16" height="16"/>
     </resources>
 </document>

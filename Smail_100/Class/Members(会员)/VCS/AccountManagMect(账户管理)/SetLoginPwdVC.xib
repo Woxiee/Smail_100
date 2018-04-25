@@ -182,21 +182,6 @@
                         <action selector="didLogAction:" destination="-1" eventType="touchUpInside" id="OxN-nd-PdA"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温馨提示:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TX8-Tc-YSp">
-                    <rect key="frame" x="15" y="291" width="65.5" height="18"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付密码用于消费、资金流动等授权, 请妥善保管" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jd2-o3-jYC">
-                    <rect key="frame" x="15" y="314" width="345" height="18"/>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="mB0-hs-RwL"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -204,15 +189,10 @@
                 <constraint firstItem="XBx-Cz-mKH" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="3Xy-5o-Jeg"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="xuz-DO-XXL" secondAttribute="trailing" id="5Lf-X2-b70"/>
                 <constraint firstItem="x4Z-SU-td4" firstAttribute="top" secondItem="XBx-Cz-mKH" secondAttribute="bottom" constant="1" id="84g-et-8NR"/>
-                <constraint firstItem="TX8-Tc-YSp" firstAttribute="leading" secondItem="H0Q-8E-Zu9" secondAttribute="leading" id="D9N-Hx-vTd"/>
-                <constraint firstItem="TX8-Tc-YSp" firstAttribute="top" secondItem="H0Q-8E-Zu9" secondAttribute="bottom" constant="25" id="DfO-4m-YvW"/>
-                <constraint firstItem="jd2-o3-jYC" firstAttribute="trailing" secondItem="H0Q-8E-Zu9" secondAttribute="trailing" id="MqX-D9-0uX"/>
-                <constraint firstItem="jd2-o3-jYC" firstAttribute="top" secondItem="TX8-Tc-YSp" secondAttribute="bottom" constant="5" id="PAo-GO-dQu"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="RCv-gS-wsb" secondAttribute="trailing" constant="15" id="S3z-zk-bmF"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="H0Q-8E-Zu9" secondAttribute="trailing" constant="15" id="UY2-vS-WWg"/>
                 <constraint firstItem="XBx-Cz-mKH" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Ubw-3d-iC8"/>
                 <constraint firstItem="xuz-DO-XXL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YLg-g0-EhT"/>
-                <constraint firstItem="jd2-o3-jYC" firstAttribute="leading" secondItem="TX8-Tc-YSp" secondAttribute="leading" id="ci4-Vw-f4e"/>
                 <constraint firstItem="H0Q-8E-Zu9" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="fxG-Il-JGh"/>
                 <constraint firstItem="x4Z-SU-td4" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="g2P-vY-LIR"/>
                 <constraint firstItem="RCv-gS-wsb" firstAttribute="top" secondItem="x4Z-SU-td4" secondAttribute="bottom" constant="15" id="h6O-HD-687"/>

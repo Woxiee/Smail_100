@@ -146,12 +146,35 @@
         return;
     }
     
-    if (KX_NULLString(_samilTF.text)) {
-        [self.view toastShow:_samilTF.placeholder];
-        return;
+//    _smailBtn.selected = YES;
+//    _pointBtn.selected = NO;
+//    _kongCBtn.selected = NO;
+    if (_smailBtn.selected) {
+        if (KX_NULLString(_samilTF.text)  ) {
+            [self.view toastShow:_samilTF.placeholder];
+            return;
+        }
+    }
+    
+    if (_pointBtn.selected) {
+        if (KX_NULLString(_pointTF.text)) {
+            [self.view toastShow:_pointTF.placeholder];
+            return;
+        }
     }
   
-    WEAKSELF;
+    
+    if (_kongCBtn.selected) {
+        if (KX_NULLString(_kongcTF.text)) {
+            [self.view toastShow:_pointTF.placeholder];
+            return;
+        }
+    }
+    
+  
+   
+    
+     WEAKSELF;
     if (KX_NULLString([KX_UserInfo sharedKX_UserInfo].pay_password)) {
         [self systemAlertWithTitle:nil andMsg:@"您还未设置支付密码" cancel:@"取消" sure:@"去设置" withOkBlock:^(BOOL isOk) {
             SetPayPwdVC  *vc = [[SetPayPwdVC alloc] init];
@@ -169,6 +192,8 @@
 - (void)didClickRightNaviBtn
 {
     AcctoutWater *VC = [[AcctoutWater alloc] init];
+    VC.title = @"转赠记录";
+    VC.trans_type = @"Transfer";
     [self.navigationController pushViewController:VC animated:YES];
 }
 

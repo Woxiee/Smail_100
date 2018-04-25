@@ -247,7 +247,7 @@
             NSInteger state = [result[@"code"] integerValue];
             NSString *msg = result[@"msg"];
             shopaCarGoodsBlock(state);
-            [self showErrMsg:msg];
+//            [self showErrMsg:msg];
             if (state == 0) return ;
         }
     }];

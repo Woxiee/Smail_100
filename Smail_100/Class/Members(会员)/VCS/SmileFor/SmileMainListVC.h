@@ -10,4 +10,7 @@
 
 @interface SmileMainListVC : KX_BaseViewController
 
+@property (nonatomic, strong) NSString *shopID; ///
+
+
 @end

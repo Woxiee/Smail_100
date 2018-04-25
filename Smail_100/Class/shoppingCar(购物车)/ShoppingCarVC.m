@@ -40,6 +40,7 @@
     shoppingCarVM *carVM;
     ShoppingCarHeaderView *limitHeader;
     
+    __weak IBOutlet NSLayoutConstraint *bottowHeight;
 }
 
 @property (nonatomic, strong)   NSMutableArray * dataSocure;//购物车的所有商品
@@ -127,7 +128,6 @@
     [MBProgressHUD showMessag:@"正在加载..." toView:self.view];
     [carVM getShopCarGoodsHandleback:^(NSArray *shopCarGoods, NSInteger code) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if (shopCarGoods.count>0) {
             [_dataSocure removeAllObjects];
             //保存本地数据
             NSMutableArray *goodList = [[NSMutableArray alloc] init];
@@ -144,10 +144,20 @@
             [b_self allMoneyAfterSelect];
             [shopCarGoodsList reloadData];
             backView.hidden = NO;
-            return;
+        
+        if (shopCarGoods.count > 0) {
+            bottowHeight.constant = 49;
+            self.view.backgroundColor = [UIColor whiteColor];
+
+            
+        }else{
+            bottowHeight.constant = 0;
+            self.view.backgroundColor = BACKGROUND_COLOR;
+            backView.hidden = YES;
+
         }
         [shopCarGoodsList stopFresh:_dataSocure.count pageIndex:0];
-        backView.hidden = YES;
+
     }];
 }
 

@@ -23,6 +23,7 @@
 @property (nonatomic , copy) NSString              * user_id;
 @property (nonatomic , copy) NSString              * value;
 
+@property (nonatomic , copy) NSString              * shopId;
 
 @property (nonatomic , copy) NSString              * status;
 

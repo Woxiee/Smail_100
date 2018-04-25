@@ -207,7 +207,12 @@
             [weakSelf.navigationController pushViewController:VC animated:YES];
         }
         if (index == 2) {
-            [weakSelf editGoodList:model andUrl:@"/shop/goods_delete" isUpdate:NO];
+            SuccessView *successV = [[SuccessView alloc] initWithTrueCancleTitle:@"是否删除该商品？" cancelTitle:@"" clickDex:^(NSInteger clickDex) {
+                if (clickDex == 1) {
+                    [weakSelf editGoodList:model andUrl:@"/shop/goods_delete" isUpdate:NO];
+
+                }}];
+            [successV showSuccess];
 
         }
     };

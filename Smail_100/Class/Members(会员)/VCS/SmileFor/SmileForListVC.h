@@ -10,6 +10,7 @@
 
 @interface SmileForListVC : KX_BaseViewController
 @property (nonatomic, strong) NSString *status;
+@property (nonatomic, strong) NSString *shopID; ///
 
 - (void)requestListNetWork;
 @end

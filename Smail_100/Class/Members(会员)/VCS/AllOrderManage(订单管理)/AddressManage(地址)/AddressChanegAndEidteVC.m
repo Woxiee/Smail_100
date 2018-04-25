@@ -15,6 +15,7 @@
 
 @implementation AddressChanegAndEidteVC
 {
+    __weak IBOutlet UIButton *defultBtn;
     __weak IBOutlet UITextField *nameTF;
     __weak IBOutlet UITextField *phoneTF;
     __weak IBOutlet UITextField *xxdzText;
@@ -42,6 +43,8 @@
         phoneTF.text = _model.contact_mobile;
         xxdzText.text = _model.detail;
         [adressBtn setTitle:[NSString stringWithFormat:@"%@%@%@",_model.province,_model.city,_model.district] forState:UIControlStateNormal];
+        
+        defultBtn.selected = [_model.is_default isEqualToString:@"Y"]?YES:NO;
     }
     [adressBtn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
     adressBtn.titleLabel.font = PLACEHOLDERFONT;
@@ -96,6 +99,11 @@
 }
 
 
+- (IBAction)didSeleDefaleAction:(id)sender {
+    defultBtn.selected =! defultBtn.selected;
+}
+
+
 /// 保存
 - (void)getDefaultAddressRequest
 {
@@ -106,18 +114,18 @@
     if (_bChooseType == BAddType) {
         [param setObject:@"add" forKey:@"method"];
         [param setObject:@"" forKey:@"id"];
-        /// 是否设置默认地址
-        if (_addressArr.count == 0) {
-            [param setObject:@"Y" forKey:@"is_default"];
-        }else{
-            [param setObject:@"N" forKey:@"isDefault"];
-        }
+//        /// 是否设置默认地址
+//        if (_addressArr.count == 0) {
+//            [param setObject:defultBtn.selected?@"Y" forKey:@"is_default"];
+//        }else{
+//            [param setObject:@"N" forKey:@"isDefault"];
+//        }
     }else{
         [param setObject:@"edit" forKey:@"method"];
         [param setObject:_model.addr_id forKey:@"addr_id"];
         [param setObject:_model.is_default forKey:@"is_default"];
     }
-
+    [param setObject:defultBtn.selected?@"Y":@"N" forKey:@"is_default"];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [param setObject:_model.contact_username  forKey:@"contact_username"];
     [param setObject:_model.contact_mobile  forKey:@"contact_mobile"];

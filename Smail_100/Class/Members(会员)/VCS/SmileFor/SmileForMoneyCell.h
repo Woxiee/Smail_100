@@ -10,6 +10,7 @@
 
 @interface SmileForMoneyCell : UITableViewCell<UITextFieldDelegate>
 @property (nonatomic, strong)  NSDictionary *dataDic;
+@property (nonatomic, strong)  NSString  *showType;
 
 @property (nonatomic, copy)  void(^didClickValueBlock)(NSString *text);
 @end

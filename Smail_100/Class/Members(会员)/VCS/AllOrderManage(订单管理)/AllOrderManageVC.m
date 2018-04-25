@@ -95,25 +95,56 @@
     NSArray *titleArr ;
     
   
-    self.title = @"商场订单";
-    titleArr = @[@"全部",@"待发货",@"待收货",@"售后"];
+    self.title = @"商城订单";
+    titleArr = @[@"全部",@"待付款",@"待发货",@"待收货"];
     _allVC = [[OrderManagementVC alloc]init];
     _allVC.orderType = AllOrderType;
     _allVC.shipstatus = @"";
-    
+//http://39.108.4.18:6803/api/order/order_list  page_size=10&pageno=1&user_id=84561&paystatus=Pendding%2CPreview%2CFail
+    _allVC.shop_id = _shop_id?_shop_id:@"";
+
     _waitVC = [[OrderManagementVC alloc]init];
     _waitVC.orderType = WaitOrderType;
-    _waitVC.shipstatus = @"Waiting";
-    
+    _waitVC.shipstatus = @"";
+    _waitVC.paystatus = @"Pendding,Preview,Fail";
+    _waitVC.shop_id = _shop_id?_shop_id:@"";
+
     _signingVC = [[OrderManagementVC alloc]init];
     _signingVC.orderType = SigningOrderType;
-    _signingVC.shipstatus = @"Delivery";
-    
+    _signingVC.shipstatus = @"Waiting";
+    _signingVC.shop_id = _shop_id?_shop_id:@"";
+
     _closedVC = [[OrderManagementVC alloc]init];
     _closedVC.orderType = DidClosedOrderType;
-    _closedVC.shipstatus = @"Receive";
-    
+    _closedVC.shipstatus = @"Delivery";
+    _closedVC.shop_id = _shop_id?_shop_id:@"";
+
     _contollers = @[_allVC,_waitVC,_signingVC,_closedVC];
+
+//    if (!KX_NULLString(_shop_id)) {
+//
+//    }
+    
+    if (_orderTitleType == OffLineTitleType) {
+    
+        _allVC.paystatus = @"";
+        _allVC.type = @"Shop";
+        
+        _waitVC.shop_id = _shop_id?_shop_id:@"";
+        _waitVC.paystatus = @"Pendding,Preview,Fail";
+        _waitVC.type = @"Shop";
+
+        _closedVC.shop_id = _shop_id?_shop_id:@"";
+        _closedVC.paystatus = @"Complete";
+        _closedVC.type = @"Shop";
+       
+        titleArr = @[@"全部",@"待付款",@"待评价"];
+        _contollers = @[_allVC,_waitVC,_closedVC];
+
+
+    }
+    
+
 
       /* 导入数据 */
     [segmentMenuVc addSubVc:_contollers subTitles:titleArr];

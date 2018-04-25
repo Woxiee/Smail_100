@@ -27,7 +27,7 @@
 {
     //TODO JP
     
-    return [[self alloc] initWithImage:@"shangchengdingdan2@3x.png" andMsg:@"没有更多数据" andBtnTitle:@"" andFrame:CGRectMake(0, 40, SCREEN_WIDTH,  SCREEN_HEIGHT - 140)];
+    return [[self alloc] initWithImage:@"shangchengdingdan2@3x.png" andMsg:@"没有更多数据" andBtnTitle:@"" andFrame:CGRectMake(0, 40, SCREEN_WIDTH,  SCREEN_HEIGHT - 64)];
 
 }
 
@@ -40,7 +40,7 @@
             return ;
         }
     }
-    [superView addSubview:[[self alloc] initWithImage:@"shangchengdingdan2@3x.png" andMsg:@"没有更多数据" andBtnTitle:@"" andFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 140)]];
+    [superView addSubview:[[self alloc] initWithImage:@"shangchengdingdan2@3x.png" andMsg:@"没有更多数据" andBtnTitle:@"" andFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT -64)]];
 }
 
 +(void)removeFromSupView:(UIView *)supView

@@ -17,8 +17,8 @@
 #import "CloudInfoEditAndAddVC.h"
 #import "GoodsAuctionXYVC.h"
 
-
-
+#import "GoodsScreeningVC.h"
+#import "GoodsDetailVC.h"
 
 @interface ClouldPhoneVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) UICollectionView *collectionView;
@@ -236,6 +236,42 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
 
 }
 
+//UICollectionView被选中时调用的方法
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    ItemContentList *contenModle =  self.resorceArray[indexPath.section];
+    if ([contenModle.clickType isEqualToString:@"web"]) {
+        if (KX_NULLString(contenModle.url)) {
+            return;
+        }
+        GoodsAuctionXYVC *VC = [[GoodsAuctionXYVC alloc] init];
+        VC.hidesBottomBarWhenPushed = YES;
+        VC.clickUrl = contenModle.url;
+        
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+    else if ([contenModle.clickType isEqualToString:@"app_category"]){
+        GoodsScreeningVC *VC = [[GoodsScreeningVC alloc] init];
+        VC.category_id = contenModle.id;
+        VC.hidesBottomBarWhenPushed = YES;
+        VC.title =  contenModle.itemTitle;
+        
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+    else {
+        
+        GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+                                                     navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        //    vc.productID = model.mainResult.mainId;
+        //    vc.typeStr = model.productType;
+        vc.productID = contenModle.goods_id;
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController: vc animated:YES];
+    }
+    
+    
+}
 
 //定义每个Item 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -294,6 +330,8 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
 {
     return 2;
 }
+
+
 
 #pragma mark - refresh 添加刷新方法
 -(void)setRefresh

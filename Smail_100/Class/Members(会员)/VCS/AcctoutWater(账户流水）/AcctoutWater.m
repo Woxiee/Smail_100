@@ -61,17 +61,23 @@
     NSArray *titleArr ;
 
     
-    self.title = @"账户流水";
+//    self.title = @"账户流水";
     titleArr = @[@"全部",@"收入",@"支出"];
     
     _allVC = [[AcctoutWaterLIstVC alloc] init];
     _allVC.directions = @"";
-    
+  
     _inVC = [[AcctoutWaterLIstVC alloc] init];
     _inVC.directions = @"IN";
     _outVC = [[AcctoutWaterLIstVC alloc] init];
     _outVC.directions = @"OUT";
     
+    
+    if (!KX_NULLString(_trans_type)) {
+        _allVC.trans_type = @"Transfer";
+        _inVC.trans_type = @"Transfer";
+        _outVC.trans_type = @"Transfer";
+    }
     _contollers = @[_allVC,_inVC,_outVC];
     /* 导入数据 */
     [segmentMenuVc addSubVc:_contollers subTitles:titleArr];
@@ -85,7 +91,7 @@
         }
     };
     
-    AcctouWaterMeunView *meunView = [[AcctouWaterMeunView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 47)];
+    AcctouWaterMeunView *meunView = [[AcctouWaterMeunView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 47) withtrans_type:_trans_type];
     meunView.didClickCellBlock = ^(NSString *str, NSString *str1) {
         AcctoutWaterLIstVC *VC  = [_contollers objectAtIndex:weakSelf.selectIndex];
         VC.directions = str;

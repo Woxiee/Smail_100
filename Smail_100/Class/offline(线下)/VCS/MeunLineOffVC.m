@@ -194,6 +194,7 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RighMeumtCell" owner:nil options:nil]lastObject];
     }
     WEAKSELF;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.cellAdd = ^(OrderGoodsModel *model){
         model.selectStatue =@"1";
         [weakSelf changeShopCarGoodsCount:model add:YES];

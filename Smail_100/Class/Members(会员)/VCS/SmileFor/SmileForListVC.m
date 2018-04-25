@@ -53,7 +53,7 @@ static NSString* SmileForListCellID = @"SmileForListCell";
 {
     [self.view addSubview:self.tableView];
     if (KX_NULLString(_status)) {
-        SmileForHeadView *headView = [[SmileForHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 55)];
+        SmileForHeadView *headView = [[SmileForHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 65)];
         headView.backgroundColor = [UIColor whiteColor];
         self.tableView.tableHeaderView = headView;
         self.headView = headView;
@@ -127,6 +127,9 @@ static NSString* SmileForListCellID = @"SmileForListCell";
     [param setObject:@"20" forKey:@"page_size"];
     [param setObject:@"Withdraw" forKey:@"trans_type"];
     [param setObject:_status forKey:@"status"];
+    if (!KX_NULLString(_shopID)) {
+        [param setObject:_shopID forKey:@"shop_id"];
+    }
 
 //39.108.4.18:6803/api/ucenter/wealth_history  page_size=20&status=&trans_type=Withdraw&pageno=1&user_id=30110
     //    [param setObject:_quickSearch forKey:@"quickSearch"];

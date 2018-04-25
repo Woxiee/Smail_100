@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="allSelectbtn" destination="hEX-Cu-pkZ" id="RUa-9J-Xpc"/>
                 <outlet property="backView" destination="IAC-cN-Juk" id="bZ4-Kk-MF6"/>
+                <outlet property="bottowHeight" destination="Jwf-B7-w76" id="nMl-bQ-W2Z"/>
                 <outlet property="jifeLB" destination="ql9-SV-LdW" id="Y5J-Mb-oqW"/>
                 <outlet property="shopCarGoodsList" destination="sQG-73-yHG" id="iYL-We-P1F"/>
                 <outlet property="toPayBtn" destination="rDj-iW-1cR" id="ydf-9l-q4x"/>

@@ -14,6 +14,7 @@
 @property (nonatomic , copy) NSString              * category_name;
 @property (nonatomic , copy) NSString              * status;
 @property (nonatomic , copy) NSString              * shop_id;
+@property (nonatomic , copy) NSString              * applicant_mobile;
 
 
 @property (nonatomic , copy) NSString              * user_id;

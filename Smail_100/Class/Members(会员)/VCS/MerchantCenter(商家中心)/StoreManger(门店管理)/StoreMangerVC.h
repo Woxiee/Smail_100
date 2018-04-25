@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface StoreMangerVC : KX_BaseViewController
-
+@property (nonatomic, strong) NSString *shopID;
 @end

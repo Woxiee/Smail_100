@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface AcctouWaterMeunView : UIView
+-(instancetype)initWithFrame:(CGRect)frame withtrans_type:(NSString *)type;
 - (void)show;
 @property (nonatomic, copy) void (^didClickCellBlock)(NSString *str, NSString *str1);
-
+@property (nonatomic, copy) NSString * trans_type;
 @end

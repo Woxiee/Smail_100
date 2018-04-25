@@ -46,7 +46,7 @@
         [param setObject:@"bind" forKey:@"method"];
 
     }
-    [param setObject:_model.real_name forKey:@"real_name"];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].realname forKey:@"real_name"];
     [param setObject:_model.bank_id forKey:@"bank_id"];
 
     
@@ -82,6 +82,8 @@
     if (_isAdd) {
         self.title = @"银行卡管理";
         _model = [[CardModel alloc] init];
+        
+        _nameTF.text = [NSString stringWithFormat:@"%@",[KX_UserInfo sharedKX_UserInfo].realname];
     }
     else{
         _nameTF.text = _model.real_name;
@@ -192,10 +194,14 @@
 - (IBAction)didClickSureAction:(id)sender {
     
     [self.view endEditing:YES];
-    if (KX_NULLString( _nameTF.text)) {
-        [self.view toastShow:_nameTF.placeholder];
-        return;
+    if (![[KX_UserInfo sharedKX_UserInfo].idcard_auth isEqualToString:@"Y"] ) {
+        [self.view toastShow:@"请先实名认证后在添加银行卡"];
+        return ;
     }
+//    if (KX_NULLString( _nameTF.text)) {
+//        [self.view toastShow:_nameTF.placeholder];
+//        return;
+//    }
     if (KX_NULLString( _codeTF.text)) {
         [self.view toastShow:_codeTF.placeholder];
         return;

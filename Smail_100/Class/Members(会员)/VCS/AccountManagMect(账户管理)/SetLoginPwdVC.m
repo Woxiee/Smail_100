@@ -51,6 +51,7 @@
             if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
 
                 [weakSelf.view makeToast:result[@"msg"]];
+                [weakSelf.navigationController popViewControllerAnimated:YES];
                 
             }else{
                 [weakSelf.view makeToast:result[@"msg"]];

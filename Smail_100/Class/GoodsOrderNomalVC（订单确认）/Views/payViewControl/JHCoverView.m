@@ -295,7 +295,7 @@
     
     
     if (self.pwStr.length == 6) {
-        if ([self.pwStr isEqualToString:[KX_UserInfo sharedKX_UserInfo].pay_password]) {//如果输入的密码是199103表示输入密码正确
+        if ([self.pwStr isEqualToString:[KX_UserInfo sharedKX_UserInfo].pay_password]) {//如果输入的密码是130118表示输入密码正确
             
             NSLog(@"密码正确==%@",self.pwStr);
             

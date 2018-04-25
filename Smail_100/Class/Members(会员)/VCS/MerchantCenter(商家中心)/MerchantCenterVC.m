@@ -13,7 +13,8 @@
 #import "GoodsManagerVC.h"
 #import "GoodManageVC.h"
 #import "SmileForVC.h"
-
+#import "AcctoutWaterLIstVC.h"
+#import "AllOrderManageVC.h"
 @interface MerchantCenterVC ()
 @property (nonatomic, strong) NSDictionary *resultDic;
 
@@ -151,8 +152,13 @@
     switch (sender.tag) {
         case 100:
         {
-            MeChantMainVC *vc = [[MeChantMainVC alloc] init];
+//            MeChantMainVC *vc = [[MeChantMainVC alloc] init];
+//            [self.navigationController pushViewController:vc animated:YES];
+            AllOrderManageVC *vc = [[AllOrderManageVC alloc] init];
+            vc.shop_id = _resultDic[@"shop_id"];
+//            vc.orderTitleType =  OffLineTitleType;
             [self.navigationController pushViewController:vc animated:YES];
+            
         }
             break;
         case 101:
@@ -169,12 +175,17 @@
         case 103:
         {
             StoreMangerVC *vc = [[StoreMangerVC alloc] init];
+            vc.title = @"门店管理";
+            vc.shopID = _resultDic[@"shop_id"];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 104:
         {
-            
+            AcctoutWaterLIstVC *vc = [[AcctoutWaterLIstVC alloc] init];
+            vc.shopID = _resultDic[@"shop_id"];
+            vc.title = @"商家流水";
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
             
@@ -188,8 +199,9 @@
 - (void)didClilkAction
 {
     SmileForVC *vc = [[SmileForVC alloc] init];
-    vc.title = @"商家体现";
+    vc.title = @"商家提现";
     vc.showType = @"1";
+    vc.shopID = _resultDic[@"shop_id"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

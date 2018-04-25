@@ -20,6 +20,8 @@
 @property (nonatomic, strong) NSDictionary *dataDic;
 @property (nonatomic, strong) NSString *value;
 @property (nonatomic, strong) JHCoverView *coverView;
+@property (nonatomic, strong) NSString *bind_id;
+
 
 @end
 
@@ -46,7 +48,7 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [param setObject:@"get" forKey:@"method"];
-    //    [param setObject:@"" forKey:@"bind_id"];
+    
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     [BaseHttpRequest postWithUrl:@"/ucenter/bank" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -57,6 +59,7 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
             for ( CardModel * model in arr) {
                 if ([model.is_default isEqualToString:@"Y"]) {
                     model.isShow = YES;
+                    weakSelf.bind_id = model.bind_id;
                     [weakSelf.resorceArray  addObject:model];
                     break;
                 }else{
@@ -76,9 +79,18 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
 - (void)requestListNetWork
 {
     WEAKSELF;
-//    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    NSString *url = @"";
+    url = @"/ucenter/withdraw";
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+
+    if (!KX_NULLString(_showType)) {
+        url = @"/ucenter/withdraw_info";
+        [param setObject:_shopID?_shopID:@"" forKey:@"shop_id"];
+    }
+
+
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
-    [BaseHttpRequest postWithUrl:@"/ucenter/withdraw_info" andParameters:nil andRequesultBlock:^(id result, NSError *error) {
+    [BaseHttpRequest postWithUrl:@"/ucenter/withdraw_info" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSString *msg = result[@"msg"];
         if ([result[@"code"] integerValue] == 000) {
@@ -96,18 +108,29 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
 - (void)getReflectRequest
 {
     WEAKSELF;
+  
+
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
-    [param setObject:@"coins_money" forKey:@"type"];
     [param setObject:_value forKey:@"value"];
+    [param setObject:_bind_id forKey:@"bind_id"];
+    if (!KX_NULLString(_showType)) {
+        [param setObject:@"money" forKey:@"type"];
+        [param setObject:_shopID?_shopID:@"" forKey:@"shop_id"];
 
+
+    }else{
+        [param setObject:@"coins_money" forKey:@"type"];
+    }
+    
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
+    
     [BaseHttpRequest postWithUrl:@"/ucenter/withdraw" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSString *msg = result[@"msg"];
         if ([result[@"code"] integerValue] == 000) {
             [weakSelf.view toastShow:msg];
-//            [weakSelf.navigationController popViewControllerAnimated:YES];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
         }
         else{
             [weakSelf.view toastShow:msg];
@@ -158,9 +181,13 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
 #pragma mark - publice
 - (void)didClickRightNaviBtn
 {
+ 
     SmileMainListVC *vc = [[SmileMainListVC alloc] init];
-    
+    if (!KX_NULLString(_showType)) {
+        vc.shopID = _shopID;
+    }
     [self.navigationController pushViewController:vc animated:YES];
+   
 }
 
 //
@@ -238,6 +265,8 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
     }
     else{
         SmileForMoneyCell *cell = [tableView dequeueReusableCellWithIdentifier:SmileForMoneyCellID forIndexPath:indexPath];
+        cell.showType = _showType;
+
         cell.dataDic = _dataDic;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.didClickValueBlock = ^(NSString *text) {

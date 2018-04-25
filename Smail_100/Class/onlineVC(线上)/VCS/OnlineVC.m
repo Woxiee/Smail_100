@@ -605,6 +605,30 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
             return;
     }
     
+    /// 我的云设备
+   else if ([contenModle.clickType isEqualToString:@"cloud_device"]){
+       ClouldPhoneVC *VC = [[ClouldPhoneVC alloc] init];
+       VC.hidesBottomBarWhenPushed = YES;
+       [self.navigationController pushViewController:VC animated:YES];
+       return;
+   }
+    
+    /// 显示抢购
+   else if ([contenModle.itemTitle isEqualToString:@"限时抢购"]){
+       [self.view toastShow:@"该功能暂未开放，敬请期待~"];
+       return;
+   }
+    
+    /// 淘客中心
+   else if ([contenModle.itemTitle isEqualToString:@"淘客中心"]){
+//       ClouldPhoneVC *VC = [[ClouldPhoneVC alloc] init];
+//       VC.hidesBottomBarWhenPushed = YES;
+//       [self.navigationController pushViewController:VC animated:YES];
+//       return;
+       [self.view toastShow:@"该功能暂未开放，敬请期待~"];
+         return;
+   }
+    
    else if ([contenModle.clickType isEqualToString:@"web"]) {
        if (KX_NULLString(contenModle.url)) {
            return;

@@ -10,5 +10,5 @@
 
 @interface AcctoutWater : KX_BaseViewController
 
-
+@property (nonatomic, strong) NSString *trans_type;
 @end

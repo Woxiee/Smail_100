@@ -268,7 +268,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{
-        NSArray *imageList  = @[@"gerenzhongxin11@3x.png",@"gerenzhongxin12@3x.png",@"gerenzhongxin13@3x.png",@"gerenzhongxin14@3x.png",@"gerenzhongxin15@3x.png",@"gerenzhongxin115@3x.png",@"gerenzhongxin16@3x.png",@"gerenzhongxin17@3x.png",@"gerenzhongxin18@3x.png",@"gerenzhongxin19@3x.png"];
+        NSArray *imageList  = @[@"gerenzhongxin11@3x.png",@"gerenzhongxin13@3x.png",@"gerenzhongxin14@3x.png",@"gerenzhongxin15@3x.png",@"gerenzhongxin115@3x.png",@"gerenzhongxin16@3x.png",@"gerenzhongxin17@3x.png",@"gerenzhongxin18@3x.png",@"gerenzhongxin19@3x.png",@"gerenzhongxin19@3x.png"];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"indefiiecell"];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"indefiiecell"];
@@ -318,6 +318,10 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
+    if (![KX_UserInfo sharedKX_UserInfo].loginStatus) {
+        [KX_UserInfo presentToLoginView:self];
+        return;
+    }
     NSString *titleStr = self.resorceArray[indexPath.section][indexPath.row];
     if ([titleStr isEqualToString:@"账户管理"]) {
         AccountManagVC *vc = [[AccountManagVC alloc] init];
@@ -327,6 +331,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
    else if ([titleStr isEqualToString:@"账户流水"]) {
         AcctoutWater *vc = [[AcctoutWater alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
+       vc.title = titleStr;
         [self.navigationController pushViewController:vc animated:YES];
     }
    else if ([titleStr isEqualToString:@"话费兑换"]) {
@@ -409,6 +414,12 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         [self.navigationController pushViewController:VC animated:YES];
     }
     
+     else if  (index == 1) {
+         AllOrderManageVC *VC = [AllOrderManageVC new];
+         VC.hidesBottomBarWhenPushed = YES;
+         VC.orderTitleType = OffLineTitleType;
+         [self.navigationController pushViewController:VC animated:YES];
+     }
      else if  (index == 2) {
 //         AllOrderManageVC *VC = [AllOrderManageVC new];
 //         VC.hidesBottomBarWhenPushed = YES;

@@ -56,6 +56,9 @@
     
     NSArray *dataLlit = @[[NSString stringWithFormat:@"%@",_dataDic[@"sum"][@"today"]],[NSString stringWithFormat:@"%@", _dataDic[@"sum"][@"month"]],[NSString stringWithFormat:@"%@",_dataDic[@"sum"][@"all"]]];
     NSArray *titleList = @[@"今日兑换",@"本月兑换",@"总兑换"];
+    if (!KX_NULLString(_shopID)) {
+        titleList = @[@"今日营业额",@"本月营业额",@"总营业额"];
+    }
     for (int i = 0; i<dataLlit.count; i++) {
         UILabel *numberLB = _imgList[i];
         numberLB.text = dataLlit[i];

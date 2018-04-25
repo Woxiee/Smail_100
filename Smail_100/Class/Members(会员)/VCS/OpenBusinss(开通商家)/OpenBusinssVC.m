@@ -131,8 +131,8 @@
             for (int i = 0; i<listArr.count; i++) {
                 NSDictionary *dic = listArr[i];
                 if (i == 0) {
-                    NSArray *present_poinArr = dic[@"present_point"];
-                    NSDictionary *presentDic = present_poinArr[0];
+                    NSDictionary *presentDic= dic[@"present_point"];
+//                    NSDictionary *presentDic = present_poinArr[0];
                     [_btn1 setTitle:dic[@"title"] forState:UIControlStateNormal];
                     [_btn2 setTitle:presentDic[@"title"] forState:UIControlStateNormal];
 
@@ -142,8 +142,9 @@
                     weakSelf.agentmodel.title2 = presentDic[@"title"];
                     weakSelf.agentmodel.value2 = presentDic[@"value"];
                 }else{
-                    NSArray *present_poinArr = dic[@"present_point"];
-                    NSDictionary *presentDic = present_poinArr[0];
+//                    NSArray *present_poinArr = dic[@"present_point"];
+//                    NSDictionary *presentDic = present_poinArr[0];
+                      NSDictionary *presentDic= dic[@"present_point"];
                     [_btn3 setTitle:dic[@"title"] forState:UIControlStateNormal];
                     [_btn4 setTitle:presentDic[@"title"] forState:UIControlStateNormal];
                     weakSelf.agentmodel.title3 = dic[@"title"];

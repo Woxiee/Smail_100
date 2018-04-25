@@ -40,6 +40,10 @@
 
 @property (nonatomic , copy) NSString              * isApplyFinish;
 
+@property (nonatomic , copy) NSString              * comm_nums;
+@property (nonatomic , copy) NSString              * shopID;
+
+
 /// 集采
 @property (nonatomic , copy) NSString              * joinCount;
 @property (nonatomic , copy) NSString              * joinTimeData;

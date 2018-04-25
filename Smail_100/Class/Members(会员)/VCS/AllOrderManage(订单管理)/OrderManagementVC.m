@@ -190,13 +190,29 @@
 #pragma mark - 得到网络数据
 -(void)requestListNetWork
 {
+    
+ //   http://39.108.4.18:6803/api/order/order_list  page_size=10&paystatus=Pendding%2CPreview%2CFail&type=Shop&pageno=1&user_id=84561
     WEAKSELF;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_page] forKey:@"pageno"];
     [param setObject:@"10" forKey:@"page_size"];
-    [param setObject:_shipstatus forKey:@"shipstatus"];
 //    [param setObject:_quickSearch forKey:@"quickSearch"];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    if (!KX_NULLString(_type)) {
+        [param setObject:@"Shop" forKey:@"type"];
+        [param setObject:_paystatus forKey:@"paystatus"];
+
+    }
+    else{
+        [param setObject:_paystatus?_paystatus:@"" forKey:@"paystatus"];
+
+        [param setObject:_shipstatus forKey:@"shipstatus"];
+        if (!KX_NULLString(_shop_id)) {
+            [param setObject:_shop_id forKey:@"shop_id"];
+        }
+    }
+   
+    
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     [OrderVModel getOrderListParam:param successBlock:^(NSArray<OrderModel *> *dataArray, BOOL isSuccess){
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -488,17 +504,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+   
     return 55;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
+    if (!KX_NULLString(_shop_id)) {
+        return 5;
+    }
     return 90;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    
     OrderModel  *model = self.resorceArray[section];
     OrderSectionHeadView *headView =  [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([OrderSectionHeadView class]) owner:self options:nil].lastObject;
     headView.model  = model;
@@ -510,13 +531,22 @@
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     WEAKSELF;
-    OrderModel  *model = self.resorceArray[section];
-    OrderSectionFootView *footView =  [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([OrderSectionFootView class]) owner:self options:nil].lastObject;
-    footView.model = model;
-    footView.didClickItemBlock = ^(NSString *title) {
-        [weakSelf operationOrderWithTitle:title OrderModel:model];
-    };
-    return footView;
+    if (!KX_NULLString(_shop_id)) {
+        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 5)];
+    }else{
+        OrderModel  *model = self.resorceArray[section];
+        if (KX_NULLString(_type)) {
+            model.comm_nums =  @"$";
+        }
+        OrderSectionFootView *footView =  [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([OrderSectionFootView class]) owner:self options:nil].lastObject;
+        
+        footView.model = model;
+        footView.didClickItemBlock = ^(NSString *title) {
+            [weakSelf operationOrderWithTitle:title OrderModel:model];
+        };
+        return footView;
+    }
+    return nil;
 }
 
 
@@ -654,7 +684,19 @@
         VC.model = model;
         [self.navigationController pushViewController:VC animated:YES];
     }
-
+    else if ([title isEqualToString:@"待评论"])
+    {
+        SuccessView *successV  = [[SuccessView alloc]initWithTrueCancleTitle:@"该功能暂未开放，请稍等" clickDex:^(NSInteger clickDex) {
+//            if (clickDex == 1) {
+//                [weakSelf operationRequestUrl:@"/order/confirmOrder" Param:param];
+//            }
+            
+          }];
+        [successV showSuccess];
+//        OrderDetailVC *VC = [[OrderDetailVC alloc] init];
+//        VC.model = model;
+//        [self.navigationController pushViewController:VC animated:YES];
+    }
 //    else if ([title isEqualToString:@"提醒发货"] )
 //    {
 //        [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id  forKey:@"user_id"];

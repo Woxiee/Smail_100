@@ -20,6 +20,7 @@
     
     __weak IBOutlet UILabel *momeyLB;
     
+    __weak IBOutlet UILabel *valueLB;
 }
 
 
@@ -29,7 +30,7 @@
     numberNO.textColor = DETAILTEXTCOLOR;
     dateLNA.textColor = DETAILTEXTCOLOR;
     momeyLB.textColor = KMAINCOLOR;
-
+    valueLB.textColor = DETAILTEXTCOLOR;
 }
 
 
@@ -38,7 +39,7 @@
     _model = model;
     numberLN.text = _model.ass_mobile;
     numberNO.text = [NSString stringWithFormat:@"订单号:%@",_model.orderno];
-    dateLNA.text = _model.ctime;
+    dateLNA.text = [NSString stringWithFormat:@"时间:%@",_model.ctime];
     if (_model.is_plus.integerValue == 1  ) {
         momeyLB.textColor = KMAINCOLOR;
     }else{
@@ -47,6 +48,10 @@
     momeyLB.text = [NSString stringWithFormat:@"%@",_model.value];
     nameType.text = _model.title;
 
+   
+    if (!KX_NULLString(_model.shopId)) {
+        valueLB.text =[NSString stringWithFormat:@"(含%@元营业额让利)",_model.fee];
+    }
 }
 
 

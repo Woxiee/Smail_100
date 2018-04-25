@@ -56,6 +56,8 @@ typedef NS_ENUM(NSInteger, GoodOrderType){
 @property(nonatomic,strong) NSString *quickSearch;  /// 搜索字段
 @property(nonatomic,strong) NSString *paystatus;  //// 付款
 @property(nonatomic,strong) NSString *shipstatus;  ////     Waiting(待发货),Delivery(待收货),Receive(售后)
+@property(nonatomic,strong) NSString *type;  ////   Shop线下订单,默认为线上商城
+@property(nonatomic,strong) NSString *shop_id;  ////   Shop线下订单,默认为线上商城
 
 -(void)requestListNetWork;
 
