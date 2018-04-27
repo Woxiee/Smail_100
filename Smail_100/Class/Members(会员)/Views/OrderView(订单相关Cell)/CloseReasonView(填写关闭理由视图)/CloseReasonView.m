@@ -120,7 +120,7 @@
     }
     else if (sender.tag == 200){
         if (KX_NULLString(_textView.text) || [_textView.text isEqualToString:@"请输入"]) {
-            [self toastShow:@"还未填写理由~"];
+            [self makeToast:@"还未填写理由~"];
             return;
         }else{
             if (self.didClickReasonBlock) {

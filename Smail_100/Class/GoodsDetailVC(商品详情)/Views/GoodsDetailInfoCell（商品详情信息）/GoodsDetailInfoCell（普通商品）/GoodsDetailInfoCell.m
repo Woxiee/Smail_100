@@ -88,27 +88,39 @@
 {
     _model = model;
     nameLabel.text = _model.name;
-    productPriceLabel.text = [NSString stringWithFormat:@"¥%@",_model.price];
-    if ([_model.price floatValue] <=0) {
-        productPriceLabel.hidden = YES;
+    
+    NSMutableArray *priceArr = [[NSMutableArray alloc] init];
+    if (_model.price.floatValue >0) {
+        [priceArr addObject:[NSString stringWithFormat:@"¥%@",_model.price]];
     }
-    if ([_model.earn_point intValue] == 0) {
-        integralLB.hidden = YES;
+    if (_model.point.floatValue >0) {
+        [priceArr addObject:[NSString stringWithFormat:@"%@积分",_model.point]];
     }
-    if ([_model.earn_money intValue] == 0) {
-        makeLB.hidden = YES;
-    }
-    if ([_model.freight floatValue] > 0) {
-        postage.hidden = NO;
+    NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
+    if (_model.earn_money.floatValue >0) {
+        NSString *getMoney = [NSString stringWithFormat:@"赚¥%@",_model.earn_money];
+        NSString *moneyStr = [NSString stringWithFormat:@"%@ %@",allPrice,getMoney];
+        NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[getMoney,@"+"]];
+        productPriceLabel.attributedText  = attributedStr;
+        
     }else{
-        postage.hidden = YES;
-
+        productPriceLabel.text = [NSString stringWithFormat:@"¥%@",_model.price];
     }
-    integralLB.text = [NSString stringWithFormat:@"送%@积分",_model.earn_point];
-    makeLB.text = [NSString stringWithFormat:@"赚¥%@",_model.earn_money];
+    
+    
+    if (_model.earn_point.floatValue >0) {
+        integralLB.text = [NSString stringWithFormat:@"送%@积分",_model.earn_point];
+    }
+    
+    
+    if (_model.freight.floatValue >0) {
+        postage.text = [NSString stringWithFormat:@"快递:¥%@",_model.freight];
+    }else{
+        postage.text  = @"快递:包邮";
+    }
+    
     numLabel.text = [NSString stringWithFormat:@"已出售:%@",_model.sale_num];
     
-    postage.text = [NSString stringWithFormat:@"快递:¥%@",_model.freight];
     descLB.text = _model.desc;
     NSInteger  tagCount = 0;
     NSInteger row = SCREEN_WIDTH/27;
@@ -156,6 +168,43 @@
     if (_clickCollectBlcok) {
 //        _clickCollectBlcok(_model.businessResult.busiCompTel,btn.tag);
     }
+}
+
+
+- (NSAttributedString *)attributeStringWithContent:(NSString *)content keyWords:(NSArray *)keyWords
+{
+    UIColor *color = KMAINCOLOR;
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:content];
+    
+    if (keyWords) {
+        
+        [keyWords enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            NSMutableString *tmpString=[NSMutableString stringWithString:content];
+            
+            NSRange range=[content rangeOfString:obj];
+            
+            NSInteger location=0;
+            
+            while (range.length>0) {
+                
+                [attString addAttribute:(NSString*)NSForegroundColorAttributeName value:color range:NSMakeRange(location+range.location, range.length)];
+                [attString addAttribute:NSFontAttributeName
+                                  value:Font11
+                                  range:range];
+                
+                location+=(range.location+range.length);
+                
+                NSString *tmp= [tmpString substringWithRange:NSMakeRange(range.location+range.length, content.length-location)];
+                
+                tmpString=[NSMutableString stringWithString:tmp];
+                
+                range=[tmp rangeOfString:obj];
+            }
+        }];
+    }
+    return attString;
 }
 
 

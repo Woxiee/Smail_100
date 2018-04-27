@@ -157,7 +157,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.resorceArray objectAtIndex:section] count];
+    return 1;
 }
 
 
@@ -199,7 +199,7 @@
         MemberModel *item = [self.resorceArray objectAtIndex:indexPath.section][indexPath.row];
         if ([item.title isEqualToString:@"手机号"] || [item.title isEqualToString:@"电话"]) {
             if (KX_NULLString(item.subTitle)) {
-                [weakSelf.view toastShow:@"此号码无效~"];
+                [weakSelf.view makeToast:@"此号码无效~"];
                 return ;
             }
             
@@ -268,7 +268,7 @@
         __block MemberModel *item = [self.resorceArray objectAtIndex:indexPath.section][indexPath.row];
 //        if ([KX_UserInfo sharedKX_UserInfo].isMembers) {
 //            if (![title isEqualToString:@"修改手机号"] ) {
-//                [self.view toastShow:@"亲，您无权限操作，请到PC端提交企业信息升级为供应商~"];
+//                [self.view makeToast:@"亲，您无权限操作，请到PC端提交企业信息升级为供应商~"];
 //                return;
 //            }
 //        }

@@ -137,11 +137,11 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
     [OrderVModel getOrderOperationUrl:url Param:param successBlock:^( BOOL isSuccess,NSString *message) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (isSuccess) {
-            [weakSelf.view toastShow:message];
+            [weakSelf.view makeToast:message];
             [weakSelf requestNetWork];
 
         }else{
-            [weakSelf.view toastShow:message];
+            [weakSelf.view makeToast:message];
         }
         
     }];
@@ -159,7 +159,7 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
             [weakSelf showPayView:pay_method];
             
         }else{
-            [weakSelf.view toastShow:@"获取支付方式失败，请联系客服"];
+            [weakSelf.view makeToast:@"获取支付方式失败，请联系客服"];
         }
     }];
     

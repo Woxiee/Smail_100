@@ -156,11 +156,11 @@
                 
             
             }
-//            [weakSelf.view toastShow:msg];
+//            [weakSelf.view makeToast:msg];
 //            [weakSelf.navigationController popViewControllerAnimated:YES];
         }
         else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
         }
         
     }];
@@ -354,46 +354,46 @@
     
   
     if (KX_NULLString(_accoutTF.text)) {
-        [self.view toastShow:@"开通账号未填写"];
+        [self.view makeToast:@"开通账号未填写"];
         return;
     }
     
     if (KX_NULLString(_storeIntoreTf.text)) {
-        [self.view toastShow:@"店铺简介未填写"];
+        [self.view makeToast:@"店铺简介未填写"];
         return;
     }
     
     if (KX_NULLString(_tellTF.text)) {
-        [self.view toastShow:@"店铺联系电话未填写"];
+        [self.view makeToast:@"店铺联系电话未填写"];
         return;
     }
     
     if (KX_NULLString(_mainLineTxet.text)) {
-        [self.view toastShow:@"店铺主营范围未填写"];
+        [self.view makeToast:@"店铺主营范围未填写"];
         return;
     }
     
     if (KX_NULLString(_agentmodel.province )) {
-        [self.view toastShow:@"店铺地址未选择"];
+        [self.view makeToast:@"店铺地址未选择"];
         return;
     }
     
     if (KX_NULLString(_addreDetailTF.text )) {
-        [self.view toastShow:@"店铺详细地址未填写"];
+        [self.view makeToast:@"店铺详细地址未填写"];
         return;
     }
     
     if (KX_NULLString(starBtn.titleLabel.text) || KX_NULLString(endBtn.titleLabel.text)) {
-        [self.view toastShow:@"营业时间未填写完整"];
+        [self.view makeToast:@"营业时间未填写完整"];
         return;
     }
     
-    if (_xyBtn.selected == NO) {
-        [self.view toastShow:@"请同意<商家签约协议>"];
+    if (agrreBnt.selected == NO) {
+        [self.view makeToast:@"请同意<商家签约协议>"];
         return;
     }
 //    if (KX_NULLString(_addreDetailTF.text )) {
-//        [self.view toastShow:@"店铺详细地址未填写"];
+//        [self.view makeToast:@"店铺详细地址未填写"];
 //        return;
 //    }
     
@@ -426,10 +426,10 @@
         
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
             [weakSelf.navigationController popViewControllerAnimated:YES];
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
 
         }else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
             
         }
         

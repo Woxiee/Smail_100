@@ -109,7 +109,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.sourceData objectAtIndex:section] count];
+    return   1;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

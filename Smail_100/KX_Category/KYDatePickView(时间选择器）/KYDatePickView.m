@@ -142,7 +142,7 @@
         }];
 
     }else{
-        [self toastShow:@"不能选择小于今天的时间~"];
+        [self makeToast:@"不能选择小于今天的时间~"];
     }
     
     if (sender ==_cancelBtn) {

@@ -200,7 +200,7 @@ static NSString * const OthercellID = @"OthercellID";
     }
     
     if ([_orderModel.jfValue intValue] > _orderModel.allPoint) {
-        [self toastShow:@"兑换积分大于待支付积分"];
+        [self makeToast:@"兑换积分大于待支付积分"];
         return;
     }
     

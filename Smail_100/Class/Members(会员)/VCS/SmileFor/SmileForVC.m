@@ -60,7 +60,7 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
                 if ([model.is_default isEqualToString:@"Y"]) {
                     model.isShow = YES;
                     weakSelf.bind_id = model.bind_id;
-                    [weakSelf.resorceArray  addObject:model];
+                    [weakSelf.resorceArray insertObject:model atIndex:0 ];
                     break;
                 }else{
                     [weakSelf.resorceArray  addObject:@"添加银行卡"];
@@ -69,7 +69,7 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
             [weakSelf requestListNetWork];
         }
         else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
         }
         
         
@@ -95,11 +95,11 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
         NSString *msg = result[@"msg"];
         if ([result[@"code"] integerValue] == 000) {
             weakSelf.dataDic = result[@"data"];
-            [weakSelf.resorceArray addObject: weakSelf.dataDic];
+            [weakSelf.resorceArray  addObject: weakSelf.dataDic];
             [weakSelf.tableView reloadData];
         }
         else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
         }
         
     }];
@@ -129,11 +129,11 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSString *msg = result[@"msg"];
         if ([result[@"code"] integerValue] == 000) {
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }
         else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
         }
         
         
@@ -195,7 +195,7 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
 {
     [self.view endEditing:YES];
     if (KX_NULLString(_value)) {
-        [self.view toastShow:@"请输入想要兑换的数量"];
+        [self.view makeToast:@"请输入想要兑换的数量"];
         return;
     }
     WEAKSELF;

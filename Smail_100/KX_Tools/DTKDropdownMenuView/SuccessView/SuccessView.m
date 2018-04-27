@@ -15,6 +15,7 @@ typedef void(^clickTrue)(NSInteger dex);
 
 @interface SuccessView ()
 @property (nonatomic,copy)clickTrue clickTrueBlock;
+@property (nonatomic,copy)NSString  *sureTitle;
 
 @end
 
@@ -55,6 +56,24 @@ typedef void(^clickTrue)(NSInteger dex);
         self.frame = CGRectMake(marginLeft, (SCREEN_HEIGHT - _kHeight)/2, _kWidth, _kHeight);
         self.backgroundColor = [UIColor whiteColor];
         [self setConnerRediu:8];
+        [self loadIsHiddenCancleView:cancelTitle];
+        _headerImageV.hidden = YES;
+        _messgaeLb.text = title;
+        _clickTrueBlock = clickBlock;
+    }
+    return self;
+}
+
+///是否显示取消按钮
+-(id)initWithTrueCancleTitle:(NSString *)title sureTitle:(NSString *)sureTitle cancelTitle:(NSString *)cancelTitle clickDex:(void(^)(NSInteger clickDex))clickBlock
+{
+    if (self = [super init]) {
+        _kWidth = SCREEN_WIDTH - 2*marginLeft;
+        _kHeight = _kWidth *0.45;
+        self.frame = CGRectMake(marginLeft, (SCREEN_HEIGHT - _kHeight)/2, _kWidth, _kHeight);
+        self.backgroundColor = [UIColor whiteColor];
+        [self setConnerRediu:8];
+        _sureTitle = sureTitle;
         [self loadIsHiddenCancleView:cancelTitle];
         _headerImageV.hidden = YES;
         _messgaeLb.text = title;
@@ -145,7 +164,7 @@ typedef void(^clickTrue)(NSInteger dex);
     //确定按钮
     UIButton *trueBtn = [[UIButton alloc]initWithFrame:CGRectMake(line2.right, line1.bottom, self.width - line2.right, line2.height)];
     [self addSubview:trueBtn];
-    [trueBtn setTitle:@"确认" forState:UIControlStateNormal];
+    [trueBtn setTitle:_sureTitle?_sureTitle:@"确认" forState:UIControlStateNormal];
     [trueBtn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateNormal];
     [trueBtn addTarget:self action:@selector(clickTrueBtn) forControlEvents:UIControlEventTouchUpInside];
     

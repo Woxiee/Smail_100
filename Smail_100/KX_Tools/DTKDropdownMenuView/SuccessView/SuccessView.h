@@ -51,6 +51,11 @@ typedef NS_ENUM(NSInteger, SuccessStyle) {
 
 ///是否显示取消按钮
 -(id)initWithTrueCancleTitle:(NSString *)title cancelTitle:(NSString *)cancelTitle clickDex:(void(^)(NSInteger clickDex))clickBlock;
+
+
+///是否显示取消按钮
+-(id)initWithTrueCancleTitle:(NSString *)title sureTitle:(NSString *)sureTitle cancelTitle:(NSString *)cancelTitle clickDex:(void(^)(NSInteger clickDex))clickBlock;
+
 -(void)showSuccess;
 -(void)hideSuccess;//不做收回内存
 

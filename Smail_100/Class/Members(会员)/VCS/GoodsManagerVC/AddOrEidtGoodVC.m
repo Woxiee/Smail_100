@@ -161,20 +161,20 @@
       }
 
     if (KX_NULLString(_markTextView.text)) {
-        [self.view toastShow:@"商品名称未填写"];
+        [self.view makeToast:@"商品名称未填写"];
         return;
     }
     if (KX_NULLString(_model.sub_category_id)) {
-        [self.view toastShow:@"商品品类未选择"];
+        [self.view makeToast:@"商品品类未选择"];
         return;
     }
     if (KX_NULLString(_selectPriceTF.text)) {
-        [self.view toastShow:@"商品价格未填写"];
+        [self.view makeToast:@"商品价格未填写"];
         return;
     }
     
     if (KX_NULLString(_inputKuCunTF.text)) {
-        [self.view toastShow:@"商品库存未填写"];
+        [self.view makeToast:@"商品库存未填写"];
         return;
     }
     [self getRequestData];

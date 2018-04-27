@@ -101,7 +101,7 @@
 
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    [self.view toastShow:@"数据访问失败~"];
+    [self.view makeToast:@"数据访问失败~"];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 
 }

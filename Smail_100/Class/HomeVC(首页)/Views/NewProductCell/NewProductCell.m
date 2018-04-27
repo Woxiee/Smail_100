@@ -111,7 +111,12 @@
         tagCount = 0;
         tagsView.hidden = YES;
     }
-  
+
+    for(UIView *subv in [tagsView subviews])
+    {
+        [subv removeFromSuperview];
+    }
+    
     for (int i= 0; i<tagCount; i++) {
         NSInteger index = i % 6;
         NSInteger page = i / 6;

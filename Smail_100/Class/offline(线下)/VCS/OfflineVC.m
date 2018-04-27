@@ -24,6 +24,9 @@
 #import "GoodsDetailVC.h"
 
 #import "HomeVModel.h"
+#import "SelectBusinssVC.h"
+
+
 
 @interface OfflineVC ()<SDCycleScrollViewDelegate,PYSearchViewControllerDelegate,YBPopupMenuDelegate>
 @property (weak, nonatomic) SDCycleScrollView  *cycleView;
@@ -36,7 +39,6 @@
 //@property (assign, nonatomic) CGFloat scrollViewY;
 @property (assign, nonatomic)  UIButton *selectBtn;
 
-@property (nonatomic, strong) NSString *category_id;
 @property (nonatomic, strong) NSString *xy;
 @property (nonatomic, strong) NSString *order;
 @property (nonatomic, strong) NSString *q;
@@ -164,7 +166,9 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     _item = cityBtn;
     [_item sizeToFit];
     [_item layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
-    self.navigationItem.leftBarButtonItems  = @[cityItem];
+    if (KX_NULLString(_category_id)) {
+        self.navigationItem.leftBarButtonItems  = @[cityItem];
+    }
     
     
     UIView *navationView = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 120)/2, 10, SCREEN_WIDTH - 120, 30)];
@@ -248,32 +252,47 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     self.cycleView = cycleView;
     
     LineRecommendedView *teamPersenView = [[LineRecommendedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(cycleView.frame), SCREEN_WIDTH, 0)];
+    WEAKSELF;
     teamPersenView.didClickItemBlock = ^(Catelist *item) {
 
-            if ([item.click_type isEqualToString:@"web"]) {
-                if (KX_NULLString(item.url)) {
-                    return;
-                }
-                GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
-                VC.clickUrl = item.url;
-                VC.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:VC animated:YES];
-            }
-            else if ([item.click_type isEqualToString:@"app_category"]){
-                GoodsScreeningVC *VC = [[GoodsScreeningVC alloc] init];
-                VC.hidesBottomBarWhenPushed = YES;
-                VC.category_id = item.id;
-                VC.title =  item.title;
-                [self.navigationController pushViewController:VC animated:YES];
-            }
-            else {
-                /// 商品类型=1:新机。2:配构件。3:整机流转
-                GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
-                                                             navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-                vc.productID = item.id;
-                vc.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController: vc animated:YES];
-            }
+        if ([item.title isEqualToString:@"全部类目"]) {
+            SelectBusinssVC *VC = [[SelectBusinssVC alloc] init];
+            VC.type = @"1";
+            VC.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:VC animated:YES];
+        }else{
+            weakSelf.category_id = item.category_id;
+            OfflineVC *VC = [[OfflineVC alloc] init];
+          
+            VC.category_id = item.category_id;
+            VC.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:VC animated:YES];
+        }
+        
+//            if ([item.click_type isEqualToString:@"web"]) {
+//                if (KX_NULLString(item.url)) {
+//                    return;
+//                }
+//                GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
+//                VC.clickUrl = item.url;
+//                VC.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController:VC animated:YES];
+//            }
+//            else if ([item.click_type isEqualToString:@"app_category"]){
+//                GoodsScreeningVC *VC = [[GoodsScreeningVC alloc] init];
+//                VC.hidesBottomBarWhenPushed = YES;
+//                VC.category_id = item.id;
+//                VC.title =  item.title;
+//                [self.navigationController pushViewController:VC animated:YES];
+//            }
+//            else {
+//                /// 商品类型=1:新机。2:配构件。3:整机流转
+//                GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+//                                                             navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+//                vc.productID = item.id;
+//                vc.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController: vc animated:YES];
+//            }
         
     };
     [headerView addSubview:teamPersenView];

@@ -165,7 +165,7 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
     if ([dic[@"isSelect"] isEqualToString:@"0"]) {
         return 0;
     }
-    return [_dataArray[section] count];
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{

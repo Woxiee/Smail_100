@@ -60,7 +60,7 @@
             weakSelf.agentmodel = [AgentPlatformModel yy_modelWithJSON:result[@"data"]];
             [weakSelf refreshViewModel: weakSelf.agentmodel];
         }else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
 
         }
 
@@ -268,18 +268,18 @@
 - (IBAction)didSureAciton:(id)sender {
     [self.view endEditing:YES];
     if (KX_NULLString(_telTF.text)) {
-        [self.view toastShow:@"店铺联系电话未填写"];
+        [self.view makeToast:@"店铺联系电话未填写"];
         return;
     }
     
   
     if (KX_NULLString(_starBtn.titleLabel.text) || KX_NULLString(_endBtn.titleLabel.text)) {
-        [self.view toastShow:@"营业时间未填写完整"];
+        [self.view makeToast:@"营业时间未填写完整"];
         return;
     }
     
     if (KX_NULLString(_businessTX.text)) {
-        [self.view toastShow:@"店铺简介未填写"];
+        [self.view makeToast:@"店铺简介未填写"];
         return;
     }
     
@@ -305,10 +305,10 @@
         
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
             [weakSelf.navigationController popViewControllerAnimated:YES];
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
             
         }else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
             
         }
         

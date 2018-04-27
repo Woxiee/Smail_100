@@ -102,13 +102,13 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
         if ([result isKindOfClass:[NSDictionary class]]) {
             if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
                 [weakSelf getDeviceInfoRequest];
-                [weakSelf.view toastShow:result[@"msg"]];
+                [weakSelf.view makeToast:result[@"msg"]];
           
             }
         }else{
             _deviceDic[@""] = @"";
             _deviceDic = nil;
-//            [weakSelf.view toastShow:result[@"msg"]];
+//            [weakSelf.view makeToast:result[@"msg"]];
         }
         
     }];
@@ -134,7 +134,7 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
             weakSelf.deviceDic[@"devid"] = @"";
             [weakSelf.collectionView reloadData];
 
-//            [weakSelf.view toastShow:result[@"msg"]];
+//            [weakSelf.view makeToast:result[@"msg"]];
         }
     }];
     

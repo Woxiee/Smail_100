@@ -75,7 +75,7 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
             }
             [weakSelf.tableView reloadData];
         }else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
             
         }
         
@@ -152,15 +152,15 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.didClickItemBlock = ^(NSString *goodsId) {
             if (![[KX_UserInfo sharedKX_UserInfo].idcard_auth isEqualToString:@"Y"] ) {
-                [self.view toastShow:@"请先实名认证后点击兑换"];
+                [self.view makeToast:@"请先实名认证后点击兑换"];
                 return ;
             }
             if ( [KX_UserInfo sharedKX_UserInfo].phone_money.integerValue <=0 ) {
-                [self.view toastShow:@"话费不足，不能进行兑换"];
+                [self.view makeToast:@"话费不足，不能进行兑换"];
                 return ;
             }
             if ([NSString compareOneDay:weakSelf.user_infoDic[@"valid_time"] withAnotherDay:[NSString getCurrentTime]]) {
-                [self.view toastShow:@"话费已过有效期，不能进行兑换"];
+                [self.view makeToast:@"话费已过有效期，不能进行兑换"];
                 return ;
             }
             
@@ -183,15 +183,15 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
 {
     ItemContentList *model = self.resorceArray[indexPath.section];
     if (![[KX_UserInfo sharedKX_UserInfo].idcard_auth isEqualToString:@"Y"] ) {
-        [self.view toastShow:@"请先实名认证后点击兑换"];
+        [self.view makeToast:@"请先实名认证后点击兑换"];
         return ;
     }
     if ( [KX_UserInfo sharedKX_UserInfo].phone_money.integerValue <=0 ) {
-        [self.view toastShow:@"话费不足，不能进行兑换"];
+        [self.view makeToast:@"话费不足，不能进行兑换"];
         return ;
     }
     if ([NSString compareOneDay:_user_infoDic[@"valid_time"] withAnotherDay:[NSString getCurrentTime]]) {
-        [self.view toastShow:@"话费已过有效期，不能进行兑换"];
+        [self.view makeToast:@"话费已过有效期，不能进行兑换"];
         return ;
     }
     

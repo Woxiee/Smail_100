@@ -40,7 +40,7 @@
             [weakSelf.tableView reloadData];
         }
         else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
         }
     }];
     

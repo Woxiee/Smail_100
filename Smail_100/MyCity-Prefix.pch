@@ -29,7 +29,6 @@
 #import "AFNetworking.h"
 
 #import "MJRefresh.h"
-#import "UIView+KX_ToastView.h"
 #import "NSString+Extension.h"
 #import "MJExtension.h"//字典转模型
 #import "MBProgressHUD.h"
@@ -71,6 +70,7 @@
 #import "KYTextView.h"
 
 #import "UICollectionView+KYRefresh.h"
+#import "PayTool.h"
 
 /// 业务头文件
 #import "GoodsClassModel.h"

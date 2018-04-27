@@ -189,7 +189,7 @@
         _didClickCompleBlock(selectList);
     }
     if (selectList.count == 0) {
-        [self.view toastShow:@"至少选择一种分类"];
+        [self.view makeToast:@"至少选择一种分类"];
         return;
     }
     [self.navigationController popViewControllerAnimated:YES];

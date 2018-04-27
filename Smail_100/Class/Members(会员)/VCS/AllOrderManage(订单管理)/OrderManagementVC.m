@@ -242,10 +242,10 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (isSuccess) {
             [weakSelf requestListNetWork];
-            [weakSelf.view toastShow:message];
+            [weakSelf.view makeToast:message];
 
         }else{
-            [weakSelf.view toastShow:message];
+            [weakSelf.view makeToast:message];
         }
 
     }];
@@ -263,7 +263,7 @@
             [weakSelf showPayView:pay_method];
             
         }else{
-            [weakSelf.view toastShow:@"获取支付方式失败，请联系客服"];
+            [weakSelf.view makeToast:@"获取支付方式失败，请联系客服"];
         }
     }];
    

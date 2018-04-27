@@ -53,7 +53,7 @@ static NSString * const CardCellID = @"CardCell";
 
         }
         else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
         }
 
 
@@ -90,7 +90,7 @@ static NSString * const CardCellID = @"CardCell";
             [weakSelf requestListNetWork];
         }
         else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
         }
         
         

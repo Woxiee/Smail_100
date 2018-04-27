@@ -80,7 +80,7 @@
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         NSString *msg = result[@"msg"];
         if ([result[@"code"] integerValue] == 0) {
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
             [weakSelf.navigationController popViewControllerAnimated:YES];
 
             [[KX_UserInfo sharedKX_UserInfo] loadUserInfoFromSanbox];
@@ -89,7 +89,7 @@
 
         }
         else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
         }
     }];
 }

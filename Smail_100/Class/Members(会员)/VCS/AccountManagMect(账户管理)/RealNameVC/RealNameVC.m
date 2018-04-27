@@ -69,7 +69,7 @@
             }
             
         }else{
-            [weakSelf.view toastShow:result[@"msg"]];
+            [weakSelf.view makeToast:result[@"msg"]];
 
         }
 
@@ -91,20 +91,20 @@
     NSData *imageData2 = UIImageJPEGRepresentation(self.otherImageView.image , 0.3);
     
     if (imageData == nil) {
-        [self.view toastShow:@"请上传身份证正面照"];
+        [self.view makeToast:@"请上传身份证正面照"];
         return;
     }
     if (imageData1 == nil) {
-        [self.view toastShow:@"请上传身份证背面照"];
+        [self.view makeToast:@"请上传身份证背面照"];
         return;
     }
     if (imageData2 == nil) {
-        [self.view toastShow:@"请上传手持身份证正面照"];
+        [self.view makeToast:@"请上传手持身份证正面照"];
         return;
     }
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     [[BaseHttpRequest alloc] requestUploadImageList:@[self.upImageView.image,self.downImageView.image,self.otherImageView.image] Url:@"/ucenter/idcard_auth" Params:param andBlock:^(NSString *imageName) {
-        [weakSelf.view toastShow:imageName];
+        [weakSelf.view makeToast:imageName];
         [weakSelf.navigationController popViewControllerAnimated:YES];
         
     }];
@@ -134,16 +134,16 @@
 - (void)didClickRightNaviBtn
 {
     if (KX_NULLString(_nameTF.text)) {
-        [self.view toastShow:_nameTF.placeholder];
+        [self.view makeToast:_nameTF.placeholder];
         return;
     }
     if (KX_NULLString(_idTF.text)) {
-        [self.view toastShow:_idTF.placeholder];
+        [self.view makeToast:_idTF.placeholder];
         return;
     }
     
     if (KX_NULLString(_phoneTF.text)) {
-        [self.view toastShow:_phoneTF.placeholder];
+        [self.view makeToast:_phoneTF.placeholder];
         return;
     }
     

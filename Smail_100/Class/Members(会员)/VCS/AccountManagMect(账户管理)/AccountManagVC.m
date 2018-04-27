@@ -101,7 +101,7 @@
     
     
    else{
-       [self.view toastShow:@"该功能暂未开放,请稍后!"];
+       [self.view makeToast:@"该功能暂未开放,请稍后!"];
    }
     
     

@@ -11,4 +11,6 @@
 @interface SelectBusinssVC : KX_BaseViewController
 @property (nonatomic,copy) void(^didClickCompleBlock)(ChildModel *model);
 
+@property (nonatomic,copy) NSString *type;
+
 @end

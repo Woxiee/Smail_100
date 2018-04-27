@@ -38,4 +38,7 @@
 
 @property (nonatomic,weak) id<JHCoverViewDelegate> delegate;
 
+
+- (void)show;
+
 @end

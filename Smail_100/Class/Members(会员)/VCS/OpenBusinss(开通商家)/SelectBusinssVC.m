@@ -8,6 +8,7 @@
 
 #import "SelectBusinssVC.h"
 #import "ChildModel.h"
+#import "OfflineVC.h"
 
 @interface SelectBusinssVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
@@ -125,12 +126,22 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ChildModel *model = self.resorceArray[indexPath.row];
+    if (KX_NULLString(_type)) {
+        if (_didClickCompleBlock) {
+            _didClickCompleBlock(model);
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }else{
+        OfflineVC *VC = [[OfflineVC alloc] init];
+        VC.category_id = model.id;
+        VC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:VC animated:YES];
 
-    if (_didClickCompleBlock) {
-        _didClickCompleBlock(model);
     }
+    
+   
 
-    [self.navigationController popViewControllerAnimated:YES];
 
     
     
@@ -168,10 +179,10 @@
         _didClickCompleBlock(selectList);
     }
 //    if (selectList.count == 0) {
-//        [self.view toastShow:@"至少选择一种行业"];
+//        [self.view makeToast:@"至少选择一种行业"];
 //        return;
 //    }
-    [self.navigationController popViewControllerAnimated:YES];
+  
 }
 
 

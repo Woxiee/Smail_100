@@ -227,7 +227,7 @@
     }
     
     if ([NSString cheakInputStrIsBlankSpace:_codeView.inputTF.text] ) {
-        [self.view toastShow:@"还未输入验证码~"];
+        [self.view makeToast:@"还未输入验证码~"];
         return;
     }
     if (_codeView.inputTF.text.integerValue != _mobileNetCode.integerValue) {

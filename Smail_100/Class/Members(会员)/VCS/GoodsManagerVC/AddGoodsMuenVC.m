@@ -48,7 +48,7 @@
 - (IBAction)didClickSureAction:(UIButton *)sender {
     
     if (KX_NULLString(_inputTF.text)) {
-        [self.view toastShow:@"输入内容不能为空"];
+        [self.view makeToast:@"输入内容不能为空"];
         return;
     }
     [self getRequestData];

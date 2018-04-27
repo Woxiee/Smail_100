@@ -76,7 +76,7 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
             weakSelf.leveModel = model;
             [weakSelf.tableView reloadData];
         }else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
 
         }
 
@@ -122,7 +122,7 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.didClickItemBlock = ^(NSString *goodsId) {
 //            if ([[KX_UserInfo sharedKX_UserInfo].agent_level intValue] == 0 ) {
-//                [self.view toastShow:@"亲，购买创业礼包即可免费升级成为合伙人"];
+//                [self.view makeToast:@"亲，购买创业礼包即可免费升级成为合伙人"];
 //                return;
 //            }
             GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll

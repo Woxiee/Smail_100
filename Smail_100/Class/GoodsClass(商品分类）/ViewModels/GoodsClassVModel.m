@@ -20,7 +20,7 @@
             if ([result[@"code"] intValue] == 0) {
                 GoodsClassModel *model = [GoodsClassModel yy_modelWithJSON:result[@"data"]];
                     model.banners = [Banners mj_objectArrayWithKeyValuesArray:model.banners];
-                    model.leftCategory = [LeftCategory mj_objectArrayWithKeyValuesArray:model.rightCategory];
+                    model.leftCategory = [LeftCategory mj_objectArrayWithKeyValuesArray:model.leftCategory];
                     model.rightCategory = [LeftCategory mj_objectArrayWithKeyValuesArray:model.rightCategory];
 
                     [listArray addObject:model];

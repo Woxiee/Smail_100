@@ -148,13 +148,13 @@
         [OrderVModel getOrderOperationUrl:@"/o/o_115" Param:param successBlock:^( BOOL isSuccess,NSString *message) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (isSuccess) {
-                [weakSelf.view toastShow:@"提交评价成功~"];
+                [weakSelf.view makeToast:@"提交评价成功~"];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [weakSelf.navigationController popViewControllerAnimated:YES];
                 });
                 
             }else{
-                [weakSelf.view toastShow:message];
+                [weakSelf.view makeToast:message];
             }
             
         }];

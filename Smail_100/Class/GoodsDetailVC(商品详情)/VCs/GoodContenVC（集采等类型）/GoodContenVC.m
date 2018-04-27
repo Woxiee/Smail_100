@@ -248,11 +248,16 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
                 [weakSelf addGoodsInCar:model.itemContent];
             }
             else if (index == 4){
-                
-                if (KX_NULLString(weakSelf.itemIfoModel.itemContent.spec)) {
-                    [weakSelf.selectView show];
-                    return;
+                if (weakSelf.itemIfoModel.spec.count >0) {
+                    if (KX_NULLString(weakSelf.itemIfoModel.itemContent.spec)) {
+                        if (weakSelf.selectView == nil) {
+                            [weakSelf initSelectView];
+                        }
+                        [weakSelf.selectView show];
+                        return;
+                    }
                 }
+               
                 GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
                 model.itemContent.goods_id = weakSelf.productID;
                 VC.itemsModel = model.itemContent;
@@ -296,7 +301,23 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     [self.selectView.headImage  sd_setImageWithURL:[NSURL URLWithString:_itemIfoModel.itemContent.imageUrl] placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW]];
     
     self.selectView.nameLB.text = _itemIfoModel.itemContent.name;
-    self.selectView.LB_price.text =[NSString stringWithFormat:@"¥%@",_itemIfoModel.itemContent.price];
+    NSMutableArray *priceArr = [[NSMutableArray alloc] init];
+    if (_itemIfoModel.itemContent.price.floatValue >0) {
+        [priceArr addObject:[NSString stringWithFormat:@"¥%@",_itemIfoModel.itemContent.price]];
+    }
+    if (_itemIfoModel.itemContent.point.floatValue >0) {
+        [priceArr addObject:[NSString stringWithFormat:@"%@积分",_itemIfoModel.itemContent.point]];
+    }
+    NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
+    if (_itemIfoModel.itemContent.earn_money.floatValue >0) {
+        NSString *getMoney = [NSString stringWithFormat:@"赚¥%@",_itemIfoModel.itemContent.earn_money];
+        NSString *moneyStr = [NSString stringWithFormat:@"%@ %@",allPrice,getMoney];
+        NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[getMoney,@"+"]];
+       self.selectView.LB_price.attributedText  = attributedStr;
+        
+    }else{
+        self.selectView.LB_price.text = [NSString stringWithFormat:@"¥%@",_itemIfoModel.itemContent.price];
+    }
     self.selectView.LB_stock.text = @"";
     self.selectView.LB_showSales.text = [NSString stringWithFormat:@"销量%@件",_itemIfoModel.itemContent.sale_num] ;
     self.selectView.LB_detail.text = @"请选择规格属性";
@@ -410,13 +431,18 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
             if (weakSelf.titleArray.count >0) {
                 [weakSelf.titleArray removeAllObjects];
             }
-            [weakSelf.titleArray addObject:@"商品详情"];
-            [weakSelf.titleArray addObject:@"查看商品规格"];
-            [weakSelf.titleArray addObject:@"图文详情"];
+          
 
             NSMutableArray *imggeList = [[NSMutableArray alloc] init];
             ItemInfoList *infoModel = dataArray[0];
             weakSelf.itemIfoModel = dataArray[1];
+            
+            [weakSelf.titleArray addObject:@"商品详情"];
+            [weakSelf.titleArray addObject:@"查看商品规格"];
+            if (!KX_NULLString(_itemIfoModel.itemContent.content)) {
+                [weakSelf.titleArray addObject:@"图文详情"];
+            }
+            
             weakSelf.bottomView.contenModel = weakSelf.itemIfoModel.itemContent;
             for (ItemContentList *items in infoModel.itemContentList) {
                 [imggeList addObject:items.imageUrl];
@@ -518,7 +544,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 
         }
         else{
-            [weakSelf.view toastShow:NOTICEMESSAGE];
+            [weakSelf.view makeToast:NOTICEMESSAGE];
         }
     }];
 }
@@ -544,7 +570,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
         [param setObject:_itemIfoModel.itemContent.coll_id forKey:@"coll_id"];
 
         [GoodsVModel getGoodCollectParam:param successBlock:^(BOOL isSuccess, NSString *msg) {
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
             if (isSuccess) {
                 [weakSelf getGoodsDetailInfoRequest];
             }
@@ -734,10 +760,11 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GoodSDetailModel *model = self.resorceArray[0];
     NSString *title = _titleArray[indexPath.section];
-    if (![title isEqualToString:@"商品详情"]) {
+    if (![title isEqualToString:@"查看规格"]) {
      
 //        [self showGuigeView:GoodGuigeAddCartOrBuyType];
         [self.selectView show];
+
 
     }
    
@@ -1023,5 +1050,43 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     /// 清除监听
 //    [_sameGoodsCollectView removeObserver:self forKeyPath:@"contentOffset"];
 }
+
+
+- (NSAttributedString *)attributeStringWithContent:(NSString *)content keyWords:(NSArray *)keyWords
+{
+    UIColor *color = KMAINCOLOR;
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:content];
+    
+    if (keyWords) {
+        
+        [keyWords enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            NSMutableString *tmpString=[NSMutableString stringWithString:content];
+            
+            NSRange range=[content rangeOfString:obj];
+            
+            NSInteger location=0;
+            
+            while (range.length>0) {
+                
+                [attString addAttribute:(NSString*)NSForegroundColorAttributeName value:color range:NSMakeRange(location+range.location, range.length)];
+                [attString addAttribute:NSFontAttributeName
+                                  value:Font11
+                                  range:range];
+                
+                location+=(range.location+range.length);
+                
+                NSString *tmp= [tmpString substringWithRange:NSMakeRange(range.location+range.length, content.length-location)];
+                
+                tmpString=[NSMutableString stringWithString:tmp];
+                
+                range=[tmp rangeOfString:obj];
+            }
+        }];
+    }
+    return attString;
+}
+
 
 @end

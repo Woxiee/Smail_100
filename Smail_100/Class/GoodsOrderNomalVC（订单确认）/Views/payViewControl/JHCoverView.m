@@ -315,4 +315,18 @@
     }
 }
 
+
+
+- (void)show
+{
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    
+    [keyWindow addSubview:self];
+    
+    
+    self.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    
+    
+}
+
 @end

@@ -53,6 +53,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     [self setConfiguration];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickLogin)];
     [_headerView addGestureRecognizer:tap];
+    [self setRefresh];
 
 
 }
@@ -136,8 +137,8 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
             userinfo.agent_level = dataDic[@"agent_level"];
             userinfo.idcard_auth = dataDic[@"idcard_auth"];
 
-            
             [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
+            [self stopRefresh];
         }
 
     }];
@@ -179,56 +180,56 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         [weakSelf.navigationController pushViewController:VC animated:YES];
     };
     self.tableView.tableHeaderView = _headerView;
-    self.tableView.contentInset = UIEdgeInsetsMake(IMAGE_HEIGHT-64, 0, 0, 0);
-
-    [self wr_setNavBarBarTintColor:KMAINCOLOR];
-    [self wr_setNavBarBackgroundAlpha:0];
-    [self wr_setNavBarShadowImageHidden:NO];
+//    self.tableView.contentInset = UIEdgeInsetsMake(IMAGE_HEIGHT-64, 0, 0, 0);
+//
+//    [self wr_setNavBarBarTintColor:KMAINCOLOR];
+//    [self wr_setNavBarBackgroundAlpha:0];
+//    [self wr_setNavBarShadowImageHidden:NO];
     self.title = @"我的";
 }
 
 
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    CGFloat offsetY = scrollView.contentOffset.y;
-    
-    if (offsetY > NAVBAR_COLORCHANGE_POINT)
-    {
-        CGFloat alpha = (offsetY - NAVBAR_COLORCHANGE_POINT) / NAV_HEIGHT;
-        [self wr_setNavBarBackgroundAlpha:alpha];
-        if (alpha > 0.5) {
-            [self wr_setNavBarTintColor:[UIColor redColor]];
-            [self wr_setNavBarTitleColor:[UIColor whiteColor]];
-            [self wr_setStatusBarStyle:UIStatusBarStyleDefault];
-        } else {
-            [self wr_setNavBarTintColor:[UIColor whiteColor]];
-            [self wr_setNavBarTitleColor:[UIColor clearColor]];
-            [self wr_setStatusBarStyle:UIStatusBarStyleLightContent];
-        }
-    }
-    else
-    {
-        [self wr_setNavBarBackgroundAlpha:0];
-        [self wr_setNavBarTintColor:[UIColor whiteColor]];
-        [self wr_setNavBarTitleColor:[UIColor clearColor]];
-        [self wr_setStatusBarStyle:UIStatusBarStyleLightContent];
-    }
-    
-    //限制下拉的距离
-    if(offsetY < LIMIT_OFFSET_Y) {
-        [scrollView setContentOffset:CGPointMake(0, LIMIT_OFFSET_Y)];
-    }
-    
-    // 改变图片框的大小 (上滑的时候不改变)
-    // 这里不能使用offsetY，因为当（offsetY < LIMIT_OFFSET_Y）的时候，y = LIMIT_OFFSET_Y 不等于 offsetY
-    CGFloat newOffsetY = scrollView.contentOffset.y;
-    if (newOffsetY < -IMAGE_HEIGHT)
-    {
-        self.headerView.frame = CGRectMake(0, newOffsetY, kScreenWidth, -newOffsetY);
-    }
-}
-
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    CGFloat offsetY = scrollView.contentOffset.y;
+//
+//    if (offsetY > NAVBAR_COLORCHANGE_POINT)
+//    {
+//        CGFloat alpha = (offsetY - NAVBAR_COLORCHANGE_POINT) / NAV_HEIGHT;
+//        [self wr_setNavBarBackgroundAlpha:alpha];
+//        if (alpha > 0.5) {
+//            [self wr_setNavBarTintColor:[UIColor redColor]];
+//            [self wr_setNavBarTitleColor:[UIColor whiteColor]];
+//            [self wr_setStatusBarStyle:UIStatusBarStyleDefault];
+//        } else {
+//            [self wr_setNavBarTintColor:[UIColor whiteColor]];
+//            [self wr_setNavBarTitleColor:[UIColor clearColor]];
+//            [self wr_setStatusBarStyle:UIStatusBarStyleLightContent];
+//        }
+//    }
+//    else
+//    {
+//        [self wr_setNavBarBackgroundAlpha:0];
+//        [self wr_setNavBarTintColor:[UIColor whiteColor]];
+//        [self wr_setNavBarTitleColor:[UIColor clearColor]];
+//        [self wr_setStatusBarStyle:UIStatusBarStyleLightContent];
+//    }
+//
+//    //限制下拉的距离
+//    if(offsetY < LIMIT_OFFSET_Y) {
+//        [scrollView setContentOffset:CGPointMake(0, LIMIT_OFFSET_Y)];
+//    }
+//
+//    // 改变图片框的大小 (上滑的时候不改变)
+//    // 这里不能使用offsetY，因为当（offsetY < LIMIT_OFFSET_Y）的时候，y = LIMIT_OFFSET_Y 不等于 offsetY
+//    CGFloat newOffsetY = scrollView.contentOffset.y;
+//    if (newOffsetY < -IMAGE_HEIGHT)
+//    {
+//        self.headerView.frame = CGRectMake(0, newOffsetY, kScreenWidth, -newOffsetY);
+//    }
+//}
+//
 
 
 #pragma mark - UITaleViewDelegate and UITableViewDatasource
@@ -361,7 +362,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     
     
     else{
-        [self.view toastShow:@"该功能暂未开放,请稍后!"];
+        [self.view makeToast:@"该功能暂未开放,请稍后!"];
     }
     
     
@@ -388,7 +389,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
             VC.hidesBottomBarWhenPushed = YES;
             [self.navigationController  pushViewController:VC animated:YES];
         }else{
-            [self.view toastShow:@"您还不是商家，请开通商家后进入"];
+            [self.view makeToast:@"您还不是商家，请开通商家后进入"];
         }
     }
     
@@ -398,7 +399,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
             VC.hidesBottomBarWhenPushed = YES;
             [self.navigationController  pushViewController:VC animated:YES];
         }else{
-            [self.view toastShow:@"您还不是代理商，请签约成为代理。"];
+            [self.view makeToast:@"您还不是代理商，请签约成为代理。"];
         }
      
     }
@@ -427,7 +428,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
          self.tabBarController.selectedIndex = 3;
      }
     else{
-        [self.view toastShow:@"该功能暂未开放,请稍后!"];
+        [self.view makeToast:@"该功能暂未开放,请稍后!"];
     }
     
 }
@@ -441,6 +442,31 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         _resorceArray = [[NSMutableArray alloc] init];
     }
     return _resorceArray;
+}
+
+#pragma mark - refresh 添加刷新方法
+-(void)setRefresh
+{
+    WEAKSELF;
+    [self.tableView headerWithRefreshingBlock:^{
+        [weakSelf loadNewDate];
+    }];
+    
+   
+    
+}
+
+-(void)loadNewDate
+{
+
+    [self getUserInfo];
+}
+
+
+
+-(void)stopRefresh
+{
+    [self.tableView  endRefreshTableView];
 }
 
 @end

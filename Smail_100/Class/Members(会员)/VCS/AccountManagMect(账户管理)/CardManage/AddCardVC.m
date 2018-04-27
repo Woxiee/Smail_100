@@ -65,11 +65,11 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSString *msg = result[@"msg"];
         if ([result[@"code"] integerValue] == 000) {
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }
         else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
         }
         
     }];
@@ -93,28 +93,28 @@
         _bankNameTF.text = _model.bank_address;
 
 //        if (KX_NULLString( _nameTF.text)) {
-//            [self.view toastShow:_nameTF.placeholder];
+//            [self.view makeToast:_nameTF.placeholder];
 //            return;
 //        }
 //        if (KX_NULLString( _codeTF.text)) {
-//            [self.view toastShow:_codeTF.placeholder];
+//            [self.view makeToast:_codeTF.placeholder];
 //            return;
 //        }
 //        if (![Common validateBankAccount:_codeTF.text]) {
-//            [self.view toastShow:@"请输入有效的银行卡号"];
+//            [self.view makeToast:@"请输入有效的银行卡号"];
 //            return;
 //        }
 //        
 //        if (KX_NULLString(_bankTypeTF.text)) {
-//            [self.view toastShow:_bankTypeTF.placeholder];
+//            [self.view makeToast:_bankTypeTF.placeholder];
 //            return;
 //        }
 //        if (KX_NULLString( _addressTF.text)) {
-//            [self.view toastShow:_addressTF.placeholder];
+//            [self.view makeToast:_addressTF.placeholder];
 //            return;
 //        }
 //        if (KX_NULLString( _bankNameTF.text)) {
-//            [self.view toastShow:_bankNameTF.placeholder];
+//            [self.view makeToast:_bankNameTF.placeholder];
 //            return;
 //        }
 
@@ -195,32 +195,32 @@
     
     [self.view endEditing:YES];
     if (![[KX_UserInfo sharedKX_UserInfo].idcard_auth isEqualToString:@"Y"] ) {
-        [self.view toastShow:@"请先实名认证后在添加银行卡"];
+        [self.view makeToast:@"请先实名认证后在添加银行卡"];
         return ;
     }
 //    if (KX_NULLString( _nameTF.text)) {
-//        [self.view toastShow:_nameTF.placeholder];
+//        [self.view makeToast:_nameTF.placeholder];
 //        return;
 //    }
     if (KX_NULLString( _codeTF.text)) {
-        [self.view toastShow:_codeTF.placeholder];
+        [self.view makeToast:_codeTF.placeholder];
         return;
     }
     if (![Common validateBankAccount:_codeTF.text]) {
-        [self.view toastShow:@"请输入有效的银行卡号"];
+        [self.view makeToast:@"请输入有效的银行卡号"];
         return;
     }
 
     if (KX_NULLString(_bankTypeTF.text)) {
-        [self.view toastShow:_bankTypeTF.placeholder];
+        [self.view makeToast:_bankTypeTF.placeholder];
         return;
     }
     if (KX_NULLString( _addressTF.text)) {
-        [self.view toastShow:_addressTF.placeholder];
+        [self.view makeToast:_addressTF.placeholder];
         return;
     }
     if (KX_NULLString( _bankNameTF.text)) {
-        [self.view toastShow:_bankNameTF.placeholder];
+        [self.view makeToast:_bankNameTF.placeholder];
         return;
     }
 

@@ -176,7 +176,7 @@
         case  ChangeInfoTypeTel:
         {
             if (![Common isValidateMobile:_inputTF.text]) {
-                [self.view toastShow:@"请输入有效的电话号码~"];
+                [self.view makeToast:@"请输入有效的电话号码~"];
                 return;
             }
            
@@ -190,12 +190,12 @@
         case  ChangeInfoTypePhone:
         {
             if (![_inputTF.text containsString:@"-"]) {
-                [self.view toastShow:@"区号与座机号码之间需要添加'-'"];
+                [self.view makeToast:@"区号与座机号码之间需要添加'-'"];
                 return;
             }
             NSString *str = [_inputTF.text stringByReplacingOccurrencesOfString:@"-" withString:@""];
             if (![NSString cheakInputStrIsNumber:str]) {
-                [self.view toastShow:@"电话号码只能为数字"];
+                [self.view makeToast:@"电话号码只能为数字"];
                 return;
             }
             [param setObject:_inputTF.text forKey:@"telephone"];
@@ -225,12 +225,12 @@
         case  ChangeInfoTypeAddress:
         {
             if (KX_NULLString(_inputTF.text) ) {
-                [self.view toastShow:@"详细地址不能为空~"];
+                [self.view makeToast:@"详细地址不能为空~"];
                 return;
             }
             
             if (_inputTF.text.length <5 || _inputTF.text.length >50) {
-                [self.view toastShow:@"详细地址在5-60个字之间~"];
+                [self.view makeToast:@"详细地址在5-60个字之间~"];
                 return;
             }
             [param setObject:_inputTF.text forKey:@"address"];

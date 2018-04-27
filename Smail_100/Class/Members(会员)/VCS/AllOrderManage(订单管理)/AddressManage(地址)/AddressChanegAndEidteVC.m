@@ -76,22 +76,22 @@
 - (IBAction)didSavaBtn:(id)sender {
     [self.view endEditing:YES];
     if (KX_NULLString(_model.contact_username)) {
-        [self.view toastShow:@"请输入联系人~"];
+        [self.view makeToast:@"请输入联系人~"];
         return;
     }
     if (![Common isValidateMobile:_model.contact_mobile]) {
-        [self.view toastShow:@"请输入有效电话号码~"];
+        [self.view makeToast:@"请输入有效电话号码~"];
         return;
     }
     
     if (KX_NULLString(_model.province) || KX_NULLString(_model.city) || KX_NULLString(_model.district)) {
-        [self.view toastShow:@"请选择所在地区~"];
+        [self.view makeToast:@"请选择所在地区~"];
         return;
     }
     
     
     if (KX_NULLString(_model.detail) || (_model.detail.length <5 || _model.detail.length>60)) {
-        [self.view toastShow:@"详细地址在5-60个字之间~"];
+        [self.view makeToast:@"详细地址在5-60个字之间~"];
         return;
     }
  
@@ -141,14 +141,14 @@
 //        NSInteger state = [[result valueForKey:@"data"][@"state"] integerValue];
         NSString *msg = result[@"msg"];
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
 
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [weakSelf.navigationController popViewControllerAnimated:YES];
             });
             
         }else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
 
         }
     }];

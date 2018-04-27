@@ -24,15 +24,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VuE-6r-EwS">
-                    <rect key="frame" x="0.0" y="0.0" width="100" height="617"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="100" id="2gQ-fV-62A"/>
-                    </constraints>
-                </tableView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pWg-H5-ObO">
-                    <rect key="frame" x="105" y="0.0" width="270" height="617"/>
+                    <rect key="frame" x="105" y="45" width="270" height="572"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OQE-km-qwH">
@@ -116,6 +109,13 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VuE-6r-EwS">
+                    <rect key="frame" x="0.0" y="45" width="100" height="572"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="2gQ-fV-62A"/>
+                    </constraints>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -123,8 +123,8 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="fVa-5L-IgG" secondAttribute="trailing" id="7FK-R5-0qK"/>
                 <constraint firstItem="fVa-5L-IgG" firstAttribute="width" secondItem="LoY-iP-yST" secondAttribute="width" id="Bcd-TW-GYg"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="fVa-5L-IgG" secondAttribute="trailing" id="DL8-HN-Z1z"/>
-                <constraint firstItem="VuE-6r-EwS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GcX-z2-kog"/>
-                <constraint firstItem="pWg-H5-ObO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="HLQ-5W-0eS"/>
+                <constraint firstItem="VuE-6r-EwS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="45" id="GcX-z2-kog"/>
+                <constraint firstItem="pWg-H5-ObO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="45" id="HLQ-5W-0eS"/>
                 <constraint firstAttribute="bottom" secondItem="OQE-km-qwH" secondAttribute="bottom" id="KA6-Wm-jXR"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="OQE-km-qwH" secondAttribute="trailing" id="LHH-gh-0pz"/>
                 <constraint firstAttribute="bottom" secondItem="LoY-iP-yST" secondAttribute="bottom" id="MM4-5J-QIg"/>

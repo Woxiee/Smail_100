@@ -57,7 +57,7 @@ static NSString *const defaultAdressCellID = @"DefaultAdressCellID";
 
 - (IBAction)addAddressClick:(id)sender {
     if (self.resorceArray.count > 20) {
-        [self.view toastShow:@"亲，地址最多不超过20个~"];
+        [self.view makeToast:@"亲，地址最多不超过20个~"];
         return;
     }
     AddressChanegAndEidteVC *VC = [[AddressChanegAndEidteVC alloc] init];

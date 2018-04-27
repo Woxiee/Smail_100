@@ -103,7 +103,7 @@
                     userinfo.department = dataDic[@"department"];
                     userinfo.mobile = dataDic[@"mobile"];
                     userinfo.pid = dataDic[@"pid"];
-                    userinfo.pay_password = dataDic[@"pay_password"];
+                    userinfo.pay_password = [NSString stringWithFormat:@"%@",dataDic[@"pay_password"]];
 
                     if (KX_NULLString(dataDic[@"pay_password"])) {
                         userinfo.pay_password = @"";

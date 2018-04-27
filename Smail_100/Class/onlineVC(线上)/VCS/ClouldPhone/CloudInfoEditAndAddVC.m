@@ -33,22 +33,22 @@
 - (void)getNetWorkRequest
 {
     if (KX_NULLString(_codeTF.text)) {
-        [self.view toastShow:_codeTF.placeholder];
+        [self.view makeToast:_codeTF.placeholder];
         return;
     }
     
     if (KX_NULLString(_nameTF.text)) {
-        [self.view toastShow:_nameTF.placeholder];
+        [self.view makeToast:_nameTF.placeholder];
         return;
     }
     
     if (![NSString valiMobile:_telTF.text]) {
-        [self.view toastShow:@"请输入正确的手机号码"];
+        [self.view makeToast:@"请输入正确的手机号码"];
         return;
     }
     
     if(![NSString checkIdentityCardNo:_idTF.text]){
-        [self.view toastShow:@"请输入正确的身份证号码"];
+        [self.view makeToast:@"请输入正确的身份证号码"];
         return;
     }
     WEAKSELF;
@@ -65,12 +65,12 @@
         if ([result isKindOfClass:[NSDictionary class]]) {
             if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
                 [weakSelf.navigationController popViewControllerAnimated:YES];
-                [weakSelf.view toastShow:msg];
+                [weakSelf.view makeToast:msg];
 
             }
             
         }else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
         }
         
     }];
@@ -98,22 +98,22 @@
 - (IBAction)didClickSureAciton:(id)sender {
     
     if (KX_NULLString(_codeTF.text)) {
-        [self.view toastShow:_codeTF.placeholder];
+        [self.view makeToast:_codeTF.placeholder];
         return;
     }
     
     if (KX_NULLString(_nameTF.text)) {
-        [self.view toastShow:_nameTF.placeholder];
+        [self.view makeToast:_nameTF.placeholder];
         return;
     }
     
     if (KX_NULLString(_idTF.text)) {
-        [self.view toastShow:_idTF.placeholder];
+        [self.view makeToast:_idTF.placeholder];
         return;
     }
     
     if (KX_NULLString(_telTF.text)) {
-        [self.view toastShow:_telTF.placeholder];
+        [self.view makeToast:_telTF.placeholder];
         return;
     }
     [self getNetWorkRequest];

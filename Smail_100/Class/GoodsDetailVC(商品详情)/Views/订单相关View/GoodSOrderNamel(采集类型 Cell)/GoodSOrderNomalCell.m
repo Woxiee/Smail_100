@@ -53,7 +53,8 @@
     _detailLB.font = Font12;
     _detailLB.textColor = DETAILTEXTCOLOR;
     
-    _priceLB.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
+//    _priceLB.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
+    _priceLB.font = Font14;
     _priceLB.textColor = BACKGROUND_COLORHL;
 
     _number.textColor = BACKGROUND_COLORHL;
@@ -111,14 +112,26 @@
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:_products.img] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
     _titleLB.text = _products.name;
     _detailLB.text = _products.spec?_products.spec:[NSString stringWithFormat:@"规格: %@",@"默认"];
-    _priceLB.text = [NSString stringWithFormat:@"¥%@",_products.price];
-//    _products.point = @"22";
-    if ([_products.point integerValue] >0) {
-//        NSString *allPrice = [NSString]
-        NSString *str = [NSString stringWithFormat:@"%@积分+¥%@",_products.point,_products.price];
-        NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(_products.point.length, 2) withColor:TITLETEXTLOWCOLOR withFont:Font13];
-        _priceLB.attributedText = attributedStr;
+    
+    
+//    _priceLB.text = [NSString stringWithFormat:@"¥%@",_products.price];
+////    _products.point = @"22";
+//    if ([_products.point integerValue] >0) {
+////        NSString *allPrice = [NSString]
+//        NSString *str = [NSString stringWithFormat:@"%@积分+¥%@",_products.point,_products.price];
+//        NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(_products.point.length, 2) withColor:TITLETEXTLOWCOLOR withFont:Font13];
+//        _priceLB.attributedText = attributedStr;
+//    }
+    
+    NSMutableArray *priceArr = [[NSMutableArray alloc] init];
+    if (_products.price.floatValue >0) {
+        [priceArr addObject:[NSString stringWithFormat:@"¥%@",_products.price]];
     }
+    if (_products.point.floatValue >0) {
+        [priceArr addObject:[NSString stringWithFormat:@"%@积分",_products.point]];
+    }
+    NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
+    _priceLB.text = allPrice;
     _number.text = [NSString stringWithFormat:@"*%@",_products.goods_nums];
     
     if (_model.isDetail) {

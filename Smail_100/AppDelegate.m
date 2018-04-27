@@ -92,7 +92,7 @@
             if ([resultDic[@"resultStatus"] integerValue] == 9000) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTICEMEPAYMSG object:resultDic];
             }else{
-                [self.window toastShow:@"支付操作未完成，请到订单管理继续完成支付！"];
+                [self.window makeToast:@"支付操作未完成，请到订单管理继续完成支付！"];
 
             }
         }];
@@ -115,16 +115,16 @@
         switch (resp.errCode) {
             case 0:
                 payResoult = @"支付结果：成功！";
-                [self.window toastShow:@"支付成功"];
+                [self.window makeToast:@"支付成功"];
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTICEMEPAYMSG object:nil];
                 break;
             case -1:
                 payResoult = @"支付结果：失败！";
-                [self.window toastShow:@"支付操作未完成，请到订单管理继续完成支付！"];
+                [self.window makeToast:@"支付操作未完成，请到订单管理继续完成支付！"];
 
                 break;
             case -2:
-                [self.window toastShow:@"支付操作未完成，请到订单管理继续完成支付！"];
+                [self.window makeToast:@"支付操作未完成，请到订单管理继续完成支付！"];
 
                 payResoult = @"用户已经退出支付！";
                 break;

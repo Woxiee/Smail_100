@@ -8,7 +8,7 @@
 
 #import "LoginForgetVC.h"
 #import "LoginSureForgetVC.h"
-//#import "GoodsAuctionXYVC.h"
+#import "GoodsAuctionXYVC.h"
 #import "KYCodeBtn.h"
 #import "LoginVModel.h"
 @interface LoginForgetVC ()
@@ -121,7 +121,7 @@
             [weakSelf getYzmCodeRequet];
         }
         else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
         }
     }];
  */
@@ -202,7 +202,11 @@
 
 
 - (IBAction)didClckXYBtn:(id)sender{
-  
+    GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
+    VC.clickUrl = [NSString stringWithFormat:@"%@/api/shop/agreement?type=register",HEAD__URL] ;
+    VC.hidesBottomBarWhenPushed = YES;
+    VC.title = @"<用户服务协议>";
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 - (IBAction)registBtn:(id)sender {
@@ -242,8 +246,8 @@
         [self.view makeToast:@"两次输入密码不一致!"];
         return;
     }
-    if (!KX_NULLString( _recommendedTF.text)) {
-        [self.view toastShow: _recommendedTF.placeholder];
+    if (KX_NULLString( _recommendedTF.text)) {
+        [self.view makeToast: _recommendedTF.placeholder];
         return;
     }
     

@@ -185,7 +185,7 @@
 
 - (void)didClickBottomViewAction:(id)sender {
     if ([_model.onSale isEqualToString:@"0"]) {
-        [self toastShow:@"该商品已下架~"];
+        [self makeToast:@"该商品已下架~"];
         return;
     }
     
@@ -200,7 +200,7 @@
 //
 //
 //    if ([_model.onSale isEqualToString:@"0"]) {
-//        [self toastShow:@"该商品已下架~"];
+//        [self makeToast:@"该商品已下架~"];
 //        return;
 //    }
 //

@@ -57,11 +57,11 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSString *msg = result[@"msg"];
         if ([result[@"code"] integerValue] == 000) {
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }
         else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
         }
         
     }];
@@ -137,12 +137,12 @@
 - (IBAction)submitBtn:(id)sender {
     [self.view endEditing:YES];
     if (KX_NULLString(_accoutTF.text)) {
-        [self.view toastShow:_accoutTF.placeholder];
+        [self.view makeToast:_accoutTF.placeholder];
         return;
     }
     
     if (KX_NULLString(_samilTF.text) &&  KX_NULLString(_pointTF.text)   &&  KX_NULLString(_kongcTF.text)) {
-        [self.view toastShow:@"至少输入一种转赠方式~"];
+        [self.view makeToast:@"至少输入一种转赠方式~"];
         return;
     }
     
@@ -151,14 +151,14 @@
 //    _kongCBtn.selected = NO;
     if (_smailBtn.selected) {
         if (KX_NULLString(_samilTF.text)  ) {
-            [self.view toastShow:_samilTF.placeholder];
+            [self.view makeToast:_samilTF.placeholder];
             return;
         }
     }
     
     if (_pointBtn.selected) {
         if (KX_NULLString(_pointTF.text)) {
-            [self.view toastShow:_pointTF.placeholder];
+            [self.view makeToast:_pointTF.placeholder];
             return;
         }
     }
@@ -166,7 +166,7 @@
     
     if (_kongCBtn.selected) {
         if (KX_NULLString(_kongcTF.text)) {
-            [self.view toastShow:_pointTF.placeholder];
+            [self.view makeToast:_pointTF.placeholder];
             return;
         }
     }

@@ -196,9 +196,9 @@ singleton_implementation(KX_UserInfo)
     [defaults setObject:self.mobile forKey:@"mobile"];
     [defaults setObject:self.pid forKey:@"pid"];
     if (!KX_NULLString(self.pay_password) && ![self.pay_password isKindOfClass:[NSNull class]]) {
-        [defaults setObject:self.pay_password?self.pay_password:@"" forKey:@"mtime"];
+        [defaults setObject:self.pay_password?self.pay_password:@"" forKey:@"pay_password"];
     }else{
-        [defaults setObject:@"" forKey:@"mtime"];
+        [defaults setObject:@"" forKey:@"pay_password"];
 
     }
     [defaults setObject:self.password forKey:@"password"];

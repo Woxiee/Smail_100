@@ -136,19 +136,19 @@
                     
                     NSString *status = [result valueForKey:@"data"][@"obj"][@"status"];
                     if ([status isEqualToString:@"0"]) {
-                        [weakSelf.view  toastShow:@"该账号还未注册~"];
+                        [weakSelf.view  makeToast:@"该账号还未注册~"];
                         return;
                     }else{
                         [weakSelf getYzmRequest];
                     }
 
                 }else{
-                    [weakSelf.view  toastShow:msg];
+                    [weakSelf.view  makeToast:msg];
 
                 }
                 
             }else{
-                [weakSelf.view  toastShow:msg];
+                [weakSelf.view  makeToast:msg];
 
             }
         }

@@ -574,21 +574,18 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     ItemInfoList *model =  self.resorceArray[indexPath.section];
     ItemContentList *contenModle =  model.itemContentList[indexPath.row];
     if ([contenModle.clickType isEqualToString:@"产品分类"]){
-            GoodsClassVC *VC = [[GoodsClassVC alloc] init];
-            VC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:VC animated:YES];
-            return;
+        GoodsClassVC *VC = [[GoodsClassVC alloc] init];
+        VC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:VC animated:YES];
+        return;
 
     }
     
     /// 积分商城
     else if ([contenModle.clickType isEqualToString:@"point_mall"]){
-
-        
         PointStoreVC *VC = [[PointStoreVC alloc] init];
         VC.hidesBottomBarWhenPushed = YES;
         VC.categoryId = contenModle.id;
@@ -599,10 +596,10 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     
     /// 我的云设备
    else if ([contenModle.clickType isEqualToString:@"cloud_device"]){
-            ClouldPhoneVC *VC = [[ClouldPhoneVC alloc] init];
-            VC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:VC animated:YES];
-            return;
+       ClouldPhoneVC *VC = [[ClouldPhoneVC alloc] init];
+       VC.hidesBottomBarWhenPushed = YES;
+       [self.navigationController pushViewController:VC animated:YES];
+       return;
     }
     
     /// 我的云设备
@@ -615,7 +612,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     
     /// 显示抢购
    else if ([contenModle.itemTitle isEqualToString:@"限时抢购"]){
-       [self.view toastShow:@"该功能暂未开放，敬请期待~"];
+       [self.view makeToast:@"该功能暂未开放，敬请期待~"];
        return;
    }
     
@@ -625,7 +622,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 //       VC.hidesBottomBarWhenPushed = YES;
 //       [self.navigationController pushViewController:VC animated:YES];
 //       return;
-       [self.view toastShow:@"该功能暂未开放，敬请期待~"];
+       [self.view makeToast:@"该功能暂未开放，敬请期待~"];
          return;
    }
     
@@ -677,6 +674,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     for (ItemInfoList *model  in self.resorceArray) {
         if ([model.itemType isEqualToString:@"themeBanner"]) {
             ItemContentList *contenModle =  model.itemContentList[index];
+       
             if ([contenModle.clickType isEqualToString:@"web"]) {
                 if (KX_NULLString(contenModle.url)) {
                     return;
@@ -691,6 +689,10 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
                 
             }
             else {
+                if (KX_NULLString(contenModle.goods_id) ) {
+                    [self.view makeToast:@"该活动暂未开始，请等通知"];
+                    return;
+                }
                 /// 商品类型=1:新机。2:配构件。3:整机流转
                 GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
                                                              navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];

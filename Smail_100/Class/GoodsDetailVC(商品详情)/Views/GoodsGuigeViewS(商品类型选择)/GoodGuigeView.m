@@ -351,7 +351,7 @@ static NSString *goodGuigeSectionHeadViewID = @"GoodGuigeSectionHeadView";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return [_dataArray[section] count];
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{

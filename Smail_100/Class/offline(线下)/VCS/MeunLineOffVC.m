@@ -13,6 +13,12 @@
 #import "ChangeGoodsCountView.h"
 #import "GoodsOrderNomalVC.h"
 #import "GoodSDetailModel.h"
+#import "MenulineView.h"
+
+#import "GoodsOrderModel.h"
+#import "PayModels.h"
+#import "PayOrderView.h"
+#import "PayDetailModel.h"
 
 @interface MeunLineOffVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *leftTableView;
@@ -36,7 +42,9 @@
 
 
 @property (nonatomic,copy)  NSMutableDictionary *itemsDic;
-
+@property (nonatomic, strong) GoodsOrderModel *orderModel;
+@property (nonatomic, strong)    PayModels *payModel;            //
+@property (nonatomic, strong)    PayOrderView *payOrderView;            //
 
 @end
 
@@ -53,7 +61,11 @@
     [self setUI];
     [self loadShopCarData];
     [self allMoneyAfterSelect];
-
+   
+    if (_orderModel == nil) {
+        _orderModel = [GoodsOrderModel new];
+    }
+    [self showPayView];
 }
 
 
@@ -102,12 +114,33 @@
             
         }
         else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
         }
     }];
 }
 
+- (void)getOrderNoRequrst:(NSString *)money
+{
+    WEAKSELF;
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:_detailModel.shop_id forKey:@"shop_id"];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    [param setObject:money forKey:@"money"];
+    [MBProgressHUD showMessag:@"加载中..." toView:self.view];
+    
+    [BaseHttpRequest postWithUrl:@"/pay/shop_pay" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSString *msg = [result valueForKey:@"msg"];
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+            weakSelf.orderModel.orderno = result[@"data"];
+              [weakSelf.payOrderView show];
+          
+        }else{
+            [weakSelf.view makeToast:msg];
 
+        }
+    }];
+}
 
 
 - (void)setUI
@@ -146,8 +179,77 @@
 
 //    [_cartBtn showBadgeWithStyle:WBadgeStyleNumber value:3 animationType:WBadgeAnimTypeNone];
 //    _cartBtn.badgeCenterOffset = CGPointMake(-25, 9);
+    WEAKSELF;
+    MenulineView *headView = [[MenulineView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 45)];
+    headView.didClickSureBlock = ^(NSString *str){
+        [weakSelf getOrderNoRequrst:str];
+    };
+    [self.view addSubview:headView];
 }
 
+
+
+/// 展示 付款方式
+- (void)showPayView
+{
+    WEAKSELF;
+    NSMutableArray *titleArr = [[NSMutableArray alloc] init];
+    NSMutableArray *imageArr = [[NSMutableArray alloc] init];
+    PayOrderView *view;
+//    if ([_orderModel.pay_method.wxpay isEqualToString:@"Y"]) {
+        [titleArr addObject:@"微信支付"];
+        [imageArr addObject:@"wxzf@3x.png"];
+//    }
+    
+//    if ([_orderModel.pay_method.alipay isEqualToString:@"Y"]) {
+        [titleArr addObject:@"支付宝支付"];
+        [imageArr addObject:@"zfb@3x.png"];
+//    }
+    
+//    if ([_orderModel.pay_method.coins_money isEqualToString:@"Y"]) {
+        [titleArr addObject:@"激励笑脸支付"];
+        [imageArr addObject:@"jlxl@3x.png"];
+//    }
+    
+//    if ([_orderModel.pay_method.coins_air_money isEqualToString:@"Y"]) {
+        [titleArr addObject:@"空充笑脸支付"];
+        [imageArr addObject:@"kcxl@3x.png"];
+//    }
+    
+//    if ([_orderModel.pay_method.phone_money isEqualToString:@"Y"]) {
+        [titleArr addObject:@"话费支付"];
+        [imageArr addObject:@"hfdh@3x.png"];
+//    }
+    
+  
+    
+    view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeNoaml];
+ 
+    view.didChangeJFValueBlock = ^(GoodsOrderModel *orderModel) {
+        [[PayTool sharedPayTool] getPayInfoOrderModle:weakSelf.orderModel payVC:weakSelf reluteBlock:^(NSString *msg, BOOL success) {
+            
+        }];
+    };
+    
+    
+    NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i<titleArr.count; i++) {
+        PayDetailModel *model = [PayDetailModel new];
+        model.mark = @"";
+        model.icon = imageArr[i];
+        model.isSelect = NO;
+        if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"积分兑换"]) {
+            model.isSelect = YES;
+            _orderModel.payIndexStr = @"积分兑换";
+        }
+        model.title = titleArr[i];
+        
+        [dataArray addObject:model];
+    }
+    view.dataArr = dataArray;
+    view.orderModel = _orderModel;
+    self.payOrderView = view;
+}
 
 #pragma mark UITableView  delegate
 
@@ -327,7 +429,7 @@
     
     
     if (cartList.count == 0) {
-        [self.view toastShow:@"请先添加商品在下单~"];
+        [self.view makeToast:@"请先添加商品在下单~"];
         return;
     }
     GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
@@ -380,12 +482,12 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSString *msg = [result valueForKey:@"msg"];
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
             
             
             
         }else{
-            [weakSelf.view toastShow:msg];
+            [weakSelf.view makeToast:msg];
         }
     }];
     
