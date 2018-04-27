@@ -48,8 +48,8 @@
     if ([[KX_UserInfo sharedKX_UserInfo].shop_level intValue] >0) {
         [_userImageView sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
         
-        _nameLB.text = [KX_UserInfo sharedKX_UserInfo].nickname;
-        _weixinName.text = [NSString stringWithFormat:@"%@",[KX_UserInfo sharedKX_UserInfo].wxname];
+        _nameLB.text =  [NSString stringWithFormat:@"昵称:%@",[KX_UserInfo sharedKX_UserInfo].nickname];
+        _weixinName.text = [NSString stringWithFormat:@"微信:%@",[KX_UserInfo sharedKX_UserInfo].wxname];
         
         [_myCodeImageView sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].qrcode] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
         _activeBtn.hidden = YES;
@@ -60,7 +60,9 @@
         [_activeBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
         _userImageView.hidden = YES;
         _myCodeHeighContains.constant = 50;
-        _myCodeImageView.image = [UIImage imageNamed:@"wodetuiguang1@3x.png"];
+        _myCodeImageView.hidden = YES;
+
+//        _myCodeImageView.image = [UIImage imageNamed:@"wodetuiguang1@3x.png"];
         _nameLB.text = @"我的分享链接";
         _weixinName.text = @"无法分享，快去商城购买商品吧";
         _detailLB.text = @"  我的二维码";

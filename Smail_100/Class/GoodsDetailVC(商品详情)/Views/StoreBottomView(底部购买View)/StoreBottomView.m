@@ -74,19 +74,19 @@
     [self layerForViewWith:0 AndLineWidth:0.5];
     
     shouYeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    shouYeBtn.frame = CGRectMake(10, 8,SCREEN_WIDTH/7 - 8, 40);
+    shouYeBtn.frame = CGRectMake(10, 0, SCREEN_WIDTH/7, 45);
     [shouYeBtn addTarget:self action:@selector(didClickBottomViewAction:) forControlEvents:UIControlEventTouchUpInside];
     shouYeBtn.tag = 100;
 //    shouYeBtn.backgroundColor = [UIColor redColor];
-    [shouYeBtn setImage:[UIImage imageNamed:@"shouye13@3x.png"] forState:UIControlStateNormal];
+    [shouYeBtn setImage:[UIImage imageNamed:@"detailHomeIcon@2x.png"] forState:UIControlStateNormal];
     [shouYeBtn setTitle:@"首页" forState:UIControlStateNormal];
-//    shouYeBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -2, 0, 0);
+
+    shouYeBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
 
     [shouYeBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:0];
 
     [shouYeBtn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
     shouYeBtn.titleLabel.font =  Font12;
-    shouYeBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
 
     [self addSubview:shouYeBtn];
 
@@ -94,8 +94,8 @@
     meBtn.frame = CGRectMake(CGRectGetMaxX(shouYeBtn.frame), 0, SCREEN_WIDTH/7, 45);
     [meBtn addTarget:self action:@selector(didClickBottomViewAction:) forControlEvents:UIControlEventTouchUpInside];
     meBtn.tag = 101;
-    [meBtn setImage:[UIImage imageNamed:@"shouye11@3x.png"] forState:UIControlStateNormal];
-    [meBtn setImage:[UIImage imageNamed:@"shouye12@3x.png"] forState:UIControlStateSelected];
+    [meBtn setImage:[UIImage imageNamed:@"detailCollectIcon@2x.png"] forState:UIControlStateNormal];
+    [meBtn setImage:[UIImage imageNamed:@"detailCollectIcon@2x.png"] forState:UIControlStateSelected];
 
     [meBtn setTitle:@"收藏" forState:UIControlStateNormal];
 
@@ -110,7 +110,7 @@
 
     cartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     cartBtn.frame = CGRectMake(CGRectGetMaxX(meBtn.frame)-10, 0,  SCREEN_WIDTH/7+10, 45);
-    [cartBtn setImage:[UIImage imageNamed:@"shouye14@3x.png"] forState:UIControlStateNormal];
+    [cartBtn setImage:[UIImage imageNamed:@"detailcon1@2x.png"] forState:UIControlStateNormal];
     [cartBtn setTitle:@"购物车" forState:UIControlStateNormal];
     [cartBtn addTarget:self action:@selector(didClickBottomViewAction:) forControlEvents:UIControlEventTouchUpInside];
     cartBtn.tag = 102;

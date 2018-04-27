@@ -275,7 +275,7 @@
 //                LoginFindAndRegirsVC *VC = [[LoginFindAndRegirsVC alloc] initWithNibName:@"LoginFindAndRegirsVC" bundle:nil];
 //                [weakSelf.navigationController pushViewController:VC animated:YES];
                 [self.navigationController popToRootViewControllerAnimated:YES];
-                [weakSelf.view makeToast:result[@"msg"]];
+                [weakSelf.view makeToast:@"注册成功,请登录"];
                 
             }else{
                 [weakSelf.view makeToast:result[@"msg"]];
@@ -312,6 +312,19 @@
 - (IBAction)didClickCodeImageView:(id)sender {
     
     
+}
+
+
+- (IBAction)isAbelAction:(id)sender {
+    UIButton *btn = (UIButton *)sender;
+    btn.selected =! btn.selected;
+    if (btn.tag == 100) {
+        _pswTextFiled.secureTextEntry =  btn.selected ;
+    }
+    else{
+        _oldPswTextFiled.secureTextEntry =  btn.selected ;
+        
+    }
 }
 
 @end

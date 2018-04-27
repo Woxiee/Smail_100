@@ -144,7 +144,16 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
 #pragma mark - private
 - (void)setup
 {
-    [self setRightNaviBtnTitle:@"兑换记录"];
+    self.view.backgroundColor = BACKGROUND_COLOR;
+    if (KX_NULLString(_shopID)) {
+        [self setRightNaviBtnTitle:@"兑换记录"];
+
+    }else{
+        [self setRightNaviBtnTitle:@"提现记录"];
+
+    }
+
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:@"CardCell" bundle:nil] forCellReuseIdentifier:CardCellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"SmileForMoneyCell" bundle:nil] forCellReuseIdentifier:SmileForMoneyCellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"GoodSOrderCommonCell" bundle:nil] forCellReuseIdentifier:goodSOrderCommonCell];
@@ -259,6 +268,7 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
             //        }
             
         };
+
         cell.indexPath = indexPath;
         cell.model = self.resorceArray[indexPath.section];
         return cell;
@@ -287,7 +297,7 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
         return 100;
 
     }else{
-        return 400;
+        return 280;
     }
 }
 

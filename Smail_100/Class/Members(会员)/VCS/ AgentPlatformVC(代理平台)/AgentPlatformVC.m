@@ -115,7 +115,7 @@
     [headView3 addSubview:btn2];
     
     UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake( CGRectGetMaxX(btn2.frame), CGRectGetMaxY(btn1.frame)+3, SCREEN_WIDTH/2,20)];
-    label1.text = @"广东省 深圳市 宝安区";
+    label1.text = @"";
     label1.font = Font13;
     label1.textAlignment = NSTextAlignmentLeft;
     label1.textColor = KMAINCOLOR;
@@ -128,9 +128,12 @@
     headView4.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:headView4];
     
-    
-    NSArray *imageArray = @[@"hehuorenpingtai1@3x.png",@"hehuorenpingtai2@3x.png",@"hehuorenpingtai5@3x.png",@"wodetuandui3@3x.png",@"hehuorenpingtai4@3x.png",@"daili_set@3x.png",@"hehuorenpingtai3@3x.png",@"hehuorenpingtai5@3x.png",];
-    NSArray *titleArray = @[@"团队管理",@"代理激励",@"兑换积分",@"合伙人列表",@"开通商家",@"商家审核",@"商家列表",@"使用帮助"];
+//
+//    NSArray *imageArray = @[@"hehuorenpingtai1@3x.png",@"hehuorenpingtai2@3x.png",@"hehuorenpingtai5@3x.png",@"wodetuandui3@3x.png",@"hehuorenpingtai4@3x.png",@"daili_set@3x.png",@"hehuorenpingtai3@3x.png",@"hehuorenpingtai5@3x.png",];
+//    NSArray *titleArray = @[@"团队管理",@"代理激励",@"兑换积分",@"合伙人列表",@"开通商家",@"商家审核",@"商家列表",@"使用帮助"];
+    NSArray *imageArray = @[@"hehuorenpingtai1@3x.png",@"hehuorenpingtai2@3x.png",@"wodetuandui3@3x.png",@"hehuorenpingtai4@3x.png",@"hehuorenpingtai3@3x.png",@"hehuorenpingtai5@3x.png",];
+    NSArray *titleArray = @[@"团队管理",@"代理激励",@"合伙人列表",@"开通商家",@"商家列表",@"使用帮助"];
+
     int btnW =  SCREEN_WIDTH/4;
     for (int i = 0; i<imageArray.count; i++) {
         NSInteger index = i % 4;
@@ -168,47 +171,53 @@
     switch (sender.tag) {
         case 100:
         {
-       
+            [self.view makeToast:@"该功能暂未开放,敬请期待!"];
         }
             break;
         case 101:
         {
-   
+            [self.view makeToast:@"该功能暂未开放,敬请期待!"];
+
         }
             break;
         case 102:
         {
-            
+            [self.view makeToast:@"该功能暂未开放,敬请期待!"];
+
         }
             break;
         case 103:
-        {
-       
-        }
-            break;
-        case 104:
         {
             OpenBusinssVC *VC = [[OpenBusinssVC alloc] init];
             
             [self.navigationController pushViewController:VC animated:YES];
         }
             break;
+        case 104:
+        {
+            [self.view makeToast:@"该功能暂未开放,敬请期待!"];
+
+        }
+            break;
             
         case 105:
         {
-          
+            [self.view makeToast:@"该功能暂未开放,敬请期待!"];
+
         }
             break;
         case 106:
         {
-            AgentPlatfoemMainVC *VC = [[AgentPlatfoemMainVC alloc] init];
-            
-            [self.navigationController pushViewController:VC animated:YES];
+//            AgentPlatfoemMainVC *VC = [[AgentPlatfoemMainVC alloc] init];
+                        [self.view makeToast:@"该功能暂未开放,敬请期待!"];
+
+//            [self.navigationController pushViewController:VC animated:YES];
         }
             break;
         case 107:
         {
-            
+            [self.view makeToast:@"该功能暂未开放,敬请期待!"];
+
         }
             break;
         default:

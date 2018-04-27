@@ -21,10 +21,14 @@
 @property (weak, nonatomic) IBOutlet UITextField *bankNameTF;
 @property (weak, nonatomic) IBOutlet UIButton *sureBtn;
 
+
 @end
 
 @implementation AddCardVC
+{
+    __weak IBOutlet UIButton *defultBtn;
 
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
@@ -44,12 +48,15 @@
 
     }else{
         [param setObject:@"bind" forKey:@"method"];
+        [param setObject:_model.is_default forKey:@"is_default"];
+
 
     }
     [param setObject:[KX_UserInfo sharedKX_UserInfo].realname forKey:@"real_name"];
     [param setObject:_model.bank_id forKey:@"bank_id"];
 
-    
+    [param setObject:defultBtn.selected?@"Y":@"N" forKey:@"is_default"];
+
     [param setObject:_model.bank_account forKey:@"bank_account"];
     [param setObject:_model.bank_name forKey:@"bank_name"];
 //    [param setObject:_model.bank_mobile forKey:@"bank_mobile"];
@@ -86,11 +93,15 @@
         _nameTF.text = [NSString stringWithFormat:@"%@",[KX_UserInfo sharedKX_UserInfo].realname];
     }
     else{
+        self.title = @"银行卡管理";
+
         _nameTF.text = _model.real_name;
         _codeTF.text = _model.bank_account;
         _bankTypeTF.text = _model.bank_name;
-        _addressTF.text =  _model.bank_region;
-        _bankNameTF.text = _model.bank_address;
+        _model.bank_address  = [_model.bank_address  stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        _addressTF.text =  _model.bank_address ;
+        _bankNameTF.text =  _model.bank_region;
+        defultBtn.selected = [_model.is_default isEqualToString:@"Y"]?YES:NO;
 
 //        if (KX_NULLString( _nameTF.text)) {
 //            [self.view makeToast:_nameTF.placeholder];
@@ -190,6 +201,11 @@
         _model.bank_address = _bankNameTF.text;
     }
 }
+
+- (IBAction)didSeleDefaleAction:(id)sender {
+    defultBtn.selected =! defultBtn.selected;
+}
+
 
 - (IBAction)didClickSureAction:(id)sender {
     

@@ -647,6 +647,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
         if ([str isEqualToString:@"新增收货地址"]) {
             AddressManageVC *VC = [[AddressManageVC alloc] init];
             VC.model = _model;
+            VC.isValue = @"0";
             VC.didClickAddressCellBlock = ^(GoodsOrderAddressModel* model){
 
                 if ( weakSelf.orderModel.address == nil) {

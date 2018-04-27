@@ -35,7 +35,7 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
 {
     self.title = @"升级合伙人";
     
-    SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 220 *hScale) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW]];
+    SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200 *hScale) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW]];
     self.cycleView = cycleView;
     self.tableView.tableHeaderView = cycleView;
     

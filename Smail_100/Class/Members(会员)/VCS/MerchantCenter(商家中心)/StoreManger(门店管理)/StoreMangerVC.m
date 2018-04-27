@@ -225,7 +225,7 @@
 
 - (void)refreshViewModel:(AgentPlatformModel *)model
 {
-    _addressTF.text = [NSString stringWithFormat:@"%@%@%@",model.province,model.city,model.province];
+    _addressTF.text = [NSString stringWithFormat:@"%@%@%@",model.province,model.city,model.district];
     _storeAddressTF.text = [NSString stringWithFormat:@"%@",model.address];
     _industryTF.text =  [NSString stringWithFormat:@"%@",model.category_name];
     _benefitT.text =  [NSString stringWithFormat:@"%@",model.interest_perc];

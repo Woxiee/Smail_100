@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -98,12 +102,9 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥68.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66g-FH-KlF">
                         <rect key="frame" x="139" y="86" width="50" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.67450980390000004" green="0.10980392160000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥68.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTp-zu-GsX">
-                        <rect key="frame" x="189" y="86" width="50" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="5aO-sc-0yr"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.67450980390000004" green="0.10980392160000001" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -115,7 +116,6 @@
                     <constraint firstItem="jb3-yO-Izc" firstAttribute="leading" secondItem="xUd-ig-B8a" secondAttribute="leading" id="FbQ-dN-ONd"/>
                     <constraint firstItem="QvQ-88-Ajc" firstAttribute="top" secondItem="xUd-ig-B8a" secondAttribute="top" constant="7" id="GQL-30-1lS"/>
                     <constraint firstAttribute="trailing" secondItem="QvQ-88-Ajc" secondAttribute="trailing" constant="8" id="I7j-Dt-BoY"/>
-                    <constraint firstItem="MTp-zu-GsX" firstAttribute="leading" secondItem="66g-FH-KlF" secondAttribute="trailing" id="J65-ir-Iiv"/>
                     <constraint firstItem="jb3-yO-Izc" firstAttribute="centerY" secondItem="xUd-ig-B8a" secondAttribute="centerY" id="OWp-OZ-N9J"/>
                     <constraint firstItem="gLi-nr-MZU" firstAttribute="top" secondItem="xUd-ig-B8a" secondAttribute="top" constant="15" id="TLV-sg-m8J"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cKT-dH-hlx" secondAttribute="trailing" constant="12" id="UD7-ZQ-k9L"/>
@@ -123,16 +123,13 @@
                     <constraint firstAttribute="bottom" secondItem="stb-Wd-WCw" secondAttribute="bottom" constant="15" id="XjM-Ty-wCk"/>
                     <constraint firstItem="cKT-dH-hlx" firstAttribute="leading" secondItem="gLi-nr-MZU" secondAttribute="trailing" constant="8" id="ZtL-8U-wCa"/>
                     <constraint firstAttribute="trailing" secondItem="stb-Wd-WCw" secondAttribute="trailing" constant="12" id="Zvu-DV-7Eq"/>
-                    <constraint firstItem="MTp-zu-GsX" firstAttribute="bottom" secondItem="66g-FH-KlF" secondAttribute="bottom" id="cbU-nN-3zl"/>
                     <constraint firstItem="66g-FH-KlF" firstAttribute="centerY" secondItem="stb-Wd-WCw" secondAttribute="centerY" id="d1L-hv-ecC"/>
                     <constraint firstItem="gLi-nr-MZU" firstAttribute="leading" secondItem="jb3-yO-Izc" secondAttribute="trailing" constant="8" id="eHk-Bk-HDd"/>
                     <constraint firstItem="cKT-dH-hlx" firstAttribute="centerY" secondItem="xUd-ig-B8a" secondAttribute="centerY" id="eTa-Sg-Gqr"/>
-                    <constraint firstItem="MTp-zu-GsX" firstAttribute="top" secondItem="66g-FH-KlF" secondAttribute="top" id="k2f-1u-ZvY"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="headImage" destination="gLi-nr-MZU" id="LAh-SC-QnQ"/>
-                <outlet property="jifeLB" destination="MTp-zu-GsX" id="Fq4-Wo-umQ"/>
                 <outlet property="name" destination="QvQ-88-Ajc" id="XRg-5Z-Gvw"/>
                 <outlet property="numberLable" destination="UwM-9G-xhd" id="hZ9-pD-1jg"/>
                 <outlet property="priceLable" destination="66g-FH-KlF" id="Zu6-s9-szg"/>

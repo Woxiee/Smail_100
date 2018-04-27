@@ -254,6 +254,8 @@
 ///计算勾选后的总金额 和iitem的数量
 - (void)allMoneyAfterSelect{
   
+    totalMoneyLable.textColor = KMAINCOLOR;
+    _jifeLB.textColor = KMAINCOLOR;
     totalMoneyLable.text = [carVM calculationCarAllPrice:_dataSocure];
     NSString *allPoint = [carVM calculationCarAllPoint:_dataSocure];
     if ([allPoint intValue] > 0) {
@@ -265,6 +267,10 @@
         _jifeLB.text = @"";
     }
     NSString *count = [carVM calcilationShopCarAllCount:_dataSocure];
+    if (count.integerValue >0) {
+        [self.navigationController.tabBarController.viewControllers[3].tabBarItem setBadgeValue:count];
+
+    }
 //    minCountLb.text = [NSString stringWithFormat:@"%@件商品",count];
     [toPayBtn setTitle:[NSString stringWithFormat:@"结算(%@)",count] forState:UIControlStateNormal];
 

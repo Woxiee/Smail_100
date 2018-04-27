@@ -75,6 +75,7 @@ static NSString * const imageCellIdentifier = @"HomeScrollCellID";
 //    [self.leftNaviBtn sizeToFit];
 //    [self.leftNaviBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
 //
+    self.title = @"产品分类";
     [self setRightNaviBtnImage:[UIImage imageNamed:@"shouye18@3x.png"]];
 
     self.view.backgroundColor = BACKGROUNDNOMAL_COLOR;
@@ -103,31 +104,31 @@ static NSString * const imageCellIdentifier = @"HomeScrollCellID";
     //轮播图
     [self.collectionView registerNib:[UINib nibWithNibName:@"HomeScrollCell" bundle:nil] forCellWithReuseIdentifier:imageCellIdentifier];
     
-    UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 120)/2, 10, SCREEN_WIDTH - 120, 30)];
-    
-    inPutTextField.placeholder = @"找商品, 找商家,找品牌";
-    inPutTextField.textColor = [UIColor whiteColor];
-    inPutTextField.font = Font13;
-    inPutTextField.returnKeyType = UIReturnKeySearch;
-    inPutTextField.backgroundColor =[UIColor whiteColor];
-    inPutTextField.borderStyle = UITextBorderStyleNone;
-    [inPutTextField layerForViewWith:15 AndLineWidth:0];
-    _inPutTextField = inPutTextField;
-    //搜索框里面的UI
-    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    view.backgroundColor = [UIColor clearColor];
-    inPutTextField.leftViewMode = UITextFieldViewModeAlways;
-    inPutTextField.leftView = view;
-    UIImageView * searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 8, 14, 14)];
-    searchImage.backgroundColor = [UIColor clearColor];
-    searchImage.image = [UIImage imageNamed:@"21@3x.png"];
-    [view addSubview:searchImage];
-    
-    UIButton *coverToSeach =  [[UIButton alloc]initWithFrame:CGRectMake(0, 0, inPutTextField.width, inPutTextField.height)];
-    coverToSeach.backgroundColor = [UIColor clearColor];
-    [coverToSeach addTarget:self  action:@selector(clickToSearch) forControlEvents:UIControlEventTouchUpInside];
-    [inPutTextField addSubview:coverToSeach];
-    self.navigationItem.titleView = inPutTextField;
+//    UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 120)/2, 10, SCREEN_WIDTH - 120, 30)];
+//
+//    inPutTextField.placeholder = @"找商品, 找商家,找品牌";
+//    inPutTextField.textColor = [UIColor whiteColor];
+//    inPutTextField.font = Font13;
+//    inPutTextField.returnKeyType = UIReturnKeySearch;
+//    inPutTextField.backgroundColor =[UIColor whiteColor];
+//    inPutTextField.borderStyle = UITextBorderStyleNone;
+//    [inPutTextField layerForViewWith:15 AndLineWidth:0];
+//    _inPutTextField = inPutTextField;
+//    //搜索框里面的UI
+//    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+//    view.backgroundColor = [UIColor clearColor];
+//    inPutTextField.leftViewMode = UITextFieldViewModeAlways;
+//    inPutTextField.leftView = view;
+//    UIImageView * searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 8, 14, 14)];
+//    searchImage.backgroundColor = [UIColor clearColor];
+//    searchImage.image = [UIImage imageNamed:@"21@3x.png"];
+//    [view addSubview:searchImage];
+//
+//    UIButton *coverToSeach =  [[UIButton alloc]initWithFrame:CGRectMake(0, 0, inPutTextField.width, inPutTextField.height)];
+//    coverToSeach.backgroundColor = [UIColor clearColor];
+//    [coverToSeach addTarget:self  action:@selector(clickToSearch) forControlEvents:UIControlEventTouchUpInside];
+//    [inPutTextField addSubview:coverToSeach];
+//    self.navigationItem.titleView = inPutTextField;
     
 }
 

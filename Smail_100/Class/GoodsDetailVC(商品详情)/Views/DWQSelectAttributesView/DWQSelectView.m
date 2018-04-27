@@ -46,7 +46,7 @@
     [self addSubview:alphaView];
     
     //装载商品信息的视图
-    whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 180, SCREEN_WIDTH, SCREEN_HEIGHT-180)];
+    whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 250, SCREEN_WIDTH, SCREEN_HEIGHT-250)];
     whiteView.backgroundColor = [UIColor whiteColor];
     [self addSubview:whiteView];
     
@@ -54,9 +54,9 @@
     headImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 100, 100)];
 //    headImage.image = [UIImage imageNamed:@"凯迪拉克.jpg"];
     headImage.layer.cornerRadius = 4;
-    headImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    headImage.layer.borderWidth = 1;
-    [headImage.layer setMasksToBounds:YES];
+//    headImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+//    headImage.layer.borderWidth = 1;
+//    [headImage.layer setMasksToBounds:YES];
     [whiteView addSubview:headImage];
     
     cancelBtn= [UIButton buttonWithType:UIButtonTypeCustom];
@@ -80,15 +80,15 @@
     LB_price.font = [UIFont systemFontOfSize:16];
     [whiteView addSubview:LB_price];
     //商品库存
-    LB_stock = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame)+10, CGRectGetMaxY(LB_price.frame)+3, 80, 20)];
-    LB_stock.text = @"库存10000件";
+    LB_stock = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame)+10, CGRectGetMaxY(LB_price.frame)+3, 150, 20)];
+    LB_stock.text = @"";
     LB_stock.textColor = DETAILTEXTCOLOR;
     LB_stock.font = Font14;
     [whiteView addSubview:LB_stock];
     
     //用户所选择商品的尺码和颜色
     LB_detail = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame)+10, CGRectGetMaxY(LB_stock.frame) + 3, SCREEN_WIDTH - CGRectGetMaxX(headImage.frame)-10 , 20)];
-    LB_detail.text = @"请选择 尺码 颜色分类";
+    LB_detail.text = @"";
     LB_detail.numberOfLines = 0;
     LB_detail.textColor = DETAILTEXTCOLOR;
     LB_detail.font = Font14;
@@ -100,6 +100,7 @@
     
     UILabel *numLB = [[UILabel  alloc] initWithFrame:CGRectMake(10, whiteView.mj_h - 90, 100, 30)];
     numLB.font = Font15;
+    numLB.text = @"购买数量";
     numLB.textColor = TITLETEXTLOWCOLOR;
     numLB.textAlignment = NSTextAlignmentLeft;
     [whiteView addSubview:numLB];
@@ -274,7 +275,7 @@
     }else{
 //                if ([_model.param5 isEqualToString:@"1"]) {
         _goodSCount =  [_numberTextField.text intValue];
-        _numLB.text = [NSString stringWithFormat:@"数量:%@",_numberTextField.text] ;
+        _numLB.text = [NSString stringWithFormat:@"购买数量:%@",_numberTextField.text] ;
 
 //                }else{
 //                    if ([textField.text integerValue] > [_model.cargoNumber integerValue]) {

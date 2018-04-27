@@ -142,7 +142,7 @@ static NSInteger infoCellTag = 100;
 - (void)didClickImageAction
 {
     WEAKSELF;
-    KX_ActionSheet *sheetView  = [KX_ActionSheet  sheetWithTitle:@"选择图片" cancelButtonTitle:@"图片" clicked:^(KX_ActionSheet *actionSheet, NSInteger buttonIndex) {
+    KX_ActionSheet *sheetView  = [KX_ActionSheet  sheetWithTitle:@"选择图片" cancelButtonTitle:@"取消" clicked:^(KX_ActionSheet *actionSheet, NSInteger buttonIndex) {
         NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:[KX_UserInfo sharedKX_UserInfo].user_id,@"user_id", nil];
 
         if (buttonIndex == 1) {
@@ -314,6 +314,20 @@ static NSInteger infoCellTag = 100;
 //            [self.navigationController pushViewController:sexVC animated:YES];
         }break;
         case 4:{
+            SuccessView *successV = [[SuccessView alloc] initWithTrueCancleTitle:@"是否退出登录?" cancelTitle:@"取消" clickDex:^(NSInteger clickDex) {
+                if (clickDex == 1) {
+                    [[KX_UserInfo sharedKX_UserInfo] cleanUserInfoToSanbox];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                }}];
+            [successV showSuccess];
+           
+//            //清除本地数据 返回登陆页面
+//            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userName"];
+//            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"passWord"];
+//            [[NSUserDefaults standardUserDefaults] synchronize];
+//            LoginVC *loginVc = [[LoginVC alloc]init];
+//            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:loginVc];
+//            [UIApplication sharedApplication ].keyWindow.rootViewController = nav;
         }break;
         case 5:{
         }break;
@@ -321,13 +335,7 @@ static NSInteger infoCellTag = 100;
 
         //9=推出登陆
         case 9:{
-            //清除本地数据 返回登陆页面
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userName"];
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"passWord"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            LoginVC *loginVc = [[LoginVC alloc]init];
-            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:loginVc];
-            [UIApplication sharedApplication ].keyWindow.rootViewController = nav;
+            
 
 
         }break;

@@ -40,7 +40,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [_view1 layerForViewWith:3 AndLineWidth:0.5];
     [_view2 layerForViewWith:3 AndLineWidth:0.5];
-    [_loginBtn layerForViewWith:3 AndLineWidth:0.5];
+    [_loginBtn layerForViewWith:9 AndLineWidth:0.5];
     _loginBtn.backgroundColor = KMAINCOLOR;
     [_registBtn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateNormal];
     [_remberBtn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateNormal];
@@ -212,6 +212,10 @@
 }
 
 
-
+- (IBAction)isAbelAction:(id)sender {
+    UIButton *btn = (UIButton *)sender;
+    btn.selected =! btn.selected;
+    _userPassWDTextField.secureTextEntry =  btn.selected ;
+}
 
 @end

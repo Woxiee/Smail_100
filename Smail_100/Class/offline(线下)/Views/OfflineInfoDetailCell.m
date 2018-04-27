@@ -7,11 +7,12 @@
 //
 
 #import "OfflineInfoDetailCell.h"
-
+#import "DQStarView.h"
 @implementation OfflineInfoDetailCell
 {
     __weak IBOutlet UILabel *storeLb;
-    __weak IBOutlet  UIImageView *_starImageView;
+    
+    __weak IBOutlet DQStarView *_starImageView;
     __weak IBOutlet UILabel *_commNumberLB;
     __weak IBOutlet UILabel *addressLB;
     __weak IBOutlet UILabel *distanceLB;
@@ -66,7 +67,8 @@
     storeLb.text = _model.shop_name;
 //    _starImageView
     addressLB.text = [NSString stringWithFormat:@"%@%@%@%@",_model.province,_model.city,_model.district,_model.address];
-    distanceLB.text =  [NSString stringWithFormat:@"%@米",_model.distance];
+    float distance = _model.distance.floatValue/1000;
+    distanceLB.text =  [NSString stringWithFormat:@"%.2fkm",distance];
     [findLb setImage:[UIImage imageNamed:@"xianxiashangjia7@3x.png"] forState:UIControlStateNormal];
     [findLb setTitle:@"到这里去" forState:UIControlStateNormal];
     findLb.titleLabel.font = KY_FONT(10);
@@ -78,6 +80,9 @@
     mianLb.text = _model.business_info;
     
    _commNumberLB.text= [NSString stringWithFormat:@"%@人评价",_model.comment_count];
+    
+    [_starImageView ShowDQStarScoreFunction:[_model.stars intValue]];
+
 //    if (_model.comment.count >0) {
 //        Comment *item = _model.comment[0];
 //        

@@ -98,7 +98,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="LeV-vP-vCX" firstAttribute="leading" secondItem="MSP-Xi-bnC" secondAttribute="leading" constant="10" id="8z8-e3-yzu"/>
                             <constraint firstAttribute="bottom" secondItem="LeV-vP-vCX" secondAttribute="bottom" id="Avb-UP-J2f"/>
@@ -107,7 +107,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.92933845520019531" green="0.93328207731246948" blue="0.93725335597991943" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="MSP-Xi-bnC" firstAttribute="top" secondItem="VUv-fW-oH3" secondAttribute="bottom" constant="10" id="0aI-MP-dw4"/>
                     <constraint firstItem="iTN-4p-Nhq" firstAttribute="top" secondItem="Kmu-OL-uW0" secondAttribute="bottom" id="8aK-yi-LdK"/>
@@ -127,6 +127,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="allBtn" destination="orJ-Tn-nNT" id="7UN-rt-Ekw"/>
+                <outlet property="bgView" destination="MSP-Xi-bnC" id="is2-LC-47B"/>
                 <outlet property="detailLB" destination="LeV-vP-vCX" id="E3H-C1-zsb"/>
                 <outlet property="moneyLB" destination="iTN-4p-Nhq" id="40d-2C-HLV"/>
                 <outlet property="textTF" destination="QPw-UK-se1" id="P7d-J3-Jv9"/>

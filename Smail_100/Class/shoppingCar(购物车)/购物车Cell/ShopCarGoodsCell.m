@@ -67,17 +67,17 @@
     [goodsView addSubview:productLabel];
     
     
-    priceLable = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) +8, CGRectGetMaxY(productLabel.frame)+10, 45, 15)];
+    priceLable = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) +8, CGRectGetMaxY(productLabel.frame)+10, SCREEN_WIDTH - CGRectGetMaxX(headImage.frame) -8-100 , 15)];
     priceLable.font = Font15;
     priceLable.textColor = KMAINCOLOR;
     [goodsView addSubview:priceLable];
     
-    
-    jifeLB = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(priceLable.frame), CGRectGetMaxY(productLabel.frame)+10, name.width/2, 15)];
-    jifeLB.font = Font15;
-    jifeLB.textAlignment = NSTextAlignmentLeft;
-    jifeLB.textColor = DETAILTEXTCOLOR;
-    [goodsView addSubview:jifeLB];
+//
+//    jifeLB = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(priceLable.frame), CGRectGetMaxY(productLabel.frame)+10, name.width/2, 15)];
+//    jifeLB.font = Font15;
+//    jifeLB.textAlignment = NSTextAlignmentLeft;
+//    jifeLB.textColor = DETAILTEXTCOLOR;
+//    [goodsView addSubview:jifeLB];
     
     UIView *changeView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 105 ,CGRectGetMaxY(productLabel.frame)+5 , 90, 25)];
     [goodsView addSubview:changeView];
@@ -135,18 +135,33 @@
     name.text = [NSString stringWithFormat:@"%@",goodsModel.productName];
 //    [NSString]
 
-    priceLable.text =[NSString stringWithFormat:@"¥%@",goodsModel.productPrice];
+//    priceLable.text =[NSString stringWithFormat:@"¥%@",goodsModel.productPrice];
     
     number = [goodsModel.itemCount intValue];
     numberLable.text = goodsModel.itemCount;
     productLabel.text =[NSString stringWithFormat:@"%@",goodsModel.property];
-    if ([goodsModel.point intValue] >0) {
-        NSString *str1 = [NSString stringWithFormat:@"%@",_goodsModel.point];
-        NSString *str =[NSString stringWithFormat:@"+%@积分",str1];
-        NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(1, str1.length) withColor:BACKGROUND_COLORHL withFont:Font15];
-        jifeLB.attributedText = attributedStr;
-
+//    if ([goodsModel.point intValue] >0) {
+//        NSString *str1 = [NSString stringWithFormat:@"%@",_goodsModel.point];
+//        NSString *str =[NSString stringWithFormat:@"+%@积分",str1];
+//        NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(1, str1.length) withColor:BACKGROUND_COLORHL withFont:Font15];
+//        jifeLB.attributedText = attributedStr;
+//
+//    }
+    
+    
+    NSMutableArray *priceArr = [[NSMutableArray alloc] init];
+    if (goodsModel.productPrice.floatValue >0) {
+        [priceArr addObject:[NSString stringWithFormat:@"¥%@",goodsModel.productPrice]];
     }
+    if (goodsModel.point.floatValue >0) {
+        [priceArr addObject:[NSString stringWithFormat:@"%@积分",goodsModel.point]];
+    }
+    NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
+    NSAttributedString *attributedStr =  [self attributeStringWithContent:allPrice keyWords:@[@"积分"]];
+//    moneyLabel.attributedText  = attributedStr;
+
+    priceLable.attributedText  = attributedStr;
+
 }
 
 - (void)btnReduce:(UIButton *)sender {
@@ -178,6 +193,42 @@
     if (_selectBlock) {
         _selectBlock(_goodsModel);
     }
+}
+
+- (NSAttributedString *)attributeStringWithContent:(NSString *)content keyWords:(NSArray *)keyWords
+{
+    UIColor *color = KMAINCOLOR;
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:content];
+    
+    if (keyWords) {
+        
+        [keyWords enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            NSMutableString *tmpString=[NSMutableString stringWithString:content];
+            
+            NSRange range=[content rangeOfString:obj];
+            
+            NSInteger location=0;
+            
+            while (range.length>0) {
+                
+                [attString addAttribute:(NSString*)NSForegroundColorAttributeName value:color range:NSMakeRange(location+range.location, range.length)];
+                [attString addAttribute:NSFontAttributeName
+                                  value:Font11
+                                  range:range];
+                
+                location+=(range.location+range.length);
+                
+                NSString *tmp= [tmpString substringWithRange:NSMakeRange(range.location+range.length, content.length-location)];
+                
+                tmpString=[NSMutableString stringWithString:tmp];
+                
+                range=[tmp rangeOfString:obj];
+            }
+        }];
+    }
+    return attString;
 }
 
 

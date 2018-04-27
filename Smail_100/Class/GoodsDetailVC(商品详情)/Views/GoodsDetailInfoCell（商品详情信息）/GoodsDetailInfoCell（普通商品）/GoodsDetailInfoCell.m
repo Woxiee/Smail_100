@@ -96,16 +96,23 @@
     if (_model.point.floatValue >0) {
         [priceArr addObject:[NSString stringWithFormat:@"%@积分",_model.point]];
     }
-    NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
     if (_model.earn_money.floatValue >0) {
-        NSString *getMoney = [NSString stringWithFormat:@"赚¥%@",_model.earn_money];
-        NSString *moneyStr = [NSString stringWithFormat:@"%@ %@",allPrice,getMoney];
-        NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[getMoney,@"+"]];
-        productPriceLabel.attributedText  = attributedStr;
-        
-    }else{
-        productPriceLabel.text = [NSString stringWithFormat:@"¥%@",_model.price];
+        [priceArr addObject:[NSString stringWithFormat:@"赚¥%@",_model.earn_money]];
+
     }
+    NSString *getMoney = [NSString stringWithFormat:@" 赚¥%@",_model.earn_money] ;
+    NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
+    allPrice = [allPrice stringByReplacingOccurrencesOfString:@"+赚" withString:@" 赚"];
+    NSAttributedString *attributedStr =  [self attributeStringWithContent:allPrice keyWords:@[getMoney,@"+"]];
+    productPriceLabel.attributedText  = attributedStr;
+//    if (_model.earn_money.floatValue >0) {
+//        NSString *getMoney = ;
+//        NSString *moneyStr = [NSString stringWithFormat:@"%@ %@",allPrice,getMoney];
+//
+//
+//    }else{
+//        productPriceLabel.text = [NSString stringWithFormat:@"¥%@",_model.price];
+//    }
     
     
     if (_model.earn_point.floatValue >0) {

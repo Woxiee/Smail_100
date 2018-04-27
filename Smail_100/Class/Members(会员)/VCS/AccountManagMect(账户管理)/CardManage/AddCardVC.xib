@@ -18,6 +18,7 @@
                 <outlet property="bankNameTF" destination="eEj-vO-UuC" id="U2D-w0-4Sf"/>
                 <outlet property="bankTypeTF" destination="qYu-dM-giO" id="noC-ZA-mKD"/>
                 <outlet property="codeTF" destination="eN1-rQ-Zvz" id="lol-5M-nL3"/>
+                <outlet property="defultBtn" destination="cVe-aH-Gpg" id="eGs-mr-hse"/>
                 <outlet property="nameTF" destination="x8j-dd-UMF" id="gbD-dg-8jV"/>
                 <outlet property="sureBtn" destination="yEh-iR-LrJ" id="VzO-ID-tPO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -172,7 +173,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yEh-iR-LrJ">
-                    <rect key="frame" x="12" y="278" width="351" height="44"/>
+                    <rect key="frame" x="12" y="332" width="351" height="44"/>
                     <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="P6K-0U-BLm"/>
@@ -232,6 +233,30 @@
                         <constraint firstItem="avd-Rm-jYh" firstAttribute="top" secondItem="qPF-lV-OIu" secondAttribute="top" id="wME-MR-rfO"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="56S-Bq-IVm">
+                    <rect key="frame" x="0.0" y="278" width="375" height="44"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cVe-aH-Gpg">
+                            <rect key="frame" x="12" y="0.0" width="351" height="44"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="  设置默银行卡" image="zhanghuguanli10@3x.png">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </state>
+                            <state key="selected" image="zhanghuguanli9@3x.png"/>
+                            <connections>
+                                <action selector="didSeleDefaleAction:" destination="-1" eventType="touchUpInside" id="imb-UF-Wc4"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="cVe-aH-Gpg" secondAttribute="trailing" constant="12" id="34K-G1-1WY"/>
+                        <constraint firstItem="cVe-aH-Gpg" firstAttribute="top" secondItem="56S-Bq-IVm" secondAttribute="top" id="62v-dK-Paj"/>
+                        <constraint firstAttribute="bottom" secondItem="cVe-aH-Gpg" secondAttribute="bottom" id="7V8-Yk-2eA"/>
+                        <constraint firstAttribute="height" constant="44" id="i5E-Kh-iYF"/>
+                        <constraint firstItem="cVe-aH-Gpg" firstAttribute="leading" secondItem="56S-Bq-IVm" secondAttribute="leading" constant="12" id="nw5-99-FG4"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -239,13 +264,16 @@
                 <constraint firstItem="DZ1-3p-mqH" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="64w-3S-dh8"/>
                 <constraint firstItem="DZ1-3p-mqH" firstAttribute="top" secondItem="0JX-PT-Kxi" secondAttribute="bottom" constant="1" id="69W-H1-7Ft"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="yEh-iR-LrJ" secondAttribute="trailing" constant="12" id="7sl-PX-DcP"/>
+                <constraint firstItem="56S-Bq-IVm" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="92Q-aS-42z"/>
                 <constraint firstItem="DZ1-3p-mqH" firstAttribute="top" secondItem="0JX-PT-Kxi" secondAttribute="bottom" constant="1" id="9aP-7f-UvF"/>
                 <constraint firstItem="0JX-PT-Kxi" firstAttribute="top" secondItem="ML9-nz-wFB" secondAttribute="bottom" constant="1" id="A7O-EC-d3J"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="fu8-9u-pvi" secondAttribute="trailing" id="BTY-Yp-IaP"/>
                 <constraint firstItem="kTD-cq-OhQ" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="Ckq-qc-jbo"/>
                 <constraint firstItem="kTD-cq-OhQ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Eyg-9I-7gV"/>
+                <constraint firstItem="yEh-iR-LrJ" firstAttribute="top" secondItem="56S-Bq-IVm" secondAttribute="bottom" constant="10" id="FBR-gY-sZs"/>
                 <constraint firstItem="DZ1-3p-mqH" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="FZN-lQ-OKv"/>
                 <constraint firstItem="0JX-PT-Kxi" firstAttribute="top" secondItem="ML9-nz-wFB" secondAttribute="bottom" constant="1" id="GQ4-59-YAU"/>
+                <constraint firstItem="56S-Bq-IVm" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="MYV-Yn-cbC"/>
                 <constraint firstItem="yEh-iR-LrJ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="12" id="NaG-8K-ipv"/>
                 <constraint firstItem="fu8-9u-pvi" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="PKt-Mi-5Vw"/>
                 <constraint firstAttribute="trailing" secondItem="qPF-lV-OIu" secondAttribute="trailing" id="URq-cY-dmQ"/>
@@ -255,8 +283,8 @@
                 <constraint firstItem="ML9-nz-wFB" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="inf-Sp-bhb"/>
                 <constraint firstItem="qPF-lV-OIu" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="ivv-Jh-fNI"/>
                 <constraint firstItem="fu8-9u-pvi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kIG-sW-DMg"/>
-                <constraint firstItem="yEh-iR-LrJ" firstAttribute="top" secondItem="kTD-cq-OhQ" secondAttribute="bottom" constant="10" id="kYh-VF-Otd"/>
                 <constraint firstItem="ML9-nz-wFB" firstAttribute="top" secondItem="fu8-9u-pvi" secondAttribute="bottom" id="m5e-ux-ZHX"/>
+                <constraint firstItem="56S-Bq-IVm" firstAttribute="top" secondItem="kTD-cq-OhQ" secondAttribute="bottom" constant="10" id="mKn-r9-6fX"/>
                 <constraint firstItem="kTD-cq-OhQ" firstAttribute="top" secondItem="qPF-lV-OIu" secondAttribute="bottom" constant="1" id="oQc-89-rel"/>
                 <constraint firstItem="0JX-PT-Kxi" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="u8T-Qz-dv8"/>
             </constraints>
@@ -266,5 +294,7 @@
     </objects>
     <resources>
         <image name="32@3x.png" width="16" height="16"/>
+        <image name="zhanghuguanli10@3x.png" width="16" height="16"/>
+        <image name="zhanghuguanli9@3x.png" width="16" height="16"/>
     </resources>
 </document>

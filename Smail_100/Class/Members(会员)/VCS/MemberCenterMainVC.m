@@ -26,7 +26,7 @@
 
 #import "MyCodeVC.h"
 
-
+#import "BaseInforVC.h"
 #define NAVBAR_COLORCHANGE_POINT - IMAGE_HEIGHT
 #define NAV_HEIGHT 64
 #define IMAGE_HEIGHT 0
@@ -63,8 +63,8 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
 //    self.navigationController.navigationBarHidden = YES;
 //    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self getUserInfo];
-
     [_headerView refreshInfo];
+
     [self.resorceArray removeAllObjects];
     NSArray *dataArray = nil;
 
@@ -138,8 +138,10 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
             userinfo.idcard_auth = dataDic[@"idcard_auth"];
 
             [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
-            [self stopRefresh];
+            [_headerView refreshInfo];
+
         }
+        [self stopRefresh];
 
     }];
 }
@@ -294,7 +296,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         return 150;
     }
     else{
-        return 44;
+        return 50;
     }
 
 }
@@ -375,7 +377,9 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         [KX_UserInfo presentToLoginView:self];
 
     }else{
-     
+        BaseInforVC *VC = [[BaseInforVC alloc]init];
+        VC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:VC animated:YES];
     }
 }
 
@@ -384,6 +388,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
 {
 
     if (index == 4) {
+//        [KX_UserInfo sharedKX_UserInfo].maker_level = @"0";
         if ([KX_UserInfo sharedKX_UserInfo].maker_level.integerValue >0) {
             MerchantCenterVC *VC = [[MerchantCenterVC alloc] init];
             VC.hidesBottomBarWhenPushed = YES;
@@ -404,11 +409,11 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
      
     }
     
-    else if (index == 7) {
-        MyTeamDetailVC *VC = [[MyTeamDetailVC alloc] init];
-        VC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController  pushViewController:VC animated:YES];
-    }
+//    else if (index == 7) {
+//        MyTeamDetailVC *VC = [[MyTeamDetailVC alloc] init];
+//        VC.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController  pushViewController:VC animated:YES];
+//    }
      else if  (index == 0) {
         AllOrderManageVC *VC = [AllOrderManageVC new];
         VC.hidesBottomBarWhenPushed = YES;

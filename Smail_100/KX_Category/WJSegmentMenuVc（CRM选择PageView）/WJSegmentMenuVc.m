@@ -9,7 +9,7 @@
 
 #define WJSegmentMenuVcDefaultSpace             10
 #define WJSegmentMenuVcDefaulTag                960
-#define WJSegmentMenuVcDefaulButtonW            60
+#define WJSegmentMenuVcDefaulButtonW            80
 #define WJSegmentMenuVcDefaultButtonFont        [UIFont systemFontOfSize:12]
 #define WJSegmentMenuVcDefaultUnselectedColor   [UIColor darkGrayColor]
 #define WJSegmentMenuVcDefaultSelectedColor     [UIColor greenColor]

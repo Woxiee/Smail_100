@@ -53,15 +53,15 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gerenzhongxin2@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yht-Xd-0hX">
-                    <rect key="frame" x="206" y="124" width="80" height="20"/>
+                    <rect key="frame" x="206" y="124" width="65" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="hLm-a4-TBc"/>
-                        <constraint firstAttribute="width" constant="80" id="sUY-b4-bdu"/>
+                        <constraint firstAttribute="width" constant="65" id="sUY-b4-bdu"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="代理合伙人" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohq-5f-bmk">
-                    <rect key="frame" x="206" y="124" width="80" height="20"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <rect key="frame" x="206" y="124" width="65" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>

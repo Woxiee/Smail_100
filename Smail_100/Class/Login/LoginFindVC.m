@@ -265,4 +265,19 @@
     }];
 }
 
+- (IBAction)isAbelAction:(id)sender {
+    UIButton *btn = (UIButton *)sender;
+    btn.selected =! btn.selected;
+
+    if (btn.tag == 100) {
+         _pswTextFiled.secureTextEntry =  btn.selected ;
+    }
+    else{
+        _oldPswTextFiled.secureTextEntry =  btn.selected ;
+
+    }
+    
+}
+
+
 @end

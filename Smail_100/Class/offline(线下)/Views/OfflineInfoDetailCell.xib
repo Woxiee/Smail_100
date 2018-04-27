@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -155,6 +156,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="XGF-Am-aYW"/>
+                            <constraint firstAttribute="width" secondItem="jNo-ly-4EW" secondAttribute="height" multiplier="20:3" id="a5S-Gl-Wef"/>
                             <constraint firstAttribute="width" constant="100" id="lI4-Gw-UxK"/>
                         </constraints>
                     </view>
@@ -250,6 +252,7 @@
                 <outlet property="_lineView3" destination="Lbm-Dz-8EW" id="ynr-i0-nXb"/>
                 <outlet property="_lineView4" destination="hjo-cU-bAc" id="9yc-gH-ZHI"/>
                 <outlet property="_lineView8" destination="OjN-AJ-i10" id="yvg-Vn-YDb"/>
+                <outlet property="_starImageView" destination="jNo-ly-4EW" id="DAd-QF-xeh"/>
                 <outlet property="addressLB" destination="BC8-Pl-zvd" id="3ji-7O-7RD"/>
                 <outlet property="distanceLB" destination="eaf-zP-yoQ" id="IiJ-M7-EGH"/>
                 <outlet property="findLb" destination="cO8-2X-1Pq" id="0M5-NI-tdV"/>

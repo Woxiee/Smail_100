@@ -39,15 +39,15 @@
 {
     _classArr = [[NSMutableArray alloc] init];
     //商城首页
-    [self addSubViewControllerWithVC:@"HomeMainVC" norImage:@"shouye13@3x.png" selImage:@"shouye10@3x.png" title:@"首页"];
+    [self addSubViewControllerWithVC:@"HomeMainVC" norImage:@"shouye13@2x.png" selImage:@"shouye10@2x.png" title:@"首页"];
     //线上商城
-    [self addSubViewControllerWithVC:@"OnlineVC" norImage:@"muban11@3x.png" selImage:@"muban10@3x.png" title:@"线上商城"];
+    [self addSubViewControllerWithVC:@"OnlineVC" norImage:@"muban11@2x.png" selImage:@"muban10@2x.png" title:@"线上商城"];
     //线下商城
-    [self addSubViewControllerWithVC:@"OfflineVC" norImage:@"muban12@3x.png" selImage:@"muban13@3x.png" title:@"线下商圈"];
+    [self addSubViewControllerWithVC:@"OfflineVC" norImage:@"muban12@2x.png" selImage:@"muban13@2x.png" title:@"线下商圈"];
     //购物车
-    [self addSubViewControllerWithVC:@"ShoppingCarVC" norImage:@"muban14@3x.png" selImage:@"muban15@3x.png" title:@"购物车"];
+    [self addSubViewControllerWithVC:@"ShoppingCarVC" norImage:@"muban14@2x.png" selImage:@"muban15@2x.png" title:@"购物车"];
     //会员中心
-    [self addSubViewControllerWithVC:@"MemberCenterMainVC" norImage:@"muban16@3x.png" selImage:@"muban17@3x.png" title:@"账户"];
+    [self addSubViewControllerWithVC:@"MemberCenterMainVC" norImage:@"muban16@2x.png" selImage:@"muban17@2x.png" title:@"我的"];
     self.selectedIndex = 0;//默认选择首页
 //    if (![KX_UserInfo sharedKX_UserInfo].addressList) {
 //        [self getAllAddressList];
@@ -67,8 +67,8 @@
     navController.tabBarItem.selectedImage = [[UIImage imageNamed:selImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
     navController.tabBarItem.title = title;
-    [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:DETAILTEXTCOLOR,NSFontAttributeName:[UIFont systemFontOfSize:13]} forState:UIControlStateNormal];
-    [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:KMAINCOLOR,NSFontAttributeName:[UIFont systemFontOfSize:13]} forState:UIControlStateSelected];
+    [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:DETAILTEXTCOLOR,NSFontAttributeName:[UIFont systemFontOfSize:12]} forState:UIControlStateNormal];
+    [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:KMAINCOLOR,NSFontAttributeName:[UIFont systemFontOfSize:12]} forState:UIControlStateSelected];
 
     [self addChildViewController:navController];
    

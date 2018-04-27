@@ -80,7 +80,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 
 - (void)requestListNetWork
 {
-    _xy = [NSString stringWithFormat:@"%@,%@",[KX_UserInfo sharedKX_UserInfo].latitude,[KX_UserInfo sharedKX_UserInfo].longitude];
+    _xy = [NSString stringWithFormat:@"%@,%@",[KX_UserInfo sharedKX_UserInfo].latitude ,[KX_UserInfo sharedKX_UserInfo].longitude];
 
     WEAKSELF;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
@@ -112,7 +112,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
                         i++;
                     }
                 }
-                weakSelf.teamPersenView.frame = CGRectMake(0, CGRectGetMaxY(_cycleView.frame), SCREEN_WIDTH, i*75);
+                weakSelf.teamPersenView.frame = CGRectMake(0, CGRectGetMaxY(_cycleView.frame), SCREEN_WIDTH, i*75 + 10);
                weakSelf.headerView.frame = CGRectMake(0, 0, kScreenWidth, weakSelf.cycleView.mj_h +weakSelf.teamPersenView.mj_h);
 
                weakSelf.teamPersenView.catelist = catelist;
@@ -247,7 +247,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     [self setRightNaviBtnImage:[UIImage imageNamed:@"shouye18@3x.png"]];
 
     
-    SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 220 *hScale) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW]];
+    SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200 *hScale) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW]];
     [headerView addSubview:cycleView];
     self.cycleView = cycleView;
     

@@ -21,6 +21,7 @@
     __weak IBOutlet UILabel *detailLB;
     
     
+    __weak IBOutlet UIView *bgView;
     __weak IBOutlet UIButton *allBtn;
 }
 
@@ -30,6 +31,8 @@
     [allBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
     [allBtn layerWithRadius:6 lineWidth:0.5 color:KMAINCOLOR];
     allBtn.hidden = YES;
+    
+    bgView.backgroundColor = BACKGROUND_COLOR;
 }
 
 - (void)setDataDic:(NSDictionary *)dataDic

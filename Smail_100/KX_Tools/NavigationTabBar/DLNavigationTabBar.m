@@ -35,8 +35,14 @@
     self.buttonArray = [[NSMutableArray alloc] init];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:titles];
     segmentedControl.selectedSegmentIndex = 0;
-//    [segmentedControl layerWithRadius:2 lineWidth:0.5 color:[UIColor whiteColor]];
+//    segmentedControl.layer.cornerRadius = 10;
+//    segmentedControl.clipsToBounds = YES;
+    
+
+
     segmentedControl.tintColor = [UIColor whiteColor];
+        [segmentedControl layerWithRadius:12 lineWidth:1 color:[UIColor whiteColor]];
+
 //    segmentedControl.backgroundColor = KMAINCOLOR;
     [segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal]; //正常
     [segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]} forState:UIControlStateSelected]; //选中
@@ -107,7 +113,7 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    _segmentedControl.frame = CGRectMake(SCREEN_WIDTH/4 -10, 10,   SCREEN_WIDTH/2, 25);
+    _segmentedControl.frame = CGRectMake(SCREEN_WIDTH/4 , 10,   SCREEN_WIDTH/2  , 25);
     _segmentedControl.center = self.center;
 //    self.width =  self.frame.size.width / (self.buttonArray.count * 1.5);
 //    CGFloat buttonWidth = self.frame.size.width / self.buttonArray.count - 40;

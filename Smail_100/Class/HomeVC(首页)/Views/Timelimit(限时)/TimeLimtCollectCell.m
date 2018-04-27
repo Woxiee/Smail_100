@@ -87,7 +87,7 @@ static NSString *ID = @"ZYShareSheetCell";
         _flowLayout.minimumLineSpacing = 0;
         _flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 10);
         _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH /3.5, 160);
+        _flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH /3.5, SCREEN_WIDTH /3.5 + 35);
     }
     return _flowLayout;
 }

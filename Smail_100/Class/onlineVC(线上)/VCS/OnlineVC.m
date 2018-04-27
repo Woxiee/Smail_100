@@ -428,14 +428,17 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     ItemInfoList *model =   self.resorceArray[indexPath.section];
     
     if ([model.itemType isEqualToString:@"topBanner"]) {
-        return CGSizeMake(SCREEN_WIDTH, 220 *hScale);
+        return CGSizeMake(SCREEN_WIDTH, 200 *hScale);
     }
     else if ([model.itemType isEqualToString:@"recommended_goods"]){
         return CGSizeMake(SCREEN_WIDTH, 160);
     }
     
     else if ([model.itemType isEqualToString:@"cateList"]){
-        return CGSizeMake((SCREEN_WIDTH)/5 ,(SCREEN_WIDTH)/5 + 20);
+        if (model.itemContentList.count <5) {
+            return CGSizeMake((SCREEN_WIDTH)/model.itemContentList.count ,(SCREEN_WIDTH)/5 +10 );
+        }
+        return CGSizeMake((SCREEN_WIDTH)/5 ,(SCREEN_WIDTH)/5 + 10);
     }
 //    ItemContentList *items =  model.itemContentList[indexPath.row];
  
@@ -460,7 +463,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     }
     if ([model.itemType isEqualToString:@"cateList"]){
         
-        return UIEdgeInsetsMake(0, 0, 5, 0);
+        return UIEdgeInsetsMake(0, 0, 0, 0);
     }
     
     //    if ([model.itemType isEqualToString:@"rushPurchaseHeader"]){
@@ -469,13 +472,11 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     //
     if ([model.itemType isEqualToString:@"recommended_goods"]){
         
-        return UIEdgeInsetsMake(1, 0, 5, 0);
+        return UIEdgeInsetsMake(-5, 0, -5, 0);
     }
-    //    if ([model.itemType isEqualToString:@"action"]){
-    //        return UIEdgeInsetsMake(0, 0, 0, 0);
-    //    }
+
     else if ([model.itemType isEqualToString:@"recommended_ware"]){
-        return UIEdgeInsetsMake(5, 0, 0, 0);//商品cell
+        return UIEdgeInsetsMake(1, 0, 0, 0);//商品cell
     }
     return UIEdgeInsetsMake(0, 0, 0, 0);//商品cell
 

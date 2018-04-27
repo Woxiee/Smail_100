@@ -248,14 +248,14 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
                 [weakSelf addGoodsInCar:model.itemContent];
             }
             else if (index == 4){
-                if (weakSelf.itemIfoModel.spec.count >0) {
+//                if (weakSelf.itemIfoModel.spec.count >0) {
                     if (KX_NULLString(weakSelf.itemIfoModel.itemContent.spec)) {
                         if (weakSelf.selectView == nil) {
                             [weakSelf initSelectView];
                         }
                         [weakSelf.selectView show];
                         return;
-                    }
+//                    }
                 }
                
                 GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
@@ -318,9 +318,12 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     }else{
         self.selectView.LB_price.text = [NSString stringWithFormat:@"¥%@",_itemIfoModel.itemContent.price];
     }
-    self.selectView.LB_stock.text = @"";
+    self.selectView.LB_stock.text =[NSString stringWithFormat:@"库存:%@件",_itemIfoModel.itemContent.volume] ; 
     self.selectView.LB_showSales.text = [NSString stringWithFormat:@"销量%@件",_itemIfoModel.itemContent.sale_num] ;
-    self.selectView.LB_detail.text = @"请选择规格属性";
+    if (weakSelf.itemIfoModel.spec.count >0) {
+        self.selectView.LB_detail.text = @"请选择规格属性";
+    }
+
     self.selectView.didClickComTFpltBlock = ^(NSInteger index, NSInteger goodCout) {
         weakSelf.goodSCount = goodCout;
         NSString *sper_vlue = [weakSelf.selectItems componentsJoinedByString:@","];
@@ -449,6 +452,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
             }
             weakSelf.headView.imageURLStringsGroup = imggeList;
 
+            _itemIfoModel.itemContent.imageUrl = imggeList.firstObject;
             [weakSelf.resorceArray addObjectsFromArray:dataArray];
             [weakSelf.tableView reloadData];
             [weakSelf getGoodsValueRequest];
@@ -601,7 +605,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 -(SDCycleScrollView *)headView
 {
     if (!_headView) {
-        _headView= [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH + 50) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW2]];
+        _headView= [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW]];
         _headView.delegate = self;
     }
     return _headView;

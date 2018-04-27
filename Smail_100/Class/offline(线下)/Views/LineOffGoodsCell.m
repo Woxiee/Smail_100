@@ -50,7 +50,9 @@
     titleLB.text = _model.shop_name;
     commone.text = [NSString stringWithFormat:@"%@评价",_model.comment_count];
     storeLb.text = [NSString stringWithFormat:@"%@%@%@%@",_model.province,_model.city,_model.district,_model.address];
-    distanceLB.text = [NSString stringWithFormat:@"%@m",_model.distance];
+    float distance = _model.distance.floatValue/1000;
+    distanceLB.text =  [NSString stringWithFormat:@"%.2fkm",distance];
+
     telLb.text = _model.contact_phone;
     
     scoreImageView.userInteractionEnabled = NO;
