@@ -64,6 +64,7 @@
     
     
     if ([_model.paystatus isEqualToString:@"Complete"] && [_model.shipstatus isEqualToString:@"Delivery"] ) {
+
         [_titleArr addObject:@"确认收货"];
     }
     
@@ -78,7 +79,7 @@
         [_titleArr addObject:@"申请售后"];
     }
     
-    if ([_model.paystatus isEqualToString:@"Complete"] && [_model.paystatus isEqualToString:@"Delivery"] ) {
+    if ([_model.paystatus isEqualToString:@"Complete"] && [_model.shipstatus isEqualToString:@"Delivery"] ) {
         [_titleArr addObject:@"查看物流"];
     }
     

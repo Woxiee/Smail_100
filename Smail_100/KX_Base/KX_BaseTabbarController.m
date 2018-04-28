@@ -15,6 +15,7 @@
 #import "LoginVModel.h"
 #import "OfflineVC.h"
 #import "OnlineVC.h"
+#import "KX_BaseNavController.h"
 
 @interface KX_BaseTabbarController ()<CLLocationManagerDelegate>
 @property(nonatomic,strong)NSMutableArray *classArr;
@@ -61,7 +62,7 @@
 -(void)addSubViewControllerWithVC:(NSString *)vc norImage:(NSString *)norImage selImage:(NSString *) selImage title:(NSString *) title
 {
     UIViewController *ddd = [[NSClassFromString(vc) alloc]init];
-    UINavigationController *navController =  [[UINavigationController alloc]initWithRootViewController:ddd];
+    KX_BaseNavController *navController =  [[KX_BaseNavController alloc]initWithRootViewController:ddd];
     [_classArr addObject:ddd];
     navController.tabBarItem.image = [[UIImage imageNamed:norImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     navController.tabBarItem.selectedImage = [[UIImage imageNamed:selImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

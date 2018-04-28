@@ -43,6 +43,7 @@
 @property (nonatomic , copy) NSString              * comm_nums;
 @property (nonatomic , copy) NSString              * shopID;
 
+@property (nonatomic , copy) NSString              * express_url;
 
 /// 集采
 @property (nonatomic , copy) NSString              * joinCount;

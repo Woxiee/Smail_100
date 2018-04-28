@@ -74,7 +74,7 @@
                                 <constraint firstAttribute="width" constant="50" id="bRU-EZ-guM"/>
                             </constraints>
                             <state key="normal" image="denglu4@3x.png"/>
-                            <state key="selected" image="denglu4@3x.png"/>
+                            <state key="selected" image="denglu5@3x.png"/>
                             <connections>
                                 <action selector="isAbelAction:" destination="-1" eventType="touchUpInside" id="b7u-4G-gxy"/>
                             </connections>
@@ -151,9 +151,16 @@
                         <action selector="registBtnAction:" destination="-1" eventType="touchUpInside" id="qvG-kN-Uia"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5d1-e6-nvS">
-                    <rect key="frame" x="25" y="605" width="325" height="30"/>
-                    <state key="normal" title="Button"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5d1-e6-nvS">
+                    <rect key="frame" x="25" y="582" width="325" height="53"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="53" id="fOD-dL-dcL"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="logMarkIcon.png"/>
+                    <state key="selected" backgroundImage="logMarkIcon.png"/>
+                    <connections>
+                        <action selector="xyAcitonBtn:" destination="-1" eventType="touchUpInside" id="0IP-2U-ZyO"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -187,5 +194,7 @@
         <image name="denglu2@3x.png" width="16" height="16"/>
         <image name="denglu3@3x.png" width="16" height="16"/>
         <image name="denglu4@3x.png" width="16" height="16"/>
+        <image name="denglu5@3x.png" width="16" height="16"/>
+        <image name="logMarkIcon.png" width="762" height="123"/>
     </resources>
 </document>

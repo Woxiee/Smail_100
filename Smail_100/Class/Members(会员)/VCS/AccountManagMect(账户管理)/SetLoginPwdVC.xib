@@ -46,8 +46,8 @@
                         </textField>
                         <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SVV-Ef-gW9">
                             <rect key="frame" x="325" y="0.0" width="50" height="50"/>
-                            <state key="normal" title="0" image="denglu5@3x.png"/>
-                            <state key="selected" image="denglu4@3x.png"/>
+                            <state key="normal" title="0" image="denglu4@3x.png"/>
+                            <state key="selected" image="denglu5@3x.png"/>
                             <connections>
                                 <action selector="isAbelAction:" destination="-1" eventType="touchUpInside" id="Y4Q-sX-Vkw"/>
                             </connections>
@@ -89,8 +89,8 @@
                         </textField>
                         <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZr-hN-cCA">
                             <rect key="frame" x="325" y="0.0" width="50" height="50"/>
-                            <state key="normal" title="0" image="denglu5@3x.png"/>
-                            <state key="selected" image="denglu4@3x.png"/>
+                            <state key="normal" title="0" image="denglu4@3x.png"/>
+                            <state key="selected" image="denglu5@3x.png"/>
                             <connections>
                                 <action selector="isAbelAction:" destination="-1" eventType="touchUpInside" id="FuG-DW-eb0"/>
                             </connections>
@@ -124,20 +124,20 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请再次输入确认新支付密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LrC-Fc-8oA">
-                            <rect key="frame" x="107" y="0.0" width="218" height="50"/>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                        </textField>
                         <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQu-EA-oe5">
                             <rect key="frame" x="325" y="0.0" width="50" height="50"/>
-                            <state key="normal" title="0" image="denglu5@3x.png"/>
-                            <state key="selected" image="denglu4@3x.png"/>
+                            <state key="normal" title="0" image="denglu4@3x.png"/>
+                            <state key="selected" image="denglu5@3x.png"/>
                             <connections>
                                 <action selector="isAbelAction:" destination="-1" eventType="touchUpInside" id="WVd-KL-Ok9"/>
                             </connections>
                         </button>
+                        <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请再次输入确认新支付密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LrC-Fc-8oA">
+                            <rect key="frame" x="110" y="0.0" width="218" height="50"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>

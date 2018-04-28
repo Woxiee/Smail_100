@@ -334,7 +334,7 @@ singleton_implementation(KX_UserInfo)
 
 + (void)presentToLoginView:(UIViewController *)ctr{
     LoginVC *loginVc = [[LoginVC alloc]init];
-    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:loginVc];
+    KX_BaseNavController * nav = [[KX_BaseNavController alloc] initWithRootViewController:loginVc];
     [ctr presentViewController:nav animated:YES completion:nil];
     
 }

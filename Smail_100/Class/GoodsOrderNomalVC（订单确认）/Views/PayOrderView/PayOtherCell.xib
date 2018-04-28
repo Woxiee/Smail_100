@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P0g-Mn-Lw7">
-                        <rect key="frame" x="10" y="14" width="184.5" height="17"/>
+                        <rect key="frame" x="35" y="14" width="159.5" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="V6d-ev-w0k"/>
                         </constraints>
@@ -53,7 +53,7 @@
                     <constraint firstAttribute="bottom" secondItem="D1E-jn-VJg" secondAttribute="bottom" id="IcE-Zh-9UZ"/>
                     <constraint firstAttribute="trailing" secondItem="Qjb-od-kbO" secondAttribute="trailing" constant="10" id="QwF-ct-fXI"/>
                     <constraint firstAttribute="trailing" secondItem="D1E-jn-VJg" secondAttribute="trailing" id="Ryf-x4-wRJ"/>
-                    <constraint firstItem="P0g-Mn-Lw7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="WTC-tp-YrU"/>
+                    <constraint firstItem="P0g-Mn-Lw7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="35" id="WTC-tp-YrU"/>
                     <constraint firstItem="Qjb-od-kbO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Yi1-RO-0Tr"/>
                     <constraint firstItem="Qjb-od-kbO" firstAttribute="leading" secondItem="P0g-Mn-Lw7" secondAttribute="trailing" constant="5" id="aLh-Rj-t42"/>
                     <constraint firstItem="P0g-Mn-Lw7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hCw-CW-OEy"/>

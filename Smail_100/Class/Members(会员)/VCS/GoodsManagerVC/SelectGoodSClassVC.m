@@ -58,12 +58,15 @@
     
 }
 
- - (void)viewWillAppear:(BOOL)animated
+
+
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self getRequestData];
-  
 }
+
+
 
 #pragma mark - private
 - (void)setup

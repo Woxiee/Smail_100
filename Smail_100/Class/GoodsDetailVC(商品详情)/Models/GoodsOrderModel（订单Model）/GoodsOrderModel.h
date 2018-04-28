@@ -170,6 +170,9 @@
 
 @property (nonatomic , assign) float             allPrices;
 @property (nonatomic , assign) float              allPoint;
+@property (nonatomic , assign) float              allFreight;
+
+
 
 @property (nonatomic , copy) NSString              * paystatus_name;
 @property (nonatomic , copy) NSString              * categoryId;

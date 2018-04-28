@@ -20,19 +20,19 @@
  
 }
 
-
-
-
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-     [super pushViewController:viewController animated:animated];
+    [super pushViewController:viewController animated:animated];
     if (self.viewControllers.count>1) {
-        
+        if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+            self.interactivePopGestureRecognizer.enabled = YES;
+            self.hidesBottomBarWhenPushed = YES;
+        }
         UIButton * leftNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         leftNaviBtn.frame=CGRectMake(0, 0, 44, 44);
-        [leftNaviBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-        [leftNaviBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateHighlighted];
-        [leftNaviBtn setTitle:@"返回" forState:UIControlStateNormal];
+        [leftNaviBtn setImage:[UIImage imageNamed:@"back_icon@2x.png"] forState:UIControlStateNormal];
+        [leftNaviBtn setImage:[UIImage imageNamed:@"back_icon@2x.png"] forState:UIControlStateHighlighted];
+        [leftNaviBtn setTitle:@"" forState:UIControlStateNormal];
         leftNaviBtn.titleLabel.font=[UIFont systemFontOfSize:16 weight:UIFontWeightSemibold];
         [leftNaviBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
         leftNaviBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -8, 0, 0);
@@ -48,6 +48,7 @@
 {
     [self popViewControllerAnimated:YES];
 }
+
 
 
 

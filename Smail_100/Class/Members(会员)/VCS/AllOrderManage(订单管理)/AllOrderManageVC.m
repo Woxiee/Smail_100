@@ -112,6 +112,7 @@
     _signingVC = [[OrderManagementVC alloc]init];
     _signingVC.orderType = SigningOrderType;
     _signingVC.shipstatus = @"Waiting";
+    _signingVC. paystatus = @"Complete";
     _signingVC.shop_id = _shop_id?_shop_id:@"";
 
     _closedVC = [[OrderManagementVC alloc]init];

@@ -35,9 +35,13 @@
 - (void)setup
 {
     self.title  = @"代理平台";
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 170)];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 145)];
     headView.backgroundColor = KMAINCOLOR;
     [self.view addSubview:headView];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"daliptai@2x.png"]];
+    imageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 145);
+    [headView addSubview:imageView];
     
     UIView *head1View = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(headView.frame), SCREEN_WIDTH, 60)];
     head1View.backgroundColor = [UIColor whiteColor];
@@ -131,7 +135,7 @@
 //
 //    NSArray *imageArray = @[@"hehuorenpingtai1@3x.png",@"hehuorenpingtai2@3x.png",@"hehuorenpingtai5@3x.png",@"wodetuandui3@3x.png",@"hehuorenpingtai4@3x.png",@"daili_set@3x.png",@"hehuorenpingtai3@3x.png",@"hehuorenpingtai5@3x.png",];
 //    NSArray *titleArray = @[@"团队管理",@"代理激励",@"兑换积分",@"合伙人列表",@"开通商家",@"商家审核",@"商家列表",@"使用帮助"];
-    NSArray *imageArray = @[@"hehuorenpingtai1@3x.png",@"hehuorenpingtai2@3x.png",@"wodetuandui3@3x.png",@"hehuorenpingtai4@3x.png",@"hehuorenpingtai3@3x.png",@"hehuorenpingtai5@3x.png",];
+    NSArray *imageArray = @[@"hehuorenpingtai1@3x.png",@"hehuorenpingtai2@3x.png",@"hehuorenIcon@2x.png",@"hehuorenpingtai4@3x.png",@"hehuorenpingtai3@3x.png",@"hehuorenpingtai5@3x.png",];
     NSArray *titleArray = @[@"团队管理",@"代理激励",@"合伙人列表",@"开通商家",@"商家列表",@"使用帮助"];
 
     int btnW =  SCREEN_WIDTH/4;

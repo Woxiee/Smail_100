@@ -177,7 +177,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     }
     
     if ([_orderModel.pay_method.point isEqualToString:@"Y"]) {
-        [titleArr addObject:@"积分兑换"];
+        [titleArr addObject:@"兑换积分"];
         [imageArr addObject:@"jfzf@3x.png"];
 //
     }
@@ -187,7 +187,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     
     view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeNoaml];
     
-    if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"积分兑换"]) {
+    if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"兑换积分"]) {
         view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeOther];
     }
 
@@ -203,9 +203,9 @@ static NSString * const DeductionCellID = @"DeductionCellID";
         model.mark = @"";
         model.icon = imageArr[i];
         model.isSelect = NO;
-        if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"积分兑换"]) {
+        if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"兑换积分"]) {
             model.isSelect = YES;
-            _orderModel.payIndexStr = @"积分兑换";
+            _orderModel.payIndexStr = @"兑换积分";
         }
         model.title = titleArr[i];
       
@@ -389,9 +389,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [param setObject:orderID forKey:@"orderno"];
     
-    if ([_orderModel.jfValue intValue] >0) {
-        [param setObject:_orderModel.jfValue forKey:@"type_value[point]"];
-    }
+  
     
     if ([_orderModel.payIndexStr isEqualToString:@"微信支付"]) {
         [param setObject:@"auto" forKey:@"type_value[wxpay]"];
@@ -912,7 +910,8 @@ static NSString * const DeductionCellID = @"DeductionCellID";
             count += item.goods_nums.intValue;
         }
     }
-    
+    _orderModel.allFreight = allFreight;
+
     NSString *allPriceStr = @"";
     NSMutableArray *priceArr = [NSMutableArray array];
     if (allPrices>0) {
@@ -928,7 +927,9 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     
     if (allFreight>0) {
         NSString *str = [NSString stringWithFormat:@"%.1f快递费",allFreight];
+        
         [priceArr addObject:str];
+
     }else{
         [priceArr addObject:@"(包邮)"];
     }

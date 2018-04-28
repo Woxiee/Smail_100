@@ -199,12 +199,12 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
     }
     
     if ([pay_method.point isEqualToString:@"Y"]) {
-        [titleArr addObject:@"积分兑换"];
+        [titleArr addObject:@"兑换积分"];
         [imageArr addObject:@"jfzf@3x.png"];
     }
     
     view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeNoaml];
-    if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"积分兑换"]) {
+    if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"兑换积分"]) {
         view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeOther];
     }
     
@@ -226,7 +226,7 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
         model.mark = @"";
         model.icon = imageArr[i];
         model.isSelect = NO;
-        if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"积分兑换"]) {
+        if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"兑换积分"]) {
             model.isSelect = YES;
         }
         model.title = titleArr[i];

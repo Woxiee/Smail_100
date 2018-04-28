@@ -73,7 +73,7 @@
     [self addSubview:commView];
     [commView layerForViewWith:0 AndLineWidth:0.5];
     UILabel *titleLB1  = [[UILabel alloc] initWithFrame:CGRectMake(10, 6, 70, 30)];
-    titleLB1.text = @"卖家留言:";
+    titleLB1.text = @"买家留言:";
     titleLB1.font = Font15;
     titleLB1.textAlignment = NSTextAlignmentLeft;
     titleLB1.textColor = TITLETEXTLOWCOLOR;

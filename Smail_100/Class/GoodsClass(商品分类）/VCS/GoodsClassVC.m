@@ -214,7 +214,7 @@ static NSString * const imageCellIdentifier = @"HomeScrollCellID";
 - (void)getLeveGoodsRequestIds:(NSString *)ids
 {
     WEAKSELF;
-    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:ids,@"ids", nil];
+    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:ids,@"pid", nil];
     [GoodsClassVModel getGoodsLevesListParam:param successBlock:^(NSArray<GoodsClassModel *> *dataArray, BOOL isSuccess) {
         if (isSuccess) {
             if (weakSelf.resorceArray.count >0) {

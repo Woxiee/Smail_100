@@ -9,6 +9,7 @@
 #import "LoginVC.h"
 #import "LoginForgetVC.h"
 #import "LoginFindVC.h"
+#import "GoodsAuctionXYVC.h"
 
 @interface LoginVC ()
 @property (weak, nonatomic) IBOutlet UIView *view1;
@@ -70,7 +71,7 @@
     [param setObject:_userPassWDTextField.text forKey:@"password"];
 
     [param setObject:@"18757587673" forKey:@"mobile"];
-    [param setObject:@"123456" forKey:@"password"];
+    [param setObject:@"888888" forKey:@"password"];
     
     WEAKSELF;
     [BaseHttpRequest postWithUrl:@"/ucenter/login" andParameters:param andRequesultBlock:^(id result, NSError *error) {
@@ -217,5 +218,15 @@
     btn.selected =! btn.selected;
     _userPassWDTextField.secureTextEntry =  btn.selected ;
 }
+
+- (IBAction)xyAcitonBtn:(id)sender {
+    GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
+    VC.clickUrl = [NSString stringWithFormat:@"%@/api/shop/agreement?type=register",HEAD__URL] ;
+    VC.hidesBottomBarWhenPushed = YES;
+    VC.title = @"<用户服务协议>";
+    [self.navigationController pushViewController:VC animated:YES];
+}
+
+
 
 @end

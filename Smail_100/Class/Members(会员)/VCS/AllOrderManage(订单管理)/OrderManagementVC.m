@@ -25,7 +25,7 @@
 
 #import "SaleAfterVC.h"
 
-
+#import "GoodsAuctionXYVC.h"
 #import "PayModels.h"
 #import "APOrderInfo.h"
 #import "APRSASigner.h"
@@ -130,12 +130,12 @@
     }
     
     if ([pay_method.point isEqualToString:@"Y"]) {
-        [titleArr addObject:@"积分兑换"];
+        [titleArr addObject:@"兑换积分"];
         [imageArr addObject:@"jfzf@3x.png"];
     }
     
     view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeNoaml];
-    if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"积分兑换"]) {
+    if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"兑换积分"]) {
         view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeOther];
     }
     
@@ -157,7 +157,7 @@
         model.mark = @"";
         model.icon = imageArr[i];
         model.isSelect = NO;
-        if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"积分兑换"]) {
+        if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"兑换积分"]) {
             model.isSelect = YES;
         }
         model.title = titleArr[i];
@@ -697,6 +697,18 @@
 //        VC.model = model;
 //        [self.navigationController pushViewController:VC animated:YES];
     }
+    
+    else if ([title isEqualToString:@"查看物流"])
+    {
+        GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
+        VC.clickUrl = [NSString stringWithFormat:@"%@",model.express_url] ;
+        VC.hidesBottomBarWhenPushed = YES;
+        VC.title = @"物流信息";
+        [self.navigationController pushViewController:VC animated:YES];
+//        OrderDetailVC *VC = [[OrderDetailVC alloc] init];
+//        VC.model = model;
+//        [self.navigationController pushViewController:VC animated:YES];
+    }
 //    else if ([title isEqualToString:@"提醒发货"] )
 //    {
 //        [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id  forKey:@"user_id"];
@@ -754,7 +766,7 @@
 //    }
 //    else if ([title isEqualToString:@"申请撤单"])
 //    {
-//        CloseReasonView *closeReasonView = [[CloseReasonView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) Title:@"撤单理由" andTitle1:@"卖家审核通过后，订单将会自动关闭"];
+//        CloseReasonView *closeReasonView = [[CloseReasonView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) Title:@"撤单理由" andTitle1:@"买家审核通过后，订单将会自动关闭"];
 //        closeReasonView.didClickReasonBlock = ^(NSString *str){
 //            [param setObject:str forKey:@"closeReason"];
 //             [param setObject:[KX_UserInfo sharedKX_UserInfo].userName  forKey:@"mNickname"];

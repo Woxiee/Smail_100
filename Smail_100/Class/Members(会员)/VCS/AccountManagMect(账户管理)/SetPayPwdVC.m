@@ -102,4 +102,23 @@
     [self.navigationController pushViewController:VC animated:YES];
 }
 
+
+- (IBAction)isAbelAction:(id)sender {
+    UIButton *btn = (UIButton *)sender;
+    btn.selected =! btn.selected;
+//    @property (weak, nonatomic) IBOutlet UITextField *oldPwdTF;
+//    @property (weak, nonatomic) IBOutlet UITextField *newsPwdTF;
+//    @property (weak, nonatomic) IBOutlet UITextField *surePwdTF;
+    if (btn.tag == 100) {
+        _oldPwdTF.secureTextEntry =  btn.selected ;
+    }
+    if (btn.tag == 101) {
+        _newsPwdTF.secureTextEntry =  btn.selected ;
+        
+    }
+    if (btn.tag == 102) {
+        _surePwdTF.secureTextEntry =  btn.selected ;
+    }
+    
+}
 @end

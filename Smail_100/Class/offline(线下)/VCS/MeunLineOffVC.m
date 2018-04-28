@@ -238,9 +238,9 @@
         model.mark = @"";
         model.icon = imageArr[i];
         model.isSelect = NO;
-        if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"积分兑换"]) {
+        if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"兑换积分"]) {
             model.isSelect = YES;
-            _orderModel.payIndexStr = @"积分兑换";
+            _orderModel.payIndexStr = @"兑换积分";
         }
         model.title = titleArr[i];
         

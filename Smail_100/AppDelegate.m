@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "KX_BaseTabbarController.h"
 #import "KX_BaseNavController.h"
+#import "HYNewFeatureCtr.h"
+
 @interface AppDelegate ()<WXApiDelegate>
 @property (nonatomic, strong) KX_BaseTabbarController *tabbarVC;
 
@@ -21,9 +23,36 @@
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _window.backgroundColor = BACKGROUND_COLOR;
     [[KX_UserInfo sharedKX_UserInfo] loadUserInfoFromSanbox];
-    KX_BaseTabbarController *tabbarVC = [[KX_BaseTabbarController alloc] init];
-    self.window.rootViewController = tabbarVC;
-    self.tabbarVC = tabbarVC;
+    // 是否展示新特性界面
+    BOOL canShow = [HYNewFeatureCtr canShowNewFeature];
+    //测试代码，正式版本应该删除
+//    canShow = YES;
+    //
+    if(canShow){ // 初始化新特性界面
+        self.window.rootViewController = [HYNewFeatureCtr newFeatureVCWithImageNames:@[@"load_1.jpg",@"load_2.jpg",@"load_3.jpg",@"load_4.jpg",]  dotImage:@"point_normal" currentDotImage:@"point_select" enterBlock:^{
+            
+            KX_BaseTabbarController *tabbarVC = [[KX_BaseTabbarController alloc] init];
+            self.window.rootViewController = tabbarVC;
+            self.tabbarVC = tabbarVC;
+            
+            
+        } configuration:^(UIButton *enterButton) { // 配置进入按钮
+            
+            enterButton.bounds = CGRectMake(0, 0, 120, 33);
+            enterButton.center = CGPointMake(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT* 0.9f);
+            [enterButton setTitle:@"" forState:UIControlStateNormal];
+//            [enterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//            enterButton.titleLabel.font = [UIFont systemFontOfSize:20];
+            
+        }];
+        
+    }else{  // 主界面
+        
+        KX_BaseTabbarController *tabbarVC = [[KX_BaseTabbarController alloc] init];
+        self.window.rootViewController = tabbarVC;
+        self.tabbarVC = tabbarVC;
+    }
+
     [self setConfiguration];
     [_window makeKeyAndVisible];
 

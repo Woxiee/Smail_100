@@ -22,6 +22,9 @@
 
 @property (nonatomic, assign)  BOOL isLoading;
 
+
+@property (nonatomic, assign) float inputValuePoint;
+
 @end
 
 
@@ -106,7 +109,7 @@ static NSString * const OthercellID = @"OthercellID";
     UILabel *jfLb = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(tableView.frame)+10, self.frame.size.width, 44)];
     jfLb.textAlignment = NSTextAlignmentCenter;
     jfLb.font = [UIFont systemFontOfSize:15];
-    jfLb.textColor = DETAILTEXTCOLOR;
+    jfLb.textColor = KMAINCOLOR;
     [bottomView addSubview:jfLb];
     self.jfLb = jfLb;
   
@@ -194,14 +197,23 @@ static NSString * const OthercellID = @"OthercellID";
 {
     [self endEditing:YES];
  
+   
     if (KX_NULLString(_orderModel.payIndexStr)) {
         [self makeToast:@"还未选择支付方式哦"];
         return;
     }
     
-    if ([_orderModel.jfValue intValue] > _orderModel.allPoint) {
+    if ([_orderModel.jfValue floatValue] > _orderModel.allPoint) {
         [self makeToast:@"兑换积分大于待支付积分"];
         return;
+    }
+    
+    if ( self.payType == PayTypeOther) {
+        if ([[KX_UserInfo sharedKX_UserInfo].point floatValue] < _orderModel.allPoint) {
+            [self makeToast:@"积分不足"];
+            return;
+        }
+        _orderModel.jfValue = [NSString stringWithFormat:@"%.1f",_orderModel.allPoint];
     }
     
     if (_didChangeJFValueBlock) {
@@ -234,14 +246,11 @@ static NSString * const OthercellID = @"OthercellID";
         cell.model = self.dataArr[indexPath.row];
         return cell;
     }else{
-        if ([model.title isEqualToString:@"积分兑换"]) {
+        if ([model.title isEqualToString:@"兑换积分"]) {
             PayOtherCell *cell = [tableView dequeueReusableCellWithIdentifier:OthercellID forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.numberTextFied.delegate = self;
-            
             cell.model = self.dataArr[indexPath.row];
-            
-            
             cell.numberTextFied.placeholder = [NSString stringWithFormat:@"当前可兑换积分%@",_orderModel.userinfo.point];
             return cell;
             
@@ -268,7 +277,7 @@ static NSString * const OthercellID = @"OthercellID";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self endEditing:YES];
     PayDetailModel *model = self.dataArr[indexPath.row];
-    if ([model.title isEqualToString:@"积分兑换"]) {
+    if ([model.title isEqualToString:@"兑换积分"]) {
         if ( self.payType == PayTypeOther) {
             for (PayDetailModel *payDetailModel in self.dataArr) {
                 payDetailModel.isSelect = NO;
@@ -300,7 +309,7 @@ static NSString * const OthercellID = @"OthercellID";
     
     if (_dataArr.count == 1 ) {
         PayDetailModel *model = _dataArr.lastObject;
-        if ([model.title isEqualToString:@"积分兑换"]) {
+        if ([model.title isEqualToString:@"兑换积分"]) {
             _orderModel.payIndexStr = model.title;
         }
     }
@@ -320,6 +329,7 @@ static NSString * const OthercellID = @"OthercellID";
 - (void)setOrderModel:(GoodsOrderModel *)orderModel
 {
     _orderModel = orderModel;
+    _inputValuePoint = _orderModel.allPoint;
      self.jfLb.attributedText = _orderModel.allPriceAttriStr;
 
     
@@ -328,12 +338,12 @@ static NSString * const OthercellID = @"OthercellID";
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    if (_isLoading ==  NO) {
-         _number = @"1";
-        [self.tableView reloadData];
-        _isLoading = YES;
-    }
-   
+//    if (_isLoading ==  NO) {
+//         _number = @"1";
+//        [self.tableView reloadData];
+//        _isLoading = YES;
+//    }
+
     return YES;
 }
 
@@ -341,20 +351,37 @@ static NSString * const OthercellID = @"OthercellID";
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     LOG(@"textField.TEXT = %@   string = %@",textField.text,string);
-    BOOL basic = [NSString cheakInputStrIsNumber:string];
-    if(!basic)
-    {
-        //输入了非法字符
-        return NO;
+    NSMutableString *text = [NSMutableString stringWithString:textField.text];
+    
+    [text replaceCharactersInRange:range withString:string];
+    
+//    BOOL basic = [NSString cheakInputStrIsNumber:string];
+//    if(!basic)
+//    {
+//        //输入了非法字符
+//        return NO;
+//    }
+//
+//    basic = [textField.text integerValue] >99999999? 1:0;
+//    if (basic) {
+//        textField.text =@"99999999";
+//        return YES;
+//    }
+//    _number = textField.text;
+//     textField.text = [textField.text stringByAppendingString:string];
+    
+
+    if ([text floatValue] > _orderModel.allPoint) {
+        [self makeToast:@"请输入对应积分"];
+
     }
 
-    basic = [textField.text integerValue] >99999999? 1:0;
-    if (basic) {
-        textField.text =@"99999999";
-        return YES;
+    else if ([_orderModel.jfValue floatValue] > [[KX_UserInfo sharedKX_UserInfo].point floatValue]) {
+        [self makeToast:@"积分不足"];
+
     }
-    _number = textField.text;
     
+    [self upDataAllproTex:[text floatValue]];
 
     return YES;
 }
@@ -363,10 +390,83 @@ static NSString * const OthercellID = @"OthercellID";
 -  (void)textFieldDidEndEditing:(UITextField *)textField
 {
     _number = textField.text;
-
+//    _orderModel.allPoint = _orderModel.allPoint -  _number.floatValue;
     _orderModel.jfValue = textField.text;
+
+    
+}
+
+- (void)upDataAllproTex:(float )allPoint
+{
+    NSString *allPriceStr = @"";
+    NSMutableArray *priceArr = [NSMutableArray array];
+    if (_orderModel.allPrices>0) {
+        NSString *str = [NSString stringWithFormat:@"¥%.1f",_orderModel.allPrices];
+        [priceArr addObject:str];
+    }
+    
+    if (allPoint>0) {
+        if (allPoint > _orderModel.allPoint ) {
+            allPoint =  _orderModel.allPoint;
+        }
+        NSString *str = [NSString stringWithFormat:@"%.0f积分",_inputValuePoint - allPoint];
+        [priceArr addObject:str];
+    }
+    else {
+        NSString *str = [NSString stringWithFormat:@"%.0f积分",_orderModel.allPoint];
+        [priceArr addObject:str];
+    }
+    
+    if (_orderModel.allFreight>0) {
+        NSString *str = [NSString stringWithFormat:@"%.1f快递费",_orderModel.allFreight];
+        [priceArr addObject:str];
+    }
+    
+    allPriceStr = [priceArr componentsJoinedByString:@"+"];
+    allPriceStr = [allPriceStr stringByReplacingOccurrencesOfString:@"+0积分" withString:@""];
+    allPriceStr = [allPriceStr stringByReplacingOccurrencesOfString:@"0积分+" withString:@""];
+    NSAttributedString *attributedStr =  [self attributeStringWithContent:allPriceStr keyWords:@[@"积分",@"快递费",@"+"]];
+
+    self.jfLb.attributedText = attributedStr;
     
     
 }
+
+- (NSAttributedString *)attributeStringWithContent:(NSString *)content keyWords:(NSArray *)keyWords
+{
+    UIColor *color = KMAINCOLOR;
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:content];
+    
+    if (keyWords) {
+        
+        [keyWords enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            NSMutableString *tmpString=[NSMutableString stringWithString:content];
+            
+            NSRange range=[content rangeOfString:obj];
+            
+            NSInteger location=0;
+            
+            while (range.length>0) {
+                
+                [attString addAttribute:(NSString*)NSForegroundColorAttributeName value:color range:NSMakeRange(location+range.location, range.length)];
+                [attString addAttribute:NSFontAttributeName
+                                  value:Font11
+                                  range:range];
+                
+                location+=(range.location+range.length);
+                
+                NSString *tmp= [tmpString substringWithRange:NSMakeRange(range.location+range.length, content.length-location)];
+                
+                tmpString=[NSMutableString stringWithString:tmp];
+                
+                range=[tmp rangeOfString:obj];
+            }
+        }];
+    }
+    return attString;
+}
+
 
 @end

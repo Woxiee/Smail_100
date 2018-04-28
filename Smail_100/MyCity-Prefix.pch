@@ -71,6 +71,7 @@
 
 #import "UICollectionView+KYRefresh.h"
 #import "PayTool.h"
+#import "KX_BaseNavController.h"
 
 /// 业务头文件
 #import "GoodsClassModel.h"

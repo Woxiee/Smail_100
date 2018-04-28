@@ -29,8 +29,8 @@
 
 - (void)awakeFromNib{
     [super awakeFromNib];
-    self.headImage.layer.cornerRadius  = 40;
-    
+    [self.headImage layerWithRadius:40 lineWidth:1 color:[UIColor whiteColor]];
+
     _memberCenterBg.backgroundColor = KMAINCOLOR;
     [myCodeBtn setTitle:@"我的二维码" forState:UIControlStateNormal];
     
@@ -39,12 +39,13 @@
 
 - (void)refreshInfo
 {
+
     if ([KX_UserInfo sharedKX_UserInfo].loginStatus) {
         nameTopConstain.constant  = -17;
  ///"1",  0普通,1总代,2代理商,3合伙人  普通用户点击代理平台不能进入
         
         _nickNeme.text = [NSString stringWithFormat:@"%@",[KX_UserInfo sharedKX_UserInfo].nickname];
-       
+
         _phoneLabel.text = [KX_UserInfo sharedKX_UserInfo].mobile;
         _nickNeme.hidden = NO;
         _compangLB.hidden = NO;
@@ -78,7 +79,6 @@
             _headImage.image = [ UIImage imageNamed:@"6@3x.png"];
         }else{
             [_headImage sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:@"6@3x.png"]];
-            [self.headImage layerWithRadius:40 lineWidth:1 color:[UIColor whiteColor]];
 
         }
         
