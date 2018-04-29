@@ -36,13 +36,22 @@
     segmentMenuVc.advanceLoadNextVc = NO;
     segmentMenuVc.backgroundColor = [UIColor whiteColor];
     [segmentMenuVc layerForViewWith:0 AndLineWidth:0.5];
-    NSArray *titleArr = @[@"全部",@"兑换中",@"已成功",@"已驳回"];
+    NSArray *titleArr ;
+    if (KX_NULLString(_shopID)) {
+        titleArr = @[@"全部",@"兑换中",@"已成功",@"已驳回"];
+
+    }else{
+        titleArr = @[@"全部",@"提现中",@"已成功",@"已驳回"];
+
+    }
+    
     NSArray *status = @[@"",@"Pending",@"Enabled",@"Fail"];
     NSMutableArray *contollers =  [[NSMutableArray alloc] init];
     for (int i = 0; i<4; i++) {
         SmileForListVC *vc = [[SmileForListVC alloc] init];
         vc.status = status[i];
         vc.shopID = _shopID?_shopID:@"";
+        vc.isWithdrawal = _isWithdrawal?_isWithdrawal:@"";
         [contollers addObject:vc];
     }
     [segmentMenuVc addSubVc:contollers subTitles:titleArr];

@@ -202,6 +202,7 @@
     vc.title = @"商家提现";
     vc.showType = @"1";
     vc.shopID = _resultDic[@"shop_id"];
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 

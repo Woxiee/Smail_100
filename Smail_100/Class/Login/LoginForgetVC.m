@@ -71,7 +71,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
 //    [_view1 layerForViewWith:3 AndLineWidth:0.5];
 //    [_view2 layerForViewWith:3 AndLineWidth:0.5];
-    [_sureBtn layerForViewWith:3 AndLineWidth:0];
+    [_sureBtn layerForViewWith:6 AndLineWidth:0];
     _lineView1.backgroundColor = LINECOLOR;
     _lineView2.backgroundColor = LINECOLOR;
     _lineView4.backgroundColor = LINECOLOR;
@@ -79,13 +79,12 @@
     _lineView7.backgroundColor = LINECOLOR;
     
     [_xyBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
-    
-    [_yzmBtn setTitleColor:MainColor forState:UIControlStateNormal];
-    [_yzmBtn layerWithRadius:3 lineWidth:0.5 color:MainColor];
+        [_yzmBtn layerWithRadius:6 lineWidth:0.5 color:MainColor];
 
     
     [_loginBtn setTitleColor:MainColor forState:UIControlStateNormal];
     
+
     _sureBtn.backgroundColor = MainColor;
     
     _codeImageView.userInteractionEnabled = YES;
@@ -95,11 +94,6 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(getCodeImageRequest)];
     [_codeImageView addGestureRecognizer:tapGesture];
     
-//    self.urseTextFiled.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"denglu2@3x.png"]];
-//    self.urseTextFiled.leftViewMode = UITextFieldViewModeAlways;
-//
-//    self.codeTF.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"denglu2@3x.png"]];
-//    self.codeTF.leftViewMode = UITextFieldViewModeAlways;
 
 }
 
@@ -205,7 +199,7 @@
     GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
     VC.clickUrl = [NSString stringWithFormat:@"%@/api/shop/agreement?type=register",HEAD__URL] ;
     VC.hidesBottomBarWhenPushed = YES;
-    VC.title = @"<用户服务协议>";
+    VC.title = @"用户服务协议";
     [self.navigationController pushViewController:VC animated:YES];
 }
 
@@ -274,7 +268,10 @@
 
 //                LoginFindAndRegirsVC *VC = [[LoginFindAndRegirsVC alloc] initWithNibName:@"LoginFindAndRegirsVC" bundle:nil];
 //                [weakSelf.navigationController pushViewController:VC animated:YES];
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    
+                });
                 [weakSelf.view makeToast:@"注册成功,请登录"];
                 
             }else{

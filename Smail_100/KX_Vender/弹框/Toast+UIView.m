@@ -68,11 +68,7 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
     UIView *toast = [self viewForMessage:message title:nil image:nil];
     [self showToast:toast duration:interval position:position];
 }
-- (void)makeToast:(NSString *)message position:(id)position
-{
-    UIView *toast = [self viewForMessage:message title:nil image:nil];
-    [self showToast:toast duration:0.25 position:position];
-}
+
 - (void)makeToast:(NSString *)message duration:(CGFloat)interval position:(id)position title:(NSString *)title {
     UIView *toast = [self viewForMessage:message title:title image:nil];
     [self showToast:toast duration:interval position:position];
@@ -245,12 +241,12 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
         
         // size the title label according to the length of the text
         CGSize maxSizeTitle = CGSizeMake((self.bounds.size.width * CSToastMaxWidth) - imageWidth, self.bounds.size.height * CSToastMaxHeight);
-       // CGSize expectedSizeTitle = [title sizeWithFont:titleLabel.font constrainedToSize:maxSizeTitle lineBreakMode:titleLabel.lineBreakMode];
+        // CGSize expectedSizeTitle = [title sizeWithFont:titleLabel.font constrainedToSize:maxSizeTitle lineBreakMode:titleLabel.lineBreakMode];
         
         
         NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:titleLabel.font, NSFontAttributeName,nil];
         CGSize expectedSizeTitle =[title boundingRectWithSize:maxSizeTitle options:NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading attributes:tdic context:nil].size;
-
+        
         
         
         titleLabel.frame = CGRectMake(0.0, 0.0, expectedSizeTitle.width, expectedSizeTitle.height);
@@ -324,9 +320,8 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
         [wrapperView addSubview:imageView];
     }
     
-    messageLabel.textAlignment = NSTextAlignmentCenter;
-    
     return wrapperView;
 }
 
 @end
+

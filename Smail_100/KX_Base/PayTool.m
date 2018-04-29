@@ -45,6 +45,7 @@ singleton_implementation(PayTool)
     _orderModel = orderModel;
     _subVC = VC;
     [self setup];
+    _didClicCompltBlock = compleBlock;
 }
 
 
@@ -102,9 +103,7 @@ singleton_implementation(PayTool)
         [param setObject:@"auto"  forKey:@"type_value[phone_money]"];
     }
     
-    if (_orderModel.jfValue.intValue >0) {
-        [param setObject:_orderModel.jfValue  forKey:@"type_value[point]"];
-    }
+  
     
     [GoodsOrderVModel getPayInfoKryParam:param successBlock:^(PayModels *model, BOOL isSuccess,NSString *msg) {
         if (isSuccess ) {
@@ -118,7 +117,17 @@ singleton_implementation(PayTool)
                     [weakSelf doAPPay];
                 }
                 else{
+                    if (_didClicCompltBlock) {
+                        _didClicCompltBlock(@"支付成功",YES);
+                    }
                     OrderCommitSuccessVC *vc = [[OrderCommitSuccessVC alloc] init];
+                    if (self.isType.integerValue == 1 ) {
+                        vc.successType = CommitSuccessAutiocnType;
+                    }
+                    if (self.isType.integerValue == 2 ) {
+                        vc.successType = CommitSuccessSupplyType;
+                    }
+
                     [weakSelf.subVC.navigationController pushViewController:vc animated:YES];
                     
                 }
@@ -142,7 +151,8 @@ singleton_implementation(PayTool)
        
         SuccessView *successV = [[SuccessView alloc] initWithTrueCancleTitle:@"您还未设置支付密码"  sureTitle:@"去设置" cancelTitle:@"取消" clickDex:^(NSInteger clickDex) {
             if (clickDex == 1) {
-                [KX_UserInfo presentToLoginView:_subVC];
+                SetPayPwdVC  *vc = [[SetPayPwdVC alloc] init];
+                [weakSelf.subVC.navigationController pushViewController:vc animated:YES];
                 
             }}];
         [successV showSuccess];
@@ -266,7 +276,16 @@ singleton_implementation(PayTool)
 // 支付成功
 - (void)getPayTypeRelute:(NSNotification *)notification
 {
+    if (_didClicCompltBlock) {
+        _didClicCompltBlock(@"支付成功",YES);
+    }
     OrderCommitSuccessVC *vc = [[OrderCommitSuccessVC alloc] init];
+    if (self.isType.integerValue == 1 ) {
+        vc.successType = CommitSuccessAutiocnType;
+    }
+    if (self.isType.integerValue == 2 ) {
+        vc.successType = CommitSuccessSupplyType;
+    }
     [_subVC.navigationController pushViewController:vc animated:YES];
     
 }
@@ -298,6 +317,23 @@ singleton_implementation(PayTool)
     
 }
 
+
+/**
+ 密码错误
+ */
+- (void)coverView:(JHCoverView *)control
+{
+    [self.subVC showHint:@"支付密码输入错误" yOffset:-200];
+}
+
+/**
+ 忘记密码
+ */
+- (void)forgetPassWordCoverView:(JHCoverView *)control
+{
+    FindPaypwdVC *vc = [[FindPaypwdVC alloc] init];
+    [self.subVC.navigationController pushViewController:vc animated:YES];
+}
 - (void)dealloc
 {
     

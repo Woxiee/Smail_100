@@ -1,4 +1,4 @@
-//
+;//
 //  LoginFindVC.m
 //  MyCityProject
 //
@@ -77,7 +77,7 @@
     [_yzmBtn layerWithRadius:3 lineWidth:0.5 color:MainColor];
 //    [_loginBtn setTitleColor:MainColor forState:UIControlStateNormal];
     _loginBtn.backgroundColor = MainColor;
-
+    _urseTextFiled.text = [KX_UserInfo sharedKX_UserInfo].mobile;
 }
 
 
@@ -255,7 +255,10 @@
                 //                LoginFindAndRegirsVC *VC = [[LoginFindAndRegirsVC alloc] initWithNibName:@"LoginFindAndRegirsVC" bundle:nil];
                 //                [weakSelf.navigationController pushViewController:VC animated:YES];
                 [weakSelf.view makeToast:result[@"msg"]];
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+
+                });
                 
                 
             }else{

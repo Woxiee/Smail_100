@@ -187,6 +187,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     [self.superVC wr_setNavBarBackgroundAlpha:0];
     self.navigationTabBar.alpha = 0;
     self.superVC.navigationItem.titleView.hidden = YES;
+    [self.superVC wr_setNavBarTintColor:[UIColor whiteColor]];
     [self wr_setNavBarShadowImageHidden:NO];
     
     
@@ -244,24 +245,28 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             }
             else if (index == 3){
+                if (weakSelf.selectView == nil) {
+                    [weakSelf initSelectView];
+                }
+                [weakSelf.selectView show];
                 
-                [weakSelf addGoodsInCar:model.itemContent];
+//                [weakSelf addGoodsInCar:model.itemContent];
             }
             else if (index == 4){
 //                if (weakSelf.itemIfoModel.spec.count >0) {
-                    if (KX_NULLString(weakSelf.itemIfoModel.itemContent.spec)) {
+//                    if (KX_NULLString(weakSelf.itemIfoModel.itemContent.spec)) {
                         if (weakSelf.selectView == nil) {
                             [weakSelf initSelectView];
                         }
                         [weakSelf.selectView show];
-                        return;
+//                        return;
 //                    }
-                }
+//                }
                
-                GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
-                model.itemContent.goods_id = weakSelf.productID;
-                VC.itemsModel = model.itemContent;
-                [weakSelf.superVC.navigationController pushViewController:VC animated:YES];
+//                GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
+//                model.itemContent.goods_id = weakSelf.productID;
+//                VC.itemsModel = model.itemContent;
+//                [weakSelf.superVC.navigationController pushViewController:VC animated:YES];
             }
 
         };
@@ -302,28 +307,27 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     
     self.selectView.nameLB.text = _itemIfoModel.itemContent.name;
     NSMutableArray *priceArr = [[NSMutableArray alloc] init];
+    
     if (_itemIfoModel.itemContent.price.floatValue >0) {
         [priceArr addObject:[NSString stringWithFormat:@"¥%@",_itemIfoModel.itemContent.price]];
     }
     if (_itemIfoModel.itemContent.point.floatValue >0) {
         [priceArr addObject:[NSString stringWithFormat:@"%@积分",_itemIfoModel.itemContent.point]];
     }
+//    if ([_itemIfoModel.itemContent.freight floatValue] >0) {
+//        [priceArr addObject:[NSString stringWithFormat:@"快递费:%@",_itemIfoModel.itemContent.freight]];
+//    }
     NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
-    if (_itemIfoModel.itemContent.earn_money.floatValue >0) {
-        NSString *getMoney = [NSString stringWithFormat:@"赚¥%@",_itemIfoModel.itemContent.earn_money];
-        NSString *moneyStr = [NSString stringWithFormat:@"%@ %@",allPrice,getMoney];
-        NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[getMoney,@"+"]];
-       self.selectView.LB_price.attributedText  = attributedStr;
-        
-    }else{
-        self.selectView.LB_price.text = [NSString stringWithFormat:@"¥%@",_itemIfoModel.itemContent.price];
-    }
+    NSString *moneyStr = [NSString stringWithFormat:@"%@",allPrice];
+    NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[@"+",@"快递费:"]];
+    self.selectView.LB_price.attributedText  = attributedStr;
+    
     self.selectView.LB_stock.text =[NSString stringWithFormat:@"库存:%@件",_itemIfoModel.itemContent.volume] ; 
     self.selectView.LB_showSales.text = [NSString stringWithFormat:@"销量%@件",_itemIfoModel.itemContent.sale_num] ;
     if (weakSelf.itemIfoModel.spec.count >0) {
         self.selectView.LB_detail.text = @"请选择规格属性";
     }
-
+    self.selectView.itemIfoModel = _itemIfoModel;
     self.selectView.didClickComTFpltBlock = ^(NSInteger index, NSInteger goodCout) {
         weakSelf.goodSCount = goodCout;
         NSString *sper_vlue = [weakSelf.selectItems componentsJoinedByString:@","];
@@ -410,9 +414,11 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     }
     
     _selectItems =  [selectItems mutableCopy];
+    
     NSString *comm = [_attributesArray componentsJoinedByString:@","];
     self.selectView.LB_detail.text = [NSString stringWithFormat:@"选择了 %@",comm];
     _itemIfoModel.itemContent.spec =  [_selectItems componentsJoinedByString:@","];
+    _selectView.itemIfoModel = _itemIfoModel;
     [self getGoodsDetailPriceRequest];
 }
 
@@ -426,6 +432,8 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:_productID forKey:@"goods_id"];
     [GoodsVModel getGoodsDetailParam:param successBlock:^(NSArray<ItemInfoList *> *dataArray, BOOL isSuccess) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+
         [weakSelf.tableView endRefreshTableView];
         if (isSuccess) {
             if (weakSelf.resorceArray.count >0) {
@@ -459,7 +467,10 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 
             
         }else{
-            
+            [self showHint:@"商品以下架,不能购买"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            });
         }
         
     }];
@@ -519,10 +530,36 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         if (isSuccess == YES) {
+            
             weakSelf.itemIfoModel.itemContent.price = relust[@"sell_price"];
             weakSelf.itemIfoModel.itemContent.store_nums = relust[@"store_nums"];
-            weakSelf.selectView.LB_price.text =[NSString stringWithFormat:@"¥%@", weakSelf.itemIfoModel.itemContent.price ];
+            NSMutableArray *priceArr = [[NSMutableArray alloc] init];
+            
+            if (_itemIfoModel.itemContent.price.floatValue >0) {
+                [priceArr addObject:[NSString stringWithFormat:@"¥%@",_itemIfoModel.itemContent.price]];
+            }
+            if (_itemIfoModel.itemContent.point.floatValue >0) {
+                [priceArr addObject:[NSString stringWithFormat:@"%@积分",_itemIfoModel.itemContent.point]];
+            }
+//            if ([_itemIfoModel.itemContent.freight floatValue] >0) {
+//                [priceArr addObject:[NSString stringWithFormat:@"%@快递费",_itemIfoModel.itemContent.freight]];
+//            }
+            NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
+            NSString *moneyStr = [NSString stringWithFormat:@"%@",allPrice];
+            NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[@"+",@"快递费"]];
+            self.selectView.LB_price.attributedText  = attributedStr;
+            
+//            if (_itemIfoModel.itemContent.earn_money.floatValue >0) {
+////                NSString *getMoney = [NSString stringWithFormat:@"赚¥%@",_itemIfoModel.itemContent.earn_money];
+//                NSString *moneyStr = [NSString stringWithFormat:@"%@ %@",allPrice];
+//                NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[getMoney,@"+"]];
+//                self.selectView.LB_price.attributedText  = attributedStr;
+//
+//            }else{
+//                self.selectView.LB_price.text = allPrice;
+//            }
             self.selectView.LB_stock.text = [NSString stringWithFormat:@"库存%@件", weakSelf.itemIfoModel.itemContent.store_nums];
+            self.selectView.itemIfoModel = weakSelf.itemIfoModel;
              [self.tableView reloadData];
             
         }else{
@@ -893,12 +930,15 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
         self.superVC.navigationItem.titleView.hidden = NO;
 
         if (alpha > 0.5) {
+            [self.backButton setImage:[UIImage imageNamed:@"back_icon@2x.png"] forState:UIControlStateNormal];
+
             [self wr_setNavBarTintColor:[UIColor redColor]];
 
             [self.superVC wr_setNavBarTitleColor:[UIColor blackColor]];
             [self.superVC wr_setStatusBarStyle:UIStatusBarStyleDefault];
         } else {
-            
+            [self.backButton setImage:[UIImage imageNamed:@"shouye6@3x.png"] forState:UIControlStateNormal];
+
             [self.superVC wr_setNavBarTintColor:[UIColor whiteColor]];
             [self.superVC wr_setNavBarTitleColor:[UIColor clearColor]];
             [self.superVC wr_setStatusBarStyle:UIStatusBarStyleLightContent];

@@ -11,5 +11,6 @@
 @interface SmileForHeadView : UIView
 @property (nonatomic, strong) NSDictionary *dataDic;
 @property (nonatomic, strong) NSString *shopID;
+@property (nonatomic, strong) NSString *isWithdrawal;
 
 @end

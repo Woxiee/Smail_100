@@ -150,46 +150,149 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     WEAKSELF;
     NSMutableArray *titleArr = [[NSMutableArray alloc] init];
     NSMutableArray *imageArr = [[NSMutableArray alloc] init];
-    PayOrderView *view;
+    NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+
     if ([_orderModel.pay_method.wxpay isEqualToString:@"Y"]) {
         [titleArr addObject:@"微信支付"];
         [imageArr addObject:@"wxzf@3x.png"];
     }
-
+    
     if ([_orderModel.pay_method.alipay isEqualToString:@"Y"]) {
         [titleArr addObject:@"支付宝支付"];
         [imageArr addObject:@"zfb@3x.png"];
     }
-
+    
     if ([_orderModel.pay_method.coins_money isEqualToString:@"Y"]) {
         [titleArr addObject:@"激励笑脸支付"];
         [imageArr addObject:@"jlxl@3x.png"];
     }
-
+    
     if ([_orderModel.pay_method.coins_air_money isEqualToString:@"Y"]) {
         [titleArr addObject:@"空充笑脸支付"];
         [imageArr addObject:@"kcxl@3x.png"];
     }
-
+    
     if ([_orderModel.pay_method.phone_money isEqualToString:@"Y"]) {
         [titleArr addObject:@"话费支付"];
         [imageArr addObject:@"hfdh@3x.png"];
     }
     
     if ([_orderModel.pay_method.point isEqualToString:@"Y"]) {
-        [titleArr addObject:@"兑换积分"];
+        [titleArr addObject:@"兑换积分支付"];
         [imageArr addObject:@"jfzf@3x.png"];
-//
+        //
     }
     
-    
+    PayOrderView *view;
+
+    view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeNoaml];
    
     
-    view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeNoaml];
-    
-    if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"兑换积分"]) {
-        view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeOther];
+    if (titleArr.count== 1) {
+        NSString *str =titleArr.firstObject;
+        
+        if ([str isEqualToString:@"话费支付"]) {
+            
+        }else{
+            if ( _orderModel.allPrices <= 0  ) {
+                if (_orderModel.express_type.integerValue == 2) {
+                    [titleArr removeAllObjects];
+                    [imageArr removeAllObjects];
+                    
+                    [titleArr addObject:@"兑换积分支付"];
+                    [imageArr addObject:@"jfzf@3x.png"];
+                    
+                }
+                view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeOther];
+            }
+
+        }
+    }else{
+        if ( _orderModel.allPrices <= 0  ) {
+            if (_orderModel.express_type.integerValue == 2) {
+                [titleArr removeAllObjects];
+                [imageArr removeAllObjects];
+                
+                [titleArr addObject:@"兑换积分支付"];
+                [imageArr addObject:@"jfzf@3x.png"];
+                
+            }
+            view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeOther];
+        }
+
     }
+    
+    
+    
+    for (int i = 0; i<titleArr.count; i++) {
+        PayDetailModel *model = [PayDetailModel new];
+        model.mark = @"";
+        model.icon = imageArr[i];
+        model.isSelect = NO;
+        model.title = titleArr[i];
+        if ( [model.title isEqualToString:@"兑换积分支付"]) {
+            model.isSelect = YES;
+            _orderModel.payIndexStr = @"兑换积分支付";
+        }
+        [dataArray addObject:model];
+    }
+
+    
+//    if ( _orderModel.allFreight <= 0 ) {
+////        _orderModel.allFreight = 2;
+//        if ( _orderModel.allFreight> 0) {
+//            [titleArr removeAllObjects];
+//            [imageArr removeAllObjects];
+//
+//            [titleArr addObject:@"微信支付"];
+//            [imageArr addObject:@"wxzf@3x.png"];
+//
+//            [titleArr addObject:@"支付宝支付"];
+//            [imageArr addObject:@"zfb@3x.png"];
+//
+//
+//            [titleArr addObject:@"激励笑脸支付"];
+//            [imageArr addObject:@"jlxl@3x.png"];
+//
+//            [titleArr addObject:@"空充笑脸支付"];
+//            [imageArr addObject:@"kcxl@3x.png"];
+//
+//            [titleArr addObject:@"兑换积分支付"];
+//            [imageArr addObject:@"jfzf@3x.png"];
+//        }
+//        for (int i = 0; i<titleArr.count; i++) {
+//            PayDetailModel *model = [PayDetailModel new];
+//            model.mark = @"";
+//            model.icon = imageArr[i];
+//            model.isSelect = NO;
+//            model.title = titleArr[i];
+//
+//            if ( [model.title isEqualToString:@"兑换积分支付"]) {
+//                model.isSelect = YES;
+//                _orderModel.payIndexStr = @"兑换积分支付";
+//            }
+//            [dataArray addObject:model];
+//        }
+//
+//
+//
+//    }
+//    else{
+//
+//        for (int i = 0; i<titleArr.count; i++) {
+//            PayDetailModel *model = [PayDetailModel new];
+//            model.mark = @"";
+//            model.icon = imageArr[i];
+//            model.isSelect = NO;
+//            if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"兑换积分支付"]) {
+//                model.isSelect = YES;
+//                _orderModel.payIndexStr = @"兑换积分支付";
+//            }
+//            model.title = titleArr[i];
+//
+//            [dataArray addObject:model];
+//        }
+//    }
 
     view.didChangeJFValueBlock = ^(GoodsOrderModel *orderModel) {
         
@@ -197,20 +300,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     };
     
 
-    NSMutableArray *dataArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i<titleArr.count; i++) {
-        PayDetailModel *model = [PayDetailModel new];
-        model.mark = @"";
-        model.icon = imageArr[i];
-        model.isSelect = NO;
-        if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"兑换积分"]) {
-            model.isSelect = YES;
-            _orderModel.payIndexStr = @"兑换积分";
-        }
-        model.title = titleArr[i];
-      
-        [dataArray addObject:model];
-    }
+
     view.dataArr = dataArray;
     view.orderModel = _orderModel;
     [view show];
@@ -357,6 +447,10 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 
     }
     [param setObject:_orderModel.address.addr_id forKey:@"address_id"];
+    
+    if ([_orderModel.message isEqualToString:@"选填(对本次交易的说明,限50个字以内)"] ) {
+        _orderModel.message = @"";
+    }
     [param setObject:_orderModel.message forKey:@"message"];
     [param setObject:_orderModel.express_type forKey:@"express_type"];
     [param setObject:_spec?_spec:@"" forKey:@"spec"];
@@ -364,7 +458,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
         if (isSuccess) {
             weakSelf.orderModel.orderno = orderID;
             
-            [[PayTool alloc ] getPayInfoOrderModle:weakSelf.orderModel payVC:weakSelf reluteBlock:^(NSString *msg, BOOL success) {
+            [[PayTool sharedPayTool] getPayInfoOrderModle:weakSelf.orderModel payVC:weakSelf reluteBlock:^(NSString *msg, BOOL success) {
                 
             }];
 //            if ([_orderModel.payIndexStr isEqualToString:@"微信支付"] || [_orderModel.payIndexStr isEqualToString:@"支付宝支付"]) {
@@ -691,20 +785,20 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 
 #pragma mark  - JHCoverViewDelegate
 /**
+ 密码错误
+ */
+- (void)coverView:(JHCoverView *)control
+{
+    [self showHint:@"支付密码输入错误" yOffset:-200];
+}
+
+/**
  忘记密码
  */
 - (void)forgetPassWordCoverView:(JHCoverView *)control
 {
-    
-}
-
-/**
- JHCoverViewDelegate的代理方法,密码输入错误
- */
-- (void)coverView:(JHCoverView *)control
-{
-    [self.view makeToast:@"密码输入错误，请重试"];
-    
+    FindPaypwdVC *vc = [[FindPaypwdVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**
@@ -911,7 +1005,6 @@ static NSString * const DeductionCellID = @"DeductionCellID";
         }
     }
     _orderModel.allFreight = allFreight;
-
     NSString *allPriceStr = @"";
     NSMutableArray *priceArr = [NSMutableArray array];
     if (allPrices>0) {
@@ -925,7 +1018,8 @@ static NSString * const DeductionCellID = @"DeductionCellID";
         [priceArr addObject:str];
     }
     
-    if (allFreight>0) {
+    
+    if (allFreight>0 && !KX_NULLString(_orderModel.express_type)) {
         NSString *str = [NSString stringWithFormat:@"%.1f快递费",allFreight];
         
         [priceArr addObject:str];

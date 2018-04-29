@@ -16,6 +16,7 @@
 #import "OfflineVC.h"
 #import "OnlineVC.h"
 #import "KX_BaseNavController.h"
+#import "shoppingCarVM.h"
 
 @interface KX_BaseTabbarController ()<CLLocationManagerDelegate>
 @property(nonatomic,strong)NSMutableArray *classArr;
@@ -28,11 +29,17 @@
 @end
 
 @implementation KX_BaseTabbarController
+{
+    shoppingCarVM *carVM;
 
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setConfiguration];
     [self startLocation];
+    carVM = [shoppingCarVM new];
+    [self loadShopCarData];
+
 }
 
 /// 配置基础设置
@@ -202,6 +209,8 @@
     CLLocation *newLocation = locations[0];
     // 获取当前所在的城市名
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+ 
+//22.635159,114.0807
     //根据经纬度反向地理编译出地址信息
     NSLog(@"%f%f",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
     [[KX_UserInfo sharedKX_UserInfo] loadUserInfoFromSanbox];
@@ -226,6 +235,7 @@
             [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
             
         }
+        
         else if (error == nil && [array count] == 0)
         {
             NSLog(@"No results were returned.");
@@ -235,8 +245,37 @@
             NSLog(@"An error occurred = %@", error);
         }
     }];
-    [manager stopUpdatingLocation];
+//    [manager stopUpdatingLocation];
     
+}
+
+
+-(void)loadShopCarData{
+    WS(b_self)
+    [MBProgressHUD showMessag:@"正在加载..." toView:self.view];
+    [carVM getShopCarGoodsHandleback:^(NSArray *shopCarGoods, NSInteger code) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+     
+        //保存本地数据
+        NSMutableArray *goodList = [[NSMutableArray alloc] init];
+        NSMutableArray *dataSocure = [[NSMutableArray alloc] init];
+
+        for (OrderGoodsModel *model in shopCarGoods ) {
+            for (Products *product in  model.products ) {
+                [goodList addObject:[shoppingCarVM changeProductsModelInListToOrderGoodsModel:product]];
+            }
+            model.goodModel = (NSArray*)goodList;
+        }
+        
+        [dataSocure addObjectsFromArray:shopCarGoods];
+        
+        NSString *allCount =  [carVM calcilationShopCarAllNomalCount:dataSocure];
+        if (allCount.integerValue >0) {
+            [self.viewControllers[3].tabBarItem setBadgeValue:allCount];
+        }
+        
+        
+    }];
 }
 
 

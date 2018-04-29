@@ -123,7 +123,13 @@
     if (_model.freight.floatValue >0) {
         postage.text = [NSString stringWithFormat:@"快递:¥%@",_model.freight];
     }else{
-        postage.text  = @"快递:包邮";
+        if (KX_NULLString(_model.freight_msg)) {
+            postage.text  = @"快递:包邮";
+
+        }else{
+            postage.text = [NSString stringWithFormat:@"快递:%@",_model.freight_msg];
+
+        }
     }
     
     numLabel.text = [NSString stringWithFormat:@"已出售:%@",_model.sale_num];

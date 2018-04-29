@@ -92,6 +92,7 @@
 
 
 - (IBAction)didClickAction:(UIButton *)sender {
+    [self.view endEditing:YES];
 
     if (sender.tag == 100) {
         _smailBtn.selected = YES;
@@ -205,6 +206,25 @@
 {
     [self requestListNetWork];
     
+}
+
+/**
+ 密码错误
+ */
+- (void)coverView:(JHCoverView *)control
+{
+    
+    [self.view makeToast:@"支付密码输入错误"];
+
+}
+
+/**
+ 忘记密码
+ */
+- (void)forgetPassWordCoverView:(JHCoverView *)control
+{
+    FindPaypwdVC *vc = [[FindPaypwdVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

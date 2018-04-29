@@ -67,8 +67,15 @@
     storeLb.text = _model.shop_name;
 //    _starImageView
     addressLB.text = [NSString stringWithFormat:@"%@%@%@%@",_model.province,_model.city,_model.district,_model.address];
-    float distance = _model.distance.floatValue/1000;
-    distanceLB.text =  [NSString stringWithFormat:@"%.2fkm",distance];
+    float distance = _model.distance.floatValue/10000;
+    if (_model.distance.floatValue >1000) {
+        distanceLB.text =  [NSString stringWithFormat:@"%.2fkm",distance];
+        
+    }else{
+        distanceLB.text =  [NSString stringWithFormat:@"%@m",_model.distance];
+    }
+    
+    
     [findLb setImage:[UIImage imageNamed:@"xianxiashangjia7@3x.png"] forState:UIControlStateNormal];
     [findLb setTitle:@"到这里去" forState:UIControlStateNormal];
     findLb.titleLabel.font = KY_FONT(10);
@@ -83,14 +90,7 @@
     
     [_starImageView ShowDQStarScoreFunction:[_model.stars intValue]];
 
-//    if (_model.comment.count >0) {
-//        Comment *item = _model.comment[0];
-//        
-//        nameLb.text = @"测试";
-//        commTextLb.text = item.comment;
-//        comDate.text = item.ctime;
-//        
-//    }
+
 
     
     

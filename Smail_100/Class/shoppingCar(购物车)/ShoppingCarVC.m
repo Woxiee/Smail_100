@@ -266,11 +266,15 @@
     }else{
         _jifeLB.text = @"";
     }
-    NSString *count = [carVM calcilationShopCarAllCount:_dataSocure];
-    if (count.integerValue >0) {
-        [self.navigationController.tabBarController.viewControllers[3].tabBarItem setBadgeValue:count];
 
+    
+    NSString *allCount =  [carVM calcilationShopCarAllNomalCount:_dataSocure];
+    if (allCount.integerValue >0) {
+        [self.navigationController.tabBarController.viewControllers[3].tabBarItem setBadgeValue:allCount];
     }
+    
+    NSString *count = [carVM calcilationShopCarAllCount:_dataSocure];
+  
 //    minCountLb.text = [NSString stringWithFormat:@"%@件商品",count];
     [toPayBtn setTitle:[NSString stringWithFormat:@"结算(%@)",count] forState:UIControlStateNormal];
 
@@ -501,8 +505,11 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     //跳转详情界面
     OrderGoodsModel * cellModel  = _dataSocure[indexPath.section];
-    GoodsDetailVC *goodVC = [GoodsDetailVC new];
-    goodVC.productID = cellModel.productId?cellModel.productId:cellModel.seller_id ;
+    OrderGoodsModel * goodsModel = cellModel.goodModel[indexPath.row];
+
+    GoodsDetailVC *goodVC = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    goodVC.productID = goodsModel.productId?goodsModel.productId:goodsModel.seller_id ;
     goodVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:goodVC animated:YES];
 }

@@ -107,6 +107,31 @@
     
     
 }
+
+///计算购物车所有个数
+-(NSString *)calcilationShopCarAllNomalCount:(NSArray <OrderGoodsModel*>*)goodsModels
+{
+    int allCount = 0;
+    for (OrderGoodsModel*model in goodsModels ) {
+        if (model.products.count >0) {
+            for (OrderGoodsModel*item in model.goodModel) {
+//                if (item.selectStatue.integerValue == 1) {
+                    allCount += item.itemCount.integerValue;
+//                }
+            }
+            
+        }else{
+//            if (model.selectStatue.integerValue == 1) {
+                allCount += model.itemCount.integerValue;
+//            }
+        }
+        
+    }
+    
+    return [NSString stringWithFormat:@"%d",allCount];
+}
+
+
 #pragma mark - 数据处理模块
 /**
  4.1新增购物车
@@ -383,7 +408,7 @@
     item.itemCount = [NSString stringWithFormat:@"%@",model.goods_nums];
     item.productPrice = model.price;
     item.point = model.point;
-    item.seller_id = model.seller_id;
+    item.seller_id = model.goods_id;
     item.store_nums = model.store_nums;
 
     item.property = model.spec;

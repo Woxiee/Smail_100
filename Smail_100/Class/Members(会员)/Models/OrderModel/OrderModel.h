@@ -44,6 +44,9 @@
 @property (nonatomic , copy) NSString              * shopID;
 
 @property (nonatomic , copy) NSString              * express_url;
+@property (nonatomic , copy) NSString              * express_type;
+
+
 
 /// 集采
 @property (nonatomic , copy) NSString              * joinCount;

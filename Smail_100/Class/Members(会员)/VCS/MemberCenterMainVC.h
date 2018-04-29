@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MemberCenterMainVC : UIViewController
+@interface MemberCenterMainVC : KX_BaseViewController
 
 @end

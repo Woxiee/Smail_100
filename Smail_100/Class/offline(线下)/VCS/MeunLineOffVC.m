@@ -40,6 +40,7 @@
 @property (strong, nonatomic)  UIButton *cartBtn;
 @property (strong, nonatomic)  NSMutableArray * allInfoArr;
 
+@property (strong, nonatomic)  NSString  * allPrice;
 
 @property (nonatomic,copy)  NSMutableDictionary *itemsDic;
 @property (nonatomic, strong) GoodsOrderModel *orderModel;
@@ -217,8 +218,6 @@
 //    }
     
 //    if ([_orderModel.pay_method.phone_money isEqualToString:@"Y"]) {
-        [titleArr addObject:@"话费支付"];
-        [imageArr addObject:@"hfdh@3x.png"];
 //    }
     
   
@@ -226,6 +225,7 @@
     view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeNoaml];
  
     view.didChangeJFValueBlock = ^(GoodsOrderModel *orderModel) {
+        [PayTool sharedPayTool].isType = @"1";
         [[PayTool sharedPayTool] getPayInfoOrderModle:weakSelf.orderModel payVC:weakSelf reluteBlock:^(NSString *msg, BOOL success) {
             
         }];
@@ -432,13 +432,15 @@
         [self.view makeToast:@"请先添加商品在下单~"];
         return;
     }
-    GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
-    VC.cart_ids = [cartList componentsJoinedByString:@","];
-    VC.spec = [specs componentsJoinedByString:@","];
-    VC.orderType  = ShoppinCarType;
-    VC.uuid  = _classModel.UUID?_classModel.UUID:@"";
     
-    [self.navigationController pushViewController:VC animated:YES];
+    [self getOrderNoRequrst:_allPrice];
+//    GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
+//    VC.cart_ids = [cartList componentsJoinedByString:@","];
+//    VC.spec = [specs componentsJoinedByString:@","];
+//    VC.orderType  = ShoppinCarType;
+//    VC.uuid  = _classModel.UUID?_classModel.UUID:@"";
+//
+//    [self.navigationController pushViewController:VC animated:YES];
    
 }
 
@@ -521,7 +523,7 @@
         
     }
     
-    
+    _allPrice = [NSString stringWithFormat:@"%.0f",allPrice];
     [_allInfoArr removeAllObjects];
     if (allCount>0) {
         allCountStr = [NSString stringWithFormat:@"已选%d件",allCount];
@@ -530,6 +532,7 @@
     if (allPrice>0) {
         allPriceStr = [NSString stringWithFormat:@"共%.2f元",allPrice];
         [_allInfoArr addObject:allPriceStr];
+        
     }
     
     if (allPoint>0) {

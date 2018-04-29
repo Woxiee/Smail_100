@@ -34,6 +34,7 @@
 @property (nonatomic , copy) NSString              * desc;
 @property (nonatomic , copy) NSString              * freight;
 @property (nonatomic , copy) NSString              * valid_time;
+@property (nonatomic , copy) NSString              * freight_msg;
 
 
 @property (nonatomic , copy) NSString              * itemRecommendedLanguage;

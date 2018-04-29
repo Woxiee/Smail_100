@@ -51,7 +51,11 @@
             if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
 
                 [weakSelf.view makeToast:result[@"msg"]];
-                [weakSelf.navigationController popViewControllerAnimated:YES];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+
+                });
+
                 
             }else{
                 [weakSelf.view makeToast:result[@"msg"]];
@@ -62,7 +66,7 @@
 }
 
 - (IBAction)didLogAction:(id)sender {
-    
+    [self.view endEditing:YES];
     if (KX_NULLString(_oldTF.text)) {
         [self.view makeToast:_oldTF.placeholder];
         return;
@@ -86,6 +90,8 @@
 }
 
 - (IBAction)isAbelAction:(id)sender {
+    [self.view endEditing:YES];
+
     UIButton *btn = (UIButton *)sender;
     btn.selected =! btn.selected;
     

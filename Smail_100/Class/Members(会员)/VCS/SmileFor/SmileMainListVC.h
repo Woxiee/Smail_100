@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) NSString *shopID; ///
 
+@property (nonatomic, strong) NSString *isWithdrawal; ///
 
 @end

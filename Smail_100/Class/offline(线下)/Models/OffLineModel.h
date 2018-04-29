@@ -30,7 +30,10 @@
 
 @property (nonatomic , copy) NSString              * district;
 @property (nonatomic , copy) NSString              * city;
+@property (nonatomic , copy) NSString              * distance_source;
 @property (nonatomic , copy) NSString              * distance;
+
+
 @property (nonatomic , copy) NSString              * address;
 @property (nonatomic , copy) NSString              * shop_image;
 @property (nonatomic , copy) NSString              * comment_count;

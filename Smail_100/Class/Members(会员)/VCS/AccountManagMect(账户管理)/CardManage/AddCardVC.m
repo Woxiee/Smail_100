@@ -64,7 +64,6 @@
     [param setObject:_model.bank_address forKey:@"bank_address"];
 
     
-    [param setObject:@"N" forKey:@"is_default"];
     WEAKSELF;
     //    [param setObject:@"" forKey:@"bind_id"];
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
@@ -175,6 +174,7 @@
         NSLog(@"%@--%@--%@--%@",address,province,city,area);
         //        weakSelf.model.province = province;
         //        weakSelf.model.city = city;
+        address = [address stringByReplacingOccurrencesOfString:@"-" withString:@""];
         weakSelf.model.bank_region = address;
         weakSelf.addressTF.text = address;
         //        [adressBtn setTitle:address forState:UIControlStateNormal];
@@ -210,36 +210,7 @@
 - (IBAction)didClickSureAction:(id)sender {
     
     [self.view endEditing:YES];
-    if (![[KX_UserInfo sharedKX_UserInfo].idcard_auth isEqualToString:@"Y"] ) {
-        [self.view makeToast:@"请先实名认证后在添加银行卡"];
-        return ;
-    }
-//    if (KX_NULLString( _nameTF.text)) {
-//        [self.view makeToast:_nameTF.placeholder];
-//        return;
-//    }
-    if (KX_NULLString( _codeTF.text)) {
-        [self.view makeToast:_codeTF.placeholder];
-        return;
-    }
-    if (![Common validateBankAccount:_codeTF.text]) {
-        [self.view makeToast:@"请输入有效的银行卡号"];
-        return;
-    }
-
-    if (KX_NULLString(_bankTypeTF.text)) {
-        [self.view makeToast:_bankTypeTF.placeholder];
-        return;
-    }
-    if (KX_NULLString( _addressTF.text)) {
-        [self.view makeToast:_addressTF.placeholder];
-        return;
-    }
-    if (KX_NULLString( _bankNameTF.text)) {
-        [self.view makeToast:_bankNameTF.placeholder];
-        return;
-    }
-
+    ;
     [self requestListNetWork];
 }
 

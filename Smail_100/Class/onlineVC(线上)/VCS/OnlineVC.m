@@ -436,10 +436,11 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     
     else if ([model.itemType isEqualToString:@"cateList"]){
         if (model.itemContentList.count <5) {
-            return CGSizeMake((SCREEN_WIDTH)/model.itemContentList.count ,(SCREEN_WIDTH)/5 +10 );
+            return CGSizeMake((SCREEN_WIDTH)/model.itemContentList.count ,(SCREEN_WIDTH)/5 );
         }
-        return CGSizeMake((SCREEN_WIDTH)/5 ,(SCREEN_WIDTH)/5 + 10);
+        return CGSizeMake((SCREEN_WIDTH)/5 ,(SCREEN_WIDTH)/5 );
     }
+
 //    ItemContentList *items =  model.itemContentList[indexPath.row];
  
     ItemContentList *item =  model.itemContentList[indexPath.row];

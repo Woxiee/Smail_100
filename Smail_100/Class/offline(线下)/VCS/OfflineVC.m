@@ -80,9 +80,10 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 
 - (void)requestListNetWork
 {
-    _xy = [NSString stringWithFormat:@"%@,%@",[KX_UserInfo sharedKX_UserInfo].latitude ,[KX_UserInfo sharedKX_UserInfo].longitude];
-
+//    22.635159 114.080700
+    _xy = [NSString stringWithFormat:@"%@,%@", [KX_UserInfo sharedKX_UserInfo].latitude ,[KX_UserInfo sharedKX_UserInfo].longitude];
     WEAKSELF;
+    
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_page] forKey:@"pageno"];
     [param setObject:@"20" forKey:@"page_size"];

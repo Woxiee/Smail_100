@@ -46,6 +46,8 @@
 @property(nonatomic,copy) void(^didClickComTFpltBlock)(NSInteger index, NSInteger goodCout);
 -(instancetype)initWithFrame:(CGRect)frame;
 
+@property (nonatomic, strong) ItemInfoList *itemIfoModel;
+
 
 - (void)show;
 

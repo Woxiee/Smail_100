@@ -51,7 +51,13 @@
         stateLb.text = @"已驳回";
     }
     else{
-        stateLb.text = @"进行中";
+        if (KX_NULLString(_model.isWithdrawal)) {
+            stateLb.text =  @"兑换中";
+
+        }else{
+            stateLb.text =  @"提现中";
+
+        }
     }
     
     if (_model.is_plus.integerValue == 1 ) {

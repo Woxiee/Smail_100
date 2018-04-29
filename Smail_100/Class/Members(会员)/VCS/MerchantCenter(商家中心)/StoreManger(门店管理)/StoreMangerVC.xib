@@ -166,7 +166,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" image="gerenzhongxin20@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="aRk-bN-YUN">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aRk-bN-YUN">
                                             <rect key="frame" x="355" y="18" width="8" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="8" id="1Yg-Hl-pqZ"/>
@@ -485,7 +485,6 @@
         </view>
     </objects>
     <resources>
-        <image name="gerenzhongxin20@3x.png" width="16" height="16"/>
         <image name="shangjiazhongxin3@3x.png" width="16" height="16"/>
         <image name="shangjiazhongxin4@3x.png" width="16" height="16"/>
     </resources>

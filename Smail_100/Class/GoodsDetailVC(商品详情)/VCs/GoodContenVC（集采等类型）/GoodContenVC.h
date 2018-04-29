@@ -16,5 +16,7 @@
 
 @property(nonatomic,strong)DLNavigationTabBar *navigationTabBar;
 
+@property(nonatomic,strong) UIButton *backButton;
+
 
 @end

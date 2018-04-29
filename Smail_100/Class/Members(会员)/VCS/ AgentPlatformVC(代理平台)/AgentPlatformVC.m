@@ -35,12 +35,12 @@
 - (void)setup
 {
     self.title  = @"代理平台";
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 145)];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 160)];
     headView.backgroundColor = KMAINCOLOR;
     [self.view addSubview:headView];
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"daliptai@2x.png"]];
-    imageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 145);
+    imageView.frame = headView.bounds;
     [headView addSubview:imageView];
     
     UIView *head1View = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(headView.frame), SCREEN_WIDTH, 60)];

@@ -38,7 +38,6 @@
 @property (nonatomic, strong) MemberCenterHeaderView * headerView;
 @property (nonatomic, assign) NSInteger sectionCount;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, copy) NSMutableArray  *resorceArray;
 
 @end
 
@@ -94,6 +93,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [param setObject:@"get" forKey:@"method"];
 //http://39.108.4.18:6803/api/ucenter/user  user_id=84561&method=get
+
     [BaseHttpRequest postWithUrl:@"/ucenter/user" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
             KX_UserInfo *userinfo = [KX_UserInfo sharedKX_UserInfo];
@@ -138,10 +138,12 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
             userinfo.idcard_auth = dataDic[@"idcard_auth"];
 
             [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self stopRefresh];
+//            });
             [_headerView refreshInfo];
 
         }
-        [self stopRefresh];
 
     }];
 }
@@ -161,7 +163,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
 /// 初始化视图
 - (void)setup
 {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT -50) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT -50 - 64) style:UITableViewStylePlain];
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.rowHeight = 44;
@@ -438,16 +440,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     
 }
 
-/**
- * 懒加载数据源
- */
-- (NSMutableArray *)resorceArray
-{
-    if (_resorceArray == nil) {
-        _resorceArray = [[NSMutableArray alloc] init];
-    }
-    return _resorceArray;
-}
+
 
 #pragma mark - refresh 添加刷新方法
 -(void)setRefresh

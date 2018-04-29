@@ -17,4 +17,5 @@
 @property (nonatomic, strong) NSString  *detailDesc; ///图片详情
 @property (nonatomic, strong) GoodsScreenListModel *model;
 
+
 @end

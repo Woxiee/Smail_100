@@ -61,7 +61,7 @@
         _bgView = ({
         
             UIView *view =[[UIView alloc]initWithFrame: CGRectMake(0, 0, 0.8125*Screen_width, 0.8125*Screen_width)];
-            view.frame = CGRectMake(0, 0, 0.8125*Screen_width, 0.8125*Screen_width);
+            view.frame = CGRectMake(0, 0, Screen_width - 50,  Screen_width - 70);
             view.center = CGPointMake(Screen_width/2, Screen_height/2);
             if (isIphone4) {
                 
@@ -81,7 +81,7 @@
         _closeBtn = ({
         
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];;
-            btn.frame = CGRectMake((SCREEN_WIDTH - 33)/2, CGRectGetMaxY(_bgView.frame)+10 , 33, 33);
+            btn.frame = CGRectMake((SCREEN_WIDTH - 33)/2, CGRectGetMaxY(_bgView.frame) , 33, 33);
          
             [btn setBackgroundImage:[UIImage imageNamed:@"home_miss.png"] forState:normal];
             [btn addTarget:self action:@selector(closeBtnClickEventHandle) forControlEvents:UIControlEventTouchUpInside];
@@ -100,15 +100,9 @@
         [_bgView addSubview:_titleBgView];
         
   
-     
+        _adImageView = [[UIImageView alloc]initWithFrame: CGRectMake(0, 0,  Screen_width - 50,  Screen_width - 70)];
         
-        _adImageView = ({
-        
-            UIImageView *view = [[UIImageView alloc]initWithFrame:_bgView.bounds];
-            
-            view;
-            
-        });
+      
         [_bgView addSubview:_adImageView];
     
     }

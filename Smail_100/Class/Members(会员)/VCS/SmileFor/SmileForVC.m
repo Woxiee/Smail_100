@@ -56,17 +56,38 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
         if ([result[@"code"] integerValue] == 000) {
             [weakSelf.resorceArray removeAllObjects];
             NSArray *arr = [NSArray yy_modelArrayWithClass:[CardModel class] json:result[@"data"]];
-            for ( CardModel * model in arr) {
-                if ([model.is_default isEqualToString:@"Y"]) {
-                    model.isShow = YES;
-                    weakSelf.bind_id = model.bind_id;
-                    [weakSelf.resorceArray insertObject:model atIndex:0 ];
-                    break;
-                }else{
-                    [weakSelf.resorceArray  addObject:@"添加银行卡"];
+            if (arr.count >0) {
+                for ( CardModel * model in arr) {
+                    if ([model.is_default isEqualToString:@"Y"]) {
+                        model.isShow = YES;
+                        weakSelf.bind_id = model.bind_id;
+                        [weakSelf.resorceArray insertObject:model atIndex:0 ];
+                        break;
+                    }
                 }
+            }else{
+                [weakSelf.resorceArray insertObject:@"添加银行卡" atIndex:0];
+
             }
             [weakSelf requestListNetWork];
+
+                
+//            for ( CardModel * model in arr) {
+//                if ([model.is_default isEqualToString:@"Y"]) {
+//                    model.isShow = YES;
+//                    weakSelf.bind_id = model.bind_id;
+//                    [weakSelf.resorceArray insertObject:model atIndex:0 ];
+//                    [weakSelf requestListNetWork];
+//
+//                    break;
+//                }else{
+//                    [weakSelf.resorceArray insertObject:@"添加银行卡" atIndex:0];
+//                    [weakSelf requestListNetWork];
+//
+//                    break;
+//
+//                }
+//            }
         }
         else{
             [weakSelf.view makeToast:msg];
@@ -194,6 +215,7 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
     SmileMainListVC *vc = [[SmileMainListVC alloc] init];
     if (!KX_NULLString(_showType)) {
         vc.shopID = _shopID;
+        vc.isWithdrawal = @"1";
     }
     [self.navigationController pushViewController:vc animated:YES];
    
@@ -316,10 +338,13 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.resorceArray[indexPath.section] isKindOfClass:[NSString class]]) {
+    
+    if (indexPath.section == 0) {
         WEAKSELF;
         CardManageVC *vc = [[CardManageVC alloc] init];
         vc.didClickCellBlock = ^(CardModel *model) {
+            model.isShow = YES;
+            weakSelf.bind_id = model.bind_id;
             [weakSelf.resorceArray replaceObjectAtIndex:0 withObject:model];
             [weakSelf.tableView reloadData];
         };
@@ -339,6 +364,23 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
 - (void)inputCorrectCoverView:(JHCoverView *)control
 {
     [self extracted];
+}
+
+/**
+ 密码错误
+ */
+- (void)coverView:(JHCoverView *)control
+{
+    [self showHint:@"支付密码输入错误" yOffset:-200];
+}
+
+/**
+ 忘记密码
+ */
+- (void)forgetPassWordCoverView:(JHCoverView *)control
+{
+    FindPaypwdVC *vc = [[FindPaypwdVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

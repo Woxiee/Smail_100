@@ -59,6 +59,10 @@
     if (!KX_NULLString(_shopID)) {
         titleList = @[@"今日营业额",@"本月营业额",@"总营业额"];
     }
+    if (!KX_NULLString(_isWithdrawal)) {
+        titleList = @[@"今日提现",@"本月提现",@"总提现"];
+
+    }
     for (int i = 0; i<dataLlit.count; i++) {
         UILabel *numberLB = _imgList[i];
         numberLB.text = dataLlit[i];

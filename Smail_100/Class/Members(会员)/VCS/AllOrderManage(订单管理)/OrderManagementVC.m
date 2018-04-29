@@ -98,13 +98,15 @@
 
 
 /// 展示 付款方式
-- (void)showPayView:(Pay_method *)pay_method
+- (void)showPayView:(Pay_method *)pay_method OrderModel:(OrderModel *)model
 {
     WEAKSELF;
     NSMutableArray *titleArr = [[NSMutableArray alloc] init];
     NSMutableArray *imageArr = [[NSMutableArray alloc] init];
-    PayOrderView *view;
-    if ([pay_method.wxpay isEqualToString:@"Y"]) {
+    NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+
+    
+    if ([ pay_method.wxpay isEqualToString:@"Y"]) {
         [titleArr addObject:@"微信支付"];
         [imageArr addObject:@"wxzf@3x.png"];
     }
@@ -130,40 +132,76 @@
     }
     
     if ([pay_method.point isEqualToString:@"Y"]) {
-        [titleArr addObject:@"兑换积分"];
+        [titleArr addObject:@"兑换积分支付"];
         [imageArr addObject:@"jfzf@3x.png"];
+        //
     }
+    
+    PayOrderView *view;
     
     view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeNoaml];
-    if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"兑换积分"]) {
-        view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeOther];
+    if (titleArr.count== 1) {
+        NSString *str =titleArr.firstObject;
+        
+        if ([str isEqualToString:@"话费支付"]) {
+            
+        }else{
+            if ( _orderModel.allPrices <= 0  ) {
+                if (_orderModel.express_type.integerValue == 2) {
+                    [titleArr removeAllObjects];
+                    [imageArr removeAllObjects];
+                    
+                    [titleArr addObject:@"兑换积分支付"];
+                    [imageArr addObject:@"jfzf@3x.png"];
+                    
+                }
+                view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeOther];
+            }
+            
+        }
+    }else{
+        if ( _orderModel.allPrices <= 0  ) {
+            if (_orderModel.express_type.integerValue == 2) {
+                [titleArr removeAllObjects];
+                [imageArr removeAllObjects];
+                
+                [titleArr addObject:@"兑换积分支付"];
+                [imageArr addObject:@"jfzf@3x.png"];
+                
+            }
+            view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeOther];
+        }
+        
     }
     
-    view.didChangeJFValueBlock = ^(GoodsOrderModel *orderModel) {
-        
-        if ([orderModel.payIndexStr isEqualToString:@"微信支付"] || [orderModel.payIndexStr isEqualToString:@"支付宝支付"]) {
-            [weakSelf getPayKeyInfoRequest:orderModel.orderno];
-        }
-        else{
-            [weakSelf getPayPwdYZRequest];
-        }
-//        [weakSelf submitOrderInfoRequest];
-    };
-    
-    
-    NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+
+    _orderModel.allFreight = model.freight.floatValue;
     for (int i = 0; i<titleArr.count; i++) {
         PayDetailModel *model = [PayDetailModel new];
         model.mark = @"";
         model.icon = imageArr[i];
         model.isSelect = NO;
-        if (titleArr.count == 1 && [titleArr.firstObject isEqualToString:@"兑换积分"]) {
-            model.isSelect = YES;
-        }
         model.title = titleArr[i];
-        
+        if ( [model.title isEqualToString:@"兑换积分支付"]) {
+            model.isSelect = YES;
+            _orderModel.payIndexStr = @"兑换积分支付";
+        }
         [dataArray addObject:model];
     }
+    
+    view.didChangeJFValueBlock = ^(GoodsOrderModel *orderModel) {
+        
+        
+        weakSelf.orderModel.orderno = orderModel.orderno;
+        
+        [PayTool sharedPayTool].isType = @"2";
+        [[PayTool sharedPayTool] getPayInfoOrderModle:weakSelf.orderModel payVC:weakSelf reluteBlock:^(NSString *msg, BOOL success) {
+            [self requestListNetWork];
+        }];
+        
+
+    };
+    
     view.dataArr = dataArray;
     view.orderModel = _orderModel;
     [view show];
@@ -173,6 +211,18 @@
 
 - (void)getPayPwdYZRequest
 {
+    
+//    view.didChangeJFValueBlock = ^(GoodsOrderModel *orderModel) {
+//        
+//        if ([orderModel.payIndexStr isEqualToString:@"微信支付"] || [orderModel.payIndexStr isEqualToString:@"支付宝支付"]) {
+//            [weakSelf getPayKeyInfoRequest:orderModel.orderno];
+//        }
+//        else{
+//            [weakSelf getPayPwdYZRequest];
+//        }
+//        //        [weakSelf submitOrderInfoRequest];
+//    };
+
     WEAKSELF;
     if (KX_NULLString([KX_UserInfo sharedKX_UserInfo].pay_password)) {
         [self systemAlertWithTitle:nil andMsg:@"您还未设置支付密码" cancel:@"取消" sure:@"去设置" withOkBlock:^(BOOL isOk) {
@@ -253,14 +303,14 @@
 }
 
 
-- (void)OperationPaymethoedRequestUrl:(NSString *)url Param:(id)param
+- (void)OperationPaymethoedRequestUrl:(NSString *)url Param:(id)param OrderModel:(OrderModel *)model
 {
     WEAKSELF;
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     [OrderVModel getOrderPayTypeUrl:url Param:param successBlock:^(Pay_method *pay_method, BOOL isSuccess) {
         if (isSuccess) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [weakSelf showPayView:pay_method];
+            [weakSelf showPayView:pay_method  OrderModel:model];
             
         }else{
             [weakSelf.view makeToast:@"获取支付方式失败，请联系客服"];
@@ -666,7 +716,7 @@
         weakSelf.orderModel.orderno = model.orderno;
         [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id  forKey:@"user_id"];
         [param setObject:model.orderno forKey:@"orderno"];
-        [weakSelf OperationPaymethoedRequestUrl:@"/order/getOrderPayMethod" Param:param];
+        [weakSelf OperationPaymethoedRequestUrl:@"/order/getOrderPayMethod" Param:param OrderModel:model];
         
     }
     else if ([title isEqualToString:@"提醒发货"] )
@@ -833,6 +883,23 @@
     }];
     
     
+}
+
+/**
+ 密码错误
+ */
+- (void)coverView:(JHCoverView *)control
+{
+    [self showHint:@"支付密码输入错误" yOffset:-200];
+}
+
+/**
+ 忘记密码
+ */
+- (void)forgetPassWordCoverView:(JHCoverView *)control
+{
+    FindPaypwdVC *vc = [[FindPaypwdVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /// 支付成功

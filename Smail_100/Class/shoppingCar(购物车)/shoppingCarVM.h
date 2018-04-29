@@ -87,6 +87,9 @@
 -(void)delectAllShopCarGoodsHandleback:(void(^) (NSInteger code))shopaCarGoodsBlock;
 
 
+///计算购物车所有个数
+-(NSString *)calcilationShopCarAllNomalCount:(NSArray <OrderGoodsModel*>*)goodsModels;
+
 
 /**
  删除购物车某个购物项 4.2

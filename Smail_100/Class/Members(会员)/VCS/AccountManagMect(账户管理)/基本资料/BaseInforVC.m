@@ -206,14 +206,13 @@ static NSInteger infoCellTag = 100;
 {
     WEAKSELF;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setObject:[KX_UserInfo sharedKX_UserInfo].nickname forKey:@"nickname"];
-    [param setObject:[KX_UserInfo sharedKX_UserInfo].sex forKey:@"sex"];
-    [param setObject:[KX_UserInfo sharedKX_UserInfo].wxname forKey:@"wxname"];
+    [param setObject:userNameLb.text forKey:@"nickname"];
+    [param setObject:sexLb.text forKey:@"sex"];
+    [param setObject:wxLb.text forKey:@"wxname"];
     [param setObject:@"edit" forKey:@"method"];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
-    [BaseHttpRequest postWithUrl:@"/ucenter/wealth_history" andParameters:param andRequesultBlock:^(id result, NSError *error) {
-        LOG(@"订单列表 == %@",result);
+    [BaseHttpRequest postWithUrl:@"/ucenter/user" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSString *msg = [result valueForKey:@"msg"];

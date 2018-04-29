@@ -50,8 +50,19 @@
     titleLB.text = _model.shop_name;
     commone.text = [NSString stringWithFormat:@"%@评价",_model.comment_count];
     storeLb.text = [NSString stringWithFormat:@"%@%@%@%@",_model.province,_model.city,_model.district,_model.address];
-    float distance = _model.distance.floatValue/1000;
-    distanceLB.text =  [NSString stringWithFormat:@"%.2fkm",distance];
+//    if (_model.distance_source.floatValue >1000) {
+        float distance = _model.distance.floatValue/10000;
+    if (_model.distance.floatValue >1000) {
+        distanceLB.text =  [NSString stringWithFormat:@"%.2fkm",distance];
+
+    }else{
+          distanceLB.text =  [NSString stringWithFormat:@"%@m",_model.distance];
+    }
+//
+//    }else{
+//        distanceLB.text =  [NSString stringWithFormat:@"%@m",_model.distance_source];
+//
+//    }
 
     telLb.text = _model.contact_phone;
     

@@ -22,6 +22,7 @@
 @property(nonatomic,strong)DLNavigationTabBar *navigationTabBar;
 @property(nonatomic,strong)NSMutableArray<UIViewController *> *subViewControllers;
 
+@property(nonatomic,strong) UIButton *backButton;
 
 
 @end
@@ -79,6 +80,21 @@
                   completion:nil];
     
     VC1.navigationTabBar =   self.navigationTabBar;
+    
+    /// 自定义返回按钮
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+    [backButton setImage:[UIImage imageNamed:@"shouye6@3x.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"shouye6@3x.png"] forState:UIControlStateHighlighted];
+    backButton.titleLabel.font=[UIFont systemFontOfSize:18];
+    [backButton.titleLabel setTextAlignment:NSTextAlignmentLeft];
+    
+    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    [self.navigationItem setLeftBarButtonItem:backItem];
+    [backButton sizeToFit];
+    _backButton = backButton;
+    
+    VC1.backButton = _backButton;
 
 }
 
@@ -95,18 +111,9 @@
 
 - (void)setNavigetionBarItms
 {
-    /// 自定义返回按钮
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
-    [backButton setImage:[UIImage imageNamed:@"shouye6@3x.png"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"shouye6@3x.png"] forState:UIControlStateHighlighted];
-    backButton.titleLabel.font=[UIFont systemFontOfSize:18];
-    [backButton.titleLabel setTextAlignment:NSTextAlignmentLeft];
-    
-    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backItem];
-    [backButton sizeToFit];
+
 //
+    
 //    UIButton *moreBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
 //    [moreBtn setImage:[UIImage imageNamed:@"shouye5@3x.png"] forState:UIControlStateNormal];
 //    [moreBtn setImage:[UIImage imageNamed:@"shouye5@3x.png"] forState:UIControlStateHighlighted];

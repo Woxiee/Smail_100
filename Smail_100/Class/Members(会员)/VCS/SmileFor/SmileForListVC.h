@@ -11,6 +11,7 @@
 @interface SmileForListVC : KX_BaseViewController
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic, strong) NSString *shopID; ///
+@property (nonatomic, strong) NSString *isWithdrawal; ///
 
 - (void)requestListNetWork;
 @end

@@ -182,6 +182,13 @@
 
 
 -(void)addGoodsCartBtnClick:(UIButton *)btn{
+    if (_itemIfoModel.spec.count >0) {
+        if (KX_NULLString(_itemIfoModel.itemContent.spec)) {
+            [self.window makeToast:@"请选择规格属性"];
+            return;
+        }
+      
+    }
     if (self.didClickComTFpltBlock) {
         self.didClickComTFpltBlock(btn.tag - 100, _goodSCount);
     }

@@ -138,6 +138,7 @@
     else if (!KX_NULLString(_trans_type)){
         [param setObject:_trans_type forKey:@"trans_type"];
         [param setObject:_directions?_directions:@"" forKey:@"direction"];
+        [param setObject:_type?_type:@"" forKey:@"type"];
 
 
     }

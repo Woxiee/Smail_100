@@ -130,9 +130,22 @@
 
 -(void)clickRightBtn{
 
-    AllOrderManageVC *VC = [[AllOrderManageVC alloc ] init];
+    if (self.successType == CommitSuccessAutiocnType) {
+        AllOrderManageVC *VC = [AllOrderManageVC new];
+        VC.hidesBottomBarWhenPushed = YES;
+        VC.orderTitleType = OffLineTitleType;
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+    else if(self.successType == CommitSuccessSupplyType){
+        
+    }
     
-    [self.navigationController pushViewController:VC animated:YES];
+    else{
+        AllOrderManageVC *VC = [[AllOrderManageVC alloc ] init];
+        
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+  
 
 }
 

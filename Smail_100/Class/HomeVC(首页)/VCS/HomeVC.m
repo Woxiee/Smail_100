@@ -514,9 +514,9 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     }
     else if ([model.itemType isEqualToString:@"cateList"]){
         if (model.itemContentList.count <5) {
-            return CGSizeMake((SCREEN_WIDTH)/model.itemContentList.count ,(SCREEN_WIDTH)/5 +10 );
+            return CGSizeMake((SCREEN_WIDTH)/model.itemContentList.count ,(SCREEN_WIDTH)/5 );
         }
-        return CGSizeMake((SCREEN_WIDTH)/5 ,(SCREEN_WIDTH)/5 + 10);
+        return CGSizeMake((SCREEN_WIDTH)/5 ,(SCREEN_WIDTH)/5 );
     }
     
     else if ([model.itemType isEqualToString:@"recommended_goods"]){
@@ -642,7 +642,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 
 
                 headerView.titleLB.text = @"-- 精品推荐 --";
-                headerView.detailLB.text = @"都是你的兴趣";
+                headerView.detailLB.text = @"每日为您推荐最新火爆单品";
                 return headerView;
             }
             

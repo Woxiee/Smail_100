@@ -45,7 +45,8 @@
 
 - (IBAction)didSureAction:(id)sender {
  
-    
+    [self.view endEditing:YES];
+
     if (!KX_NULLString([KX_UserInfo sharedKX_UserInfo].pay_password)) {
         if ([NSString cheakInputStrIsBlankSpace:_newsPwdTF.text]  || _newsPwdTF.text.length !=6 ) {
             [self.view makeToast:_newsPwdTF.placeholder];

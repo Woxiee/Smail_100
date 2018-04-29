@@ -149,10 +149,17 @@ static NSString* SmileForListCellID = @"SmileForListCell";
             if ([dataArr isKindOfClass:[NSArray class]]) {
                 if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
                     listArray = [AcctoutWaterModel mj_objectArrayWithKeyValuesArray:dataArr];
+                    for (AcctoutWaterModel * model in  listArray) {
+                        model.isWithdrawal = weakSelf.isWithdrawal;
+                    }
                     if (weakSelf.page == 1) {
                         [weakSelf.resorceArray removeAllObjects];
                     }
+                    
+                   
                     [weakSelf.resorceArray addObjectsFromArray:listArray];
+                    weakSelf.headView.shopID = weakSelf.shopID;
+                    weakSelf.headView.isWithdrawal = weakSelf.isWithdrawal;
                     weakSelf.headView.dataDic = result;
                     [weakSelf.tableView reloadData];
                     [weakSelf stopRefresh];

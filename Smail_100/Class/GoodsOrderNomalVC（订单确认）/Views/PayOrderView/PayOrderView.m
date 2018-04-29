@@ -197,14 +197,18 @@ static NSString * const OthercellID = @"OthercellID";
 {
     [self endEditing:YES];
  
-   
+    if ( _orderModel.allFreight> 0 &&  self.payType == PayTypeOther  &&  [_orderModel.payIndexStr isEqualToString:@"兑换积分支付"]) {
+            [self makeToast:@"请勾选快递费支付后提交支付哦"];
+            return;
+        
+    }
     if (KX_NULLString(_orderModel.payIndexStr)) {
         [self makeToast:@"还未选择支付方式哦"];
         return;
     }
     
     if ([_orderModel.jfValue floatValue] > _orderModel.allPoint) {
-        [self makeToast:@"兑换积分大于待支付积分"];
+        [self makeToast:@"兑换积分支付大于待支付积分"];
         return;
     }
     
@@ -246,12 +250,12 @@ static NSString * const OthercellID = @"OthercellID";
         cell.model = self.dataArr[indexPath.row];
         return cell;
     }else{
-        if ([model.title isEqualToString:@"兑换积分"]) {
+        if ([model.title isEqualToString:@"兑换积分支付"]) {
             PayOtherCell *cell = [tableView dequeueReusableCellWithIdentifier:OthercellID forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.numberTextFied.delegate = self;
             cell.model = self.dataArr[indexPath.row];
-            cell.numberTextFied.placeholder = [NSString stringWithFormat:@"当前可兑换积分%@",_orderModel.userinfo.point];
+            cell.numberTextFied.placeholder = [NSString stringWithFormat:@"当前可兑换积分支付%@",_orderModel.userinfo.point];
             return cell;
             
         }else{
@@ -277,26 +281,34 @@ static NSString * const OthercellID = @"OthercellID";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self endEditing:YES];
     PayDetailModel *model = self.dataArr[indexPath.row];
-    if ([model.title isEqualToString:@"兑换积分"]) {
+//    if ([model.title isEqualToString:@"兑换积分支付"]) {
+//        if ( self.payType == PayTypeOther) {
+//            for (PayDetailModel *payDetailModel in self.dataArr) {
+//                payDetailModel.isSelect = NO;
+//                if (<#condition#>) {
+//                    <#statements#>
+//                }
+//            }
+//            model.isSelect = YES;
+//            _orderModel.payIndexStr = model.title;
+//            [self.tableView reloadData];
+//        }
+//
+//    }else{
+    
+//    }
+    for (PayDetailModel *payDetailModel in self.dataArr) {
+        payDetailModel.isSelect = NO;
         if ( self.payType == PayTypeOther) {
-            for (PayDetailModel *payDetailModel in self.dataArr) {
-                payDetailModel.isSelect = NO;
+            if ([payDetailModel.title isEqualToString:@"兑换积分支付"]) {
+                payDetailModel.isSelect = YES;
             }
-            model.isSelect = YES;
-            _orderModel.payIndexStr = model.title;
-            [self.tableView reloadData];
         }
-        
-    }else{
-        for (PayDetailModel *payDetailModel in self.dataArr) {
-          payDetailModel.isSelect = NO;
-        }
-       
-        model.isSelect = YES;
-        _orderModel.payIndexStr = model.title;
-        [self.tableView reloadData];
     }
-
+   
+    model.isSelect = YES;
+    _orderModel.payIndexStr = model.title;
+    [self.tableView reloadData];
  
 }
 
@@ -309,7 +321,7 @@ static NSString * const OthercellID = @"OthercellID";
     
     if (_dataArr.count == 1 ) {
         PayDetailModel *model = _dataArr.lastObject;
-        if ([model.title isEqualToString:@"兑换积分"]) {
+        if ([model.title isEqualToString:@"兑换积分支付"]) {
             _orderModel.payIndexStr = model.title;
         }
     }

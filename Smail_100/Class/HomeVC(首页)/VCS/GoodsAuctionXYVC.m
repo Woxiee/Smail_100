@@ -96,6 +96,18 @@
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    
+    NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '60%'";
+
+    [_webView stringByEvaluatingJavaScriptFromString:str];
+
+//    或者加入以下代码
+//
+//    NSString *jsString = [[NSString alloc] initWithFormat:@"document.body.style.fontSize=%d;document.body.style.color=%@",13,TITLETEXTLOWCOLOR];
+//
+//    [webView stringByEvaluatingJavaScriptFromString:jsString];
+    
+
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 

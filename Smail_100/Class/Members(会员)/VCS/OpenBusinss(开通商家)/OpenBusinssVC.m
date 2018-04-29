@@ -134,21 +134,22 @@
                     NSDictionary *presentDic= dic[@"present_point"];
 //                    NSDictionary *presentDic = present_poinArr[0];
                     [_btn1 setTitle:dic[@"title"] forState:UIControlStateNormal];
-                    [_btn2 setTitle:presentDic[@"title"] forState:UIControlStateNormal];
+                    [_btn3 setTitle:presentDic[@"title"] forState:UIControlStateNormal];
 
                     weakSelf.agentmodel.title1 = dic[@"title"];
                     weakSelf.agentmodel.value1 = dic[@"value"];
                     
-                    weakSelf.agentmodel.title2 = presentDic[@"title"];
-                    weakSelf.agentmodel.value2 = presentDic[@"value"];
+                    weakSelf.agentmodel.title3 = presentDic[@"title"];
+                    weakSelf.agentmodel.value3 = presentDic[@"value"];
                 }else{
 //                    NSArray *present_poinArr = dic[@"present_point"];
 //                    NSDictionary *presentDic = present_poinArr[0];
                       NSDictionary *presentDic= dic[@"present_point"];
-                    [_btn3 setTitle:dic[@"title"] forState:UIControlStateNormal];
+                    [_btn2 setTitle:dic[@"title"] forState:UIControlStateNormal];
                     [_btn4 setTitle:presentDic[@"title"] forState:UIControlStateNormal];
-                    weakSelf.agentmodel.title3 = dic[@"title"];
-                    weakSelf.agentmodel.value3 = dic[@"value"];
+                    
+                    weakSelf.agentmodel.title2 = dic[@"title"];
+                    weakSelf.agentmodel.value2 = dic[@"value"];
                     
                     weakSelf.agentmodel.title4 = presentDic[@"title"];
                     weakSelf.agentmodel.value4 = presentDic[@"value"];
@@ -261,6 +262,8 @@
         }
         WEAKSELF;
         NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[KX_UserInfo sharedKX_UserInfo].user_id,@"user_id", nil];
+        [param setObject:_accoutTF.text forKey:@"join_mobile"];
+
         [param setObject:@"Shop" forKey:@"department"];
         [param setObject:filename forKey:@"filename"];
         [param setObject:@"file" forKey:@"file"];
@@ -270,24 +273,23 @@
                  [BaseHttpRequest requestUploadImage:image Url:@"/ucenter/upload_image" Params:param  andFileContents:nil andBlock:^(NSString *imageName) {
 //                     weakSelf.stortImageView.image = image;
                      if (sender.tag == 1000) {
-                         
-                         _doorImageView.image = image;
+                         [_doorImageView sd_setImageWithURL:[NSURL URLWithString:imageName]];
                      }
                      else if (sender.tag == 1001)
                      {
-                         zzImageView.image = image;
+                         [zzImageView sd_setImageWithURL:[NSURL URLWithString:imageName]];
                      }
                      else if (sender.tag == 1002)
                      {
-                         XyImageView.image = image;
+                         [XyImageView sd_setImageWithURL:[NSURL URLWithString:imageName]];
                      }
                      else if (sender.tag == 1003)
                      {
-                         idOnImageView.image = image;
+                         [idOnImageView  sd_setImageWithURL:[NSURL URLWithString:imageName]];
                      }
                      else if (sender.tag == 1004)
                      {
-                         idDownImageView.image = image;
+                         [idDownImageView sd_setImageWithURL:[NSURL URLWithString:imageName]];
 
                      }
                      
@@ -300,27 +302,27 @@
             [weakSelf selectImageByCameraWithBlock:^(UIImage *image)
             {
                 [BaseHttpRequest requestUploadImage:image Url:@"/ucenter/upload_image" Params:param  andFileContents:nil andBlock:^(NSString *imageName) {
-                  if (sender.tag == 1000) {
-                      
-                      _doorImageView.image = image;
-                  }
-                  else if (sender.tag == 1001)
-                  {
-                      zzImageView.image = image;
-                  }
-                  else if (sender.tag == 1002)
-                  {
-                      XyImageView.image = image;
-                  }
-                  else if (sender.tag == 1003)
-                  {
-                      idOnImageView.image = image;
-                  }
-                  else if (sender.tag == 1004)
-                  {
-                      idDownImageView.image = image;
-                      
-                  }
+                    if (sender.tag == 1000) {
+                        [_doorImageView sd_setImageWithURL:[NSURL URLWithString:imageName]];
+                    }
+                    else if (sender.tag == 1001)
+                    {
+                        [zzImageView sd_setImageWithURL:[NSURL URLWithString:imageName]];
+                    }
+                    else if (sender.tag == 1002)
+                    {
+                        [XyImageView sd_setImageWithURL:[NSURL URLWithString:imageName]];
+                    }
+                    else if (sender.tag == 1003)
+                    {
+                        [idOnImageView  sd_setImageWithURL:[NSURL URLWithString:imageName]];
+                    }
+                    else if (sender.tag == 1004)
+                    {
+                        [idDownImageView sd_setImageWithURL:[NSURL URLWithString:imageName]];
+                        
+                    }
+
                 }];
             }];
         }
@@ -388,10 +390,10 @@
         return;
     }
     
-    if (agrreBnt.selected == NO) {
-        [self.view makeToast:@"请同意<商家签约协议>"];
-        return;
-    }
+//    if (agrreBnt.selected == NO) {
+//        [self.view makeToast:@"请同意<商家签约协议>"];
+//        return;
+//    }
 //    if (KX_NULLString(_addreDetailTF.text )) {
 //        [self.view makeToast:@"店铺详细地址未填写"];
 //        return;
@@ -425,8 +427,11 @@
                 NSString *msg = [result valueForKey:@"msg"];
         
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
-            [weakSelf.navigationController popViewControllerAnimated:YES];
             [weakSelf.view makeToast:msg];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+
+            });
 
         }else{
             [weakSelf.view makeToast:msg];
@@ -441,6 +446,7 @@
 /// 选择地址
 - (void)didClickAddressAction
 {
+    [self.view endEditing:YES];
     WEAKSELF;
     [FYLCityPickView showPickViewWithComplete:^(NSArray *arr) {
         addressTF.text = [NSString stringWithFormat:@"%@-%@-%@",arr[0],arr[1],arr[2]];
@@ -454,6 +460,8 @@
 /// 选择行业
 - (void)didClickIndustryAction
 {
+    [self.view endEditing:YES];
+
     WEAKSELF;
 //    _industryTf.text = @"饮食";
     SelectBusinssVC *vc = [[SelectBusinssVC alloc] init];
@@ -467,7 +475,8 @@
 
 /// 选择时间
 - (IBAction)didClickTimeAction:(UIButton *)sender {
-    
+    [self.view endEditing:YES];
+
     KYDatePickView *datePickView = [[KYDatePickView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
 
     datePickView.datePickViewType  = KYDatePickViewTypeNomal;
