@@ -120,7 +120,7 @@
     [self setRightNaviBtnTitle:@"提交" withTitleColor:[UIColor whiteColor]];
 
     UIImageView *stateImageView = [[UIImageView alloc] init];
-    stateImageView.frame = CGRectMake((SCREEN_WIDTH - 110)/2, 120, 110, 110);
+    stateImageView.frame = CGRectMake((SCREEN_WIDTH - 110)/2, SCREEN_HEIGHT - 200, 110, 110);
     stateImageView.image = [UIImage imageNamed:@"zhanghuguanli7@3x.png"];
     stateImageView.alpha = 0.7;
     [self.view addSubview:stateImageView];

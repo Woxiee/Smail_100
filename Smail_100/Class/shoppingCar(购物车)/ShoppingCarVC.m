@@ -256,16 +256,29 @@
   
     totalMoneyLable.textColor = KMAINCOLOR;
     _jifeLB.textColor = KMAINCOLOR;
-    totalMoneyLable.text = [carVM calculationCarAllPrice:_dataSocure];
-    NSString *allPoint = [carVM calculationCarAllPoint:_dataSocure];
-    if ([allPoint intValue] > 0) {
-        NSString *str1 = [NSString stringWithFormat:@"%@",allPoint];
-        NSString *str =[NSString stringWithFormat:@"+%@积分",str1];
-        NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(1, str1.length) withColor:BACKGROUND_COLORHL withFont:Font15];
-        _jifeLB.attributedText = attributedStr;
-    }else{
-        _jifeLB.text = @"";
+    NSMutableArray *allPriceArr = [[NSMutableArray alloc] init];
+    
+    NSString *allPrice =  [carVM calculationCarAllPrice:_dataSocure];
+    if ([allPrice floatValue] > 0) {
+        [allPriceArr addObject:[NSString stringWithFormat:@"¥%@",allPrice]];
     }
+    
+    NSString *allPoint = [carVM calculationCarAllPoint:_dataSocure];
+
+    if ([allPoint floatValue] > 0) {
+        [allPriceArr addObject:[NSString stringWithFormat:@"%@积分",allPoint]];
+    }
+    
+    totalMoneyLable.text = [allPriceArr componentsJoinedByString:@"+"];
+    
+//    if ([allPoint floatValue] > 0) {
+//        NSString *str1 = [NSString stringWithFormat:@"%@",allPoint];
+//        NSString *str =[NSString stringWithFormat:@"+%@积分",str1];
+//        NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(1, str1.length) withColor:BACKGROUND_COLORHL withFont:Font15];
+//        _jifeLB.attributedText = attributedStr;
+//    }else{
+//        _jifeLB.text = @"";
+//    }
 
     
     NSString *allCount =  [carVM calcilationShopCarAllNomalCount:_dataSocure];

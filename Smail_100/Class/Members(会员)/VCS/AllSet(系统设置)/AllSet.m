@@ -39,9 +39,10 @@
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     CFShow((__bridge CFTypeRef)(infoDictionary));
     // 当前应用版本号码   int类型
-    NSString *appCurVersionNum = [infoDictionary objectForKey:@"CFBundleVersion"];
-    _versionLB.text = [NSString stringWithFormat:@"版本号%@",appCurVersionNum];
-    
+    NSString *appCurVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    NSLog(@"当前应用软件版本:%@",appCurVersion);
+    _versionLB.text = [NSString stringWithFormat:@"版本号:%@",appCurVersion];
+    _versionLB.textColor = DETAILTEXTCOLOR;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *cachesDir = [paths objectAtIndex:0];
     float size = [self folderSizeAtPath:cachesDir];

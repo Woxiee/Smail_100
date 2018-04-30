@@ -162,7 +162,7 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
     [view addSubview:lineView];
     
     LevePartNerHeadView *headerView = [[LevePartNerHeadView alloc] initWithFrame:CGRectMake(0, 5, SCREEN_WIDTH, 50)];
-    headerView.titleLB.text =  @"-- 免费成为代理合伙人 --";
+    headerView.titleLB.text =  @"-- 免费成为合伙人 --";
     headerView.detailLB.text = @"购买创业礼包即可免费升级";
     [view addSubview:headerView];
     
@@ -184,4 +184,13 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
 }
 
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   ItemContentList *itemContentList = self.resorceArray[indexPath.row];
+    GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    vc.productID = itemContentList.goods_id;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController: vc animated:YES];
+}
 @end

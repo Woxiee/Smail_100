@@ -45,7 +45,8 @@
 {
     _detailLB.text = @"我的二维码";
     _lineView.backgroundColor = LINECOLOR;
-    if ([[KX_UserInfo sharedKX_UserInfo].shop_level intValue] >0) {
+ 
+    if ([[KX_UserInfo sharedKX_UserInfo].maker_level intValue] >0) {
         [_userImageView sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
         
         _nameLB.text =  [NSString stringWithFormat:@"昵称:%@",[KX_UserInfo sharedKX_UserInfo].nickname];

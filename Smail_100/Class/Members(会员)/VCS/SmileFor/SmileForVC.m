@@ -151,7 +151,10 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
         NSString *msg = result[@"msg"];
         if ([result[@"code"] integerValue] == 000) {
             [weakSelf.view makeToast:msg];
-            [weakSelf.navigationController popViewControllerAnimated:YES];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+
+            });
         }
         else{
             [weakSelf.view makeToast:msg];

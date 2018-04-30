@@ -119,6 +119,8 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
             userinfo.mobile = dataDic[@"mobile"];
             userinfo.pid = dataDic[@"pid"];
             userinfo.pay_password = dataDic[@"pay_password"];
+//            userinfo.pay_password = @"";
+
             userinfo.password = dataDic[@"password"];
             userinfo.phone_money = dataDic[@"phone_money"];
             userinfo.username = dataDic[@"username"];
@@ -139,9 +141,12 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
 
             [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
 //            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self stopRefresh];
 //            });
             [_headerView refreshInfo];
+            [self.tableView reloadData];
+            
+            [self stopRefresh];
+
 
         }
 
@@ -256,6 +261,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
         MemberMoneyCell *cell = [tableView dequeueReusableCellWithIdentifier:memberMoneyCellID forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         //  cell.model = self.resorceArray[indexPath.section];
+        cell.str = @"1";
         return cell;
     }
     if ([titleStr isEqualToString:@"订单管理"]) {
@@ -391,7 +397,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
 
     if (index == 4) {
 //        [KX_UserInfo sharedKX_UserInfo].maker_level = @"0";
-        if ([KX_UserInfo sharedKX_UserInfo].maker_level.integerValue >0) {
+        if ([KX_UserInfo sharedKX_UserInfo].shop_level.integerValue >0) {
             MerchantCenterVC *VC = [[MerchantCenterVC alloc] init];
             VC.hidesBottomBarWhenPushed = YES;
             [self.navigationController  pushViewController:VC animated:YES];

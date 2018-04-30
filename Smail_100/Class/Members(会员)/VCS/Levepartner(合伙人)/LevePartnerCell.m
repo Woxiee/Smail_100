@@ -37,7 +37,7 @@
     pirceLB.textColor = KMAINCOLOR;
     jfLB.textColor = TITLETEXTLOWCOLOR;
     saleLB.textColor = DETAILTEXTCOLOR1;
-    [delegateBtn setTitle:@"立即成为代理合伙人 >" forState:UIControlStateNormal];
+    [delegateBtn setTitle:@"立即成为合伙人 >" forState:UIControlStateNormal];
     [delegateBtn layerForViewWith:8 AndLineWidth:0];
     [delegateBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     delegateBtn.backgroundColor = KMAINCOLOR;

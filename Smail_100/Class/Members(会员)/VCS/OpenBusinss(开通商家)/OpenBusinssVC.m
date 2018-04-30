@@ -390,10 +390,10 @@
         return;
     }
     
-//    if (agrreBnt.selected == NO) {
-//        [self.view makeToast:@"请同意<商家签约协议>"];
-//        return;
-//    }
+    if (agrreBnt.selected == NO) {
+        [self.view makeToast:@"请同意<商家签约协议>"];
+        return;
+    }
 //    if (KX_NULLString(_addreDetailTF.text )) {
 //        [self.view makeToast:@"店铺详细地址未填写"];
 //        return;
@@ -402,7 +402,6 @@
     WEAKSELF;
     NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[KX_UserInfo sharedKX_UserInfo].user_id,@"user_id", nil];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
-    [param setObject:_agentmodel.address forKey:@"address"];
     [param setObject:_accoutTF.text forKey:@"join_mobile"];
     [param setObject:@"Shop" forKey:@"department"];
     [param setObject:[NSString stringWithFormat:@"%@-%@",starBtn.titleLabel.text,endBtn.titleLabel.text] forKey:@"ontime_scope"];
@@ -415,7 +414,7 @@
     [param setObject:_agentmodel.province forKey:@"province"];
     [param setObject:_agentmodel.city forKey:@"city"];
     [param setObject:_agentmodel.district forKey:@"district"];
-    [param setObject:_agentmodel.address forKey:@"address"];
+    [param setObject:_addreDetailTF.text forKey:@"address"];
     [param setObject:_btn1.selected?_agentmodel.value1:_agentmodel.value2 forKey:@"interest_perc"];
     [param setObject:_btn3.selected?_agentmodel.value3:_agentmodel.value4 forKey:@"present_point_perc"];
     
@@ -453,6 +452,7 @@
         weakSelf.agentmodel.province = arr[0];
         weakSelf.agentmodel.city = arr[1];
         weakSelf.agentmodel.district = arr[2];
+        
 
     }];
 }

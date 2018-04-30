@@ -102,31 +102,31 @@
         _bankNameTF.text =  _model.bank_region;
         defultBtn.selected = [_model.is_default isEqualToString:@"Y"]?YES:NO;
 
-//        if (KX_NULLString( _nameTF.text)) {
-//            [self.view makeToast:_nameTF.placeholder];
-//            return;
-//        }
-//        if (KX_NULLString( _codeTF.text)) {
-//            [self.view makeToast:_codeTF.placeholder];
-//            return;
-//        }
-//        if (![Common validateBankAccount:_codeTF.text]) {
-//            [self.view makeToast:@"请输入有效的银行卡号"];
-//            return;
-//        }
-//        
-//        if (KX_NULLString(_bankTypeTF.text)) {
-//            [self.view makeToast:_bankTypeTF.placeholder];
-//            return;
-//        }
-//        if (KX_NULLString( _addressTF.text)) {
-//            [self.view makeToast:_addressTF.placeholder];
-//            return;
-//        }
-//        if (KX_NULLString( _bankNameTF.text)) {
-//            [self.view makeToast:_bankNameTF.placeholder];
-//            return;
-//        }
+        if (KX_NULLString( _nameTF.text)) {
+            [self.view makeToast:_nameTF.placeholder];
+            return;
+        }
+        if (KX_NULLString( _codeTF.text)) {
+            [self.view makeToast:_codeTF.placeholder];
+            return;
+        }
+        if (![Common validateBankAccount:_codeTF.text]) {
+            [self.view makeToast:@"请输入有效的银行卡号"];
+            return;
+        }
+        
+        if (KX_NULLString(_bankTypeTF.text)) {
+            [self.view makeToast:_bankTypeTF.placeholder];
+            return;
+        }
+        if (KX_NULLString( _addressTF.text)) {
+            [self.view makeToast:_addressTF.placeholder];
+            return;
+        }
+        if (KX_NULLString( _bankNameTF.text)) {
+            [self.view makeToast:_bankNameTF.placeholder];
+            return;
+        }
 
         
     }
@@ -175,7 +175,7 @@
         //        weakSelf.model.province = province;
         //        weakSelf.model.city = city;
         address = [address stringByReplacingOccurrencesOfString:@"-" withString:@""];
-        weakSelf.model.bank_region = address;
+        weakSelf.model.bank_address = address;
         weakSelf.addressTF.text = address;
         //        [adressBtn setTitle:address forState:UIControlStateNormal];
     }];
@@ -198,7 +198,7 @@
     }
     
     if (textField == _bankNameTF) {
-        _model.bank_address = _bankNameTF.text;
+        _model.bank_region = _bankNameTF.text;
     }
 }
 

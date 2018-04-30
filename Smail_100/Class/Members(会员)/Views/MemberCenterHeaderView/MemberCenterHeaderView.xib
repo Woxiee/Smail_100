@@ -59,7 +59,7 @@
                         <constraint firstAttribute="width" constant="65" id="sUY-b4-bdu"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="代理合伙人" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohq-5f-bmk">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohq-5f-bmk">
                     <rect key="frame" x="206" y="124" width="65" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -92,7 +92,7 @@
                 <constraint firstItem="ohq-5f-bmk" firstAttribute="top" secondItem="Yht-Xd-0hX" secondAttribute="top" id="I3P-qu-pY3"/>
                 <constraint firstAttribute="trailing" secondItem="Dvh-fh-JeH" secondAttribute="trailing" id="NvJ-R2-caY"/>
                 <constraint firstItem="Dvh-fh-JeH" firstAttribute="leading" secondItem="1py-vz-0Ai" secondAttribute="leading" id="OCt-Bp-8t1"/>
-                <constraint firstItem="1MA-Cj-O1h" firstAttribute="width" relation="greaterThanOrEqual" secondItem="ptz-eE-b6r" secondAttribute="width" id="Pvr-AB-dBR"/>
+                <constraint firstItem="1MA-Cj-O1h" firstAttribute="width" secondItem="ptz-eE-b6r" secondAttribute="width" id="Pvr-AB-dBR"/>
                 <constraint firstItem="9Bn-Va-c8H" firstAttribute="centerX" secondItem="1py-vz-0Ai" secondAttribute="centerX" id="QWX-a7-pWq"/>
                 <constraint firstItem="Yht-Xd-0hX" firstAttribute="top" secondItem="9Bn-Va-c8H" secondAttribute="top" constant="-1" id="T1p-vO-y3s"/>
                 <constraint firstItem="ohq-5f-bmk" firstAttribute="trailing" secondItem="Yht-Xd-0hX" secondAttribute="trailing" id="YIt-ak-Zyi"/>
@@ -114,7 +114,7 @@
                 <outlet property="nickNeme" destination="1MA-Cj-O1h" id="gmK-wv-Uod"/>
                 <outlet property="phoneLabel" destination="9Bn-Va-c8H" id="G35-20-80O"/>
             </connections>
-            <point key="canvasLocation" x="-433" y="-184"/>
+            <point key="canvasLocation" x="-387" y="-312"/>
         </view>
     </objects>
     <resources>

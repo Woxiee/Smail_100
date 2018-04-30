@@ -998,8 +998,8 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     
     for (Seller *seller in _orderModel.seller) {
         for (Products *item  in seller.products) {
-            allPrices += item.price.floatValue *item.goods_nums.floatValue;
-            allPoint += item.point.floatValue *item.goods_nums.floatValue;
+            allPrices += item.price.floatValue *item.goods_nums.intValue;
+            allPoint += item.point.floatValue *item.goods_nums.intValue;
             allFreight +=  item.freight.floatValue *item.goods_nums.floatValue;
             count += item.goods_nums.intValue;
         }
@@ -1008,19 +1008,19 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     NSString *allPriceStr = @"";
     NSMutableArray *priceArr = [NSMutableArray array];
     if (allPrices>0) {
-        NSString *str = [NSString stringWithFormat:@"¥%.1f",allPrices];
+        NSString *str = [NSString stringWithFormat:@"¥%.2f",allPrices];
         [priceArr addObject:str];
     }
     
     _orderModel.allPrices = allPrices;
     if (allPoint>0) {
-         NSString *str = [NSString stringWithFormat:@"%.0f积分",allPoint];
+         NSString *str = [NSString stringWithFormat:@"%.2f积分",allPoint];
         [priceArr addObject:str];
     }
     
     
     if (allFreight>0 && !KX_NULLString(_orderModel.express_type)) {
-        NSString *str = [NSString stringWithFormat:@"%.1f快递费",allFreight];
+        NSString *str = [NSString stringWithFormat:@"%.2f快递费",allFreight];
         
         [priceArr addObject:str];
 

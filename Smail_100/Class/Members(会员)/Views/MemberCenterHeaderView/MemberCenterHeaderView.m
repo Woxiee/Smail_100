@@ -32,9 +32,9 @@
     [self.headImage layerWithRadius:40 lineWidth:1 color:[UIColor whiteColor]];
 
     _memberCenterBg.backgroundColor = KMAINCOLOR;
-    [myCodeBtn setTitle:@"我的二维码" forState:UIControlStateNormal];
+//    [myCodeBtn setTitle:@"我的二维码" forState:UIControlStateNormal];
     
-    [myCodeBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:5];
+//    [myCodeBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:5];
 }
 
 - (void)refreshInfo
@@ -43,6 +43,7 @@
     if ([KX_UserInfo sharedKX_UserInfo].loginStatus) {
         nameTopConstain.constant  = -17;
  ///"1",  0普通,1总代,2代理商,3合伙人  普通用户点击代理平台不能进入
+        
         
         _nickNeme.text = [NSString stringWithFormat:@"%@",[KX_UserInfo sharedKX_UserInfo].nickname];
 
@@ -55,23 +56,31 @@
         
         myCodeBtn.hidden = NO;
         leveBtn.hidden = NO;
-        if (KX_NULLString([KX_UserInfo sharedKX_UserInfo].nickname)) {
-            _nickNeme.text = [KX_UserInfo sharedKX_UserInfo].mobile;
-            _phoneLabel.hidden = YES;
+  
 
-        }
+        _phoneLabel.text = [KX_UserInfo sharedKX_UserInfo].mobile;
+     
         
         if ([[KX_UserInfo sharedKX_UserInfo].agent_level intValue] >0 ) {
             leveBtn.hidden = YES;
-           
-            NSArray *leveList = @[@"",@"总代",@"代理商",@"合伙人"];
-           
+            NSArray *leveList = @[@"普通用户",@"总代",@"代理商",@"合伙人"];
+            
             _compangLB.text  = leveList[[[KX_UserInfo sharedKX_UserInfo].agent_level intValue]];
+          
         }else{
-            _compangLB.text = @"";
-            infoImageView.hidden =YES;
+            
+            if ([[KX_UserInfo sharedKX_UserInfo].maker_level intValue] >0 ) {
+                _compangLB.text  = @"创客";
+            }else{
+                _compangLB.text  = @"普通用户";
+
+            }
+            
+
+            leveBtn.hidden = NO;
 
         }
+        
         self.nickNeme.backgroundColor = [UIColor whiteColor];
         self.nickNeme.textColor = KMAINCOLOR;
         [self.nickNeme layerForViewWith:10 AndLineWidth:0];

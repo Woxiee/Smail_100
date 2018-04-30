@@ -123,7 +123,7 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ7-yh-0AY">
-                    <rect key="frame" x="121" y="400" width="107" height="22"/>
+                    <rect key="frame" x="110" y="400" width="107" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="mwH-If-B6y"/>
                     </constraints>
@@ -176,7 +176,7 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入6-16位的登录密码" textAlignment="natural" minimumFontSize="17" disabledBackground="denglu2@3x.png" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CcS-pR-KHm">
                             <rect key="frame" x="30" y="0.0" width="275" height="44"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="denglu3@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="JJJ-pu-UIs">
                             <rect key="frame" x="0.0" y="10.5" width="20" height="23"/>
@@ -301,13 +301,13 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Md-pM-oxz">
-                    <rect key="frame" x="10" y="400" width="116" height="22"/>
+                    <rect key="frame" x="10" y="400" width="105" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="83" id="2Eh-tC-oeX"/>
                         <constraint firstAttribute="height" constant="22" id="UbW-4F-zup"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" title="   商家已阅读并同意" image="zhuce2@3x.png">
+                    <state key="normal" title="   我已阅读并同意" image="zhuce2@3x.png">
                         <color key="titleColor" red="0.27325722224173349" green="0.27663076819533516" blue="0.27663076819533516" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <state key="selected" image="23@3x.png"/>

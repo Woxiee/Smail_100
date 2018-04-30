@@ -431,23 +431,31 @@ NSString *const NewFeatureVersionKey = @"NewFeatureVersionKey";
 
 // 是否应该显示版本新特性页面
 + (BOOL)canShowNewFeature{
-	
-	//系统直接读取的版本号
-	NSString *versionValueStringForSystemNow=[[NSBundle mainBundle].infoDictionary valueForKey:(NSString *)kCFBundleVersionKey];
-	
-	//读取本地版本号
-	NSString *versionLocal = [CoreArchive strForKey:NewFeatureVersionKey];
-	
-	if(versionLocal!=nil && [versionValueStringForSystemNow isEqualToString:versionLocal]){//说明有本地版本记录，且和当前系统版本一致
-		
-		return NO;
-		
-	}else{ // 无本地版本记录或本地版本记录与当前系统版本不一致
-		
-		//保存
-		[CoreArchive setStr:versionValueStringForSystemNow key:NewFeatureVersionKey];
-		
-		return YES;
-	}
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    NSString *isShow =  [defaults objectForKey:@"isShow"];
+    if (KX_NULLString(isShow)) {
+        return YES;
+
+    }
+    
+    return NO;
+//    //系统直接读取的版本号
+//    NSString *versionValueStringForSystemNow=[[NSBundle mainBundle].infoDictionary valueForKey:(NSString *)kCFBundleVersionKey];
+//
+//    //读取本地版本号
+//    NSString *versionLocal = [CoreArchive strForKey:NewFeatureVersionKey];
+//
+//    if(versionLocal!=nil && [versionValueStringForSystemNow isEqualToString:versionLocal]){//说明有本地版本记录，且和当前系统版本一致
+//
+//        return NO;
+//
+//    }else{ // 无本地版本记录或本地版本记录与当前系统版本不一致
+//
+//        //保存
+//        [CoreArchive setStr:versionValueStringForSystemNow key:NewFeatureVersionKey];
+//
+//        return YES;
+//    }
 }
 @end

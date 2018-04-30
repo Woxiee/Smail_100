@@ -18,9 +18,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"账户管理";
+    self.title = @"账户安全设置";
     self.tableView.tableFooterView = [UIView new];
-    NSArray *dataArray = @[@"设置登录密码",@"设置支付密码"];
+    NSArray *dataArray = @[@"修改登录密码",@"修改支付密码"];
     [self.resorceArray addObjectsFromArray:dataArray];
     
     [self.tableView reloadData];
@@ -63,7 +63,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSString *titleStr = self.resorceArray[indexPath.row];
-    if ([titleStr isEqualToString:@"设置登录密码"]) {
+    if ([titleStr isEqualToString:@"修改登录密码"]) {
         SetLoginPwdVC *VC = [[SetLoginPwdVC alloc] init];
         VC.title = titleStr;
         [self.navigationController pushViewController:VC animated:YES];
@@ -71,7 +71,7 @@
     }
     //    NSArray *dataArray = @[@"基本资料",@"实名认证",@"银行卡管理",@"我的收获地址",@"账户安全设置"];
     //
-    else if ([titleStr isEqualToString:@"设置支付密码"]) {
+    else if ([titleStr isEqualToString:@"修改支付密码"]) {
         SetPayPwdVC *VC = [[SetPayPwdVC alloc] init];
         VC.title = titleStr;
 

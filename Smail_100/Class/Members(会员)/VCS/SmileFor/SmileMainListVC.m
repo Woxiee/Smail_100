@@ -23,7 +23,6 @@
 - (void)setup
 {
     
-    self.title = @"兑换记录";
     WJSegmentMenuVc *segmentMenuVc = [[WJSegmentMenuVc alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 45)];
     [self.view addSubview:segmentMenuVc];
     /* 自定义设置(可不设置为默认值) */
@@ -39,9 +38,12 @@
     NSArray *titleArr ;
     if (KX_NULLString(_shopID)) {
         titleArr = @[@"全部",@"兑换中",@"已成功",@"已驳回"];
+        self.title = @"兑换记录";
 
     }else{
         titleArr = @[@"全部",@"提现中",@"已成功",@"已驳回"];
+        self.title = @"提现记录";
+
 
     }
     

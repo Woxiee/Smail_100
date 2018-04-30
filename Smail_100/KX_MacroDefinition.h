@@ -42,6 +42,7 @@
 #define DEFAULTIMAGE @"10@3x.png"
 #define DEFAULTIMAGEW @"moren2@3x.png"
 #define DEFAULTIMAGEW2 @"moren@3x.png"
+#define DEFAULTIMAGEW3 @"moren3@2x.png"
 
 #define KYPageSize @"10"   //用于下啦刷新的控制下拉的属性
 #define kMid @"51" //固定

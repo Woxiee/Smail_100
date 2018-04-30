@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MemberMoneyCell : UITableViewCell
-
+@property (nonatomic, strong) NSString *str;
 @end

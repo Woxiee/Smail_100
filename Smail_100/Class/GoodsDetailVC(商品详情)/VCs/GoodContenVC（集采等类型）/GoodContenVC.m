@@ -642,7 +642,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 -(SDCycleScrollView *)headView
 {
     if (!_headView) {
-        _headView= [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW]];
+        _headView= [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW3]];
         _headView.delegate = self;
     }
     return _headView;

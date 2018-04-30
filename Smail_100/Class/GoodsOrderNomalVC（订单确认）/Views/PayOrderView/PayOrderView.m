@@ -342,7 +342,26 @@ static NSString * const OthercellID = @"OthercellID";
 {
     _orderModel = orderModel;
     _inputValuePoint = _orderModel.allPoint;
-     self.jfLb.attributedText = _orderModel.allPriceAttriStr;
+    NSMutableArray *priceArr = [NSMutableArray array];
+
+    if (_orderModel.allPriceAttriStr == nil) {
+        if (_orderModel.allPrices>0) {
+            NSString *str = [NSString stringWithFormat:@"¥%.2f",_orderModel.allPrices];
+            [priceArr addObject:str];
+        }
+        if (_orderModel.allPoint>0) {
+            NSString *str = [NSString stringWithFormat:@"%.2f积分",_orderModel.allPoint];
+            [priceArr addObject:str];
+        }
+        NSString *allStr = [priceArr componentsJoinedByString:@"+"];
+        NSAttributedString *attributedStr =  [self attributeStringWithContent:allStr keyWords:@[@"积分",@"+"]];
+        self.jfLb.attributedText  = attributedStr;
+
+
+    }else{
+        self.jfLb.attributedText = _orderModel.allPriceAttriStr;
+
+    }
 
     
 }
@@ -421,16 +440,16 @@ static NSString * const OthercellID = @"OthercellID";
         if (allPoint > _orderModel.allPoint ) {
             allPoint =  _orderModel.allPoint;
         }
-        NSString *str = [NSString stringWithFormat:@"%.0f积分",_inputValuePoint - allPoint];
+        NSString *str = [NSString stringWithFormat:@"%.2f积分",_inputValuePoint - allPoint];
         [priceArr addObject:str];
     }
     else {
-        NSString *str = [NSString stringWithFormat:@"%.0f积分",_orderModel.allPoint];
+        NSString *str = [NSString stringWithFormat:@"%.2f积分",_orderModel.allPoint];
         [priceArr addObject:str];
     }
     
     if (_orderModel.allFreight>0) {
-        NSString *str = [NSString stringWithFormat:@"%.1f快递费",_orderModel.allFreight];
+        NSString *str = [NSString stringWithFormat:@"%.2f快递费",_orderModel.allFreight];
         [priceArr addObject:str];
     }
     

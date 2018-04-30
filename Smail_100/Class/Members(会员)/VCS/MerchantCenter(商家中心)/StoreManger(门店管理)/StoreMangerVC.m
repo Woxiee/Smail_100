@@ -59,6 +59,7 @@
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
             weakSelf.agentmodel = [AgentPlatformModel yy_modelWithJSON:result[@"data"]];
             [weakSelf refreshViewModel: weakSelf.agentmodel];
+           
         }else{
             [weakSelf.view makeToast:msg];
 
@@ -173,13 +174,15 @@
     NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[KX_UserInfo sharedKX_UserInfo].user_id,@"user_id", nil];
     [param setObject:@"Shop" forKey:@"department"];
     [param setObject:@"shop_image" forKey:@"filename"];
-    [param setObject:@"file" forKey:@"file"];
+    [param setObject:@"shop_image" forKey:@"file"];
+    [param setObject: [KX_UserInfo sharedKX_UserInfo].mobile forKey:@"join_mobile"];
 
+    
 //    [param setObject:_model.goods_id?_model.goods_id:@"0" forKey:@"goods_id"];
     if (sender.tag == 100) {
         [self selectImageByPhotoWithBlock:^(UIImage *image)
          {
-             [BaseHttpRequest requestUploadImage:image Url:@"/shop/upload_image" Params:param  andFileContents:nil andBlock:^(NSString *imageName) {
+             [BaseHttpRequest requestUploadImage:image Url:@"/ucenter/upload_image" Params:param  andFileContents:nil andBlock:^(NSString *imageName) {
                  weakSelf.doorImageView.image = image;
              }];
              
@@ -214,12 +217,14 @@
     [_endBtn setTitleColor:RGB(207, 207, 211) forState:UIControlStateNormal];
     [_endBtn setTitle:@"结束时间" forState:UIControlStateNormal];
     
+    
+    
 }
 
 
 
 -(void)viewDidLayoutSubviews{
-    _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 950);
+    _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 1150);
 }
 
 
@@ -304,9 +309,11 @@
         NSString *msg = [result valueForKey:@"msg"];
         
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
-            [weakSelf.navigationController popViewControllerAnimated:YES];
             [weakSelf.view makeToast:msg];
             
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            });
         }else{
             [weakSelf.view makeToast:msg];
             

@@ -70,7 +70,7 @@
 - (void)didClickBottomAction
 {
     [self endEditing:YES];
-    if (_textField.text.integerValue <=0) {
+    if (_textField.text.floatValue <=0) {
         [self.window makeToast:@"请输入金额"];
         return;
     }

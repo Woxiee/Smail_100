@@ -328,6 +328,8 @@ singleton_implementation(KX_UserInfo)
     
     [defs synchronize];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"1" forKey:@"isShow"];
     [[KX_UserInfo sharedKX_UserInfo] loadUserInfoFromSanbox];
 
 }

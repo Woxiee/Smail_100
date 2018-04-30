@@ -31,6 +31,9 @@
     if(canShow){ // 初始化新特性界面
         self.window.rootViewController = [HYNewFeatureCtr newFeatureVCWithImageNames:@[@"load_1.jpg",@"load_2.jpg",@"load_3.jpg",@"load_4.jpg",]  dotImage:@"point_normal" currentDotImage:@"point_select" enterBlock:^{
             
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:@"1" forKey:@"isShow"];
+
             KX_BaseTabbarController *tabbarVC = [[KX_BaseTabbarController alloc] init];
             self.window.rootViewController = tabbarVC;
             self.tabbarVC = tabbarVC;

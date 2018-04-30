@@ -134,6 +134,8 @@
         NSString *msg = [result valueForKey:@"msg"];
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
             weakSelf.orderModel.orderno = result[@"data"];
+            _payOrderView.orderModel = weakSelf.orderModel;
+
               [weakSelf.payOrderView show];
           
         }else{
@@ -183,6 +185,8 @@
     WEAKSELF;
     MenulineView *headView = [[MenulineView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 45)];
     headView.didClickSureBlock = ^(NSString *str){
+        _orderModel.allPrices = str.floatValue;
+
         [weakSelf getOrderNoRequrst:str];
     };
     [self.view addSubview:headView];
@@ -226,6 +230,7 @@
  
     view.didChangeJFValueBlock = ^(GoodsOrderModel *orderModel) {
         [PayTool sharedPayTool].isType = @"1";
+        
         [[PayTool sharedPayTool] getPayInfoOrderModle:weakSelf.orderModel payVC:weakSelf reluteBlock:^(NSString *msg, BOOL success) {
             
         }];
@@ -247,6 +252,9 @@
         [dataArray addObject:model];
     }
     view.dataArr = dataArray;
+//    _orderModel.allPricesb=
+    
+    
     view.orderModel = _orderModel;
     self.payOrderView = view;
 }
@@ -504,7 +512,7 @@
  */
 - (void)allMoneyAfterSelect{
     CGFloat allPrice = 0;
-    int allPoint  = 0;
+    CGFloat allPoint  = 0;
     int allCount  = 0;
     
     NSString *allPriceStr = @"";
@@ -514,8 +522,8 @@
         
         for (OrderGoodsModel*item in items) {
             if (item.itemCount.intValue >0) {
-                allPrice += item.productPrice.intValue *item.itemCount.intValue;
-                allPoint += item.point.integerValue *item.itemCount.intValue;
+                allPrice += item.productPrice.floatValue *item.itemCount.floatValue;
+                allPoint += item.point.floatValue *item.itemCount.floatValue;
                 allCount += item.itemCount.integerValue;
             }
             
@@ -523,7 +531,8 @@
         
     }
     
-    _allPrice = [NSString stringWithFormat:@"%.0f",allPrice];
+    _allPrice = [NSString stringWithFormat:@"%.2f",allPrice];
+    _orderModel.allPrices = allPrice;
     [_allInfoArr removeAllObjects];
     if (allCount>0) {
         allCountStr = [NSString stringWithFormat:@"已选%d件",allCount];
@@ -532,11 +541,10 @@
     if (allPrice>0) {
         allPriceStr = [NSString stringWithFormat:@"共%.2f元",allPrice];
         [_allInfoArr addObject:allPriceStr];
-        
     }
     
     if (allPoint>0) {
-        allPointStr = [NSString stringWithFormat:@"送%d积分",allPoint];
+        allPointStr = [NSString stringWithFormat:@"送%.2f积分",allPoint];
         [_allInfoArr addObject:allPointStr];
     }
     if (_allInfoArr.count>0) {

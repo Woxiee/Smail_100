@@ -104,7 +104,6 @@ singleton_implementation(PayTool)
     }
     
   
-    
     [GoodsOrderVModel getPayInfoKryParam:param successBlock:^(PayModels *model, BOOL isSuccess,NSString *msg) {
         if (isSuccess ) {
             weakSelf.payModel = model;
@@ -129,11 +128,9 @@ singleton_implementation(PayTool)
                     }
 
                     [weakSelf.subVC.navigationController pushViewController:vc animated:YES];
-                    
                 }
                 
             }
-            
             
         }
         else{

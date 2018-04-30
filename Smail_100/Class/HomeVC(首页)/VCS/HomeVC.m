@@ -196,7 +196,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
                         [self.navigationController pushViewController: vc animated:YES];
                     }
                 };
-                    [adView showInView:self.view.window withFaceInfo:result[@"data"][@"imageUrl"] advertisementImage:[UIImage imageNamed:DEFAULTIMAGE] borderColor:nil];
+                    [adView showInView:self.view.window withFaceInfo:result[@"data"][@"imageUrl"] advertisementImage:[UIImage imageNamed:DEFAULTIMAGEW3] borderColor:nil];
             }else{
                 [weakSelf systemAlertWithTitle:@"通知" andMsg:result[@"data"][@"content"]];
             }
@@ -532,12 +532,12 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 //    }
    ItemContentList *item =  model.itemContentList[indexPath.row];
     if (item.tags.count >0) {
-        return CGSizeMake((SCREEN_WIDTH - 2)/2, 295);
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 295 *hScale);
     }
     if (item.tags.count >=6) {
-        return CGSizeMake((SCREEN_WIDTH - 2)/2, 310);
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 310*hScale);
     }
-    return CGSizeMake((SCREEN_WIDTH - 2)/2, 275);
+    return CGSizeMake((SCREEN_WIDTH - 2)/2, 275*hScale);
 
 }
 

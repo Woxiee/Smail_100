@@ -37,44 +37,44 @@
         if (model.products.count >0) {
             for (OrderGoodsModel*item in model.goodModel) {
                 if (item.selectStatue.integerValue == 1) {
-                    allPrice += item.productPrice.intValue *item.itemCount.intValue;
+                    allPrice += item.productPrice.floatValue *item.itemCount.intValue;
                 }
             }
             
         }else{
             if (model.selectStatue.integerValue == 1) {
-                allPrice += model.productPrice.intValue *model.itemCount.intValue;
+                allPrice += model.productPrice.floatValue *model.itemCount.intValue;
 
             }
         }
        
     }
     
-    return [NSString stringWithFormat:@"¥%.2f",allPrice];
+    return [NSString stringWithFormat:@"%.2f",allPrice];
     
 }
 
 -(NSString *)calculationCarAllPoint:(NSArray <OrderGoodsModel*>*)goodsModels{
     
-    int allPoint = 0;
+    CGFloat allPoint = 0;
 
     for (OrderGoodsModel*model in goodsModels  ) {
         if (model.products.count >0) {
             for (OrderGoodsModel*item in model.goodModel) {
                 if (item.selectStatue.integerValue == 1) {
-                    allPoint += item.point.integerValue *item.itemCount.intValue;
+                    allPoint += item.point.floatValue *item.itemCount.intValue;
                 }
             }
             
         }else{
             if (model.selectStatue.integerValue == 1) {
-                allPoint += model.point.integerValue *model.itemCount.intValue;
+                allPoint += model.point.floatValue *model.itemCount.intValue;
             }
         }
         
     }
     
-    return [NSString stringWithFormat:@"%d",allPoint];
+    return [NSString stringWithFormat:@"%.2f",allPoint];
 }
 
 
