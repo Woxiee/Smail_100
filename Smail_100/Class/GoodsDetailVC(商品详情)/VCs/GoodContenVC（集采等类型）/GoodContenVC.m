@@ -467,7 +467,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 
             
         }else{
-            [self showHint:@"商品以下架,不能购买"];
+            [self showHint:@"商品已下架,不能购买"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [weakSelf.navigationController popViewControllerAnimated:YES];
             });
@@ -1006,10 +1006,11 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     CGFloat height = [[webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].scrollHeight"] floatValue];
     if ([webView isFinishLoading] == YES) {
         _maxWebHight = height;
-        _isLoading = YES;
-        if (!_isLoading) {
+        if (_isLoading) {
             [_tableView reloadData];
         }
+        _isLoading = NO;
+
     }
 
 }

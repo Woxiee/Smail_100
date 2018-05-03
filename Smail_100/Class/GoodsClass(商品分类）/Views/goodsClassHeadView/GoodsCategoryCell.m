@@ -18,9 +18,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    listNameLb.text = @"测试";
-    self.backgroundColor = RGB(246, 247, 248);
-    
+    self.contentView.backgroundColor = BACKGROUND_COLOR;
+
 }
 
 
@@ -34,6 +33,8 @@
         [self.contentView showBadgeWithStyle:WBadgeStyleNumber value:0 animationType:WBadgeAnimTypeNone];
 
         listNameLb = listNameLbs;
+        self.contentView.backgroundColor = BACKGROUND_COLOR;
+
     }
     return self;
 }
@@ -43,12 +44,13 @@
 {
     _model = model;
  
+    self.contentView.backgroundColor = BACKGROUND_COLOR;
 
-
-    listNameLb.text = model.name;
+    listNameLb.text = [NSString stringWithFormat:@"%@     ",model.name];
     listNameLb.textColor = model.select?TITLETEXTLOWCOLOR:DETAILTEXTCOLOR;
-    lineView.backgroundColor = model.select?[UIColor clearColor]:LINECOLOR;
-    lineView.hidden = YES;
+    lineView.backgroundColor = [UIColor whiteColor];
+    lineView.alpha = 0.5;
+    //    lineView.hidden = YES;
     [self.contentView showBadgeWithStyle:WBadgeStyleNumber value:[_model.nums integerValue] animationType:WBadgeAnimTypeNone];
     self.contentView.badgeCenterOffset = CGPointMake(-25, 9);
 
@@ -59,7 +61,7 @@
     }else{
         listNameLb.textColor = TITLETEXTLOWCOLOR;
         [listNameLb layerForViewWith:0 AndLineWidth:0];
-        listNameLb.backgroundColor = [UIColor clearColor];
+        listNameLb.backgroundColor = BACKGROUND_COLOR;
     }
     
     

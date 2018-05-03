@@ -127,7 +127,6 @@
         lb.textColor = [UIColor whiteColor];
         lb.textAlignment = NSTextAlignmentCenter;
         lb.text = dic[@"title"];
-        [lb layerForViewWith:4 AndLineWidth:0];
         lb.backgroundColor = [UIColor colorWithHexString:dic[@"color"]];
         [tagsView addSubview:lb];
     }

@@ -79,13 +79,13 @@ static NSString * const imageCellIdentifier = @"HomeScrollCellID";
     [self setRightNaviBtnImage:[UIImage imageNamed:@"shouye18@3x.png"]];
 
     self.view.backgroundColor = BACKGROUNDNOMAL_COLOR;
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 115, SCREEN_HEIGHT) style:UITableViewStylePlain];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 116, SCREEN_HEIGHT) style:UITableViewStylePlain];
     tableView.dataSource = self;
     tableView.delegate = self;
     tableView.rowHeight = 44.f;
     tableView.scrollEnabled = NO;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    tableView.backgroundColor = BACKGROUND_COLOR;
+    tableView.backgroundColor = BACKGROUNDNOMAL_COLOR;
     [self.view addSubview:tableView];
     self.tableView = tableView;
 
@@ -242,12 +242,11 @@ static NSString * const imageCellIdentifier = @"HomeScrollCellID";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 60;
+    return 62;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     
     static NSString *cellID = @"GoodsCategoryCellID";
     GoodsCategoryCell * cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -360,9 +359,9 @@ static NSString * const imageCellIdentifier = @"HomeScrollCellID";
 //定义每个Item 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat itemW = (self.collectionView.width -10)/3;
+    CGFloat itemW = (self.collectionView.width -20)/3;
     if (indexPath.section == 0 ) {
-        return CGSizeMake(self.collectionView.width -10,itemW+30);
+        return CGSizeMake(self.collectionView.width -20,itemW+30);
     }
     
     return CGSizeMake(itemW,itemW+30);
@@ -372,10 +371,10 @@ static NSString * const imageCellIdentifier = @"HomeScrollCellID";
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     if (section ==1) {
-        return UIEdgeInsetsMake(5, 5, 5,0);
+        return UIEdgeInsetsMake(10, 10, 10,10);
 
     }
-    return UIEdgeInsetsMake(5, 5, 0,5);
+    return UIEdgeInsetsMake(0, 10, 10,10);
 }
 
 //item 列间距(纵)

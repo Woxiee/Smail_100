@@ -171,7 +171,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 - (void)setup
 {
     UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake(20, 10, SCREEN_WIDTH - 80 , 30)];
-    inPutTextField.placeholder = @"运动户外超级品牌类日 跨店铺";
+    inPutTextField.placeholder = @"找商品、找商家、找品牌";
     inPutTextField.textColor = [UIColor whiteColor];
     inPutTextField.font = Font13;
     inPutTextField.returnKeyType = UIReturnKeySearch;
@@ -195,8 +195,6 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     [coverToSeach addTarget:self  action:@selector(clickToSearch) forControlEvents:UIControlEventTouchUpInside];
     [inPutTextField addSubview:coverToSeach];
     self.navigationItem.titleView = inPutTextField;
-    
-    
     
     WEAKSELF;
     /// 顶部视图    [_titleArray addObject:@"全部分类"];
@@ -287,7 +285,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         [listArr addObject:dic[@"keyword"]];
     }
     WEAKSELF;
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:_hotArray searchBarPlaceholder:@"运动户外超级品牌类日 跨店铺" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:_hotArray searchBarPlaceholder:@"找商品、找商家、找品牌" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
         for (NSDictionary *dics in _hotArray) {
             if ([searchText isEqualToString:dics[@"keyword"]]) {
                 GoodsScreeningVC *VC = [[GoodsScreeningVC alloc] init];
@@ -431,14 +429,14 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         return CGSizeMake(SCREEN_WIDTH, 200 *hScale);
     }
     else if ([model.itemType isEqualToString:@"recommended_goods"]){
-        return CGSizeMake(SCREEN_WIDTH, 160);
+        return CGSizeMake(SCREEN_WIDTH, 145);
     }
     
     else if ([model.itemType isEqualToString:@"cateList"]){
         if (model.itemContentList.count <5) {
-            return CGSizeMake((SCREEN_WIDTH)/model.itemContentList.count ,(SCREEN_WIDTH)/5 );
+            return CGSizeMake((SCREEN_WIDTH)/model.itemContentList.count ,72 );
         }
-        return CGSizeMake((SCREEN_WIDTH)/5 ,(SCREEN_WIDTH)/5 );
+        return CGSizeMake((SCREEN_WIDTH)/5 ,72 );
     }
 
 //    ItemContentList *items =  model.itemContentList[indexPath.row];
@@ -464,7 +462,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     }
     if ([model.itemType isEqualToString:@"cateList"]){
         
-        return UIEdgeInsetsMake(0, 0, 0, 0);
+        return UIEdgeInsetsMake(0, 0, 5, 0);
     }
     
     //    if ([model.itemType isEqualToString:@"rushPurchaseHeader"]){
@@ -473,11 +471,13 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     //
     if ([model.itemType isEqualToString:@"recommended_goods"]){
         
-        return UIEdgeInsetsMake(-5, 0, -5, 0);
+        return UIEdgeInsetsMake(0, 0, 0, 0);
     }
-
+    //    if ([model.itemType isEqualToString:@"action"]){
+    //        return UIEdgeInsetsMake(0, 0, 0, 0);
+    //    }
     else if ([model.itemType isEqualToString:@"recommended_ware"]){
-        return UIEdgeInsetsMake(1, 0, 0, 0);//商品cell
+        return UIEdgeInsetsMake(5, 0, 0, 0);//商品cell
     }
     return UIEdgeInsetsMake(0, 0, 0, 0);//商品cell
 
@@ -562,7 +562,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         if ([model.itemType isEqualToString:@"themeBanner"]){
             RecommendedView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"RecommendedViewID"
                                                                                     forIndexPath:indexPath];
-            headerView.titleLB.text =  @"-- 商品推荐 --";
+            headerView.titleLB.text =  @"-- 精品推荐 --";
             headerView.detailLB.text = @"每日为您推荐最新火爆单品";
             return headerView;
         }

@@ -42,27 +42,27 @@
 //    titleLB.textAlignment = NSTextAlignmentLeft;
 //    [self addSubview:titleLB];
     
-    UITextField *textF = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(btn.frame)+4, 0,SCREEN_WIDTH - CGRectGetMaxX(btn.frame) - 82, 45)];
-    textF.placeholder = @"请输入金额";
-    textF.font = Font14;
+    UITextField *textF = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(btn.frame)+20, 0,SCREEN_WIDTH - CGRectGetMaxX(btn.frame) - 12, 40)];
+    textF.placeholder = @"请输入您要消费的金额";
+    textF.font = Font12;
     textF.keyboardType = UIKeyboardTypeNumberPad;
     textF.textAlignment = NSTextAlignmentLeft;
     [self addSubview:textF];
     _textField = textF;
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(textF.mj_x, CGRectGetMaxY(textF.frame) - 5, textF.mj_w, 1)];
-    lineView.backgroundColor = KMAINCOLOR;
+    lineView.backgroundColor = [UIColor lightGrayColor];
     [self addSubview:lineView];
 
-     UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn1 setTitle:@"确认支付" forState:UIControlStateNormal];
-    btn1.frame = CGRectMake(CGRectGetMaxX(textF.frame), 12.5, 70, 25);
-    [btn1 addTarget:self action:@selector(didClickBottomAction) forControlEvents:UIControlEventTouchUpInside];
-    btn1.backgroundColor = MainColor;
-    btn1.titleLabel.font = Font13;
-    [btn1 layerForViewWith:6 AndLineWidth:0];
-    [btn1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self addSubview:btn1];
+//     UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [btn1 setTitle:@"确认支付" forState:UIControlStateNormal];
+//    btn1.frame = CGRectMake(CGRectGetMaxX(textF.frame), 12.5, 70, 25);
+//    [btn1 addTarget:self action:@selector(didClickBottomAction) forControlEvents:UIControlEventTouchUpInside];
+//    btn1.backgroundColor = MainColor;
+//    btn1.titleLabel.font = Font13;
+//    [btn1 layerForViewWith:6 AndLineWidth:0];
+//    [btn1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [self addSubview:btn1];
     
     
 }

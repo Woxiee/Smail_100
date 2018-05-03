@@ -327,7 +327,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
         [listArr addObject:dic[@"keyword"]];
     }
     WEAKSELF;
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:listArr searchBarPlaceholder:@"运动户外超级品牌类日 跨店铺" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:listArr searchBarPlaceholder:@"找商品、找商家、找品牌" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
         
         for (NSDictionary *dics in _hotArray) {

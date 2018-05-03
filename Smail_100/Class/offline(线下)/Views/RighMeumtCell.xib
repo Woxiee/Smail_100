@@ -20,9 +20,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageViewDefault.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="8v2-YV-D1R">
-                        <rect key="frame" x="5" y="5" width="80" height="91.5"/>
+                        <rect key="frame" x="5" y="5" width="90" height="91.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="80" id="MoO-co-Nxe"/>
+                            <constraint firstAttribute="width" constant="90" id="MoO-co-Nxe"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c7b-z6-y5U">
@@ -72,7 +72,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="多功能三层奶粉存储盒 浪漫色彩婴儿专用 妈妈放心" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7X-Dx-52A">
-                        <rect key="frame" x="93" y="5" width="215" height="17"/>
+                        <rect key="frame" x="103" y="5" width="205" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="LSU-8o-MWN"/>
                             <constraint firstAttribute="height" constant="17" id="gDz-Bd-mKK"/>
@@ -82,7 +82,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="销量10000人" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63Z-Eh-uuA">
-                        <rect key="frame" x="93" y="37" width="84" height="15"/>
+                        <rect key="frame" x="103" y="37" width="84" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="MXq-ez-wSl"/>
                         </constraints>
@@ -91,7 +91,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="销量10000人" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ure-Ka-1Zc">
-                        <rect key="frame" x="187" y="39" width="78.5" height="15"/>
+                        <rect key="frame" x="197" y="39" width="78.5" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="6c9-8m-JEQ"/>
                         </constraints>

@@ -82,12 +82,12 @@
     
     [self.leftNaviBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
     
-    [self setRightNaviBtnImage:[UIImage imageNamed:@"shouye18@3x.png"]];
+    [self setRightNaviBtnImage:[UIImage imageNamed:@"shouye1@3x.png"]];
     
     
     UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 120)/2, 10, SCREEN_WIDTH - 120, 30)];
-   
-    inPutTextField.placeholder = @"运动户外超级品牌类日 跨店铺";
+  
+    inPutTextField.placeholder = @"找商品、找商家、找品牌";
     inPutTextField.textColor = [UIColor whiteColor];
     inPutTextField.font = Font13;
     inPutTextField.returnKeyType = UIReturnKeySearch;
@@ -175,7 +175,7 @@
     }
     WEAKSELF;
     
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:listArr searchBarPlaceholder:@"运动户外超级品牌类日 跨店铺" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:listArr searchBarPlaceholder:@"找商品、找商家、找品牌" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
 
         for (NSDictionary *dics in _hotArray) {

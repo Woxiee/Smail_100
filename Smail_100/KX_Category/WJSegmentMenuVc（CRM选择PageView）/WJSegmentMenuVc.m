@@ -87,7 +87,7 @@
             if (self.MenuVcSlideType == WJSegmentMenuVcSlideTypeCaver) {
                 UIView *view = [[UIView alloc]initWithFrame:btn.frame];
                 view.backgroundColor = slideColor;
-                view.layer.cornerRadius = 10;
+//                view.layer.cornerRadius = 10;
                 view.layer.masksToBounds = YES;
                 [scrollView addSubview:view];
                 self.view = view;
@@ -98,7 +98,7 @@
                 TempFrame.origin.y = CGRectGetMaxY(btn.frame) + 5;
                 UIView *view = [[UIView alloc]initWithFrame:TempFrame];
                 view.backgroundColor = slideColor;
-                view.layer.cornerRadius = 10;
+//                view.layer.cornerRadius = 10;
                 view.layer.masksToBounds = YES;
                 [scrollView addSubview:view];
                 self.view = view;

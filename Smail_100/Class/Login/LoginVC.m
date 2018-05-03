@@ -71,10 +71,9 @@
     [param setObject:_userPassWDTextField.text forKey:@"password"];
 
 #if DEBUG
-//    15168228250
-//    130118
-//    [param setObject:@"18757587673" forKey:@"mobile"];
-//    [param setObject:@"123456" forKey:@"password"];
+
+    [param setObject:@"18757587673" forKey:@"mobile"];
+    [param setObject:@"123456" forKey:@"password"];
 #else
 
     

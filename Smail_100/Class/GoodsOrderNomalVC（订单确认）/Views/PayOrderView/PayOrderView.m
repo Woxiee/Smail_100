@@ -58,7 +58,7 @@ static NSString * const OthercellID = @"OthercellID";
     UITapGestureRecognizer  *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenSheetView)];
     [self.darkView addGestureRecognizer:tapGestureRecognizer];
     
-    CGFloat hegiht = 40 +90+20;
+    CGFloat hegiht = 40 +90;
     
     UIView *bottomView = [[UIView alloc] init];
 //    if (self.payType == PayTypeNoaml) {
@@ -67,7 +67,7 @@ static NSString * const OthercellID = @"OthercellID";
 //        bottomView.frame = CGRectMake(0, SCREEN_HEIGHT  -(_dataArr.count+1) *44 - hegiht, self.frame.size.width,(_dataArr.count+1) *44 +hegiht);
 //    }
     
-    bottomView.frame = CGRectMake(0, SCREEN_HEIGHT  -(_dataArr.count+1) *50 -hegiht, self.frame.size.width,(_dataArr.count+1) *50 +hegiht);
+    bottomView.frame = CGRectMake(0, SCREEN_HEIGHT  -(_dataArr.count+1) *45 -hegiht, self.frame.size.width,(_dataArr.count+1) *45 +hegiht);
     bottomView.backgroundColor  = [UIColor whiteColor];
     [self addSubview:bottomView];
     self.bottomView = bottomView;
@@ -92,7 +92,7 @@ static NSString * const OthercellID = @"OthercellID";
     [dissBtn addTarget:self action:@selector(hiddenSheetView) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:dissBtn];
 
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView.frame)+1, self.frame.size.width,_dataArr?_dataArr.count*50 : _dataArray.count*50) style:UITableViewStylePlain];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView.frame)+1, self.frame.size.width,_dataArr?_dataArr.count*45 : _dataArray.count*45) style:UITableViewStylePlain];
     tableView.dataSource = self;
     tableView.delegate = self;
     tableView.rowHeight = 44;
@@ -108,13 +108,13 @@ static NSString * const OthercellID = @"OthercellID";
 
     UILabel *jfLb = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(tableView.frame)+10, self.frame.size.width, 44)];
     jfLb.textAlignment = NSTextAlignmentCenter;
-    jfLb.font = [UIFont systemFontOfSize:15];
+    jfLb.font = [UIFont systemFontOfSize:14];
     jfLb.textColor = KMAINCOLOR;
     [bottomView addSubview:jfLb];
     self.jfLb = jfLb;
   
     UIButton *sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    sureBtn.frame = CGRectMake(20, bottomView.mj_h - 90,self.frame.size.width - 30 , 45);
+    sureBtn.frame = CGRectMake(20, bottomView.mj_h - 70,self.frame.size.width - 40 , 45);
     [sureBtn setTitle:@"确认支付" forState:UIControlStateNormal];
     sureBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     sureBtn.backgroundColor = KMAINCOLOR;
@@ -273,7 +273,7 @@ static NSString * const OthercellID = @"OthercellID";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 45;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -354,8 +354,19 @@ static NSString * const OthercellID = @"OthercellID";
             [priceArr addObject:str];
         }
         NSString *allStr = [priceArr componentsJoinedByString:@"+"];
-        NSAttributedString *attributedStr =  [self attributeStringWithContent:allStr keyWords:@[@"积分",@"+"]];
-        self.jfLb.attributedText  = attributedStr;
+//        NSString *conten = [NSString stringWithFormat:@"待支付:%@",allStr];
+        
+        NSAttributedString *attributedStr =  [self attributeStringWithContent:[NSString stringWithFormat:@"待支付:%@",allStr] keyWords:@[@"积分",@"+"]];
+        
+        
+     NSMutableAttributedString *conten =(NSMutableAttributedString *)attributedStr;
+        [conten addAttribute:NSFontAttributeName
+                           value:[UIFont systemFontOfSize:14]
+                           range:NSMakeRange(0, 4)];
+        
+        [conten addAttribute:NSForegroundColorAttributeName value:DETAILTEXTCOLOR range:NSMakeRange(0 ,4)];
+
+        self.jfLb.attributedText  = conten;
 
 
     }else{

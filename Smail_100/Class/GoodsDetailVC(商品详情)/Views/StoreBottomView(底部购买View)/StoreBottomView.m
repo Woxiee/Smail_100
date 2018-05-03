@@ -79,6 +79,7 @@
     shouYeBtn.tag = 100;
 //    shouYeBtn.backgroundColor = [UIColor redColor];
     [shouYeBtn setImage:[UIImage imageNamed:@"detailHomeIcon@2x.png"] forState:UIControlStateNormal];
+
     [shouYeBtn setTitle:@"首页" forState:UIControlStateNormal];
 
     shouYeBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -87,7 +88,6 @@
 
     [shouYeBtn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
     shouYeBtn.titleLabel.font =  Font12;
-
     [self addSubview:shouYeBtn];
 
     meBtn = [UIButton buttonWithType:UIButtonTypeCustom];

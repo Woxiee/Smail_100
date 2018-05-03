@@ -514,11 +514,10 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     }
     else if ([model.itemType isEqualToString:@"cateList"]){
         if (model.itemContentList.count <5) {
-            return CGSizeMake((SCREEN_WIDTH)/model.itemContentList.count ,(SCREEN_WIDTH)/5 );
+            return CGSizeMake((SCREEN_WIDTH)/model.itemContentList.count ,72 );
         }
-        return CGSizeMake((SCREEN_WIDTH)/5 ,(SCREEN_WIDTH)/5 );
+        return CGSizeMake((SCREEN_WIDTH)/5 ,72 );
     }
-    
     else if ([model.itemType isEqualToString:@"recommended_goods"]){
         return CGSizeMake(SCREEN_WIDTH, 145);
     }
@@ -611,11 +610,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
-    ItemInfoList *model =   self.resorceArray[section];
-    if ([model.itemType isEqualToString:@"themeBanner"]){
-//        return CGSizeMake(SCREEN_WIDTH , 50);
-        return CGSizeZero;
-    }
+
     return CGSizeZero;
 }
 

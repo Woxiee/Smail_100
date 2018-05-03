@@ -92,10 +92,9 @@
     [self.rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.rightButton setTitle:@"完成" forState:UIControlStateSelected];
     [self.rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    
     [self.rightButton setTitle:@"编辑" forState:UIControlStateDisabled];
     [self.rightButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
-    
+    self.rightButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.rightButton addTarget:self action:@selector(clickAllEdit:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *batbutton = [[UIBarButtonItem alloc] initWithCustomView:self.rightButton];
     self.navigationItem.rightBarButtonItem = batbutton;

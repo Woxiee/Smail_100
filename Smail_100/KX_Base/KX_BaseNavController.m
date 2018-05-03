@@ -17,7 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
 }
 
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
@@ -26,6 +25,8 @@
     if (self.viewControllers.count>1) {
         if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
             self.interactivePopGestureRecognizer.enabled = YES;
+            self.interactivePopGestureRecognizer.delegate = (id)self;
+
             self.hidesBottomBarWhenPushed = YES;
         }
         UIButton * leftNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -35,11 +36,20 @@
         [leftNaviBtn setTitle:@"" forState:UIControlStateNormal];
         leftNaviBtn.titleLabel.font=[UIFont systemFontOfSize:16 weight:UIFontWeightSemibold];
         [leftNaviBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
-        leftNaviBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -8, 0, 0);
+        leftNaviBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         leftNaviBtn.backgroundColor=[UIColor clearColor];
         [leftNaviBtn addTarget:self action:@selector(popVC) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem * rightButton = [[UIBarButtonItem alloc]initWithCustomView:leftNaviBtn];
         viewController.navigationItem.leftBarButtonItem=rightButton;
+        
+        //重新创建一个barButtonItem
+//        UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+//        //设置backBarButtonItem即可
+//        self.navigationItem.backBarButtonItem = backItem;
+
+        
+    
+    
     }
     
 }

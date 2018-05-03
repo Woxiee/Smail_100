@@ -57,6 +57,7 @@ static NSString* SmileForListCellID = @"SmileForListCell";
         headView.backgroundColor = [UIColor whiteColor];
         self.tableView.tableHeaderView = headView;
         self.headView = headView;
+        [self.headView bringSubviewToFront:self.view];
     }
 
 }
@@ -162,6 +163,8 @@ static NSString* SmileForListCellID = @"SmileForListCell";
                     weakSelf.headView.isWithdrawal = weakSelf.isWithdrawal;
                     weakSelf.headView.dataDic = result;
                     [weakSelf.tableView reloadData];
+                    [weakSelf.resorceArray removeAllObjects];
+
                     [weakSelf stopRefresh];
                 }
             }

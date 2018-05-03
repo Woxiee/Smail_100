@@ -43,7 +43,7 @@
     _resultDic = resultDic;
     acoutTF.text =  _resultDic[@"devid"];
     if ([_resultDic[@"status"] isEqualToString:@"Enabled"]) {
-        [connetBtn setTitle:@"解除绑定" forState:UIControlStateNormal];
+        [connetBtn setTitle:@"取消关联" forState:UIControlStateNormal];
     }else{
         [connetBtn setTitle:@"关联" forState:UIControlStateNormal];
 

@@ -46,6 +46,9 @@
 @property (nonatomic, strong) GoodsOrderModel *orderModel;
 @property (nonatomic, strong)    PayModels *payModel;            //
 @property (nonatomic, strong)    PayOrderView *payOrderView;            //
+@property (nonatomic, strong)    MenulineView *headView;            //
+
+
 
 @end
 
@@ -97,8 +100,12 @@
                     weakSelf.sub_category_id = category.id;
                 }
                 [weakSelf.titleArr addObject:category];
-                
+
             }
+//            LeftCategory *category = [LeftCategory new];
+//            category.name = @"ceshi ";
+//            [weakSelf.titleArr addObject:category];
+
             NSMutableArray * list = [[NSMutableArray alloc] init];
             model.rightGoods = [NSArray yy_modelArrayWithClass:[RightGoods class] json:model.rightGoods];
             for (RightGoods *item in model.rightGoods) {
@@ -156,11 +163,12 @@
 
     _allInfoArr= [[NSMutableArray alloc] init];
     _itemsDic = [[NSMutableDictionary alloc] init];
-    self.view.backgroundColor = BACKGROUND_COLOR;
+    
+    self.view.backgroundColor = [UIColor clearColor];
     _leftTableView.dataSource = self;
     _leftTableView.delegate = self;
     _leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _leftTableView.backgroundColor = RGB(246, 247, 248);
+    _leftTableView.backgroundColor =[UIColor whiteColor];;
     
     _rightTableview.dataSource = self;
     _rightTableview.delegate = self;
@@ -183,13 +191,13 @@
 //    [_cartBtn showBadgeWithStyle:WBadgeStyleNumber value:3 animationType:WBadgeAnimTypeNone];
 //    _cartBtn.badgeCenterOffset = CGPointMake(-25, 9);
     WEAKSELF;
-    MenulineView *headView = [[MenulineView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 45)];
+    MenulineView *headView = [[MenulineView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 50 - SafeAreaTopHeight - 50, SCREEN_WIDTH, 50)];
     headView.didClickSureBlock = ^(NSString *str){
         _orderModel.allPrices = str.floatValue;
-
         [weakSelf getOrderNoRequrst:str];
     };
     [self.view addSubview:headView];
+    _headView = headView;
 }
 
 
@@ -274,11 +282,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (tableView == _leftTableView) {
-        return 60;
-    }
-    return 100;
+   
+    return 60;
 }
 
 
@@ -351,7 +356,6 @@
         return;
     }
     if (tableView == _leftTableView) {
- 
         for (LeftCategory * model in _titleArr) {
             model.select = NO;
         }
@@ -359,9 +363,6 @@
         model.select = YES;
         _sub_category_id = model.id;
         _oldIndex = indexPath.section;
-        
-        
-        
         [self loadShopCarData];
     }
     
@@ -417,7 +418,7 @@
 
 
 - (IBAction)buyAciton:(id)sender {
-
+    [self.view endEditing:YES];
     if (![KX_UserInfo sharedKX_UserInfo].loginStatus) {
         [KX_UserInfo presentToLoginView:self];
         return;
@@ -436,11 +437,14 @@
     }
     
     
-    if (cartList.count == 0) {
+    if (cartList.count == 0 && _headView.textField.text ) {
         [self.view makeToast:@"请先添加商品在下单~"];
         return;
     }
-    
+    if (KX_NULLString(_allPrice)) {
+        _allPrice = _headView.textField.text;
+        _orderModel.allPrices = _allPrice.floatValue;
+    }
     [self getOrderNoRequrst:_allPrice];
 //    GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
 //    VC.cart_ids = [cartList componentsJoinedByString:@","];

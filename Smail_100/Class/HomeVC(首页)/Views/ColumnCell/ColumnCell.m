@@ -19,6 +19,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.backgroundColor = [UIColor whiteColor];
     titleLabel.font =  Font13;
     titleLabel.textColor = TITLETEXTLOWCOLOR;
 }

@@ -73,10 +73,14 @@
     [_classArr addObject:ddd];
     navController.tabBarItem.image = [[UIImage imageNamed:norImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     navController.tabBarItem.selectedImage = [[UIImage imageNamed:selImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-
     navController.tabBarItem.title = title;
-    [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:DETAILTEXTCOLOR,NSFontAttributeName:[UIFont systemFontOfSize:12]} forState:UIControlStateNormal];
-    [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:KMAINCOLOR,NSFontAttributeName:[UIFont systemFontOfSize:12]} forState:UIControlStateSelected];
+    [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:DETAILTEXTCOLOR,NSFontAttributeName:[UIFont systemFontOfSize:10]} forState:UIControlStateNormal];
+    [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:KMAINCOLOR,NSFontAttributeName:[UIFont systemFontOfSize:10]} forState:UIControlStateSelected];
+[[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -5)];
+    //Normal
+//    [navController.tabBarItem  setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]} forState:UIControlStateNormal];
+//    //Selected
+//    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]} forState:UIControlStateSelected];
 
     [self addChildViewController:navController];
    

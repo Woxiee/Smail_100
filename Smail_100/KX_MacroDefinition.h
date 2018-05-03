@@ -177,6 +177,11 @@
 #define kMenuViewHeight      44
 #define kHeaderViewHeight    200
 #define kNavigationHeight    64
+#define FKHeightCoefficient (SCREEN_HEIGHT == 812.0 ? 667.0/667.0 : SCREEN_HEIGHT/667.0)
+
+#define SafeAreaTopHeight (SCREEN_HEIGHT == 812.0 ? 88 : 64)
+
+#define SafeAreaBottomHeight (SCREEN_HEIGHT == 812.0 ? 34 : 0)
 
 /// 判断字符是否为null
 #define KX_NULLString(string) (!([string class] == [NSNull class]) && ((![string isKindOfClass:[NSString class]])||[string isEqualToString:@""] || (string == nil)||[string isEqualToString:@"<null>"] || [string isEqualToString:@""] || [string isKindOfClass:[NSNull class]]||[[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0))

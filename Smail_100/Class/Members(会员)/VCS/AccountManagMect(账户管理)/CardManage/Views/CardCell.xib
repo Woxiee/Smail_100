@@ -61,7 +61,7 @@
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="STq-Xy-qk7"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal" title="更改默认兑换的银行卡" image="shangjiazhongxin13@3x.png"/>
+                        <state key="normal" title="更新默认银行卡" image="shangjiazhongxin13@3x.png"/>
                         <connections>
                             <action selector="didSetDefBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ghk-XW-EoU"/>
                         </connections>

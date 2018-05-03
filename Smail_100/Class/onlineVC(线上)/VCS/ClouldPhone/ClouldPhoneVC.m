@@ -239,35 +239,37 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    ItemContentList *contenModle =  self.resorceArray[indexPath.section];
-    if ([contenModle.clickType isEqualToString:@"web"]) {
-        if (KX_NULLString(contenModle.url)) {
-            return;
+    if (indexPath.section == 1) {
+        ItemContentList *contenModle =  self.resorceArray[indexPath.section];
+        if ([contenModle.clickType isEqualToString:@"web"]) {
+            if (KX_NULLString(contenModle.url)) {
+                return;
+            }
+            GoodsAuctionXYVC *VC = [[GoodsAuctionXYVC alloc] init];
+            VC.hidesBottomBarWhenPushed = YES;
+            VC.clickUrl = contenModle.url;
+            
+            [self.navigationController pushViewController:VC animated:YES];
         }
-        GoodsAuctionXYVC *VC = [[GoodsAuctionXYVC alloc] init];
-        VC.hidesBottomBarWhenPushed = YES;
-        VC.clickUrl = contenModle.url;
+        else if ([contenModle.clickType isEqualToString:@"app_category"]){
+            GoodsScreeningVC *VC = [[GoodsScreeningVC alloc] init];
+            VC.category_id = contenModle.id;
+            VC.hidesBottomBarWhenPushed = YES;
+            VC.title =  contenModle.itemTitle;
+            
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+        else {
+            
+            GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+                                                         navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+            //    vc.productID = model.mainResult.mainId;
+            //    vc.typeStr = model.productType;
+            vc.productID = contenModle.goods_id;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController: vc animated:YES];
+        }
         
-        [self.navigationController pushViewController:VC animated:YES];
-    }
-    else if ([contenModle.clickType isEqualToString:@"app_category"]){
-        GoodsScreeningVC *VC = [[GoodsScreeningVC alloc] init];
-        VC.category_id = contenModle.id;
-        VC.hidesBottomBarWhenPushed = YES;
-        VC.title =  contenModle.itemTitle;
-        
-        [self.navigationController pushViewController:VC animated:YES];
-    }
-    else {
-        
-        GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
-                                                     navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-        //    vc.productID = model.mainResult.mainId;
-        //    vc.typeStr = model.productType;
-        vc.productID = contenModle.goods_id;
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController: vc animated:YES];
     }
     
     
@@ -277,7 +279,7 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return CGSizeMake(SCREEN_WIDTH, 130);
+        return CGSizeMake(SCREEN_WIDTH, 125);
     }
     ItemContentList *item = self.resorceArray[indexPath.row];
     if (item.tags.count >0) {
