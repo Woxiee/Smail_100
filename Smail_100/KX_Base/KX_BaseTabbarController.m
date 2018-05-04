@@ -17,7 +17,8 @@
 #import "OnlineVC.h"
 #import "KX_BaseNavController.h"
 #import "shoppingCarVM.h"
-
+#import <PgySDK/PgyManager.h>
+#import <PgyUpdate/PgyUpdateManager.h>
 @interface KX_BaseTabbarController ()<CLLocationManagerDelegate>
 @property(nonatomic,strong)NSMutableArray *classArr;
 @property (nonatomic, strong) NSString *strakUrl;
@@ -25,6 +26,8 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic, strong) NSString *msg;
+
+@property (nonatomic, strong) NSDictionary *response;
 
 @end
 
@@ -102,9 +105,8 @@
             [weakSelf.view makeToast:LocalMyString(NOTICEMESSAGE)];
         }else{
             if ([result[@"code"] integerValue] == 0) {
-//                不是, 0是可以升级但不强制, 1是必须升级后才能用
+//                , 0是可以升级但不强制, 1是必须升级后才能用
                 NSString *accoutStr =  [[NSUserDefaults standardUserDefaults] objectForKey:@"mobile"];
-
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                         _isVersion  = result[@"data"][@"force"];
                         _msg = result[@"data"][@"msg"];
@@ -146,21 +148,48 @@
 //    }
     WEAKSELF   //在登录的时候 isVersion ＝＝0或者空  那么久代表永不会提示升级
 //    if ([self.isVersion isEqualToString:@"1.0"] || self.isVersion == nil)  return;
-    [KX_Version kx_isNewVersionSuccess:^(NewVersionType newVersion, NSString *versionStr,NSString *strakUrl, NSString *releaseNotes) {
-        if (newVersion == NewVersionTypeNeedUp) {
-            if (!KX_NULLString(strakUrl)) {
-                weakSelf.strakUrl = strakUrl;
-            }
-            NSString *versionTitle = @"有可用的新版本可更新";
-            STRONGSELF
-            NSString *cancle = [self.isVersion isEqualToString:@"0"]?@"忽略此版本":nil;
-            UIAlertView *aletView = [[UIAlertView alloc]initWithTitle:versionTitle message:_msg delegate:strongSelf cancelButtonTitle:cancle
-                                                    otherButtonTitles:@"更新", nil];
-            [aletView show];
-        }
-        
-    }];
+//    [KX_Version kx_isNewVersionSuccess:^(NewVersionType newVersion, NSString *versionStr,NSString *strakUrl, NSString *releaseNotes) {
+//        if (newVersion == NewVersionTypeNeedUp) {
+//            if (!KX_NULLString(strakUrl)) {
+//                weakSelf.strakUrl = strakUrl;
+//            }
+//            NSString *versionTitle = @"有可用的新版本可更新";
+//            STRONGSELF
+//            NSString *cancle = [self.isVersion isEqualToString:@"0"]?@"忽略此版本":nil;
+//            UIAlertView *aletView = [[UIAlertView alloc]initWithTitle:versionTitle message:_msg delegate:strongSelf cancelButtonTitle:cancle
+//                                                    otherButtonTitles:@"更新", nil];
+//            [aletView show];
+//        }
+//        
+//    }];
     
+     [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateMethod:)];
+    
+}
+
+
+/**
+ *  检查更新回调
+ *
+ *  @param response 检查更新的返回结果
+ */
+- (void)updateMethod:(NSDictionary *)response
+{
+    if (response[@"downloadURL"]) {
+        _response = response;
+        NSString *message = response[@"releaseNote"];
+        
+        NSString *versionTitle = @"有新版本可更新";
+        NSString *cancle = [self.isVersion isEqualToString:@"0"]?@"忽略此版本":nil;
+        UIAlertView *aletView = [[UIAlertView alloc]initWithTitle:versionTitle message:_msg delegate:self cancelButtonTitle:cancle
+                                                otherButtonTitles:@"更新", nil];
+        [[UIView appearance] setTintColor:KMAINCOLOR];
+
+        [aletView show];
+
+    }
+    
+    //    调用checkUpdateWithDelegete后可用此方法来更新本地的版本号，如果有更新的话，在调用了此方法后再次调用将不提示更新信息。
 }
 
 
@@ -170,10 +199,15 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0)
 {
     NSLog(@"%ld",(long)buttonIndex);
-    if(buttonIndex == 1 ){
+    if(buttonIndex == 1  || _isVersion.intValue == 1){
         // 开始去更新
-        NSURL * url = [NSURL URLWithString:self.strakUrl];//itunesURL = trackViewUrl的内容
-        [[UIApplication sharedApplication] openURL:url];
+//        NSURL * url = [NSURL URLWithString:self.strakUrl];//itunesURL = trackViewUrl的内容
+//        [[UIApplication sharedApplication] openURL:url];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_response[@"downloadURL"]]];
+
+        [[PgyUpdateManager sharedPgyManager] updateLocalBuildNumber];
+
+
     }
     
     

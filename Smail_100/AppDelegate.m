@@ -10,7 +10,8 @@
 #import "KX_BaseTabbarController.h"
 #import "KX_BaseNavController.h"
 #import "HYNewFeatureCtr.h"
-
+#import <PgySDK/PgyManager.h>
+#import <PgyUpdate/PgyUpdateManager.h>
 @interface AppDelegate ()<WXApiDelegate>
 @property (nonatomic, strong) KX_BaseTabbarController *tabbarVC;
 
@@ -84,7 +85,10 @@
 //    8780ece09fd44bcc5146c52aa0c8e2e7
     
     [WXApi registerApp:@"wx500ed907f1edd985" enableMTA:NO];
-
+    //启动基本SDK
+    [[PgyManager sharedPgyManager] startManagerWithAppId:@"a5c7d4c513bf4d2b8f539323d9420bf9"];
+    //启动更新检查SDK
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"a5c7d4c513bf4d2b8f539323d9420bf9"];
     
 }
 

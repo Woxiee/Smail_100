@@ -67,22 +67,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Smail_100/KX_Base/KX_BaseTabbarController.m"
-            timestampString = "547029688.133058"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "KX_BaseTabbarController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Smail_100/Class/Members(&#x4f1a;&#x5458;)/Views/GoodsManagerView/GoodsManageView.m"
             timestampString = "545990099.1748"
             startingColumnNumber = "9223372036854775807"
@@ -202,6 +186,22 @@
             startingLineNumber = "152"
             endingLineNumber = "152"
             landmarkName = "-requestListNetWork"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Smail_100/KX_Base/KX_BaseTabbarController.m"
+            timestampString = "547108048.646881"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "-updateMethod:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

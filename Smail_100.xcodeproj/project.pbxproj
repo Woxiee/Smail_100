@@ -827,6 +827,10 @@
 		E116597F207A075600826E2F /* CommentsHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E116597E207A075600826E2F /* CommentsHeadView.m */; };
 		E1165981207A077900826E2F /* CommentsHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1165980207A077900826E2F /* CommentsHeadView.xib */; };
 		E1165983207A083D00826E2F /* star@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1165982207A083D00826E2F /* star@3x.png */; };
+		E11AFAA3209BF306006945CD /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E11AFAA2209BF306006945CD /* OpenGLES.framework */; };
+		E11AFAA5209BF314006945CD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E11AFAA4209BF313006945CD /* AudioToolbox.framework */; };
+		E11AFAA7209BF31A006945CD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E11AFAA6209BF31A006945CD /* AVFoundation.framework */; };
+		E11AFAA8209C29BE006945CD /* KX_BaseTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E10B0E0D20528AF0008BA706 /* KX_BaseTabbarController.m */; };
 		E11D418D206A2F230073E062 /* CloudInfoEditAndAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11D418B206A2F230073E062 /* CloudInfoEditAndAddVC.m */; };
 		E11D418E206A2F230073E062 /* CloudInfoEditAndAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11D418C206A2F230073E062 /* CloudInfoEditAndAddVC.xib */; };
 		E11D4191206A4EBD0073E062 /* SIDADView.m in Sources */ = {isa = PBXBuildFile; fileRef = E11D4190206A4EBC0073E062 /* SIDADView.m */; };
@@ -2306,6 +2310,9 @@
 		E116597E207A075600826E2F /* CommentsHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentsHeadView.m; sourceTree = "<group>"; };
 		E1165980207A077900826E2F /* CommentsHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsHeadView.xib; sourceTree = "<group>"; };
 		E1165982207A083D00826E2F /* star@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star@3x.png"; sourceTree = "<group>"; };
+		E11AFAA2209BF306006945CD /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		E11AFAA4209BF313006945CD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E11AFAA6209BF31A006945CD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E11D418A206A2F230073E062 /* CloudInfoEditAndAddVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CloudInfoEditAndAddVC.h; sourceTree = "<group>"; };
 		E11D418B206A2F230073E062 /* CloudInfoEditAndAddVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CloudInfoEditAndAddVC.m; sourceTree = "<group>"; };
 		E11D418C206A2F230073E062 /* CloudInfoEditAndAddVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CloudInfoEditAndAddVC.xib; sourceTree = "<group>"; };
@@ -2499,6 +2506,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E115311D2052988700B5852F /* CoreTelephony.framework in Frameworks */,
+				E11AFAA7209BF31A006945CD /* AVFoundation.framework in Frameworks */,
+				E11AFAA5209BF314006945CD /* AudioToolbox.framework in Frameworks */,
+				E11AFAA3209BF306006945CD /* OpenGLES.framework in Frameworks */,
 				3E519A472076819C00785177 /* libsqlite3.0.tbd in Frameworks */,
 				3E2BE65C207719F3009BD7A7 /* libWeChatSDK.a in Frameworks */,
 				E11531152052984700B5852F /* CoreMotion.framework in Frameworks */,
@@ -2508,7 +2519,6 @@
 				E1153123205298A500B5852F /* CoreGraphics.framework in Frameworks */,
 				E11531212052989C00B5852F /* CoreText.framework in Frameworks */,
 				E115311F2052989000B5852F /* QuartzCore.framework in Frameworks */,
-				E115311D2052988700B5852F /* CoreTelephony.framework in Frameworks */,
 				E115311B2052987E00B5852F /* SystemConfiguration.framework in Frameworks */,
 				E11531192052987900B5852F /* libz.tbd in Frameworks */,
 				E11531172052987300B5852F /* libc++.tbd in Frameworks */,
@@ -2644,6 +2654,9 @@
 		B0CA06D981E6AED9FBBF3AB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E11AFAA6209BF31A006945CD /* AVFoundation.framework */,
+				E11AFAA4209BF313006945CD /* AudioToolbox.framework */,
+				E11AFAA2209BF306006945CD /* OpenGLES.framework */,
 				3E519A462076819B00785177 /* libsqlite3.0.tbd */,
 				E1153128205298B800B5852F /* CFNetwork.framework */,
 				E1153126205298B200B5852F /* Foundation.framework */,
@@ -7266,12 +7279,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Smail_100/Pods-Smail_100-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
-				$PODS_CONFIGURATION_BUILD_DIR/JSBadgeView/JSBadgeView.bundle,
+				"${PODS_CONFIGURATION_BUILD_DIR}/JSBadgeView/JSBadgeView.bundle",
 				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/JSBadgeView.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7847,6 +7862,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E10B02B3205289EC008BA706 /* Smail_100UITests.m in Sources */,
+				E11AFAA8209C29BE006945CD /* KX_BaseTabbarController.m in Sources */,
 				E149D8652091D06100A1D206 /* GoodsOrderNomalVC.m in Sources */,
 				E1481A8920849B61005AD9E7 /* RealNameVC.m in Sources */,
 			);
@@ -8005,6 +8021,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/AppPaySdK",
+					"$(PROJECT_DIR)/Smail_100/KX_Vender/PgyerSdk",
 				);
 				GCC_PREFIX_HEADER = "Smail_100/MyCity-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -8050,6 +8067,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Smail_100/KX_Vender/AppPaySdK",
+					"$(PROJECT_DIR)/Smail_100/KX_Vender/PgyerSdk",
 				);
 				GCC_PREFIX_HEADER = "Smail_100/MyCity-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

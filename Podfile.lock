@@ -14,15 +14,17 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - IQKeyboardManager (5.0.8)
+  - IQKeyboardManager (6.0.2)
   - JSBadgeView (1.4.1)
   - Masonry (1.1.0)
+  - Pgyer (2.8.9)
+  - PgyUpdate (1.5)
   - SDCycleScrollView (1.75):
     - SDWebImage (>= 4.0.0)
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
-  - TZImagePickerController (2.0.1)
+  - TZImagePickerController (2.1.0.3)
   - WRNavigationBar (1.2.0)
   - WZLBadge (1.2.6)
   - YYModel (1.0.4)
@@ -32,6 +34,8 @@ DEPENDENCIES:
   - IQKeyboardManager
   - JSBadgeView
   - Masonry
+  - Pgyer
+  - PgyUpdate
   - SDCycleScrollView (~> 1.75)
   - SDWebImage (~> 4.0)
   - TZImagePickerController
@@ -41,16 +45,18 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  IQKeyboardManager: 266cb7b1d11f94a3e71229d77f960f9a1b538e5b
+  IQKeyboardManager: c49d59e358aeeffaa0280aa305093c2b194d2607
   JSBadgeView: 3861ddee41094284d9468e6d0af5107f703aaac5
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  Pgyer: 830654e51e23f754cce5d8b3ea9ba72be68452eb
+  PgyUpdate: bad71685b91bba4aa520b7fe29356a476700fdf2
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
-  TZImagePickerController: 34ecb53af8c349964394407e42b6e54e22589ebe
+  TZImagePickerController: 0fbbb79c74cfad5afda2df606605ab05bede78f2
   WRNavigationBar: dc952230effbb646785f962587caaac06c60f229
   WZLBadge: 9ec779dcfd94c825518b395e8315fccaabff1bfa
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: d3df41d74eb3a4b97df6fc3d217745a862ab9227
+PODFILE CHECKSUM: 9f15bc79600cd20d201030d4d435cfbf5cd2b367
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0

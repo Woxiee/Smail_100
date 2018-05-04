@@ -347,7 +347,7 @@
     GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
     VC.clickUrl = [NSString stringWithFormat:@"%@/api/shop/agreement",HEAD__URL] ;
     VC.hidesBottomBarWhenPushed = YES;
-    VC.title = @"<商家签约协议>";
+    VC.title = @"《签约协议》";
     [self.navigationController pushViewController:VC animated:YES];
 }
 
@@ -391,7 +391,7 @@
     }
     
     if (agrreBnt.selected == NO) {
-        [self.view makeToast:@"请同意<商家签约协议>"];
+        [self.view makeToast:@"请同意《签约协议》"];
         return;
     }
 //    if (KX_NULLString(_addreDetailTF.text )) {

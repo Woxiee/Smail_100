@@ -240,7 +240,7 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        ItemContentList *contenModle =  self.resorceArray[indexPath.section];
+        ItemContentList *contenModle =  self.resorceArray[indexPath.row];
         if ([contenModle.clickType isEqualToString:@"web"]) {
             if (KX_NULLString(contenModle.url)) {
                 return;
