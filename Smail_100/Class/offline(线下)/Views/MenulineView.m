@@ -42,7 +42,7 @@
 //    titleLB.textAlignment = NSTextAlignmentLeft;
 //    [self addSubview:titleLB];
     
-    UITextField *textF = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(btn.frame)+20, 0,SCREEN_WIDTH - CGRectGetMaxX(btn.frame) - 12, 40)];
+    UITextField *textF = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(btn.frame)+20, 0,SCREEN_WIDTH - CGRectGetMaxX(btn.frame) - 40, 40)];
     textF.placeholder = @"请输入您要消费的金额";
     textF.font = Font12;
     textF.keyboardType = UIKeyboardTypeNumberPad;

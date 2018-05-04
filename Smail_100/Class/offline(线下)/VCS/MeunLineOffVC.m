@@ -437,11 +437,11 @@
     }
     
     
-    if (cartList.count == 0 && _headView.textField.text ) {
+    if (cartList.count == 0 && _headView.textField.text.intValue <0 ) {
         [self.view makeToast:@"请先添加商品在下单~"];
         return;
     }
-    if (KX_NULLString(_allPrice)) {
+    if ([_allPrice isEqualToString:@"0.00"]) {
         _allPrice = _headView.textField.text;
         _orderModel.allPrices = _allPrice.floatValue;
     }
