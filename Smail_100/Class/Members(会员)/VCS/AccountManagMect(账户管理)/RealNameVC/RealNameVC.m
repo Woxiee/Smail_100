@@ -21,6 +21,9 @@
 @property (weak, nonatomic)  UIImageView *stateImageView;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *imageBtn1;
+@property (weak, nonatomic) IBOutlet UIButton *imggeBtn2;
+@property (weak, nonatomic) IBOutlet UIButton *imageBtn3;
 @end
 
 @implementation RealNameVC
@@ -60,6 +63,11 @@
                 weakSelf.deviceTF.userInteractionEnabled = NO;
                 weakSelf.rightNaviBtn.hidden = YES;
                 self.navigationItem.rightBarButtonItem = nil;
+                weakSelf.imageBtn1.userInteractionEnabled = NO;
+                weakSelf.imggeBtn2.userInteractionEnabled = NO;
+                weakSelf.imageBtn3.userInteractionEnabled = NO;
+
+
             }
             
             if ([result[@"data"][@"status"] isEqualToString:@"Disabled"]) {
@@ -120,7 +128,7 @@
     [self setRightNaviBtnTitle:@"提交" withTitleColor:[UIColor whiteColor]];
 
     UIImageView *stateImageView = [[UIImageView alloc] init];
-    stateImageView.frame = CGRectMake((SCREEN_WIDTH - 110)/2, SCREEN_HEIGHT - 200, 110, 110);
+    stateImageView.frame = CGRectMake((SCREEN_WIDTH - 110)/2, SCREEN_HEIGHT-300, 110, 110);
     stateImageView.image = [UIImage imageNamed:@"zhanghuguanli7@3x.png"];
     stateImageView.alpha = 0.7;
     [self.view addSubview:stateImageView];

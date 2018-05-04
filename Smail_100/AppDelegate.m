@@ -86,9 +86,9 @@
     
     [WXApi registerApp:@"wx500ed907f1edd985" enableMTA:NO];
     //启动基本SDK
-    [[PgyManager sharedPgyManager] startManagerWithAppId:@"a5c7d4c513bf4d2b8f539323d9420bf9"];
+    [[PgyManager sharedPgyManager] startManagerWithAppId:@"f6e00b0edb7fd2079493ec1535523603"];
     //启动更新检查SDK
-    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"a5c7d4c513bf4d2b8f539323d9420bf9"];
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"f6e00b0edb7fd2079493ec1535523603"];
     
 }
 

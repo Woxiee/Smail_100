@@ -14,6 +14,9 @@
                 <outlet property="deviceTF" destination="EBa-iG-gTp" id="PKl-YJ-2Ke"/>
                 <outlet property="downImageView" destination="IsG-1x-fcF" id="a7i-4P-6KN"/>
                 <outlet property="idTF" destination="RAh-Sm-NMV" id="caJ-Mp-6vI"/>
+                <outlet property="imageBtn1" destination="hoH-nZ-iEQ" id="Jeo-m5-5U7"/>
+                <outlet property="imageBtn3" destination="dPH-Xn-z9q" id="4hb-BY-1OG"/>
+                <outlet property="imggeBtn2" destination="Yla-7H-Kzw" id="dSZ-Zu-iFT"/>
                 <outlet property="nameTF" destination="VKO-D9-qQA" id="IrL-2K-r6Y"/>
                 <outlet property="otherImageView" destination="Xxe-sL-pDx" id="ms7-KW-hXT"/>
                 <outlet property="phoneTF" destination="yl1-dT-DhA" id="bfH-VN-jID"/>
@@ -151,7 +154,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ne5-8f-lAC">
-                    <rect key="frame" x="0.0" y="204" width="375" height="70"/>
+                    <rect key="frame" x="0.0" y="204" width="375" height="80"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身  份  证：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0E-kI-oFc">
                             <rect key="frame" x="12" y="12" width="80" height="18"/>
@@ -163,31 +166,31 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OkB-Fl-aPG">
-                            <rect key="frame" x="92" y="0.0" width="273" height="70"/>
+                            <rect key="frame" x="92" y="0.0" width="273" height="80"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhanghuguanli6@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="L4w-ht-dXw">
-                                    <rect key="frame" x="0.0" y="5" width="87.5" height="60"/>
+                                    <rect key="frame" x="0.0" y="5" width="87.5" height="70"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhanghuguanli6@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xxe-sL-pDx">
-                                    <rect key="frame" x="185.5" y="5" width="87.5" height="60"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhanghuguanli25@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xxe-sL-pDx">
+                                    <rect key="frame" x="185.5" y="5" width="87.5" height="70"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhanghuguanli6@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="IsG-1x-fcF">
-                                    <rect key="frame" x="92.5" y="5" width="88" height="60"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhanghuguanli20@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="IsG-1x-fcF">
+                                    <rect key="frame" x="92.5" y="5" width="88" height="70"/>
                                 </imageView>
                                 <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yla-7H-Kzw">
-                                    <rect key="frame" x="93" y="0.0" width="82.5" height="70"/>
+                                    <rect key="frame" x="93" y="0.0" width="82.5" height="80"/>
                                     <connections>
                                         <action selector="didClickImageBtnAction:" destination="-1" eventType="touchUpInside" id="5uW-Lf-4jF"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hoH-nZ-iEQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="92.5" height="70"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="92.5" height="80"/>
                                     <connections>
                                         <action selector="didClickImageBtnAction:" destination="-1" eventType="touchUpInside" id="O1Y-X2-Ngq"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPH-Xn-z9q">
-                                    <rect key="frame" x="175.5" y="0.0" width="97" height="70"/>
+                                    <rect key="frame" x="176" y="0.0" width="97" height="80"/>
                                     <connections>
                                         <action selector="didClickImageBtnAction:" destination="-1" eventType="touchUpInside" id="dDe-zo-rBq"/>
                                     </connections>
@@ -229,7 +232,7 @@
                         <constraint firstItem="OkB-Fl-aPG" firstAttribute="leading" secondItem="q0E-kI-oFc" secondAttribute="trailing" id="B0L-rt-H3q"/>
                         <constraint firstItem="q0E-kI-oFc" firstAttribute="leading" secondItem="ne5-8f-lAC" secondAttribute="leading" constant="12" id="YcG-gG-Baq"/>
                         <constraint firstItem="OkB-Fl-aPG" firstAttribute="top" secondItem="ne5-8f-lAC" secondAttribute="top" id="Ygj-9l-RHT"/>
-                        <constraint firstAttribute="height" constant="70" id="ayF-Ci-iF3"/>
+                        <constraint firstAttribute="height" constant="80" id="ayF-Ci-iF3"/>
                         <constraint firstAttribute="trailing" secondItem="OkB-Fl-aPG" secondAttribute="trailing" constant="10" id="cXQ-a4-b9m"/>
                         <constraint firstAttribute="bottom" secondItem="OkB-Fl-aPG" secondAttribute="bottom" id="eUu-hW-4Wf"/>
                         <constraint firstItem="q0E-kI-oFc" firstAttribute="top" secondItem="ne5-8f-lAC" secondAttribute="top" constant="12" id="rIk-sS-r28"/>
@@ -259,6 +262,8 @@
         </view>
     </objects>
     <resources>
+        <image name="zhanghuguanli20@3x.png" width="16" height="16"/>
+        <image name="zhanghuguanli25@3x.png" width="16" height="16"/>
         <image name="zhanghuguanli6@3x.png" width="16" height="16"/>
     </resources>
 </document>

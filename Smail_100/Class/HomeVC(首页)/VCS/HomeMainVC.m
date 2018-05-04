@@ -82,7 +82,7 @@
     
     [self.leftNaviBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
     
-    [self setRightNaviBtnImage:[UIImage imageNamed:@"shouye1@3x.png"]];
+    [self setRightNaviBtnImage:[UIImage imageNamed:@"message_icon@2x.png"]];
     
     
     UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 120)/2, 10, SCREEN_WIDTH - 120, 30)];
@@ -163,7 +163,7 @@
 - (void)didClickRightNaviBtn
 {
     
-    self.tabBarController.selectedIndex = 3;
+//    self.tabBarController.selectedIndex = 3;
 }
 
 ///搜索

@@ -177,7 +177,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     inPutTextField.returnKeyType = UIReturnKeySearch;
     inPutTextField.backgroundColor =[UIColor whiteColor];
     inPutTextField.borderStyle = UITextBorderStyleNone;
-    [inPutTextField layerForViewWith:5 AndLineWidth:0];
+    [inPutTextField layerForViewWith:15 AndLineWidth:0];
     _inPutTextField = inPutTextField;
     
     //搜索框里面的UI
@@ -223,7 +223,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     collectionView.backgroundColor = BACKGROUNDNOMAL_COLOR;
     [self.view addSubview:collectionView];
     self.collectionView = collectionView;
-    [self setRightNaviBtnImage:[UIImage imageNamed:@"shouye18@3x.png"]];
+    [self setRightNaviBtnImage:[UIImage imageNamed:@"message_icon@2x.png"]];
     
     
 }
@@ -231,7 +231,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 - (void)didClickRightNaviBtn
 {
     
-    self.tabBarController.selectedIndex = 3;
+//    self.tabBarController.selectedIndex = 3;
 }
 
 /// 配置基础设置
