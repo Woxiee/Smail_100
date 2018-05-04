@@ -27,7 +27,9 @@
 @end
 
 @implementation RealNameVC
-
+{
+    BOOL _isLoging[3];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
@@ -94,19 +96,20 @@
     [param setObject:_idTF.text forKey:@"idcard"];
     [param setObject:_phoneTF.text forKey:@"mobile"];
     [param setObject:_deviceTF.text forKey:@"devid"];
+    
     NSData *imageData = UIImageJPEGRepresentation(self.upImageView.image , 0.3);
     NSData *imageData1 = UIImageJPEGRepresentation(self.downImageView.image , 0.3);
     NSData *imageData2 = UIImageJPEGRepresentation(self.otherImageView.image , 0.3);
     
-    if (imageData == nil) {
+    if (_isLoging[0] == NO) {
         [self.view makeToast:@"请上传身份证正面照"];
         return;
     }
-    if (imageData1 == nil) {
+    if (_isLoging[1] == NO) {
         [self.view makeToast:@"请上传身份证背面照"];
         return;
     }
-    if (imageData2 == nil) {
+    if (_isLoging[2] == NO) {
         [self.view makeToast:@"请上传手持身份证正面照"];
         return;
     }
@@ -170,7 +173,7 @@
         
         if (button.tag==100) {
             [weakSelf selectImageByPhotoWithBlock:^(UIImage *image) {
-
+                _isLoging[button.tag - 100] = YES;
                 if (sender.tag == 100) {
                     weakSelf.upImageView.image = image;
                 }
