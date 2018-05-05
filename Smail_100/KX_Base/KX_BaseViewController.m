@@ -2,8 +2,8 @@
 //  KX_BaseViewController.m
 //  KX_Service
 //
-//  Created by mac on 16/8/1.
-//  Copyright © 2016年 Frank. All rights reserved.
+//  Created by mac on 14/8/1.
+//  Copyright © 2014年 Frank. All rights reserved.
 //
 
 #import "KX_BaseViewController.h"
@@ -115,7 +115,7 @@
 {
     self.rightNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.rightNaviBtn setImage:img forState:UIControlStateNormal];
-    self.rightNaviBtn.titleLabel.font=[UIFont systemFontOfSize:16];
+    self.rightNaviBtn.titleLabel.font=[UIFont systemFontOfSize:15];
     [self.rightNaviBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
     self.rightNaviBtn.backgroundColor=[UIColor clearColor];
     [self.rightNaviBtn addTarget:self action:@selector(didClickRightNaviBtn) forControlEvents:UIControlEventTouchUpInside];
@@ -131,7 +131,7 @@
     self.rightNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.rightNaviBtn setTitle:str forState:UIControlStateNormal];
     [self.rightNaviBtn setTitleColor:titleColor forState:UIControlStateNormal];
-    self.rightNaviBtn.titleLabel.font=[UIFont systemFontOfSize:18];
+    self.rightNaviBtn.titleLabel.font=[UIFont systemFontOfSize:15];
     [self.rightNaviBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [self.rightNaviBtn addTarget:self action:@selector(didClickRightNaviBtn) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem * rightButton = [[UIBarButtonItem alloc]initWithCustomView:self.rightNaviBtn];
@@ -147,7 +147,7 @@
     //[self.rightNaviBtn setBackgroundImage:img forState:UIControlStateNormal];
     [self.leftNaviBtn setImage:img forState:UIControlStateNormal];
     //    [self.rightNaviBtn setTitle:@"返回" forState:UIControlStateNormal];
-    self.leftNaviBtn.titleLabel.font=[UIFont systemFontOfSize:16];
+    self.leftNaviBtn.titleLabel.font=[UIFont systemFontOfSize:15];
     [self.leftNaviBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
     self.leftNaviBtn.backgroundColor=[UIColor clearColor];
     [self.leftNaviBtn addTarget:self action:@selector(popVC) forControlEvents:UIControlEventTouchUpInside];
@@ -164,7 +164,7 @@
     [self.leftNaviBtn setImage:[UIImage imageNamed:@"18@3x.png"] forState:UIControlStateNormal];
     [self.leftNaviBtn setImage:[UIImage imageNamed:@"18@3x.png"] forState:UIControlStateHighlighted];
     [self.leftNaviBtn setTitle:str forState:UIControlStateNormal];
-    self.leftNaviBtn.titleLabel.font=[UIFont systemFontOfSize:18];
+    self.leftNaviBtn.titleLabel.font=[UIFont systemFontOfSize:15];
     [self.leftNaviBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
     self.leftNaviBtn.backgroundColor=[UIColor clearColor];
     [self.leftNaviBtn addTarget:self action:@selector(popVC) forControlEvents:UIControlEventTouchUpInside];

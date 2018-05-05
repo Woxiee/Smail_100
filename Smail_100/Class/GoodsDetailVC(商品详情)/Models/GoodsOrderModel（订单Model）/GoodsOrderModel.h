@@ -164,6 +164,7 @@
 @property (nonatomic , copy) NSString              * ctime;
 @property (nonatomic , copy) NSString              * message;
 @property (nonatomic , copy) NSAttributedString              * allPriceAttriStr;
+@property (nonatomic , copy) NSString              * freight_msg;
 
 
 @property (nonatomic , assign) BOOL              isDetail;

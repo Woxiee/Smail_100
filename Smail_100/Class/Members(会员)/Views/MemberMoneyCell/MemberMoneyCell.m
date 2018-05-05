@@ -41,11 +41,12 @@
 
 - (void)setStr:(NSString *)str
 {
+ 
     _str = str;
-    smailLB.text = [KX_UserInfo sharedKX_UserInfo].money;
-    integralLB.text = [KX_UserInfo sharedKX_UserInfo].point;
-    chargeLB.text = [KX_UserInfo sharedKX_UserInfo].air_money;
-    changeLB.text = [KX_UserInfo sharedKX_UserInfo].used_point;
+    smailLB.text = [KX_UserInfo sharedKX_UserInfo].money?[KX_UserInfo sharedKX_UserInfo].money:@"--";
+    integralLB.text = [KX_UserInfo sharedKX_UserInfo].point?[KX_UserInfo sharedKX_UserInfo].point:@"--";
+    chargeLB.text = [KX_UserInfo sharedKX_UserInfo].air_money?[KX_UserInfo sharedKX_UserInfo].air_money:@"--";
+    changeLB.text = [KX_UserInfo sharedKX_UserInfo].used_point?[KX_UserInfo sharedKX_UserInfo].used_point :@"--";
 
 }
 

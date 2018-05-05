@@ -24,7 +24,7 @@
     notDefaultName.textColor = TITLETEXTLOWCOLOR;
     notDefaultName.font = Font15;
 
-    adressDetail.textColor = TITLETEXTLOWCOLOR;
+    adressDetail.textColor = DETAILTEXTCOLOR;
     adressDetail.font = PLACEHOLDERFONT;
     
     phoneNum.textColor = TITLETEXTLOWCOLOR;

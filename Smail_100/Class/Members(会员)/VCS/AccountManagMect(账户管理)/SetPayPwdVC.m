@@ -37,7 +37,7 @@
     }
 
     
-    [_sureBtn layerForViewWith:3 AndLineWidth:0.5];
+    [_sureBtn layerForViewWith:12 AndLineWidth:0.5];
     _sureBtn.backgroundColor = KMAINCOLOR;
 
 
@@ -82,11 +82,15 @@
         NSString *msg = result[@"msg"];
         if ([result[@"code"] integerValue] == 0) {
             [weakSelf.view makeToast:msg];
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-
             [[KX_UserInfo sharedKX_UserInfo] loadUserInfoFromSanbox];
             [KX_UserInfo sharedKX_UserInfo].pay_password = _newsPwdTF.text;
             [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeAfter * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+
+            });
+
+          
 
         }
         else{

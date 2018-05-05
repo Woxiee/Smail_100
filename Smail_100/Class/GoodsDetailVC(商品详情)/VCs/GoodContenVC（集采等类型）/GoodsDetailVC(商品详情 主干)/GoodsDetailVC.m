@@ -47,6 +47,9 @@
 /// 初始化视图
 - (void)setup
 {
+    
+    self.title = @"商品详情";
+//    self.view.t = [UIColor whiteColor];
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
     GoodContenVC  *VC1 = [[GoodContenVC alloc] init];
     VC1.title = @"商品详情";
@@ -56,12 +59,12 @@
     [array addObject:@"商品详情"];
     [_subViewControllers addObject:VC1];
  
-    GoodDetailImageVC *webViewVC1 = [GoodDetailImageVC new];
-    webViewVC1.title = @"购买须知";
-    webViewVC1.typeStr = self.typeStr;
-    webViewVC1.productID = self.productID;
-    [array addObject:@"购买须知"];
-    [_subViewControllers addObject:webViewVC1];
+//    GoodDetailImageVC *webViewVC1 = [GoodDetailImageVC new];
+//    webViewVC1.title = @"购买须知";
+//    webViewVC1.typeStr = self.typeStr;
+//    webViewVC1.productID = self.productID;
+//    [array addObject:@"购买须知"];
+//    [_subViewControllers addObject:webViewVC1];
 
     WEAKSELF;
     self.navigationTabBar = [[DLNavigationTabBar alloc] initWithTitles:array];
@@ -69,7 +72,21 @@
         [weakSelf navigationDidSelectedControllerIndex:index];
     }];
 
-    self.navigationItem.titleView = self.navigationTabBar;
+//    self.navigationItem.title  = @"商品详情";
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    
+    titleLabel.backgroundColor = [UIColor clearColor];
+    
+    titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    
+    titleLabel.textColor = [UIColor whiteColor];
+    
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    
+    titleLabel.text = @"商品详情";
+    
+    self.navigationItem.titleView = titleLabel;
+//    self.navigationItem.titleView = self.navigationTabBar;
     self.navigationTabBar.sliderBackgroundColor = [UIColor whiteColor];
     self.delegate = self;
     self.dataSource = self;

@@ -36,23 +36,24 @@
     [self addSubview:lineView];
     
     UIButton *shouYeBtn= [UIButton buttonWithType:UIButtonTypeCustom];
-    shouYeBtn.frame = CGRectMake(3, CGRectGetMaxY(lineView.frame),SCREEN_WIDTH/4 , 45);
+    shouYeBtn.frame = CGRectMake(50, CGRectGetMaxY(lineView.frame),SCREEN_WIDTH/3 , 45);
     [shouYeBtn addTarget:self action:@selector(didClickEmailAction:) forControlEvents:UIControlEventTouchUpInside];
     shouYeBtn.tag = 100;
 //    shouYeBtn.selected = YES;
     [shouYeBtn setImage:[UIImage imageNamed:@"zhuce2@3x.png"] forState:UIControlStateNormal];
     [shouYeBtn setImage:[UIImage imageNamed:@"23@3x.png"] forState:UIControlStateSelected];
     [shouYeBtn setTitle:@"快递邮寄" forState:UIControlStateNormal];
-    [shouYeBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:0];
     [shouYeBtn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
     shouYeBtn.titleLabel.font =  Font15;
+    shouYeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self addSubview:shouYeBtn];
     _shouYeBtn = shouYeBtn;
-    
+    [_shouYeBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageLeft imageTitlespace:15];
+
     
     
     UIButton *meBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    meBtn.frame = CGRectMake(CGRectGetMaxX(shouYeBtn.frame)  +40, CGRectGetMaxY(lineView.frame), SCREEN_WIDTH/4, 45);
+    meBtn.frame = CGRectMake(CGRectGetMaxX(shouYeBtn.frame)  +40, CGRectGetMaxY(lineView.frame), SCREEN_WIDTH/3, 45);
     [meBtn addTarget:self action:@selector(didClickEmailAction:) forControlEvents:UIControlEventTouchUpInside];
     meBtn.tag = 101;
     [meBtn setImage:[UIImage imageNamed:@"zhuce2@3x.png"] forState:UIControlStateNormal];
@@ -60,8 +61,11 @@
     [meBtn setTitle:@"门店自提" forState:UIControlStateNormal];
     [meBtn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
     meBtn.titleLabel.font =  Font15;
-    [meBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:5];
+    meBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+
     [self addSubview:meBtn];
+    [meBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageLeft imageTitlespace:15];
+
     _meBtn = meBtn;
     
     
@@ -69,7 +73,7 @@
     lineView2.backgroundColor = LINECOLOR;
     [self addSubview:lineView2];
     
-    UIView *commView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView2.frame), SCREEN_WIDTH, 60)];
+    UIView *commView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView2.frame), SCREEN_WIDTH, 45)];
     [self addSubview:commView];
     [commView layerForViewWith:0 AndLineWidth:0.5];
     UILabel *titleLB1  = [[UILabel alloc] initWithFrame:CGRectMake(10, 6, 70, 30)];
@@ -80,11 +84,12 @@
     [commView addSubview:titleLB1];
     
     
-    KYTextView *textField = [[KYTextView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLB1.frame)+5, 12, SCREEN_WIDTH -CGRectGetMaxY(titleLB1.frame)-25 , 40)];
+    KYTextView *textField = [[KYTextView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLB1.frame)+5, 12, SCREEN_WIDTH -CGRectGetMaxY(titleLB1.frame)-25 , 45)];
     textField.KYPlaceholder  = @"选填(对本次交易的说明,限50个字以内)";
     textField.KYPlaceholderColor = DETAILTEXTCOLOR;
     textField.textAlignment = NSTextAlignmentLeft;
     textField.font = Font14;
+//    textField.backgroundColor = [UIColor redColor];
     textField.maxTextCount = 50;
 //    textField.delegate = self;
 //    textField.borderStyle = UITextBorderStyleNone;
@@ -104,7 +109,7 @@
     
     UILabel *titleLB3 = [[UILabel alloc] initWithFrame:CGRectMake(12, CGRectGetMaxY(lineView1.frame), SCREEN_WIDTH - 25, 44)];
     titleLB3.textColor = TITLETEXTLOWCOLOR;
-    titleLB3.font = Font15;
+    titleLB3.font = Font13;
     titleLB3.textAlignment = NSTextAlignmentRight;
 
     [self addSubview:titleLB3];
@@ -121,7 +126,6 @@
       _textField.KYPlaceholder  = @"选填(对本次交易的说明,限50个字以内)";
     }else{
         _textField.text = _model.message;
-
     }
 
     if (_model.isDetail) {
@@ -129,8 +133,6 @@
         _meBtn.userInteractionEnabled = NO;
         _textField.userInteractionEnabled = NO;
         _textField.text = _model.message;
-
-
     }
    // type  1 邮寄  2门店
     if ([_model.express_type isEqualToString:@"1"]) {

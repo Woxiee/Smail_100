@@ -234,7 +234,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
             }
             if (index == 0) {
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-                weakSelf.tabBarController.selectedIndex = 0;
+//    weakSelf.superVC.tabBarController.selectedIndex = 0;
             }
             else if (index == 1){
                 [weakSelf getCollectionRequestWithISCollect];
@@ -468,7 +468,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
             
         }else{
             [self showHint:@"商品已下架,不能购买"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeAfter * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [weakSelf.navigationController popViewControllerAnimated:YES];
             });
         }

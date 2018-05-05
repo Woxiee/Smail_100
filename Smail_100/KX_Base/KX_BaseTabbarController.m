@@ -45,6 +45,11 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
 /// 配置基础设置
 - (void)setConfiguration
 {
@@ -135,7 +140,7 @@
 #pragma mark - 处理新版本功能
 -(void)handelTheNewVerSion
 {
-    
+//    pgyer.com/ohth
 //    if (!KX_NULLString(_strakUrl)) {
 //        NSString *versionTitle = @"有可用的新版本可更新";
 //        STRONGSELF
@@ -175,7 +180,7 @@
  */
 - (void)updateMethod:(NSDictionary *)response
 {
-    if (response[@"downloadURL"]) {
+    if (response[@"appUrl"]) {
         _response = response;
         NSString *message = response[@"releaseNote"];
         
@@ -203,7 +208,7 @@
         // 开始去更新
 //        NSURL * url = [NSURL URLWithString:self.strakUrl];//itunesURL = trackViewUrl的内容
 //        [[UIApplication sharedApplication] openURL:url];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_response[@"downloadURL"]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_response[@"appUrl"]]];
 
         [[PgyUpdateManager sharedPgyManager] updateLocalBuildNumber];
 

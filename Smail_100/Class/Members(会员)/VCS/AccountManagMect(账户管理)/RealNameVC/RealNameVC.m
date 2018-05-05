@@ -97,9 +97,9 @@
     [param setObject:_phoneTF.text forKey:@"mobile"];
     [param setObject:_deviceTF.text forKey:@"devid"];
     
-    NSData *imageData = UIImageJPEGRepresentation(self.upImageView.image , 0.3);
-    NSData *imageData1 = UIImageJPEGRepresentation(self.downImageView.image , 0.3);
-    NSData *imageData2 = UIImageJPEGRepresentation(self.otherImageView.image , 0.3);
+//    NSData *imageData = UIImageJPEGRepresentation(self.upImageView.image , 0.3);
+//    NSData *imageData1 = UIImageJPEGRepresentation(self.downImageView.image , 0.3);
+//    NSData *imageData2 = UIImageJPEGRepresentation(self.otherImageView.image , 0.3);
     
     if (_isLoging[0] == NO) {
         [self.view makeToast:@"请上传身份证正面照"];
@@ -116,7 +116,10 @@
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     [[BaseHttpRequest alloc] requestUploadImageList:@[self.upImageView.image,self.downImageView.image,self.otherImageView.image] Url:@"/ucenter/idcard_auth" Params:param andBlock:^(NSString *imageName) {
         [weakSelf.view makeToast:imageName];
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeAfter * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+
+        });
         
     }];
 
@@ -131,7 +134,7 @@
     [self setRightNaviBtnTitle:@"提交" withTitleColor:[UIColor whiteColor]];
 
     UIImageView *stateImageView = [[UIImageView alloc] init];
-    stateImageView.frame = CGRectMake((SCREEN_WIDTH - 110)/2, SCREEN_HEIGHT-300, 110, 110);
+    stateImageView.frame = CGRectMake((SCREEN_WIDTH - 110)/2, 330, 110, 110);
     stateImageView.image = [UIImage imageNamed:@"zhanghuguanli7@3x.png"];
     stateImageView.alpha = 0.7;
     [self.view addSubview:stateImageView];
@@ -167,13 +170,13 @@
 - (IBAction)didClickImageBtnAction:(UIButton *)sender {
     
     WEAKSELF;
-    CustomAlertView *alert = [[CustomAlertView alloc] initWithAlertViewHeight:320];
+    CustomAlertView *alert = [[CustomAlertView alloc] initWithAlertViewHeight:420];
     alert.ButtonClick = ^void(UIButton*button){
         NSLog(@"%ld",(long)button.tag);
         
         if (button.tag==100) {
             [weakSelf selectImageByPhotoWithBlock:^(UIImage *image) {
-                _isLoging[button.tag - 100] = YES;
+                _isLoging[sender.tag - 100] = YES;
                 if (sender.tag == 100) {
                     weakSelf.upImageView.image = image;
                 }
@@ -190,6 +193,8 @@
             
         }else{
             [weakSelf selectImageByCameraWithBlock:^(UIImage *image) {
+                _isLoging[sender.tag - 100] = YES;
+
                 if (sender.tag == 100) {
                     weakSelf.upImageView.image = image;
                 }

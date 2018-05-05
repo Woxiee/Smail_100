@@ -33,6 +33,8 @@
 //    _oldPwdContensH.constant = 0;
     
     [_remenberBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
+    _loginBtn.backgroundColor =  KMAINCOLOR;
+    [_loginBtn layerForViewWith:12 AndLineWidth:0];
     
 }
 
@@ -51,7 +53,7 @@
             if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
 
                 [weakSelf.view makeToast:result[@"msg"]];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeAfter * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [weakSelf.navigationController popViewControllerAnimated:YES];
 
                 });

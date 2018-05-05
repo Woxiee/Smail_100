@@ -99,6 +99,11 @@
 
 #define NIGHT @"night"
 
+
+/// 全局延迟时间
+#define timeAfter 1
+
+
 /// 图片
 #define LOADIMAGE(file) [UIImage imageNamed:file]
 

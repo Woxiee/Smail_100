@@ -76,11 +76,12 @@
     if (_model.earn_money.floatValue >0) {
         NSString *getMoney = [NSString stringWithFormat:@"赚¥%@",_model.earn_money];
         NSString *moneyStr = [NSString stringWithFormat:@"%@ %@",allPrice,getMoney];
-        NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[getMoney,@"+"]];
+        NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[getMoney,@"+",@"积分",@"¥"]];
         moneyLabel.attributedText  = attributedStr;
 
     }else{
-        moneyLabel.text  = allPrice;
+        NSAttributedString *attributedStr =  [self attributeStringWithContent:allPrice keyWords:@[@"+",@"积分",@"¥"]];
+        moneyLabel.attributedText  = attributedStr;
     }
     
     
@@ -160,7 +161,7 @@
                 
                 [attString addAttribute:(NSString*)NSForegroundColorAttributeName value:color range:NSMakeRange(location+range.location, range.length)];
                 [attString addAttribute:NSFontAttributeName
-                                value:Font11
+                                value:Font12
                                 range:range];
                 
                 location+=(range.location+range.length);

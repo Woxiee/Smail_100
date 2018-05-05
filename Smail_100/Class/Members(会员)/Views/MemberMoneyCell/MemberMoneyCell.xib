@@ -24,7 +24,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kkg-gS-wRr">
                                 <rect key="frame" x="79" y="12" width="1" height="45.5"/>
-                                <color key="backgroundColor" red="0.59209048748016357" green="0.59219515323638916" blue="0.59208387136459351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.82752662899999996" green="0.82347923519999999" blue="0.82744878529999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="tw8-V4-c0w"/>
                                 </constraints>
@@ -71,7 +71,7 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ojh-u1-bnD">
                                 <rect key="frame" x="79" y="12" width="1" height="45.5"/>
-                                <color key="backgroundColor" red="0.59209048750000004" green="0.59219515320000005" blue="0.59208387139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.82752662899999996" green="0.82347923519999999" blue="0.82744878529999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="5fG-q3-to5"/>
                                 </constraints>
@@ -109,7 +109,7 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z64-WD-FuG">
                                 <rect key="frame" x="79" y="12" width="1" height="45.5"/>
-                                <color key="backgroundColor" red="0.59209048750000004" green="0.59219515320000005" blue="0.59208387139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.82752662899999996" green="0.82347923519999999" blue="0.82744878529999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="BiV-3o-10a"/>
                                 </constraints>

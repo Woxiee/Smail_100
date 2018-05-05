@@ -74,56 +74,46 @@
     [self layerForViewWith:0 AndLineWidth:0.5];
     
     shouYeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    shouYeBtn.frame = CGRectMake(10, 0, SCREEN_WIDTH/7, 45);
+    shouYeBtn.frame = CGRectMake(0, 0, SCREEN_WIDTH*0.15-2.5, 50);
     [shouYeBtn addTarget:self action:@selector(didClickBottomViewAction:) forControlEvents:UIControlEventTouchUpInside];
     shouYeBtn.tag = 100;
 //    shouYeBtn.backgroundColor = [UIColor redColor];
     [shouYeBtn setImage:[UIImage imageNamed:@"detailHomeIcon@2x.png"] forState:UIControlStateNormal];
-
     [shouYeBtn setTitle:@"首页" forState:UIControlStateNormal];
-
     shouYeBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-
+    [shouYeBtn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
+    shouYeBtn.titleLabel.font =  Font11;
+    [self addSubview:shouYeBtn];
     [shouYeBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:0];
 
-    [shouYeBtn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
-    shouYeBtn.titleLabel.font =  Font12;
-    [self addSubview:shouYeBtn];
-
     meBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    meBtn.frame = CGRectMake(CGRectGetMaxX(shouYeBtn.frame), 0, SCREEN_WIDTH/7, 45);
+    meBtn.frame = CGRectMake(CGRectGetMaxX(shouYeBtn.frame), 0,  SCREEN_WIDTH*0.15-2.5, 50);
     [meBtn addTarget:self action:@selector(didClickBottomViewAction:) forControlEvents:UIControlEventTouchUpInside];
     meBtn.tag = 101;
-    [meBtn setImage:[UIImage imageNamed:@"detailCollectIcon@2x.png"] forState:UIControlStateNormal];
-    [meBtn setImage:[UIImage imageNamed:@"detailCollectIcon@2x.png"] forState:UIControlStateSelected];
-
+    [meBtn setImage:[UIImage imageNamed:@"shouye12@3x.png"] forState:UIControlStateNormal];
+    [meBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
     [meBtn setTitle:@"收藏" forState:UIControlStateNormal];
-
     [meBtn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
     [meBtn setTitleColor:KMAINCOLOR forState:UIControlStateSelected];
-
-    meBtn.titleLabel.font =  Font12;
+    meBtn.titleLabel.font =  KY_FONT(11);
     meBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:meBtn];
     [meBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:0];
 
-    [self addSubview:meBtn];
-
     cartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    cartBtn.frame = CGRectMake(CGRectGetMaxX(meBtn.frame)-10, 0,  SCREEN_WIDTH/7+10, 45);
+    cartBtn.frame = CGRectMake(CGRectGetMaxX(meBtn.frame), 0,  SCREEN_WIDTH*0.15+5, 50);
     [cartBtn setImage:[UIImage imageNamed:@"detailcon1@2x.png"] forState:UIControlStateNormal];
     [cartBtn setTitle:@"购物车" forState:UIControlStateNormal];
     [cartBtn addTarget:self action:@selector(didClickBottomViewAction:) forControlEvents:UIControlEventTouchUpInside];
     cartBtn.tag = 102;
     [cartBtn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
-    cartBtn.titleLabel.font =  Font12;
-    cartBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [cartBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:0];
-
+    cartBtn.titleLabel.font =  Font11;
     [self addSubview:cartBtn];
-    
+    [cartBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:0];
+//    [cartBtn sizeToFit];
     
     addCartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    addCartBtn.frame = CGRectMake(CGRectGetMaxX(cartBtn.frame), 0,  2* SCREEN_WIDTH/7, 50);
+    addCartBtn.frame = CGRectMake(CGRectGetMaxX(cartBtn.frame), 0,  (SCREEN_WIDTH- CGRectGetMaxX(cartBtn.frame))/2, 50);
     [addCartBtn addTarget:self action:@selector(didClickBottomViewAction:) forControlEvents:UIControlEventTouchUpInside];
     addCartBtn.tag = 103;
     [addCartBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -132,10 +122,9 @@
     [addCartBtn setTitle:@"加入购物车" forState:UIControlStateNormal];
     addCartBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:addCartBtn];
- 
 
     buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    buyBtn.frame = CGRectMake(CGRectGetMaxX(addCartBtn.frame), 0, 2* SCREEN_WIDTH/7, 50);
+    buyBtn.frame = CGRectMake(CGRectGetMaxX(addCartBtn.frame), 0, addCartBtn.mj_w, 50);
     [buyBtn addTarget:self action:@selector(didClickBottomViewAction:) forControlEvents:UIControlEventTouchUpInside];
     buyBtn.tag = 104;
     [buyBtn setTitle:@"立即购买" forState:UIControlStateNormal];

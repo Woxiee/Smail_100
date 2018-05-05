@@ -30,7 +30,7 @@
 //    canShow = YES;
     //
     if(canShow){ // 初始化新特性界面
-        self.window.rootViewController = [HYNewFeatureCtr newFeatureVCWithImageNames:@[@"load_1.jpg",@"load_2.jpg",@"load_3.jpg",@"load_4.jpg",]  dotImage:@"point_normal" currentDotImage:@"point_select" enterBlock:^{
+        self.window.rootViewController = [HYNewFeatureCtr newFeatureVCWithImageNames:@[@"load_1.png",@"load_2.png",@"load_3.png",@"load_4.png",]  dotImage:@"point_normal" currentDotImage:@"point_select" enterBlock:^{
             
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:@"1" forKey:@"isShow"];
@@ -86,6 +86,8 @@
     
     [WXApi registerApp:@"wx500ed907f1edd985" enableMTA:NO];
     //启动基本SDK
+    
+//    a5c7d4c513bf4d2b8f539323d9420bf9 wu
     [[PgyManager sharedPgyManager] startManagerWithAppId:@"f6e00b0edb7fd2079493ec1535523603"];
     //启动更新检查SDK
     [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"f6e00b0edb7fd2079493ec1535523603"];

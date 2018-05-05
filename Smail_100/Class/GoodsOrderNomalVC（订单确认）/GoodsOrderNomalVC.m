@@ -107,6 +107,10 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     _tableView.tableFooterView = [UIView new];
     _tableView.backgroundColor = BACKGROUND_COLOR;
     [_bottomView layerForViewWith:0 AndLineWidth:0.5];
+    
+    
+    _orderPiceLB.textColor = TITLETEXTLOWCOLOR;
+    _orderPiceLB.font = Font15;
     [self.tableView registerNib:[UINib nibWithNibName:@"DefaultAdressCell" bundle:nil] forCellReuseIdentifier:defaultAdressCellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"GoodSOrderCommonCell" bundle:nil] forCellReuseIdentifier:goodSOrderCommonCell];
     [self.tableView registerNib:[UINib nibWithNibName:@"GoodSOrderNomalCell" bundle:nil] forCellReuseIdentifier:goodSOrderNomalCellID];
@@ -1007,53 +1011,119 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     _orderModel.allFreight = allFreight;
     NSString *allPriceStr = @"";
     NSMutableArray *priceArr = [NSMutableArray array];
+    NSMutableArray *infoArr = [NSMutableArray array];
+    [infoArr addObject:[NSString stringWithFormat:@"%d",count]];
+    [infoArr addObject:@"+"];
+    [infoArr addObject:@"(包邮)"];
+
+
+    NSString *str1;
     if (allPrices>0) {
-        NSString *str = [NSString stringWithFormat:@"¥%.2f",allPrices];
-        [priceArr addObject:str];
+       str1 = [NSString stringWithFormat:@"¥%.2f",allPrices];
+        str1 = [str1 stringByReplacingOccurrencesOfString:@".00" withString:@""];
+        [priceArr addObject:str1];
+        [infoArr addObject:str1];
     }
     
     _orderModel.allPrices = allPrices;
+    NSString *str2;
     if (allPoint>0) {
-         NSString *str = [NSString stringWithFormat:@"%.2f积分",allPoint];
-        [priceArr addObject:str];
+        str2 = [NSString stringWithFormat:@"%.2f积分",allPoint];
+        str2 = [str2 stringByReplacingOccurrencesOfString:@".00" withString:@""];
+        [infoArr addObject:str2];
+
+        [priceArr addObject:str2];
     }
     
-    
+    NSString *str3;
     if (allFreight>0 && !KX_NULLString(_orderModel.express_type)) {
-        NSString *str = [NSString stringWithFormat:@"%.2f快递费",allFreight];
-        
-        [priceArr addObject:str];
+       str3 = [NSString stringWithFormat:@"%.2f快递费",allFreight];
+        str3 = [str3 stringByReplacingOccurrencesOfString:@".00" withString:@""];
+
+        [priceArr addObject:str3];
+        [infoArr addObject:str3];
 
     }else{
-        [priceArr addObject:@"(包邮)"];
+        if ([_itemsModel.freight_msg isEqualToString:@"包邮"]) {
+            [priceArr addObject:@"(包邮)"];
+        }
+
     }
     
+   
+    
     allPriceStr = [priceArr componentsJoinedByString:@"+"];
-    allPriceStr = [allPriceStr stringByReplacingOccurrencesOfString:@"+(包邮)" withString:@""];
+    allPriceStr = [allPriceStr stringByReplacingOccurrencesOfString:@".00" withString:@""];
+    allPriceStr = [allPriceStr stringByReplacingOccurrencesOfString:@"+(包邮)" withString:@" (包邮)"];
     NSString *countStr = [NSString stringWithFormat:@"共%d件商品   小计:",count];
 
     NSString *allStr = [NSString stringWithFormat:@"%@%@",countStr,allPriceStr];
-    NSAttributedString *attributedStr =  [allStr creatAttributedString:allStr withMakeRange:NSMakeRange(countStr.length, allStr.length - countStr.length) withColor:KMAINCOLOR withFont:[UIFont systemFontOfSize:15 ]];
-    _allCountStr =  attributedStr;
+//    NSAttributedString *attributedStr =  [allStr creatAttributedString:allStr withMakeRange:NSMakeRange(countStr.length, allStr.length - countStr.length) withColor:KMAINCOLOR withFont:[UIFont systemFontOfSize:15 ]];
+    _allCountStr =  [self attributeStringWithContent:allStr keyWords:infoArr fonts:Font13 color:KMAINCOLOR];
 
 //    weight:UIFontWeightMedium
 
-    NSString *countStr1 = @"合计:";
-    NSString *allStr1 = [NSString stringWithFormat:@"%@%@",countStr1,allPriceStr];
-    NSAttributedString *attributedStr2 =  [allStr1 creatAttributedString:allStr1 withMakeRange:NSMakeRange(countStr1.length, allStr1.length - countStr1.length) withColor:KMAINCOLOR withFont:[UIFont systemFontOfSize:15 ]];
-    _orderPiceLB.attributedText =  attributedStr2;
+    NSString *countStr1 = [NSString stringWithFormat:@"合计:%@",allPriceStr];
+//    NSString *allStr1 = [NSString stringWithFormat:@"%@%@",countStr1,allPriceStr];
+//    NSAttributedString *attributedStr2 =  [allStr1 creatAttributedString:allStr1 withMakeRange:NSMakeRange(countStr1.length, allStr1.length - countStr1.length) withColor:KMAINCOLOR withFont:[UIFont systemFontOfSize:15 ]];
+    _orderPiceLB.attributedText =   [self attributeStringWithContent:countStr1 keyWords:infoArr fonts:Font13 color:KMAINCOLOR];
     
 
     
-    NSString *countStr2 = @"待支付:";
-    NSString *allStr2 = [NSString stringWithFormat:@"%@%@",countStr2,allPriceStr];
-    NSAttributedString *attributedStr3 =  [allStr1 creatAttributedString:allStr2 withMakeRange:NSMakeRange(countStr2.length, allStr2.length - countStr2.length) withColor:KMAINCOLOR withFont:[UIFont systemFontOfSize:15 ]];
-    _orderModel.allPriceAttriStr = attributedStr3;
+//    NSString *countStr2 = @"待支付:";
+//    NSString *allStr2 = [NSString stringWithFormat:@"%@%@",countStr2,allPriceStr];
+//    NSAttributedString *attributedStr3 =  [allStr1 creatAttributedString:allStr2 withMakeRange:NSMakeRange(countStr2.length, allStr2.length - countStr2.length) withColor:KMAINCOLOR withFont:[UIFont systemFontOfSize:15 ]];
+//    _orderModel.allPriceAttriStr = attributedStr3;
     
     _orderModel.allPoint = allPoint;
     [self.tableView reloadData];
 
 }
 
+
+- (NSAttributedString *)attributeStringWithContent:(NSString *)content keyWords:(NSArray *)keyWords fonts:(UIFont *)fonts color:(UIColor *)color
+{
+  __block  UIColor *colors = color;
+    __block  UIFont *font = fonts;
+
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:content];
+    
+    if (keyWords) {
+        
+        [keyWords enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+          
+            NSMutableString *tmpString=[NSMutableString stringWithString:content];
+            if ([obj isEqualToString:@"(包邮)"]) {
+                colors = DETAILTEXTCOLOR;
+            }else{
+                colors = color;
+            }
+//            if ( [obj containsString:@"¥"] || [obj containsString:@"积分"]|| [obj containsString:@"快递费"]) {
+//                font = KY_FONT(9);
+//            }else{
+//                font = fonts;
+//            }
+            NSRange range=[content rangeOfString:obj];
+            
+            NSInteger location=0;
+            while (range.length>0) {
+                
+                [attString addAttribute:(NSString*)NSForegroundColorAttributeName value:colors range:NSMakeRange(location+range.location, range.length)];
+                [attString addAttribute:NSFontAttributeName
+                                  value:font
+                                  range:range];
+                
+                location+=(range.location+range.length);
+                
+                NSString *tmp= [tmpString substringWithRange:NSMakeRange(range.location+range.length, content.length-location)];
+                
+                tmpString=[NSMutableString stringWithString:tmp];
+                
+                range=[tmp rangeOfString:obj];
+            }
+        }];
+    }
+    return attString;
+}
 
 @end

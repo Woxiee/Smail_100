@@ -44,11 +44,11 @@
                self.bGView =view;
         }
         
-        self.frame = CGRectMake(25,(SCREEN_HEIGHT - 410)/2 ,SCREEN_WIDTH - 100,410);
+        self.frame = CGRectMake(25,(SCREEN_HEIGHT - height)/2 ,SCREEN_WIDTH - 100,height);
         [[UIApplication sharedApplication].keyWindow addSubview:self];
         
         //中间弹框的view
-        UIView *popView = [[UIView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH - 50,410)];
+        UIView *popView = [[UIView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH - 50,height)];
         popView.backgroundColor = [UIColor clearColor];
         cornerRadiusView(popView, 5);
         [self addSubview:popView];
@@ -56,8 +56,8 @@
        
         
         UIImageView *meetImage =[[UIImageView alloc] init];
-        meetImage.image = [UIImage imageNamed:@"zhanghuguanli8@3x.png"];
-        meetImage.frame = CGRectMake(0,0,SCREEN_WIDTH - 50,410);
+        meetImage.image = [UIImage imageNamed:@"zhanghuguanli8@2x.png"];
+        meetImage.frame = CGRectMake(0,0,SCREEN_WIDTH - 50,height);
         cornerRadiusView(popView, 5);
         meetImage.userInteractionEnabled = YES;
         [self addSubview:meetImage];

@@ -150,9 +150,14 @@
                     userinfo.accout = _userNameTextField.text;
                     userinfo.pwd = _userPassWDTextField.text;
                     [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
-                    [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                    [weakSelf.view makeToast:result[@"msg"]];
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeAfter * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                    });
+
                 }else{
-                    [weakSelf.view makeToast:result[@"data"][@"msg"]];
+                    [weakSelf.view makeToast:result[@"msg"]];
 
                 }
                 

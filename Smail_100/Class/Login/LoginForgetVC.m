@@ -268,11 +268,12 @@
 
 //                LoginFindAndRegirsVC *VC = [[LoginFindAndRegirsVC alloc] initWithNibName:@"LoginFindAndRegirsVC" bundle:nil];
 //                [weakSelf.navigationController pushViewController:VC animated:YES];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf.view makeToast:@"注册成功,请登录"];
+
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeAfter * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.navigationController popToRootViewControllerAnimated:YES];
                     
                 });
-                [weakSelf.view makeToast:@"注册成功,请登录"];
                 
             }else{
                 [weakSelf.view makeToast:result[@"msg"]];

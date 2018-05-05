@@ -107,7 +107,7 @@
                             <rect key="frame" x="92" y="0.0" width="233" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -134,7 +134,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入设备码后8位" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EBa-iG-gTp">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入设备码后8位(选填)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EBa-iG-gTp">
                             <rect key="frame" x="92" y="0.0" width="233" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -238,6 +238,10 @@
                         <constraint firstItem="q0E-kI-oFc" firstAttribute="top" secondItem="ne5-8f-lAC" secondAttribute="top" constant="12" id="rIk-sS-r28"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezm-Tc-sUU">
+                    <rect key="frame" x="0.0" y="285" width="374" height="381"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -245,15 +249,19 @@
                 <constraint firstItem="ne5-8f-lAC" firstAttribute="top" secondItem="OoH-5M-AmF" secondAttribute="bottom" constant="1" id="A1r-F5-h7z"/>
                 <constraint firstItem="ne5-8f-lAC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ftz-xM-xVQ"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="AKn-QY-7tL" secondAttribute="trailing" id="Hex-3M-xk8"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="ezm-Tc-sUU" secondAttribute="trailing" constant="1" id="Nt3-BH-p01"/>
                 <constraint firstItem="E4O-Ci-cVF" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="RHP-nF-td4"/>
                 <constraint firstAttribute="trailing" secondItem="OoH-5M-AmF" secondAttribute="trailing" id="RUv-PR-Pi3"/>
                 <constraint firstItem="AKn-QY-7tL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Sgb-R4-RlI"/>
+                <constraint firstItem="ezm-Tc-sUU" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Sp0-MF-euL"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="ogh-oB-MQH" secondAttribute="trailing" id="VQq-z0-Ddf"/>
                 <constraint firstItem="AKn-QY-7tL" firstAttribute="top" secondItem="E4O-Ci-cVF" secondAttribute="bottom" constant="1" id="WO3-ds-mlq"/>
+                <constraint firstItem="ezm-Tc-sUU" firstAttribute="top" secondItem="ne5-8f-lAC" secondAttribute="bottom" constant="1" id="ZPg-eL-IFV"/>
                 <constraint firstItem="E4O-Ci-cVF" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="anF-vw-6Di"/>
                 <constraint firstItem="OoH-5M-AmF" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="bFb-q7-7IG"/>
                 <constraint firstItem="ogh-oB-MQH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hIK-WY-cpK"/>
                 <constraint firstItem="ogh-oB-MQH" firstAttribute="top" secondItem="AKn-QY-7tL" secondAttribute="bottom" constant="1" id="qkw-oG-wS0"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="ezm-Tc-sUU" secondAttribute="bottom" constant="1" id="ss4-uq-7RY"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="ne5-8f-lAC" secondAttribute="trailing" id="vu8-mJ-cO9"/>
                 <constraint firstItem="E4O-Ci-cVF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yvn-kQ-zsZ"/>
             </constraints>
