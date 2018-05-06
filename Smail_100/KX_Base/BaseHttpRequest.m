@@ -177,7 +177,7 @@
 
 }
 
-- (instancetype)requestUploadImageList:(NSArray *)listArr Url:(NSString *)url Params:(id)paramter andBlock:(ImageUrlBlock)block
+- (instancetype)requestUploadImageList:(NSArray *)listArr Url:(NSString *)url Params:(id)paramter andBlock:(ImageUrlInfoBlock)block
 {
     
     if (self == [super init]) {
@@ -189,9 +189,9 @@
 }
 
 
-- (void) uploadWithImageList:(NSArray *)listArr Url:(NSString *)url Params:(id)paramter   andBlock:(ImageUrlBlock)block
+- (void) uploadWithImageList:(NSArray *)listArr Url:(NSString *)url Params:(id)paramter   andBlock:(ImageUrlInfoBlock)block
 {
-    self.imageBlock = block;
+    self.imageInfoBlock = block;
     
     
     NSString *returnName = @"file";
@@ -234,7 +234,10 @@
               
               NSInteger status = [dic[@"code"] integerValue];
               if (status == 0) {
-                  self.imageBlock(dic[@"msg"]);
+                  self.imageInfoBlock(dic[@"msg"],dic[@"code"]);
+              }else{
+                  self.imageInfoBlock(dic[@"msg"],dic[@"code"]);
+
               }
               
               

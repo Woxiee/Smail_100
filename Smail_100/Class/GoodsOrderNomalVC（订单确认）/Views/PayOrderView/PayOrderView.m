@@ -353,11 +353,18 @@ static NSString * const OthercellID = @"OthercellID";
             NSString *str = [NSString stringWithFormat:@"%.2f积分",_orderModel.allPoint];
             [priceArr addObject:str];
         }
+        
+        if (_orderModel.allFreight>0) {
+            NSString *str = [NSString stringWithFormat:@"%.2f快递费",_orderModel.allFreight];
+            [priceArr addObject:str];
+        }
+        
+        
         NSString *allStr = [priceArr componentsJoinedByString:@"+"];
         allStr = [allStr stringByReplacingOccurrencesOfString:@".00" withString:@""];
 //        NSString *conten = [NSString stringWithFormat:@"待支付:%@",allStr];
         
-        NSAttributedString *attributedStr =  [self attributeStringWithContent:[NSString stringWithFormat:@"待支付:%@",allStr] keyWords:@[@"积分",@"+"]];
+        NSAttributedString *attributedStr =  [self attributeStringWithContent:[NSString stringWithFormat:@"待支付:%@",allStr] keyWords:@[@"积分",@"+",@"快递费"]];
         
         
      NSMutableAttributedString *conten =(NSMutableAttributedString *)attributedStr;

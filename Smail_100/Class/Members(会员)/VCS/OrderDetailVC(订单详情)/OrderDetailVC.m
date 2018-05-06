@@ -478,7 +478,7 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
 
 
     
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 40) style:UITableViewStylePlain];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 40 - SafeAreaTopHeight) style:UITableViewStyleGrouped];
     tableView.dataSource = self;
     tableView.delegate = self;
     tableView.rowHeight = 44.f;
@@ -488,6 +488,18 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
     self.tableView = tableView;
     OrderFootView *footView = [[OrderFootView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 45 - 64, SCREEN_WIDTH, 45)];
     [self.view  addSubview:footView];
+    footView.backgroundColor = [UIColor whiteColor];
+         footView.layer.shadowColor = LINECOLOR.CGColor;
+    
+    
+    footView.layer.shadowColor = [UIColor blackColor].CGColor;//设置阴影的颜色
+    
+    footView.layer.shadowOpacity = 0.8;//设置阴影的透明度
+    
+    footView.layer.shadowOffset = CGSizeMake(1, 1);//设置阴影的偏移量
+    
+    footView.layer.shadowRadius = 2;//设置阴影的圆角
+
     self.footView = footView;
     
     self.footView.didClickOrderItemBlock = ^(NSString *title){
@@ -537,7 +549,8 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
     [self.tableView registerNib:[UINib nibWithNibName:@"DeductionCell" bundle:nil] forCellReuseIdentifier:DeductionCellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"OrderPayTypeCell" bundle:nil] forCellReuseIdentifier:orderPayTypeCellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"GoodsCommonCell" bundle:nil] forCellReuseIdentifier:goodsCommonCellID];
-
+    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
+    self.tableView.tableFooterView = [UIView new];
 }
 
 
@@ -652,7 +665,7 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
 {
 
     if (![self.resorceArray[section] isKindOfClass:[NSString class]]) {
-        Seller *seller = _orderModel.seller[section-1];
+//        Seller *seller = _orderModel.seller[section-1];
         
         UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH -10, 50)];
         headView.backgroundColor = [UIColor whiteColor];
@@ -665,7 +678,7 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
         titleLB.font = Font15;
         titleLB.textAlignment = NSTextAlignmentLeft;
         
-        titleLB.text = seller.seller_name;
+        titleLB.text = _model.orderno;
         [headView addSubview:titleLB];
         
         UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 45, SCREEN_WIDTH, 1)];
@@ -684,6 +697,7 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
     WEAKSELF;
     if (![self.resorceArray[section] isKindOfClass:[NSString class]]) {
         OrderSectionFooterView *footView=  [[OrderSectionFooterView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 145)];
+    
         footView.model = _orderModel;
         
         footView.didChangeEmailTypeBlock = ^(NSInteger type) {

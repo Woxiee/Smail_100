@@ -131,8 +131,10 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPayTypeRelute:) name:NOTICEMEPAYMSG object:nil];
 
- 
     [self.view addSubview:self.tableView];
+
+    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
+    self.tableView.tableFooterView = [UIView new];
     
     JHCoverView *coverView = [[JHCoverView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     coverView.delegate = self;
@@ -654,7 +656,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if ([self.resorceArray[section] isKindOfClass:[Seller class]]) {
-        return 50;
+        return 45;
     }
     return 0;
 }
@@ -663,11 +665,11 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 {
     Seller *seller = _orderModel.seller[section -1];
 
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH -10, 50)];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , 45)];
     headView.backgroundColor = [UIColor whiteColor];
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
-    lineView.backgroundColor = BACKGROUND_COLOR;
-    [headView addSubview:lineView];
+//    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
+//    lineView.backgroundColor = BACKGROUND_COLOR;
+//    [headView addSubview:lineView];
     
     UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, SCREEN_WIDTH - 25, 44)];
     titleLB.textColor = TITLETEXTLOWCOLOR;
@@ -708,10 +710,15 @@ static NSString * const DeductionCellID = @"DeductionCellID";
             // type  0 邮寄  1门店
             weakSelf.orderModel.express_type = [NSString stringWithFormat:@"%ld",type+1];
             if (type == 1) {
+                
                 Seller *seller = weakSelf.orderModel.seller[section - 1];
-                for (Products *item  in seller.products) {
-                    item.freight = @"0";
+                
+                for (Seller *seller in weakSelf.orderModel.seller) {
+                    seller.freight = @"0";
                 }
+//                for (Products *item  in seller.products) {
+//                    item.freight = @"0";
+//                }
                 [weakSelf getGoodsOrderAllInfo];
                 
                 
@@ -1004,9 +1011,10 @@ static NSString * const DeductionCellID = @"DeductionCellID";
         for (Products *item  in seller.products) {
             allPrices += item.price.floatValue *item.goods_nums.intValue;
             allPoint += item.point.floatValue *item.goods_nums.intValue;
-            allFreight +=  item.freight.floatValue *item.goods_nums.floatValue;
             count += item.goods_nums.intValue;
         }
+        allFreight +=  seller.freight.floatValue;
+
     }
     _orderModel.allFreight = allFreight;
     NSString *allPriceStr = @"";
@@ -1028,7 +1036,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     _orderModel.allPrices = allPrices;
     NSString *str2;
     if (allPoint>0) {
-        str2 = [NSString stringWithFormat:@"%.2f积分",allPoint];
+        str2 = [NSString stringWithFormat:@"%.2f 积分",allPoint];
         str2 = [str2 stringByReplacingOccurrencesOfString:@".00" withString:@""];
         [infoArr addObject:str2];
 

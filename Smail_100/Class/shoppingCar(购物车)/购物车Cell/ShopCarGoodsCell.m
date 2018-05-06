@@ -154,10 +154,10 @@
         [priceArr addObject:[NSString stringWithFormat:@"¥%@",goodsModel.productPrice]];
     }
     if (goodsModel.point.floatValue >0) {
-        [priceArr addObject:[NSString stringWithFormat:@"%@积分",goodsModel.point]];
+        [priceArr addObject:[NSString stringWithFormat:@"%@ 积分",goodsModel.point]];
     }
     NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
-    NSAttributedString *attributedStr =  [self attributeStringWithContent:allPrice keyWords:@[@"积分"]];
+    NSAttributedString *attributedStr =  [self attributeStringWithContent:allPrice keyWords:@[@" 积分"]];
 //    moneyLabel.attributedText  = attributedStr;
 
     priceLable.attributedText  = attributedStr;

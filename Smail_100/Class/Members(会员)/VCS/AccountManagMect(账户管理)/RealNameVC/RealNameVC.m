@@ -114,12 +114,16 @@
         return;
     }
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
-    [[BaseHttpRequest alloc] requestUploadImageList:@[self.upImageView.image,self.downImageView.image,self.otherImageView.image] Url:@"/ucenter/idcard_auth" Params:param andBlock:^(NSString *imageName) {
-        [weakSelf.view makeToast:imageName];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeAfter * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [weakSelf.navigationController popViewControllerAnimated:YES];
+    [[BaseHttpRequest alloc] requestUploadImageList:@[self.upImageView.image,self.downImageView.image,self.otherImageView.image] Url:@"/ucenter/idcard_auth" Params:param andBlock:^(NSString *imageName,NSString *code) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
-        });
+        [weakSelf.view makeToast:imageName];
+        if (code.integerValue == 100) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeAfter * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            });
+        }
+     
         
     }];
 

@@ -28,18 +28,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9q-1l-NUB">
-                    <rect key="frame" x="0.0" y="165" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="165" width="375" height="0.0"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="检查更新" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7O-fZ-1xj">
-                            <rect key="frame" x="12" y="0.0" width="61.5" height="44"/>
+                            <rect key="frame" x="12" y="0.0" width="61.5" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="highlightedColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bxn-yo-YX5">
-                            <rect key="frame" x="336" y="8.5" width="27" height="27"/>
+                            <rect key="frame" x="336" y="0.0" width="27" height="0.0"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="27" id="Fnb-mT-DWW"/>
-                                <constraint firstAttribute="height" constant="27" id="U6h-yF-dox"/>
+                                <constraint firstAttribute="height" id="U6h-yF-dox"/>
                             </constraints>
                             <state key="normal" backgroundImage="xitongshezhi2@3x.png"/>
                         </button>
@@ -48,7 +48,7 @@
                     <constraints>
                         <constraint firstItem="Bxn-yo-YX5" firstAttribute="centerY" secondItem="x9q-1l-NUB" secondAttribute="centerY" id="4TE-oe-uEs"/>
                         <constraint firstItem="e7O-fZ-1xj" firstAttribute="leading" secondItem="x9q-1l-NUB" secondAttribute="leading" constant="12" id="DCu-0r-0Bc"/>
-                        <constraint firstAttribute="height" constant="44" id="PG1-UV-mFg"/>
+                        <constraint firstAttribute="height" id="PG1-UV-mFg"/>
                         <constraint firstAttribute="trailing" secondItem="Bxn-yo-YX5" secondAttribute="trailing" constant="12" id="UaH-UY-hiQ"/>
                         <constraint firstAttribute="bottom" secondItem="e7O-fZ-1xj" secondAttribute="bottom" id="f9C-Dy-m6b"/>
                         <constraint firstItem="e7O-fZ-1xj" firstAttribute="top" secondItem="x9q-1l-NUB" secondAttribute="top" id="je5-PI-Tmd"/>
@@ -92,7 +92,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HDC-w7-pno">
-                    <rect key="frame" x="0.0" y="210" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="166" width="375" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="消息推送" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDG-sC-XKF">
                             <rect key="frame" x="12" y="0.0" width="65" height="44"/>
@@ -114,7 +114,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hxJ-2T-LdJ">
-                    <rect key="frame" x="0.0" y="255" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="211" width="375" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="清除缓存" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vma-ce-LUW">
                             <rect key="frame" x="12" y="0.0" width="61.5" height="44"/>
@@ -144,7 +144,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0cd-kl-Iu6">
-                    <rect key="frame" x="0.0" y="300" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="256" width="375" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关于我们" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ta8-KR-83a">
                             <rect key="frame" x="12" y="0.0" width="61.5" height="44"/>

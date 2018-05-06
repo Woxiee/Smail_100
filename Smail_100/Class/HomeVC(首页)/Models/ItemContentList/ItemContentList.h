@@ -82,6 +82,10 @@
 @property (nonatomic , copy) NSString            * goodsSizeID;  /// 商品规格ID
 @property (nonatomic, assign) NSInteger goodSCount; /// 购买数量
 
+@property (nonatomic , copy) NSArray            * titleArr;  /// 商品规格Arr
+
+
+
 
 @end
 

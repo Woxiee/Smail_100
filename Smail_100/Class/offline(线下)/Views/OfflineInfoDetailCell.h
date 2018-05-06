@@ -11,5 +11,6 @@
 @interface OfflineInfoDetailCell : UITableViewCell
 @property (nonatomic, strong) OfflineDetailModel *model;
 @property (nonatomic, copy) void(^didClickInfoCellBlock)(NSInteger index);
+@property (weak, nonatomic) IBOutlet UIButton *findLb;
 
 @end

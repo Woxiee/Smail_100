@@ -12,7 +12,8 @@
 //规格分类
 @property(nonatomic,strong)NSArray *rankArr;
 @property(nonatomic,assign) int goodSCount;
-
+@property (nonatomic, strong) UIButton *addCountBtn;
+@property (nonatomic, strong) UIButton *deleBtn;
 
 @end
 @implementation DWQSelectView
@@ -46,7 +47,7 @@
     [self addSubview:alphaView];
     
     //装载商品信息的视图
-    whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 250, SCREEN_WIDTH, SCREEN_HEIGHT-250)];
+    whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 300, SCREEN_WIDTH, SCREEN_HEIGHT-300)];
     whiteView.backgroundColor = [UIColor whiteColor];
     [self addSubview:whiteView];
     
@@ -61,7 +62,7 @@
     
     cancelBtn= [UIButton buttonWithType:UIButtonTypeCustom];
     cancelBtn.frame = CGRectMake(SCREEN_WIDTH-40, 10, 25, 25);
-    [cancelBtn setBackgroundImage:[UIImage imageNamed:@"35@3x.png"] forState:UIControlStateNormal];
+    [cancelBtn setBackgroundImage:[UIImage imageNamed:@"Close@2x.png"] forState:UIControlStateNormal];
     [whiteView addSubview:cancelBtn];
     
     UILabel *nameLB = [[UILabel  alloc] initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame)+10, 10, SCREEN_WIDTH -CGRectGetMaxX(headImage.frame)- 60 , 35)];
@@ -98,7 +99,17 @@
     LB_line.backgroundColor = [UIColor clearColor];
     [whiteView addSubview:LB_line];
     
-    UILabel *numLB = [[UILabel  alloc] initWithFrame:CGRectMake(10, whiteView.mj_h - 90, 100, 30)];
+ 
+    //有的商品尺码和颜色分类特别多 所以用UIScrollView 分类过多显示不全的时候可滑动查看
+    mainscrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(headImage.frame)+10, SCREEN_WIDTH,10)];
+    mainscrollview.contentSize = CGSizeMake(0, 200);
+    mainscrollview.showsHorizontalScrollIndicator = NO;
+    mainscrollview.showsVerticalScrollIndicator = NO;
+    [whiteView addSubview:mainscrollview];
+   
+    
+    
+    UILabel *numLB = [[UILabel  alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(mainscrollview.frame), 100, 30)];
     numLB.font = Font15;
     numLB.text = @"购买数量";
     numLB.textColor = TITLETEXTLOWCOLOR;
@@ -108,12 +119,12 @@
     
     
     UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    addBtn.frame = CGRectMake(SCREEN_WIDTH - 40,whiteView.mj_h - 90 , 30, 30);
+    addBtn.frame = CGRectMake(SCREEN_WIDTH - 40,CGRectGetMaxY(mainscrollview.frame) , 30, 30);
     [addBtn setImage:[UIImage imageNamed:@"ico_add"] forState:UIControlStateNormal];
     addBtn.tag = 101;
     [addBtn addTarget:self action:@selector(didClickChangeAction:) forControlEvents:UIControlEventTouchUpInside];
     [whiteView addSubview:addBtn];
-    
+    _addCountBtn = addBtn;
     
     UITextField *numberTextField = [[UITextField alloc] initWithFrame:CGRectMake(SCREEN_WIDTH -100,CGRectGetMinY(addBtn.frame)  , 60, 30)];
     numberTextField.delegate  =self;
@@ -131,7 +142,7 @@
     deleBtn.tag = 100;
     [deleBtn addTarget:self action:@selector(didClickChangeAction:) forControlEvents:UIControlEventTouchUpInside];
     [whiteView addSubview:deleBtn];
-  
+    _deleBtn = deleBtn;
     
     //加入购物车按钮
     self.addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -151,21 +162,12 @@
     buyBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [buyBtn setTitle:@"立即购买" forState:0];
     buyBtn.tag = 101;
-
+    
     [whiteView addSubview:buyBtn];
     
-
+    
     //默认隐藏
     stockBtn.hidden = YES;
-    
-    //有的商品尺码和颜色分类特别多 所以用UIScrollView 分类过多显示不全的时候可滑动查看
-    mainscrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(headImage.frame)+10, SCREEN_WIDTH, whiteView.mj_h-CGRectGetMaxY(headImage.frame)-100 - 10)];
-    mainscrollview.backgroundColor = [UIColor whiteColor];
-    mainscrollview.contentSize = CGSizeMake(0, 200);
-    mainscrollview.showsHorizontalScrollIndicator = NO;
-    mainscrollview.showsVerticalScrollIndicator = NO;
-    [whiteView addSubview:mainscrollview];
-   
     
     //加入购物车按钮
     [self.addBtn addTarget:self action:@selector(addGoodsCartBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -179,6 +181,22 @@
 }
 
 
+
+-(void)setItemIfoModel:(ItemInfoList *)itemIfoModel
+{
+    _itemIfoModel = itemIfoModel;
+
+    mainscrollview.frame = CGRectMake(0, CGRectGetMaxY(headImage.frame)+10, SCREEN_WIDTH, _itemIfoModel.titleArr.count*80);
+    
+    self.numLB.frame =CGRectMake(15, CGRectGetMaxY(mainscrollview.frame), 100, 30);
+    
+    _addCountBtn.frame= CGRectMake(SCREEN_WIDTH - 40,CGRectGetMaxY(mainscrollview.frame) , 30, 30);
+
+    _numberTextField.frame =  CGRectMake(SCREEN_WIDTH -100,CGRectGetMinY(_addCountBtn.frame)  , 60, 30);
+    
+    _deleBtn.frame = CGRectMake(SCREEN_WIDTH -100 - 30,CGRectGetMinY(_addCountBtn.frame) , 30, 30);
+    
+}
 
 
 -(void)addGoodsCartBtnClick:(UIButton *)btn{

@@ -74,7 +74,7 @@
     [self layerForViewWith:0 AndLineWidth:0.5];
     
     shouYeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    shouYeBtn.frame = CGRectMake(0, 0, SCREEN_WIDTH*0.15-2.5, 50);
+    shouYeBtn.frame = CGRectMake(0, 0, SCREEN_WIDTH*0.12, 50);
     [shouYeBtn addTarget:self action:@selector(didClickBottomViewAction:) forControlEvents:UIControlEventTouchUpInside];
     shouYeBtn.tag = 100;
 //    shouYeBtn.backgroundColor = [UIColor redColor];
@@ -84,10 +84,10 @@
     [shouYeBtn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
     shouYeBtn.titleLabel.font =  Font11;
     [self addSubview:shouYeBtn];
-    [shouYeBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:0];
+    [shouYeBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:2];
 
     meBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    meBtn.frame = CGRectMake(CGRectGetMaxX(shouYeBtn.frame), 0,  SCREEN_WIDTH*0.15-2.5, 50);
+    meBtn.frame = CGRectMake(CGRectGetMaxX(shouYeBtn.frame)-10, 0,  SCREEN_WIDTH*0.12, 50);
     [meBtn addTarget:self action:@selector(didClickBottomViewAction:) forControlEvents:UIControlEventTouchUpInside];
     meBtn.tag = 101;
     [meBtn setImage:[UIImage imageNamed:@"shouye12@3x.png"] forState:UIControlStateNormal];
@@ -98,10 +98,10 @@
     meBtn.titleLabel.font =  KY_FONT(11);
     meBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:meBtn];
-    [meBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:0];
+    [meBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:2];
 
     cartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    cartBtn.frame = CGRectMake(CGRectGetMaxX(meBtn.frame), 0,  SCREEN_WIDTH*0.15+5, 50);
+    cartBtn.frame = CGRectMake(CGRectGetMaxX(meBtn.frame)-10, 0,  SCREEN_WIDTH*0.15, 50);
     [cartBtn setImage:[UIImage imageNamed:@"detailcon1@2x.png"] forState:UIControlStateNormal];
     [cartBtn setTitle:@"购物车" forState:UIControlStateNormal];
     [cartBtn addTarget:self action:@selector(didClickBottomViewAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -109,7 +109,7 @@
     [cartBtn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
     cartBtn.titleLabel.font =  Font11;
     [self addSubview:cartBtn];
-    [cartBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:0];
+    [cartBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:2];
 //    [cartBtn sizeToFit];
     
     addCartBtn = [UIButton buttonWithType:UIButtonTypeCustom];

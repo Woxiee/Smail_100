@@ -35,9 +35,10 @@
     line.backgroundColor = LINECOLOR;
     [self.packView addSubview:line];
     
-    UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, SCREEN_WIDTH, 25)];
+    UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, SCREEN_WIDTH, 25)];
     titleLB.text = self.title;
-    titleLB.font = CONTENFONT;
+    titleLB.font = Font14;
+    titleLB.textColor = TITLETEXTLOWCOLOR;
     [self.packView addSubview:titleLB];
     
     self.btnView = [[UIView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(titleLB.frame), SCREEN_WIDTH, 40)];

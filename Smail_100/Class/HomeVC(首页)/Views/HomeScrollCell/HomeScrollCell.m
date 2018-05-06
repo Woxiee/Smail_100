@@ -33,6 +33,7 @@ static NSString *homePageCellID = @"homePageCellID";
     cycleView.autoScrollTimeInterval = 3.5;
     cycleView.delegate = self;
     cycleView.currentPageDotColor = KMAINCOLOR;
+    cycleView.backgroundColor = BACKGROUNDNOMAL_COLOR;
 //    _advertisView.frame = CGRectMake(84,6 ,self.width - 24, 35);
     _advertisView.titleColor = TITLETEXTLOWCOLOR;
     _advertisView.titleFont = PLACEHOLDERFONT;
@@ -51,7 +52,7 @@ static NSString *homePageCellID = @"homePageCellID";
 /// 赋值
 - (void)setModelArray:(NSMutableArray *)modelArray{
     cycleView.hidden = NO;
-    cycleView.placeholderImage = [UIImage imageNamed:DEFAULTIMAGEW];
+    cycleView.placeholderImage = [UIImage imageNamed:DEFAULTIMAGEW3];
     _modelArray = modelArray;
     if (_modelArray !=  nil ) {
         cycleView.imageURLStringsGroup = _modelArray;

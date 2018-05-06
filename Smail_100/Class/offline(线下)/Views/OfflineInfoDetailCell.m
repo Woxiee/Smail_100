@@ -16,7 +16,6 @@
     __weak IBOutlet UILabel *_commNumberLB;
     __weak IBOutlet UILabel *addressLB;
     __weak IBOutlet UILabel *distanceLB;
-    __weak IBOutlet UIButton *findLb;
     __weak IBOutlet UILabel *tellLB;
     __weak IBOutlet UILabel *timeLB;
     __weak IBOutlet UIButton *lookBtn;
@@ -57,6 +56,12 @@
 {
     [lookBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
     [lookBtn layerWithRadius:6 lineWidth:1 color:KMAINCOLOR];
+    [_findLb setImage:[UIImage imageNamed:@"xianxiashangjia7@3x.png"] forState:UIControlStateNormal];
+    [_findLb setTitle:@"到这里去" forState:UIControlStateNormal];
+    _findLb.titleLabel.font = KY_FONT(8);
+    [_findLb setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
+    [_findLb layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:2];
+    
     
 }
 
@@ -72,29 +77,34 @@
         distanceLB.text =  [NSString stringWithFormat:@"%.2fkm",distance];
         
     }else{
+        distanceLB.hidden = YES;
         distanceLB.text =  [NSString stringWithFormat:@"%@m",_model.distance];
     }
     
     
-    [findLb setImage:[UIImage imageNamed:@"xianxiashangjia7@3x.png"] forState:UIControlStateNormal];
-    [findLb setTitle:@"到这里去" forState:UIControlStateNormal];
-    findLb.titleLabel.font = KY_FONT(10);
-    [findLb setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
-    [findLb layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:2];
-    
+   
     tellLB.text = _model.contact_phone;
     timeLB.text = [NSString stringWithFormat:@"营业时间: %@",_model.ontime_scope];
     mianLb.text = _model.business_info;
-    
-   _commNumberLB.text= [NSString stringWithFormat:@"%@人评价",_model.comment_count];
+    mianLb.textColor = DETAILTEXTCOLOR;
+   _commNumberLB.text= [NSString stringWithFormat:@"%@评价",_model.comment_count];
     
     [_starImageView ShowDQStarScoreFunction:[_model.stars intValue]];
-
-
-
-    
+   
     
 }
+
+- (IBAction)didClickCallAction:(id)sender {
+    SuccessView *successV = [[SuccessView alloc] initWithTrueCancleTitle:@"确定拨打商家电话吗?" cancelTitle:@"取消" clickDex:^(NSInteger clickDex) {
+        if (clickDex == 1) {
+             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",_model.contact_phone]]];
+            
+        }}];
+    [successV showSuccess];
+    
+}
+
+
 - (IBAction)didClickInfoAction:(UIButton *)sender {
     if (self.didClickInfoCellBlock) {
         self.didClickInfoCellBlock(sender.tag - 100);

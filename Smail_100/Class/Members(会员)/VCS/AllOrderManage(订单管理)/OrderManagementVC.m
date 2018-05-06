@@ -554,7 +554,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-   
     return 55;
 }
 
@@ -599,7 +598,16 @@
     return nil;
 }
 
+#pragma mark ---- scrollView delegate
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    if (scrollView.contentOffset.y <= 50 && scrollView.contentOffset.y >= 0) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+//    }else if (scrollView.contentOffset.y >= 50) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-50, 0, 0, 0);
+//    }
 
+//}
 #pragma mark - public 共有方法
 
 
@@ -648,8 +656,9 @@
 {
     if (!_tableView) {
         //初始化数据
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64  - 45) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64  - 45) style:UITableViewStyleGrouped];
         _tableView.tableFooterView = [UIView new];//默认设置为空
+        _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
         [_tableView setSeparatorInset:UIEdgeInsetsZero];//默认设置下划线左边移动 15.0f
         _tableView.delegate = self;
         _tableView.dataSource = self;

@@ -48,6 +48,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *allSelectbtn;
 @property (weak, nonatomic) IBOutlet UILabel *jifeLB;
 
+@property (assign, nonatomic) BOOL isAllSelect;
+
+
 
 @property (nonatomic,strong) UIButton *rightButton;
 
@@ -252,23 +255,22 @@
 
 ///计算勾选后的总金额 和iitem的数量
 - (void)allMoneyAfterSelect{
-  
     totalMoneyLable.textColor = KMAINCOLOR;
     _jifeLB.textColor = KMAINCOLOR;
     NSMutableArray *allPriceArr = [[NSMutableArray alloc] init];
-    
     NSString *allPrice =  [carVM calculationCarAllPrice:_dataSocure];
     if ([allPrice floatValue] > 0) {
         [allPriceArr addObject:[NSString stringWithFormat:@"¥%@",allPrice]];
     }
-    
     NSString *allPoint = [carVM calculationCarAllPoint:_dataSocure];
-
     if ([allPoint floatValue] > 0) {
         [allPriceArr addObject:[NSString stringWithFormat:@"%@积分",allPoint]];
     }
     
-    totalMoneyLable.text = [allPriceArr componentsJoinedByString:@"+"];
+    NSString *allPriceStr = [allPriceArr componentsJoinedByString:@"+"];
+    allPriceStr = [allPriceStr stringByReplacingOccurrencesOfString:@".00" withString:@""];
+
+    totalMoneyLable.text = allPriceStr;
     
 //    if ([allPoint floatValue] > 0) {
 //        NSString *str1 = [NSString stringWithFormat:@"%@",allPoint];
@@ -289,6 +291,19 @@
   
 //    minCountLb.text = [NSString stringWithFormat:@"%@件商品",count];
     [toPayBtn setTitle:[NSString stringWithFormat:@"结算(%@)",count] forState:UIControlStateNormal];
+    for (OrderGoodsModel*model in _dataSocure) {
+        for (OrderGoodsModel*item in model.goodModel) {
+            if (item.selectStatue.integerValue == 1) {
+                _isAllSelect = YES;
+            }else{
+                _isAllSelect = NO;
+
+            }
+        }
+    }
+    _allSelectbtn.selected = _isAllSelect;
+
+    
 
 }
 
@@ -344,7 +359,7 @@
     [changeView show];
 }
 
--(NSArray *) createRightButtons:(OrderGoodsModel *)goods
+-(NSArray *)createRightButtons:(OrderGoodsModel *)goods
 {
     NSMutableArray * result = [NSMutableArray array];
     WS(b_self);
@@ -379,13 +394,15 @@
 //    if (sender.selected) {
         for (OrderGoodsModel * model in _dataSocure) {
             for (OrderGoodsModel *goodsModel in model.goodModel) {
-                if ([goodsModel.selectStatue isEqualToString:@"0"] || KX_NULLString(goodsModel.selectStatue )) {
-                    goodsModel.selectStatue = @"1";
-                }else{
-                    goodsModel.selectStatue = @"0";
-                }
-                model.selectStatue = goodsModel.selectStatue ;
+//                if ([goodsModel.selectStatue isEqualToString:@"0"] || KX_NULLString(goodsModel.selectStatue )) {
+//                    goodsModel.selectStatue = @"1";
+//                }else{
+//                    goodsModel.selectStatue = @"0";
+//                }
+                goodsModel.selectStatue = [NSString stringWithFormat:@"%d",sender.selected] ;
             }
+            model.selectStatue = [NSString stringWithFormat:@"%d",sender.selected] ;
+
 
         }
 //    }

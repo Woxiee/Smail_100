@@ -40,7 +40,7 @@
     detailLabel.font = Font11;
     detailLabel.textColor = DETAILTEXTCOLOR1;
     
-    moneyLabel.font = Font15;
+    moneyLabel.font = KY_FONT(16   );
     moneyLabel.textColor = KMAINCOLOR;
     
     nyLB.backgroundColor = BACKGROUND_COLOR;
@@ -70,13 +70,13 @@
         [priceArr addObject:[NSString stringWithFormat:@"¥%@",_model.price]];
     }
     if (_model.point.floatValue >0) {
-        [priceArr addObject:[NSString stringWithFormat:@"%@积分",_model.point]];
+        [priceArr addObject:[NSString stringWithFormat:@"%@ 积分",_model.point]];
     }
     NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
     if (_model.earn_money.floatValue >0) {
         NSString *getMoney = [NSString stringWithFormat:@"赚¥%@",_model.earn_money];
         NSString *moneyStr = [NSString stringWithFormat:@"%@ %@",allPrice,getMoney];
-        NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[getMoney,@"+",@"积分",@"¥"]];
+        NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[getMoney,@"+",@" 积分",@"¥"]];
         moneyLabel.attributedText  = attributedStr;
 
     }else{
@@ -125,6 +125,7 @@
         UILabel *lb = [[UILabel alloc] init];
         lb.frame = CGRectMake(index *27, page*18, 25, 15);
         lb.font =  KY_FONT(9);
+        [lb layerForViewWith:3 AndLineWidth:0];
         lb.textColor = [UIColor whiteColor];
         lb.textAlignment = NSTextAlignmentCenter;
         lb.text = dic[@"title"];

@@ -54,26 +54,26 @@
     nameLabel.font = Font15;;
     
     productPriceLabel.textColor = BACKGROUND_COLORHL;
-    
+    productPriceLabel.font = KY_FONT(16);
+//     [UIFont fontWithName:@"Helvetica-Bold" size:16]
     makeLB.textColor = BACKGROUND_COLORHL;
     
     numLabel.textColor = DETAILTEXTCOLOR;
-    numLabel.font = PLACEHOLDERFONT;
+    numLabel.font = Font13;
     
-    integralLB.textColor = DETAILTEXTCOLOR1;
+    integralLB.textColor = DETAILTEXTCOLOR;
     
     lineView.backgroundColor = LINECOLOR;
     lineView2.backgroundColor = LINECOLOR;
     lineView3.backgroundColor = LINECOLOR;
 
-    postage.textColor = DETAILTEXTCOLOR1;
-    descLB.textColor = DETAILTEXTCOLOR1;
-    [title1Btn setTitleColor:DETAILTEXTCOLOR1 forState:UIControlStateNormal];
-    [title2Btn setTitleColor:DETAILTEXTCOLOR1 forState:UIControlStateNormal];
-    [title3Btn setTitleColor:DETAILTEXTCOLOR1 forState:UIControlStateNormal];
-    [title4Btn setTitleColor:DETAILTEXTCOLOR1 forState:UIControlStateNormal];
+    postage.textColor = DETAILTEXTCOLOR;
+    descLB.textColor = DETAILTEXTCOLOR;
+    [title1Btn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
+    [title2Btn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
+    [title3Btn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
+    [title4Btn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
 
-    
 //
 //    alertLabel.textColor = DETAILTEXTCOLOR1;
 //
@@ -94,16 +94,16 @@
         [priceArr addObject:[NSString stringWithFormat:@"¥%@",_model.price]];
     }
     if (_model.point.floatValue >0) {
-        [priceArr addObject:[NSString stringWithFormat:@"%@积分",_model.point]];
+        [priceArr addObject:[NSString stringWithFormat:@"%@ 积分",_model.point]];
     }
     if (_model.earn_money.floatValue >0) {
-        [priceArr addObject:[NSString stringWithFormat:@"赚¥%@",_model.earn_money]];
+        [priceArr addObject:[NSString stringWithFormat:@"      赚¥%@",_model.earn_money]];
 
     }
-    NSString *getMoney = [NSString stringWithFormat:@" 赚¥%@",_model.earn_money] ;
+//    NSString *getMoney = [NSString stringWithFormat:@"  赚¥%@",_model.earn_money] ;
     NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
-    allPrice = [allPrice stringByReplacingOccurrencesOfString:@"+赚" withString:@" 赚"];
-    NSAttributedString *attributedStr =  [self attributeStringWithContent:allPrice keyWords:@[getMoney,@"+"]];
+    allPrice = [allPrice stringByReplacingOccurrencesOfString:@"+      赚" withString:@"   赚"];
+    NSAttributedString *attributedStr =  [self attributeStringWithContent:allPrice keyWords:@[@"+",@" 积分"]];
     productPriceLabel.attributedText  = attributedStr;
 //    if (_model.earn_money.floatValue >0) {
 //        NSString *getMoney = ;
@@ -114,21 +114,17 @@
 //        productPriceLabel.text = [NSString stringWithFormat:@"¥%@",_model.price];
 //    }
     
-    
     if (_model.earn_point.floatValue >0) {
         integralLB.text = [NSString stringWithFormat:@"送%@积分",_model.earn_point];
     }
-    
     
     if (_model.freight.floatValue >0) {
         postage.text = [NSString stringWithFormat:@"快递:¥%@",_model.freight];
     }else{
         if (KX_NULLString(_model.freight_msg)) {
             postage.text  = @"快递:包邮";
-
         }else{
             postage.text = [NSString stringWithFormat:@"快递:%@",_model.freight_msg];
-
         }
     }
     
@@ -167,6 +163,7 @@
         lb.textColor = [UIColor whiteColor];
         lb.textAlignment = NSTextAlignmentCenter;
         lb.text = dic[@"title"];
+        [lb layerForViewWith:3 AndLineWidth:0];
         lb.backgroundColor = [UIColor colorWithHexString:dic[@"color"]];
         [tagsView addSubview:lb];
     }

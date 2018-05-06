@@ -37,6 +37,12 @@
 #import "UIImageView+WebCache.h"
 
 #define kCycleScrollViewInitialPageControlDotSize CGSizeMake(10, 10)
+#define COLOR(R, G, B, A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
+/// 获取RGB颜色
+#define RGBA(r,g,b,a)  [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define RGB(r,g,b)  RGBA(r,g,b,1.0f)
+/// 背景色正常
+#define BACKGROUND_COLOR  RGB(238, 238, 238)
 
 NSString * const ID = @"SDCycleScrollViewCell";
 
@@ -93,7 +99,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
     _pageDotColor = [UIColor lightGrayColor];
     _bannerImageViewContentMode = UIViewContentModeScaleToFill;
     
-    self.backgroundColor = [UIColor lightGrayColor];
+    self.backgroundColor = BACKGROUND_COLOR;
     
 }
 

@@ -15,8 +15,8 @@
     [super awakeFromNib];
     
     _lineView1.backgroundColor = BACKGROUND_COLOR;
-    _titleLB.textColor = TITLETEXTLOWCOLOR;
-    [_moreBtn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
+    _titleLB.textColor = DETAILTEXTCOLOR;
+    [_moreBtn setTitleColor:DETAILTEXTCOLOR forState:UIControlStateNormal];
     
 }
 @end

@@ -359,7 +359,7 @@ static NSString * const imageCellIdentifier = @"HomeScrollCellID";
 //定义每个Item 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat itemW = (self.collectionView.width -20)/3;
+    CGFloat itemW = (self.collectionView.width -40)/3;
     if (indexPath.section == 0 ) {
         return CGSizeMake(self.collectionView.width -20,itemW+30);
     }
@@ -380,7 +380,10 @@ static NSString * const imageCellIdentifier = @"HomeScrollCellID";
 //item 列间距(纵)
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section;
 {
+    if (section ==1) {
+        return 10;
 
+    }
     return 0;
 }
 

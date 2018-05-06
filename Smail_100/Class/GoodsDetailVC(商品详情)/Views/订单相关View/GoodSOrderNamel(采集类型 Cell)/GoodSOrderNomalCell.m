@@ -128,11 +128,12 @@
         [priceArr addObject:[NSString stringWithFormat:@"¥%@",_products.price]];
     }
     if (_products.point.floatValue >0) {
-        [priceArr addObject:[NSString stringWithFormat:@"%@积分",_products.point]];
+        [priceArr addObject:[NSString stringWithFormat:@"%@ 积分",_products.point]];
     }
     NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
-    _priceLB.text = allPrice;
-    _number.text = [NSString stringWithFormat:@"*%@",_products.goods_nums];
+    NSAttributedString *attributedString    =  [self attributeStringWithContent:allPrice keyWords:@[@" 积分",@"+"] fonts:Font11 color:KMAINCOLOR];
+    
+    _priceLB.attributedText = attributedString;    _number.text = [NSString stringWithFormat:@"*%@",_products.goods_nums];
     
     if (_model.isDetail) {
         _shouYeBtn.userInteractionEnabled = NO;
@@ -149,13 +150,26 @@
     _titleLB.text = _seller.name;
     _detailLB.text = _seller.spec?_seller.spec:[NSString stringWithFormat:@"规格: %@",@"默认"];
     _priceLB.text = [NSString stringWithFormat:@"¥%@",_seller.price];
-    //    _products.point = @"22";
-    if ([_seller.point integerValue] >0) {
-        //        NSString *allPrice = [NSString]
-        NSString *str = [NSString stringWithFormat:@"%@积分+¥%@",_seller.point,_seller.price];
-        NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(_seller.point.length, 2) withColor:TITLETEXTLOWCOLOR withFont:Font13];
-        _priceLB.attributedText = attributedStr;
+    
+    NSMutableArray *priceArr = [[NSMutableArray alloc] init];
+    if (_seller.price.floatValue >0) {
+        [priceArr addObject:[NSString stringWithFormat:@"¥%@",_seller.price]];
     }
+    if (_seller.point.floatValue >0) {
+        [priceArr addObject:[NSString stringWithFormat:@"%@ 积分",_seller.point]];
+    }
+    NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
+
+  NSAttributedString *attributedString    =  [self attributeStringWithContent:allPrice keyWords:@[@" 积分",@"+"] fonts:Font11 color:KMAINCOLOR];
+
+    _priceLB.attributedText = attributedString;
+//    //    _products.point = @"22";
+//    if ([_seller.point integerValue] >0) {
+//        //        NSString *allPrice = [NSString]
+//        NSString *str = [NSString stringWithFormat:@"%@积分+¥%@",_seller.point,_seller.price];
+//        NSAttributedString *attributedStr =  [str creatAttributedString:str withMakeRange:NSMakeRange(_seller.point.length, 2) withColor:TITLETEXTLOWCOLOR withFont:Font13];
+//        _priceLB.attributedText = attributedStr;
+//    }
     _number.text = [NSString stringWithFormat:@"*%@",_seller.goods_nums];
     
     if (_model.isDetail) {
@@ -260,6 +274,51 @@
     if (_didChangeEmailTypeBlock) {
         _didChangeEmailTypeBlock(sender.tag - 100);
     }
+}
+
+- (NSAttributedString *)attributeStringWithContent:(NSString *)content keyWords:(NSArray *)keyWords fonts:(UIFont *)fonts color:(UIColor *)color
+{
+    __block  UIColor *colors = color;
+    __block  UIFont *font = fonts;
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:content];
+    
+    if (keyWords) {
+        
+        [keyWords enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            NSMutableString *tmpString=[NSMutableString stringWithString:content];
+            if ([obj isEqualToString:@"(包邮)"]) {
+                colors = DETAILTEXTCOLOR;
+            }else{
+                colors = color;
+            }
+            //            if ( [obj containsString:@"¥"] || [obj containsString:@"积分"]|| [obj containsString:@"快递费"]) {
+            //                font = KY_FONT(9);
+            //            }else{
+            //                font = fonts;
+            //            }
+            NSRange range=[content rangeOfString:obj];
+            
+            NSInteger location=0;
+            while (range.length>0) {
+                
+                [attString addAttribute:(NSString*)NSForegroundColorAttributeName value:colors range:NSMakeRange(location+range.location, range.length)];
+                [attString addAttribute:NSFontAttributeName
+                                  value:font
+                                  range:range];
+                
+                location+=(range.location+range.length);
+                
+                NSString *tmp= [tmpString substringWithRange:NSMakeRange(range.location+range.length, content.length-location)];
+                
+                tmpString=[NSMutableString stringWithString:tmp];
+                
+                range=[tmp rangeOfString:obj];
+            }
+        }];
+    }
+    return attString;
 }
 
 @end

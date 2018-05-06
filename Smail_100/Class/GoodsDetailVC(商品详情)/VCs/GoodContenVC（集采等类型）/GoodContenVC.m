@@ -302,6 +302,8 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
         self.standardList = titles;
         self.standardValueList = itemList;
     }
+    
+    _itemIfoModel.titleArr = self.standardList;
     self.selectView = [[DWQSelectView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [self.selectView.headImage  sd_setImageWithURL:[NSURL URLWithString:_itemIfoModel.itemContent.imageUrl] placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW]];
     
@@ -312,14 +314,14 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
         [priceArr addObject:[NSString stringWithFormat:@"¥%@",_itemIfoModel.itemContent.price]];
     }
     if (_itemIfoModel.itemContent.point.floatValue >0) {
-        [priceArr addObject:[NSString stringWithFormat:@"%@积分",_itemIfoModel.itemContent.point]];
+        [priceArr addObject:[NSString stringWithFormat:@"%@ 积分",_itemIfoModel.itemContent.point]];
     }
 //    if ([_itemIfoModel.itemContent.freight floatValue] >0) {
 //        [priceArr addObject:[NSString stringWithFormat:@"快递费:%@",_itemIfoModel.itemContent.freight]];
 //    }
     NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
     NSString *moneyStr = [NSString stringWithFormat:@"%@",allPrice];
-    NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[@"+",@"快递费:"]];
+    NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[@"+",@"快递费:",@" 积分"]];
     self.selectView.LB_price.attributedText  = attributedStr;
     
     self.selectView.LB_stock.text =[NSString stringWithFormat:@"库存:%@件",_itemIfoModel.itemContent.volume] ; 
@@ -352,7 +354,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
     CGFloat height = 0;
     for (int i = 0; i < self.standardList.count; i ++)
     {
-        self.selectAttributes = [[DWQSelectAttributes alloc] initWithTitle:self.standardList[i] titleArr:self.standardValueList[i] andFrame:CGRectMake(0, maxY, SCREEN_WIDTH, 40)];
+        self.selectAttributes = [[DWQSelectAttributes alloc] initWithTitle:self.standardList[i] titleArr:self.standardValueList[i] andFrame:CGRectMake(0, maxY, SCREEN_WIDTH, 60)];
         maxY = CGRectGetMaxY(self.selectAttributes.frame);
         height += self.selectAttributes.dwq_height;
         self.selectAttributes.tag = 8000+i;
@@ -764,6 +766,8 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
         if(self.resorceArray.count <2) return 140;
            CGSize contenSize1 = [NSString heightForString:model.itemContent.desc fontSize:Font13 WithSize:CGSizeMake(SCREEN_WIDTH - 30, SCREEN_WIDTH)];
         
+        CGSize contenSize2 = [NSString heightForString:model.itemContent.name fontSize:Font15 WithSize:CGSizeMake(SCREEN_WIDTH - 30, SCREEN_WIDTH)];
+
         if (model.itemContent.tags.count > row) {
             return 160+15 +contenSize1.height - 15;
         }
@@ -771,7 +775,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
             return 160 +contenSize1.height  - 23;
         }
      
-        return 160 +contenSize1.height  - 10;
+        return 160 +contenSize1.height + contenSize2.height - 25;
     }
     else if (indexPath.section == 2){
         if (_maxWebHight == 0) {
@@ -779,7 +783,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
         }
         return _maxWebHight;
     }
-    return 44;
+    return 50;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
