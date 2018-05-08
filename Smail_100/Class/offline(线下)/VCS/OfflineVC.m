@@ -28,7 +28,7 @@
 
 
 
-@interface OfflineVC ()<SDCycleScrollViewDelegate,PYSearchViewControllerDelegate,YBPopupMenuDelegate>
+@interface OfflineVC ()<SDCycleScrollViewDelegate,PYSearchViewControllerDelegate,YBPopupMenuDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) SDCycleScrollView  *cycleView;
 @property (nonatomic, strong)  UITextField *inPutTextField;
 @property (nonatomic, strong)  NSMutableArray *hotArray;
@@ -50,6 +50,8 @@
 @property (nonatomic, strong)  UIButton *item;
 
 
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic,strong) KX_LoginHintView *hintView;
 @end
 
 @implementation OfflineVC
@@ -107,16 +109,21 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
                 listArray = [OffLineModel mj_objectArrayWithKeyValuesArray:dic[@"list"]];
                 NSArray *bannerList = [Banners mj_objectArrayWithKeyValuesArray:dic[@"banners"]];
                 NSArray *catelist = [Catelist mj_objectArrayWithKeyValuesArray:dic[@"catelist"]];
-                int i = 0;
-                for (int j = 0; j<catelist.count; j++) {
-                    if (j%5 == 0) {
-                        i++;
+                if (catelist.count>0) {
+                    int i = 0;
+                    for (int j = 0; j<catelist.count; j++) {
+                        if (j%5 == 0) {
+                            i++;
+                        }
                     }
-                }
-                weakSelf.teamPersenView.frame = CGRectMake(0, CGRectGetMaxY(_cycleView.frame), SCREEN_WIDTH, i*75 + 10);
-               weakSelf.headerView.frame = CGRectMake(0, 0, kScreenWidth, weakSelf.cycleView.mj_h +weakSelf.teamPersenView.mj_h);
+                    weakSelf.teamPersenView.catelist = catelist;
 
-               weakSelf.teamPersenView.catelist = catelist;
+                    weakSelf.teamPersenView.frame = CGRectMake(0, CGRectGetMaxY(_cycleView.frame), SCREEN_WIDTH, i*75 + 10);
+                }else{
+                    weakSelf.teamPersenView.frame = CGRectMake(0, CGRectGetMaxY(_cycleView.frame), SCREEN_WIDTH, 0);
+                }
+                
+               weakSelf.headerView.frame = CGRectMake(0, 0, kScreenWidth, weakSelf.cycleView.mj_h +weakSelf.teamPersenView.mj_h);
 
                 NSMutableArray *imgList = [[NSMutableArray alloc] init];
                 for (Banners *banner in bannerList) {
@@ -126,9 +133,17 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
                 if (weakSelf.page == 1) {
                     [weakSelf.resorceArray removeAllObjects];
                 }
-                [weakSelf.resorceArray removeAllObjects];
                 [weakSelf.resorceArray addObjectsFromArray:listArray];
                 [weakSelf.tableView reloadData];
+                
+                if (weakSelf.resorceArray.count<(_page+1)*(KYPageSize.integerValue)) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }else{
+                    
+                    [self.tableView.mj_footer endRefreshing];
+                }
+                [self.tableView.mj_header endRefreshing];
+
                 [weakSelf stopRefresh];
             }
         }else{
@@ -159,9 +174,9 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 {
     UIButton *cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [cityBtn addTarget:self action:@selector(cityClick) forControlEvents:UIControlEventTouchUpInside];
-    [cityBtn setImage:[UIImage imageNamed:@"20@3x.png"] forState:UIControlStateNormal];
-    [cityBtn setImage:[UIImage imageNamed:@"20@3x.png"] forState:UIControlStateHighlighted];
-    cityBtn.titleLabel.font = Font15;
+    [cityBtn setImage:[UIImage imageNamed:@"xianxiashangjia10@3x.png"] forState:UIControlStateNormal];
+    [cityBtn setImage:[UIImage imageNamed:@"xianxiashangjia10@3x.png"] forState:UIControlStateHighlighted];
+    cityBtn.titleLabel.font = Font14;
     [cityBtn setTitle:[KX_UserInfo sharedKX_UserInfo].city forState:UIControlStateNormal];
     UIBarButtonItem *cityItem = [[UIBarButtonItem alloc] initWithCustomView:cityBtn];
     _item = cityBtn;
@@ -170,7 +185,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     if (KX_NULLString(_category_id)) {
         self.navigationItem.leftBarButtonItems  = @[cityItem];
     }
-    
+   
     
     UIView *navationView = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 120)/2, 10, SCREEN_WIDTH - 120, 30)];
     navationView.backgroundColor = [UIColor whiteColor];
@@ -187,6 +202,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     [navationView addSubview:selectBtn];
     self.selectBtn = selectBtn;
     
+
     UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(selectBtn.frame), 0, navationView.width -CGRectGetMaxX(selectBtn.frame), 30)];
     inPutTextField.placeholder = @"请输入搜索内容";
     inPutTextField.textColor = [UIColor whiteColor];
@@ -238,10 +254,17 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 //    [self.leftNaviBtn sizeToFit];
 //
 //    [self.leftNaviBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
+    
+    //    WEAKSELF;
+    /// 顶部视图    [_titleArray addObject:@"全部分类"];
+
+    [self.view addSubview:self.topSreenView];
+    
+
     UIView * headerView = [[UIView alloc]init];
-    headerView.frame = CGRectMake(0, 0, kScreenWidth, 280 );
+    headerView.frame = CGRectMake(0,45 ,kScreenWidth, 280 );
     _headerView = headerView;
-//    [self.view addSubview:headerView];
+    [self.view addSubview:self.tableView];
     self.tableView.tableFooterView = [UIView new];
     self.tableView.tableHeaderView = _headerView;
 //    self.tableView
@@ -384,6 +407,30 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 }
 
 
+- (UITableView *)tableView
+{
+    if (_tableView == nil) {
+        CGRect frame = CGRectMake(0, CGRectGetMaxY(_topSreenView.frame), SCREEN_WIDTH, SCREEN_HEIGHT - SafeAreaTopHeight);
+        _tableView = [[UITableView alloc] initWithFrame:frame
+                                                  style:UITableViewStylePlain];
+        _tableView.backgroundColor = BACKGROUND_COLOR;
+        _tableView.tableFooterView = [UIView new];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+    }
+    return _tableView;
+}
+
+- (KX_LoginHintView *)hintView
+{
+    
+    if (_hintView == nil) {
+        _hintView =  [KX_LoginHintView loginHintViewWithImage:@"shangchengdingdan2@3x.png" andMsg:@"没有更多数据" andBtnTitle:nil andFrame:CGRectMake(0,CGRectGetMaxY(_headerView.frame) + 44 , SCREEN_WIDTH, SCREEN_HEIGHT -CGRectGetMaxY(_headerView.frame) - SafeAreaBottomHeight - 44 )];
+        _hintView.backgroundColor = RGB(255, 255, 255);
+    }
+    return _hintView;
+}
+
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -434,7 +481,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (self.resorceArray.count >0) {
-        return 45;
+        return 0;
 
     }
     return 0;
@@ -445,7 +492,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 {
 //    self.topSreenView.backgroundColor = [UIColor redColor];
     if (self.resorceArray.count >0) {
-        return self.topSreenView;
+//        return self.topSreenView;
 
     }
     return nil;
@@ -479,11 +526,18 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 
 -(void)stopRefresh
 {
-    [self.tableView stopFresh:self.resorceArray.count pageIndex:self.page];
+    
+
+        
+    
+//    [self.tableView stopFresh:self.resorceArray.count pageIndex:self.page];
     if (self.resorceArray.count == 0) {
-        [self.tableView addSubview:[KX_LoginHintView notDataView]];
+        [self.view addSubview:self.hintView];
+//        [self.tableView addSubview:[KX_LoginHintView notDataView]];
     }else{
-        [KX_LoginHintView removeFromSupView:self.tableView];
+//          [self.view addSubview:self.hintView];
+        [self.hintView removeFromSuperview];
+//        [KX_LoginHintView removeFromSupView:self.tableView];
     }
     
 }
@@ -492,7 +546,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 {
     if (_topSreenView == nil) {
        _topSreenView = [[TopScreenView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 45)];
-        _topSreenView.titleArray = @[@"附近商家",@"销量优先",@"距离优先",@"评价优先"];
+        _topSreenView.titleArray = @[@"综合排序",@"销量优先",@"距离优先",@"评价优先"];
         [_topSreenView layerForViewWith:0 AndLineWidth:0.5];
         _topSreenView.selectTopIndexBlock = ^(NSInteger index, NSString *key, NSString *title){
             

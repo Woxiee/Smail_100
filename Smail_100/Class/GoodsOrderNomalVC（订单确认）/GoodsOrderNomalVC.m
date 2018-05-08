@@ -1036,7 +1036,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     _orderModel.allPrices = allPrices;
     NSString *str2;
     if (allPoint>0) {
-        str2 = [NSString stringWithFormat:@"%.2f 积分",allPoint];
+        str2 = [NSString stringWithFormat:@"%.2f积分",allPoint];
         str2 = [str2 stringByReplacingOccurrencesOfString:@".00" withString:@""];
         [infoArr addObject:str2];
 

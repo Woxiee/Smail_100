@@ -217,7 +217,7 @@
 - (void)coverView:(JHCoverView *)control
 {
     
-    [self.view makeToast:@"支付密码输入错误"];
+    [self showHint:@"支付密码输入错误" yOffset:-200];
 
 }
 

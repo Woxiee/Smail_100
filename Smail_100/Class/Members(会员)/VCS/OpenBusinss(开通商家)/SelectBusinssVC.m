@@ -118,6 +118,7 @@
 //    }
 //    cell.model = model;ce
     cell.textLabel.text = model.name;
+    cell.textLabel.font = Font15;
     return cell;
     
 }
@@ -159,7 +160,7 @@
         [_tableView setSeparatorInset:UIEdgeInsetsZero];//默认设置下划线左边移动 15.0f
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.rowHeight = 50;
+        _tableView.rowHeight = 55;
         _tableView.backgroundColor = BACKGROUND_COLOR;
     }
     return _tableView;

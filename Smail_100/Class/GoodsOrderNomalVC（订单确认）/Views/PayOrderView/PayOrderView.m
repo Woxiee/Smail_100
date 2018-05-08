@@ -364,7 +364,7 @@ static NSString * const OthercellID = @"OthercellID";
         allStr = [allStr stringByReplacingOccurrencesOfString:@".00" withString:@""];
 //        NSString *conten = [NSString stringWithFormat:@"待支付:%@",allStr];
         
-        NSAttributedString *attributedStr =  [self attributeStringWithContent:[NSString stringWithFormat:@"待支付:%@",allStr] keyWords:@[@"积分",@"+",@"快递费"]];
+        NSAttributedString *attributedStr =  [self attributeStringWithContent:[NSString stringWithFormat:@"待支付:%@",allStr] keyWords:@[@"积分",@"+",@"快递费",@"¥"]];
         
         
      NSMutableAttributedString *conten =(NSMutableAttributedString *)attributedStr;
@@ -475,7 +475,7 @@ static NSString * const OthercellID = @"OthercellID";
     allPriceStr = [priceArr componentsJoinedByString:@"+"];
     allPriceStr = [allPriceStr stringByReplacingOccurrencesOfString:@"+0积分" withString:@""];
     allPriceStr = [allPriceStr stringByReplacingOccurrencesOfString:@"0积分+" withString:@""];
-    NSAttributedString *attributedStr =  [self attributeStringWithContent:allPriceStr keyWords:@[@"积分",@"快递费",@"+"]];
+    NSAttributedString *attributedStr =  [self attributeStringWithContent:allPriceStr keyWords:@[@"积分",@"快递费",@"+",@"¥"]];
 
     self.jfLb.attributedText = attributedStr;
     

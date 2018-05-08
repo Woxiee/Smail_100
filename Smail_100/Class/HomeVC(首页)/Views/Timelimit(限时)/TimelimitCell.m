@@ -59,7 +59,6 @@
 //        lineView.hidden = YES;
 //
 //    }
-    
     if ([model.price floatValue] >0) {
         [titleList addObject:[NSString stringWithFormat:@"¥%@",_model.price]];
     }
@@ -67,8 +66,9 @@
     if ([model.point floatValue] >0) {
         [titleList addObject:[NSString stringWithFormat:@"%@积分",_model.point]];
     }
-
-    priceLb.text = [titleList componentsJoinedByString:@"+"];
+    NSString *allPrice = [titleList componentsJoinedByString:@"+"];
+    NSAttributedString *attributedStr =  [NSString attributeStringWithContent:allPrice keyWords:@[@"+",@"积分",@"¥"]];
+    priceLb.attributedText = attributedStr;
 }
 
 

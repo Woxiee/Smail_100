@@ -531,12 +531,12 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 //    }
    ItemContentList *item =  model.itemContentList[indexPath.row];
     if (item.tags.count >0) {
-        return CGSizeMake((SCREEN_WIDTH - 2)/2, 295 *hScale);
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 295 *(hScale - 0.03));
     }
     if (item.tags.count >=6) {
-        return CGSizeMake((SCREEN_WIDTH - 2)/2, 310*hScale);
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 310*(hScale - 0.03));
     }
-    return CGSizeMake((SCREEN_WIDTH - 2)/2, 275*hScale);
+    return CGSizeMake((SCREEN_WIDTH - 2)/2, 275*(hScale - 0.03));
 
 }
 
@@ -559,7 +559,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     //
     if ([model.itemType isEqualToString:@"recommended_goods"]){
         
-        return UIEdgeInsetsMake(0, 0, 0, 0);
+        return UIEdgeInsetsMake(5, 0, 0, 0);
     }
     //    if ([model.itemType isEqualToString:@"action"]){
     //        return UIEdgeInsetsMake(0, 0, 0, 0);
@@ -757,7 +757,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
                 [self.navigationController pushViewController:VC animated:YES];
             }
             else {
-                if (KX_NULLString(contenModle.goods_id) ) {
+                if (KX_NULLString(contenModle.id) ) {
                     [self.view makeToast:@"该活动暂未开始，请等通知"];
                     return;
                 }

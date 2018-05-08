@@ -70,22 +70,49 @@
     };
     self.leftNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.leftNaviBtn setImage:[UIImage imageNamed:@"shouye17@3x.png"] forState:UIControlStateNormal];
-    [self.leftNaviBtn setImage:[UIImage imageNamed:@"shouye17@3x.png"] forState:UIControlStateHighlighted];
+    [self.leftNaviBtn setImage:[UIImage imageNamed:@"shouye17@3x.png"] forState:UIControlStateHighlighted];\
+    self.leftNaviBtn.frame = CGRectMake(0, 0, 45, 40);
+
 //    [self.leftNaviBtn setTitle:@"扫一扫" forState:UIControlStateNormal];
     self.leftNaviBtn.titleLabel.font= Font13;
     [self.leftNaviBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
     self.leftNaviBtn.backgroundColor=[UIColor clearColor];
     [self.leftNaviBtn addTarget:self action:@selector(popVC) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem * rightButton = [[UIBarButtonItem alloc]initWithCustomView:self.leftNaviBtn];
-    self.navigationItem.leftBarButtonItem = rightButton;
-    [self.leftNaviBtn sizeToFit];
+    UIBarButtonItem * leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:self.leftNaviBtn];
+    leftBarButton.width = -15;
+    self.navigationItem.leftBarButtonItem = leftBarButton;
     
-    [self.leftNaviBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
+//    [self.leftNaviBtn sizeToFit];
     
-    [self setRightNaviBtnImage:[UIImage imageNamed:@"message_icon@2x.png"]];
+//    [self.leftNaviBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
     
     
-    UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 120)/2, 10, SCREEN_WIDTH - 120, 30)];
+//    self.rightNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.rightNaviBtn setImage:[UIImage imageNamed:@"shouye17@3x.png"] forState:UIControlStateNormal];
+//    [self.rightNaviBtn setImage:[UIImage imageNamed:@"shouye17@3x.png"] forState:UIControlStateHighlighted];
+//    message_icon@2x.png
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 45, 40);
+    [btn setTitle:@"消息" forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"message_icon@2x.png"] forState:UIControlStateNormal];
+    btn.titleLabel.font = KY_FONT(13);
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:0];
+    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    rightItem.width = +15;
+
+    self.navigationItem.rightBarButtonItem = rightItem;
+//    [self.leftNaviBtn sizeToFit];
+//    [btn addTarget:self action:@selector(didClickBottomAction) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:btn];
+    
+//    [self setRightNaviBtnImage:[UIImage imageNamed:@"message_icon@2x.png"]];
+//    [self.rightNaviBtn setTitle:@"消息" forState:UIControlStateNormal];
+//    self.rightNaviBtn.titleLabel.font = KY_FONT(13);
+//    self.rightNaviBtn.backgroundColor = [UIColor blueColor];
+    
+    UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake(60, 10, SCREEN_WIDTH -120, 30)];
   
     inPutTextField.placeholder = @"找商品、找商家、找品牌";
     inPutTextField.textColor = [UIColor whiteColor];
@@ -93,7 +120,7 @@
     inPutTextField.returnKeyType = UIReturnKeySearch;
     inPutTextField.backgroundColor =[UIColor whiteColor];
     inPutTextField.borderStyle = UITextBorderStyleNone;
-    [inPutTextField layerForViewWith:15 AndLineWidth:0];
+    [inPutTextField layerForViewWith:10 AndLineWidth:0];
     _inPutTextField = inPutTextField;
     //搜索框里面的UI
     UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
@@ -109,8 +136,9 @@
     coverToSeach.backgroundColor = [UIColor clearColor];
     [coverToSeach addTarget:self  action:@selector(clickToSearch) forControlEvents:UIControlEventTouchUpInside];
     [inPutTextField addSubview:coverToSeach];
+    
     self.navigationItem.titleView = inPutTextField;
-
+//
 
 }
 

@@ -53,6 +53,7 @@
     moneyLabel.textColor = KMAINCOLOR;
     getPericeLB.textColor = KMAINCOLOR;
     integralLB.textColor = DETAILTEXTCOLOR1;
+    integralLB.font = Font11;
     sellLB.textColor = DETAILTEXTCOLOR1;
     sellLB.font = Font13;
     
@@ -70,13 +71,13 @@
         [priceArr addObject:[NSString stringWithFormat:@"¥%@",_model.price]];
     }
     if (_model.point.floatValue >0) {
-        [priceArr addObject:[NSString stringWithFormat:@"%@ 积分",_model.point]];
+        [priceArr addObject:[NSString stringWithFormat:@"%@积分",_model.point]];
     }
     NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
     if (_model.earn_money.floatValue >0) {
-        NSString *getMoney = [NSString stringWithFormat:@"赚¥%@",_model.earn_money];
+        NSString *getMoney = [NSString stringWithFormat:@"  赚¥%@",_model.earn_money];
         NSString *moneyStr = [NSString stringWithFormat:@"%@ %@",allPrice,getMoney];
-        NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[getMoney,@"+",@" 积分",@"¥"]];
+        NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[getMoney,@"+",@"积分",@"¥"]];
         moneyLabel.attributedText  = attributedStr;
 
     }else{

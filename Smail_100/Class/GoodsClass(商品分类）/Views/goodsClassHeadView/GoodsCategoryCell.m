@@ -46,10 +46,10 @@
  
     self.contentView.backgroundColor = BACKGROUND_COLOR;
 
-    listNameLb.text = [NSString stringWithFormat:@"%@     ",model.name];
+    listNameLb.text = [NSString stringWithFormat:@"%@   ",model.name];
     listNameLb.textColor = model.select?TITLETEXTLOWCOLOR:DETAILTEXTCOLOR;
     lineView.backgroundColor = [UIColor whiteColor];
-    lineView.alpha = 0.5;
+    lineView.alpha = 1;
     //    lineView.hidden = YES;
     [self.contentView showBadgeWithStyle:WBadgeStyleNumber value:[_model.nums integerValue] animationType:WBadgeAnimTypeNone];
     self.contentView.badgeCenterOffset = CGPointMake(-25, 9);

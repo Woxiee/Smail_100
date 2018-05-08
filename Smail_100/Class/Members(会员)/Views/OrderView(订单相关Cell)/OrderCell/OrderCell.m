@@ -178,10 +178,10 @@
     }
 
     if (_seller.point.floatValue >0) {
-        [periceArr addObject:[NSString stringWithFormat:@"%@ 积分",_seller.point]];
+        [periceArr addObject:[NSString stringWithFormat:@"%@积分",_seller.point]];
     }
     NSString * hintString = [periceArr componentsJoinedByString:@"+"];
-    _priceLB.attributedText = [NSString attributeStringWithContent:hintString keyWords:@[@" 积分",@"+"]];
+    _priceLB.attributedText = [NSString attributeStringWithContent:hintString keyWords:@[@"积分",@"+",@"¥"]];
 
 
 //    if ([_seller.point integerValue] >0) {

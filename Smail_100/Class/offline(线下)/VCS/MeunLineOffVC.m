@@ -59,6 +59,7 @@
 {
 
 }
+static NSString *cellID = @"GoodsCategoryCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -190,6 +191,9 @@
 
 //    [_cartBtn showBadgeWithStyle:WBadgeStyleNumber value:3 animationType:WBadgeAnimTypeNone];
 //    _cartBtn.badgeCenterOffset = CGPointMake(-25, 9);
+    
+    [self.leftTableView  registerNib:[UINib nibWithNibName:@"GoodsCategoryCell" bundle:nil] forCellReuseIdentifier:cellID];
+
     WEAKSELF;
     MenulineView *headView = [[MenulineView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 50 - SafeAreaTopHeight - 50, SCREEN_WIDTH, 50)];
     headView.didClickSureBlock = ^(NSString *str){
@@ -283,19 +287,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
    
-    return 60;
+    if (tableView == _leftTableView) {
+        return 60;
+
+    }
+    return 100;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (tableView == _leftTableView) {
-        static NSString *cellID = @"GoodsCategoryCellID";
-        GoodsCategoryCell * cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (!cell) {
-//            cell = [[[NSBundle mainBundle] loadNibNamed:@"GoodsCategoryCell" owner:nil options:nil]lastObject];
-            cell = [[GoodsCategoryCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
-        }
+        GoodsCategoryCell * cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+
         LeftCategory * model = _titleArr[indexPath.section];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
      
@@ -396,19 +400,25 @@
 -(void)changeShopCarGoodsCount:(OrderGoodsModel *)goods {
     
     NSString *count = [NSString stringWithFormat:@"%ld",goods.itemCount.integerValue];
-//    if ([count isEqualToString:@"0"]) {
+    if ([count isEqualToString:@"0"]) {
+        count = @"1";
 //        [self.view makeToast:@"数量最少是1"];
 //        return;
-//    }
-    WS(b_self)
+    }
+    WEAKSELF;
+//    _interfaceURL==http://m.szwx100.com/api/shop/save_goods_nums&uuid=6dc0-e4c1-a165-d80c&goods_id=392&sub_category_id=1&nums=2
+//    _interfaceURL==http://m.szwx100.com/api/shop/save_goods_nums&uuid=6dc0-e4c1-a165-d80c&goods_id=392&sub_category_id=1&nums=1
+
     ChangeGoodsCountView *changeView = [ChangeGoodsCountView changeCountViewWith:count getChangeValue:^(NSString *changeValue) {
-        NSDictionary *param = @{@"cart_id":goods.cid,@"nums":changeValue,@"goods_id":goods.id,@"method":@"edit",@"user_id":[KX_UserInfo sharedKX_UserInfo].user_id};
-        [_carVM changeShopCarGoodsCount:changeValue goods:goods  Params:param  handleback:^(NSInteger code) {
+        NSDictionary *param = @{@"nums":changeValue,@"goods_id":goods.id,@"uuid":_classModel.UUID,@"sub_category_id":_sub_category_id};
+
+//        NSDictionary *param = @{@"cart_id":goods.cid,@"nums":changeValue,@"goods_id":goods.id,@"method":@"edit",@"user_id":[KX_UserInfo sharedKX_UserInfo].user_id};
+        [_carVM changeOffLineShopCarGoodsCount:changeValue goods:goods  Params:param  handleback:^(NSInteger code) {
             if (code == 0) {
                 //修改本地
                 goods.itemCount = count;
                 //                [ShoppingCar_dataSocure updateGoodsCount:goods];
-                
+                   [weakSelf loadShopCarData];
             }
             
         }];
@@ -552,7 +562,10 @@
         [_allInfoArr addObject:allPointStr];
     }
     if (_allInfoArr.count>0) {
-        _bugInfoLb.text = [_allInfoArr componentsJoinedByString:@","];
+        NSString *allPrice = [_allInfoArr componentsJoinedByString:@","];;
+        allPrice = [allPrice stringByReplacingOccurrencesOfString:@".00" withString:@""];
+
+        _bugInfoLb.text = allPrice;
 
     }else{
         _bugInfoLb.text = @"赶紧下单吧~";

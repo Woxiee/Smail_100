@@ -283,12 +283,12 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
     }
     ItemContentList *item = self.resorceArray[indexPath.row];
     if (item.tags.count >0) {
-        return CGSizeMake((SCREEN_WIDTH - 2)/2, 295 *hScale);
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 295 *(hScale - 0.03));
     }
     if (item.tags.count >=6) {
-        return CGSizeMake((SCREEN_WIDTH - 2)/2, 310*hScale);
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 310*(hScale - 0.03));
     }
-    return CGSizeMake((SCREEN_WIDTH - 2)/2, 280 *hScale);
+    return CGSizeMake((SCREEN_WIDTH - 2)/2, 280 *(hScale - 0.03));
 
 }
 

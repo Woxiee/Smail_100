@@ -54,7 +54,7 @@
     }
     
     NSString *infoStr = [NSString stringWithFormat:@"共%@件商品   合计:%@",allNumber,[infoArr componentsJoinedByString:@"+"]];
-    contenLB.attributedText = [NSString attributeStringWithContent:infoStr keyWords:@[@"积分",@"快递费",@"+",allNumber,allPrice,freights,allPoint]];
+    contenLB.attributedText = [NSString attributeStringWithContent:infoStr keyWords:@[@"积分",@"快递费",@"+",allNumber,allPrice,freights,allPoint,@"¥"]];
 
 
     if ([_model.paystatus isEqualToString:@"Pendding"] || [_model.paystatus isEqualToString:@"Preview"] || [_model.paystatus isEqualToString:@"Fail"]) {

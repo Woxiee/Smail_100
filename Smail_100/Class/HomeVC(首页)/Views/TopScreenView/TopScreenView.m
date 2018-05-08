@@ -64,7 +64,7 @@
         btn.frame = CGRectMake(SCREEN_WIDTH / _titleArray.count *i, 0, SCREEN_WIDTH / _titleArray.count, 45);
         btn.tag = 100 + i;
         btn.timeInterVal = 0;
-        btn.titleLabel.font = PLACEHOLDERFONT;
+        btn.titleLabel.font = Font15;
         [btn setTitle:_titleArray[i] forState:UIControlStateNormal];
         //设置button正常状态下的标题颜色
         [btn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];

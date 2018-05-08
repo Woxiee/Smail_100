@@ -54,7 +54,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="IXx-cE-GKr">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_icon@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="IXx-cE-GKr">
                         <rect key="frame" x="153" y="253.5" width="15" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="AGT-wy-Q4c"/>
@@ -126,6 +126,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="add_icon.png" width="28" height="28"/>
+        <image name="add_icon@2x.png" width="16" height="16"/>
     </resources>
 </document>

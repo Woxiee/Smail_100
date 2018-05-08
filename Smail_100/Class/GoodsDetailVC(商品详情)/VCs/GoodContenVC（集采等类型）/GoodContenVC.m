@@ -314,14 +314,14 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
         [priceArr addObject:[NSString stringWithFormat:@"¥%@",_itemIfoModel.itemContent.price]];
     }
     if (_itemIfoModel.itemContent.point.floatValue >0) {
-        [priceArr addObject:[NSString stringWithFormat:@"%@ 积分",_itemIfoModel.itemContent.point]];
+        [priceArr addObject:[NSString stringWithFormat:@"%@积分",_itemIfoModel.itemContent.point]];
     }
 //    if ([_itemIfoModel.itemContent.freight floatValue] >0) {
 //        [priceArr addObject:[NSString stringWithFormat:@"快递费:%@",_itemIfoModel.itemContent.freight]];
 //    }
     NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
     NSString *moneyStr = [NSString stringWithFormat:@"%@",allPrice];
-    NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[@"+",@"快递费:",@" 积分"]];
+    NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[@"+",@"快递费:",@"积分",@"¥"]];
     self.selectView.LB_price.attributedText  = attributedStr;
     
     self.selectView.LB_stock.text =[NSString stringWithFormat:@"库存:%@件",_itemIfoModel.itemContent.volume] ; 
@@ -548,7 +548,7 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
 //            }
             NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
             NSString *moneyStr = [NSString stringWithFormat:@"%@",allPrice];
-            NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[@"+",@"快递费"]];
+            NSAttributedString *attributedStr =  [self attributeStringWithContent:moneyStr keyWords:@[@"+",@"快递费",@"¥"]];
             self.selectView.LB_price.attributedText  = attributedStr;
             
 //            if (_itemIfoModel.itemContent.earn_money.floatValue >0) {

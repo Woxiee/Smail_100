@@ -72,8 +72,8 @@
 
 #if DEBUG
 
-//    [param setObject:@"18757587673" forKey:@"mobile"];
-//    [param setObject:@"123456" forKey:@"password"];
+    [param setObject:@"18757587673" forKey:@"mobile"];
+    [param setObject:@"123456" forKey:@"password"];
 #else
 
     

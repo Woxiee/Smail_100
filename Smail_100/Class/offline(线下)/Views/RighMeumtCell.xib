@@ -53,19 +53,29 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7a-PB-2Ca">
+                                <rect key="frame" x="30" y="0.0" width="40" height="25"/>
+                                <connections>
+                                    <action selector="chageBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Xh0-XY-giH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="d7a-PB-2Ca" secondAttribute="bottom" id="2hn-bL-9zH"/>
                             <constraint firstAttribute="bottom" secondItem="biX-a0-1lu" secondAttribute="bottom" id="LAu-In-5Bf"/>
                             <constraint firstAttribute="bottom" secondItem="2Z4-iF-9hH" secondAttribute="bottom" id="QfI-Hf-PpU"/>
                             <constraint firstItem="o1e-pA-KGP" firstAttribute="top" secondItem="c7b-z6-y5U" secondAttribute="top" id="Tie-aU-zhe"/>
+                            <constraint firstItem="d7a-PB-2Ca" firstAttribute="leading" secondItem="biX-a0-1lu" secondAttribute="trailing" id="Uns-bw-Xan"/>
                             <constraint firstItem="o1e-pA-KGP" firstAttribute="leading" secondItem="biX-a0-1lu" secondAttribute="trailing" constant="-1" id="VB2-Du-JiC"/>
                             <constraint firstAttribute="trailing" secondItem="2Z4-iF-9hH" secondAttribute="trailing" id="X01-K7-81k"/>
                             <constraint firstItem="2Z4-iF-9hH" firstAttribute="top" secondItem="c7b-z6-y5U" secondAttribute="top" id="Xq6-uP-hFX"/>
                             <constraint firstAttribute="bottom" secondItem="o1e-pA-KGP" secondAttribute="bottom" id="bwO-ff-OoV"/>
+                            <constraint firstItem="d7a-PB-2Ca" firstAttribute="top" secondItem="c7b-z6-y5U" secondAttribute="top" id="cTT-zz-nWU"/>
                             <constraint firstItem="2Z4-iF-9hH" firstAttribute="width" secondItem="biX-a0-1lu" secondAttribute="width" id="gcO-MK-9nz"/>
                             <constraint firstItem="2Z4-iF-9hH" firstAttribute="leading" secondItem="o1e-pA-KGP" secondAttribute="trailing" constant="-1" id="m39-O1-tnf"/>
                             <constraint firstAttribute="width" constant="100" id="nrh-x8-s98"/>
+                            <constraint firstItem="2Z4-iF-9hH" firstAttribute="leading" secondItem="d7a-PB-2Ca" secondAttribute="trailing" id="rjW-o4-TdB"/>
                             <constraint firstItem="2Z4-iF-9hH" firstAttribute="height" secondItem="biX-a0-1lu" secondAttribute="height" id="use-I0-t6R"/>
                             <constraint firstItem="biX-a0-1lu" firstAttribute="leading" secondItem="c7b-z6-y5U" secondAttribute="leading" id="x86-KC-UZf"/>
                             <constraint firstAttribute="height" constant="25" id="zv1-Fu-ca2"/>

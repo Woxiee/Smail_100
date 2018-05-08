@@ -631,7 +631,7 @@
                 
                 [attString addAttribute:(NSString*)NSForegroundColorAttributeName value:color range:NSMakeRange(location+range.location, range.length)];
                 [attString addAttribute:NSFontAttributeName
-                                  value:Font11
+                                  value:KY_FONT(10)
                                   range:range];
                 
                 location+=(range.location+range.length);

@@ -128,10 +128,10 @@
         [priceArr addObject:[NSString stringWithFormat:@"¥%@",_products.price]];
     }
     if (_products.point.floatValue >0) {
-        [priceArr addObject:[NSString stringWithFormat:@"%@ 积分",_products.point]];
+        [priceArr addObject:[NSString stringWithFormat:@"%@积分",_products.point]];
     }
     NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
-    NSAttributedString *attributedString    =  [self attributeStringWithContent:allPrice keyWords:@[@" 积分",@"+"] fonts:Font11 color:KMAINCOLOR];
+    NSAttributedString *attributedString    =  [self attributeStringWithContent:allPrice keyWords:@[@"积分",@"+",@"¥"] fonts:Font11 color:KMAINCOLOR];
     
     _priceLB.attributedText = attributedString;    _number.text = [NSString stringWithFormat:@"*%@",_products.goods_nums];
     
@@ -156,11 +156,11 @@
         [priceArr addObject:[NSString stringWithFormat:@"¥%@",_seller.price]];
     }
     if (_seller.point.floatValue >0) {
-        [priceArr addObject:[NSString stringWithFormat:@"%@ 积分",_seller.point]];
+        [priceArr addObject:[NSString stringWithFormat:@"%@积分",_seller.point]];
     }
     NSString *allPrice = [priceArr componentsJoinedByString:@"+"];
 
-  NSAttributedString *attributedString    =  [self attributeStringWithContent:allPrice keyWords:@[@" 积分",@"+"] fonts:Font11 color:KMAINCOLOR];
+  NSAttributedString *attributedString    =  [self attributeStringWithContent:allPrice keyWords:@[@"积分",@"+",@"¥"] fonts:Font11 color:KMAINCOLOR];
 
     _priceLB.attributedText = attributedString;
 //    //    _products.point = @"22";

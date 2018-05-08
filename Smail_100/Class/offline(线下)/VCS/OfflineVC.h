@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OfflineVC : KX_BaseTableViewController
+@interface OfflineVC : KX_BaseViewController
 @property (nonatomic, strong) NSString *category_id;
 @end

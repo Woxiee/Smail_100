@@ -443,12 +443,12 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
  
     ItemContentList *item =  model.itemContentList[indexPath.row];
     if (item.tags.count >0) {
-        return CGSizeMake((SCREEN_WIDTH - 2)/2, 295 *hScale);
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 295 *(hScale - 0.03));
     }
     if (item.tags.count >=6) {
-        return CGSizeMake((SCREEN_WIDTH - 2)/2, 310*hScale);
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 310*(hScale - 0.03));
     }
-    return CGSizeMake((SCREEN_WIDTH - 2)/2, 275*hScale);
+    return CGSizeMake((SCREEN_WIDTH - 2)/2, 275*(hScale - 0.03));
 
 }
 
@@ -547,8 +547,8 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
             
             //                headerView.model = models.itemContentList[indexPath.row];
             
-            headerView.titleLB.text = @"-- 主题推荐 --";
-            headerView.detailLB.text = @"都是你的兴趣";
+            headerView.titleLB.text = @"-- 精品推荐 --";
+            headerView.detailLB.text = @"每日为您推荐最新火爆单品";
             return headerView;
         }
         
@@ -691,7 +691,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
                 
             }
             else {
-                if (KX_NULLString(contenModle.goods_id) ) {
+                if (KX_NULLString(contenModle.id) ) {
                     [self.view makeToast:@"该活动暂未开始，请等通知"];
                     return;
                 }
