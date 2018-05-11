@@ -141,7 +141,7 @@ static NSString * const levePartnerCellID = @"LevePartnerCellID";
         cell.textLabel.text =  self.resorceArray[indexPath.section];
         cell.detailTextLabel.text = self.detailList[indexPath.section];
         cell.detailTextLabel.textAlignment = NSTextAlignmentRight;
-        
+        cell.detailTextLabel.textColor = TITLETEXTLOWCOLOR;
         cell.detailTextLabel.font = Font14;
         cell.textLabel.font = Font15;
         return cell;

@@ -20,6 +20,10 @@
 @property (nonatomic,retain)UISearchBar *searchBar;
 @property (nonatomic,retain)UIButton *cancelBtn;
 @property (nonatomic,assign) id <CustomSearchViewDelegate>delegate;
+
+@property (nonatomic,strong) UILabel *addressLB;
+
+
 @end
 
 

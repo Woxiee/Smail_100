@@ -170,14 +170,14 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 /// 初始化视图
 - (void)setup
 {
-    UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake(20, 10, SCREEN_WIDTH - 80 , 30)];
+    UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake(45, 10, SCREEN_WIDTH -100 , 30)];
     inPutTextField.placeholder = @"找商品、找商家、找品牌";
     inPutTextField.textColor = [UIColor whiteColor];
     inPutTextField.font = Font13;
     inPutTextField.returnKeyType = UIReturnKeySearch;
     inPutTextField.backgroundColor =[UIColor whiteColor];
     inPutTextField.borderStyle = UITextBorderStyleNone;
-    [inPutTextField layerForViewWith:15 AndLineWidth:0];
+    [inPutTextField layerForViewWith:10 AndLineWidth:0];
     _inPutTextField = inPutTextField;
     
     //搜索框里面的UI
@@ -223,7 +223,18 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     collectionView.backgroundColor = BACKGROUNDNOMAL_COLOR;
     [self.view addSubview:collectionView];
     self.collectionView = collectionView;
-    [self setRightNaviBtnImage:[UIImage imageNamed:@"message_icon@2x.png"]];
+    
+    
+//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    btn.frame = CGRectMake(0, 0, 45, 25);
+//    [btn setTitle:@"消息" forState:UIControlStateNormal];
+//    [btn setImage:[UIImage imageNamed:@"message_icon@2x.png"] forState:UIControlStateNormal];
+//    btn.titleLabel.font = KY_FONT(11);
+//    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [btn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:0];
+//    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+//    self.navigationItem.rightBarButtonItem = rightItem;
+    [self setRightNaviBtnImage:[UIImage imageNamed:@"messages_icon@3x.png"]];
     
     
 }
@@ -443,12 +454,12 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
  
     ItemContentList *item =  model.itemContentList[indexPath.row];
     if (item.tags.count >0) {
-        return CGSizeMake((SCREEN_WIDTH - 2)/2, 295 *(hScale - 0.03));
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 305 *(hScale>0?(hScale - 0.05): hScale));
     }
     if (item.tags.count >=6) {
-        return CGSizeMake((SCREEN_WIDTH - 2)/2, 310*(hScale - 0.03));
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 320*(hScale>0?(hScale - 0.05):hScale));
     }
-    return CGSizeMake((SCREEN_WIDTH - 2)/2, 275*(hScale - 0.03));
+    return CGSizeMake((SCREEN_WIDTH - 2)/2, 290*(hScale>0?(hScale - 0.05):hScale));
 
 }
 

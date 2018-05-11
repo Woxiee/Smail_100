@@ -48,6 +48,8 @@
 @property (nonatomic, strong) NSArray *catelist;
 
 @property (nonatomic, strong)  UIButton *item;
+@property (nonatomic, strong)  UIButton *backBtn;
+;
 
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -176,20 +178,40 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     [cityBtn addTarget:self action:@selector(cityClick) forControlEvents:UIControlEventTouchUpInside];
     [cityBtn setImage:[UIImage imageNamed:@"xianxiashangjia10@3x.png"] forState:UIControlStateNormal];
     [cityBtn setImage:[UIImage imageNamed:@"xianxiashangjia10@3x.png"] forState:UIControlStateHighlighted];
-    cityBtn.titleLabel.font = Font14;
+//    cityBtn.frame = CGRectMake(0,0,45,40);
+
+    cityBtn.titleLabel.font = Font15;
     [cityBtn setTitle:[KX_UserInfo sharedKX_UserInfo].city forState:UIControlStateNormal];
     UIBarButtonItem *cityItem = [[UIBarButtonItem alloc] initWithCustomView:cityBtn];
     _item = cityBtn;
+
     [_item sizeToFit];
-    [_item layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
-    if (KX_NULLString(_category_id)) {
-        self.navigationItem.leftBarButtonItems  = @[cityItem];
-    }
+    [_item layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageLeft imageTitlespace:2];
+    
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backBtn addTarget:self action:@selector(cityClick) forControlEvents:UIControlEventTouchUpInside];
+    [backBtn setImage:[UIImage imageNamed:@"downIcon@3x.png"] forState:UIControlStateNormal];
+    [backBtn sizeToFit];
+    self.backBtn =  backBtn;
+    //    self.addBtn = addBtn;
+    UIBarButtonItem *backBtnItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    
+//    if (KX_NULLString(_category_id)) {
+        self.navigationItem.leftBarButtonItems  = @[cityItem,backBtnItem];
+//    }
    
     
-    UIView *navationView = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 120)/2, 10, SCREEN_WIDTH - 120, 30)];
+   
+
+}
+
+
+- (void)setup
+{
+    _page = 1;
+    UIView *navationView = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 150)/2, 10, SCREEN_WIDTH - 150, 30)];
     navationView.backgroundColor = [UIColor whiteColor];
-    [navationView layerForViewWith:4 AndLineWidth:0];
+    [navationView layerForViewWith:10 AndLineWidth:0];
     
     UIButton *selectBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
     selectBtn.backgroundColor = RGB(228, 229, 230);
@@ -197,22 +219,22 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     [selectBtn setImage:[UIImage imageNamed:@"xianxiashangjia1@3x.png"] forState:UIControlStateNormal];
     [selectBtn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
     selectBtn.titleLabel.font = Font15;
-    [selectBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
+    [selectBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageLeft imageTitlespace:2];
     [selectBtn addTarget:self  action:@selector(clickToSelect:) forControlEvents:UIControlEventTouchUpInside];
     [navationView addSubview:selectBtn];
     self.selectBtn = selectBtn;
     
-
+    
     UITextField *inPutTextField = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(selectBtn.frame), 0, navationView.width -CGRectGetMaxX(selectBtn.frame), 30)];
-    inPutTextField.placeholder = @"请输入搜索内容";
+    inPutTextField.placeholder = @"请输入需要搜索的内容";
     inPutTextField.textColor = [UIColor whiteColor];
     inPutTextField.font = Font13;
     inPutTextField.returnKeyType = UIReturnKeySearch;
     inPutTextField.backgroundColor =[UIColor whiteColor];
     inPutTextField.borderStyle = UITextBorderStyleNone;
-    [inPutTextField layerForViewWith:15 AndLineWidth:0];
+    //    [inPutTextField layerForViewWith:10 AndLineWidth:0];
     [navationView addSubview:inPutTextField];
-
+    
     _inPutTextField = inPutTextField;
     //搜索框里面的UI
     UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
@@ -232,31 +254,9 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     self.navigationItem.titleView = navationView;
     [self.tableView registerNib:[UINib nibWithNibName:@"LineOffGoodsCell" bundle:nil] forCellReuseIdentifier:llineOffGoodsCell];
     [self requestListNetWork];
-
     
+    [self setRightNaviBtnImage:[UIImage imageNamed:@"messages_icon@3x.png"]];
 
-}
-
-
-- (void)setup
-{
-    _page = 1;
-//    self.leftNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [self.leftNaviBtn setImage:[UIImage imageNamed:@"muban1@3x.png"] forState:UIControlStateNormal];
-//    [self.leftNaviBtn setImage:[UIImage imageNamed:@"muban1@3x.png"] forState:UIControlStateHighlighted];
-//    [self.leftNaviBtn setTitle:[KX_UserInfo sharedKX_UserInfo].city?[KX_UserInfo sharedKX_UserInfo].city:@"深圳" forState:UIControlStateNormal];
-//    self.leftNaviBtn.titleLabel.font=[UIFont systemFontOfSize:16];
-//    [self.leftNaviBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
-//    self.leftNaviBtn.backgroundColor=[UIColor clearColor];
-//    [self.leftNaviBtn addTarget:self action:@selector(popVC) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem * rightButton = [[UIBarButtonItem alloc]initWithCustomView:self.leftNaviBtn];
-//    self.navigationItem.leftBarButtonItem = rightButton;
-//    [self.leftNaviBtn sizeToFit];
-//
-//    [self.leftNaviBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
-    
-    //    WEAKSELF;
-    /// 顶部视图    [_titleArray addObject:@"全部分类"];
 
     [self.view addSubview:self.topSreenView];
     
@@ -268,7 +268,6 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     self.tableView.tableFooterView = [UIView new];
     self.tableView.tableHeaderView = _headerView;
 //    self.tableView
-    [self setRightNaviBtnImage:[UIImage imageNamed:@"shouye18@3x.png"]];
 
     
     SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200 *hScale) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGEW]];
@@ -392,9 +391,11 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
         [KX_UserInfo sharedKX_UserInfo].city = string;
         [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
         [weakSelf.item setTitle:string forState:UIControlStateNormal];
-        [weakSelf.item sizeToFit];
-        [weakSelf.item layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
-        
+//        weakSelf.item.frame  = CGRectMake(0, 0, 80, 40);
+//        [weakSelf.item sizeToFit];
+//        [weakSelf.item  layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageLeft imageTitlespace:2];
+        [weakSelf setNavationView];
+
         [weakSelf requestListNetWork];
     };
     [self presentViewController:controller animated:YES completion:nil];

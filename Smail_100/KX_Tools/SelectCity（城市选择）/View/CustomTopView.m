@@ -17,7 +17,7 @@
         self.backgroundColor = BACKGROUND_COLORHL;
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 33, 12, 20)];
        // [btn setTitle:@"返回"  forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"18@3x.png" ] forState:0];
+        [btn setBackgroundImage:[UIImage imageNamed:@"back_icon@2x.png" ] forState:0];
         [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [self addSubview:btn];
         

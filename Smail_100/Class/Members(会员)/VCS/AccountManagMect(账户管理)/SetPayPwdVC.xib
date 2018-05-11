@@ -16,6 +16,7 @@
                 <outlet property="oldPwdContensH" destination="cCA-RG-JTq" id="wHt-2H-aiG"/>
                 <outlet property="oldPwdTF" destination="aRv-gk-YWw" id="vE9-uU-Qhx"/>
                 <outlet property="oldPwdView" destination="F24-LQ-UEo" id="iHU-dR-LZK"/>
+                <outlet property="remenberBtn" destination="aLS-Mt-6aa" id="GOF-dx-R6F"/>
                 <outlet property="sureBtn" destination="atL-ud-amA" id="Qun-dK-U2E"/>
                 <outlet property="surePwdTF" destination="xl2-Ap-Fqz" id="Q7M-B7-dOx"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -164,21 +165,21 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLS-Mt-6aa">
-                    <rect key="frame" x="270" y="184" width="93" height="15"/>
+                    <rect key="frame" x="270" y="187" width="93" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="Apy-nY-jXl"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="VtJ-dh-B3U"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="忘记支付密码？">
-                        <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleColor" red="0.82220143079999997" green="0.17686191200000001" blue="0.14883869890000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </state>
                     <connections>
                         <action selector="didMissActionBtn:" destination="-1" eventType="touchUpInside" id="VnE-P4-s9s"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="atL-ud-amA">
-                    <rect key="frame" x="15" y="224" width="345" height="44"/>
+                    <rect key="frame" x="15" y="227" width="345" height="44"/>
                     <color key="backgroundColor" red="0.91222566370000002" green="0.16209502719999999" blue="0.1124708401" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="gUf-YJ-Iuy"/>
@@ -191,13 +192,13 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温馨提示:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Jq-9E-YLP">
-                    <rect key="frame" x="15" y="289" width="345" height="14.5"/>
+                    <rect key="frame" x="15" y="311" width="345" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付密码用于消费 资金流动等授权,请妥善保管" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvn-Y3-NSn">
-                    <rect key="frame" x="15" y="308.5" width="345" height="14.5"/>
+                    <rect key="frame" x="15" y="330.5" width="345" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -215,15 +216,14 @@
                 <constraint firstItem="atL-ud-amA" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="NbL-Xj-MfS"/>
                 <constraint firstItem="1Jq-9E-YLP" firstAttribute="trailing" secondItem="atL-ud-amA" secondAttribute="trailing" id="Ntv-rv-qXT"/>
                 <constraint firstItem="Pvn-Y3-NSn" firstAttribute="trailing" secondItem="atL-ud-amA" secondAttribute="trailing" id="O4G-N9-jsE"/>
-                <constraint firstItem="aLS-Mt-6aa" firstAttribute="top" secondItem="NeP-om-cgm" secondAttribute="bottom" constant="12" id="PMS-z7-uai"/>
                 <constraint firstItem="00A-VP-apM" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="SiQ-JB-tjj"/>
                 <constraint firstItem="00A-VP-apM" firstAttribute="top" secondItem="F24-LQ-UEo" secondAttribute="bottom" constant="1" id="XI4-7z-QiU"/>
                 <constraint firstItem="NeP-om-cgm" firstAttribute="top" secondItem="00A-VP-apM" secondAttribute="bottom" constant="1" id="adi-CJ-d6u"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="aLS-Mt-6aa" secondAttribute="trailing" constant="12" id="aoK-Hq-MYQ"/>
                 <constraint firstAttribute="trailing" secondItem="00A-VP-apM" secondAttribute="trailing" id="dbG-Sa-aKF"/>
-                <constraint firstItem="1Jq-9E-YLP" firstAttribute="top" secondItem="atL-ud-amA" secondAttribute="bottom" constant="21" id="er9-VM-fps"/>
+                <constraint firstItem="1Jq-9E-YLP" firstAttribute="top" secondItem="atL-ud-amA" secondAttribute="bottom" constant="40" id="er9-VM-fps"/>
                 <constraint firstItem="Pvn-Y3-NSn" firstAttribute="leading" secondItem="atL-ud-amA" secondAttribute="leading" id="fr7-Xg-Fm7"/>
-                <constraint firstItem="aLS-Mt-6aa" firstAttribute="top" secondItem="NeP-om-cgm" secondAttribute="bottom" constant="12" id="lLE-Mx-jYp"/>
+                <constraint firstItem="aLS-Mt-6aa" firstAttribute="top" secondItem="NeP-om-cgm" secondAttribute="bottom" constant="15" id="lLE-Mx-jYp"/>
                 <constraint firstItem="1Jq-9E-YLP" firstAttribute="leading" secondItem="atL-ud-amA" secondAttribute="leading" id="mgQ-ka-vL4"/>
                 <constraint firstItem="atL-ud-amA" firstAttribute="top" secondItem="aLS-Mt-6aa" secondAttribute="bottom" constant="25" id="qIC-NF-lNY"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="atL-ud-amA" secondAttribute="trailing" constant="15" id="wpY-hT-DxB"/>

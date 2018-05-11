@@ -56,11 +56,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZC-sG-YMo">
-                        <rect key="frame" x="268.5" y="25" width="36.5" height="15"/>
+                        <rect key="frame" x="266.5" y="25" width="38.5" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="aFr-ye-CxD"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>

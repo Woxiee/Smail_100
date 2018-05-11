@@ -10,8 +10,8 @@
 #import "KX_BaseTabbarController.h"
 #import "KX_BaseNavController.h"
 #import "HYNewFeatureCtr.h"
-#import <PgySDK/PgyManager.h>
-#import <PgyUpdate/PgyUpdateManager.h>
+//#import <PgySDK/PgyManager.h>
+//#import <PgyUpdate/PgyUpdateManager.h>
 @interface AppDelegate ()<WXApiDelegate>
 @property (nonatomic, strong) KX_BaseTabbarController *tabbarVC;
 

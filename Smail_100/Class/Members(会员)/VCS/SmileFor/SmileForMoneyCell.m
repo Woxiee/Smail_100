@@ -23,6 +23,7 @@
     
     __weak IBOutlet UIView *bgView;
     __weak IBOutlet UIButton *allBtn;
+    __weak IBOutlet UIView *lineView;
 }
 
 - (void)awakeFromNib {
@@ -30,6 +31,7 @@
     textTF.delegate = self;
     [allBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
     [allBtn layerWithRadius:6 lineWidth:0.5 color:KMAINCOLOR];
+    lineView.backgroundColor = LINECOLOR;
     allBtn.hidden = YES;
     
     bgView.backgroundColor = BACKGROUND_COLOR;

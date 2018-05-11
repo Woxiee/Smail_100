@@ -163,7 +163,6 @@ static NSString* SmileForListCellID = @"SmileForListCell";
                     weakSelf.headView.isWithdrawal = weakSelf.isWithdrawal;
                     weakSelf.headView.dataDic = result;
                     [weakSelf.tableView reloadData];
-                    [weakSelf.resorceArray removeAllObjects];
 
                     [weakSelf stopRefresh];
                 }

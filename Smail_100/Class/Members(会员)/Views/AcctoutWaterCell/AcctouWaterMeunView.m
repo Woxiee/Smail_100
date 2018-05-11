@@ -45,8 +45,8 @@
 
     UIView *darkView                = [[UIView alloc] init];
     darkView.userInteractionEnabled = YES;
-    darkView.frame = CGRectMake(0,  64 +50 , SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 50);
-    darkView.backgroundColor        = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    darkView.frame = CGRectMake(0,  0  , SCREEN_WIDTH, SCREEN_HEIGHT );
+    darkView.backgroundColor        = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
     [self addSubview:darkView];
     self.darkView = darkView;
     
@@ -54,7 +54,7 @@
     [self.darkView addGestureRecognizer:tapGestureRecognizer];
     
     UIView *bottomView = [[UIView alloc] init];
-    bottomView.frame = CGRectMake(0,darkView.mj_y, SCREEN_WIDTH,195);
+    bottomView.frame = CGRectMake(0,50+SafeAreaTopHeight, SCREEN_WIDTH,195);
     bottomView.backgroundColor  = [UIColor whiteColor];
     [self addSubview:bottomView];
     self.bottomView = bottomView;
@@ -66,17 +66,17 @@
     NSArray *titles1  = @[@"方向",@"全部类型",@"收入",@"支出"];
     NSArray *titles2;
     if (KX_NULLString(_trans_type)) {
-       titles2 = @[@"类型",@"全部类型",@"激励笑脸",@"兑换积分",@"空充笑脸",@"笑脸兑换",@"",@"支付宝",@"微信"];
+       titles2 = @[@"类型",@"全部类型",@"激励笑脸",@"兑换积分",@"空充笑脸",@"支付宝",@"",@"微信",@"笑脸兑换"];
     }
     else{
-        titles2 = @[@"类型",@"全部类型",@"激励笑脸",@"兑换积分",@"空充笑脸"];
+        titles2 = @[@"类型",@"全部类型",@"激励笑脸",@"空充笑脸",@"兑换积分"];
         _bottomView.frame = CGRectMake(0,darkView.mj_y, SCREEN_WIDTH,150);
 
     }
 
-    int btnW = 55;
+    int btnW = (SCREEN_WIDTH -50) /6;
     int btnH = 30;
-    int pading = 5;
+    int pading = 10;
     for (int i = 0; i<titles1.count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake((btnW+pading)*i, CGRectGetMaxY(lineView.frame)+10, btnW , btnH);
@@ -87,7 +87,6 @@
         //设置button正常状态下的标题颜色
         [btn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
         [btn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateSelected];
-        [btn layerWithRadius:6 lineWidth:1 color:LINECOLOR];
         if (i ==  0 ) {
             btn.titleLabel.font = Font15;
 

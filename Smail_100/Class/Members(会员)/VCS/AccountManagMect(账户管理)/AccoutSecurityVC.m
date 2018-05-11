@@ -20,7 +20,15 @@
     [super viewDidLoad];
     self.title = @"账户安全设置";
     self.tableView.tableFooterView = [UIView new];
-    NSArray *dataArray = @[@"修改登录密码",@"修改支付密码"];
+    NSArray *dataArray;
+
+    if (KX_NULLString([KX_UserInfo sharedKX_UserInfo].pay_password)) {
+
+        dataArray = @[@"修改登录密码",@"设置支付密码"];
+    }else{
+        dataArray = @[@"修改登录密码",@"修改支付密码"];
+    }
+
     [self.resorceArray addObjectsFromArray:dataArray];
     
     [self.tableView reloadData];
@@ -69,7 +77,7 @@
         [self.navigationController pushViewController:VC animated:YES];
         
     }
-    //    NSArray *dataArray = @[@"基本资料",@"实名认证",@"银行卡管理",@"我的收获地址",@"账户安全设置"];
+    //    NSArray *dataArray = @[@"基本资料",@"实名认证",@"银行卡管理",@"我的收货地址",@"账户安全设置"];
     //
     else if ([titleStr isEqualToString:@"修改支付密码"]) {
         SetPayPwdVC *VC = [[SetPayPwdVC alloc] init];

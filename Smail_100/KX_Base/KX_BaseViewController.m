@@ -116,7 +116,7 @@
     self.rightNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.rightNaviBtn setImage:img forState:UIControlStateNormal];
     self.rightNaviBtn.frame = CGRectMake(0, 0, 25, 40);
-    self.rightNaviBtn.titleLabel.font=[UIFont systemFontOfSize:15];
+    self.rightNaviBtn.titleLabel.font=[UIFont systemFontOfSize:14];
 //    [self.rightNaviBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
     self.rightNaviBtn.backgroundColor=[UIColor clearColor];
 
@@ -133,7 +133,7 @@
     self.rightNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.rightNaviBtn setTitle:str forState:UIControlStateNormal];
     [self.rightNaviBtn setTitleColor:titleColor forState:UIControlStateNormal];
-    self.rightNaviBtn.titleLabel.font=[UIFont systemFontOfSize:15];
+    self.rightNaviBtn.titleLabel.font=[UIFont systemFontOfSize:14];
     [self.rightNaviBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [self.rightNaviBtn addTarget:self action:@selector(didClickRightNaviBtn) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem * rightButton = [[UIBarButtonItem alloc]initWithCustomView:self.rightNaviBtn];

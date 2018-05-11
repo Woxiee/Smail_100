@@ -531,12 +531,12 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 //    }
    ItemContentList *item =  model.itemContentList[indexPath.row];
     if (item.tags.count >0) {
-        return CGSizeMake((SCREEN_WIDTH - 2)/2, 295 *(hScale - 0.03));
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 305 *(hScale>0?(hScale - 0.05): hScale));
     }
     if (item.tags.count >=6) {
-        return CGSizeMake((SCREEN_WIDTH - 2)/2, 310*(hScale - 0.03));
+        return CGSizeMake((SCREEN_WIDTH - 2)/2, 320*(hScale>0?(hScale - 0.05):hScale));
     }
-    return CGSizeMake((SCREEN_WIDTH - 2)/2, 275*(hScale - 0.03));
+    return CGSizeMake((SCREEN_WIDTH - 2)/2, 290*(hScale>0?(hScale - 0.05):hScale));
 
 }
 

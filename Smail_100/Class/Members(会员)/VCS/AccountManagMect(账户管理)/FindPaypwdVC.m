@@ -24,9 +24,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [_loginBtn layerForViewWith:6 AndLineWidth:0.5];
+    [_loginBtn layerForViewWith:10 AndLineWidth:0.5];
     _loginBtn.backgroundColor = KMAINCOLOR;
-  [_yzmBtn layerWithRadius:6 lineWidth:0.5 color:MainColor];
+//  [_yzmBtn layerWithRadius:6 lineWidth:0.5 color:MainColor];
+    [_yzmBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
     _accoutTF.text = [KX_UserInfo sharedKX_UserInfo].mobile;
     self.title = @"找回支付密码";
 }

@@ -14,20 +14,30 @@
     self = [super initWithFrame:frame];
     if(self)
     {
+        _addressLB = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, SCREEN_WIDTH -24, 45)];
+        _addressLB.text = [NSString stringWithFormat:@"当前位置:%@",[KX_UserInfo sharedKX_UserInfo].address];
+        _addressLB.textColor = DETAILTEXTCOLOR;
+        _addressLB.numberOfLines = 2;
+        _addressLB.font = KY_FONT(14);
+        [self addSubview:_addressLB];
+        
+        
+        
+        
         _searchBar = [[UISearchBar alloc] init];
-        _searchBar.frame =CGRectMake(0, 7, frame.size.width, 30);
+        _searchBar.frame =CGRectMake(0,CGRectGetMaxY(_addressLB.frame)+7, frame.size.width, 30);
         _searchBar.backgroundColor = [UIColor clearColor];
         _searchBar.showsCancelButton = NO;
         _searchBar.tintColor = [UIColor orangeColor];
         _searchBar.placeholder = @"请输入城市名或拼音查询";
-        
+
         for (UIView *subView in _searchBar.subviews) {
             if ([subView isKindOfClass:[UIView  class]]) {
                 [[subView.subviews objectAtIndex:0] removeFromSuperview];
                 if ([[subView.subviews objectAtIndex:0] isKindOfClass:[UITextField class]]) {
                     UITextField *textField = [subView.subviews objectAtIndex:0];
                     textField.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1];
-                    
+                    textField.font = KY_FONT(14);
                     //设置输入框边框的颜色
                     //                    textField.layer.borderColor = [UIColor blackColor].CGColor;
                     //                    textField.layer.borderWidth = 1;
@@ -36,7 +46,7 @@
                     //                    textField.textColor = [UIColor lightGrayColor];
                     
                     //设置默认文字颜色
-                    UIColor *color = [UIColor grayColor];
+                    UIColor *color = DETAILTEXTCOLOR;
                     [textField setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:@"请输入城市名或拼音查询"
                                                                                         attributes:@{NSForegroundColorAttributeName:color}]];
 //                    //修改默认的放大镜图片

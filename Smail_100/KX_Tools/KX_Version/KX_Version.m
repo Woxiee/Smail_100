@@ -49,8 +49,7 @@ static  NSString * version_Key = @"KX_VersionKey";//const
     //    @"http://itunes.apple.com/cn/lookup?id=1223847098
     //1 得到appid
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
-//    NSString *appid =@"1245034886";
-    NSString *appid =  @"1314844761";
+    NSString *appid =  @"1378780521";
 
     NSString *url   =  [NSString stringWithFormat:@"http://itunes.apple.com/cn/lookup?id=%@",appid];
     

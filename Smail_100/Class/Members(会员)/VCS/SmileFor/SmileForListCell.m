@@ -45,10 +45,12 @@
     
     if ([_model.status isEqualToString:@"Enabled"] ) {
         stateLb.text = @"已成功";
+        countLB.textColor = KMAINCOLOR;
     }
     else if ([_model.status isEqualToString:@"Fail"] )
     {
         stateLb.text = @"已驳回";
+        countLB.textColor = TITLETEXTLOWCOLOR;
     }
     else{
         if (KX_NULLString(_model.isWithdrawal)) {
@@ -58,16 +60,18 @@
             stateLb.text =  @"提现中";
 
         }
+        countLB.textColor = TITLETEXTLOWCOLOR;
+
     }
     
-    if (_model.is_plus.integerValue == 1 ) {
-        countLB.textColor = KMAINCOLOR;
-    }else{
-        countLB.textColor = RGB(99, 166, 95);
-    }
+//    if (_model.is_plus.integerValue == 1 ) {
+//        countLB.textColor = KMAINCOLOR;
+//    }else{
+//        countLB.textColor = RGB(99, 166, 95);
+//    }
     orderNo.text = [NSString stringWithFormat:@"订单号%@",_model.orderno];
     timeLB.text = [NSString stringWithFormat:@"时间:%@",_model.ctime];
-    cardLB.text = [NSString stringWithFormat:@"银行卡:%@",_model.bank_info];
+    cardLB.text = [NSString stringWithFormat:@"%@",_model.bank_info];
     countLB.text = [NSString stringWithFormat:@"%@元",_model.value];
     if (!KX_NULLString(_model.fee)) {
         socotLB.text =[NSString stringWithFormat:@"(手续费:%@元)",_model.fee];

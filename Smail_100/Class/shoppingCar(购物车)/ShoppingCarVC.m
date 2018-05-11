@@ -70,7 +70,9 @@
     [super viewDidLoad];
     self.title = @"购物车";
     [self laodComment];
-    
+    self.view.backgroundColor = BACKGROUNDNOMAL_COLOR;
+  
+    shopCarGoodsList.backgroundColor = BACKGROUNDNOMAL_COLOR;
 }
 
 
@@ -290,7 +292,14 @@
     NSString *count = [carVM calcilationShopCarAllCount:_dataSocure];
   
 //    minCountLb.text = [NSString stringWithFormat:@"%@件商品",count];
-    [toPayBtn setTitle:[NSString stringWithFormat:@"结算(%@)",count] forState:UIControlStateNormal];
+//    [toPayBtn setTitle:[NSString stringWithFormat:@"结算(%@)",count] forState:UIControlStateNormal];
+    if (count.intValue >0) {
+        self.title =[NSString stringWithFormat:@"购物车(%@)",count];
+
+    }
+    
+     [toPayBtn setTitle:@"结算" forState:UIControlStateNormal];
+    
     for (OrderGoodsModel*model in _dataSocure) {
         for (OrderGoodsModel*item in model.goodModel) {
             if (item.selectStatue.integerValue == 1) {

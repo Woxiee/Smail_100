@@ -19,6 +19,9 @@
     __weak IBOutlet UITextField *nameTF;
     __weak IBOutlet UITextField *phoneTF;
     __weak IBOutlet UITextField *xxdzText;
+    
+    __weak IBOutlet UIView *addressView;
+    __weak IBOutlet UITextField *addressTF;
     __weak IBOutlet UIButton *adressBtn;
     __weak IBOutlet UIButton *saveBtn;
 }
@@ -53,10 +56,13 @@
     nameTF.delegate = self;
     phoneTF.delegate = self;
     xxdzText.delegate = self;
+    
+    UITapGestureRecognizer *tagGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectAddress)];
+    [addressView addGestureRecognizer:tagGesture];
 
 }
 
-- (IBAction)selectAddress:(id)sender {
+- (void)selectAddress{
     [self.view endEditing:YES];
 
     WEAKSELF;
@@ -66,8 +72,8 @@
             weakSelf.model.province = province;
            weakSelf.model.city = city;
            weakSelf.model.district = area;
-
-        [adressBtn setTitle:address forState:UIControlStateNormal];
+        addressTF.text = address;
+//        [adressBtn setTitle: forState:UIControlStateNormal];
     }];
 
 }

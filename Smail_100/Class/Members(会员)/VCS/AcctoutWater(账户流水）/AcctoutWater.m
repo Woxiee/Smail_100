@@ -35,6 +35,7 @@
 {
     //    48@3x.png
     [self setRightNaviBtnTitle:@"筛选" withTitleColor:[UIColor whiteColor]];
+    
     /* 创建WJSegmentMenuVc */
     WJSegmentMenuVc *segmentMenuVc = [[WJSegmentMenuVc alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 45)];
     [self.view addSubview:segmentMenuVc];

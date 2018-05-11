@@ -285,7 +285,7 @@ UITableViewDataSource
     _isCornerChanged = NO;
     _showMaskView = YES;
     _menuBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, YBScreenWidth, YBScreenHeight)];
-    _menuBackView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
+    _menuBackView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
     _menuBackView.alpha = 0;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(touchOutSide)];
     [_menuBackView addGestureRecognizer: tap];

@@ -48,6 +48,11 @@
         
     }
     
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.mj_h -1, SCREEN_WIDTH, 1)];
+    lineView.backgroundColor = LINECOLOR;
+    
+    [self addSubview:lineView];
+
 }
 
 - (void)setDataDic:(NSDictionary *)dataDic

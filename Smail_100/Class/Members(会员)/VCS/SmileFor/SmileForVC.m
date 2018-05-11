@@ -169,13 +169,7 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
 - (void)setup
 {
     self.view.backgroundColor = BACKGROUND_COLOR;
-    if (KX_NULLString(_shopID)) {
-        [self setRightNaviBtnTitle:@"兑换记录"];
-
-    }else{
-        [self setRightNaviBtnTitle:@"提现记录"];
-
-    }
+ 
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:@"CardCell" bundle:nil] forCellReuseIdentifier:CardCellID];
@@ -186,7 +180,6 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
     
     UIButton *sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     sureBtn.frame = CGRectMake(0 ,SCREEN_HEIGHT - 49 - 64 , SCREEN_WIDTH, 49);
-    [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
     sureBtn.userInteractionEnabled = YES;
     [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [sureBtn addTarget:self action:@selector(didClickSureAction) forControlEvents:UIControlEventTouchUpInside];
@@ -200,6 +193,17 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
     coverView.hidden = YES;
     coverView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
     [self.view addSubview:coverView];
+    
+    if (KX_NULLString(_shopID)) {
+        [self setRightNaviBtnTitle:@"兑换记录"];
+        [sureBtn setTitle:@"确定兑换" forState:UIControlStateNormal];
+
+        
+    }else{
+        [self setRightNaviBtnTitle:@"提现记录"];
+        [sureBtn setTitle:@"确定提现" forState:UIControlStateNormal];
+
+    }
 
 }
 

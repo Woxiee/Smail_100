@@ -17,8 +17,8 @@
 #import "OnlineVC.h"
 #import "KX_BaseNavController.h"
 #import "shoppingCarVM.h"
-#import <PgySDK/PgyManager.h>
-#import <PgyUpdate/PgyUpdateManager.h>
+//#import <PgySDK/PgyManager.h>
+//#import <PgyUpdate/PgyUpdateManager.h>
 @interface KX_BaseTabbarController ()<CLLocationManagerDelegate>
 @property(nonatomic,strong)NSMutableArray *classArr;
 @property (nonatomic, strong) NSString *strakUrl;
@@ -111,7 +111,7 @@
         }else{
             if ([result[@"code"] integerValue] == 0) {
 //                , 0是可以升级但不强制, 1是必须升级后才能用
-                NSString *accoutStr =  [[NSUserDefaults standardUserDefaults] objectForKey:@"mobile"];
+//                NSString *accoutStr =  [[NSUserDefaults standardUserDefaults] objectForKey:@"mobile"];
                 if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
                         _isVersion  = result[@"data"][@"force"];
                         _msg = result[@"data"][@"msg"];
@@ -152,23 +152,23 @@
 //
 //    }
     WEAKSELF   //在登录的时候 isVersion ＝＝0或者空  那么久代表永不会提示升级
-//    if ([self.isVersion isEqualToString:@"1.0"] || self.isVersion == nil)  return;
-//    [KX_Version kx_isNewVersionSuccess:^(NewVersionType newVersion, NSString *versionStr,NSString *strakUrl, NSString *releaseNotes) {
-//        if (newVersion == NewVersionTypeNeedUp) {
-//            if (!KX_NULLString(strakUrl)) {
-//                weakSelf.strakUrl = strakUrl;
-//            }
-//            NSString *versionTitle = @"有可用的新版本可更新";
-//            STRONGSELF
-//            NSString *cancle = [self.isVersion isEqualToString:@"0"]?@"忽略此版本":nil;
-//            UIAlertView *aletView = [[UIAlertView alloc]initWithTitle:versionTitle message:_msg delegate:strongSelf cancelButtonTitle:cancle
-//                                                    otherButtonTitles:@"更新", nil];
-//            [aletView show];
-//        }
-//        
-//    }];
+    if ([self.isVersion isEqualToString:@"1.0.0"] || self.isVersion == nil)  return;
+    [KX_Version kx_isNewVersionSuccess:^(NewVersionType newVersion, NSString *versionStr,NSString *strakUrl, NSString *releaseNotes) {
+        if (newVersion == NewVersionTypeNeedUp) {
+            if (!KX_NULLString(strakUrl)) {
+                weakSelf.strakUrl = strakUrl;
+            }
+            NSString *versionTitle = @"有可用的新版本可更新";
+            STRONGSELF
+            NSString *cancle = [self.isVersion isEqualToString:@"0"]?@"忽略此版本":nil;
+            UIAlertView *aletView = [[UIAlertView alloc]initWithTitle:versionTitle message:_msg delegate:strongSelf cancelButtonTitle:cancle
+                                                    otherButtonTitles:@"更新", nil];
+            [aletView show];
+        }
+        
+    }];
     
-     [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateMethod:)];
+//     [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateMethod:)];
     
 }
 
@@ -206,11 +206,11 @@
     NSLog(@"%ld",(long)buttonIndex);
     if(buttonIndex == 1  || _isVersion.intValue == 1){
         // 开始去更新
-//        NSURL * url = [NSURL URLWithString:self.strakUrl];//itunesURL = trackViewUrl的内容
-//        [[UIApplication sharedApplication] openURL:url];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_response[@"appUrl"]]];
-
-        [[PgyUpdateManager sharedPgyManager] updateLocalBuildNumber];
+        NSURL * url = [NSURL URLWithString:self.strakUrl];//itunesURL = trackViewUrl的内容
+        [[UIApplication sharedApplication] openURL:url];
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_response[@"appUrl"]]];
+//
+//        [[PgyUpdateManager sharedPgyManager] updateLocalBuildNumber];
 
 
     }
@@ -272,9 +272,16 @@
                 city = placemark.administrativeArea;
             }
             NSLog(@"city = %@", city);
+            NSLog(@"--%@",placemark.name);//黄河大道221号
+            NSLog(@"++++%@",placemark.subLocality); //裕华区
+            NSLog(@"街道：%@",placemark.thoroughfare);
+            NSLog(@"子街道：%@",placemark.subThoroughfare);
+            NSLog(@"administrativeArea == %@",placemark.administrativeArea); //河北省
             NSString *cityStr = [city stringByReplacingOccurrencesOfString:@"市" withString:@""];
             [[KX_UserInfo sharedKX_UserInfo] loadUserInfoFromSanbox];
             [KX_UserInfo sharedKX_UserInfo].city = cityStr;
+            [KX_UserInfo sharedKX_UserInfo].address = [NSString stringWithFormat:@"%@%@%@%@%@",placemark.administrativeArea,placemark.locality,placemark.subLocality,placemark.name,placemark.thoroughfare];
+
             [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
             
         }

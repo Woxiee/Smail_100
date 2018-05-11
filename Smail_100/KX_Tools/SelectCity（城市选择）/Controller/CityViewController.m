@@ -64,7 +64,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self loadData];
 
-    self.searchView = [[CustomSearchView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-20, 44)];
+    self.searchView = [[CustomSearchView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-20, 44+50)];
     _searchView.delegate = self;
     _searchView.backgroundColor = [UIColor whiteColor];
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
@@ -110,7 +110,7 @@
         headerView = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:HeaderIdentifier];
         UILabel * titleLabel = [[UILabel alloc] init];
         if (section == 0 || section ==1) {
-            titleLabel.frame =  CGRectMake(10, 0, 80,20);
+            titleLabel.frame =  CGRectMake(10, 0, 80,30);
             headerView.contentView.backgroundColor = BACKGROUND_COLOR;
 
         }else{
@@ -121,7 +121,7 @@
         titleLabel.tag = 1;
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.textColor = DETAILTEXTCOLOR;
-        titleLabel.font = Font15;
+        titleLabel.font = Font14;
         [headerView.contentView addSubview:titleLabel];
     }
     UILabel *label = (UILabel *)[headerView viewWithTag:1];

@@ -21,6 +21,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *sureBtn;
 
+@property (weak, nonatomic) IBOutlet UIButton *remenberBtn;
 
 @end
 
@@ -31,15 +32,16 @@
     if (KX_NULLString([KX_UserInfo sharedKX_UserInfo].pay_password)) {
         _oldPwdContensH.constant = 0;
         self.title = @"设置支付密码";
+        _remenberBtn.hidden = YES;
     }else{
 //        "pay_password" = 130118,
         self.title = @"修改支付密码";
     }
 
     
-    [_sureBtn layerForViewWith:12 AndLineWidth:0.5];
+    [_sureBtn layerForViewWith:10 AndLineWidth:0.5];
     _sureBtn.backgroundColor = KMAINCOLOR;
-
+//   self.view.backgroundColor = [UIColor whiteColor];
 
 }
 

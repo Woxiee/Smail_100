@@ -16,8 +16,7 @@ target 'Smail_100' do
 	pod 'WRNavigationBar','~>1.2.0’
    	pod 'AFNetworking', '~> 3.1.0'
 	pod 'WZLBadge'
-	pod 'Pgyer'
-	pod 'PgyUpdate'
+
   target 'Smail_100Tests' do
     inherit! :search_paths
     # Pods for testing

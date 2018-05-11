@@ -40,7 +40,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VUv-fW-oH3">
-                        <rect key="frame" x="0.0" y="101" width="320" height="40"/>
+                        <rect key="frame" x="0.0" y="105" width="320" height="40"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="激励笑脸：" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAW-lR-f0e">
                                 <rect key="frame" x="12" y="0.0" width="90" height="40"/>
@@ -89,10 +89,10 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSP-Xi-bnC">
-                        <rect key="frame" x="0.0" y="151" width="320" height="60.5"/>
+                        <rect key="frame" x="0.0" y="155" width="320" height="56.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="激励笑脸：" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LeV-vP-vCX">
-                                <rect key="frame" x="10" y="0.0" width="310" height="60.5"/>
+                                <rect key="frame" x="10" y="0.0" width="310" height="56.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.13434703740000001" green="0.13590557189999999" blue="0.13659681370000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -106,6 +106,13 @@
                             <constraint firstAttribute="trailing" secondItem="LeV-vP-vCX" secondAttribute="trailing" id="pXf-H9-WiA"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPB-I5-zuQ">
+                        <rect key="frame" x="0.0" y="100" width="320" height="5"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="5" id="EYk-yN-xwp"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
@@ -113,15 +120,18 @@
                     <constraint firstItem="iTN-4p-Nhq" firstAttribute="top" secondItem="Kmu-OL-uW0" secondAttribute="bottom" id="8aK-yi-LdK"/>
                     <constraint firstAttribute="trailing" secondItem="VUv-fW-oH3" secondAttribute="trailing" id="923-87-ALx"/>
                     <constraint firstAttribute="trailing" secondItem="MSP-Xi-bnC" secondAttribute="trailing" id="JWI-U9-lur"/>
+                    <constraint firstItem="fPB-I5-zuQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="MmM-Xt-FNg"/>
                     <constraint firstItem="Kmu-OL-uW0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="P0R-SC-tkQ"/>
+                    <constraint firstItem="VUv-fW-oH3" firstAttribute="top" secondItem="fPB-I5-zuQ" secondAttribute="bottom" id="Uer-F2-t9S"/>
                     <constraint firstItem="Kmu-OL-uW0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Uqk-bu-08k"/>
-                    <constraint firstItem="VUv-fW-oH3" firstAttribute="top" secondItem="iTN-4p-Nhq" secondAttribute="bottom" constant="1" id="W9T-dS-Qga"/>
                     <constraint firstItem="MSP-Xi-bnC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="WMl-lM-0v4"/>
                     <constraint firstItem="iTN-4p-Nhq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="YP5-wb-LJj"/>
                     <constraint firstAttribute="trailing" secondItem="Kmu-OL-uW0" secondAttribute="trailing" id="ZO4-Wg-EMi"/>
                     <constraint firstAttribute="bottom" secondItem="MSP-Xi-bnC" secondAttribute="bottom" id="ahq-3Z-ruD"/>
                     <constraint firstAttribute="trailing" secondItem="iTN-4p-Nhq" secondAttribute="trailing" id="bcs-cN-1RT"/>
                     <constraint firstItem="VUv-fW-oH3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="d8H-no-Niv"/>
+                    <constraint firstAttribute="trailing" secondItem="fPB-I5-zuQ" secondAttribute="trailing" id="h8w-7f-Gyy"/>
+                    <constraint firstItem="fPB-I5-zuQ" firstAttribute="top" secondItem="iTN-4p-Nhq" secondAttribute="bottom" id="yId-RW-t7Q"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
@@ -129,6 +139,7 @@
                 <outlet property="allBtn" destination="orJ-Tn-nNT" id="7UN-rt-Ekw"/>
                 <outlet property="bgView" destination="MSP-Xi-bnC" id="is2-LC-47B"/>
                 <outlet property="detailLB" destination="LeV-vP-vCX" id="E3H-C1-zsb"/>
+                <outlet property="lineView" destination="fPB-I5-zuQ" id="FNh-zx-59E"/>
                 <outlet property="moneyLB" destination="iTN-4p-Nhq" id="40d-2C-HLV"/>
                 <outlet property="textTF" destination="QPw-UK-se1" id="P7d-J3-Jv9"/>
                 <outlet property="titleLB" destination="Kmu-OL-uW0" id="W8l-pI-22y"/>

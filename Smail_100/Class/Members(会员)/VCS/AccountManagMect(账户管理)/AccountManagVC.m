@@ -27,7 +27,7 @@
 //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.title = @"账户管理";
     self.tableView.tableFooterView = [UIView new];
-    NSArray *dataArray = @[@"基本资料",@"实名认证",@"银行卡管理",@"我的收获地址",@"账户安全设置"];
+    NSArray *dataArray = @[@"基本资料",@"实名认证",@"银行卡管理",@"我的收货地址",@"账户安全设置"];
     [self.resorceArray addObjectsFromArray:dataArray];
 
     [self.tableView reloadData];
@@ -70,12 +70,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSString *titleStr = self.resorceArray[indexPath.row];
-    if ([titleStr isEqualToString:@"我的收获地址"]) {
+    if ([titleStr isEqualToString:@"我的收货地址"]) {
         AddressManageVC *VC = [[AddressManageVC alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
 
     }
-//    NSArray *dataArray = @[@"基本资料",@"实名认证",@"银行卡管理",@"我的收获地址",@"账户安全设置"];
+//    NSArray *dataArray = @[@"基本资料",@"实名认证",@"银行卡管理",@"我的收货地址",@"账户安全设置"];
 //
    else if ([titleStr isEqualToString:@"基本资料"]) {
         BaseInforVC *VC = [[BaseInforVC alloc] init];

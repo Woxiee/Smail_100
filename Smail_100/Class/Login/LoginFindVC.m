@@ -59,14 +59,14 @@
 - (void)setConfiguration
 {
     self.title = @"找回登录密码";
-    self.view.backgroundColor = [UIColor whiteColor];
+//    self.view.backgroundColor = [UIColor whiteColor];
     
     _lineView1.backgroundColor = LINECOLOR;
     _lineView2.backgroundColor = LINECOLOR;
     _lineView4.backgroundColor = LINECOLOR;
     _lineView3.backgroundColor = LINECOLOR;
 
-    [_loginBtn layerForViewWith:3 AndLineWidth:0.5];
+    [_loginBtn layerForViewWith:10 AndLineWidth:0.5];
 
     _codeImageView.userInteractionEnabled = YES;
     _codeImageView.image = [UIImage imageNamed:DEFAULTIMAGE];
@@ -74,7 +74,7 @@
     [_codeImageView addGestureRecognizer:tapGesture];
     
     
-    [_yzmBtn layerWithRadius:3 lineWidth:0.5 color:MainColor];
+//    [_yzmBtn layerWithRadius:3 lineWidth:0.5 color:MainColor];
 //    [_loginBtn setTitleColor:MainColor forState:UIControlStateNormal];
     _loginBtn.backgroundColor = MainColor;
     _urseTextFiled.text = [KX_UserInfo sharedKX_UserInfo].mobile;

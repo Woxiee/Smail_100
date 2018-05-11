@@ -37,7 +37,7 @@ static NSString *const defaultAdressCellID = @"DefaultAdressCellID";
 /// 配置基础设置
 - (void)setConfiguration
 {
-    self.title  = @"管理收获地址";
+    self.title  = @"管理收货地址";
     self.view.backgroundColor = BACKGROUND_COLOR;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.tableFooterView = [UIView new];
