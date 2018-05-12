@@ -92,8 +92,8 @@
     coverView.delegate = self;
     self.coverView = coverView;
     coverView.hidden = YES;
-    coverView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
-    [self.view addSubview:coverView];
+    coverView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
+    [coverView show];
 }
 
 

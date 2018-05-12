@@ -156,7 +156,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="53" id="fOD-dL-dcL"/>
                     </constraints>
-                    <state key="normal" backgroundImage="logMarkIcon.png"/>
+                    <state key="normal" backgroundImage="logMarkIcon@2x.png"/>
                     <state key="selected" backgroundImage="logMarkIcon.png"/>
                     <connections>
                         <action selector="xyAcitonBtn:" destination="-1" eventType="touchUpInside" id="0IP-2U-ZyO"/>
@@ -195,6 +195,7 @@
         <image name="denglu3@3x.png" width="16" height="16"/>
         <image name="denglu4@3x.png" width="16" height="16"/>
         <image name="denglu5@3x.png" width="16" height="16"/>
-        <image name="logMarkIcon.png" width="762" height="123"/>
+        <image name="logMarkIcon.png" width="381" height="61"/>
+        <image name="logMarkIcon@2x.png" width="16" height="16"/>
     </resources>
 </document>

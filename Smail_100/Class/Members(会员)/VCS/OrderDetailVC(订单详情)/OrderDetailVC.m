@@ -527,8 +527,8 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
     JHCoverView *coverView = [[JHCoverView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     coverView.delegate = self;
         coverView.hidden = YES;
-    coverView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
-    [self.view addSubview:coverView];
+    coverView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
+    [coverView show];
 //    self.coverView.backgroundColor = [UIColor redColor];
     
     self.coverView = coverView;

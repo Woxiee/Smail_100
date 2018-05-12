@@ -139,9 +139,8 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     JHCoverView *coverView = [[JHCoverView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     coverView.delegate = self;
     self.coverView = coverView;
-        coverView.hidden = YES;
-    coverView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
-    [self.view addSubview:coverView];
+    coverView.hidden = YES;
+    [ coverView show];
     
 //    [coverView show];
 }
@@ -872,6 +871,11 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 
 
 - (IBAction)submitBtn:(id)sender {
+    
+    if (KX_NULLString(_orderModel.address.addr_id)) {
+        [self.view makeToast:@"请选择收货地址~"];
+        return;
+    }
     if (KX_NULLString(_orderModel.express_type)) {
         [self.view makeToast:@"请选择快递方式~"];
         return;

@@ -57,9 +57,8 @@ singleton_implementation(PayTool)
     coverView.delegate = self;
     self.coverView = coverView;
     coverView.hidden = YES;
-    coverView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
-    [self.subVC.view addSubview:coverView];
-    
+    coverView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
+    [coverView show];
     
     if ([_orderModel.payIndexStr isEqualToString:@"微信支付"] || [_orderModel.payIndexStr isEqualToString:@"支付宝支付"]) {
         [self getPayKeyInfoRequest:_orderModel.orderno];
