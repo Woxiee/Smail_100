@@ -243,7 +243,13 @@
               
           }
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-              
+              NSArray *allkeys = [_params allKeys];
+              NSString *paramUrl = @"";
+              for (NSString *akey in allkeys) {
+                  NSString *aValue = [_params valueForKey:akey];
+                  paramUrl = [NSString stringWithFormat:@"%@&%@=%@",paramUrl,akey,aValue];
+              }
+              NSString *resultURL = [NSString stringWithFormat:@"%@%@",_interfaceURL,paramUrl];
           }];
 }
 

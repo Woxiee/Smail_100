@@ -106,6 +106,10 @@
     [self changeButtonTextColor];
     [self changeLinePlaceWithIndex:button.tag];
     [self changeScrollerViewPlace];
+    
+    if (_didClickItemBlock) {
+        _didClickItemBlock(self.selectIndex);
+    }
 }
 
 //改变滚动视图位置

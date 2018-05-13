@@ -12,4 +12,6 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
                    titleArray:(NSArray *)array;
+
+@property (nonatomic, strong) NSArray *dataList;
 @end

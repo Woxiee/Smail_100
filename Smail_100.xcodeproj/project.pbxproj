@@ -16,6 +16,7 @@
 		3E24E8FF207862C2006F5C32 /* LevePartNerHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E24E8FE207862C2006F5C32 /* LevePartNerHeadView.m */; };
 		3E24E90520786536006F5C32 /* LevePartnerHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E24E90320786535006F5C32 /* LevePartnerHeadCell.m */; };
 		3E24E90820786AEF006F5C32 /* LevePartnerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E24E90720786AEF006F5C32 /* LevePartnerModel.m */; };
+		3E26B8F720A87F5800708D29 /* MyteamListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E26B8F620A87F5800708D29 /* MyteamListModel.m */; };
 		3E27F91D2053B21200A1DA2F /* PayModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27F91C2053B21200A1DA2F /* PayModels.m */; };
 		3E2BE65B207719F3009BD7A7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E2BE658207719F3009BD7A7 /* README.txt */; };
 		3E2BE65C207719F3009BD7A7 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2BE65A207719F3009BD7A7 /* libWeChatSDK.a */; };
@@ -57,6 +58,7 @@
 		3ECD1CC0205CC86A008D8686 /* QrCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD1CBE205CC86A008D8686 /* QrCodeVC.m */; };
 		3ECD1CC1205CC86A008D8686 /* QrCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ECD1CBF205CC86A008D8686 /* QrCodeVC.xib */; };
 		3EE3FDF8209EAA8C0047FAEA /* Close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE3FDF7209EAA8B0047FAEA /* Close@2x.png */; };
+		3EE3FDFC20A7E5D50047FAEA /* MyteamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE3FDFB20A7E5D50047FAEA /* MyteamModel.m */; };
 		3EE5592820776625003574E0 /* OfflineDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE5592720776625003574E0 /* OfflineDetailModel.m */; };
 		3EECCE232095C67700C2AB76 /* SmileForVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E169B29E207F42ED00137791 /* SmileForVC.m */; };
 		7361221E789C7F5110C27B63 /* libPods-Smail_100Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E60962CF3B597F7C431212A7 /* libPods-Smail_100Tests.a */; };
@@ -997,6 +999,8 @@
 		3E24E90420786535006F5C32 /* LevePartnerHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevePartnerHeadCell.h; sourceTree = "<group>"; };
 		3E24E90620786AEF006F5C32 /* LevePartnerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevePartnerModel.h; sourceTree = "<group>"; };
 		3E24E90720786AEF006F5C32 /* LevePartnerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LevePartnerModel.m; sourceTree = "<group>"; };
+		3E26B8F520A87F5800708D29 /* MyteamListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyteamListModel.h; sourceTree = "<group>"; };
+		3E26B8F620A87F5800708D29 /* MyteamListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyteamListModel.m; sourceTree = "<group>"; };
 		3E27F91B2053B21200A1DA2F /* PayModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayModels.h; sourceTree = "<group>"; };
 		3E27F91C2053B21200A1DA2F /* PayModels.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayModels.m; sourceTree = "<group>"; };
 		3E2BE656207719F3009BD7A7 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -1055,6 +1059,8 @@
 		3ECD1CBE205CC86A008D8686 /* QrCodeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QrCodeVC.m; sourceTree = "<group>"; };
 		3ECD1CBF205CC86A008D8686 /* QrCodeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QrCodeVC.xib; sourceTree = "<group>"; };
 		3EE3FDF7209EAA8B0047FAEA /* Close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Close@2x.png"; sourceTree = "<group>"; };
+		3EE3FDFA20A7E5D50047FAEA /* MyteamModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyteamModel.h; sourceTree = "<group>"; };
+		3EE3FDFB20A7E5D50047FAEA /* MyteamModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyteamModel.m; sourceTree = "<group>"; };
 		3EE5592620776625003574E0 /* OfflineDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfflineDetailModel.h; sourceTree = "<group>"; };
 		3EE5592720776625003574E0 /* OfflineDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfflineDetailModel.m; sourceTree = "<group>"; };
 		4934D657891FA445D50032BA /* Pods-Smail_100Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smail_100Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smail_100Tests/Pods-Smail_100Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -2652,6 +2658,17 @@
 			path = SendSmailValue;
 			sourceTree = "<group>";
 		};
+		3EE3FDF920A7E5A70047FAEA /* MyteamModel */ = {
+			isa = PBXGroup;
+			children = (
+				3EE3FDFA20A7E5D50047FAEA /* MyteamModel.h */,
+				3EE3FDFB20A7E5D50047FAEA /* MyteamModel.m */,
+				3E26B8F520A87F5800708D29 /* MyteamListModel.h */,
+				3E26B8F620A87F5800708D29 /* MyteamListModel.m */,
+			);
+			path = MyteamModel;
+			sourceTree = "<group>";
+		};
 		A2D5C5FE1A124C37E0F2F69D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3745,6 +3762,7 @@
 		E10B0B9C20528AE8008BA706 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3EE3FDF920A7E5A70047FAEA /* MyteamModel */,
 				E115577B2063A5AF00B344B3 /* AgentPlatformModel */,
 				E11556F420622B8600B344B3 /* ChildModel(商品分类) */,
 				E167EC38205A5C7D00A8F744 /* AcctoutWater（流水） */,
@@ -3970,10 +3988,10 @@
 			children = (
 				E10B0BE320528AE8008BA706 /* MyTeamDetailVC.h */,
 				E10B0BE420528AE8008BA706 /* MyTeamDetailVC.m */,
-				E10B0BE520528AE8008BA706 /* MyTeamListVC.h */,
-				E10B0BE620528AE8008BA706 /* MyTeamListVC.m */,
 				E10B0BE720528AE8008BA706 /* MyteamVC.h */,
 				E10B0BE820528AE8008BA706 /* MyteamVC.m */,
+				E10B0BE520528AE8008BA706 /* MyTeamListVC.h */,
+				E10B0BE620528AE8008BA706 /* MyTeamListVC.m */,
 			);
 			path = "Myteam(我的团队)";
 			sourceTree = "<group>";
@@ -7291,14 +7309,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Smail_100/Pods-Smail_100-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/JSBadgeView/JSBadgeView.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/JSBadgeView/JSBadgeView.bundle,
 				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/JSBadgeView.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7678,8 +7694,10 @@
 				E110DDD02088919800456844 /* UICollectionView+KYRefresh.m in Sources */,
 				E10B0CFA20528AE8008BA706 /* GoodsCommonChooseView.m in Sources */,
 				E10B0D9120528AE8008BA706 /* CompanyInfoVC.m in Sources */,
+				3E26B8F720A87F5800708D29 /* MyteamListModel.m in Sources */,
 				E10B0D3E20528AE8008BA706 /* GoodGuigeCell.m in Sources */,
 				3E5FC2D1205EB4470067CFA5 /* OffLineModel.m in Sources */,
+				3EE3FDFC20A7E5D50047FAEA /* MyteamModel.m in Sources */,
 				E10B0D0720528AE8008BA706 /* GoodGuigeView.m in Sources */,
 				E10B0DEB20528AE8008BA706 /* LineOffGoodsCell.m in Sources */,
 				E10B10A120528B03008BA706 /* NSBundle+MJRefresh.m in Sources */,

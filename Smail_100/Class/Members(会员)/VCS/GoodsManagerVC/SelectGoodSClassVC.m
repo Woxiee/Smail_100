@@ -18,6 +18,7 @@
 @end
 
 @implementation SelectGoodSClassVC
+static NSString* cellID = @"ManagementCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,6 +60,30 @@
 }
 
 
+- (void)deleteAGoods:(ChildModel *)model
+{
+    WEAKSELF;
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[KX_UserInfo sharedKX_UserInfo].user_id,@"user_id",model.id, @"sub_category_id" ,nil];
+    
+    [BaseHttpRequest postWithUrl:@"/shop/delete_sub_category" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        LOG(@"订单列表 == %@",result);
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSString *msg = [result valueForKey:@"msg"];
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+            [weakSelf getRequestData];
+            [weakSelf.view makeToast:msg];
+
+        }else{
+            [weakSelf.view makeToast:msg];
+
+        }
+        
+        
+    }];
+
+}
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -71,7 +96,11 @@
 #pragma mark - private
 - (void)setup
 {
+    
+
     [self.view addSubview:self.tableView];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"SelectGoodsClassCell" bundle:nil] forCellReuseIdentifier:cellID];
 
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, CGRectGetMaxY(self.tableView.frame), SCREEN_WIDTH, 50);
@@ -91,6 +120,35 @@
 - (void)setConfiguration
 {
     
+}
+-(NSArray *)createRightButtons:(ChildModel *)goods
+{
+    NSMutableArray * result = [NSMutableArray array];
+    WS(b_self);
+    //删除
+    MGSwipeButton * deleteBtn = [MGSwipeButton buttonWithTitle:@"删除" backgroundColor:[UIColor redColor]callback:^BOOL(MGSwipeTableCell *sender) {
+        
+        SuccessView *successV  = [[SuccessView alloc]initWithTrueCancleTitle:@"确认删除分类吗?" clickDex:^(NSInteger clickDex) {
+            if (clickDex == 1) {
+                [b_self deleteAGoods:goods];
+            }
+        }];
+        [successV showSuccess]; 
+        return  NO;
+    }];
+    
+//    //添加到收藏
+//    MGSwipeButton * storeBtn = [MGSwipeButton buttonWithTitle:@"移入收藏" backgroundColor:[UIColor lightGrayColor]callback:^BOOL(MGSwipeTableCell *sender) {
+//        [carVM collectShopCarGoods:goods state:@"1" handleback:^(NSInteger code) {
+//            if (code == 0) {
+//                [b_self.view makeToast:@"收藏成功!"];
+//            }
+//            [shopCarGoodsList reloadData];
+//        }]; return  NO;
+//    }];
+    [result addObject:deleteBtn];
+//    [result addObject:storeBtn];
+    return result;
 }
 
 #pragma mark - publice
@@ -117,15 +175,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WEAKSELF;
-    static NSString* cellID = @"ManagementCellID";
-    SelectGoodsClassCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell ) {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"SelectGoodsClassCell" owner:nil options:nil]lastObject];
-    }
+    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+//
+//    }
+    
+    
+    SelectGoodsClassCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
    ChildModel *model = self.resorceArray[indexPath.row];
-//    MeChantOrderModel *model = self.resorceArray[indexPath.section];
     if (_isManage) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; //显示最右边的箭头
+        cell.rightButtons = [self createRightButtons:model];
     }
     cell.model = model;
     return cell;

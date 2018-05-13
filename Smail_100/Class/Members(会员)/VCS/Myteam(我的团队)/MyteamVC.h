@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MyteamModel.h"
 @interface MyteamVC : KX_BaseViewController
+@property (nonatomic, strong) MyteamModel *model;
 
 @end

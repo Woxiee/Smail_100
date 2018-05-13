@@ -44,8 +44,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="markImagView" destination="Czp-Js-rF3" id="JWH-EZ-CvD"/>
-                <outlet property="titleLB" destination="0cJ-ZW-QCV" id="vxB-nX-2cZ"/>
+                <outlet property="markImagView" destination="Czp-Js-rF3" id="gXA-9v-7Ci"/>
+                <outlet property="titleLB" destination="0cJ-ZW-QCV" id="EzC-da-KRA"/>
             </connections>
         </tableViewCell>
     </objects>

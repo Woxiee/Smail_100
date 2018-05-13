@@ -16,6 +16,10 @@
 @end
 
 @implementation MySelectTeamView
+{
+    NSMutableArray *_titleArr;
+}
+
 
 - (instancetype)initWithFrame:(CGRect)frame
                    titleArray:(NSArray *)array{
@@ -23,6 +27,8 @@
     if (self = [super initWithFrame:frame]) {
         self.titleArray = array;
         self.count = array.count;
+        _titleArr = [[NSMutableArray alloc] init];
+
         [self setup];
     }
     return self;
@@ -50,6 +56,7 @@
         numberLB.textColor = KMAINCOLOR;
         numberLB.textAlignment = NSTextAlignmentCenter;
         [self addSubview:numberLB];
+        [_titleArr addObject:numberLB];
         
         UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / self.count * i, CGRectGetMaxY(numberLB.frame), SCREEN_WIDTH / self.count, 20)];
         titleLB.text = listArr[i];
@@ -60,6 +67,15 @@
         
     }
     
+}
+
+- (void)setDataList:(NSArray *)dataList
+{
+    _dataList = dataList;
+    for (int i = 0; i<_dataList.count; i++) {
+        UILabel *label = _titleArr[i];
+        label.text = dataList[i];
+    }
 }
 
 - (void)buttonAction:(UIButton *)sender

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MyteamModel.h"
 @interface MyTeamPersenView : UIView
+@property (nonatomic, strong) MyteamModel *model;
 
 @end

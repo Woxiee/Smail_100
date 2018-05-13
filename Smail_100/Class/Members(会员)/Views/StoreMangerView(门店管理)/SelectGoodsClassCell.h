@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ChildModel.h"
+#import "MGSwipeTableCell.h"
 
-@interface SelectGoodsClassCell : UITableViewCell
+@interface SelectGoodsClassCell : MGSwipeTableCell
 @property (nonatomic, strong) ChildModel *model;
+//@property (weak, nonatomic) IBOutlet UILabel *titleLB;
+//
+//@property (weak, nonatomic) IBOutlet UIImageView *markImagView;
+
 @end

@@ -10,7 +10,9 @@
 
 #import "AppDelegate.h"
 
-#define marginLeft 20.0f
+#define marginLeft 25.0f
+#define connerRediu 15.0f
+
 typedef void(^clickTrue)(NSInteger dex);
 
 @interface SuccessView ()
@@ -38,7 +40,7 @@ typedef void(^clickTrue)(NSInteger dex);
         _kHeight = _kWidth *0.45;
         self.frame = CGRectMake(marginLeft, (SCREEN_HEIGHT - _kHeight)/2, _kWidth, _kHeight);
         self.backgroundColor = [UIColor whiteColor];
-        [self setConnerRediu:8];
+        [self setConnerRediu:connerRediu];
         [self loadTrueCancleView];
         _headerImageV.hidden = YES;
         _messgaeLb.text = title;
@@ -55,7 +57,7 @@ typedef void(^clickTrue)(NSInteger dex);
         _kHeight = _kWidth *0.45;
         self.frame = CGRectMake(marginLeft, (SCREEN_HEIGHT - _kHeight)/2, _kWidth, _kHeight);
         self.backgroundColor = [UIColor whiteColor];
-        [self setConnerRediu:8];
+        [self setConnerRediu:connerRediu];
         [self loadIsHiddenCancleView:cancelTitle];
         _headerImageV.hidden = YES;
         _messgaeLb.text = title;
@@ -72,7 +74,7 @@ typedef void(^clickTrue)(NSInteger dex);
         _kHeight = _kWidth *0.45;
         self.frame = CGRectMake(marginLeft, (SCREEN_HEIGHT - _kHeight)/2, _kWidth, _kHeight);
         self.backgroundColor = [UIColor whiteColor];
-        [self setConnerRediu:8];
+        [self setConnerRediu:connerRediu];
         _sureTitle = sureTitle;
         [self loadIsHiddenCancleView:cancelTitle];
         _headerImageV.hidden = YES;
@@ -88,7 +90,7 @@ typedef void(^clickTrue)(NSInteger dex);
         _kHeight = _kWidth *0.6;
         self.frame = CGRectMake(marginLeft, (SCREEN_HEIGHT - _kHeight)/2, _kWidth, _kHeight);
         self.backgroundColor = [UIColor whiteColor];
-        [self setConnerRediu:8];
+        [self setConnerRediu:connerRediu];
         [self loadSubView];
         //重新设置
         if (style == SuccessStyleBottomWhite) {
@@ -115,7 +117,7 @@ typedef void(^clickTrue)(NSInteger dex);
         _kHeight = _kWidth *0.6;
         self.frame = CGRectMake(marginLeft, (SCREEN_HEIGHT - _kHeight)/2, _kWidth, _kHeight);
         self.backgroundColor = [UIColor whiteColor];
-        [self setConnerRediu:8];
+        [self setConnerRediu:connerRediu];
         [self loadSubView];
         
     }

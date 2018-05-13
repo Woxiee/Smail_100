@@ -9,12 +9,14 @@
 #import "MyTeamPersenView.h"
 
 @implementation MyTeamPersenView
-
+{
+    NSMutableArray *_titleArr;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        
+        _titleArr = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];
         NSArray *numberArr = @[@"99",@"109",@"999                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ",@"99",@"109",@"999                                                                                                                                                                                                                                                                                                                                                                                                                                                                    "];
         NSArray *btnImage = @[@"wodetuandui1@3x.png",@"wodetuandui2@3x.png",@"wodetuandui3@3x.png",@"wodetuandui1@3x.png",@"wodetuandui2@3x.png",@"wodetuandui3@3x.png"];
@@ -34,16 +36,30 @@
                 lineView1.backgroundColor = LINECOLOR;
                 [self addSubview:lineView1];
             }
-            [button setImage:LOADIMAGE(btnImage[i]) forState:UIControlStateNormal];
             [button setTitle:numberArr[i] forState:UIControlStateNormal];
+            [button setImage:LOADIMAGE(btnImage[i]) forState:UIControlStateNormal];
             [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             button.titleLabel.font = Font14;
             [button layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageLeft imageTitlespace:5];
             [self addSubview:button];
+            [_titleArr addObject:button];
             
         }
     }
     return self;
+}
+
+- (void)setModel:(MyteamModel *)model
+{
+    _model = model;
+    NSArray *dataList = @[_model.count.reg,_model.count.pay,_model.count.money];
+    
+//    for (int i = 0; i<dataList.count; i++) {
+//        UIButton *btn = _titleArr[i];
+//        [btn setTitle:dataList[i] forState:UIControlStateNormal];
+//
+//    }
+    
 }
 
 @end

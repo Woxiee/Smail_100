@@ -9,6 +9,7 @@
 #import "MyTeamListVC.h"
 #import "MySelectTeamView.h"
 #import "MyTeamListCell.h"
+#import "MyteamListModel.h"
 
 @interface MyTeamListVC ()
 @property(nonatomic,assign)NSUInteger page;
@@ -29,24 +30,23 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
 
 - (void)requestListNetWork
 {
+
     WEAKSELF;
-    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:[KX_UserInfo sharedKX_UserInfo].ID,@"mid", nil];
-    //    [MBProgressHUD showMessag:@"加载中..." toView:self.view];
-    
-//    [HistoryVModel getHistoryListParam:param successBlock:^(NSArray<HistoryModel *> *dataArray, BOOL isSuccess) {
-//        //        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        //        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//
-//        if (isSuccess) {
-//            if (weakSelf.resorceArray.count >0) {
-//                [weakSelf.resorceArray removeAllObjects];
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    [BaseHttpRequest postWithUrl:@"/group/groupList" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
+         
+//            for (int i = 0; i<monenyList.count; i++) {
+//                UILabel *label = _titleArr[i];
+//                label.text = monenyList[i];
 //            }
-//            [self.resorceArray addObjectsFromArray:dataArray];
-//            [weakSelf.tableView reloadData];
-//        }
-//        [weakSelf stopRefresh];
+//            _nameLB.text = result[@"data"][@"shop_name"];
 //
-//    }];
+//            weakSelf.resultDic = result[@"data"];
+            
+        }
+    }];
 }
 
 

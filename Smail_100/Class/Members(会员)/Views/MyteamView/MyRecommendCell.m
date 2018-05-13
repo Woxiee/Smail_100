@@ -20,7 +20,11 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
- 
+    _title1LB.textColor = DETAILTEXTCOLOR;
+    _title2LB.textColor = DETAILTEXTCOLOR;
+    [_RommendBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
+    
+    self.selectionStyle =  UITableViewCellSelectionStyleNone;
 }
 
 
@@ -28,4 +32,14 @@
     
 }
 
+- (void)setModel:(MyteamModel *)model
+{
+    _model = model;
+    _title1LB.text = _model.content.msg;
+
+    _title2LB.text = [NSString stringWithFormat:@"您的推荐人是: %@",_model.content.pinfo];
+    
+    
+    
+}
 @end

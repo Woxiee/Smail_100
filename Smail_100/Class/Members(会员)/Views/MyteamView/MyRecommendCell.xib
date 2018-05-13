@@ -30,15 +30,17 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="8sj-ZC-QN3"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sO-5P-3MZ">
-                        <rect key="frame" x="245" y="51" width="63" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal" title="立即推荐">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sO-5P-3MZ">
+                        <rect key="frame" x="246" y="57.5" width="62" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="Etf-xf-kFa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="立即推荐&gt;">
                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                         </state>
                         <connections>
@@ -50,9 +52,11 @@
                     <constraint firstAttribute="bottom" secondItem="FFW-SM-KAN" secondAttribute="bottom" constant="10" id="F1o-Ak-j6W"/>
                     <constraint firstItem="XOx-1q-sOx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Vsd-id-caC"/>
                     <constraint firstItem="XOx-1q-sOx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="Zgc-9c-ACh"/>
+                    <constraint firstItem="5sO-5P-3MZ" firstAttribute="top" secondItem="FFW-SM-KAN" secondAttribute="top" id="aGh-k2-zKR"/>
                     <constraint firstItem="FFW-SM-KAN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="bgw-mB-KbP"/>
                     <constraint firstAttribute="trailing" secondItem="XOx-1q-sOx" secondAttribute="trailing" constant="12" id="lam-CV-4by"/>
                     <constraint firstAttribute="trailing" secondItem="FFW-SM-KAN" secondAttribute="trailing" constant="73" id="o0Y-LP-uWy"/>
+                    <constraint firstAttribute="trailing" secondItem="5sO-5P-3MZ" secondAttribute="trailing" constant="12" id="xGU-gu-fWT"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>

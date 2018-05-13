@@ -417,11 +417,11 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
      
     }
     
-//    else if (index == 7) {
-//        MyTeamDetailVC *VC = [[MyTeamDetailVC alloc] init];
-//        VC.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController  pushViewController:VC animated:YES];
-//    }
+    else if (index == 7) {
+        MyTeamDetailVC *VC = [[MyTeamDetailVC alloc] init];
+        VC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController  pushViewController:VC animated:YES];
+    }
      else if  (index == 0) {
         AllOrderManageVC *VC = [AllOrderManageVC new];
         VC.hidesBottomBarWhenPushed = YES;

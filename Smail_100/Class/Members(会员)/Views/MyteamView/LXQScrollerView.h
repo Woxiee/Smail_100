@@ -13,7 +13,7 @@
 - (instancetype)initWithFrame:(CGRect)frame
                    titleArray:(NSArray *)array chaildVCArray:(NSArray *)chaildVCArray;
 
-
+@property (nonatomic, copy) void(^didClickItemBlock)(NSInteger index);
 
 @end
 
