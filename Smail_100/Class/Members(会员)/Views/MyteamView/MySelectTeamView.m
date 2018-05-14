@@ -12,23 +12,26 @@
 @interface MySelectTeamView ()
 @property (nonatomic,assign) NSInteger count;
 @property (nonatomic, strong) NSArray       *titleArray;
+@property (nonatomic, strong) NSArray       *contenArr;
 
 @end
 
 @implementation MySelectTeamView
 {
     NSMutableArray *_titleArr;
+
 }
 
 
 - (instancetype)initWithFrame:(CGRect)frame
-                   titleArray:(NSArray *)array{
+                   titleArray:(NSArray *)array andContenArr:(NSArray *)arrays{
     
     if (self = [super initWithFrame:frame]) {
         self.titleArray = array;
         self.count = array.count;
         _titleArr = [[NSMutableArray alloc] init];
-
+        _contenArr = arrays;
+        
         [self setup];
     }
     return self;
@@ -38,14 +41,15 @@
 {
     
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
-    headView.backgroundColor = BACKGROUNDNOMAL_COLOR;
+//    headView.backgroundColor = BACKGROUNDNOMAL_COLOR;
+    
     [self addSubview:headView];
 
     self.backgroundColor = [UIColor whiteColor];
-    NSArray *listArr = @[@"推荐人数",@"激活创客",@"I创客团队业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                                    "];
+//    NSArray *listArr = @[@"总推荐人数",@"总激活创客",@"I团队总业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                                    "];
     for (NSInteger i = 0; i < 3; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(SCREEN_WIDTH / self.count * i,10, SCREEN_WIDTH / self.count, 170);
+        button.frame = CGRectMake(SCREEN_WIDTH / self.count * i,5, SCREEN_WIDTH / self.count, 170);
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = i;
         [self addSubview:button];
@@ -58,8 +62,8 @@
         [self addSubview:numberLB];
         [_titleArr addObject:numberLB];
         
-        UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / self.count * i, CGRectGetMaxY(numberLB.frame), SCREEN_WIDTH / self.count, 20)];
-        titleLB.text = listArr[i];
+        UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / self.count * i, CGRectGetMaxY(numberLB.frame)+5, SCREEN_WIDTH / self.count, 20)];
+        titleLB.text = _contenArr[i];
         titleLB.font =Font14;
         titleLB.textColor = DETAILTEXTCOLOR;
         titleLB.textAlignment = NSTextAlignmentCenter;
@@ -74,9 +78,11 @@
     _dataList = dataList;
     for (int i = 0; i<_dataList.count; i++) {
         UILabel *label = _titleArr[i];
-        label.text = dataList[i];
+        label.text =[NSString stringWithFormat:@"%@", dataList[i]];
     }
 }
+
+
 
 - (void)buttonAction:(UIButton *)sender
 {

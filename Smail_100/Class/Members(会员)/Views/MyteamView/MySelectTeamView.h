@@ -11,7 +11,7 @@
 @interface MySelectTeamView : UIView
 
 - (instancetype)initWithFrame:(CGRect)frame
-                   titleArray:(NSArray *)array;
+                   titleArray:(NSArray *)array andContenArr:(NSArray *)arrays;
 
 @property (nonatomic, strong) NSArray *dataList;
 @end

@@ -26,4 +26,7 @@
 @property (nonatomic , copy) NSArray<Banners *>              * banners;
 @property (nonatomic , strong) Content              * content;
 @property (nonatomic , strong) Count              * count;
+@property (nonatomic , copy) NSString              * user_id;
+
+
 @end

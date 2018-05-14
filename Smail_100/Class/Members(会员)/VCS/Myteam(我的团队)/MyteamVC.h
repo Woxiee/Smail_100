@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MyteamModel.h"
 @interface MyteamVC : KX_BaseViewController
-@property (nonatomic, strong) MyteamModel *model;
+//@property (nonatomic, strong) MyteamModel *model;
 
+@property (nonatomic, strong) NSString  *user_id;
 @end

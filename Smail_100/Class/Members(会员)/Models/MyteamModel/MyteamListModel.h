@@ -18,4 +18,7 @@
 @property (nonatomic , copy) NSString              * user_id;
 @property (nonatomic , copy) NSString              * avatar_url;
 
+@property (nonatomic , copy) NSString              * pid_mobile;
+
+
 @end

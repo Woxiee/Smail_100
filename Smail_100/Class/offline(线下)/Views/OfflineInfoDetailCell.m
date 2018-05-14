@@ -42,6 +42,7 @@
     __weak IBOutlet UIView *_lineView8;
     
 
+    __weak IBOutlet UILabel *jifePointLB;
 }
 
 
@@ -62,7 +63,10 @@
     [_findLb setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
     [_findLb layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageTop imageTitlespace:2];
     
-    
+//    distanceLB.textColor = TITLETEXTLOWCOLOR;
+//    tellLB.textColor = TITLETEXTLOWCOLOR;
+//    timeLB.textColor = TITLETEXTLOWCOLOR;
+
 }
 
 
@@ -84,11 +88,14 @@
     
    
     tellLB.text = _model.contact_phone;
+    
     timeLB.text = [NSString stringWithFormat:@"营业时间: %@",_model.ontime_scope];
     mianLb.text = _model.business_info;
     mianLb.textColor = DETAILTEXTCOLOR;
    _commNumberLB.text= [NSString stringWithFormat:@"%@评价",_model.comment_count];
     
+    
+    jifePointLB.text = [NSString stringWithFormat:@"赠送积分比例: %@",_model.ontime_scope];
     [_starImageView ShowDQStarScoreFunction:[_model.stars intValue]];
    
     

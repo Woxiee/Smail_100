@@ -35,12 +35,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sO-5P-3MZ">
-                        <rect key="frame" x="246" y="57.5" width="62" height="17"/>
+                        <rect key="frame" x="254" y="57.5" width="54" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="Etf-xf-kFa"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title="立即推荐&gt;">
+                        <state key="normal" title="立即对话">
                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                         </state>
                         <connections>

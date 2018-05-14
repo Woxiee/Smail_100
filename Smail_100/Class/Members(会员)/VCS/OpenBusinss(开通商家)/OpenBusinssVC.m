@@ -42,6 +42,12 @@
     __weak IBOutlet UIButton *_btn3;
     __weak IBOutlet UIButton *_btn4;
     
+    
+    __weak IBOutlet UIButton *_btn5;
+    
+    __weak IBOutlet UIButton *_btn6;
+    
+    
     __weak IBOutlet UIImageView *_doorImageView;
     
     __weak IBOutlet UIImageView *zzImageView;
@@ -141,7 +147,9 @@
                     
                     weakSelf.agentmodel.title3 = presentDic[@"title"];
                     weakSelf.agentmodel.value3 = presentDic[@"value"];
-                }else{
+                }
+                else if (i == 0) {
+                
 //                    NSArray *present_poinArr = dic[@"present_point"];
 //                    NSDictionary *presentDic = present_poinArr[0];
                       NSDictionary *presentDic= dic[@"present_point"];
@@ -153,6 +161,10 @@
                     
                     weakSelf.agentmodel.title4 = presentDic[@"title"];
                     weakSelf.agentmodel.value4 = presentDic[@"value"];
+                }
+                else{
+                    
+                    
                 }
                 
             

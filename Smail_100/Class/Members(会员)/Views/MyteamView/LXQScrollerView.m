@@ -58,7 +58,7 @@
         [self.topView addSubview:button];
         
         UILabel *numberLB = [[UILabel alloc] initWithFrame:CGRectMake(kWidth / self.count * i, 8, kWidth / self.count, 20)];
-        numberLB.text = _titleArray[i];
+        numberLB.text = [NSString stringWithFormat:@"%@",_titleArray[i]];
         numberLB.font = Font14;
         numberLB.textColor = KMAINCOLOR;
         numberLB.textAlignment = NSTextAlignmentCenter;

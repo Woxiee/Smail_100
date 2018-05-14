@@ -21,6 +21,8 @@
                 <outlet property="_btn2" destination="dKb-Z0-adN" id="ypv-iS-MjQ"/>
                 <outlet property="_btn3" destination="9Ds-Jv-ubT" id="eG2-1j-aJk"/>
                 <outlet property="_btn4" destination="ZYR-Oj-lSL" id="yND-yF-ozk"/>
+                <outlet property="_btn5" destination="VKx-yT-RVk" id="PdQ-Zo-Zht"/>
+                <outlet property="_btn6" destination="f50-U8-4Zu" id="oV1-jP-OXG"/>
                 <outlet property="_doorImageView" destination="9ov-qJ-4SB" id="3Ca-47-ldQ"/>
                 <outlet property="_industryTf" destination="LAz-7A-Hn0" id="ICS-Wi-vc2"/>
                 <outlet property="_industryView" destination="ySD-gb-rFD" id="26b-J9-deA"/>
@@ -222,18 +224,18 @@
                                     <rect key="frame" x="0.0" y="488" width="375" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="营业额让利：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9s3-ad-EHc">
-                                            <rect key="frame" x="12" y="0.0" width="96" height="50"/>
+                                            <rect key="frame" x="12" y="0.0" width="110" height="50"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="96" id="gJh-jd-8Bo"/>
+                                                <constraint firstAttribute="width" constant="110" id="gJh-jd-8Bo"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCj-lh-Gut">
-                                            <rect key="frame" x="136" y="0.0" width="67" height="50"/>
+                                            <rect key="frame" x="137" y="0.0" width="60" height="50"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="67" id="XwN-l1-RRP"/>
+                                                <constraint firstAttribute="width" constant="60" id="XwN-l1-RRP"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <state key="normal" title=" 10%" image="dailipingtai2@3x.png">
@@ -245,9 +247,9 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKb-Z0-adN">
-                                            <rect key="frame" x="243" y="0.0" width="67" height="50"/>
+                                            <rect key="frame" x="297" y="0.0" width="60" height="50"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="67" id="ExT-V9-eLA"/>
+                                                <constraint firstAttribute="width" constant="60" id="ExT-V9-eLA"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <state key="normal" title=" 20%" image="dailipingtai2@3x.png">
@@ -258,19 +260,36 @@
                                                 <action selector="benefitBtn:" destination="-1" eventType="touchUpInside" id="HCf-QZ-DPu"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VKx-yT-RVk">
+                                            <rect key="frame" x="217" y="0.0" width="60" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="mc1-Kp-MDg"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal" title=" 20%" image="dailipingtai2@3x.png">
+                                                <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <state key="selected" image="dailipingtai3@3x.png"/>
+                                            <connections>
+                                                <action selector="benefitBtn:" destination="-1" eventType="touchUpInside" id="3LT-7P-3vl"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
+                                        <constraint firstItem="VKx-yT-RVk" firstAttribute="top" secondItem="PA6-kT-I0D" secondAttribute="top" id="8hR-D7-cxG"/>
+                                        <constraint firstItem="VKx-yT-RVk" firstAttribute="leading" secondItem="dCj-lh-Gut" secondAttribute="trailing" constant="20" id="BXj-Bj-boZ"/>
                                         <constraint firstItem="dCj-lh-Gut" firstAttribute="top" secondItem="9s3-ad-EHc" secondAttribute="top" id="Lkl-YI-JNF"/>
                                         <constraint firstItem="dKb-Z0-adN" firstAttribute="centerY" secondItem="PA6-kT-I0D" secondAttribute="centerY" id="SYk-E9-bJN"/>
                                         <constraint firstAttribute="height" constant="50" id="TIG-jl-8A8"/>
-                                        <constraint firstItem="dCj-lh-Gut" firstAttribute="centerX" secondItem="PA6-kT-I0D" secondAttribute="centerX" multiplier="0.9" id="bkm-wO-10A"/>
-                                        <constraint firstItem="dKb-Z0-adN" firstAttribute="leading" secondItem="dCj-lh-Gut" secondAttribute="trailing" constant="40" id="e80-aj-LPf"/>
+                                        <constraint firstItem="dCj-lh-Gut" firstAttribute="leading" secondItem="9s3-ad-EHc" secondAttribute="trailing" constant="15" id="Z9W-b3-0YL"/>
+                                        <constraint firstItem="dKb-Z0-adN" firstAttribute="leading" secondItem="VKx-yT-RVk" secondAttribute="trailing" constant="20" id="cIT-19-osO"/>
                                         <constraint firstItem="9s3-ad-EHc" firstAttribute="leading" secondItem="PA6-kT-I0D" secondAttribute="leading" constant="12" id="fDT-i0-KZB"/>
                                         <constraint firstItem="dCj-lh-Gut" firstAttribute="centerY" secondItem="PA6-kT-I0D" secondAttribute="centerY" id="kbM-2c-7Vo"/>
                                         <constraint firstItem="9s3-ad-EHc" firstAttribute="top" secondItem="PA6-kT-I0D" secondAttribute="top" id="lGm-v0-IeA"/>
                                         <constraint firstItem="dKb-Z0-adN" firstAttribute="top" secondItem="dCj-lh-Gut" secondAttribute="top" id="nKi-Xc-GVQ"/>
                                         <constraint firstAttribute="bottom" secondItem="9s3-ad-EHc" secondAttribute="bottom" id="v6P-dw-Ef0"/>
+                                        <constraint firstAttribute="bottom" secondItem="VKx-yT-RVk" secondAttribute="bottom" id="vCM-is-v8C"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ETG-vQ-RFp">
@@ -285,10 +304,39 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ds-Jv-ubT">
-                                            <rect key="frame" x="136" y="14" width="67" height="22"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYR-Oj-lSL">
+                                            <rect key="frame" x="297.5" y="14" width="60" height="22"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="67" id="0pQ-AQ-1eM"/>
+                                                <constraint firstAttribute="height" constant="22" id="4PC-YG-m1H"/>
+                                                <constraint firstAttribute="width" constant="60" id="ZDo-9r-05g"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal" title=" 100%" image="dailipingtai2@3x.png">
+                                                <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <state key="selected" image="dailipingtai3@3x.png"/>
+                                            <connections>
+                                                <action selector="integralBtn:" destination="-1" eventType="touchUpInside" id="QUk-1G-1xU"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f50-U8-4Zu">
+                                            <rect key="frame" x="217.5" y="0.0" width="60" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="CjC-DJ-JCJ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal" title=" 20%" image="dailipingtai2@3x.png">
+                                                <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <state key="selected" image="dailipingtai3@3x.png"/>
+                                            <connections>
+                                                <action selector="benefitBtn:" destination="-1" eventType="touchUpInside" id="8a1-zU-BMA"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ds-Jv-ubT">
+                                            <rect key="frame" x="137" y="14" width="60" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="0pQ-AQ-1eM"/>
                                                 <constraint firstAttribute="height" constant="22" id="crS-sf-1Q8"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -300,33 +348,21 @@
                                                 <action selector="integralBtn:" destination="-1" eventType="touchUpInside" id="Mgo-tU-tOX"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYR-Oj-lSL">
-                                            <rect key="frame" x="243" y="14" width="67" height="22"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="22" id="4PC-YG-m1H"/>
-                                                <constraint firstAttribute="width" constant="67" id="ZDo-9r-05g"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" title=" 100%" image="dailipingtai2@3x.png">
-                                                <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <state key="selected" image="dailipingtai3@3x.png"/>
-                                            <connections>
-                                                <action selector="integralBtn:" destination="-1" eventType="touchUpInside" id="QUk-1G-1xU"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="kYj-vE-vvB" firstAttribute="leading" secondItem="ETG-vQ-RFp" secondAttribute="leading" constant="12" id="2LG-hs-J4a"/>
                                         <constraint firstAttribute="bottom" secondItem="kYj-vE-vvB" secondAttribute="bottom" id="Cvx-RQ-FuP"/>
                                         <constraint firstItem="kYj-vE-vvB" firstAttribute="top" secondItem="ETG-vQ-RFp" secondAttribute="top" id="LZf-k5-0oT"/>
+                                        <constraint firstItem="ZYR-Oj-lSL" firstAttribute="leading" secondItem="f50-U8-4Zu" secondAttribute="trailing" constant="20" id="POZ-Sz-4up"/>
                                         <constraint firstAttribute="bottom" secondItem="9Ds-Jv-ubT" secondAttribute="bottom" constant="14" id="Q47-Cc-hAL"/>
                                         <constraint firstAttribute="height" constant="50" id="Sxd-7h-0Fa"/>
+                                        <constraint firstAttribute="bottom" secondItem="f50-U8-4Zu" secondAttribute="bottom" id="WnS-zD-bzi"/>
+                                        <constraint firstItem="9Ds-Jv-ubT" firstAttribute="leading" secondItem="kYj-vE-vvB" secondAttribute="trailing" constant="15" id="ayG-GL-Swu"/>
+                                        <constraint firstItem="f50-U8-4Zu" firstAttribute="top" secondItem="ETG-vQ-RFp" secondAttribute="top" id="bC6-A8-zn4"/>
                                         <constraint firstItem="ZYR-Oj-lSL" firstAttribute="top" secondItem="9Ds-Jv-ubT" secondAttribute="top" id="fw3-It-b7s"/>
-                                        <constraint firstItem="9Ds-Jv-ubT" firstAttribute="centerX" secondItem="ETG-vQ-RFp" secondAttribute="centerX" multiplier="0.9" id="hLi-ys-xNN"/>
-                                        <constraint firstItem="ZYR-Oj-lSL" firstAttribute="leading" secondItem="9Ds-Jv-ubT" secondAttribute="trailing" constant="40" id="qIU-Wn-wXh"/>
                                         <constraint firstItem="ZYR-Oj-lSL" firstAttribute="bottom" secondItem="9Ds-Jv-ubT" secondAttribute="bottom" id="qf7-rZ-aRm"/>
+                                        <constraint firstItem="f50-U8-4Zu" firstAttribute="leading" secondItem="9Ds-Jv-ubT" secondAttribute="trailing" constant="20" id="rc2-we-VcG"/>
                                         <constraint firstItem="9Ds-Jv-ubT" firstAttribute="top" secondItem="ETG-vQ-RFp" secondAttribute="top" constant="14" id="wOH-j9-iuH"/>
                                     </constraints>
                                 </view>
@@ -520,7 +556,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyt-16-mDs">
-                                            <rect key="frame" x="121" y="364" width="82" height="16"/>
+                                            <rect key="frame" x="121" y="364" width="60" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <state key="normal" title="&lt;签约协议&gt;">
                                                 <color key="titleColor" red="0.82220143079999997" green="0.17686191200000001" blue="0.14883869890000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

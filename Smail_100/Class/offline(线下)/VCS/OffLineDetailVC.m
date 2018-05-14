@@ -222,7 +222,7 @@ static NSString * const CommentsCellID = @"CommentsCell";
     NSString *title = self.resorceArray[indexPath.section];
     if ([title isEqualToString:@"详情"]) {
         CGSize heightSize = [NSString heightForString:_detailModle.business_info fontSize:Font14 WithSize:CGSizeMake(SCREEN_WIDTH - 50, SCREEN_WIDTH)];
-        return 295 + heightSize.height;
+        return 345 + heightSize.height;
     }else{
 //            return 85;
         Comment *model= _detailModle.comment[indexPath.row];

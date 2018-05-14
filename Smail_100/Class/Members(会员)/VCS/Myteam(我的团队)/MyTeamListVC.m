@@ -14,6 +14,8 @@
 @interface MyTeamListVC ()
 @property(nonatomic,assign)NSUInteger page;
 
+
+@property (nonatomic, strong)   MySelectTeamView *headView;
 @end
 
 @implementation MyTeamListVC
@@ -30,22 +32,51 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
 
 - (void)requestListNetWork
 {
-
+    
     WEAKSELF;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    [param setObject:_group_user_id?_group_user_id:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
+    [param setObject:_group_user_id?_group_user_id:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"group_user_id"];
+    if (_teamType == FirstTeamListType) {
+        [param setObject:@"1" forKey:@"level"];
+    }
+    else if (_teamType == SecondTeamListType) {
+        [param setObject:@"2" forKey:@"level"];
+    }else if (_teamType == ThreeTeamListType){
+        [param setObject:@"3" forKey:@"level"];
+    }
+    else{
+        
+    }
+    if (_page == 0) {
+        _page = 1;
+    }
+    [param setObject:@(_page) forKey:@"pageno"];
+    [param setObject:@"10" forKey:@"page_size"];
+    
+    [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     [BaseHttpRequest postWithUrl:@"/group/groupList" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
-         
-//            for (int i = 0; i<monenyList.count; i++) {
-//                UILabel *label = _titleArr[i];
-//                label.text = monenyList[i];
-//            }
-//            _nameLB.text = result[@"data"][@"shop_name"];
-//
-//            weakSelf.resultDic = result[@"data"];
+            
+            NSArray *dataList = [NSArray yy_modelArrayWithClass:[MyteamListModel class] json:result[@"data"][@"list"]];
+            
+            NSDictionary *contenDic = result[@"data"][@"count"][@"reg_info"];
+            //            [self setUI];
+            NSArray *titleArr = @[contenDic[@"reg"],contenDic[@"pay"],contenDic[@"money"]];
+//            self.selectTeamView.dataList = dataList;
+            _headView.dataList = titleArr;
+            if (weakSelf.page == 1) {
+                [weakSelf.resorceArray removeAllObjects];
+            }
+            [weakSelf.resorceArray addObjectsFromArray:dataList];
+            [weakSelf.tableView reloadData];
+            
             
         }
+        [weakSelf stopRefresh];
+
     }];
 }
 
@@ -54,7 +85,7 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 10;
+    return self.resorceArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -64,7 +95,7 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-     return 86;
+     return 110;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
@@ -87,6 +118,8 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
     if (cell == nil) {
         cell = [[MyTeamListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:myTeamListCellID];
     }
+    MyteamListModel *model = self.resorceArray[indexPath.section];
+    cell.model = model;
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
@@ -94,21 +127,42 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    MyTeamDetailVC *VC = [[MyTeamDetailVC alloc] init];
-//    [self.navigationController  pushViewController:VC animated:YES];
+    MyteamListModel *model = self.resorceArray[indexPath.section];
+
+    MyTeamListVC *VC = [[MyTeamListVC alloc] init];
+    VC.group_user_id = model.user_id;
+    VC.teamType = OtherTeamListType;
+    
+    [VC requestListNetWork];
+    [self.superVC.navigationController  pushViewController:VC animated:YES];
+    
+
 }
 
 
 
 - (void)setup
 {
-    MySelectTeamView *headView = [[MySelectTeamView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 80) titleArray:@[@"88",@"49",@"8888"]];
+    NSArray *titleArr = @[@"推荐人数",@"激活创客",@"I团队业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                          "];
+    if (_teamType == FirstTeamListType) {
+        titleArr = @[@"推荐人数",@"激活创客",@"I团队业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                          "];
+    }
+    else if (_teamType == SecondTeamListType) {
+        titleArr = @[@"推荐人数",@"激活创客",@"II团队业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                          "];
+    }else{
+        titleArr = @[@"推荐人数",@"激活创客",@"III团队业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                          "];
+    }
+    
+    MySelectTeamView *headView = [[MySelectTeamView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 90) titleArray:@[@"88",@"49",@"8888"] andContenArr:titleArr];
+    
     self.tableView.tableHeaderView = headView;
+    _headView = headView;
 }
 
 /// 配置基础设置
 - (void)setConfiguration
 {
+    _page = 1;
     self.title = @"我的团队";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:@"MyTeamListCell" bundle:nil] forCellReuseIdentifier:myTeamListCellID];
@@ -144,5 +198,15 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
     [self requestListNetWork];
 }
 
+-(void)stopRefresh
+{
+    [self.tableView stopFresh:self.resorceArray.count pageIndex:self.page];
+    if (self.resorceArray.count == 0) {
+        [self.tableView addSubview:[KX_LoginHintView notDataView]];
+    }else{
+        [KX_LoginHintView removeFromSupView:self.tableView];
+    }
+    
+}
 
 @end

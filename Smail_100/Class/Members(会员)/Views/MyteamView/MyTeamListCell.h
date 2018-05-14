@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MyteamListModel.h"
 @interface MyTeamListCell : UITableViewCell
-
+@property (nonatomic, strong) MyteamListModel *model;
 @end

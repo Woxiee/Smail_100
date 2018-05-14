@@ -23,6 +23,9 @@
     _title1LB.textColor = DETAILTEXTCOLOR;
     _title2LB.textColor = DETAILTEXTCOLOR;
     [_RommendBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
+
+    [_RommendBtn layerWithRadius:8 lineWidth:1 color:KMAINCOLOR];
+    
     
     self.selectionStyle =  UITableViewCellSelectionStyleNone;
 }

@@ -89,6 +89,9 @@ static NSString *myRecommendCellID = @"MyRecommendCellID";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
+    if (section == 0) {
+        return 0;
+    }
     return 10;
 }
 
@@ -133,7 +136,7 @@ static NSString *myRecommendCellID = @"MyRecommendCellID";
     NSString *title = self.resorceArray[indexPath.section];
     if ([title isEqualToString:@"我的团队"]) {
         MyteamVC *VC = [[MyteamVC alloc] init];
-        VC.model = _model;
+
         [self.navigationController pushViewController:VC animated:YES];
     }
     else if ([title isEqualToString:@"我的推广"]) {
@@ -158,7 +161,7 @@ static NSString *myRecommendCellID = @"MyRecommendCellID";
     [headView addSubview:cycleView];
     self.cycleView = cycleView;
     
-    MySelectTeamView *selectTeamView = [[MySelectTeamView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(cycleView.frame), SCREEN_WIDTH, 80) titleArray:@[@"88",@"49",@"8888"]];
+    MySelectTeamView *selectTeamView = [[MySelectTeamView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(cycleView.frame), SCREEN_WIDTH, 80) titleArray:@[@"88",@"49",@"8888"] andContenArr:@[@"总推荐人数",@"总激活创客",@"I团队总业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                                    "]];
     [headView addSubview:selectTeamView];
     self.selectTeamView = selectTeamView;
     

@@ -11,9 +11,17 @@ typedef NS_ENUM(NSInteger, MyTeamListType){
     FirstTeamListType,                  /// 一级
     SecondTeamListType,                 ///二级
     ThreeTeamListType,                 ///三级
+    OtherTeamListType,                 ///其他
+
 
 };
 @interface MyTeamListVC : KX_BaseTableViewController
 
-@property (nonatomic, assign) MyTeamListType *teamType;
+@property (nonatomic, assign) MyTeamListType teamType;
+@property (nonatomic, strong) NSString  *group_user_id;
+
+@property (nonatomic, strong) UIViewController *superVC;
+
+- (void)requestListNetWork;
+
 @end

@@ -52,4 +52,11 @@
 @property (nonatomic , copy) NSString              * value4;
 
 
+@property (nonatomic , copy) NSString              * title5;
+@property (nonatomic , copy) NSString              * value5;
+
+
+@property (nonatomic , copy) NSString              * title6;
+@property (nonatomic , copy) NSString              * value6;
+
 @end
