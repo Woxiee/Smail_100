@@ -17,6 +17,7 @@
 #import "FinancialCellCell.h"
 #import "InsuranceCellCell.h"
 
+
 #import "ItemContentList.h"
 
 #import "ColumnModel.h"
@@ -32,8 +33,11 @@
 #import "GoodsScreeningVC.h"
 #import "GoodsVModel.h"
 
+/// VC
+#import "ClouldPhoneVC.h"
 #import "GoodsScreeningVC.h"
 #import "SIDADView.h"
+#import "GoodsClassVC.h"
 #import "KYGotoHeaderAndShowCountView.h"
 
 
@@ -144,14 +148,10 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
                 listModel.itemContentList = weakSelf.itemsArr;
                 [weakSelf.resorceArray addObject:listModel];
                 [weakSelf.collectionView reloadData];
-                [weakSelf.collectionView.mj_header endRefreshing];
-                [weakSelf.collectionView.mj_footer endRefreshing];
+    
             }
-            else{
-                [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
-            }
-            
         }
+        [self stopRefresh];
 
     }];
 }
@@ -439,7 +439,10 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
       if (!cell) {
           cell = [ColumnCell new];
       }
-        cell.model = model.itemContentList[indexPath.row];
+        if (model.itemContentList.count>0) {
+            cell.model = model.itemContentList[indexPath.row];
+
+        }
       return cell;
         
     }
@@ -549,8 +552,11 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         
     }
     if ([model.itemType isEqualToString:@"cateList"]){
-        
-        return UIEdgeInsetsMake(0, 0, 5, 0);
+        if (model.itemContentList.count >0) {
+            return UIEdgeInsetsMake(0, 0, 5, 0);
+        }
+        return UIEdgeInsetsMake(0, 0, 0, 0);
+
     }
     
     //    if ([model.itemType isEqualToString:@"rushPurchaseHeader"]){
@@ -558,8 +564,10 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     //    }
     //
     if ([model.itemType isEqualToString:@"recommended_goods"]){
-        
-        return UIEdgeInsetsMake(5, 0, 0, 0);
+        if (model.itemContentList.count >0) {
+            return UIEdgeInsetsMake(5, 0, 0, 0);
+        }
+        return UIEdgeInsetsMake(0, 0, 0, 0);
     }
     //    if ([model.itemType isEqualToString:@"action"]){
     //        return UIEdgeInsetsMake(0, 0, 0, 0);
@@ -618,18 +626,19 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 
 - (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
         if (kind == UICollectionElementKindSectionHeader) {
-//            if (indexPath.section == 2) {
-//            }
-
             ItemInfoList *model =  self.resorceArray[indexPath.section];
             if ([model.itemType isEqualToString:@"recommended_goods"]){
-                ItemInfoList *models = self.resorceArray[2];
-                HomeHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:homeStoreHeaderViewIdentifier forIndexPath:indexPath];
-                headerView.model = models.itemContentList[indexPath.row];
-                headerView.didClickMoreBtnBlock = ^(){
-
-                };
-                return headerView;
+                if (self.resorceArray.count >2) {
+                    ItemInfoList *models = self.resorceArray[2];
+                    HomeHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:homeStoreHeaderViewIdentifier forIndexPath:indexPath];
+                    headerView.model = models.itemContentList[indexPath.row];
+                    headerView.didClickMoreBtnBlock = ^(){
+                        
+                    };
+                    return headerView;
+                }
+                return nil;
+                
             }
             
             else if ([model.itemType isEqualToString:@"recommended_ware"]){
@@ -687,6 +696,23 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         VC.title =  contenModle.itemTitle;
 
         [self.navigationController pushViewController:VC animated:YES];
+    }else if ([contenModle.clickType isEqualToString:@"cloud_device"]){//我的云设备
+        ClouldPhoneVC *VC = [[ClouldPhoneVC alloc] init];
+        VC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:VC animated:YES];
+        return;
+        
+    }else if([contenModle.clickType isEqualToString:@"goods_cate"]){
+        
+        
+        //else if ([contenModle.clickType isEqualToString:@"goods_cate"]){}
+        //产品分类
+        GoodsClassVC *VC = [[GoodsClassVC alloc] init];
+        VC.hidesBottomBarWhenPushed = YES;
+        VC.title =  contenModle.itemTitle;
+        [self.navigationController pushViewController:VC animated:YES];
+        return;
+        
     }
     else {
         
@@ -774,7 +800,16 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 
 }
 
-
+-(void)stopRefresh
+{
+    [self.collectionView stopFresh:self.itemsArr.count pageIndex:self.page];
+    if (self.itemsArr.count == 0) {
+        [self.collectionView addSubview:[KX_LoginHintView notDataView]];
+    }else{
+        [KX_LoginHintView removeFromSupView:self.collectionView];
+    }
+    
+}
 
 
 @end

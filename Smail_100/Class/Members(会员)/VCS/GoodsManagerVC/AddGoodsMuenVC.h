@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface AddGoodsMuenVC : KX_BaseViewController
+@property (nonatomic, assign) BOOL isEdit;
+
+@property (nonatomic, strong) NSString *sub_category_id;
+@property (nonatomic, strong) NSString *name;
 
 @end

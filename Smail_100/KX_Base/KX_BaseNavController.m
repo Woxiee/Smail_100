@@ -33,8 +33,9 @@
         leftNaviBtn.frame=CGRectMake(0, 0, 44, 44);
         [leftNaviBtn setImage:[UIImage imageNamed:@"back_icon@2x.png"] forState:UIControlStateNormal];
         [leftNaviBtn setImage:[UIImage imageNamed:@"back_icon@2x.png"] forState:UIControlStateHighlighted];
-        [leftNaviBtn setTitle:@"" forState:UIControlStateNormal];
+        [leftNaviBtn setTitle:@"返回" forState:UIControlStateNormal];
         leftNaviBtn.titleLabel.font=[UIFont systemFontOfSize:16 weight:UIFontWeightSemibold];
+        [leftNaviBtn setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
         [leftNaviBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
         leftNaviBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         leftNaviBtn.backgroundColor=[UIColor clearColor];

@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 
 #define marginLeft 25.0f
-#define connerRediu 15.0f
+#define connerRediu 20.0f
 
 typedef void(^clickTrue)(NSInteger dex);
 
@@ -42,6 +42,7 @@ typedef void(^clickTrue)(NSInteger dex);
         self.backgroundColor = [UIColor whiteColor];
         [self setConnerRediu:connerRediu];
         [self loadTrueCancleView];
+        
         _headerImageV.hidden = YES;
         _messgaeLb.text = title;
         _clickTrueBlock = clickBlock;
@@ -155,7 +156,7 @@ typedef void(^clickTrue)(NSInteger dex);
     UIButton *cancleBtn = [[UIButton alloc]initWithFrame:CGRectMake(0 , line1.bottom, self.width/2, self.height - line1.bottom)];
     [self addSubview:cancleBtn];
     [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [cancleBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [cancleBtn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
     cancleBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [cancleBtn addTarget:self action:@selector(hideSuccess) forControlEvents:UIControlEventTouchUpInside];
     //线条2
@@ -218,7 +219,7 @@ typedef void(^clickTrue)(NSInteger dex);
         UIButton *cancleBtn = [[UIButton alloc]initWithFrame:CGRectMake(0 , line1.bottom, self.width/2, self.height - line1.bottom)];
         [self addSubview:cancleBtn];
         [cancleBtn setTitle:cancelTitle forState:UIControlStateNormal];
-        [cancleBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [cancleBtn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
         cancleBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [cancleBtn addTarget:self action:@selector(hideSuccess) forControlEvents:UIControlEventTouchUpInside];
         //线条2

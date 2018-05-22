@@ -73,7 +73,10 @@
 //                    [weakSelf.tableView reloadData];
 //                    [weakSelf setRefreshs];
                     [weakSelf showHint:msg];
-                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeAfter * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+
+                    });
 
                 }
             }
@@ -111,7 +114,8 @@
         self.title = @"发布商品";
 
         _model = [MeChantOrderModel new];
-        
+        _model.sub_category_id = @"1";
+        _selectTF.text = @"默认分类";
     }
 }
 

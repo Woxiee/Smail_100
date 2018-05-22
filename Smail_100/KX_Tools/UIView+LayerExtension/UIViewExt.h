@@ -179,7 +179,7 @@ CGRect  CGRectMoveToCenter(CGRect rect, CGPoint center);
 -(UIView *(^)(UIColor *color,CGFloat width))KYBorderColorWidth;
 
 
-
++ (NSString *)cellID;
 
 
 

@@ -11,8 +11,7 @@
 #import "MyTeamListCell.h"
 #import "MyteamListModel.h"
 
-@interface MyTeamListVC ()
-@property(nonatomic,assign)NSUInteger page;
+@interface MyTeamListVC ()<UITableViewDelegate,UITableViewDataSource>
 
 
 @property (nonatomic, strong)   MySelectTeamView *headView;
@@ -48,10 +47,10 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
     else{
         
     }
-    if (_page == 0) {
-        _page = 1;
+    if (self.page == 0) {
+        self.page = 1;
     }
-    [param setObject:@(_page) forKey:@"pageno"];
+    [param setObject:@(self.page) forKey:@"pageno"];
     [param setObject:@"10" forKey:@"page_size"];
     
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
@@ -61,7 +60,9 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
             
             NSArray *dataList = [NSArray yy_modelArrayWithClass:[MyteamListModel class] json:result[@"data"][@"list"]];
-            
+            for (MyteamListModel *model in dataList) {
+                model.mobile = [NSString stringWithFormat:@"创客账号：%@",model.mobile];
+            }
             NSDictionary *contenDic = result[@"data"][@"count"][@"reg_info"];
             //            [self setUI];
             NSArray *titleArr = @[contenDic[@"reg"],contenDic[@"pay"],contenDic[@"money"]];
@@ -71,7 +72,7 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
                 [weakSelf.resorceArray removeAllObjects];
             }
             [weakSelf.resorceArray addObjectsFromArray:dataList];
-            [weakSelf.tableView reloadData];
+            [weakSelf.mainTable reloadData];
             
             
         }
@@ -101,7 +102,7 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
   
-    return 10;
+    return 5;
 }
 
 
@@ -132,7 +133,7 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
     MyTeamListVC *VC = [[MyTeamListVC alloc] init];
     VC.group_user_id = model.user_id;
     VC.teamType = OtherTeamListType;
-    
+    VC.superVC = self.superVC;
     [VC requestListNetWork];
     [self.superVC.navigationController  pushViewController:VC animated:YES];
     
@@ -143,31 +144,34 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
 
 - (void)setup
 {
-    NSArray *titleArr = @[@"推荐人数",@"激活创客",@"I团队业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                          "];
+    self.mainTable.sd_layout.topSpaceToView(self.view,5);
+    self.mainTable.delegate = self;
+    self.mainTable.dataSource = self;
+    
+    NSArray *titleArr = @[@"推荐人数",@"激活创客",@"I创客团队业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                          "];
     if (_teamType == FirstTeamListType) {
-        titleArr = @[@"推荐人数",@"激活创客",@"I团队业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                          "];
+        titleArr = @[@"推荐人数",@"激活创客",@"I创客团队业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                          "];
     }
     else if (_teamType == SecondTeamListType) {
-        titleArr = @[@"推荐人数",@"激活创客",@"II团队业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                          "];
+        titleArr = @[@"推荐人数",@"激活创客",@"II创客团队业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                          "];
     }else{
-        titleArr = @[@"推荐人数",@"激活创客",@"III团队业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                          "];
+        titleArr = @[@"推荐人数",@"激活创客",@"III创客团队业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                          "];
     }
     
     MySelectTeamView *headView = [[MySelectTeamView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 90) titleArray:@[@"88",@"49",@"8888"] andContenArr:titleArr];
     
-    self.tableView.tableHeaderView = headView;
+    self.mainTable.tableHeaderView = headView;
     _headView = headView;
 }
 
 /// 配置基础设置
 - (void)setConfiguration
 {
-    _page = 1;
     self.title = @"我的团队";
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerNib:[UINib nibWithNibName:@"MyTeamListCell" bundle:nil] forCellReuseIdentifier:myTeamListCellID];
+    self.mainTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.mainTable registerNib:[UINib nibWithNibName:@"MyTeamListCell" bundle:nil] forCellReuseIdentifier:myTeamListCellID];
     self.view.backgroundColor = BACKGROUNDNOMAL_COLOR;
-    self.tableView.backgroundColor = BACKGROUNDNOMAL_COLOR;
+    self.mainTable.backgroundColor = BACKGROUNDNOMAL_COLOR;
     
 }
 
@@ -176,11 +180,11 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
 -(void)setRefresh
 {
     WEAKSELF;
-    [self.tableView headerWithRefreshingBlock:^{
+    [self.mainTable headerWithRefreshingBlock:^{
         [weakSelf loadNewDate];
     }];
     
-    [self.tableView footerWithRefreshingBlock:^{
+    [self.mainTable footerWithRefreshingBlock:^{
         [weakSelf loadMoreData];
     }];
     
@@ -188,7 +192,7 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
 
 -(void)loadNewDate
 {
-    self.page = 0;
+    self.page = 1;
     [self requestListNetWork];
 }
 
@@ -200,11 +204,11 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
 
 -(void)stopRefresh
 {
-    [self.tableView stopFresh:self.resorceArray.count pageIndex:self.page];
+    [self.mainTable stopFresh:self.resorceArray.count pageIndex:self.page];
     if (self.resorceArray.count == 0) {
-        [self.tableView addSubview:[KX_LoginHintView notDataView]];
+        [self.mainTable addSubview:[KX_LoginHintView notDataView]];
     }else{
-        [KX_LoginHintView removeFromSupView:self.tableView];
+        [KX_LoginHintView removeFromSupView:self.mainTable];
     }
     
 }

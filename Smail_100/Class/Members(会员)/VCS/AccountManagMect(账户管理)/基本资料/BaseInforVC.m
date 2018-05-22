@@ -99,7 +99,8 @@ static NSInteger infoCellTag = 100;
 //    btn.titleLabel.font = KY_FONT(15);
 //    [btn addTarget:self action:@selector(saveAndUpLoad:) forControlEvents:UIControlEventTouchUpInside];
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
-    outBtn.backgroundColor =KMAINCOLOR;
+    outBtn.backgroundColor = KMAINCOLOR;
+    [outBtn layerForViewWith:4 AndLineWidth:0];
 }
 
 
@@ -153,6 +154,7 @@ static NSInteger infoCellTag = 100;
                      userinfo.avatar_url = imageName;
                      [headerImage sd_setImageWithURL:[NSURL URLWithString:[KX_UserInfo sharedKX_UserInfo].avatar_url] placeholderImage:[UIImage imageNamed:@"6@3x.png"]];
                  }];
+                 
                  
              }];
             
@@ -228,6 +230,8 @@ static NSInteger infoCellTag = 100;
 //                    [weakSelf.resorceArray addObjectsFromArray:listArray];
 //                    [weakSelf.tableView reloadData];
 //                    [weakSelf setRefreshs];
+                    [self.view makeToast:result[@"msg"]];
+                  
                 }
 //            }
         }else{
@@ -316,7 +320,12 @@ static NSInteger infoCellTag = 100;
             SuccessView *successV = [[SuccessView alloc] initWithTrueCancleTitle:@"是否退出登录?" cancelTitle:@"取消" clickDex:^(NSInteger clickDex) {
                 if (clickDex == 1) {
                     [[KX_UserInfo sharedKX_UserInfo] cleanUserInfoToSanbox];
-                    [self.navigationController popToRootViewControllerAnimated:YES];
+                   
+                    [Common presentToLoginView:self.navigationController.viewControllers.firstObject];
+                    
+                    [self.navigationController popToRootViewControllerAnimated:NO];
+                    
+                    
                 }}];
             [successV showSuccess];
            
@@ -458,6 +467,7 @@ static NSInteger infoCellTag = 100;
 //                    [weakSelf.resorceArray addObjectsFromArray:listArray];
 //                    [weakSelf.tableView reloadData];
 //                    [weakSelf setRefreshs];
+                    [self.view makeToast:result[@"msg"]];
                 }
             }
         }else{

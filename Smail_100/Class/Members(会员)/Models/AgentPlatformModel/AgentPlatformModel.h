@@ -15,6 +15,10 @@
 @property (nonatomic , copy) NSString              * status;
 @property (nonatomic , copy) NSString              * shop_id;
 @property (nonatomic , copy) NSString              * applicant_mobile;
+@property (nonatomic , copy) NSString              * ctime;
+@property (nonatomic , copy) NSString              * name;
+@property (nonatomic , copy) NSString              * status_title;
+@property (nonatomic , copy) NSString              * status_msg;
 
 
 @property (nonatomic , copy) NSString              * user_id;

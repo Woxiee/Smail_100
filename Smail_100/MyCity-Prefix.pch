@@ -53,7 +53,9 @@
 #import "KYDatePickView.h"
 #import "Common.h"
 #import "UIWebView+ContenHight.h"
-
+#import "BaseTableVC.h"
+#import "BaseTableCell.h"
+#import "UILabel+Extension.h"
 #import "YYModel.h"
 //#import "UIScrollView+KYPagingDetail.h"
 #import "GlobalQueueOperation.h"
@@ -77,6 +79,17 @@
 #import "GoodsClassModel.h"
 #import "ItemContentList.h"
 #import "FindPaypwdVC.h"
+
+#import <Masonry/Masonry.h>
+
+#import "GoodsAuctionXYVC.h"
+#import "GoodsScreeningVC.h"
+#import "GoodsDetailVC.h"
+
+
+
+
+
 
 //#import<BaiduMapAPI_Map/BMKMapView.h>
 //

@@ -21,6 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (self.categoryId == nil) {
+        /// 默认的数据
+        self.categoryId = @"48";
+    }
+    
     [self getHomeIndexRequest];
     [self getHoldKeyWorld];
     

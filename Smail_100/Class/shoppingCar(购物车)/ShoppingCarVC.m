@@ -73,6 +73,7 @@
     self.view.backgroundColor = BACKGROUNDNOMAL_COLOR;
   
     shopCarGoodsList.backgroundColor = BACKGROUNDNOMAL_COLOR;
+    [backView layerForViewWith:0 AndLineWidth:0.5];
 }
 
 

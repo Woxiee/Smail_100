@@ -35,9 +35,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sO-5P-3MZ">
-                        <rect key="frame" x="254" y="57.5" width="54" height="17"/>
+                        <rect key="frame" x="238" y="53.5" width="70" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="17" id="Etf-xf-kFa"/>
+                            <constraint firstAttribute="height" constant="25" id="Q2U-Cg-iUI"/>
+                            <constraint firstAttribute="width" constant="70" id="VLk-lt-Qn8"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="立即对话">
@@ -49,10 +50,10 @@
                     </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="5sO-5P-3MZ" firstAttribute="top" secondItem="XOx-1q-sOx" secondAttribute="bottom" constant="10" id="4jI-qp-zUq"/>
                     <constraint firstAttribute="bottom" secondItem="FFW-SM-KAN" secondAttribute="bottom" constant="10" id="F1o-Ak-j6W"/>
                     <constraint firstItem="XOx-1q-sOx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Vsd-id-caC"/>
                     <constraint firstItem="XOx-1q-sOx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="Zgc-9c-ACh"/>
-                    <constraint firstItem="5sO-5P-3MZ" firstAttribute="top" secondItem="FFW-SM-KAN" secondAttribute="top" id="aGh-k2-zKR"/>
                     <constraint firstItem="FFW-SM-KAN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="bgw-mB-KbP"/>
                     <constraint firstAttribute="trailing" secondItem="XOx-1q-sOx" secondAttribute="trailing" constant="12" id="lam-CV-4by"/>
                     <constraint firstAttribute="trailing" secondItem="FFW-SM-KAN" secondAttribute="trailing" constant="73" id="o0Y-LP-uWy"/>

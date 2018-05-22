@@ -94,9 +94,8 @@
     mianLb.textColor = DETAILTEXTCOLOR;
    _commNumberLB.text= [NSString stringWithFormat:@"%@评价",_model.comment_count];
     
-    
-    jifePointLB.text = [NSString stringWithFormat:@"赠送积分比例: %@",_model.ontime_scope];
-    [_starImageView ShowDQStarScoreFunction:[_model.stars intValue]];
+    jifePointLB.text = [NSString stringWithFormat:@"赠送积分比例: %@",_model.present_point_perc];
+    [_starImageView ShowDQStarScoreFunction:[_model.stars floatValue]];
    
     
 }

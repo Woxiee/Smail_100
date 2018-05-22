@@ -63,6 +63,7 @@
         
         if ([[KX_UserInfo sharedKX_UserInfo].agent_level intValue] >0 ) {
             leveBtn.hidden = YES;
+            
             NSArray *leveList = @[@"普通用户",@"总代",@"代理商",@"合伙人"];
             
             _compangLB.text  = leveList[[[KX_UserInfo sharedKX_UserInfo].agent_level intValue]];
@@ -76,7 +77,6 @@
 
             }
             
-
             leveBtn.hidden = NO;
 
         }

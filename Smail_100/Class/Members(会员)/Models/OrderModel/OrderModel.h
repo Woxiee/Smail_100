@@ -43,9 +43,15 @@
 @property (nonatomic , copy) NSString              * comm_nums;
 @property (nonatomic , copy) NSString              * shopID;
 
+
+
 @property (nonatomic , copy) NSString              * express_url;
 @property (nonatomic , copy) NSString              * express_type;
+@property (nonatomic , copy) NSString              * shop_name;
+@property (nonatomic , copy) NSString              * paystatus_title;
 
+@property (nonatomic , copy) NSString              * type; /// 类型   shop   线下
+@property (nonatomic , copy) NSString              * stars;
 
 
 /// 集采
@@ -102,6 +108,7 @@
 
 @property (nonatomic , assign) BOOL              isDetail;  /// 1  供应商订单   0购买订单
 
+@property (nonatomic , assign) BOOL              isShowBottow;  /// 是否显示 底部按钮
 
 
 @end

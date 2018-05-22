@@ -167,14 +167,14 @@
     CGFloat MaxX = CGRectGetMaxX(tempFrame);
     CGFloat conteentOffX = self.titleScrollView.contentSize.width - self.titleScrollView.frame.size.width;
     CGFloat MinX = CGRectGetMinX(tempFrame);
-    if (self.vcArray.count >5) {
-        if (MaxX >= self.superview.frame.size.width - WJSegmentMenuVcDefaultSpace * 2) {
-            [self.titleScrollView setContentOffset:CGPointMake(conteentOffX, 0) animated:YES];
-        }
-        if (MinX - WJSegmentMenuVcDefaultSpace *2 <= conteentOffX) {
-            [self.titleScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-        }
-    }
+//    if (self.vcArray.count >5) {
+//        if (MaxX >= self.superview.frame.size.width - WJSegmentMenuVcDefaultSpace * 2) {
+//            [self.titleScrollView setContentOffset:CGPointMake(conteentOffX, 0) animated:YES];
+//        }
+//        if (MinX - WJSegmentMenuVcDefaultSpace *2 <= conteentOffX) {
+//            [self.titleScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+//        }
+//    }
  
 }
 

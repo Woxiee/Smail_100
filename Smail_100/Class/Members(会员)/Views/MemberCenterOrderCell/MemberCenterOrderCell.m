@@ -9,7 +9,10 @@
 #import "MemberCenterOrderCell.h"
 
 @implementation MemberCenterOrderCell
-
+{
+    NSMutableArray *titleList;
+    
+}
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     
@@ -24,16 +27,16 @@
 /// 初始化视图
 - (void)setup
 {
-    
-//    UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(12, 10, SCREEN_WIDTH, 0)];
-//    titleLB.backgroundColor = [UIColor whiteColor];
-//    titleLB.text = @"我的订单";
-//    titleLB.textColor = TITLETEXTLOWCOLOR;
-//    titleLB.font = Font15;
-//    [self addSubview:titleLB];
- 
+
+    titleList = [NSMutableArray new];
     NSArray *imageArray = @[@"gerenzhongxin3@3x.png",@"gerenzhongxin4@3x.png",@"gerenzhongxin5@3x.png",@"gerenzhongxin6@3x.png",@"gerenzhongxin7@3x.png",@"gerenzhongxin8@3x.png",@"gerenzhongxin9@3x.png",@"gerenzhongxin10@3x.png",];
     NSArray *titleArray = @[@"商城订单",@"线下订单",@"购物车",@"我的收藏",@"商家中心",@"创客微店",@"代理平台",@"我的团队"];
+    if (KX_NULLString( [KX_UserInfo sharedKX_UserInfo].agent_level) || [[KX_UserInfo sharedKX_UserInfo].agent_level isEqualToString:@"2"]) {
+        
+    }
+    else{
+        titleArray =  @[@"商城订单",@"线下订单",@"购物车",@"我的收藏",@"商家中心",@"创客微店",@"合伙人平台",@"我的团队"];
+    }
     int btnW =  SCREEN_WIDTH/4;
 
     for (int i = 0; i<imageArray.count; i++) {
@@ -58,7 +61,8 @@
         label.font = Font12;
         [btn addSubview:label];
         
-    }
+        [titleList addObject:label];
+   }
     
 //    for (int i = 0; i<3; i++) {
 //        UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, btnW*i, SCREEN_WIDTH, 1)];
@@ -82,7 +86,23 @@
     }
 }
 
-
+- (void)setTitle:(NSString *)title
+{
+    _title = title;
+    NSArray *titleArrays = @[@"商城订单",@"线下订单",@"购物车",@"我的收藏",@"商家中心",@"创客微店",@"代理平台",@"我的团队"];
+    if (KX_NULLString( [KX_UserInfo sharedKX_UserInfo].agent_level) || [[KX_UserInfo sharedKX_UserInfo].agent_level isEqualToString:@"2"]) {
+        
+    }
+    else{
+        titleArrays =  @[@"商城订单",@"线下订单",@"购物车",@"我的收藏",@"商家中心",@"创客微店",@"合伙人平台",@"我的团队"];
+    }
+    for (int i = 0; i<titleList.count; i++) {
+        UILabel *lb = titleList[i];
+        lb.text = titleArrays[i];
+    }
+   
+    
+}
 
 
 

@@ -34,7 +34,7 @@
 - (void)setModel:(OrderModel *)model
 {
     _model = model;
-    payStateLB.text = _model.paystatus_name;
+    payStateLB.text = _model.paystatus_title;
     orderNumberLB.text = [NSString stringWithFormat:@"订单号:%@",_model.orderno];
 }
 

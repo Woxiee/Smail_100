@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,26 +25,14 @@
                             <constraint firstAttribute="width" constant="79.5" id="lEl-NO-AGE"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哈哈哈" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMn-Bm-JZI">
-                        <rect key="frame" x="97.5" y="10" width="43" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2400" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBa-1e-rFg">
                         <rect key="frame" x="97.5" y="72" width="34.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收货人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8k7-m0-ZtS">
-                        <rect key="frame" x="97.5" y="42" width="40" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2400" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5BB-Ft-T3J">
-                        <rect key="frame" x="275.5" y="72" width="34.5" height="17"/>
+                        <rect key="frame" x="273.5" y="72" width="34.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -63,10 +51,16 @@
                             <constraint firstAttribute="height" constant="1" id="TVf-sY-SJv"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哈哈哈" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMn-Bm-JZI">
+                        <rect key="frame" x="97" y="10" width="208" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="WRS-Mz-zOe" secondAttribute="bottom" id="0aT-aE-crF"/>
-                    <constraint firstAttribute="trailing" secondItem="5BB-Ft-T3J" secondAttribute="trailing" constant="10" id="2SK-qG-bHg"/>
+                    <constraint firstAttribute="trailing" secondItem="5BB-Ft-T3J" secondAttribute="trailing" constant="12" id="2SK-qG-bHg"/>
                     <constraint firstItem="5BB-Ft-T3J" firstAttribute="top" secondItem="XBa-1e-rFg" secondAttribute="top" id="5uB-x0-81I"/>
                     <constraint firstItem="XdI-0D-AA6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9G2-oE-6Tl"/>
                     <constraint firstItem="syl-S4-xaU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="G1B-f5-nz7"/>
@@ -76,15 +70,13 @@
                     <constraint firstItem="XBa-1e-rFg" firstAttribute="bottom" secondItem="syl-S4-xaU" secondAttribute="bottom" id="Ub5-J4-dMX"/>
                     <constraint firstItem="xMn-Bm-JZI" firstAttribute="leading" secondItem="syl-S4-xaU" secondAttribute="trailing" constant="8" id="XkQ-M1-o3E"/>
                     <constraint firstAttribute="bottom" secondItem="XdI-0D-AA6" secondAttribute="bottom" id="YJB-lM-Y5h"/>
-                    <constraint firstItem="8k7-m0-ZtS" firstAttribute="top" secondItem="xMn-Bm-JZI" secondAttribute="bottom" constant="15" id="ajj-SD-v2i"/>
+                    <constraint firstAttribute="trailing" secondItem="xMn-Bm-JZI" secondAttribute="trailing" constant="15" id="ZXu-O9-X4V"/>
                     <constraint firstAttribute="trailing" secondItem="XdI-0D-AA6" secondAttribute="trailing" id="bwK-wT-Ewn"/>
                     <constraint firstItem="syl-S4-xaU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="eOU-fz-pFG"/>
                     <constraint firstItem="xMn-Bm-JZI" firstAttribute="top" secondItem="syl-S4-xaU" secondAttribute="top" id="erk-G3-RnU"/>
-                    <constraint firstItem="8k7-m0-ZtS" firstAttribute="leading" secondItem="syl-S4-xaU" secondAttribute="trailing" constant="8" id="hlp-65-ycn"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="detailLB" destination="8k7-m0-ZtS" id="1X8-Lo-nhj"/>
                 <outlet property="iconImageView" destination="syl-S4-xaU" id="Sgv-z5-vR2"/>
                 <outlet property="lineView1" destination="XdI-0D-AA6" id="lUY-Lb-n2i"/>
                 <outlet property="lineView3" destination="WRS-Mz-zOe" id="Ueu-z4-npb"/>

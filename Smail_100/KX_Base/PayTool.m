@@ -78,9 +78,9 @@ singleton_implementation(PayTool)
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [param setObject:orderID forKey:@"orderno"];
     
-    if ([_orderModel.jfValue intValue] >0) {
-        [param setObject:_orderModel.jfValue forKey:@"type_value[point]"];
-    }
+//    if ([_orderModel.jfValue intValue] >0) {
+        [param setObject:@(_orderModel.allPoint) forKey:@"type_value[point]"];
+//    }
     
     if ([_orderModel.payIndexStr isEqualToString:@"微信支付"]) {
         [param setObject:@"auto" forKey:@"type_value[wxpay]"];

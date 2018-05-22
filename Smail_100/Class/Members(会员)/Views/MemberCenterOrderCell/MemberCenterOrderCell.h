@@ -10,4 +10,6 @@
 typedef void (^DidClickOrderItemsBlock)(NSInteger index);
 @interface MemberCenterOrderCell : UITableViewCell
 @property (nonatomic, copy) DidClickOrderItemsBlock orderItemsBlock;
+
+@property (nonatomic, strong) NSString *title;
 @end

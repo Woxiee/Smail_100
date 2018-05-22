@@ -77,7 +77,7 @@
     }else{
         [KX_LoginHintView removeFromSupView:self];
     }
-    if (souceCount<(pageIndex+1)*(KYPageSize.integerValue)) {
+    if (souceCount<(pageIndex)*(KYPageSize.integerValue)) {
         [self.mj_footer endRefreshingWithNoMoreData];
     }else{
         [self.mj_footer endRefreshing];

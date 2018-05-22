@@ -389,7 +389,7 @@ static NSString *newProductCell = @"newProductID";
 
 -(void)loadNewDate
 {
-    self.page = 0;
+    self.page = 1;
     [self requestListNetWork];
 }
 

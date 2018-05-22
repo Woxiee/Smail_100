@@ -146,4 +146,7 @@
 
 + (NSAttributedString *)attributeStringWithContent:(NSString *)content keyWords:(NSArray *)keyWords;
 
+///特殊字体
++ (NSAttributedString *)attributeStringWithContent:(NSString *)content keyWords:(NSArray *)keyWords color:(UIColor*)color font:(UIFont*)font;
+
 @end

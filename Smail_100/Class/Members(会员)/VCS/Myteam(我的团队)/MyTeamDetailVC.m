@@ -13,6 +13,7 @@
 #import "MyTeamPersenView.h"
 #import "MyteamVC.h"
 #import "MyteamModel.h"
+#import "MyCodeVC.h"
 
 @interface MyTeamDetailVC ()<SDCycleScrollViewDelegate>
 //@property (weak, nonatomic)  UIView *headView;
@@ -43,10 +44,8 @@ static NSString *myRecommendCellID = @"MyRecommendCellID";
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
-
     [BaseHttpRequest postWithUrl:@"/group/mygroup" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
             MyteamModel *model = [MyteamModel yy_modelWithJSON:result[@"data"]];
             model.banners = [NSArray yy_modelArrayWithClass:[Banners class] json:model.banners];
@@ -60,6 +59,7 @@ static NSString *myRecommendCellID = @"MyRecommendCellID";
             _cycleView.imageURLStringsGroup = imgList;
             NSArray *dataList = @[_model.count.reg,_model.count.pay,_model.count.money];
             self.selectTeamView.dataList = dataList;
+            self.teamPersenView.model = model;
             [weakSelf.tableView reloadData];
 
         }
@@ -90,7 +90,7 @@ static NSString *myRecommendCellID = @"MyRecommendCellID";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
     if (section == 0) {
-        return 0;
+        return 5;
     }
     return 10;
 }
@@ -140,9 +140,10 @@ static NSString *myRecommendCellID = @"MyRecommendCellID";
         [self.navigationController pushViewController:VC animated:YES];
     }
     else if ([title isEqualToString:@"我的推广"]) {
-   
-
+        MyCodeVC  *VC = [[MyCodeVC alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
     }
+   
 }
 
 
@@ -157,7 +158,7 @@ static NSString *myRecommendCellID = @"MyRecommendCellID";
     self.tableView.tableFooterView = [UIView new];
     [self.tableView registerNib:[UINib nibWithNibName:@"MyRecommendCell" bundle:nil] forCellReuseIdentifier:myRecommendCellID];
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 320)];
-    SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
+    SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200 *hScale) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
     [headView addSubview:cycleView];
     self.cycleView = cycleView;
     
@@ -185,6 +186,36 @@ static NSString *myRecommendCellID = @"MyRecommendCellID";
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
     LOG(@"点击了第%ld张图片",(long)index);
+    Banners *banner = _model.banners[index];
+    
+    if ([banner.click_type isEqualToString:@"web"]) {
+        if (KX_NULLString(banner.url)) {
+            return;
+        }
+        GoodsAuctionXYVC *VC = [GoodsAuctionXYVC new];
+        VC.clickUrl = banner.url;
+        VC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+    else if ([banner.click_type isEqualToString:@"app_category"]){
+        GoodsScreeningVC *VC = [[GoodsScreeningVC alloc] init];
+        VC.hidesBottomBarWhenPushed = YES;
+        VC.category_id = banner.id;
+        VC.title =  banner.title;
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+    else {
+        if (KX_NULLString(banner.goods_id) ) {
+            [self.view makeToast:@"该活动暂未开始，请等通知"];
+            return;
+        }
+        /// 商品类型=1:新机。2:配构件。3:整机流转
+        GoodsDetailVC *vc = [[GoodsDetailVC alloc] initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+                                                     navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        vc.productID = banner.goods_id;
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController: vc animated:YES];
+    }
     
 }
 

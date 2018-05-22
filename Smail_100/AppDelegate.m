@@ -14,7 +14,9 @@
 //#import <PgyUpdate/PgyUpdateManager.h>
 @interface AppDelegate ()<WXApiDelegate>
 @property (nonatomic, strong) KX_BaseTabbarController *tabbarVC;
+//com.wx.weixiao100
 
+//com.Wx.WeiXiao
 @end
 
 @implementation AppDelegate

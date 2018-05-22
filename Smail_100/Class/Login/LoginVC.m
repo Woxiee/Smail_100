@@ -39,9 +39,9 @@
 {
     self.title = @"登录";
     self.view.backgroundColor = [UIColor whiteColor];
-    [_view1 layerForViewWith:3 AndLineWidth:0.5];
-    [_view2 layerForViewWith:3 AndLineWidth:0.5];
-    [_loginBtn layerForViewWith:9 AndLineWidth:0.5];
+    //[_view1 layerForViewWith:3 AndLineWidth:0.5];
+    //[_view2 layerForViewWith:3 AndLineWidth:0.5];
+    [_loginBtn layerForViewWith:4 AndLineWidth:0.5];
     _loginBtn.backgroundColor = KMAINCOLOR;
     [_registBtn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateNormal];
     [_remberBtn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateNormal];
@@ -71,9 +71,12 @@
     [param setObject:_userPassWDTextField.text forKey:@"password"];
 
 #if DEBUG
-
+   
     [param setObject:@"18757587673" forKey:@"mobile"];
     [param setObject:@"123456" forKey:@"password"];
+    
+//    [param setObject:@"13923891910" forKey:@"mobile"];
+//    [param setObject:@"756782" forKey:@"password"];
 //    [param setObject:@"18856204888" forKey:@"mobile"];
 //    [param setObject:@"wsy20090124" forKey:@"password"];
 #else

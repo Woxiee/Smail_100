@@ -190,7 +190,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     
     PayOrderView *view;
 
-    view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeNoaml];
+    view = [[PayOrderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withPayType:PayTypeOther];
    
     
     if (titleArr.count== 1) {
@@ -691,7 +691,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
     if (![self.resorceArray[section] isKindOfClass:[NSString class]]) {
         return 195;
     }
-    return 0;
+    return 0.01f;
 }
 
 
@@ -710,7 +710,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
             weakSelf.orderModel.express_type = [NSString stringWithFormat:@"%ld",type+1];
             if (type == 1) {
                 
-                Seller *seller = weakSelf.orderModel.seller[section - 1];
+//                Seller *seller = weakSelf.orderModel.seller[section - 1];
                 
                 for (Seller *seller in weakSelf.orderModel.seller) {
                     seller.freight = @"0";

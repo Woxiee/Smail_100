@@ -24,7 +24,7 @@
     _title2LB.textColor = DETAILTEXTCOLOR;
     [_RommendBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
 
-    [_RommendBtn layerWithRadius:8 lineWidth:1 color:KMAINCOLOR];
+    [_RommendBtn layerWithRadius:6 lineWidth:1 color:KMAINCOLOR];
     
     
     self.selectionStyle =  UITableViewCellSelectionStyleNone;
@@ -40,9 +40,49 @@
     _model = model;
     _title1LB.text = _model.content.msg;
 
-    _title2LB.text = [NSString stringWithFormat:@"您的推荐人是: %@",_model.content.pinfo];
+    
+    NSString * markStr = [NSString stringWithFormat:@"您的推荐人是: %@",_model.content.pinfo];
+    NSAttributedString *attributedStr1 =  [self attributeStringWithContent:markStr keyWords:@[_model.content.pinfo] color:TITLETEXTLOWCOLOR  font:Font14];
+    _title2LB.attributedText = attributedStr1;
     
     
     
 }
+
+
+
+- (NSAttributedString *)attributeStringWithContent:(NSString *)content keyWords:(NSArray *)keyWords color:(UIColor*)color font:(UIFont*)font
+{
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:content];
+    
+    if (keyWords) {
+        
+        [keyWords enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            NSMutableString *tmpString=[NSMutableString stringWithString:content];
+            
+            NSRange range=[content rangeOfString:obj];
+            
+            NSInteger location=0;
+            
+            while (range.length>0) {
+                
+                [attString addAttribute:(NSString*)NSForegroundColorAttributeName value:color range:NSMakeRange(location+range.location, range.length)];
+                [attString addAttribute:NSFontAttributeName
+                                  value:font
+                                  range:range];
+                
+                location+=(range.location+range.length);
+                
+                NSString *tmp= [tmpString substringWithRange:NSMakeRange(range.location+range.length, content.length-location)];
+                
+                tmpString=[NSMutableString stringWithString:tmp];
+                
+                range=[tmp rangeOfString:obj];
+            }
+        }];
+    }
+    return attString;
+}
+
 @end

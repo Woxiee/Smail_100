@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, MyTeamListType){
 
 
 };
-@interface MyTeamListVC : KX_BaseTableViewController
+@interface MyTeamListVC : BaseTableVC
 
 @property (nonatomic, assign) MyTeamListType teamType;
 @property (nonatomic, strong) NSString  *group_user_id;

@@ -66,9 +66,9 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNS-TF-cnn">
-                    <rect key="frame" x="264" y="74" width="36" height="36"/>
+                    <rect key="frame" x="264" y="67" width="36" height="43"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="36" id="IW2-VQ-HeP"/>
+                        <constraint firstAttribute="height" constant="43" id="IW2-VQ-HeP"/>
                         <constraint firstAttribute="width" constant="36" id="hfD-WP-Wa7"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="9"/>

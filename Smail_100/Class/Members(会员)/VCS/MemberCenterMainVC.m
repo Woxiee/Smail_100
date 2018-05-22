@@ -67,13 +67,8 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     [self.resorceArray removeAllObjects];
     NSArray *dataArray = nil;
     dataArray = @[@[@"账户积分"],@[@"订单管理"],@[@"账户管理",@"钱包转赠",@"笑脸兑换",@"账户流水",@"话费兑换",@"消息中心",@"官方客服",@"帮助反馈",@"系统设置"]];
-//    if (![KX_UserInfo sharedKX_UserInfo].loginStatus) {
-//        dataArray = @[@[@"订单管理"],@[@"账户管理",@"钱包转赠",@"笑脸兑换",@"账户流水",@"话费兑换",@"消息中心",@"官方客服",@"帮助反馈",@"系统设置"]];
-//
-//    }else{
-//
-//    }
-   
+
+  
     [self.resorceArray addObjectsFromArray:dataArray];
     [self.tableView reloadData];
 
@@ -194,7 +189,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
 //    [self wr_setNavBarBarTintColor:KMAINCOLOR];
 //    [self wr_setNavBarBackgroundAlpha:0];
 //    [self wr_setNavBarShadowImageHidden:NO];
-    self.title = @"我的";
+    self.title = @"账户";
 }
 
 
@@ -266,6 +261,8 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     }
     if ([titleStr isEqualToString:@"订单管理"]) {
         MemberCenterOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:memberCenterOrderCellID forIndexPath:indexPath];
+        cell.title = @"1";
+
         cell.orderItemsBlock = ^(NSInteger index){
             if (![KX_UserInfo sharedKX_UserInfo].loginStatus) {
                 [KX_UserInfo presentToLoginView:self];
@@ -424,6 +421,7 @@ static NSString * const memberCenterOrderCellID = @"memberCenterOrderCellID";
     }
      else if  (index == 0) {
         AllOrderManageVC *VC = [AllOrderManageVC new];
+         VC.title = @"商城订单";
         VC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:VC animated:YES];
     }

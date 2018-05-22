@@ -62,7 +62,7 @@
 
 
     self.title  = @"商家中心";
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 140)];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180)];
     headView.backgroundColor = KMAINCOLOR;
     [self.view addSubview:headView];
     
@@ -70,7 +70,7 @@
     NSArray *numberArr = @[@"8888",@"18888",@"888888                                                                                                                                                                                                                                                                                                                                                                                                                                                                    "];
 
     for (NSInteger i = 0; i < 3; i++) {
-        UILabel *numberLB = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 3 * i, 30, SCREEN_WIDTH / 3, 20)];
+        UILabel *numberLB = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 3 * i, 40, SCREEN_WIDTH / 3, 20)];
         numberLB.text = numberArr[i];
         numberLB.font = [UIFont systemFontOfSize:22];
         numberLB.textColor = [UIColor whiteColor];
@@ -88,7 +88,7 @@
 
     }
     
-    UILabel *nameLB = [[UILabel alloc] initWithFrame:CGRectMake(0, 90, SCREEN_WIDTH, 20)];
+    UILabel *nameLB = [[UILabel alloc] initWithFrame:CGRectMake(0, 110, SCREEN_WIDTH, 20)];
     nameLB.text = @"重庆老火锅点";
     nameLB.font =  KY_FONT(18);
     nameLB.textColor = [UIColor whiteColor];
@@ -98,11 +98,11 @@
 
     
     UIButton *reflectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    reflectBtn.frame = CGRectMake(SCREEN_WIDTH - 80, 90, 45, 20);
+    reflectBtn.frame = CGRectMake(SCREEN_WIDTH - 80, nameLB.top, 45, 20);
     [reflectBtn setTitle:@"提现" forState:UIControlStateNormal];
     reflectBtn.titleLabel.font = Font14;
     [reflectBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [reflectBtn layerWithRadius:6 lineWidth:0.5 color:[UIColor whiteColor]];
+    [reflectBtn layerWithRadius:4 lineWidth:0.5 color:[UIColor whiteColor]];
     [reflectBtn addTarget:self action:@selector(didClilkAction) forControlEvents:UIControlEventTouchUpInside];
     [headView addSubview:reflectBtn];
     

@@ -516,7 +516,9 @@ CGRect CGRectMoveToCenter(CGRect rect, CGPoint center)
     };
 }
 
-
++ (NSString *)cellID {
+    return  NSStringFromClass([self class]);
+}
 
 
 

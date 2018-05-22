@@ -73,7 +73,7 @@
     timeLB.text = [NSString stringWithFormat:@"时间:%@",_model.ctime];
     cardLB.text = [NSString stringWithFormat:@"%@",_model.bank_info];
     countLB.text = [NSString stringWithFormat:@"%@元",_model.value];
-    if (!KX_NULLString(_model.fee)) {
+    if (_model.fee.floatValue >0) {
         socotLB.text =[NSString stringWithFormat:@"(手续费:%@元)",_model.fee];
     }
     

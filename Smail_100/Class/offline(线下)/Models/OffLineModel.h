@@ -42,4 +42,6 @@
 @property (nonatomic , copy) NSString              * shop_name;
 @property (nonatomic , copy) NSString              * stars;
 @property (nonatomic , copy) NSString              * province;
+
+@property (nonatomic ,copy )NSString               *present_point_perc;
 @end

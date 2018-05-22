@@ -49,7 +49,7 @@
     _starView = [[DQStarView alloc] initWithDQStarFrme:CGRectMake(10, 11, 100, 12) starTotal:5];
     _starView.starTotalCount = 5;
     _starView.userInteractionEnabled = NO;
-    _starView.ShowStyle = DQStarShowStyleSliding;
+    _starView.ShowStyle = DQStarShowStyleSingleClick;
     
     _timeLb = [UILabel new];
     _timeLb.font = Font12;
@@ -107,12 +107,11 @@
 - (void)setModel:(Comment *)model
 {
     _model = model;
-    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:_model.shop_image] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
-    [_nameBtn setTitle:@"无名" forState:UIControlStateNormal];
+    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:_model.avatar_url] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
+    [_nameBtn setTitle:_model.nickname forState:UIControlStateNormal];
     _timeLb.text = _model.ctime;
-    [_starView ShowDQStarScoreFunction:[_model.stars floatValue]];
+    [_starView ShowDQStarScoreFunction:[_model.stars floatValue]/20];
     _contenLb.text = _model.comment;
-    
     [self setupAutoHeightWithBottomView:_contenLb bottomMargin:10];
 
 }

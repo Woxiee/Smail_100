@@ -107,13 +107,13 @@
     [self addSubview:lineView1];
     
     
-    UILabel *titleLB3 = [[UILabel alloc] initWithFrame:CGRectMake(12, CGRectGetMaxY(lineView1.frame), SCREEN_WIDTH - 25, 44)];
-    titleLB3.textColor = TITLETEXTLOWCOLOR;
-    titleLB3.font = Font13;
-    titleLB3.textAlignment = NSTextAlignmentRight;
-
-    [self addSubview:titleLB3];
-    self.titleLB3 = titleLB3;
+//    UILabel *titleLB3 = [[UILabel alloc] initWithFrame:CGRectMake(12, CGRectGetMaxY(lineView1.frame), SCREEN_WIDTH - 25, 44)];
+//    titleLB3.textColor = TITLETEXTLOWCOLOR;
+//    titleLB3.font = Font13;
+//    titleLB3.textAlignment = NSTextAlignmentRight;
+//
+//    [self addSubview:titleLB3];
+//    self.titleLB3 = titleLB3;
     
     self.backgroundColor = [UIColor whiteColor];
 

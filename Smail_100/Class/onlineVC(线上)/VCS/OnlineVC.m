@@ -134,14 +134,12 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
                 listModel.itemContentList = weakSelf.itemsArr;
                 [weakSelf.resorceArray addObject:listModel];
                 [weakSelf.collectionView reloadData];
-                [weakSelf.collectionView.mj_header endRefreshing];
-                [weakSelf.collectionView.mj_footer endRefreshing];
-            }
-            else{
-                [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
+//                [weakSelf.collectionView.mj_header endRefreshing];
+//                [weakSelf.collectionView.mj_footer endRefreshing];
             }
             
         }
+        [self stopRefresh];
         
     }];
 }
@@ -656,7 +654,9 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         [self.navigationController pushViewController:VC animated:YES];
     }
     
+    
     else if ([contenModle.clickType isEqualToString:@"goods_cate"]){
+        //产品分类
         GoodsClassVC *VC = [[GoodsClassVC alloc] init];
         VC.hidesBottomBarWhenPushed = YES;
         VC.title =  contenModle.itemTitle;
@@ -719,5 +719,16 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     
 }
 
+
+-(void)stopRefresh
+{
+    [self.collectionView stopFresh:self.itemsArr.count pageIndex:self.page];
+    if (self.itemsArr.count == 0) {
+        [self.collectionView addSubview:[KX_LoginHintView notDataView]];
+    }else{
+        [KX_LoginHintView removeFromSupView:self.collectionView];
+    }
+    
+}
 
 @end

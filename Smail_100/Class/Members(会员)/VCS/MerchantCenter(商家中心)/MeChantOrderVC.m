@@ -174,7 +174,7 @@ static NSString * const myChantPirceCellD = @"MyChantPirceCellID";
 
 -(void)loadNewDate
 {
-    self.page = 0;
+    self.page = 1;
 //    _quickSearch = @"";
     [self requestListNetWork];
 }

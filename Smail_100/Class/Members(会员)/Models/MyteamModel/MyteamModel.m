@@ -8,6 +8,16 @@
 
 #import "MyteamModel.h"
 
+@implementation Agent_location
+@end
+
+
+@implementation Agent
+@end
+
+@implementation Shop
+@end
+
 
 @implementation Content
 

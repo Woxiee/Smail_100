@@ -53,11 +53,16 @@
             if (KX_NULLString(_user_id)) {
                 MyTeamListVC *vc1 = [MyTeamListVC new];
                 vc1.superVC = self;
+                vc1.teamType = FirstTeamListType;
+
                 MyTeamListVC *vc2 = [MyTeamListVC new];
                 vc2.superVC = self;
+                vc2.teamType = SecondTeamListType;
+
 
                 MyTeamListVC *vc3 = [MyTeamListVC new];
                 vc3.superVC = self;
+                vc3.teamType = ThreeTeamListType;
 
                 NSArray *childVCArr =@[vc1,vc2,vc3];
                 //            NSDictionary *titleDic =

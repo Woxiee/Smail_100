@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -79,7 +79,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="骑士(昵称)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cz-uO-gUG">
-                        <rect key="frame" x="15" y="82" width="80" height="20"/>
+                        <rect key="frame" x="5" y="82" width="100" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="8Ns-BU-x7X"/>
                         </constraints>
@@ -104,8 +104,8 @@
                     <constraint firstItem="Vri-hz-uK1" firstAttribute="trailing" secondItem="bcJ-Nb-Unl" secondAttribute="trailing" id="Uxr-dP-qcn"/>
                     <constraint firstItem="ZC0-a4-7YW" firstAttribute="leading" secondItem="471-Lz-BAt" secondAttribute="trailing" constant="25" id="Yf9-78-jkY"/>
                     <constraint firstItem="4cz-uO-gUG" firstAttribute="top" secondItem="471-Lz-BAt" secondAttribute="bottom" constant="12" id="ZfF-HE-b8l"/>
-                    <constraint firstItem="ZC0-a4-7YW" firstAttribute="leading" secondItem="4cz-uO-gUG" secondAttribute="trailing" constant="15" id="dQs-HA-8di"/>
-                    <constraint firstItem="4cz-uO-gUG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="i2h-JX-aRX"/>
+                    <constraint firstItem="ZC0-a4-7YW" firstAttribute="leading" secondItem="4cz-uO-gUG" secondAttribute="trailing" constant="5" id="dQs-HA-8di"/>
+                    <constraint firstItem="4cz-uO-gUG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="i2h-JX-aRX"/>
                     <constraint firstItem="PMW-tS-4g2" firstAttribute="trailing" secondItem="bcJ-Nb-Unl" secondAttribute="trailing" id="kWT-OB-VQp"/>
                     <constraint firstItem="82d-Cw-lRQ" firstAttribute="leading" secondItem="bcJ-Nb-Unl" secondAttribute="leading" id="lQJ-Kr-5rx"/>
                     <constraint firstAttribute="trailing" secondItem="bcJ-Nb-Unl" secondAttribute="trailing" constant="12" id="lgM-bK-Yj1"/>

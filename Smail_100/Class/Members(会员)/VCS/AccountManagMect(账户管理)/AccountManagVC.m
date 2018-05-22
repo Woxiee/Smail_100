@@ -29,7 +29,6 @@
     self.tableView.tableFooterView = [UIView new];
     NSArray *dataArray = @[@"基本资料",@"实名认证",@"银行卡管理",@"我的收货地址",@"账户安全设置"];
     [self.resorceArray addObjectsFromArray:dataArray];
-
     [self.tableView reloadData];
 }
 

@@ -37,7 +37,7 @@
     _titleLB.textColor = DETAILTEXTCOLOR;
     _titleLB.font = Font15;
     
-    [_loginBtn layerForViewWith:3 AndLineWidth:0];
+    [_loginBtn layerForViewWith:4 AndLineWidth:0];
 }
 
 - (IBAction)didClickLoginClicj:(id)sender {

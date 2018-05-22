@@ -23,13 +23,13 @@
 
         NSArray *lineViewColor = @[RGB(64, 160, 239),RGB(65, 192, 144),RGB(235, 138, 24),RGB(64, 160, 239),RGB(65, 192, 144),RGB(235, 138, 24)];
         for (NSInteger i = 0; i < 6; i++) {
-            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 6  * i + 12,10, SCREEN_WIDTH / 6 -24, 1.5)];
+            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 6  * i + 15,10, SCREEN_WIDTH / 6 -30, 1.5)];
             lineView.backgroundColor = lineViewColor[i];
             [self addSubview:lineView];
             
           
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.frame = CGRectMake(SCREEN_WIDTH / 6 * i,10, SCREEN_WIDTH / 6, 50);
+            button.frame = CGRectMake(SCREEN_WIDTH / 6 * i,5, SCREEN_WIDTH / 6, 50);
             button.tag = i;
             if (i == 2) {
                 UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(button.frame),0, 0.5 ,self.height-15)];
@@ -52,13 +52,15 @@
 - (void)setModel:(MyteamModel *)model
 {
     _model = model;
-    NSArray *dataList = @[_model.count.reg,_model.count.pay,_model.count.money];
+    NSMutableArray *dataList = [[NSMutableArray alloc] init];
+    [dataList addObjectsFromArray:_model.count.reg_list];
+    [dataList addObjectsFromArray:_model.count.pay_list];
     
-//    for (int i = 0; i<dataList.count; i++) {
-//        UIButton *btn = _titleArr[i];
-//        [btn setTitle:dataList[i] forState:UIControlStateNormal];
-//
-//    }
+    for (int i = 0; i<dataList.count; i++) {
+        UIButton *btn = _titleArr[i];
+        [btn setTitle:[NSString stringWithFormat:@" %@",dataList[i]] forState:UIControlStateNormal];
+
+    }
     
 }
 

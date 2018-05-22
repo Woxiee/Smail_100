@@ -21,4 +21,9 @@
 @property (nonatomic , copy) NSString              * pid_mobile;
 
 
+
+@property (nonatomic , copy) NSString              * status;
+
+@property (nonatomic , copy) NSString              * realname;
+
 @end

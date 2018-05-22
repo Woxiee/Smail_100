@@ -21,6 +21,9 @@
     
     __weak IBOutlet DQStarView *scoreImageView;
     __weak IBOutlet UILabel *telLb;
+    
+    __weak IBOutlet UILabel *presentLable;
+    
 }
 
 
@@ -39,6 +42,7 @@
     commone.textColor = DETAILTEXTCOLOR;
     distanceLB.textColor = DETAILTEXTCOLOR;
     telLb.textColor = DETAILTEXTCOLOR;
+    presentLable.textColor = DETAILTEXTCOLOR;
 
 }
 
@@ -68,8 +72,14 @@
     
     scoreImageView.userInteractionEnabled = NO;
     scoreImageView.starTotalCount = 5;
+
     scoreImageView.ShowStyle = DQStarShowStyleSliding;
-    [scoreImageView ShowDQStarScoreFunction:[_model.stars intValue]];
+    presentLable.text = [NSString stringWithFormat:@"赠送积分比例:%@",model.present_point_perc];
+    
+
+    scoreImageView.ShowStyle = DQStarShowStyleSingleClick;
+    [scoreImageView ShowDQStarScoreFunction:[_model.stars floatValue]/20];
+
 
 }
 

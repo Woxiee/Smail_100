@@ -10,9 +10,8 @@
 #import "AgentPlatfoemListVC.h"
 
 @interface AgentPlatfoemMainVC ()
-@property (strong, nonatomic)  AgentPlatfoemListVC *agreeVC;
-@property (strong, nonatomic)  AgentPlatfoemListVC *repjectVC;
-@property (nonatomic, strong)  NSArray *contollers;
+
+@property (nonatomic, strong)  NSMutableArray *contollers;
 
 @end
 
@@ -41,14 +40,16 @@
     segmentMenuVc.SlideColor = KMAINCOLOR;
     segmentMenuVc.advanceLoadNextVc = NO;
     segmentMenuVc.backgroundColor = [UIColor whiteColor];
-    NSArray *titleArr ;
-    titleArr = @[@"审核通过",@"驳回申请"];
-    _agreeVC = [[AgentPlatfoemListVC alloc]init];
-    _agreeVC.orderState = @"Enabled";
+    _contollers = [[NSMutableArray alloc] initWithCapacity:4 ];    NSArray *titleArr ;
+    titleArr = @[@"全部",@"待审核",@"已审核",@"已驳回"];
+    NSArray *stateArr = @[@"",@"Pendding",@"Enabled",@"Fail"];
     
-    _repjectVC = [[AgentPlatfoemListVC alloc]init];
-    _repjectVC.orderState = @"Fail";
-    _contollers = @[_agreeVC,_repjectVC];
+    for (int i = 0 ; i<titleArr.count; i++) {
+      AgentPlatfoemListVC *VC = [[AgentPlatfoemListVC alloc]init];
+        VC.orderState = stateArr[i];
+        [_contollers addObject:VC];
+    }
+
     /* 导入数据 */
     [segmentMenuVc addSubVc:_contollers subTitles:titleArr];
     WEAKSELF;
@@ -56,6 +57,7 @@
         LOG(@"index = %ld",(long)index);
         if (_contollers.count >0) {
             AgentPlatfoemListVC *VC  = [_contollers objectAtIndex:index];
+            
             [VC requestListNetWork];
         }
         

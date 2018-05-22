@@ -364,15 +364,15 @@ static NSString * const OthercellID = @"OthercellID";
         allStr = [allStr stringByReplacingOccurrencesOfString:@".00" withString:@""];
 //        NSString *conten = [NSString stringWithFormat:@"待支付:%@",allStr];
         
-        NSAttributedString *attributedStr =  [self attributeStringWithContent:[NSString stringWithFormat:@"待支付:%@",allStr] keyWords:@[@"积分",@"+",@"快递费",@"¥"]];
-        
+        NSAttributedString *attributedStr =  [self attributeStringWithContent:[NSString stringWithFormat:@"待支付:%@",allStr] keyWords:@[@"¥",@"积分",@"快递费"]];
+        NSString *detailStr = @"待支付:";
         
      NSMutableAttributedString *conten =(NSMutableAttributedString *)attributedStr;
         [conten addAttribute:NSFontAttributeName
                            value:[UIFont systemFontOfSize:14]
-                           range:NSMakeRange(0, 4)];
-        
-        [conten addAttribute:NSForegroundColorAttributeName value:DETAILTEXTCOLOR range:NSMakeRange(0 ,4)];
+                           range:NSMakeRange(0, detailStr.length)];
+
+        [conten addAttribute:NSForegroundColorAttributeName value:DETAILTEXTCOLOR range:NSMakeRange(0 ,detailStr.length)];
 
         self.jfLb.attributedText  = conten;
 

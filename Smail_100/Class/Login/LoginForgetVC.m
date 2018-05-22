@@ -71,15 +71,15 @@
     self.view.backgroundColor = [UIColor whiteColor];
 //    [_view1 layerForViewWith:3 AndLineWidth:0.5];
 //    [_view2 layerForViewWith:3 AndLineWidth:0.5];
-    [_sureBtn layerForViewWith:6 AndLineWidth:0];
-    _lineView1.backgroundColor = LINECOLOR;
-    _lineView2.backgroundColor = LINECOLOR;
-    _lineView4.backgroundColor = LINECOLOR;
-    _lineView6.backgroundColor = LINECOLOR;
-    _lineView7.backgroundColor = LINECOLOR;
+    [_sureBtn layerForViewWith:4 AndLineWidth:0];
+//    _lineView1.backgroundColor = LINECOLOR;
+//    _lineView2.backgroundColor = LINECOLOR;
+//    _lineView4.backgroundColor = LINECOLOR;
+//    _lineView6.backgroundColor = LINECOLOR;
+//    _lineView7.backgroundColor = LINECOLOR;
     
     [_xyBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
-        [_yzmBtn layerWithRadius:6 lineWidth:0.5 color:MainColor];
+    [_yzmBtn layerWithRadius:3 lineWidth:0.5 color:MainColor];
 
     
     [_loginBtn setTitleColor:MainColor forState:UIControlStateNormal];

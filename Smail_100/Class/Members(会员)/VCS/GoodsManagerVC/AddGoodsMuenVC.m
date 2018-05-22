@@ -10,6 +10,7 @@
 
 @interface AddGoodsMuenVC ()
 @property (weak, nonatomic) IBOutlet UITextField *inputTF;
+@property (weak, nonatomic) IBOutlet UIButton *sureBtn;
 
 @end
 
@@ -17,8 +18,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"添加分类";
+    self.title = _isEdit?@"修改分类":@"添加分类";
+    if (_isEdit) {
+        _inputTF.text = _name;
+    }
+    _inputTF.placeholder = _isEdit?@"请输入名称":@"请输入要添加的分类名称";
     
+    [_sureBtn setTitle:_isEdit?@"修改分类":@"添加分类" forState:UIControlStateNormal];
 }
 
 - (void)getRequestData
@@ -27,6 +33,12 @@
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:_inputTF.text forKey:@"name"];
+    
+    if (_isEdit) {
+        [param setObject:_sub_category_id forKey:@"sub_category_id"];
+
+    }
+    
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [BaseHttpRequest postWithUrl:@"/shop/add_sub_category" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         LOG(@"商品订单 == %@",result);

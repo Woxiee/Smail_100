@@ -351,7 +351,7 @@ static NSString *CloudPhoneCellID = @"CloudPhoneCellID";
 
 -(void)loadNewDate
 {
-    self.page = 0;
+    self.page = 1;
     [self requestListNetWork];
 }
 

@@ -136,7 +136,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZXJ-DH-WWK">
                     <rect key="frame" x="10" y="54" width="355" height="1"/>
-                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.94886571168899536" green="0.94930487871170044" blue="0.95250123739242554" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="n0n-ts-hO9"/>
                     </constraints>
@@ -234,7 +234,7 @@
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J40-CO-l3k">
                             <rect key="frame" x="264" y="12" width="1" height="20"/>
-                            <color key="backgroundColor" red="0.82752662899999996" green="0.82347923519999999" blue="0.82744878529999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="1" id="vqX-Jd-PRW"/>
                             </constraints>
@@ -243,7 +243,7 @@
                             <rect key="frame" x="265" y="5" width="90" height="34"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZHb-ZG-X4m" customClass="KYCodeBtn">
-                                    <rect key="frame" x="0.0" y="0.0" width="90" height="34"/>
+                                    <rect key="frame" x="5" y="4" width="80" height="26"/>
                                     <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <state key="normal" title="获取验证码">
@@ -256,10 +256,10 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="ZHb-ZG-X4m" firstAttribute="top" secondItem="7pa-qY-pjM" secondAttribute="top" id="Qgb-1E-Lb9"/>
-                                <constraint firstAttribute="trailing" secondItem="ZHb-ZG-X4m" secondAttribute="trailing" id="Sk3-xa-qxX"/>
-                                <constraint firstAttribute="bottom" secondItem="ZHb-ZG-X4m" secondAttribute="bottom" id="u9K-Ni-Kyj"/>
-                                <constraint firstItem="ZHb-ZG-X4m" firstAttribute="leading" secondItem="7pa-qY-pjM" secondAttribute="leading" id="wnG-ZO-QoJ"/>
+                                <constraint firstItem="ZHb-ZG-X4m" firstAttribute="top" secondItem="7pa-qY-pjM" secondAttribute="top" constant="4" id="Qgb-1E-Lb9"/>
+                                <constraint firstAttribute="trailing" secondItem="ZHb-ZG-X4m" secondAttribute="trailing" constant="5" id="Sk3-xa-qxX"/>
+                                <constraint firstAttribute="bottom" secondItem="ZHb-ZG-X4m" secondAttribute="bottom" constant="4" id="u9K-Ni-Kyj"/>
+                                <constraint firstItem="ZHb-ZG-X4m" firstAttribute="leading" secondItem="7pa-qY-pjM" secondAttribute="leading" constant="5" id="wnG-ZO-QoJ"/>
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhaohuimima@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="QRt-rl-u9X">

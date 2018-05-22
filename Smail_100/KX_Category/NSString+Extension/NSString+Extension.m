@@ -648,4 +648,40 @@
 }
 
 
+
++ (NSAttributedString *)attributeStringWithContent:(NSString *)content keyWords:(NSArray *)keyWords color:(UIColor*)color font:(UIFont*)font
+{
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:content];
+    
+    if (keyWords) {
+        
+        [keyWords enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            NSMutableString *tmpString=[NSMutableString stringWithString:content];
+            
+            NSRange range=[content rangeOfString:obj];
+            
+            NSInteger location=0;
+            
+            while (range.length>0) {
+                
+                [attString addAttribute:(NSString*)NSForegroundColorAttributeName value:color range:NSMakeRange(location+range.location, range.length)];
+                [attString addAttribute:NSFontAttributeName
+                                  value:font
+                                  range:range];
+                
+                location+=(range.location+range.length);
+                
+                NSString *tmp= [tmpString substringWithRange:NSMakeRange(range.location+range.length, content.length-location)];
+                
+                tmpString=[NSMutableString stringWithString:tmp];
+                
+                range=[tmp rangeOfString:obj];
+            }
+        }];
+    }
+    return attString;
+}
+
+
 @end

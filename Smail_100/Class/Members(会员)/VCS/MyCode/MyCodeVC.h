@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyCodeVC : UIViewController
+@interface MyCodeVC : KX_BaseViewController
 
 @end

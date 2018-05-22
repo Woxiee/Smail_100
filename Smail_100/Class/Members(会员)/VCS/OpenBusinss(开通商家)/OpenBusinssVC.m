@@ -11,6 +11,8 @@
 #import "SelectBusinssVC.h"
 #import "AgentPlatformModel.h"
 #import "GoodsAuctionXYVC.h"
+#import "ButtonSelectView.h"
+
 
 @interface OpenBusinssVC ()
 @property (nonatomic, strong) AgentPlatformModel *agentmodel;
@@ -70,6 +72,11 @@
     __weak IBOutlet UIButton *endBtn;
     
 
+    ButtonSelectView*_selectButtonView1;
+    
+    __weak IBOutlet UIView *selectBackView1;
+    ButtonSelectView*_selectButtonView2;
+    __weak IBOutlet UIView *selectBackView2;
 }
 
 
@@ -134,13 +141,27 @@
         NSString *msg = result[@"msg"];
         if ([result[@"code"] integerValue] == 0) {
             NSArray *listArr = result[@"data"];
+            NSMutableArray *titleArray1 = [NSMutableArray array];
+            NSMutableArray *titleArray2 = [NSMutableArray array];
+            
             for (int i = 0; i<listArr.count; i++) {
                 NSDictionary *dic = listArr[i];
+                
+               NSDictionary *kPresentDic= dic[@"present_point"];
+                if (dic[@"title"]) {
+                    [titleArray1 addObject:dic[@"title"]];
+                }
+                if (kPresentDic[@"title"]) {
+                    [titleArray2 addObject:dic[@"title"]];
+                }
+                
                 if (i == 0) {
                     NSDictionary *presentDic= dic[@"present_point"];
 //                    NSDictionary *presentDic = present_poinArr[0];
                     [_btn1 setTitle:dic[@"title"] forState:UIControlStateNormal];
                     [_btn3 setTitle:presentDic[@"title"] forState:UIControlStateNormal];
+//                    [_btn5 setTitle:presentDic[@"title"] forState:UIControlStateNormal];
+             
 
                     weakSelf.agentmodel.title1 = dic[@"title"];
                     weakSelf.agentmodel.value1 = dic[@"value"];
@@ -148,13 +169,12 @@
                     weakSelf.agentmodel.title3 = presentDic[@"title"];
                     weakSelf.agentmodel.value3 = presentDic[@"value"];
                 }
-                else if (i == 0) {
+                else if (i == 1) {
                 
-//                    NSArray *present_poinArr = dic[@"present_point"];
-//                    NSDictionary *presentDic = present_poinArr[0];
-                      NSDictionary *presentDic= dic[@"present_point"];
+                    NSDictionary *presentDic= dic[@"present_point"];
                     [_btn2 setTitle:dic[@"title"] forState:UIControlStateNormal];
                     [_btn4 setTitle:presentDic[@"title"] forState:UIControlStateNormal];
+                    
                     
                     weakSelf.agentmodel.title2 = dic[@"title"];
                     weakSelf.agentmodel.value2 = dic[@"value"];
@@ -165,10 +185,41 @@
                 else{
                     
                     
+                    NSDictionary *presentDic= dic[@"present_point"];
+                    weakSelf.agentmodel.title5 = dic[@"title"];
+                    weakSelf.agentmodel.value5 = dic[@"value"];
+                    
+                    weakSelf.agentmodel.title6 = presentDic[@"title"];
+                    weakSelf.agentmodel.value6 = presentDic[@"value"];
+                    
+                    [_btn5 setTitle:dic[@"title"] forState:UIControlStateNormal];
+                    [_btn6 setTitle:presentDic[@"title"] forState:UIControlStateNormal];
+                    
                 }
                 
             
             }
+            
+            if (listArr.count <3) {
+                _btn5.hidden = YES;
+                _btn6.hidden = YES;
+
+            }
+            [_btn1 layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageLeft imageTitlespace:5];
+            [_btn2 layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageLeft imageTitlespace:5];
+            [_btn3 layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageLeft imageTitlespace:5];
+            [_btn4 layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageLeft imageTitlespace:5];
+            [_btn5 layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageLeft imageTitlespace:5];
+            [_btn6 layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageLeft imageTitlespace:5];
+
+//            _selectButtonView1 = [[ButtonSelectView alloc]initWithTitles:titleArray1];
+//            [selectBackView1 addSubview:_selectButtonView1];
+//            _selectButtonView1.frame = selectBackView1.bounds;
+//
+//            _selectButtonView2 = [[ButtonSelectView alloc]initWithTitles:titleArray2];
+//            [selectBackView2 addSubview:_selectButtonView2];
+//            _selectButtonView2.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
+//            [_selectButtonView1 updateLayout];
 //            [weakSelf.view makeToast:msg];
 //            [weakSelf.navigationController popViewControllerAnimated:YES];
         }
@@ -178,6 +229,8 @@
         
     }];
 }
+
+
 
 #pragma mark - private
 - (void)setup
@@ -213,15 +266,31 @@
 - (IBAction)benefitBtn:(UIButton *)sender {
     if (sender == _btn1) {
         _btn1.selected = YES;
-        _btn2.selected = NO;
         _btn3.selected = YES;
-        _btn4.selected = NO;
 
-    }else{
+        _btn2.selected = NO;
+        _btn4.selected = NO;
+        _btn5.selected = NO;
+        _btn6.selected = NO;
+
+    }
+    
+    else if (sender == _btn2) {
         _btn1.selected = NO;
         _btn2.selected = YES;
         _btn3.selected = NO;
         _btn4.selected = YES;
+        
+        _btn5.selected = NO;
+        _btn6.selected = NO;
+    }else{
+        _btn5.selected = YES;
+        _btn6.selected = YES;
+        
+        _btn1.selected = NO;
+        _btn2.selected = NO;
+        _btn3.selected = NO;
+        _btn4.selected = NO;
     }
     
     
@@ -236,13 +305,21 @@
         _btn3.selected = YES;
         _btn4.selected = NO;
         
-        
-    }else{
+    }else if (sender == _btn4) {
         _btn1.selected = NO;
         _btn2.selected = YES;
         _btn3.selected = NO;
         _btn4.selected = YES;
+    }else{
+        _btn5.selected = YES;
+        _btn6.selected = YES;
+        
+        _btn1.selected = NO;
+        _btn2.selected = NO;
+        _btn3.selected = NO;
+        _btn4.selected = NO;
     }
+    
 }
 
 
@@ -402,14 +479,27 @@
         return;
     }
     
+    if (!_btn1.selected && !_btn3.selected && !_btn5.selected) {
+        [self.view makeToast:@"请选择营业让利"];
+        return;
+    }
+    
+    if (!_btn2.selected && !_btn4.selected && !_btn6.selected) {
+        [self.view makeToast:@"请选择赠送积分比例"];
+        return;
+    }
     if (agrreBnt.selected == NO) {
         [self.view makeToast:@"请同意《签约协议》"];
         return;
     }
+    
+  
 //    if (KX_NULLString(_addreDetailTF.text )) {
 //        [self.view makeToast:@"店铺详细地址未填写"];
 //        return;
 //    }
+//    CGFloat b1 =  [[_selectButtonView1.selectTitle stringByReplacingOccurrencesOfString:@"%" withString:@""] floatValue]/100.0;
+//    CGFloat b2 =  [[_selectButtonView2.selectTitle stringByReplacingOccurrencesOfString:@"%" withString:@""] floatValue]/100.0;
     
     WEAKSELF;
     NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[KX_UserInfo sharedKX_UserInfo].user_id,@"user_id", nil];
@@ -427,8 +517,24 @@
     [param setObject:_agentmodel.city forKey:@"city"];
     [param setObject:_agentmodel.district forKey:@"district"];
     [param setObject:_addreDetailTF.text forKey:@"address"];
-    [param setObject:_btn1.selected?_agentmodel.value1:_agentmodel.value2 forKey:@"interest_perc"];
-    [param setObject:_btn3.selected?_agentmodel.value3:_agentmodel.value4 forKey:@"present_point_perc"];
+    
+//    [param setObject:@(b1) forKey:@"interest_perc"];
+//    [param setObject:@(b2) forKey:@"present_point_perc"];
+    if (_btn1.selected) {
+        [param setObject:_agentmodel.value1 forKey:@"interest_perc"];
+        [param setObject:_agentmodel.value3 forKey:@"present_point_perc"];
+
+    }else if (_btn2.selected)
+    {
+        [param setObject:_agentmodel.value2 forKey:@"interest_perc"];
+        [param setObject:_agentmodel.value4 forKey:@"present_point_perc"];
+    }else{
+        [param setObject:_agentmodel.value5 forKey:@"interest_perc"];
+        [param setObject:_agentmodel.value6 forKey:@"present_point_perc"];
+    }
+    
+//    [param setObject:_btn1.selected?_agentmodel.value1:_agentmodel.value2 forKey:@"interest_perc"];
+//    [param setObject:_btn3.selected?_agentmodel.value3:_agentmodel.value4 forKey:@"present_point_perc"];
     
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     [BaseHttpRequest postWithUrl:@"/ucenter/join" andParameters:param andRequesultBlock:^(id result, NSError *error) {

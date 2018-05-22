@@ -47,14 +47,14 @@
 
     self.backgroundColor = [UIColor whiteColor];
 //    NSArray *listArr = @[@"总推荐人数",@"总激活创客",@"I团队总业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                                    "];
-    for (NSInteger i = 0; i < 3; i++) {
+    for (NSInteger i = 0; i < _titleArray.count; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(SCREEN_WIDTH / self.count * i,5, SCREEN_WIDTH / self.count, 170);
+        button.frame = CGRectMake(SCREEN_WIDTH / self.count * i,5, SCREEN_WIDTH / self.count, self.mj_h);
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = i;
         [self addSubview:button];
         
-        UILabel *numberLB = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / self.count * i, 30, SCREEN_WIDTH / self.count, 20)];
+        UILabel *numberLB = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / self.count * i, 18, SCREEN_WIDTH / self.count,self.mj_h/3)];
         numberLB.text = self.titleArray[i];
         numberLB.font = [UIFont systemFontOfSize:22];
         numberLB.textColor = KMAINCOLOR;

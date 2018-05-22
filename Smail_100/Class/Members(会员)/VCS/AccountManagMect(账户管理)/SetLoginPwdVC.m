@@ -34,7 +34,7 @@
 //    self.view.backgroundColor = [UIColor whiteColor];
     [_remenberBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];
     _loginBtn.backgroundColor =  KMAINCOLOR;
-    [_loginBtn layerForViewWith:10 AndLineWidth:0];
+    [_loginBtn layerForViewWith:4 AndLineWidth:0];
     
 }
 

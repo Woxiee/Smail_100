@@ -17,6 +17,8 @@
 #import "OnlineVC.h"
 #import "KX_BaseNavController.h"
 #import "shoppingCarVM.h"
+
+#import "PointStoreVC.h"
 //#import <PgySDK/PgyManager.h>
 //#import <PgyUpdate/PgyUpdateManager.h>
 @interface KX_BaseTabbarController ()<CLLocationManagerDelegate>
@@ -57,13 +59,13 @@
     //商城首页
     [self addSubViewControllerWithVC:@"HomeMainVC" norImage:@"shouye13@2x.png" selImage:@"shouye10@2x.png" title:@"首页"];
     //线上商城
-    [self addSubViewControllerWithVC:@"OnlineVC" norImage:@"muban11@2x.png" selImage:@"muban10@2x.png" title:@"线上商城"];
+    [self addSubViewControllerWithVC:@"PointStoreVC" norImage:@"muban11@2x.png" selImage:@"muban10@2x.png" title:@"积分商城"];
     //线下商城
     [self addSubViewControllerWithVC:@"OfflineVC" norImage:@"muban12@2x.png" selImage:@"muban13@2x.png" title:@"线下商圈"];
     //购物车
     [self addSubViewControllerWithVC:@"ShoppingCarVC" norImage:@"muban14@2x.png" selImage:@"muban15@2x.png" title:@"购物车"];
     //会员中心
-    [self addSubViewControllerWithVC:@"MemberCenterMainVC" norImage:@"muban16@2x.png" selImage:@"muban17@2x.png" title:@"我的"];
+    [self addSubViewControllerWithVC:@"MemberCenterMainVC" norImage:@"muban16@2x.png" selImage:@"muban17@2x.png" title:@"账户"];
     self.selectedIndex = 0;//默认选择首页
 //    if (![KX_UserInfo sharedKX_UserInfo].addressList) {
 //        [self getAllAddressList];

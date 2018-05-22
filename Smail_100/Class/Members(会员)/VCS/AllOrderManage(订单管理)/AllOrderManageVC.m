@@ -25,6 +25,7 @@
 @property (strong, nonatomic)  OrderManagementVC *waitSendVC;
 @property (strong, nonatomic)  OrderManagementVC *didSendVC;
 @property (strong, nonatomic)  OrderManagementVC *closedVC;
+@property (strong, nonatomic)  OrderManagementVC *receiveVC;
 
 @property (nonatomic, strong) NSArray *hotSeaches;
 @property (nonatomic, strong)  NSString   *keyWord; ///关键字筛选
@@ -82,8 +83,6 @@
     segmentMenuVc.SlideColor = KMAINCOLOR;
     segmentMenuVc.advanceLoadNextVc = NO;
     segmentMenuVc.backgroundColor = [UIColor whiteColor];
-
-
     //    NewOrderTitleType,                  /// 新机
     //    AccessoriesOrderTitleType,          ///配件
     //    WholeOrderTitleType,                ///整机
@@ -95,8 +94,8 @@
     NSArray *titleArr ;
     
   
-    self.title = @"商城订单";
-    titleArr = @[@"全部",@"待付款",@"待发货",@"待收货"];
+    self.title = @"订单管理";
+    titleArr = @[@"全部",@"待付款",@"待发货",@"待收货",@"已完成"];
     _allVC = [[OrderManagementVC alloc]init];
     _allVC.orderType = AllOrderType;
     _allVC.shipstatus = @"";
@@ -120,14 +119,29 @@
     _closedVC.shipstatus = @"Delivery";
     _closedVC.shop_id = _shop_id?_shop_id:@"";
 
-    _contollers = @[_allVC,_waitVC,_signingVC,_closedVC];
+     _receiveVC = [[OrderManagementVC alloc]init];
+    _receiveVC.shipstatus = @"Receive";
+    _receiveVC.orderType = HasSureOrderType;
 
-//    if (!KX_NULLString(_shop_id)) {
-//
-//    }
+    
+    _receiveVC.shop_id = _shop_id?_shop_id:@"";
+    
+    
+    _contollers = @[_allVC,_waitVC,_signingVC,_closedVC,_receiveVC];
+
+/// 商家中心 订单管理 特殊化
+    if (!KX_NULLString(_shop_id)) {
+        self.title = @"订单管理";
+
+        titleArr = @[@"全部",@"待付款",@"已完成"];
+        
+        _contollers = @[_allVC,_waitVC,_receiveVC];
+    }
+
     
     if (_orderTitleType == OffLineTitleType) {
-    
+        self.title = @"线下订单";
+
         _allVC.paystatus = @"";
         _allVC.type = @"Shop";
         
@@ -135,12 +149,18 @@
         _waitVC.paystatus = @"Pendding,Preview,Fail";
         _waitVC.type = @"Shop";
 
+        _signingVC.shop_id = _shop_id?_shop_id:@"";
+        _signingVC.paystatus = @"Complete";
+        _signingVC.type = @"Shop";
+        
+//        http://39.108.4.18:6803/api/order/order_list  page_size=10&paystatus=Complete&type=Shop&pageno=1&user_id=84561&comm_nums=1
         _closedVC.shop_id = _shop_id?_shop_id:@"";
         _closedVC.paystatus = @"Complete";
         _closedVC.type = @"Shop";
-       
-        titleArr = @[@"全部",@"待付款",@"待评价"];
-        _contollers = @[_allVC,_waitVC,_closedVC];
+        _closedVC.comm_nums = @"1";
+
+        titleArr = @[@"全部",@"待付款",@"待评价",@"已评价"];
+        _contollers = @[_allVC,_waitVC,_signingVC,_closedVC];
 
 
     }

@@ -18,6 +18,8 @@
 @property (nonatomic , copy) NSString              * fid;
 @property (nonatomic , copy) NSString              * comment;
 @property (nonatomic , copy) NSString              * goods_id;
+@property (nonatomic , copy) NSString              * avatar_url;
+
 
 @property (nonatomic , copy) NSString              * address;
 @property (nonatomic , copy) NSString              * stars;
@@ -27,6 +29,9 @@
 @property (nonatomic , copy) NSString              * distance;
 @property (nonatomic , copy) NSString              * shop_image;
 @property (nonatomic , copy) NSString              * shop_id;
+@property (nonatomic , copy) NSString              * nickname;
+
+
 
 @end
 
@@ -50,4 +55,7 @@
 @property (nonatomic , copy) NSString              * distance;
 @property (nonatomic , copy) NSString              * shop_image;
 @property (nonatomic , copy) NSString              * shop_id;
+@property (nonatomic , copy) NSString              * present_point_perc;
+
+
 @end

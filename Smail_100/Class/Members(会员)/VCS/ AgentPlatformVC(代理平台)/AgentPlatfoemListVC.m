@@ -66,7 +66,7 @@ static NSString* cellID = @"AgentPlatfoemListCellID";
 
 -(void)loadNewDate
 {
-    self.page = 0;
+    self.page = 1;
     [self requestListNetWork];
 }
 
@@ -96,7 +96,7 @@ static NSString* cellID = @"AgentPlatfoemListCellID";
 {
     if (!_tableView) {
         //初始化数据
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64  - 45) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - SafeAreaTopHeight  - 45) style:UITableViewStylePlain];
         _tableView.tableFooterView = [UIView new];//默认设置为空
         [_tableView setSeparatorInset:UIEdgeInsetsZero];//默认设置下划线左边移动 15.0f
         _tableView.delegate = self;
@@ -116,15 +116,12 @@ static NSString* cellID = @"AgentPlatfoemListCellID";
     [param setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_page] forKey:@"pageno"];
     [param setObject:@"20" forKey:@"page_size"];
     [param setObject:_orderState forKey:@"status"];
-//    [param setObject:_direction forKey:@"direction"];
-//    [param setObject:_trans_type forKey:@"trans_type"];
-    //    [param setObject:_quickSearch forKey:@"quickSearch"];
+
     [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
-    [BaseHttpRequest postWithUrl:@"/shop/examine_shop_list" andParameters:param andRequesultBlock:^(id result, NSError *error) {
+    [BaseHttpRequest postWithUrl:@"/group/shopList" andParameters:param andRequesultBlock:^(id result, NSError *error) {
         LOG(@"订单列表 == %@",result);
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         NSString *msg = [result valueForKey:@"msg"];
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
             NSArray *dataArr = [result valueForKey:@"data"];
