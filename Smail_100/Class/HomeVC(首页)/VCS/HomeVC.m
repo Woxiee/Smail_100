@@ -480,17 +480,18 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
      return cell;
      
  }
-    else if ([model.itemType isEqualToString:@"themeBanner"]) {
-        HomeScrollCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:imageCellIdentifier forIndexPath:indexPath];
-        NSMutableArray *listArr = [[NSMutableArray alloc] init];
-        for (ItemContentList *items in  model.itemContentList) {
-            [listArr addObject:items.imageUrl];
-        }
-        cell.modelArray = listArr;
-        cell.backgroundColor = [UIColor clearColor];
-        cell.delegate = self;
-        return cell;
-    }
+//    else if ([model.itemType isEqualToString:@"themeBanner"]) {
+//        HomeScrollCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:imageCellIdentifier forIndexPath:indexPath];
+//        NSMutableArray *listArr = [[NSMutableArray alloc] init];
+//        for (ItemContentList *items in  model.itemContentList) {
+//            [listArr addObject:items.imageUrl];
+//        }
+//        
+//        cell.modelArray = listArr;
+//        cell.backgroundColor = [UIColor clearColor];
+//        cell.delegate = self;
+//        return cell;
+//    }
     
     else if ([model.itemType isEqualToString:@"recommended_ware"]){
         
@@ -501,7 +502,10 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
         cell.didClickCellBlock = ^(ItemContentList *model) {
             [weakSelf addGoodsInCar:model];
         };
-        cell.model = model.itemContentList[indexPath.row];
+        if (model.itemContentList.count>0) {
+             cell.model = model.itemContentList[indexPath.row];
+        }
+       
         return cell;
     }
     return nil;

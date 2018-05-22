@@ -242,7 +242,7 @@ static NSString* AgentPaltLoactionCellID = @"AgentPaltLoactionCell";
         [_tableView setSeparatorInset:UIEdgeInsetsZero];//默认设置下划线左边移动 15.0f
         _tableView.delegate = self;
         _tableView.dataSource = self;
-//        _tableView.scrollEnabled = NO;
+        _tableView.scrollEnabled = NO;
         _tableView.backgroundColor = BACKGROUND_COLOR;
         [_tableView registerClass:[AgentPaltFormCell class] forCellReuseIdentifier:AgentPaltFormCellID];
         [_tableView registerClass:[AgentPaltLoactionCell class] forCellReuseIdentifier:AgentPaltLoactionCellID];

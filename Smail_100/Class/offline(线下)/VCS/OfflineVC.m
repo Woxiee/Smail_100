@@ -97,6 +97,10 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     [param setObject:_order?_order:@"" forKey:@"order"];
     //    [param setObject:@"" forKey:@"sort"];
     [param setObject:_q?_q:@"" forKey:@"q"];
+    
+    [param setObject:[NSString stringWithFormat:@"%@市",[KX_UserInfo sharedKX_UserInfo].city] forKey:@"city"];
+//[NSString stringWithFormat:@"%@市",[KX_UserInfo sharedKX_UserInfo].city]
+    
     //    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     [BaseHttpRequest postWithUrl:@"/shop/shop_list" andParameters:param andRequesultBlock:^(id result, NSError *error) {
@@ -426,7 +430,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 {
     
     if (_hintView == nil) {
-        _hintView =  [KX_LoginHintView loginHintViewWithImage:@"shangchengdingdan2@3x.png" andMsg:@"没有更多数据" andBtnTitle:nil andFrame:CGRectMake(0,CGRectGetMaxY(_headerView.frame) + 44 , SCREEN_WIDTH, SCREEN_HEIGHT -CGRectGetMaxY(_headerView.frame) - SafeAreaBottomHeight - 44 )];
+        _hintView =  [KX_LoginHintView loginHintViewWithImage:@"shangchengdingdan2@3x.png" andMsg:@"没有更多数据" andBtnTitle:nil andFrame:CGRectMake(0,CGRectGetMaxY(_headerView.frame) , SCREEN_WIDTH, SCREEN_HEIGHT -CGRectGetMaxY(_headerView.frame) - SafeAreaBottomHeight  )];
         _hintView.backgroundColor = RGB(255, 255, 255);
     }
     return _hintView;

@@ -84,7 +84,7 @@
                   moduleName = "Smail_100"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Faker/Documents/github/Smail_100/Smail_100/Class/Members(%E4%BC%9A%E5%91%98)/VCS/AccountManagMect(%E8%B4%A6%E6%88%B7%E7%AE%A1%E7%90%86)/SetPayPwdVC.m"
-                  timestampString = "547913696.402716"
+                  timestampString = "548684596.279613"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "82"
@@ -99,7 +99,7 @@
                   moduleName = "Smail_100"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Faker/Documents/github/Smail_100/Smail_100/Class/Members(%E4%BC%9A%E5%91%98)/VCS/AccountManagMect(%E8%B4%A6%E6%88%B7%E7%AE%A1%E7%90%86)/SetPayPwdVC.m"
-                  timestampString = "547913696.411719"
+                  timestampString = "548684596.286863"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "82"
@@ -201,7 +201,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "257"
             endingLineNumber = "257"
-            landmarkName = "-loadShopCarData"
+            landmarkName = "-locationManager:didUpdateLocations:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -259,38 +259,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Smail_100/Class/offline(&#x7ebf;&#x4e0b;)/VCS/OffLineDetailVC.m"
-            timestampString = "547312324.674953"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
-            landmarkName = "-tableView:viewForHeaderInSection:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Smail_100/Class/offline(&#x7ebf;&#x4e0b;)/VCS/OffLineDetailVC.m"
-            timestampString = "547312324.675151"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
-            landmarkName = "-tableView:viewForHeaderInSection:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Smail_100/Class/Members(&#x4f1a;&#x5458;)/VCS/AccountManagMect(&#x8d26;&#x6237;&#x7ba1;&#x7406;)/RealNameVC/RealNameVC.m"
             timestampString = "547312404.735195"
             startingColumnNumber = "9223372036854775807"
@@ -323,29 +291,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Smail_100/Class/Members(&#x4f1a;&#x5458;)/VCS/Myteam(&#x6211;&#x7684;&#x56e2;&#x961f;)/MyteamVC.m"
-            timestampString = "547915302.7616431"
+            filePath = "Smail_100/Class/offline(&#x7ebf;&#x4e0b;)/VCS/OfflineVC.m"
+            timestampString = "548684693.277612"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "-requestListNetWork"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Smail_100/Class/Members(&#x4f1a;&#x5458;)/VCS/Myteam(&#x6211;&#x7684;&#x56e2;&#x961f;)/MyteamVC.m"
-            timestampString = "547915318.177892"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "-requestListNetWork"
+            startingLineNumber = "539"
+            endingLineNumber = "539"
+            landmarkName = "-stopRefresh"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
