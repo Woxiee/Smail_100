@@ -21,6 +21,8 @@
     __weak IBOutlet UILabel *detailLB;
     
     
+    __weak IBOutlet NSLayoutConstraint *titleLBConstraintW;
+    
     __weak IBOutlet UIView *bgView;
     __weak IBOutlet UIButton *allBtn;
     __weak IBOutlet UIView *lineView;
@@ -50,11 +52,16 @@
 //
 //textTF.text = [NSString filterHTML:_dataDic[@"msg"]];
     if (!KX_NULLString(_showType)) {
+        titleLBConstraintW.constant = 100;
+
         moneyLB.text = [NSString stringWithFormat:@"%@",_dataDic[@"shop_balance"]];
 
         titleLB.attributedText = [self attributeStringWithContent:[NSString stringWithFormat:@"当前可提现营业额(元)\n(让利后的营业额)"] keyWords:@[@"(让利后的营业额)"]];
-        titleLB1.attributedText = [self attributeStringWithContent:[NSString stringWithFormat:@"商家营业额:\n(让利后的营业额)"] keyWords:@[@"(让利后的营业额)"]];
+        titleLB1.attributedText = [self attributeStringWithContent:[NSString stringWithFormat:@" 商家营业额:\n(让利后的营业额)"] keyWords:@[@"(让利后的营业额)"]];
         allBtn.hidden = NO;
+    }else{
+        titleLBConstraintW.constant = 75;
+
     }
     
     

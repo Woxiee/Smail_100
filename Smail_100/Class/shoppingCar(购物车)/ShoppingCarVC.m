@@ -295,7 +295,11 @@
 //    minCountLb.text = [NSString stringWithFormat:@"%@件商品",count];
 //    [toPayBtn setTitle:[NSString stringWithFormat:@"结算(%@)",count] forState:UIControlStateNormal];
     if (count.intValue >0) {
-        self.title =[NSString stringWithFormat:@"购物车(%@)",count];
+//        self.title =;
+        [self.navigationItem setTitle:[NSString stringWithFormat:@"购物车(%@)",allCount]];
+
+    }else{
+        self.title = @"购物车";
 
     }
     
@@ -307,6 +311,7 @@
                 _isAllSelect = YES;
             }else{
                 _isAllSelect = NO;
+                break;
 
             }
         }

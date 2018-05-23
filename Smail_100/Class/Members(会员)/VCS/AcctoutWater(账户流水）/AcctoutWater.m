@@ -92,7 +92,7 @@
         }
     };
     
-    AcctouWaterMeunView *meunView = [[AcctouWaterMeunView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 47) withtrans_type:_trans_type];
+    AcctouWaterMeunView *meunView = [[AcctouWaterMeunView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH, SCREEN_HEIGHT - SafeAreaTopHeight - 47) withtrans_type:_trans_type];
     meunView.didClickCellBlock = ^(NSString *str, NSString *str1) {
         AcctoutWaterLIstVC *VC  = [_contollers objectAtIndex:weakSelf.selectIndex];
         VC.directions = str;

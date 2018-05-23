@@ -29,7 +29,8 @@
 
 - (void)setup
 {
-    [connetBtn layerWithRadius:12 lineWidth:0.5 color:KMAINCOLOR];
+    connetBtn.backgroundColor = KMAINCOLOR;
+    [connetBtn layerWithRadius:10 lineWidth:0.5 color:KMAINCOLOR];
     
     clickDeviceView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tagGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickClickAction)];
@@ -57,6 +58,8 @@
         if (_didClickLookInfoBlcok ) {
             _didClickLookInfoBlcok();
         }
+    }else{
+        [self.window makeToast:@"未绑定设备"];
     }
    }
 

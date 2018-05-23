@@ -77,7 +77,7 @@
         numberLB.textAlignment = NSTextAlignmentCenter;
         [headView addSubview:numberLB];
         
-        UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 3 * i, CGRectGetMaxY(numberLB.frame), SCREEN_WIDTH / 3, 20)];
+        UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 3 * i, CGRectGetMaxY(numberLB.frame)+15, SCREEN_WIDTH / 3, 20)];
         titleLB.text = listArr[i];
         titleLB.font = Font15;
         titleLB.textColor = [UIColor whiteColor];;
@@ -88,7 +88,7 @@
 
     }
     
-    UILabel *nameLB = [[UILabel alloc] initWithFrame:CGRectMake(0, 110, SCREEN_WIDTH, 20)];
+    UILabel *nameLB = [[UILabel alloc] initWithFrame:CGRectMake(0, 120, SCREEN_WIDTH, 20)];
     nameLB.text = @"重庆老火锅点";
     nameLB.font =  KY_FONT(18);
     nameLB.textColor = [UIColor whiteColor];

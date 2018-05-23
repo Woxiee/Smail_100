@@ -67,10 +67,15 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 //    [self.view addSubview:pageController.view];
 //    [self addChildViewController:pageController];
 //    pageController.superVC = self;
+    if (KX_NULLString(_category_id)) {
+        [self setNavationView];
+
+    }else{
+        
+    }
+    
     [self setup];
-    [self setNavationView];
-    
-    
+
     WEAKSELF
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         weakSelf.page = 1;
@@ -85,6 +90,10 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 - (void)requestListNetWork
 {
 //    22.635159 114.080700
+//    _interfaceURL==http://m.szwx100.com/api/shop/shop_list&xy=22.580437,113.921380&pageno=1&city=深圳市&category_id=&order=&q=&type=&page_size=20
+    
+//    http://39.108.4.18:6803/api/shop/shop_detail  xy=22.583176%2C113.932874&shop_id=129
+
     _xy = [NSString stringWithFormat:@"%@,%@", [KX_UserInfo sharedKX_UserInfo].latitude ,[KX_UserInfo sharedKX_UserInfo].longitude];
     WEAKSELF;
     
@@ -98,7 +107,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     //    [param setObject:@"" forKey:@"sort"];
     [param setObject:_q?_q:@"" forKey:@"q"];
     
-    [param setObject:[NSString stringWithFormat:@"%@市",[KX_UserInfo sharedKX_UserInfo].city] forKey:@"city"];
+    [param setObject:[KX_UserInfo sharedKX_UserInfo].city forKey:@"city"];
 //[NSString stringWithFormat:@"%@市",[KX_UserInfo sharedKX_UserInfo].city]
     
     //    [param setObject:[KX_UserInfo sharedKX_UserInfo].user_id forKey:@"user_id"];
@@ -127,6 +136,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
                     weakSelf.teamPersenView.frame = CGRectMake(0, CGRectGetMaxY(_cycleView.frame), SCREEN_WIDTH, i*75 + 10);
                 }else{
                     weakSelf.teamPersenView.frame = CGRectMake(0, CGRectGetMaxY(_cycleView.frame), SCREEN_WIDTH, 0);
+                    weakSelf.teamPersenView.hidden = YES;
                 }
                 
                weakSelf.headerView.frame = CGRectMake(0, 0, kScreenWidth, weakSelf.cycleView.mj_h +weakSelf.teamPersenView.mj_h);
@@ -182,15 +192,15 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     [cityBtn addTarget:self action:@selector(cityClick) forControlEvents:UIControlEventTouchUpInside];
     [cityBtn setImage:[UIImage imageNamed:@"xianxiashangjia10@3x.png"] forState:UIControlStateNormal];
     [cityBtn setImage:[UIImage imageNamed:@"xianxiashangjia10@3x.png"] forState:UIControlStateHighlighted];
-//    cityBtn.frame = CGRectMake(0,0,45,40);
+    cityBtn.frame = CGRectMake(0,0,45,40);
 
     cityBtn.titleLabel.font = Font15;
     [cityBtn setTitle:[KX_UserInfo sharedKX_UserInfo].city forState:UIControlStateNormal];
     UIBarButtonItem *cityItem = [[UIBarButtonItem alloc] initWithCustomView:cityBtn];
     _item = cityBtn;
 
-    [_item sizeToFit];
-    [_item layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageLeft imageTitlespace:2];
+//    [_item sizeToFit];
+    [_item layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageLeft imageTitlespace:3];
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [backBtn addTarget:self action:@selector(cityClick) forControlEvents:UIControlEventTouchUpInside];
@@ -213,6 +223,8 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 - (void)setup
 {
     _page = 1;
+    [self.view addSubview:self.topSreenView];
+
     UIView *navationView = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 150)/2, 10, SCREEN_WIDTH - 150, 30)];
     navationView.backgroundColor = [UIColor whiteColor];
     [navationView layerForViewWith:10 AndLineWidth:0];
@@ -223,7 +235,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     [selectBtn setImage:[UIImage imageNamed:@"xianxiashangjia1@3x.png"] forState:UIControlStateNormal];
     [selectBtn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
     selectBtn.titleLabel.font = Font15;
-    [selectBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageLeft imageTitlespace:2];
+    [selectBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:2];
     [selectBtn addTarget:self  action:@selector(clickToSelect:) forControlEvents:UIControlEventTouchUpInside];
     [navationView addSubview:selectBtn];
     self.selectBtn = selectBtn;
@@ -262,15 +274,15 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     [self setRightNaviBtnImage:[UIImage imageNamed:@"messages_icon@3x.png"]];
 
 
-    [self.view addSubview:self.topSreenView];
     
+    [self.view addSubview:self.tableView];
+
 
     UIView * headerView = [[UIView alloc]init];
-    headerView.frame = CGRectMake(0,45 ,kScreenWidth, 280 );
+    headerView.frame = CGRectMake(0,0 ,kScreenWidth, 280 );
     _headerView = headerView;
-    [self.view addSubview:self.tableView];
-    self.tableView.tableFooterView = [UIView new];
-    self.tableView.tableHeaderView = _headerView;
+//    self.tableView.tableFooterView = [UIView new];
+//    self.tableView.tableHeaderView = _headerView;
 //    self.tableView
 
     
@@ -392,7 +404,9 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
     controller.selectString = ^(NSString *string){
         LOG(@" 城市 = %@",string);
         [[KX_UserInfo sharedKX_UserInfo] loadUserInfoFromSanbox];
-        [KX_UserInfo sharedKX_UserInfo].city = string;
+        [KX_UserInfo sharedKX_UserInfo].city = [NSString stringWithFormat:@"%@市",string];
+        
+
         [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
         [weakSelf.item setTitle:string forState:UIControlStateNormal];
 //        weakSelf.item.frame  = CGRectMake(0, 0, 80, 40);
@@ -422,6 +436,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
         _tableView.tableFooterView = [UIView new];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }
@@ -430,7 +445,7 @@ static NSString * const llineOffGoodsCell = @"LineOffGoodsCellID";
 {
     
     if (_hintView == nil) {
-        _hintView =  [KX_LoginHintView loginHintViewWithImage:@"shangchengdingdan2@3x.png" andMsg:@"没有更多数据" andBtnTitle:nil andFrame:CGRectMake(0,CGRectGetMaxY(_headerView.frame) , SCREEN_WIDTH, SCREEN_HEIGHT -CGRectGetMaxY(_headerView.frame) - SafeAreaBottomHeight  )];
+        _hintView =  [KX_LoginHintView loginHintViewWithImage:@"shangchengdingdan2@3x.png" andMsg:@"没有更多数据" andBtnTitle:nil andFrame:CGRectMake(0,CGRectGetMaxY(_headerView.frame)+45 , SCREEN_WIDTH, SCREEN_HEIGHT -CGRectGetMaxY(_headerView.frame) - SafeAreaBottomHeight-45 )];
         _hintView.backgroundColor = RGB(255, 255, 255);
     }
     return _hintView;

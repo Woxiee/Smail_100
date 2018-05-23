@@ -662,6 +662,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+  
     Seller *seller = _orderModel.seller[section -1];
 
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , 45)];
@@ -689,7 +690,7 @@ static NSString * const DeductionCellID = @"DeductionCellID";
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (![self.resorceArray[section] isKindOfClass:[NSString class]]) {
-        return 195;
+        return 185;
     }
     return 0.01f;
 }

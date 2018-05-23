@@ -40,6 +40,7 @@
 #import "GoodsClassVC.h"
 #import "KYGotoHeaderAndShowCountView.h"
 
+#import "ULBCollectionViewFlowLayout.h"
 
 @interface HomeVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,PYSearchViewControllerDelegate,HomePageCycScrollViewDelegate>
 @property (weak, nonatomic) UICollectionView *collectionView;
@@ -289,7 +290,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 {
     
     _page = 1;
-    UICollectionViewFlowLayout  *layout = [[UICollectionViewFlowLayout alloc] init];
+    ULBCollectionViewFlowLayout  *layout = [[ULBCollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 0.0;
     layout.minimumInteritemSpacing = 0.0;
     layout.sectionInset = UIEdgeInsetsZero;
@@ -519,14 +520,22 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     if ([model.itemType isEqualToString:@"topBanner"]) {
         return CGSizeMake(SCREEN_WIDTH, 200 *hScale);
     }
+    
+    else if ([model.itemType isEqualToString:@"action"]){
+        return CGSizeMake(SCREEN_WIDTH, 200 *hScale);
+
+    }
     else if ([model.itemType isEqualToString:@"cateList"]){
         if (model.itemContentList.count <5) {
+//            if (indexPath.section == 1) {
+//                return CGSizeMake((SCREEN_WIDTH-1)/model.itemContentList.count ,72 );
+//            }
             return CGSizeMake((SCREEN_WIDTH)/model.itemContentList.count ,72 );
         }
         return CGSizeMake((SCREEN_WIDTH)/5 ,72 );
     }
     else if ([model.itemType isEqualToString:@"recommended_goods"]){
-        return CGSizeMake(SCREEN_WIDTH, 145);
+        return CGSizeMake(SCREEN_WIDTH, 145 +10);
     }
 //
 ////    else if ([model.itemType isEqualToString:@"action"]){
@@ -569,7 +578,7 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     //
     if ([model.itemType isEqualToString:@"recommended_goods"]){
         if (model.itemContentList.count >0) {
-            return UIEdgeInsetsMake(5, 0, 0, 0);
+            return UIEdgeInsetsMake(5, 0, 1, 0);
         }
         return UIEdgeInsetsMake(0, 0, 0, 0);
     }
@@ -591,6 +600,10 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     if ([model.itemType isEqualToString:@"recommended_ware"]){
         return 2;//商品cell
     }
+//    if ([model.itemType isEqualToString:@"recommended_goods"]){
+//        return 2;
+//        
+//    }
     return 0;
 }
 
@@ -600,6 +613,8 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     if ([model.itemType isEqualToString:@"recommended_ware"]){
         return 2;//商品cell
     }
+    
+   
     return 0;
 }
 
@@ -611,13 +626,27 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
    if ([model.itemType isEqualToString:@"recommended_ware"] || [model.itemType isEqualToString:@"recommended_goods"]){
        
        if (model.itemContentList.count >0) {
-           return CGSizeMake(SCREEN_WIDTH , 44);
+           return CGSizeMake(SCREEN_WIDTH , 47);
        }
        return CGSizeZero;
     }
     return CGSizeZero;
 }
 
+- (UIColor *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout colorForSectionAtIndex:(NSInteger)section
+{
+    
+    ItemInfoList *model =   self.resorceArray[section];
+    if ([model.itemType isEqualToString:@"cateList"]){
+
+        return [UIColor whiteColor];
+
+    }
+    return BACKGROUNDNOMAL_COLOR;
+//    return [UIColor whiteColor];
+
+    
+}
 
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
@@ -625,7 +654,6 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
 
     return CGSizeZero;
 }
-
 
 
 - (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
@@ -746,6 +774,8 @@ static NSString *TimeLimtKillCellID = @"TimeLimtKillCell";
     [self.countView fkGotoHeaderAndShowCountViewWhitCurrentCout:indexPath.row max:self.itemsArr.count];
 
 }
+
+
 
 
 #pragma mark -UIScrollViewDelegate

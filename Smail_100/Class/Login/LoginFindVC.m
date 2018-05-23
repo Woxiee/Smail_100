@@ -59,14 +59,14 @@
 - (void)setConfiguration
 {
     self.title = @"找回登录密码";
-//    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     _lineView1.backgroundColor =
     _lineView2.backgroundColor =
     _lineView4.backgroundColor =
     _lineView3.backgroundColor = RGB(228, 229, 230);
 
-    [_loginBtn layerForViewWith:4 AndLineWidth:0.5];
+    [_loginBtn layerForViewWith:10 AndLineWidth:0.5];
 
     _codeImageView.userInteractionEnabled = YES;
     _codeImageView.image = [UIImage imageNamed:DEFAULTIMAGE];

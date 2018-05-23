@@ -201,7 +201,7 @@ static NSString *const goodSOrderCommonCell = @"GoodSOrderCommonCellID";
         
     }else{
         [self setRightNaviBtnTitle:@"提现记录"];
-        [sureBtn setTitle:@"确定提现" forState:UIControlStateNormal];
+        [sureBtn setTitle:@"确认提现" forState:UIControlStateNormal];
 
     }
 

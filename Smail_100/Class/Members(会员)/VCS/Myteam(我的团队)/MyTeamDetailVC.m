@@ -111,7 +111,10 @@ static NSString *myRecommendCellID = @"MyRecommendCellID";
         if (cell == nil) {
             cell = [[MyRecommendCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:myRecommendCellID];
         }
-        cell.model = _model;
+        if (_model) {
+            cell.model = _model;
+
+        }
         return cell;
     }
     NSArray *imageList  =  @[@"wodetuandui4@3x.png",@"wodetuandui4@3x.png",@"wodetuandui5@3x.png"];
@@ -157,8 +160,8 @@ static NSString *myRecommendCellID = @"MyRecommendCellID";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableFooterView = [UIView new];
     [self.tableView registerNib:[UINib nibWithNibName:@"MyRecommendCell" bundle:nil] forCellReuseIdentifier:myRecommendCellID];
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 320)];
-    SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200 *hScale) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200 +80 + 60 )];
+    SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200 ) delegate:self placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
     [headView addSubview:cycleView];
     self.cycleView = cycleView;
     

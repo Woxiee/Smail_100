@@ -97,7 +97,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     
-    NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '60%'";
+    NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%'";
 
     [_webView stringByEvaluatingJavaScriptFromString:str];
 

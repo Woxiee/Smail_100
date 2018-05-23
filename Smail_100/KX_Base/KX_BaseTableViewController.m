@@ -88,7 +88,7 @@
     self.rightNaviBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.rightNaviBtn.frame=CGRectMake(0, 0, 44, 44);
     [self.rightNaviBtn setTitle:str forState:UIControlStateNormal];
-    self.rightNaviBtn.titleLabel.font=[UIFont systemFontOfSize:16];
+    self.rightNaviBtn.titleLabel.font=[UIFont systemFontOfSize:15];
     [self.rightNaviBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
     self.rightNaviBtn.backgroundColor=[UIColor clearColor];
     [self.rightNaviBtn addTarget:self action:@selector(didClickRightNaviBtn) forControlEvents:UIControlEventTouchUpInside];

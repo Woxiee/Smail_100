@@ -479,12 +479,12 @@
         return;
     }
     
-    if (!_btn1.selected && !_btn3.selected && !_btn5.selected) {
+    if (!_btn1.selected && !_btn2.selected && !_btn5.selected) {
         [self.view makeToast:@"请选择营业让利"];
         return;
     }
     
-    if (!_btn2.selected && !_btn4.selected && !_btn6.selected) {
+    if (!_btn2.selected && !_btn3.selected && !_btn6.selected) {
         [self.view makeToast:@"请选择赠送积分比例"];
         return;
     }

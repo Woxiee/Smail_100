@@ -20,6 +20,7 @@
 @property (nonatomic , copy) NSString              * goods_id;
 @property (nonatomic , copy) NSString              * avatar_url;
 
+@property (nonatomic , copy) NSString              * namestring;
 
 @property (nonatomic , copy) NSString              * address;
 @property (nonatomic , copy) NSString              * stars;

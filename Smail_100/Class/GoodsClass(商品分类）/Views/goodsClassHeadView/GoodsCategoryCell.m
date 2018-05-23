@@ -44,9 +44,9 @@
 {
     _model = model;
  
-    self.contentView.backgroundColor = BACKGROUND_COLOR;
+    self.contentView.backgroundColor = [UIColor clearColor];
 
-    listNameLb.text = [NSString stringWithFormat:@"%@   ",model.name];
+    listNameLb.text = [NSString stringWithFormat:@"%@    ",model.name];
     listNameLb.textColor = model.select?TITLETEXTLOWCOLOR:DETAILTEXTCOLOR;
     lineView.backgroundColor = [UIColor whiteColor];
     lineView.alpha = 1;
@@ -61,7 +61,7 @@
     }else{
         listNameLb.textColor = TITLETEXTLOWCOLOR;
         [listNameLb layerForViewWith:0 AndLineWidth:0];
-        listNameLb.backgroundColor = BACKGROUND_COLOR;
+        listNameLb.backgroundColor = RGBA(245, 245, 245, 1);
     }
     
     

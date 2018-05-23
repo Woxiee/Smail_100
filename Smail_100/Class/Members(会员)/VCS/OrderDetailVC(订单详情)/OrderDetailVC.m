@@ -117,7 +117,7 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
 
             }
 
-
+            [self getGoodsOrderAllInfo];
         
             [weakSelf.tableView reloadData];
 
@@ -311,7 +311,7 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
     WEAKSELF;
     
     
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 40 - SafeAreaTopHeight) style:UITableViewStyleGrouped];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 55 - SafeAreaTopHeight) style:UITableViewStyleGrouped];
     tableView.dataSource = self;
     tableView.delegate = self;
     tableView.rowHeight = 44.f;
@@ -319,7 +319,7 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
     tableView.backgroundColor = BACKGROUND_COLOR;
     [self.view addSubview:tableView];
     self.tableView = tableView;
-    OrderFootView *footView = [[OrderFootView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 45 - 64, SCREEN_WIDTH, 45)];
+    OrderFootView *footView = [[OrderFootView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 55 - SafeAreaTopHeight, SCREEN_WIDTH, 55)];
     [self.view  addSubview:footView];
     footView.backgroundColor = [UIColor whiteColor];
          footView.layer.shadowColor = LINECOLOR.CGColor;
@@ -502,8 +502,7 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
         titleLB.textColor = TITLETEXTLOWCOLOR;
         titleLB.font = Font15;
         titleLB.textAlignment = NSTextAlignmentLeft;
-        
-        titleLB.text = _model.shop_name;
+        titleLB.text = [NSString stringWithFormat:@"订单号: %@",_model.orderno];
         [headView addSubview:titleLB];
         
         UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 45, SCREEN_WIDTH, 1)];
@@ -548,7 +547,7 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (![self.resorceArray[section] isKindOfClass:[NSString class]]) {
-        return 135;
+        return 185;
     }
     return 1;
 }
@@ -638,7 +637,131 @@ static NSString *const goodsCommonCellID = @"GoodsCommonCellID";
 
     
 }
+- (void)getGoodsOrderAllInfo
+{
+    CGFloat allPrices =  _orderModel.price.floatValue;
+    CGFloat allPoint = _orderModel.point.floatValue;
+    CGFloat allFreight =  _orderModel.freight.floatValue;
+    int count = _orderModel.count.intValue;
+    
+    NSString *allPriceStr = @"";
+    NSMutableArray *priceArr = [NSMutableArray array];
+    NSMutableArray *infoArr = [NSMutableArray array];
+    [infoArr addObject:[NSString stringWithFormat:@"%d",count]];
+    [infoArr addObject:@"+"];
+    [infoArr addObject:@"(包邮)"];
+    
+    
+    NSString *str1;
+    if (allPrices>0) {
+        str1 = [NSString stringWithFormat:@"¥%.2f",allPrices];
+        str1 = [str1 stringByReplacingOccurrencesOfString:@".00" withString:@""];
+        [priceArr addObject:str1];
+        [infoArr addObject:str1];
+    }
+    
+    _orderModel.allPrices = allPrices;
+    NSString *str2;
+    if (allPoint>0) {
+        str2 = [NSString stringWithFormat:@"%.2f积分",allPoint];
+        str2 = [str2 stringByReplacingOccurrencesOfString:@".00" withString:@""];
+        [infoArr addObject:str2];
+        
+        [priceArr addObject:str2];
+    }
+    
+    NSString *str3;
+    if (allFreight>0 && !KX_NULLString(_orderModel.express_type)) {
+        str3 = [NSString stringWithFormat:@"%.2f快递费",allFreight];
+        str3 = [str3 stringByReplacingOccurrencesOfString:@".00" withString:@""];
+        
+        [priceArr addObject:str3];
+        [infoArr addObject:str3];
+        
+    }else if(_orderModel.express_type.intValue == 2){
+        
+    }
+    else{
+        
+        [priceArr addObject:@"(包邮)"];
 
+    }
+    
+    
+    
+    allPriceStr = [priceArr componentsJoinedByString:@"+"];
+    allPriceStr = [allPriceStr stringByReplacingOccurrencesOfString:@".00" withString:@""];
+    allPriceStr = [allPriceStr stringByReplacingOccurrencesOfString:@"+(包邮)" withString:@" (包邮)"];
+    NSString *countStr = [NSString stringWithFormat:@"共%d件商品   小计:",count];
+    
+    NSString *allStr = [NSString stringWithFormat:@"%@%@",countStr,allPriceStr];
+    //    NSAttributedString *attributedStr =  [allStr creatAttributedString:allStr withMakeRange:NSMakeRange(countStr.length, allStr.length - countStr.length) withColor:KMAINCOLOR withFont:[UIFont systemFontOfSize:15 ]];
+    _allCountStr =  [self attributeStringWithContent:allStr keyWords:infoArr fonts:Font13 color:KMAINCOLOR];
+    
+    //    weight:UIFontWeightMedium
+    
+//    NSString *countStr1 = [NSString stringWithFormat:@"合计:%@",allPriceStr];
+    //    NSString *allStr1 = [NSString stringWithFormat:@"%@%@",countStr1,allPriceStr];
+    //    NSAttributedString *attributedStr2 =  [allStr1 creatAttributedString:allStr1 withMakeRange:NSMakeRange(countStr1.length, allStr1.length - countStr1.length) withColor:KMAINCOLOR withFont:[UIFont systemFontOfSize:15 ]];
+//    _orderPiceLB.attributedText =   [self attributeStringWithContent:countStr1 keyWords:infoArr fonts:Font13 color:KMAINCOLOR];
+    
+    
+    
+    //    NSString *countStr2 = @"待支付:";
+    //    NSString *allStr2 = [NSString stringWithFormat:@"%@%@",countStr2,allPriceStr];
+    //    NSAttributedString *attributedStr3 =  [allStr1 creatAttributedString:allStr2 withMakeRange:NSMakeRange(countStr2.length, allStr2.length - countStr2.length) withColor:KMAINCOLOR withFont:[UIFont systemFontOfSize:15 ]];
+    //    _orderModel.allPriceAttriStr = attributedStr3;
+    
+//    _orderModel.allPoint = allPoint;
+//    [self.tableView reloadData];
+    
+}
+
+
+- (NSAttributedString *)attributeStringWithContent:(NSString *)content keyWords:(NSArray *)keyWords fonts:(UIFont *)fonts color:(UIColor *)color
+{
+    __block  UIColor *colors = color;
+    __block  UIFont *font = fonts;
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:content];
+    
+    if (keyWords) {
+        
+        [keyWords enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            NSMutableString *tmpString=[NSMutableString stringWithString:content];
+            if ([obj isEqualToString:@"(包邮)"]) {
+                colors = DETAILTEXTCOLOR;
+            }else{
+                colors = color;
+            }
+            //            if ( [obj containsString:@"¥"] || [obj containsString:@"积分"]|| [obj containsString:@"快递费"]) {
+            //                font = KY_FONT(9);
+            //            }else{
+            //                font = fonts;
+            //            }
+            NSRange range=[content rangeOfString:obj];
+            
+            NSInteger location=0;
+            while (range.length>0) {
+                
+                [attString addAttribute:(NSString*)NSForegroundColorAttributeName value:colors range:NSMakeRange(location+range.location, range.length)];
+                [attString addAttribute:NSFontAttributeName
+                                  value:font
+                                  range:range];
+                
+                location+=(range.location+range.length);
+                
+                NSString *tmp= [tmpString substringWithRange:NSMakeRange(range.location+range.length, content.length-location)];
+                
+                tmpString=[NSMutableString stringWithString:tmp];
+                
+                range=[tmp rangeOfString:obj];
+            }
+        }];
+    }
+    return attString;
+}
 
 
 @end

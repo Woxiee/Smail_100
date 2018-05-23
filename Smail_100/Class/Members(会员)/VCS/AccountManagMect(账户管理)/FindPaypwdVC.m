@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [_loginBtn layerForViewWith:4 AndLineWidth:0.5];
+    [_loginBtn layerForViewWith:10 AndLineWidth:0.5];
     _loginBtn.backgroundColor = KMAINCOLOR;
 //  [_yzmBtn layerWithRadius:6 lineWidth:0.5 color:MainColor];
     [_yzmBtn setTitleColor:KMAINCOLOR forState:UIControlStateNormal];

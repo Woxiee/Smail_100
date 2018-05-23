@@ -60,13 +60,13 @@
     self.bottomView = bottomView;
     
     UIView  *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 5)];
-    lineView.backgroundColor = BACKGROUND_COLOR;
+    lineView.backgroundColor = LINECOLOR;
     [bottomView addSubview:lineView];
     
     NSArray *titles1  = @[@"方向",@"全部类型",@"收入",@"支出"];
     NSArray *titles2;
     if (KX_NULLString(_trans_type)) {
-       titles2 = @[@"类型",@"全部类型",@"激励笑脸",@"兑换积分",@"空充笑脸",@"支付宝",@"",@"微信",@"笑脸兑换"];
+       titles2 = @[@"类型",@"全部类型",@"激励笑脸",@"兑换积分",@"空充笑脸",@"",@"支付宝",@"微信",@"笑脸兑换"];
     }
     else{
         titles2 = @[@"类型",@"全部类型",@"激励笑脸",@"空充笑脸",@"兑换积分"];
@@ -74,8 +74,8 @@
 
     }
 
-    int btnW = (SCREEN_WIDTH -50) /6;
-    int btnH = 30;
+    int btnW = (SCREEN_WIDTH -50) /5;
+    int btnH = 25;
     int pading = 10;
     for (int i = 0; i<titles1.count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -87,8 +87,11 @@
         //设置button正常状态下的标题颜色
         [btn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
         [btn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateSelected];
+        [btn layerWithRadius:6 lineWidth:1 color:TITLETEXTLOWCOLOR];
+
         if (i ==  0 ) {
             btn.titleLabel.font = Font15;
+            [btn layerWithRadius:0 lineWidth:0 color:LINECOLOR];
 
         }else{
             if (i == 1) {
@@ -101,20 +104,20 @@
         [bottomView addSubview:btn];
     }
     UIView  *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, 1)];
-    lineView1.backgroundColor = BACKGROUND_COLOR;
+    lineView1.backgroundColor = LINECOLOR;
     [bottomView addSubview:lineView1];
     
  
     NSInteger pages = 0;
     for (int i = 0; i<titles2.count; i++) {
-        NSInteger index = i % 6;
-        NSInteger page = i / 6;
+        NSInteger index = i % 5;
+        NSInteger page = i / 5;
         pages= page;
         if (SCREEN_WIDTH == 320) {
-           index = i % 5;
+           index = i % 4;
         }
                                                                                                                                                                                 UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake((btnW+pading)*index, CGRectGetMaxY(lineView1.frame)+10 +page*(btnH+10), btnW , btnH);
+        btn.frame = CGRectMake((btnW+pading)*index, CGRectGetMaxY(lineView1.frame)+15 +page*(btnH+10), btnW , btnH);
         btn.tag = 100 + i;
         btn.timeInterVal = 0;
         btn.titleLabel.font = Font11;
@@ -122,10 +125,10 @@
         //设置button正常状态下的标题颜色
         [btn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
         [btn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateSelected];
-        [btn layerWithRadius:6 lineWidth:1 color:LINECOLOR];
-        if (i ==  0 ||  i == 6) {
+        [btn layerWithRadius:6 lineWidth:1 color:TITLETEXTLOWCOLOR];
+        if (i ==  0 ||  i == 5) {
             btn.titleLabel.font = Font15;
-            [btn layerWithRadius:0 lineWidth:0 color:LINECOLOR];
+            [btn layerWithRadius:0 lineWidth:0 color:TITLETEXTLOWCOLOR];
 
         }else{
             if (i == 1) {
@@ -142,11 +145,11 @@
 //    titleLB.text = @"方向"；[
     
     UIView  *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView1.frame)+40*(pages+1)+10, SCREEN_WIDTH, 1)];
-    lineView2.backgroundColor = BACKGROUND_COLOR;
+    lineView2.backgroundColor = LINECOLOR;
     [bottomView addSubview:lineView2];
     
     UIButton *sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    sureBtn.frame = CGRectMake(SCREEN_WIDTH - 70, CGRectGetMaxY(lineView2.frame)+10, btnW , btnH);
+    sureBtn.frame = CGRectMake(SCREEN_WIDTH - btnW - 15, CGRectGetMaxY(lineView2.frame)+10, btnW , btnH);
     sureBtn.tag = 2000;
     sureBtn.timeInterVal = 0;
     //设置button正常状态下的标题颜色
@@ -175,7 +178,7 @@
     for (UIButton *btn in _btnArr1) {
         btn.selected = NO;
         
-        [btn layerWithRadius:6 lineWidth:1 color:LINECOLOR];
+        [btn layerWithRadius:6 lineWidth:1 color:TITLETEXTLOWCOLOR];
     }
     sender.selected = YES;
     [sender layerWithRadius:6 lineWidth:1 color:KMAINCOLOR];
@@ -212,7 +215,7 @@
     for (UIButton *btn in _btnArr2) {
         btn.selected = NO;
         
-        [btn layerWithRadius:6 lineWidth:1 color:LINECOLOR];
+        [btn layerWithRadius:6 lineWidth:1 color:TITLETEXTLOWCOLOR];
     }
     sender.selected = YES;
      [sender layerWithRadius:6 lineWidth:1 color:KMAINCOLOR];

@@ -26,8 +26,8 @@
     self.backgroundColor = [UIColor whiteColor];
     [self layerForViewWith:0 AndLineWidth:0.5];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(12, 0, 80, 45);
-    [btn setTitle:@"消费金额:" forState:UIControlStateNormal];
+    btn.frame = CGRectMake(12, 0, 85, 50);
+    [btn setTitle:@" 消费金额:" forState:UIControlStateNormal];
     [btn setTitleColor:TITLETEXTLOWCOLOR forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:@"mornyIcon@2x.png"] forState:UIControlStateNormal];
     btn.titleLabel.font = Font15;
@@ -42,7 +42,7 @@
 //    titleLB.textAlignment = NSTextAlignmentLeft;
 //    [self addSubview:titleLB];
     
-    UITextField *textF = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(btn.frame)+20, 0,SCREEN_WIDTH - CGRectGetMaxX(btn.frame) - 40, 40)];
+    UITextField *textF = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(btn.frame)+30, 0,SCREEN_WIDTH - CGRectGetMaxX(btn.frame) - 40, 48)];
     textF.placeholder = @"请输入您要消费的金额";
     textF.font = Font12;
     textF.keyboardType = UIKeyboardTypeNumberPad;
@@ -50,8 +50,8 @@
     [self addSubview:textF];
     _textField = textF;
     
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(textF.mj_x, CGRectGetMaxY(textF.frame) - 5, textF.mj_w, 1)];
-    lineView.backgroundColor = [UIColor lightGrayColor];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(textF.mj_x, self.mj_h -8, textF.mj_w, 1)];
+    lineView.backgroundColor = DETAILTEXTCOLOR;
     [self addSubview:lineView];
 
 //     UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];

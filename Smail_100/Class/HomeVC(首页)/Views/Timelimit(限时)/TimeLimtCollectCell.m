@@ -34,8 +34,8 @@ static NSString *ID = @"ZYShareSheetCell";
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
-    self.collectionView.frame = self.bounds;
+    self.backgroundColor = [UIColor whiteColor];
+    self.collectionView.frame = CGRectMake(0, 10, self.mj_w, self.mj_h - 10);
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -67,7 +67,7 @@ static NSString *ID = @"ZYShareSheetCell";
 - (UICollectionView *)collectionView
 {
     if (!_collectionView) {
-        _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:self.flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 10, self.mj_w, self.mj_h - 10) collectionViewLayout:self.flowLayout];
         _collectionView.alwaysBounceHorizontal = YES; // 小于等于一页时, 允许bounce
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;

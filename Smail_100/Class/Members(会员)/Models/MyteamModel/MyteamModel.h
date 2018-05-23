@@ -38,6 +38,11 @@
 
 @property (nonatomic , copy) NSString              * status_count;
 @property (nonatomic , copy) NSString              * username;
+@property (nonatomic , copy) NSString              * nickname;
+@property (nonatomic , copy) NSString              * mobile;
+
+
+
 @property (nonatomic , copy) NSArray<Agent_location *>              * agent_location;
 
 @end

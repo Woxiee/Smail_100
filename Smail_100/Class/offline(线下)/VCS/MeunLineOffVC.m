@@ -165,17 +165,17 @@ static NSString *cellID = @"GoodsCategoryCellID";
     _allInfoArr= [[NSMutableArray alloc] init];
     _itemsDic = [[NSMutableDictionary alloc] init];
     
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = RGBA(253, 253, 253, 0.9);
     _leftTableView.dataSource = self;
     _leftTableView.delegate = self;
     _leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _leftTableView.backgroundColor =[UIColor whiteColor];;
+    _leftTableView.backgroundColor =[UIColor whiteColor];
     
     _rightTableview.dataSource = self;
     _rightTableview.delegate = self;
     _rightTableview.rowHeight = 44.f;
     _rightTableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _rightTableview.backgroundColor = BACKGROUND_COLOR;
+    _rightTableview.backgroundColor = RGBA(253, 253, 253, 0.9);
     
     [self setRightNaviBtnImage:[UIImage imageNamed:@"moreOne@2x.png"]];
 
@@ -196,10 +196,11 @@ static NSString *cellID = @"GoodsCategoryCellID";
 
     WEAKSELF;
     MenulineView *headView = [[MenulineView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 50 - SafeAreaTopHeight - 50, SCREEN_WIDTH, 50)];
-    headView.didClickSureBlock = ^(NSString *str){
-        _orderModel.allPrices = str.floatValue;
-        [weakSelf getOrderNoRequrst:str];
-    };
+//    headView.didClickSureBlock = ^(NSString *str){
+//        _orderModel.allPrices = str.floatValue;
+//
+//        [weakSelf getOrderNoRequrst:str];
+//    };
     [self.view addSubview:headView];
     _headView = headView;
 }
@@ -455,6 +456,11 @@ static NSString *cellID = @"GoodsCategoryCellID";
         _allPrice = _headView.textField.text;
         _orderModel.allPrices = _allPrice.floatValue;
     }
+
+    if (_orderModel.allPrices <0) {
+        _orderModel.allPrices = _headView.textField.text.floatValue;
+    }
+    
     [self getOrderNoRequrst:_allPrice];
 //    GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];
 //    VC.cart_ids = [cartList componentsJoinedByString:@","];

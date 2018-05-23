@@ -79,7 +79,7 @@
     }
     //    NSArray *dataArray = @[@"基本资料",@"实名认证",@"银行卡管理",@"我的收货地址",@"账户安全设置"];
     //
-    else if ([titleStr isEqualToString:@"修改支付密码"]) {
+    else if ([titleStr isEqualToString:@"修改支付密码"] || [titleStr isEqualToString:@"设置支付密码"]) {
         SetPayPwdVC *VC = [[SetPayPwdVC alloc] init];
         VC.title = titleStr;
 

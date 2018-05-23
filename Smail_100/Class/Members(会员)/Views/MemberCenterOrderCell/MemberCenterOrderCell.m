@@ -27,12 +27,11 @@
 /// 初始化视图
 - (void)setup
 {
-
     titleList = [NSMutableArray new];
     NSArray *imageArray = @[@"gerenzhongxin3@3x.png",@"gerenzhongxin4@3x.png",@"gerenzhongxin5@3x.png",@"gerenzhongxin6@3x.png",@"gerenzhongxin7@3x.png",@"gerenzhongxin8@3x.png",@"gerenzhongxin9@3x.png",@"gerenzhongxin10@3x.png",];
     NSArray *titleArray = @[@"商城订单",@"线下订单",@"购物车",@"我的收藏",@"商家中心",@"创客微店",@"代理平台",@"我的团队"];
     if (KX_NULLString( [KX_UserInfo sharedKX_UserInfo].agent_level) || [[KX_UserInfo sharedKX_UserInfo].agent_level isEqualToString:@"2"]) {
-        
+         titleArray = @[@"商城订单",@"线下订单",@"购物车",@"我的收藏",@"商家中心",@"创客微店",@"代理平台",@"我的团队"];
     }
     else{
         titleArray =  @[@"商城订单",@"线下订单",@"购物车",@"我的收藏",@"商家中心",@"创客微店",@"合伙人平台",@"我的团队"];
@@ -91,7 +90,8 @@
     _title = title;
     NSArray *titleArrays = @[@"商城订单",@"线下订单",@"购物车",@"我的收藏",@"商家中心",@"创客微店",@"代理平台",@"我的团队"];
     if (KX_NULLString( [KX_UserInfo sharedKX_UserInfo].agent_level) || [[KX_UserInfo sharedKX_UserInfo].agent_level isEqualToString:@"2"]) {
-        
+        titleArrays = @[@"商城订单",@"线下订单",@"购物车",@"我的收藏",@"商家中心",@"创客微店",@"代理平台",@"我的团队"];
+
     }
     else{
         titleArrays =  @[@"商城订单",@"线下订单",@"购物车",@"我的收藏",@"商家中心",@"创客微店",@"合伙人平台",@"我的团队"];

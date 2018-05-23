@@ -339,6 +339,8 @@ static NSString *goodsSameFootViewID = @"goodsSameFootViewID";
             [weakSelf addGoodsInCar:weakSelf.itemIfoModel.itemContent];
         }else{
             LOG(@"购买");
+            [weakSelf.selectView removeFromSuperview];
+            weakSelf.selectView = nil;
             weakSelf.itemIfoModel.itemContent.cartNum = [NSString stringWithFormat:@"%ld",goodCout];
 
             GoodsOrderNomalVC *VC = [[GoodsOrderNomalVC alloc] init];

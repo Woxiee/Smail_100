@@ -38,7 +38,9 @@
 - (void)setModel:(MyteamModel *)model
 {
     _model = model;
-    _title1LB.text = _model.content.msg;
+    NSString * contentmsg = [NSString stringWithFormat:@"%@(%@)",_model.content.nickname,_model.content.mobile];
+    NSAttributedString *attributedStr =  [self attributeStringWithContent:_model.content.msg keyWords:@[contentmsg] color:TITLETEXTLOWCOLOR  font:Font14];
+    _title1LB.attributedText = attributedStr;
 
     
     NSString * markStr = [NSString stringWithFormat:@"您的推荐人是: %@",_model.content.pinfo];

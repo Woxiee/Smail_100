@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UILabel *contenLb;
 @property (nonatomic, strong) UIImageView *imgView;
 
+@property (nonatomic, strong) UIView *lineView;
 
 @end
 
@@ -61,7 +62,10 @@
     _contenLb.textAlignment = NSTextAlignmentLeft;
     _contenLb.textColor = DETAILTEXTCOLOR;
     
-   [self.contentView sd_addSubviews:@[_iconImageView,_nameBtn,_starView,_timeLb,_contenLb]];
+    _lineView = [UIView new];
+    _lineView.backgroundColor = LINECOLOR;
+    
+   [self.contentView sd_addSubviews:@[_iconImageView,_nameBtn,_starView,_timeLb,_contenLb,_lineView]];
     
     
     UIView *contentView = self.contentView;
@@ -101,6 +105,11 @@
     .autoHeightRatio(0);
     
     
+    _lineView.sd_layout
+    .leftSpaceToView(contentView,0)
+    .topSpaceToView(_contenLb, 3)
+    .rightSpaceToView(contentView,0)
+    .heightIs(1);
 }
 
 
@@ -108,11 +117,11 @@
 {
     _model = model;
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:_model.avatar_url] placeholderImage:[UIImage imageNamed:DEFAULTIMAGE]];
-    [_nameBtn setTitle:_model.nickname forState:UIControlStateNormal];
+    [_nameBtn setTitle:_model.namestring forState:UIControlStateNormal];
     _timeLb.text = _model.ctime;
     [_starView ShowDQStarScoreFunction:[_model.stars floatValue]/20];
     _contenLb.text = _model.comment;
-    [self setupAutoHeightWithBottomView:_contenLb bottomMargin:10];
+    [self setupAutoHeightWithBottomView:_lineView bottomMargin:10];
 
 }
 

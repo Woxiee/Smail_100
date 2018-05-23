@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *detailLB;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 
+@property (weak, nonatomic) IBOutlet UIView *lineView1;
 
 
 @end
@@ -33,6 +34,8 @@
     [_moreBtn setImage:[UIImage imageNamed:@"shouye30@3x.png"] forState:UIControlStateNormal];
     [_moreBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleImageRight imageTitlespace:3];
     _lineView.backgroundColor = LINECOLOR;
+    
+    _lineView1.backgroundColor = LINECOLOR;
 //    _timeView.timestamp = 3421123/1000;
     _timeView.backgroundColor = [UIColor clearColor];
     _timeView.hidden = YES;

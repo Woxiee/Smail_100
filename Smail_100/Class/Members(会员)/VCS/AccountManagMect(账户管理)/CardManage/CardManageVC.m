@@ -145,7 +145,14 @@ static NSString * const CardCellID = @"CardCell";
     CardCell *cell = [tableView dequeueReusableCellWithIdentifier:CardCellID forIndexPath:indexPath];
     cell.didClickItemBlcok = ^(CardModel *model, NSInteger index) {
         if (index == 0) {
-            [weakSelf getMainCardRequest:model isDelete:NO];
+            
+            SuccessView *successV  = [[SuccessView alloc]initWithTrueCancleTitle:@"确认删除?" clickDex:^(NSInteger clickDex) {
+                if (clickDex == 1) {
+                    [weakSelf getMainCardRequest:model isDelete:NO];
+
+                }
+            }];
+            [successV showSuccess];
         }else{
             [weakSelf getMainCardRequest:model isDelete:YES];
 

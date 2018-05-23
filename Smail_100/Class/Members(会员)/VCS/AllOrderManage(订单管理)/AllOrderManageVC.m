@@ -125,17 +125,23 @@
 
     
     _receiveVC.shop_id = _shop_id?_shop_id:@"";
-    
+//http://39.108.4.18:6803/api/order/order_list  page_size=15&shop_id=42&paystatus=Complete&type=Shop&pageno=1&user_id=84561&comm_nums=1
+
     
     _contollers = @[_allVC,_waitVC,_signingVC,_closedVC,_receiveVC];
 
 /// 商家中心 订单管理 特殊化
     if (!KX_NULLString(_shop_id)) {
         self.title = @"订单管理";
-
+//http://39.108.4.18:6803/api/order/order_list  page_size=15&shop_id=42&paystatus=Complete&type=Shop&pageno=1&user_id=84561&comm_nums=1
+//        http://m.szwx100.com/api/order/order_list&comm_nums=1&paystatus=Complete&user_id=84561&pageno=1&type=Shop&page_size=10
         titleArr = @[@"全部",@"待付款",@"已完成"];
+        _closedVC.shop_id = _shop_id?_shop_id:@"";
+        _closedVC.paystatus = @"Complete";
+        _closedVC.type = @"Shop";
+        _closedVC.comm_nums = @"1";
         
-        _contollers = @[_allVC,_waitVC,_receiveVC];
+        _contollers = @[_allVC,_waitVC,_closedVC];
     }
 
     

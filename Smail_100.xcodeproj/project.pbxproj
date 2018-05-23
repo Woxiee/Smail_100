@@ -980,6 +980,7 @@
 		E1F51041207474D9003227B6 /* FindPaypwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F5103F207474D9003227B6 /* FindPaypwdVC.xib */; };
 		E1F510492074BA11003227B6 /* JHCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F510462074BA11003227B6 /* JHCoverView.m */; };
 		E1F5104A2074BA11003227B6 /* NewTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F510482074BA11003227B6 /* NewTextField.m */; };
+		E1FA103F20B5626100429259 /* ULBCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FA103D20B5626000429259 /* ULBCollectionViewFlowLayout.m */; };
 		E1FF4B4A20A3E480002AD949 /* downIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FF4B4920A3E480002AD949 /* downIcon@3x.png */; };
 		E1FF4B6A20A53B56002AD949 /* qianbaozhuanzeng2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FF4B6920A53B56002AD949 /* qianbaozhuanzeng2@2x.png */; };
 		E1FF4B6C20A53BDF002AD949 /* 35@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FF4B6B20A53BDF002AD949 /* 35@3x.png */; };
@@ -2572,6 +2573,8 @@
 		E1F510462074BA11003227B6 /* JHCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHCoverView.m; sourceTree = "<group>"; };
 		E1F510472074BA11003227B6 /* NewTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTextField.h; sourceTree = "<group>"; };
 		E1F510482074BA11003227B6 /* NewTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTextField.m; sourceTree = "<group>"; };
+		E1FA103D20B5626000429259 /* ULBCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ULBCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		E1FA103E20B5626000429259 /* ULBCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ULBCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		E1FF4B4920A3E480002AD949 /* downIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downIcon@3x.png"; sourceTree = "<group>"; };
 		E1FF4B6920A53B56002AD949 /* qianbaozhuanzeng2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qianbaozhuanzeng2@2x.png"; sourceTree = "<group>"; };
 		E1FF4B6B20A53BDF002AD949 /* 35@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "35@3x.png"; sourceTree = "<group>"; };
@@ -3668,6 +3671,8 @@
 		E10B0B4020528AE8008BA706 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E1FA103E20B5626000429259 /* ULBCollectionViewFlowLayout.h */,
+				E1FA103D20B5626000429259 /* ULBCollectionViewFlowLayout.m */,
 				E10B0B4120528AE8008BA706 /* ActivityView(活动弹框) */,
 				E10B0B4420528AE8008BA706 /* ColumnCell */,
 				E10B0B4820528AE8008BA706 /* FinancialAndInsuranHeadView(保险与金融的HeadView) */,
@@ -7719,6 +7724,7 @@
 				E10B0FD820528AFA008BA706 /* UIView+SEKExtension.m in Sources */,
 				3E24E8FF207862C2006F5C32 /* LevePartNerHeadView.m in Sources */,
 				E10B0CF320528AE8008BA706 /* AttributeListView.m in Sources */,
+				E1FA103F20B5626100429259 /* ULBCollectionViewFlowLayout.m in Sources */,
 				E10B029E205289EC008BA706 /* main.m in Sources */,
 				E169B2B6207F5FBC00137791 /* CardModel.m in Sources */,
 				E115577E2063A5BE00B344B3 /* AgentPlatformModel.m in Sources */,

@@ -85,6 +85,7 @@ static NSString * const CommentsCellID = @"CommentsCell";
         NSString *msg = [result valueForKey:@"msg"];
         if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"0"]) {
             OfflineDetailModel *model = [OfflineDetailModel yy_modelWithJSON:result[@"data"]];
+            model.distance = _model.distance;
             model.comment = [NSArray yy_modelArrayWithClass:[Comment class] json: model.comment];
             [weakSelf.resorceArray removeAllObjects];
             
@@ -271,7 +272,7 @@ static NSString * const CommentsCellID = @"CommentsCell";
     
     CommentsHeadView *headview = [[NSBundle mainBundle] loadNibNamed:@"CommentsHeadView" owner:nil options: nil].lastObject;
     headview.titleLB.text = [NSString stringWithFormat:@"用户评价(%@人评价)",_detailModle.comment_count];
-    [headview.moreBtn setTitle:@"查看更多评价 >" forState:UIControlStateNormal];
+//    [headview.moreBtn setTitle:@"查看更多评价 >" forState:UIControlStateNormal];
     [headview.moreBtn addTarget:self action:@selector(didClickMoreAction) forControlEvents:UIControlEventTouchUpInside];
     return headview;
     
@@ -285,7 +286,7 @@ static NSString * const CommentsCellID = @"CommentsCell";
 
 - (void)didClickMoreAction
 {
-    GoodsDetailCommenAllVC *VC = [[GoodsDetailCommenAllVC alloc] init];
-    [self.navigationController pushViewController:VC animated:YES];
+//    GoodsDetailCommenAllVC *VC = [[GoodsDetailCommenAllVC alloc] init];
+//    [self.navigationController pushViewController:VC animated:YES];
 }
 @end

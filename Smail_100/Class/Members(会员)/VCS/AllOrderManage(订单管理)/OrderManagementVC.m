@@ -216,7 +216,9 @@
         [param setObject:@"Shop" forKey:@"type"];
         [param setObject:_paystatus forKey:@"paystatus"];
         [param setObject:_comm_nums forKey:@"comm_nums"];
-
+        if (!KX_NULLString(_shop_id)) {
+            [param setObject:_shop_id forKey:@"shop_id"];
+        }
     }
     else{
         [param setObject:_paystatus?_paystatus:@"" forKey:@"paystatus"];

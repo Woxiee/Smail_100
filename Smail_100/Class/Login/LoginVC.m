@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *userPassWDTextField;
 
+@property (weak, nonatomic) IBOutlet UILabel *detailLB;
 
 @end
 
@@ -31,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setConfiguration];
+    
 }
 
 
@@ -41,12 +43,14 @@
     self.view.backgroundColor = [UIColor whiteColor];
     //[_view1 layerForViewWith:3 AndLineWidth:0.5];
     //[_view2 layerForViewWith:3 AndLineWidth:0.5];
-    [_loginBtn layerForViewWith:4 AndLineWidth:0.5];
+    [_loginBtn layerForViewWith:10 AndLineWidth:0.5];
     _loginBtn.backgroundColor = KMAINCOLOR;
     [_registBtn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateNormal];
     [_remberBtn setTitleColor:BACKGROUND_COLORHL forState:UIControlStateNormal];
     
     [self setLeftNaviBtnImage:[UIImage imageNamed:@"denglu@3x.png"]];
+    
+    _detailLB.attributedText =  [NSString attributeStringWithContent:@"登录即代表理解和同意《用户服务协议》" keyWords:@[@"《用户服务协议》"] color:KMAINCOLOR font:Font14];
 }
 
 
@@ -72,8 +76,8 @@
 
 #if DEBUG
    
-//    [param setObject:@"18757587673" forKey:@"mobile"];
-//    [param setObject:@"123456" forKey:@"password"];
+    [param setObject:@"18757587673" forKey:@"mobile"];
+    [param setObject:@"123456" forKey:@"password"];
     
 //    [param setObject:@"13923891910" forKey:@"mobile"];
 //    [param setObject:@"756782" forKey:@"password"];
@@ -148,7 +152,8 @@
 //                    [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];
                     userinfo.maker_level = dataDic[@"maker_level"];
                     userinfo.shop_level = dataDic[@"shop_level"];
-                    userinfo.agent_level = dataDic[@"agent_level"];
+                    userinfo.agent_level =   dataDic[@"agent_level"];
+//
 
 //                    [weakSelf getUserInfoRequest];
                     userinfo.loginStatus = YES;

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -43,6 +43,13 @@
                     <rect key="frame" x="154" y="0.0" width="114" height="45"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f33-uL-15Z">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="3"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="3" id="faI-nt-dtO"/>
+                    </constraints>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="离开团还剩" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLJ-Nl-mmG">
                     <rect key="frame" x="97" y="13" width="57" height="21"/>
                     <constraints>
@@ -53,7 +60,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐商品" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dw8-xL-e6A">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 推荐商品" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dw8-xL-e6A">
                     <rect key="frame" x="29" y="13" width="73" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="73" id="E4m-T5-sRK"/>
@@ -71,13 +78,16 @@
                 <constraint firstAttribute="bottom" secondItem="Blb-b5-Y0G" secondAttribute="bottom" id="BBb-zF-FTZ"/>
                 <constraint firstItem="Dw8-xL-e6A" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="Cxf-mg-KcW"/>
                 <constraint firstAttribute="trailing" secondItem="l4i-aI-w1f" secondAttribute="trailing" constant="10" id="LxZ-e0-smF"/>
+                <constraint firstItem="f33-uL-15Z" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="QSz-UX-C51"/>
                 <constraint firstItem="fLJ-Nl-mmG" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="R0z-GL-9Fa"/>
                 <constraint firstItem="cmO-ZT-GOc" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="WQH-ms-Yz2"/>
                 <constraint firstItem="Dw8-xL-e6A" firstAttribute="leading" secondItem="hqm-3P-H8s" secondAttribute="trailing" constant="2" id="avV-QX-P7V"/>
                 <constraint firstItem="hqm-3P-H8s" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="12" id="e6B-Xv-TKQ"/>
                 <constraint firstItem="cmO-ZT-GOc" firstAttribute="leading" secondItem="fLJ-Nl-mmG" secondAttribute="trailing" id="ebD-J0-kF1"/>
                 <constraint firstItem="l4i-aI-w1f" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="i2U-8A-mLB"/>
+                <constraint firstItem="f33-uL-15Z" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="lvz-bK-yOv"/>
                 <constraint firstItem="l4i-aI-w1f" firstAttribute="leading" secondItem="cmO-ZT-GOc" secondAttribute="trailing" constant="12" id="nYA-UW-FOF"/>
+                <constraint firstAttribute="trailing" secondItem="f33-uL-15Z" secondAttribute="trailing" id="oXT-bj-TOi"/>
                 <constraint firstAttribute="trailing" secondItem="Blb-b5-Y0G" secondAttribute="trailing" constant="12" id="pIz-7i-PW7"/>
                 <constraint firstItem="Blb-b5-Y0G" firstAttribute="top" secondItem="l4i-aI-w1f" secondAttribute="bottom" id="vtQ-5I-33k"/>
                 <constraint firstItem="fLJ-Nl-mmG" firstAttribute="leading" secondItem="Dw8-xL-e6A" secondAttribute="trailing" constant="-5" id="w3L-25-sIc"/>
@@ -86,6 +96,7 @@
             <connections>
                 <outlet property="detailLB" destination="fLJ-Nl-mmG" id="Si7-Fu-vjY"/>
                 <outlet property="lineView" destination="Blb-b5-Y0G" id="NX3-8a-2SN"/>
+                <outlet property="lineView1" destination="f33-uL-15Z" id="epc-Xt-4mz"/>
                 <outlet property="moreBtn" destination="l4i-aI-w1f" id="yTm-Nl-2bu"/>
                 <outlet property="timeView" destination="cmO-ZT-GOc" id="ym7-Rm-g8w"/>
                 <outlet property="titleLabel" destination="Dw8-xL-e6A" id="7Te-Fh-F58"/>

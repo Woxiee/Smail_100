@@ -72,7 +72,7 @@
     orderNo.text = [NSString stringWithFormat:@"订单号%@",_model.orderno];
     timeLB.text = [NSString stringWithFormat:@"时间:%@",_model.ctime];
     cardLB.text = [NSString stringWithFormat:@"%@",_model.bank_info];
-    countLB.text = [NSString stringWithFormat:@"%@元",_model.value];
+    countLB.text = [NSString stringWithFormat:@"%@",_model.value];
     if (_model.fee.floatValue >0) {
         socotLB.text =[NSString stringWithFormat:@"(手续费:%@元)",_model.fee];
     }

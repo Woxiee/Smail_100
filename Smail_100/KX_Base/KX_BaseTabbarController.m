@@ -279,9 +279,9 @@
             NSLog(@"街道：%@",placemark.thoroughfare);
             NSLog(@"子街道：%@",placemark.subThoroughfare);
             NSLog(@"administrativeArea == %@",placemark.administrativeArea); //河北省
-            NSString *cityStr = [city stringByReplacingOccurrencesOfString:@"市" withString:@""];
+//            NSString *cityStr = [city stringByReplacingOccurrencesOfString:@"市" withString:@""];
             [[KX_UserInfo sharedKX_UserInfo] loadUserInfoFromSanbox];
-            [KX_UserInfo sharedKX_UserInfo].city = cityStr;
+            [KX_UserInfo sharedKX_UserInfo].city = city;
             [KX_UserInfo sharedKX_UserInfo].address = [NSString stringWithFormat:@"%@%@%@%@%@",placemark.administrativeArea,placemark.locality,placemark.subLocality,placemark.name,placemark.thoroughfare];
 
             [[KX_UserInfo sharedKX_UserInfo] saveUserInfoToSanbox];

@@ -149,7 +149,7 @@ static NSString * const myTeamListCellID = @"MyTeamListCellID";
     self.mainTable.dataSource = self;
     
     NSArray *titleArr = @[@"推荐人数",@"激活创客",@"I创客团队业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                          "];
-    if (_teamType == FirstTeamListType) {
+    if (_teamType == FirstTeamListType ||_teamType == OtherTeamListType ) {
         titleArr = @[@"推荐人数",@"激活创客",@"I创客团队业绩(元)                                                                                                                                                                                                                                                                                                                                                                                                                                                          "];
     }
     else if (_teamType == SecondTeamListType) {

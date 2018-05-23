@@ -44,7 +44,7 @@ static NSString* cellID = @"AcctoutWaterCellID";
 /// 初始化视图
 - (void)setup
 {
-    MySelectTeamView *selectTeamView = [[MySelectTeamView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 80) titleArray:@[@"0",@"0",@"0",@"0"] andContenArr:@[@"今日获得",@"本月获得",@"总激励笑脸"]];
+    MySelectTeamView *selectTeamView = [[MySelectTeamView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 80) titleArray:@[@"0",@"0",@"0"] andContenArr:@[@"今日获得",@"本月获得",@"总激励笑脸"]];
     [self.view addSubview:selectTeamView];
     self.selectTeamView = selectTeamView;
     [self.selectTeamView layerForViewWith:0 AndLineWidth:2];
@@ -137,7 +137,7 @@ static NSString* cellID = @"AcctoutWaterCellID";
                     if (weakSelf.page == 1) {
                         [weakSelf.resorceArray removeAllObjects];
                     }
-                    weakSelf.selectTeamView.dataList = @[result[@"sum"][@"today"],result[@"sum"][@"month"],result[@"sum"][@"freeze"],result[@"sum"][@"all"]];
+                    weakSelf.selectTeamView.dataList = @[result[@"sum"][@"today"],result[@"sum"][@"month"],result[@"sum"][@"all"]];
                     [weakSelf.resorceArray addObjectsFromArray:listArray];
                 }
             }

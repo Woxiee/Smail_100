@@ -43,6 +43,7 @@
 #pragma mark - private
 - (void)setup
 {
+    self.view.backgroundColor = [UIColor whiteColor];
     _detailLB.text = @"我的二维码";
     _lineView.backgroundColor = LINECOLOR;
  

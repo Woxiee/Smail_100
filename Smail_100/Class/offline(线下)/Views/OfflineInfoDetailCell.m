@@ -76,12 +76,11 @@
     storeLb.text = _model.shop_name;
 //    _starImageView
     addressLB.text = [NSString stringWithFormat:@"%@%@%@%@",_model.province,_model.city,_model.district,_model.address];
-    float distance = _model.distance.floatValue/10000;
-    if (_model.distance.floatValue >1000) {
+    if (_model.distance.length >4) {
+        float distance = _model.distance.floatValue/10000;
         distanceLB.text =  [NSString stringWithFormat:@"%.2fkm",distance];
         
     }else{
-        distanceLB.hidden = YES;
         distanceLB.text =  [NSString stringWithFormat:@"%@m",_model.distance];
     }
     
@@ -93,9 +92,9 @@
     mianLb.text = _model.business_info;
     mianLb.textColor = DETAILTEXTCOLOR;
    _commNumberLB.text= [NSString stringWithFormat:@"%@评价",_model.comment_count];
-    
-    jifePointLB.text = [NSString stringWithFormat:@"赠送积分比例: %@",_model.present_point_perc];
-    [_starImageView ShowDQStarScoreFunction:[_model.stars floatValue]];
+    jifePointLB.text = [NSString stringWithFormat:@"赠送:%@ 积分",model.present_point_perc];
+
+    [_starImageView ShowDQStarScoreFunction:[_model.stars floatValue]/20];
    
     
 }

@@ -55,8 +55,10 @@
     commone.text = [NSString stringWithFormat:@"%@评价",_model.comment_count];
     storeLb.text = [NSString stringWithFormat:@"%@%@%@%@",_model.province,_model.city,_model.district,_model.address];
 //    if (_model.distance_source.floatValue >1000) {
+//    _model.distance  = @"9999";
+    if (_model.distance.length >4) {
         float distance = _model.distance.floatValue/10000;
-    if (_model.distance.floatValue >1000) {
+
         distanceLB.text =  [NSString stringWithFormat:@"%.2fkm",distance];
 
     }else{
@@ -74,7 +76,7 @@
     scoreImageView.starTotalCount = 5;
 
     scoreImageView.ShowStyle = DQStarShowStyleSliding;
-    presentLable.text = [NSString stringWithFormat:@"赠送积分比例:%@",model.present_point_perc];
+    presentLable.text = [NSString stringWithFormat:@"赠送:%@ 积分",model.present_point_perc];
     
 
     scoreImageView.ShowStyle = DQStarShowStyleSingleClick;
